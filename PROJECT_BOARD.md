@@ -2,7 +2,6 @@
 
 ## Backlog
 
-- IIIF ingestion proof of concept
 - Initial sample dataset registration
 - eManuSkript segmentation test
 - Segmentation storage implementation
@@ -12,7 +11,7 @@
 
 ## Ready
 
-- Database schema and migrations
+- IIIF ingestion proof of concept
 
 ## In Progress
 
@@ -27,3 +26,4 @@
 - Repository / workspace
 - Architecture Draft PDF
 - Clean architecture PDF
+- Database schema and migrations

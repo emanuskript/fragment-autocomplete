@@ -1,12 +1,237 @@
-# 02 Database Plan
+# Fragment Autocomplete — Database Schema and Storage Plan
 
-Status: draft placeholder
+## 1. Purpose
 
-This document will capture the initial database and storage direction, including:
+This document describes the concrete PostgreSQL/PostGIS database foundation for Fragment Autocomplete. The schema supports source registration, manuscript/page metadata, image and MSI asset references, fragment geometry, annotations, eManuSkript-style segmentation outputs, artificial-fragment task records, reconstruction candidates, retrieval descriptors, text/metadata links, evaluation runs, and export bundles.
 
-- candidate PostgreSQL/PostGIS usage
-- core entities such as fragments, sources, layout regions, segmentation runs, annotations, and reconstruction candidates
-- provenance and uncertainty fields
-- relationship between database records and file/object storage
+This milestone implements the database foundation only. It does not implement IIIF ingestion, eManuSkript integration, artificial-fragment generation, reconstruction, retrieval, ML, backend API, frontend UI, MSI viewer, CoMMA ingestion, or deployment.
 
-No schema has been implemented yet.
+## 2. Why PostgreSQL/PostGIS
+
+PostgreSQL is the primary relational database because the project needs durable metadata, explicit provenance, rights fields, constraints, JSONB flexibility, and stable relational joins across manuscripts, pages, fragments, segmentation outputs, and reconstruction candidates.
+
+PostGIS is enabled for page-local geometry. Fragment contours, bounding boxes, layout regions, page estimates, and placement geometries are not geographic coordinates, but they benefit from geometry types, GiST indexes, and spatial validation/query capabilities.
+
+`pgcrypto` is enabled for `gen_random_uuid()` so all main tables use UUID primary keys without a backend framework or ORM.
+
+## 3. What Belongs in the Database
+
+The database stores:
+
+- Normalized source, repository, manuscript, witness, canvas/page, and asset metadata.
+- Source provenance, raw external metadata snapshots, rights, and access-control fields.
+- URIs, local paths, checksums, dimensions, media types, and processing versions.
+- Fragment contours, bounding boxes, layout regions, and candidate placement geometry.
+- Segmentation run metadata and layout region records.
+- Artificial-fragment generation parameters and ground-truth links.
+- Reconstruction jobs and first-class reconstruction candidates.
+- Retrieval descriptors and vector arrays for early retrieval support.
+- CoMMA or other text/metadata links.
+- Evaluation and export metadata.
+
+## 4. What Does Not Belong in the Database
+
+The database should not store large binary payloads as blobs. The following belong in object/file storage:
+
+- Full manuscript images.
+- Fragment images.
+- MSI layers and MSI stacks.
+- Masks and pixel-level segmentation outputs.
+- Generated overlays.
+- Exported PDFs, images, JSON bundles, PAGE-XML, ALTO, TEI, or RDF files.
+- Model binaries and training artifacts.
+- Large generated datasets.
+
+The database stores paths, URIs, checksums, rights, metadata, and provenance for these files.
+
+## 5. Object/File Storage Strategy
+
+The schema assumes external object/file storage with stable path or URI references. The final GWDG or institutional storage policy still needs confirmation.
+
+Recommended path categories:
+
+- `raw/`: source images and raw external assets.
+- `processed/`: normalized images, masks, overlays, and derivatives.
+- `metadata/`: manifest snapshots, normalized metadata exports, and provenance bundles.
+- `models/`: model artifacts outside git.
+- `outputs/`: generated exports and reports.
+
+Every stored file reference should include checksum, media type, source provenance, rights, and version metadata when available.
+
+## 6. Coordinate and Geometry Strategy
+
+PostGIS geometry uses SRID `0` because coordinates are page-local pixel or normalized page coordinates, not geographic coordinates.
+
+Geometry columns include:
+
+- `fragment.contour_geom`
+- `fragment.bbox_geom`
+- `annotation.geometry_geom`
+- `layout_region.region_geom`
+- `layout_region.bbox_geom`
+- `reconstruction_candidate.estimated_canvas_geom`
+- `reconstruction_candidate.estimated_fragment_geom`
+
+The first schema uses `geometry(Polygon, 0)` for contours, bounding boxes, layout regions, and candidate estimates. `annotation.geometry_geom` uses `geometry(Geometry, 0)` to allow points, lines, polygons, or mixed annotation geometries.
+
+## 7. Rights and Access-Control Strategy
+
+Rights fields are included on asset and output tables where publication or training permissions matter:
+
+- `rights_statement`
+- `license`
+- `attribution`
+- `training_allowed`
+- `publication_allowed`
+- `demo_allowed`
+- `access_level`
+
+`access_level` is constrained to:
+
+- `private`
+- `internal`
+- `restricted`
+- `public`
+
+Default permissions are conservative. Training, publication, and demo flags default to `false`; access defaults to `private`.
+
+## 8. Core Entity Overview
+
+The schema centers on these entity groups:
+
+- Source and descriptive metadata: `repository`, `manuscript`, `witness`, `iiif_manifest_cache`, `canvas`.
+- Assets and fragments: `image_asset`, `msi_asset`, `fragment`.
+- Human or system interpretation: `annotation`, `segmentation_run`, `layout_region`.
+- Controlled evaluation data: `artificial_fragment_task`, `evaluation_run`.
+- Reconstruction workflow: `reconstruction_job`, `reconstruction_candidate`.
+- Retrieval and text support: `retrieval_embedding`, `text_witness_link`.
+- Outputs: `export_bundle`.
+
+## 9. Table-by-Table Explanation
+
+`repository` stores source institutions or digital repositories such as SUB Göttingen / GDZ, Fragmentarium, e-codices, Biblissima, Gallica / BnF, Digital Bodleian, and CoMMA.
+
+`manuscript` stores codicological manuscript groupings linked to repositories when known.
+
+`witness` stores textual or manuscript witnesses, including possible CoMMA links and text URLs.
+
+`iiif_manifest_cache` stores raw IIIF manifest JSON and fetch provenance.
+
+`canvas` stores IIIF canvas or local manuscript page records with pixel and physical dimensions.
+
+`image_asset` stores registered image file or IIIF image-service references, not image blobs.
+
+`msi_asset` stores aligned MSI layer or stack references linked to an image asset.
+
+`fragment` stores surviving manuscript fragment records, including contour and bounding-box geometry.
+
+`annotation` stores expert or system annotations against polymorphic targets.
+
+`segmentation_run` stores eManuSkript or other layout-model run metadata.
+
+`layout_region` stores detected manuscript layout regions, labels, confidence values, polygons, bounding boxes, and mask paths.
+
+`artificial_fragment_task` stores synthetic fragment generation metadata from complete pages.
+
+`reconstruction_job` stores candidate-generation job metadata.
+
+`reconstruction_candidate` stores ranked reconstruction hypotheses as first-class records.
+
+`retrieval_embedding` stores early retrieval vectors as `FLOAT8[]` and descriptor JSON. `pgvector` can be added later if needed.
+
+`text_witness_link` stores CoMMA or other text/metadata links.
+
+`evaluation_run` stores metric batches, expert rubrics, and failure taxonomies.
+
+`export_bundle` stores generated export package metadata and rights status.
+
+## 10. How the Schema Supports IIIF Ingestion
+
+The schema supports IIIF ingestion through:
+
+- `repository` for source ownership.
+- `iiif_manifest_cache` for raw manifest JSON, fetch status, ETag, and last-modified metadata.
+- `canvas` for manifest canvases or local page records.
+- `image_asset` for IIIF Image API service URLs and registered image references.
+- JSONB fields for raw source metadata while normalized fields remain queryable.
+
+The IIIF parser and image cache prototype is the next task; it is not implemented in this milestone.
+
+## 11. How the Schema Supports eManuSkript Outputs
+
+The schema supports eManuSkript outputs through:
+
+- `segmentation_run` for model name, version, parameters, status, output paths, and raw output metadata.
+- `layout_region` for semantic layout labels, label IDs, confidence values, polygons, bounding boxes, reading order, area, mask paths, and raw region payloads.
+- GiST indexes on layout-region geometry.
+
+The eManuSkript model is not run or integrated in this milestone.
+
+## 12. How the Schema Supports Artificial Fragments
+
+`artificial_fragment_task` links generated fragment tasks to complete source pages and images. It records mask family, random seed, crop transform, degradation profile, ground-truth placement, split name, generation version, and parameters.
+
+This supports later supervised evaluation while keeping synthetic fragment generation reproducible. The generator itself is not implemented in this milestone.
+
+## 13. How the Schema Supports Reconstruction Candidates
+
+`reconstruction_candidate` is a first-class table. It links to a `reconstruction_job` and a `fragment`, supports ranked candidates, stores canvas estimates, physical dimensions, placement transforms, estimated geometries, layout JSON, score, uncertainty, provenance, linked analogues, output paths, and review status.
+
+This design allows a fragment to have multiple competing scholarly hypotheses rather than a single final answer.
+
+## 14. How the Schema Supports Evaluation
+
+`evaluation_run` stores metric outputs, expert rubric payloads, failure taxonomy data, evaluator identity, dataset split, and timing metadata. It can target artificial-fragment tasks, reconstruction candidates, model runs, or other entities through `target_type` and `target_id`.
+
+The detailed evaluation rubric remains a later documentation and implementation task.
+
+## 15. How the Schema Supports Export
+
+`export_bundle` stores export package metadata for PDF, image, JSON, PAGE-XML, ALTO, TEI, or later RDF/LOD outputs. It records whether the bundle includes observed evidence, inferred structure, or illustrative fill.
+
+Exports remain linked to fragment and/or reconstruction candidate records and preserve rights metadata.
+
+## 16. Migration and Validation Commands
+
+Start the local database:
+
+```bash
+bash scripts/db_start.sh
+```
+
+Apply migrations and seed values:
+
+```bash
+bash scripts/db_migrate.sh
+```
+
+Validate the schema:
+
+```bash
+bash scripts/db_validate.sh
+```
+
+Reset the local database volume:
+
+```bash
+bash scripts/db_reset.sh --yes
+```
+
+Run full workspace validation:
+
+```bash
+bash scripts/check_workspace.sh
+```
+
+## 17. Known Limitations and Next Steps
+
+Known limitations:
+
+- Storage path policy needs confirmation with GWDG or the selected institutional storage environment.
+- `pgvector` is not enabled yet; retrieval vectors are stored as `FLOAT8[]` and descriptor JSON for now.
+- Polymorphic references such as `annotation.target_id` and `evaluation_run.target_id` are not enforced by foreign keys.
+- The schema supports IIIF, eManuSkript outputs, artificial fragments, reconstruction candidates, evaluation, and export, but those pipelines are not implemented yet.
+
+Next step:
+
+Build the IIIF ingestion proof of concept.
