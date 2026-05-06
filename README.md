@@ -80,6 +80,51 @@ If PDF generation is unavailable, the fallback output is:
 outputs/Fragment_Autocomplete_Architecture_Draft.html
 ```
 
+## IIIF ingestion proof of concept
+
+Install the minimal Python dependencies:
+
+```bash
+python3 -m pip install -r requirements.txt
+```
+
+Start the local PostgreSQL/PostGIS database:
+
+```bash
+bash scripts/db_start.sh
+```
+
+Apply migrations and seed values:
+
+```bash
+bash scripts/db_migrate.sh
+```
+
+Ingest a local IIIF fixture:
+
+```bash
+python3 scripts/ingest_iiif_manifest.py \
+  --file tests/ingestion/fixtures/iiif_v3_minimal_manifest.json \
+  --repository "Fixture Repository"
+```
+
+Dry-run a manifest without database writes:
+
+```bash
+python3 scripts/ingest_iiif_manifest.py \
+  --file tests/ingestion/fixtures/iiif_v3_minimal_manifest.json \
+  --repository "Fixture Repository" \
+  --dry-run
+```
+
+Validate the IIIF ingestion proof of concept:
+
+```bash
+bash scripts/validate_iiif_ingestion.sh
+```
+
+The ingestion proof of concept registers manifest, repository, manuscript, canvas, and image asset metadata. It does not download full-resolution image sets by default.
+
 ## Next Task
 
-Create concrete PostgreSQL/PostGIS database schema and migrations.
+Register the initial sample dataset.

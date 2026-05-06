@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- IIIF Presentation v2/v3 manifest normalization proof of concept.
+- Local and remote IIIF manifest ingestion CLI with dry-run mode.
+- Fixture manifests and normalizer tests for IIIF v2 and v3.
+- IIIF ingestion validation script with database row checks.
+- IIIF ingestion proof-of-concept documentation.
 - PostgreSQL/PostGIS Docker database foundation.
 - Initial SQL migration with UUID primary keys, PostGIS geometry columns, constraints, triggers, and indexes.
 - Seed lookup values for known repository/resource placeholders.

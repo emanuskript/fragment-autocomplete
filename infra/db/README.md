@@ -16,12 +16,12 @@ This is database infrastructure only. It does not implement IIIF ingestion, eMan
 - Database: `fragment`
 - User: `fragment`
 - Password: `fragment_dev_password`
-- Host port: `5432`
+- Host port: `55432`
 
-If port `5432` is already in use, set `FRAGMENT_DB_PORT`:
+If port `55432` is already in use, set `FRAGMENT_DB_PORT`:
 
 ```bash
-FRAGMENT_DB_PORT=55432 bash scripts/db_start.sh
+FRAGMENT_DB_PORT=55433 bash scripts/db_start.sh
 ```
 
 Use the same environment variable for migration and validation commands when using a non-default host port.

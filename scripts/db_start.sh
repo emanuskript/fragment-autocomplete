@@ -6,7 +6,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 COMPOSE_FILE="$ROOT_DIR/infra/db/docker-compose.yml"
 DB_NAME="${FRAGMENT_DB_NAME:-fragment}"
 DB_USER="${FRAGMENT_DB_USER:-fragment}"
-DB_PORT="${FRAGMENT_DB_PORT:-5432}"
+DB_PORT="${FRAGMENT_DB_PORT:-55432}"
 
 compose() {
   if docker compose version >/dev/null 2>&1; then
@@ -34,7 +34,7 @@ for attempt in $(seq 1 60); do
     echo "  user: $DB_USER"
     echo "  password: fragment_dev_password"
     echo
-    echo "If port 5432 conflicts, rerun with FRAGMENT_DB_PORT=<port>."
+    echo "Override the host port with FRAGMENT_DB_PORT=<port> if needed."
     exit 0
   fi
   sleep 1

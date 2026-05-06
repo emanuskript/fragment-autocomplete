@@ -1,0 +1,101 @@
+{
+  "@context": "http://iiif.io/api/presentation/3/context.json",
+  "id": "https://fixtures.example.org/iiif/v3/manifest",
+  "type": "Manifest",
+  "label": {
+    "en": [
+      "Fixture V3 Manuscript"
+    ]
+  },
+  "metadata": [
+    {
+      "label": {
+        "en": [
+          "Shelfmark"
+        ]
+      },
+      "value": {
+        "en": [
+          "Fixture MS V3"
+        ]
+      }
+    },
+    {
+      "label": {
+        "en": [
+          "Language"
+        ]
+      },
+      "value": {
+        "en": [
+          "Latin"
+        ]
+      }
+    }
+  ],
+  "rights": "https://creativecommons.org/licenses/by/4.0/",
+  "provider": [
+    {
+      "id": "https://fixtures.example.org/",
+      "type": "Agent",
+      "label": {
+        "en": [
+          "Fixture Repository"
+        ]
+      }
+    }
+  ],
+  "requiredStatement": {
+    "label": {
+      "en": [
+        "Attribution"
+      ]
+    },
+    "value": {
+      "en": [
+        "Fixture Repository"
+      ]
+    }
+  },
+  "items": [
+    {
+      "id": "https://fixtures.example.org/iiif/v3/canvas/p1",
+      "type": "Canvas",
+      "label": {
+        "en": [
+          "fol. 1r"
+        ]
+      },
+      "width": 1400,
+      "height": 2100,
+      "items": [
+        {
+          "id": "https://fixtures.example.org/iiif/v3/canvas/p1/annotation-page",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://fixtures.example.org/iiif/v3/annotation/p1-image",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://fixtures.example.org/images/v3/p1/full/max/0/default.jpg",
+                "type": "Image",
+                "format": "image/jpeg",
+                "width": 1400,
+                "height": 2100,
+                "service": [
+                  {
+                    "id": "https://fixtures.example.org/iiif/image/v3/p1",
+                    "type": "ImageService3",
+                    "profile": "level2"
+                  }
+                ]
+              },
+              "target": "https://fixtures.example.org/iiif/v3/canvas/p1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

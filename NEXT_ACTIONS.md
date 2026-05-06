@@ -2,16 +2,16 @@
 
 ## Next recommended task
 
-Build the IIIF ingestion proof of concept.
+Register the initial sample dataset.
 
 ## Acceptance criteria
 
-- Parse IIIF Presentation manifests.
-- Register `repository`, `manuscript`, `canvas`, and `image_asset` records.
-- Cache raw manifest JSON in `iiif_manifest_cache`.
-- Extract IIIF Image API service URLs.
-- Store rights and attribution metadata where available.
-- Validate ingestion on 3-5 sample manifests.
-- Do not download huge image sets by default.
-- Add tests or a validation command.
-- Do not implement eManuSkript integration, reconstruction, retrieval, ML, frontend UI, or deployment as part of this proof of concept unless explicitly requested.
+- Select 3-5 complete manuscript pages from IIIF sources.
+- Select or register 3-5 real fragment candidates if available.
+- Store `repository`, `manuscript`, `canvas`, `image_asset`, and `fragment` metadata.
+- Include rights/access flags.
+- Include source links and attribution.
+- Do not download large assets by default.
+- Produce a small sample dataset report.
+- Prepare inputs for first eManuSkript segmentation test.
+- Do not implement reconstruction, retrieval, ML, frontend UI, CoMMA ingestion, or deployment as part of this dataset-registration task unless explicitly requested.

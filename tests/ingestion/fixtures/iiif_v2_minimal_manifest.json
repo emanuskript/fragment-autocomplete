@@ -1,0 +1,48 @@
+{
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "https://fixtures.example.org/iiif/v2/manifest",
+  "@type": "sc:Manifest",
+  "label": "Fixture V2 Manuscript",
+  "metadata": [
+    {
+      "label": "Shelfmark",
+      "value": "Fixture MS V2"
+    },
+    {
+      "label": "Language",
+      "value": "Latin"
+    }
+  ],
+  "license": "https://creativecommons.org/publicdomain/mark/1.0/",
+  "attribution": "Fixture Repository",
+  "sequences": [
+    {
+      "@type": "sc:Sequence",
+      "canvases": [
+        {
+          "@id": "https://fixtures.example.org/iiif/v2/canvas/p1",
+          "@type": "sc:Canvas",
+          "label": "fol. 1r",
+          "width": 1200,
+          "height": 1800,
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "resource": {
+                "@id": "https://fixtures.example.org/images/v2/p1/full/full/0/default.jpg",
+                "@type": "dctypes:Image",
+                "format": "image/jpeg",
+                "width": 1200,
+                "height": 1800,
+                "service": {
+                  "@id": "https://fixtures.example.org/iiif/image/v2/p1",
+                  "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

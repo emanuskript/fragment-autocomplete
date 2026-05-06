@@ -37,6 +37,7 @@ required_files=(
   "CHANGELOG.md"
   "docs/01_architecture_overview.md"
   "docs/02_database_plan.md"
+  "docs/03_iiif_ingestion_plan.md"
   "docs/architecture_build_notes.md"
   "infra/db/docker-compose.yml"
   "infra/db/README.md"
@@ -49,6 +50,17 @@ required_files=(
   "scripts/db_migrate.sh"
   "scripts/db_reset.sh"
   "scripts/db_validate.sh"
+  "scripts/ingest_iiif_manifest.py"
+  "scripts/validate_iiif_ingestion.sh"
+  "src/ingestion/__init__.py"
+  "src/ingestion/db.py"
+  "src/ingestion/iiif_client.py"
+  "src/ingestion/iiif_manifest.py"
+  "src/ingestion/iiif_normalizer.py"
+  "src/ingestion/iiif_ingest.py"
+  "tests/ingestion/fixtures/iiif_v2_minimal_manifest.json"
+  "tests/ingestion/fixtures/iiif_v3_minimal_manifest.json"
+  "tests/ingestion/test_iiif_normalizer.py"
 )
 
 figure_names=(

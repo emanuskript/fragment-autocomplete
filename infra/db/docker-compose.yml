@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: fragment
       POSTGRES_PASSWORD: fragment_dev_password
     ports:
-      - "${FRAGMENT_DB_PORT:-5432}:5432"
+      - "${FRAGMENT_DB_PORT:-55432}:5432"
     volumes:
       - fragment_postgres_data:/var/lib/postgresql/data
     healthcheck:
