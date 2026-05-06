@@ -1,10 +1,58 @@
 # Fragment Autocomplete — Technical Architecture Draft
 
+| Field | Value |
+| --- | --- |
+| Title | Fragment Autocomplete — Technical Architecture Draft |
+| Project | Fragment Autocomplete: Virtual Reconstruction of Medieval Manuscripts using Machine Learning |
+| Funding | Pro*Niedersachsen |
+| Host | Institute for Digital Humanities, University of Göttingen |
+| Status | Architecture Draft |
+| Version | 0.2 |
+| Date | 2026-05-06 |
+| Author | Mohamed Basuony |
+
+## Document Purpose
+
+This document defines the initial technical architecture for Fragment Autocomplete. It establishes the system boundaries, core data model, layout-first reconstruction strategy, eManuSkript integration role, storage architecture, evaluation architecture, and implementation sequence. It is not an implementation report and does not claim that the described components are already built.
+
+## Table of Contents
+
+- 1. Executive Summary
+- 2. Project Scope and Architectural Principles
+- 3. Scholarly Safety Model
+- 4. Core System Goals
+- 5. Non-Goals and Explicitly Avoided Claims
+- 6. High-Level System Architecture
+- 7. System Context
+- 8. Component Architecture
+- 9. Data Ingestion Architecture
+- 10. IIIF Integration Architecture
+- 11. Image and Metadata Storage Architecture
+- 12. eManuSkript-Centered Layout Analysis Pipeline
+- 13. Artificial Fragment Generation Pipeline
+- 14. Layout-First Reconstruction MVP
+- 15. Retrieval-Based Reconstruction Layer
+- 16. Optional Segmentation-Conditioned Model Layer
+- 17. Reconstruction Candidate Data Model
+- 18. Database Architecture Overview
+- 19. CoMMA Text and Metadata Integration
+- 20. MSI Layer Integration
+- 21. Web/API Interface Architecture
+- 22. Evaluation Architecture
+- 23. Export Architecture
+- 24. Deployment and Reproducibility Architecture
+- 25. Security, Rights, and Access-Control Considerations
+- 26. Data Lifecycle
+- 27. Risks and Mitigation
+- 28. Implementation Roadmap
+- 29. Key Open Decisions
+- 30. Next Engineering Milestone
+
 ## 1. Executive Summary
 
 Fragment Autocomplete is a two-year Pro*Niedersachsen research-software project hosted at the Institute for Digital Humanities, University of Göttingen. The project will build an open-source and open-access toolchain for virtual reconstruction of medieval manuscript fragments.
 
-The architecture is evidence-preserving and layout-first. The first useful system should estimate page canvas, margins, columns, semantic layout zones, and plausible fragment placement before attempting any experimental full-image synthesis. Every reconstruction output must be framed as a ranked candidate scholarly hypothesis based on observed fragment evidence, layout analysis, retrieved analogues, metadata, and explicit uncertainty.
+The architecture is evidence-preserving and layout-first. The first useful system should estimate page canvas, margins, columns, semantic layout zones, and plausible fragment placement before attempting any experimental full-image synthesis. Reconstruction outputs are ranked candidate scholarly hypotheses based on observed fragment evidence, layout analysis, retrieved analogues, metadata, and explicit uncertainty.
 
 The central technical asset is the existing eManuSkript / "Manuskripte digital lesen lernen" layout-analysis model. CoMMA is treated as a supporting text and metadata resource, not as the primary visual reconstruction dataset.
 
@@ -21,7 +69,7 @@ Core architectural principles:
 - The system should fail gracefully when evidence is insufficient.
 - Observed evidence must remain separate from inferred structure and illustrative fill.
 
-The project scope includes ingestion, layout analysis, candidate generation, review, evaluation, and export. This architecture document does not implement those components.
+The project scope includes ingestion, layout analysis, candidate generation, review, evaluation, and export. The implementation should proceed incrementally from durable data structures and layout analysis toward retrieval, evaluation, and later experimental modeling.
 
 ## 3. Scholarly Safety Model
 
@@ -69,17 +117,23 @@ Correct framing:
 
 ![Figure 2: High-Level Pipeline](figures/architecture/fig02_high_level_pipeline.svg)
 
-The high-level architecture begins with curated data sources and local scholarly inputs. IIIF manifests, local images, metadata, and later MSI layers are registered and normalized. eManuSkript produces layout labels and segmentation outputs. Complete pages support artificial-fragment generation for supervised evaluation. The MVP then estimates layout-first reconstruction candidates, ranks them using retrieval evidence, and exposes them through web, API, export, and evaluation interfaces. Optional segmentation-conditioned models should only enter after the layout and retrieval baseline is working.
+Figure 2 shows the end-to-end technical pipeline from data sources through ingestion, preprocessing, eManuSkript layout analysis, layout-first reconstruction, retrieval, optional conditioned modeling, and review/export interfaces.
+
+The high-level architecture begins with curated data sources and local scholarly inputs. IIIF manifests, local images, metadata, and later MSI layers are registered and normalized. eManuSkript produces layout labels and segmentation outputs. Complete pages support artificial-fragment generation for supervised evaluation. The MVP estimates layout-first reconstruction candidates, ranks them using retrieval evidence, and exposes them through web, API, export, and evaluation interfaces.
 
 ## 7. System Context
 
 ![Figure 1: System Context](figures/architecture/fig01_system_context.svg)
+
+Figure 1 shows the external actors, data sources, infrastructure, and outputs connected to the Fragment Autocomplete system.
 
 Fragment Autocomplete sits between scholars, fragment specialists, digitization partners, manuscript repositories, storage infrastructure, and export consumers. SUB Göttingen contributes digitization and multispectral imaging expertise. Fragmentarium supports fragment analysis, digital-fragment representation, and digital-fragment standards. e-codices and other IIIF repositories provide compatible manuscript image sources. CoMMA supports text and metadata discovery. GWDG or equivalent institutional infrastructure is the likely long-term home for storage, compute, and deployment.
 
 ## 8. Component Architecture
 
 ![Figure 3: Component Architecture](figures/architecture/fig03_component_architecture.svg)
+
+Figure 3 presents the main application and infrastructure components expected in the mature research system.
 
 The system is organized as separate components:
 
@@ -116,6 +170,8 @@ JSONB is appropriate for raw source metadata, raw IIIF manifest snapshots, model
 ## 12. eManuSkript-Centered Layout Analysis Pipeline
 
 ![Figure 5: eManuSkript Backbone](figures/architecture/fig05_emanuskript_backbone.svg)
+
+Figure 5 summarizes the architectural roles of eManuSkript as a reusable source of layout structure across ingestion, retrieval, UI, evaluation, and later model conditioning.
 
 eManuSkript is the central layout-analysis backbone. It should be used as:
 
@@ -168,6 +224,8 @@ The first target should be layout-map completion or coarse page-structure estima
 
 ![Figure 6: Reconstruction Candidate Flow](figures/architecture/fig06_reconstruction_candidate_flow.svg)
 
+Figure 6 shows how fragment evidence, masks, metadata, and segmentation outputs flow into placement estimation, template retrieval, candidate ranking, uncertainty scoring, and expert review.
+
 `reconstruction_candidate` is a first-class object. A fragment can have multiple candidates, and candidates can come from different rules, retrieval methods, model versions, or expert revisions.
 
 Each candidate should store:
@@ -190,6 +248,8 @@ Candidates should remain comparable over time, so model versions, data versions,
 
 ![Figure 7: Database Entity Overview](figures/architecture/fig07_database_entity_overview.svg)
 
+Figure 7 gives the first entity-level view of the recommended PostgreSQL/PostGIS schema.
+
 Initial entities:
 
 - `repository`: source institution or digital repository.
@@ -211,7 +271,7 @@ Initial entities:
 - `evaluation_run`: metric and review batch.
 - `export_bundle`: generated export package and rights status.
 
-Full migrations are the next implementation task.
+Full migrations are the next engineering milestone.
 
 ## 19. CoMMA Text and Metadata Integration
 
@@ -247,6 +307,8 @@ The API should expose project entities, source registration, jobs, segmentation 
 
 ![Figure 8: Evaluation Loop](figures/architecture/fig08_evaluation_loop.svg)
 
+Figure 8 shows the evaluation loop from controlled artificial-fragment tasks through prediction, metrics, expert review, failure analysis, and model or rule updates.
+
 Evaluation should prioritize structural and scholarly usefulness over pixel similarity. Metrics include page-size error, placement accuracy, zone IoU/F1, column-count accuracy, margin deviation, line-count error, retrieval recall@k, expert plausibility rubric, and failure taxonomy.
 
 Pixel metrics are secondary and can be misleading because multiple visual completions may be plausible or illustrative. Evaluation should distinguish artificial-fragment tasks with known ground truth from real fragments where only expert plausibility and provenance quality can be assessed.
@@ -260,6 +322,8 @@ Every export must preserve uncertainty and provenance. Export bundles should ide
 ## 24. Deployment and Reproducibility Architecture
 
 ![Figure 9: Deployment Architecture](figures/architecture/fig09_deployment_architecture.svg)
+
+Figure 9 outlines the expected deployment topology for a local research prototype and later institutional deployment.
 
 The deployment architecture should support a local research prototype first, then a GWDG or equivalent institutional deployment. Expected components are browser UI, backend API, async queue and workers, model services, PostgreSQL/PostGIS, object storage, logs/monitoring, and optional GWDG/HPC resources for heavier jobs.
 
@@ -275,17 +339,13 @@ Model and data provenance must be retained so generated outputs can be traced ba
 
 ![Figure 4: Data Lifecycle](figures/architecture/fig04_data_lifecycle.svg)
 
+Figure 4 describes the lifecycle of source material and derived artifacts from raw source registration through export bundles.
+
 The data lifecycle moves from raw source registration to cached image assets, normalized metadata, segmentation runs, artificial-fragment tasks, reconstruction candidates, evaluation results, and export bundles. Each stage should preserve parent links, processing parameters, checksums, rights, and review status.
 
 The lifecycle should support reprocessing when eManuSkript versions, segmentation parameters, schema versions, or retrieval indexes change.
 
-## 27. First 90 Days Architecture Milestones
-
-![Figure 10: First 90 Days Status](figures/architecture/fig10_first_90_days_status.svg)
-
-At roughly Week 6, the project should have repository/workspace foundations and an architecture/database draft. This task completes the architecture draft and moves database schema/migrations into the next concrete task. IIIF ingestion, sample data registration, eManuSkript testing, segmentation storage, artificial-fragment generation, evaluation details, layout-first prototype, minimal viewer, and 20-30 use-case selection remain future work unless separately implemented.
-
-## 28. Risks and Mitigation
+## 27. Risks and Mitigation
 
 | Risk | Mitigation |
 | --- | --- |
@@ -298,32 +358,48 @@ At roughly Week 6, the project should have repository/workspace foundations and 
 | CoMMA overuse | Restrict CoMMA to text/metadata workflows and document its limitations. |
 | Evaluation drift | Maintain a fixed evaluation set, expert rubric, failure taxonomy, and versioned metrics. |
 | Compute limits | Use async jobs, queueing, cached intermediate outputs, and staged model experiments. |
-| Scope creep | Keep roadmap status current and avoid marking implementation milestones Done without validated artifacts. |
+| Scope creep | Maintain clear milestone ownership and avoid bundling unrelated implementation work into early foundations. |
 
-## 29. Open Decisions
+## 28. Implementation Roadmap
 
-- Final DB engine confirmation.
-- PostGIS geometry representation for polygons, contours, placement transforms, and region geometries.
-- Object-storage path conventions and GWDG/filesystem policy.
+![Figure 10: First 90 Days Status](figures/architecture/fig10_first_90_days_status.svg)
+
+Figure 10 shows the early milestone sequence from repository setup through architecture, data ingestion, segmentation, evaluation, and first prototype work.
+
+The implementation sequence should proceed in phases:
+
+- Phase 1: Database and storage foundation. Define PostgreSQL/PostGIS migrations, rights fields, geometry representations, object/file storage conventions, and schema validation.
+- Phase 2: IIIF ingestion and sample dataset registration. Register selected complete pages and real fragments with provenance, rights, and stable identifiers.
+- Phase 3: eManuSkript segmentation storage. Persist model outputs as layout regions, masks, polygons, confidence values, overlays, and versioned runs.
+- Phase 4: Artificial fragment generation. Create controlled synthetic fragment tasks from complete pages with reproducible masks, degradations, and ground-truth placement links.
+- Phase 5: Layout-first reconstruction MVP. Estimate page canvas, margins, columns, semantic zones, and placement candidates without claiming recovered missing content.
+- Phase 6: Retrieval-based reconstruction. Rank analogue pages and templates using layout descriptors, metadata filters, visual embeddings, and explainable provenance.
+- Phase 7: Optional segmentation-conditioned modeling. Explore layout-map completion or coarse structural prediction after the baseline is measurable.
+- Phase 8: Research interface, evaluation, export, and deployment. Provide the review UI, evaluation dashboard, export bundles, and institutional deployment path.
+
+## 29. Key Open Decisions
+
+The main unresolved architecture decisions are:
+
+- Final GWDG/object-storage path policy.
 - IIIF viewer choice.
-- eManuSkript output format and conversion path.
+- Exact eManuSkript output format and conversion path.
 - PAGE-XML vs internal JSON for segmentation storage.
-- Initial data sources and rights workflow.
-- 20-30 use-case selection.
-- Expert evaluation rubric.
-- Whether CoMMA ingestion starts in Q1 or later.
+- Initial data-source licensing workflow.
+- Evaluation rubric ownership and review process.
+- Timing of CoMMA ingestion.
 
-## 30. Immediate Next Actions
+## 30. Next Engineering Milestone
 
-Create concrete PostgreSQL/PostGIS database schema and migrations.
+The next engineering milestone is to create the concrete PostgreSQL/PostGIS database schema and migrations.
 
-This next task should define migrations or ORM models, include validation commands, and create the first persistent representation for sources, pages, fragments, segmentation outputs, layout regions, reconstruction candidates, retrieval descriptors, evaluation runs, and export bundles.
+Acceptance criteria for that milestone:
 
-## 31. Definition of Done for This Architecture Draft
-
-- Architecture document complete.
-- All figures created.
-- PDF generated or HTML fallback generated.
-- Roadmap status updated.
-- Next task clearly stated.
-- No application implementation falsely claimed.
+- PostgreSQL is selected as the primary database and the PostGIS extension is enabled.
+- SQL migrations define the first project schema.
+- Core tables cover repositories, manuscripts, witnesses, IIIF manifest caches, canvases/pages, image assets, MSI assets, fragments, annotations, segmentation runs, layout regions, artificial-fragment tasks, reconstruction jobs, reconstruction candidates, retrieval embeddings, text witness links, evaluation runs, and export bundles.
+- Geometry and polygon representation is defined for fragments, layout regions, page coordinates, and placement estimates.
+- Rights and access fields include `training_allowed`, `publication_allowed`, `demo_allowed`, and `access_level`.
+- External storage references include path or URI, checksum, media type, source provenance, and version metadata.
+- A schema validation command is available for repeatable local checks.
+- Large images, MSI files, generated datasets, and model artifacts remain outside git.

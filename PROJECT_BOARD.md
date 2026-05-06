@@ -26,3 +26,4 @@
 
 - Repository / workspace
 - Architecture Draft PDF
+- Clean architecture PDF
