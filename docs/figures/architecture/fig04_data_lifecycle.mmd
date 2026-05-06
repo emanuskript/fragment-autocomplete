@@ -1,0 +1,15 @@
+flowchart LR
+  Raw["Raw Source"]
+  Asset["Cached Image\nAsset"]
+  Meta["Normalized\nMetadata"]
+  Seg["Segmentation\nRun"]
+  Synth["Artificial Fragment\nTask"]
+  Candidate["Reconstruction\nCandidate"]
+  Eval["Evaluation\nResult"]
+  Export["Export\nBundle"]
+
+  Raw --> Asset --> Meta --> Seg
+  Seg --> Synth --> Candidate
+  Seg --> Candidate
+  Candidate --> Eval --> Export
+  Candidate --> Export

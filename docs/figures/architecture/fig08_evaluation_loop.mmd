@@ -1,0 +1,16 @@
+flowchart LR
+  GT["Ground-Truth\nArtificial Fragment"]
+  Pred["Prediction"]
+  Layout["Layout\nMetrics"]
+  Retrieval["Retrieval\nMetrics"]
+  Rubric["Expert\nRubric"]
+  Fail["Failure\nTaxonomy"]
+  Update["Model / Rule\nUpdate"]
+
+  GT --> Pred --> Layout
+  Pred --> Retrieval
+  Pred --> Rubric
+  Layout --> Fail
+  Retrieval --> Fail
+  Rubric --> Fail
+  Fail --> Update

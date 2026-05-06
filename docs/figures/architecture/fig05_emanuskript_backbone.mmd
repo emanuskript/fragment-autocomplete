@@ -1,0 +1,17 @@
+flowchart TB
+  EMan["eManuSkript\nLayout Analysis"]
+  Seg["Segmentation\nArtifact"]
+  Pseudo["Pseudo-Label\nGenerator"]
+  Prior["Layout\nPrior"]
+  Retrieval["Retrieval\nKey"]
+  Overlay["UI\nOverlay"]
+  Eval["Evaluation\nSignal"]
+  Cond["Optional Conditioning\nMap"]
+
+  EMan --> Seg
+  EMan --> Pseudo
+  EMan --> Prior
+  EMan --> Retrieval
+  EMan --> Overlay
+  EMan --> Eval
+  EMan --> Cond

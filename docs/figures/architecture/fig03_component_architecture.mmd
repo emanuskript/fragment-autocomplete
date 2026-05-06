@@ -1,0 +1,22 @@
+flowchart TB
+  UI["Frontend\nViewer + Review UI"]
+  API["Backend API"]
+  Queue["Async Queue"]
+  Worker["Job Workers"]
+  DB["PostgreSQL / PostGIS"]
+  Store["Object / File Storage"]
+  EMan["eManuSkript Service"]
+  Index["Retrieval Index"]
+  Eval["Evaluation Service"]
+  Export["Export Service"]
+
+  UI <--> API
+  API <--> DB
+  API <--> Store
+  API --> Queue --> Worker
+  Worker <--> DB
+  Worker <--> Store
+  Worker --> EMan
+  Worker --> Index
+  Worker --> Eval
+  Worker --> Export

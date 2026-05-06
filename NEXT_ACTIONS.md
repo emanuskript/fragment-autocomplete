@@ -1,15 +1,15 @@
 # NEXT_ACTIONS
 
-## Next task
+## Next recommended task
 
-Draft the technical architecture and database schema.
+Create concrete PostgreSQL/PostGIS database schema and migrations.
 
 ## Acceptance criteria
 
-- backend/frontend/API/storage/model-pipeline boundaries described
-- PostgreSQL/PostGIS decision drafted
-- object-storage/filesystem strategy drafted
-- first database entities listed
-- `reconstruction_candidate` treated as a first-class entity
-- `segmentation_run` and annotation storage considered
-- no application implementation yet
+- PostgreSQL selected as primary DB.
+- PostGIS enabled or explicitly justified.
+- SQL migrations or ORM models created.
+- Tables created for `repository`, `manuscript`, `witness`, `iiif_manifest_cache`, `canvas/page`, `image_asset`, `msi_asset`, `fragment`, `annotation`, `segmentation_run`, `layout_region`, `artificial_fragment_task`, `reconstruction_job`, `reconstruction_candidate`, `retrieval_embedding`, `text_witness_link`, `evaluation_run`, and `export_bundle`.
+- Schema validation command added.
+- No large images, MSI assets, generated datasets, or model binaries committed.
+- No backend, frontend, IIIF ingestion, eManuSkript integration, retrieval system, or ML pipeline implementation bundled into this schema task unless explicitly requested.

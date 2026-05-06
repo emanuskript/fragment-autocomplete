@@ -1,0 +1,19 @@
+flowchart LR
+  Scholars["Scholars / Users"]
+  Specialist["Fragment Specialist"]
+  SUB["SUB Goettingen\nDigitization + MSI"]
+  Frag["Fragmentarium\nDigital Laboratory"]
+  IIIF["e-codices + IIIF\nRepositories"]
+  CoMMA["CoMMA\nText + Metadata"]
+  System["Fragment Autocomplete\nResearch System"]
+  Storage["GWDG / Storage\nCompute Infrastructure"]
+  Exports["Exports\nPDF / JSON / Images / Metadata"]
+
+  Scholars --> System
+  Specialist --> System
+  SUB --> System
+  Frag --> System
+  IIIF --> System
+  CoMMA --> System
+  System <--> Storage
+  System --> Exports

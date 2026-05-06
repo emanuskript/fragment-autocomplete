@@ -3,11 +3,16 @@
 ## Backlog
 
 - IIIF ingestion proof of concept
+- Initial sample dataset registration
 - eManuSkript segmentation test
+- Segmentation storage implementation
+- Artificial fragment generator
+- Detailed evaluation rubric
+- 20-30 use-case selection
 
 ## Ready
 
-- Draft architecture + database schema
+- Database schema and migrations
 
 ## In Progress
 
@@ -20,3 +25,4 @@
 ## Done
 
 - Repository / workspace
+- Architecture Draft PDF

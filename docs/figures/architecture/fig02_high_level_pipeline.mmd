@@ -1,0 +1,17 @@
+flowchart LR
+  Sources["Data Sources\nIIIF + Local + Metadata"]
+  Ingest["IIIF / Local\nIngest"]
+  Prep["Preprocessing\nRegistration + Metadata"]
+  EMan["eManuSkript\nSegmentation"]
+  Synth["Artificial\nFragments"]
+  MVP["Layout-First\nMVP"]
+  Retrieval["Retrieval\nCandidates"]
+  Model["Optional Conditioned\nModel"]
+  Output["Web / API\nExport / Evaluation"]
+
+  Sources --> Ingest --> Prep --> EMan --> MVP
+  Prep --> Synth --> MVP
+  MVP --> Retrieval --> Output
+  EMan --> Retrieval
+  Retrieval --> Model --> Output
+  MVP --> Output

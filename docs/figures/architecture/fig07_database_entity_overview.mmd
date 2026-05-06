@@ -1,0 +1,32 @@
+flowchart TB
+  Repo["repository"]
+  Manuscript["manuscript"]
+  Witness["witness"]
+  Manifest["iiif_manifest_cache"]
+  Canvas["canvas / page"]
+  Image["image_asset"]
+  MSI["msi_asset"]
+  Fragment["fragment"]
+  Annotation["annotation"]
+  SegRun["segmentation_run"]
+  Region["layout_region"]
+  Synth["artificial_fragment_task"]
+  Job["reconstruction_job"]
+  Candidate["reconstruction_candidate"]
+  Embedding["retrieval_embedding"]
+  TextLink["text_witness_link"]
+  Eval["evaluation_run"]
+  Export["export_bundle"]
+
+  Repo --> Manuscript --> Canvas --> Image
+  Manuscript --> Witness --> TextLink
+  Manifest --> Canvas
+  Image --> MSI
+  Image --> Fragment
+  Fragment --> Annotation
+  Image --> SegRun --> Region
+  Canvas --> Synth --> Fragment
+  Fragment --> Job --> Candidate
+  Candidate --> Embedding
+  Candidate --> Eval
+  Candidate --> Export

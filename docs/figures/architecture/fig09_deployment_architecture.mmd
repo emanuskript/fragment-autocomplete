@@ -1,0 +1,21 @@
+flowchart TB
+  Browser["Browser UI"]
+  API["Backend API"]
+  DB["PostgreSQL / PostGIS"]
+  Store["Object Storage"]
+  Queue["Async Queue"]
+  Worker["Worker"]
+  Models["Model Services"]
+  HPC["GWDG / HPC"]
+  Logs["Logs + Monitoring"]
+
+  Browser <--> API
+  API <--> DB
+  API <--> Store
+  API --> Queue --> Worker
+  Worker <--> DB
+  Worker <--> Store
+  Worker --> Models
+  Models --> HPC
+  API --> Logs
+  Worker --> Logs

@@ -2,40 +2,10 @@
 
 set -u
 
-required_files=(
-  ".gitignore"
-  ".editorconfig"
-  "README.md"
-  "AGENTS.md"
-  "ROADMAP_STATUS.md"
-  "PROJECT_BOARD.md"
-  "NEXT_ACTIONS.md"
-  "CHANGELOG.md"
-  "docs/00_project_brief.md"
-  "docs/01_architecture_overview.md"
-  "docs/02_database_plan.md"
-  "docs/03_data_sources.md"
-  "docs/04_evaluation_plan.md"
-  "docs/05_use_cases_20_30.md"
-  "docs/06_risks_and_decisions.md"
-  "docs/meetings/README.md"
-  "src/backend/README.md"
-  "src/frontend/README.md"
-  "src/ingestion/README.md"
-  "src/ml/README.md"
-  "src/evaluation/README.md"
-  "src/shared/README.md"
-  "data/README.md"
-  "data/raw/.gitkeep"
-  "data/processed/.gitkeep"
-  "data/metadata/.gitkeep"
-  "models/.gitkeep"
-  "outputs/.gitkeep"
-  "scripts/check_workspace.sh"
-)
-
 required_dirs=(
   "docs"
+  "docs/figures"
+  "docs/figures/architecture"
   "docs/meetings"
   "src"
   "src/backend"
@@ -44,14 +14,41 @@ required_dirs=(
   "src/ml"
   "src/evaluation"
   "src/shared"
+  "scripts"
   "data"
   "data/raw"
   "data/processed"
   "data/metadata"
   "models"
   "outputs"
-  "scripts"
   "tests"
+)
+
+required_files=(
+  "README.md"
+  "AGENTS.md"
+  "ROADMAP_STATUS.md"
+  "PROJECT_BOARD.md"
+  "NEXT_ACTIONS.md"
+  "CHANGELOG.md"
+  "docs/01_architecture_overview.md"
+  "docs/architecture_build_notes.md"
+  "scripts/render_architecture_figures.sh"
+  "scripts/build_architecture_pdf.sh"
+  "scripts/check_workspace.sh"
+)
+
+figure_names=(
+  "fig01_system_context"
+  "fig02_high_level_pipeline"
+  "fig03_component_architecture"
+  "fig04_data_lifecycle"
+  "fig05_emanuskript_backbone"
+  "fig06_reconstruction_candidate_flow"
+  "fig07_database_entity_overview"
+  "fig08_evaluation_loop"
+  "fig09_deployment_architecture"
+  "fig10_first_90_days_status"
 )
 
 missing=0
@@ -78,9 +75,41 @@ for path in "${required_files[@]}"; do
 done
 
 echo
+echo "Checking architecture figure sources and SVGs..."
+for name in "${figure_names[@]}"; do
+  source_path="docs/figures/architecture/${name}.mmd"
+  svg_path="docs/figures/architecture/${name}.svg"
+
+  if [ -f "$source_path" ]; then
+    echo "  [OK]   $source_path"
+  else
+    echo "  [MISS] $source_path"
+    missing=$((missing + 1))
+  fi
+
+  if [ -f "$svg_path" ]; then
+    echo "  [OK]   $svg_path"
+  else
+    echo "  [MISS] $svg_path"
+    missing=$((missing + 1))
+  fi
+done
+
+echo
+echo "Checking architecture document output..."
+if [ -f "outputs/Fragment_Autocomplete_Architecture_Draft.pdf" ]; then
+  echo "  [OK]   outputs/Fragment_Autocomplete_Architecture_Draft.pdf"
+elif [ -f "outputs/Fragment_Autocomplete_Architecture_Draft.html" ]; then
+  echo "  [OK]   outputs/Fragment_Autocomplete_Architecture_Draft.html"
+else
+  echo "  [MISS] outputs/Fragment_Autocomplete_Architecture_Draft.pdf or .html"
+  missing=$((missing + 1))
+fi
+
+echo
 if [ "$missing" -eq 0 ]; then
   echo "Workspace validation passed."
-  echo "Summary: all required files and directories are present."
+  echo "Summary: all required files, folders, figures, and document outputs are present."
   exit 0
 fi
 

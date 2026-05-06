@@ -1,20 +1,23 @@
 # AGENTS.md
 
-## Working principles for future Codex sessions
+## Project Rules for Future Codex Sessions
 
-- Do not jump into generative reconstruction first. The project strategy is layout-first.
-- Treat eManuSkript as the central technical backbone for early reconstruction work.
-- Preserve uncertainty, provenance, and comparator language in all reconstruction-related outputs. Candidate reconstructions must be framed as scholarly hypotheses, not facts.
+- This project is layout-first, not full-image hallucination-first.
+- Treat eManuSkript / "Manuskripte digital lesen lernen" as the central technical backbone for layout analysis.
+- Always preserve uncertainty, provenance, and comparator language in reconstruction-related documentation, code, UI text, exports, and status updates.
+- Do not claim missing manuscript content is recovered unless external scholarly evidence supports that specific claim.
+- Present reconstructions as candidate scholarly hypotheses, not historical truth.
+- CoMMA is text and metadata support, not the visual training dataset.
 - Keep [ROADMAP_STATUS.md](/Users/mobasuony/Desktop/Fragments/ROADMAP_STATUS.md) updated after every meaningful task.
-- Update [NEXT_ACTIONS.md](/Users/mobasuony/Desktop/Fragments/NEXT_ACTIONS.md) with the next recommended task before ending a substantial work session.
-- Do not store large images, large datasets, or model binaries in git.
-- Prefer clear documentation, explicit assumptions, and reproducible scripts over ad hoc notes.
-- CoMMA is a text, transcription, and metadata resource. Do not treat it as the core visual reconstruction dataset.
-- If adding code later, include tests or at least runnable validation commands.
-- If adding data-processing steps later, document inputs, outputs, provenance, and failure modes.
+- Keep [NEXT_ACTIONS.md](/Users/mobasuony/Desktop/Fragments/NEXT_ACTIONS.md) updated with the next recommended task.
+- Do not commit large images, downloaded IIIF assets, MSI files, generated datasets, trained models, or bulk outputs.
+- Prefer reproducible scripts, documented assumptions, and explicit validation commands.
+- Do not mark work as Done unless files or code actually exist and validation passes.
+- If adding code later, include validation commands or tests.
 
-## Scope guardrails
+## Scope Boundaries
 
-- Do not claim backend, database, IIIF, ML, or eManuSkript integration is complete unless implemented and verified.
-- Keep early design aligned with segmentation, pseudo-labeling, layout priors, retrieval support, UI overlays, evaluation, and conditioning.
-- Favor incremental, reviewable milestones over large speculative implementations.
+- Do not implement the backend, frontend, database, IIIF ingestion pipeline, eManuSkript integration, ML model, retrieval service, MSI viewer, or deployment unless explicitly requested.
+- Do not treat CoMMA as ground truth for visual reconstruction.
+- Do not collapse multiple plausible reconstruction candidates into one final answer when uncertainty exists.
+- Keep evidence separate from inference in data models, documentation, UI concepts, and exports.

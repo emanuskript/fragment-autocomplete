@@ -1,28 +1,22 @@
 # Fragment Autocomplete: Virtual Reconstruction of Medieval Manuscripts using Machine Learning
 
-## Purpose
+Fragment Autocomplete is a two-year Pro*Niedersachsen research software project hosted at the Institute for Digital Humanities, University of Göttingen. The project aims to build an open-source and open-access AI-based toolchain that helps scholars generate and evaluate candidate page-level reconstruction hypotheses from surviving medieval manuscript fragments.
 
-This repository is the workspace foundation for the Pro*Niedersachsen research software project "Fragment Autocomplete: Virtual Reconstruction of Medieval Manuscripts using Machine Learning". The project aims to support scholarly reconstruction of medieval manuscript fragments while keeping uncertainty, provenance, and comparator evidence visible at every stage.
+The system must preserve the distinction between observed evidence and inference. Reconstruction outputs are candidate scholarly hypotheses with uncertainty, provenance, and comparators; they are not claims that the original manuscript page, text, or decoration has been recovered.
 
-This repository currently contains project scaffolding only. It does not yet implement a backend, frontend, database, IIIF pipeline, machine learning model, or reconstruction workflow.
+## Technical Strategy
 
-## Layout-first MVP strategy
+The project follows a layout-first MVP strategy. Early work should estimate page canvas, margins, columns, semantic layout zones, and plausible fragment placement before any experimental full-image generation is considered.
 
-The near-term technical strategy is layout-first reconstruction rather than premature full-image generation. Early work should focus on extracting, storing, validating, and reusing manuscript layout structure so later reconstruction steps can be conditioned on document organization instead of guessing pixel content directly.
+eManuSkript / "Manuskripte digital lesen lernen" is the central technical backbone. Its manuscript layout-analysis model, with roughly 21 manuscript layout labels, should later support segmentation, pseudo-labeling, layout priors, retrieval keys, UI overlays, evaluation signals, and optional conditioning maps.
 
-## Role of eManuSkript
+CoMMA is a text, transcription, and metadata resource. It can support text search, metadata enrichment, witness discovery, and IIIF manifest discovery, but it is not the core visual reconstruction dataset.
 
-eManuSkript and the "Manuskripte digital lesen lernen" layout analysis work are the central technical backbone of the project. Their layout outputs, including roughly 21 manuscript layout labels, are expected to support later segmentation, pseudo-labeling, layout priors, retrieval keys, UI overlays, evaluation, and downstream conditioning for candidate reconstructions.
+## Current Status
 
-## Role of CoMMA
+This repository currently contains project documentation, architecture planning, figure sources, generated architecture figures, and build scripts. It does not implement the backend, frontend, database, IIIF ingestion pipeline, eManuSkript integration, ML pipeline, retrieval system, MSI viewer, or deployment.
 
-CoMMA is treated as a text, transcription, and metadata resource. It is important for contextualization and alignment, but it should not be treated as the core visual reconstruction dataset.
-
-## Current project phase
-
-The broader project is around Week 6 after start. The current repository milestone is limited to establishing a clean, professional workspace foundation so later architecture, schema, ingestion, and evaluation work can proceed in a controlled way.
-
-## Repository structure
+## Repository Structure
 
 ```text
 .
@@ -34,6 +28,9 @@ The broader project is around Week 6 after start. The current repository milesto
 |-- ROADMAP_STATUS.md
 |-- data/
 |-- docs/
+|   |-- 01_architecture_overview.md
+|   |-- architecture_build_notes.md
+|   `-- figures/architecture/
 |-- models/
 |-- outputs/
 |-- scripts/
@@ -43,28 +40,46 @@ The broader project is around Week 6 after start. The current repository milesto
 
 Key directories:
 
-- `docs/`: planning, architecture, data source, evaluation, and decision records
-- `src/`: future code boundaries for backend, frontend, ingestion, ML, evaluation, and shared utilities
-- `data/`: placeholder structure for raw, processed, and metadata assets
-- `models/`: placeholder for model artifacts outside git
-- `outputs/`: placeholder for generated research outputs outside git
-- `scripts/`: reproducible project utilities such as workspace validation
-- `tests/`: future validation and automated checks
+- `docs/`: project planning, architecture, evaluation, data-source, and decision documents.
+- `docs/figures/architecture/`: Mermaid figure sources and rendered SVG architecture diagrams.
+- `src/`: future application code boundaries for backend, frontend, ingestion, ML, evaluation, and shared utilities.
+- `data/`: placeholder structure for raw, processed, and metadata assets. Large data is excluded from git.
+- `models/`: placeholder for model artifacts. Model binaries are excluded from git.
+- `outputs/`: generated reports and exports.
+- `scripts/`: reproducible validation and document build scripts.
 
-## Setup instructions
+## Building the Architecture Document
 
-1. Clone the repository once it exists remotely, or continue locally in this folder.
-2. Review [README.md](/Users/mobasuony/Desktop/Fragments/README.md), [AGENTS.md](/Users/mobasuony/Desktop/Fragments/AGENTS.md), and [ROADMAP_STATUS.md](/Users/mobasuony/Desktop/Fragments/ROADMAP_STATUS.md).
-3. Run the workspace validation script:
+Render the architecture figures:
+
+```bash
+bash scripts/render_architecture_figures.sh
+```
+
+Build the architecture PDF, or HTML fallback if PDF dependencies are unavailable:
+
+```bash
+bash scripts/build_architecture_pdf.sh
+```
+
+Validate the workspace:
 
 ```bash
 bash scripts/check_workspace.sh
 ```
 
-4. Use the roadmap and next-actions files to guide the next planning task.
+The expected output is:
 
-No runtime dependencies are required yet because no application components are implemented at this stage.
+```text
+outputs/Fragment_Autocomplete_Architecture_Draft.pdf
+```
 
-## Next immediate task
+If PDF generation is unavailable, the fallback output is:
 
-Draft the technical architecture and database schema, including clear system boundaries, storage direction, and first entity definitions, without implementing the application itself.
+```text
+outputs/Fragment_Autocomplete_Architecture_Draft.html
+```
+
+## Next Task
+
+Create concrete PostgreSQL/PostGIS database schema and migrations.

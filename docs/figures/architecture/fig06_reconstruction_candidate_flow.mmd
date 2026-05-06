@@ -1,0 +1,19 @@
+flowchart LR
+  Fragment["Fragment"]
+  Mask["Mask + Contour"]
+  Meta["Metadata"]
+  Seg["Segmentation"]
+  Place["Placement\nEstimation"]
+  Templates["Template\nRetrieval"]
+  Rank["Candidate\nRanking"]
+  Score["Uncertainty\nScoring"]
+  Review["Expert\nReview"]
+
+  Fragment --> Place
+  Mask --> Place
+  Meta --> Templates
+  Seg --> Place
+  Seg --> Templates
+  Place --> Rank
+  Templates --> Rank
+  Rank --> Score --> Review
