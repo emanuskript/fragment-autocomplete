@@ -1,0 +1,240 @@
+generated_at: '2026-05-18T09:33:25.121449+00:00'
+dataset_id: initial_sample_dataset_v0_1
+status: registered
+full_pages:
+- id: fp_01_clean_simple
+  category: clean_simple
+  source: e-codices
+  url: https://www.e-codices.unifr.ch/en/csg/0300/5/0/
+  purpose: Simple full-page baseline for segmentation and artificial-fragment generation.
+  local_path: autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg
+  local_file_mapping_status: matched
+  iiif_manifest_url: null
+  iiif_image_service_url: null
+  iiif_resolution_status: not_attempted
+  rights_review_status: pending_review
+  training_allowed: false
+  publication_allowed: false
+  demo_allowed: false
+  access_level: internal
+  sample_kind: full_page
+  registration_status: registered
+  db_ids:
+    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
+    manuscript_id: 8494d13c-1faf-4744-8396-13f8928fa96f
+    canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+- id: fp_02_clean_simple
+  category: clean_simple
+  source: e-codices
+  url: https://www.e-codices.unifr.ch/en/kba/Wett0004/9r
+  purpose: Simple full-page baseline for segmentation and artificial-fragment generation.
+  local_path: autocomplete-test-dataset/full_pages/fp_02_clean_simple/e-codices_kba-Wett0004_009r_max.jpg
+  local_file_mapping_status: matched
+  iiif_manifest_url: null
+  iiif_image_service_url: null
+  iiif_resolution_status: not_attempted
+  rights_review_status: pending_review
+  training_allowed: false
+  publication_allowed: false
+  demo_allowed: false
+  access_level: internal
+  sample_kind: full_page
+  registration_status: registered
+  db_ids:
+    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
+    manuscript_id: f7cc5f80-7661-4a6e-aed3-46c267cfe189
+    canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+    image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+- id: fp_03_complex_layout
+  category: complex_layout
+  source: e-codices
+  url: https://www.e-codices.unifr.ch/en/csg/0059/2
+  purpose: Complex page for testing glosses, initials, music, illustration, or multi-zone
+    layout.
+  local_path: autocomplete-test-dataset/full_pages/fp_03_complex_layout/e-codices_csg-0059_0002_max.jpg
+  local_file_mapping_status: matched
+  iiif_manifest_url: null
+  iiif_image_service_url: null
+  iiif_resolution_status: not_attempted
+  rights_review_status: pending_review
+  training_allowed: false
+  publication_allowed: false
+  demo_allowed: false
+  access_level: internal
+  sample_kind: full_page
+  registration_status: registered
+  db_ids:
+    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
+    manuscript_id: 075f21ea-ae80-41d4-862c-7a40a8bd27a0
+    canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+    image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+- id: fp_04_complex_layout
+  category: complex_layout
+  source: e-codices
+  url: https://www.e-codices.unifr.ch/en/ubb/F-IX-0068/2r
+  purpose: Complex page for testing glosses, initials, music, illustration, or multi-column
+    layout.
+  local_path: autocomplete-test-dataset/full_pages/fp_04_complex_layout/e-codices_ubb-F-IX-0068_0002r_max.jpg
+  local_file_mapping_status: matched
+  iiif_manifest_url: null
+  iiif_image_service_url: null
+  iiif_resolution_status: not_attempted
+  rights_review_status: pending_review
+  training_allowed: false
+  publication_allowed: false
+  demo_allowed: false
+  access_level: internal
+  sample_kind: full_page
+  registration_status: registered
+  db_ids:
+    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
+    manuscript_id: 12716d22-3e4e-4d6f-9b75-a790b52c7c21
+    canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+    image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+- id: fp_05_iiif_rights
+  category: iiif_rights_metadata
+  source: e-codices
+  url: https://www.e-codices.unifr.ch/en/csg/0314/3
+  purpose: Validate IIIF manifest extraction, image service extraction, rights metadata,
+    and attribution.
+  local_path: autocomplete-test-dataset/full_pages/fp_05_iiif_rights/e-codices_csg-0314_0003_max.jpg
+  local_file_mapping_status: matched
+  iiif_manifest_url: null
+  iiif_image_service_url: null
+  iiif_resolution_status: not_attempted
+  rights_review_status: pending_review
+  training_allowed: false
+  publication_allowed: false
+  demo_allowed: false
+  access_level: internal
+  sample_kind: full_page
+  registration_status: registered
+  db_ids:
+    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
+    manuscript_id: d7e8ded7-5016-49ac-8b0a-5c0e450a578f
+    canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+    image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+fragments:
+- id: fr_01_binding_strip
+  category: binding_strip
+  source: Fragmentarium
+  url: https://fragmentarium.ms/view/page/F-cpkx/4139/43306
+  purpose: 'Real fragment case: binding strip or narrow reused fragment.'
+  local_path: autocomplete-test-dataset/fragments/fr_01_binding_strip/fragmentarium_F-cpkx_F19a_r.jp2_max.jpg
+  local_file_mapping_status: matched
+  iiif_manifest_url: null
+  iiif_image_service_url: null
+  iiif_resolution_status: not_attempted
+  rights_review_status: pending_review
+  training_allowed: false
+  publication_allowed: false
+  demo_allowed: false
+  access_level: internal
+  sample_kind: fragment
+  registration_status: registered
+  db_ids:
+    repository_id: dd17df35-e774-43b3-97de-4d372cc67d0a
+    image_asset_id: 20c6bc5c-9c35-42a2-9da7-7b2a0c8a8da5
+    fragment_id: 7fb02b08-4656-48fd-bee2-107e25c32400
+- id: fr_02_text_block
+  category: text_block
+  source: Fragmentarium
+  url: https://fragmentarium.ms/view/page/F-sf5d/6321/54882
+  purpose: 'Real fragment case: visible main text block.'
+  local_path: autocomplete-test-dataset/fragments/fr_02_text_block/fragmentarium_F-sf5d_Stams_STA_Frg_235_01r02r.jpg_max.jpg
+  local_file_mapping_status: matched
+  iiif_manifest_url: null
+  iiif_image_service_url: null
+  iiif_resolution_status: not_attempted
+  rights_review_status: pending_review
+  training_allowed: false
+  publication_allowed: false
+  demo_allowed: false
+  access_level: internal
+  sample_kind: fragment
+  registration_status: registered
+  db_ids:
+    repository_id: dd17df35-e774-43b3-97de-4d372cc67d0a
+    image_asset_id: 2d04e20b-a8f9-4f40-89fe-0ea3ac6d7a49
+    fragment_id: c0017254-558f-4cb6-ab17-3d959d2ace1a
+- id: fr_03_marginal_gloss
+  category: marginal_gloss
+  source: Fragmentarium
+  url: https://fragmentarium.ms/view/page/F-0dfk/9908/72248
+  purpose: 'Real fragment case: marginal, gloss, or secondary text material.'
+  local_path: autocomplete-test-dataset/fragments/fr_03_marginal_gloss/fragmentarium_F-0dfk_hm52g0pw5h_00003_00000_voorplatv.jpg_max.jpg
+  local_file_mapping_status: matched
+  iiif_manifest_url: null
+  iiif_image_service_url: null
+  iiif_resolution_status: not_attempted
+  rights_review_status: pending_review
+  training_allowed: false
+  publication_allowed: false
+  demo_allowed: false
+  access_level: internal
+  sample_kind: fragment
+  registration_status: registered
+  db_ids:
+    repository_id: dd17df35-e774-43b3-97de-4d372cc67d0a
+    image_asset_id: 1d683b5a-9b69-4107-bdc4-5fd1b9b11802
+    fragment_id: 01f288ae-413c-47b6-bd58-1e9c0ac4aafa
+- id: fr_04_decoration_initial
+  category: decoration_initial
+  source: Fragmentarium
+  url: https://fragmentarium.ms/view/page/F-5el0/10778/77958
+  purpose: 'Real fragment case: decoration, initials, or visually distinctive layout
+    element.'
+  local_path: autocomplete-test-dataset/fragments/fr_04_decoration_initial/fragmentarium_F-5el0_amds_01_03a5_0001v.jp2_max.jpg
+  local_file_mapping_status: matched
+  iiif_manifest_url: null
+  iiif_image_service_url: null
+  iiif_resolution_status: not_attempted
+  rights_review_status: pending_review
+  training_allowed: false
+  publication_allowed: false
+  demo_allowed: false
+  access_level: internal
+  sample_kind: fragment
+  registration_status: registered
+  db_ids:
+    repository_id: dd17df35-e774-43b3-97de-4d372cc67d0a
+    image_asset_id: 55c57b73-6b3c-4dc0-9d6d-c50162352b94
+    fragment_id: 1d1a4c98-81e7-4c5b-a147-cd717403f83d
+- id: fr_05_damaged_irregular
+  category: damaged_irregular
+  source: Fragmentarium
+  url: https://fragmentarium.ms/view/page/F-knxa/11598/83378
+  purpose: 'Real fragment case: difficult damaged or irregular fragment.'
+  local_path: autocomplete-test-dataset/fragments/fr_05_damaged_irregular/fragmentarium_F-knxa_LE_15_1_F_knxa_r.png_max.jpg
+  local_file_mapping_status: matched
+  iiif_manifest_url: null
+  iiif_image_service_url: null
+  iiif_resolution_status: not_attempted
+  rights_review_status: pending_review
+  training_allowed: false
+  publication_allowed: false
+  demo_allowed: false
+  access_level: internal
+  sample_kind: fragment
+  registration_status: registered
+  db_ids:
+    repository_id: dd17df35-e774-43b3-97de-4d372cc67d0a
+    image_asset_id: 5894b176-78cb-482f-b02e-69b666533972
+    fragment_id: c45af019-3c18-490b-a01c-b4973768abae
+summary:
+  repositories_inserted: 0
+  repositories_matched: 2
+  manuscripts_inserted: 0
+  manuscripts_matched: 5
+  canvases_inserted: 0
+  canvases_matched: 5
+  image_assets_inserted: 0
+  image_assets_matched: 10
+  fragments_inserted: 0
+  fragments_matched: 5
+  iiif_resolved: 0
+  iiif_unresolved: 0
+  iiif_not_attempted: 10
+  local_files_matched: 10
+  warnings: []

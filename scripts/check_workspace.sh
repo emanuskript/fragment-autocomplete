@@ -41,6 +41,8 @@ required_files=(
   "docs/05_local_assets_inventory.md"
   "docs/architecture_build_notes.md"
   "data/metadata/local_assets_manifest.yaml"
+  "data/metadata/initial_sample_dataset.yaml"
+  "data/metadata/initial_sample_dataset_resolved.yaml"
   "infra/db/docker-compose.yml"
   "infra/db/README.md"
   "infra/db/migrations/001_init.sql"
@@ -55,6 +57,8 @@ required_files=(
   "scripts/ingest_iiif_manifest.py"
   "scripts/validate_iiif_ingestion.sh"
   "scripts/inventory_local_assets.py"
+  "scripts/register_initial_sample_dataset.py"
+  "scripts/validate_initial_sample_dataset.sh"
   "models/model_registry.yaml"
   "src/ingestion/__init__.py"
   "src/ingestion/db.py"
@@ -65,6 +69,8 @@ required_files=(
   "tests/ingestion/fixtures/iiif_v2_minimal_manifest.json"
   "tests/ingestion/fixtures/iiif_v3_minimal_manifest.json"
   "tests/ingestion/test_iiif_normalizer.py"
+  "tests/ingestion/test_sample_dataset_config.py"
+  "docs/04_initial_sample_dataset_report.md"
 )
 
 figure_names=(

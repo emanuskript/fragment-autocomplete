@@ -146,6 +146,28 @@ The script writes:
 
 Do not commit local dataset images or model weights. These folders and common large model/data extensions are ignored by `.gitignore`; only inventory metadata should be committed.
 
+## Initial sample dataset registration
+
+Register the local pilot sample dataset:
+
+```bash
+python3 scripts/register_initial_sample_dataset.py --verbose
+```
+
+Dry-run registration without database writes:
+
+```bash
+python3 scripts/register_initial_sample_dataset.py --dry-run --verbose
+```
+
+Validate registered records:
+
+```bash
+bash scripts/validate_initial_sample_dataset.sh
+```
+
+This registers local metadata and database records for the pilot full pages and fragments. It does not run eManuSkript, load model weights, run segmentation, or download large image sets.
+
 ## Next Task
 
-Register the initial sample dataset.
+Inspect model weights compatibility and prepare the eManuSkript segmentation test.

@@ -2,18 +2,14 @@
 
 ## Next recommended task
 
-Register the initial sample dataset from `autocomplete-test-dataset/`.
+Inspect model weights compatibility and prepare the eManuSkript segmentation test.
 
 ## Acceptance criteria
 
-- Read the local dataset inventory/config.
-- Create or update `data/metadata/initial_sample_dataset.yaml`.
-- Register 5 full pages and 5 fragments where possible.
-- Store `repository`, `manuscript`, `canvas`, `image_asset`, and `fragment` metadata.
-- Preserve source URLs, identifiers, categories, rights-review status, and provenance.
-- Use IIIF ingestion where resolvable.
-- Do not download large assets by default.
-- Produce `docs/04_initial_sample_dataset_report.md`.
-- Validate DB records.
-- Prepare inputs for first eManuSkript segmentation test.
-- Do not implement reconstruction, retrieval, ML, frontend UI, CoMMA ingestion, or deployment as part of this dataset-registration task unless explicitly requested.
+- Inspect local `.pt` files without training.
+- Identify likely framework and loading requirements.
+- Identify label mapping if available.
+- Create model compatibility report.
+- Do not run full segmentation until sample images and model compatibility are confirmed.
+- If compatibility is confirmed, prepare a controlled first segmentation run on 1-2 registered sample images.
+- Do not implement reconstruction, retrieval, ML training, frontend UI, CoMMA ingestion, or deployment as part of this compatibility task unless explicitly requested.

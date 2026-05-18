@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Initial sample dataset configuration for 5 full pages and 5 fragments from `autocomplete-test-dataset/`.
+- Local sample dataset registration script and validation script.
+- Initial sample dataset resolved metadata and human-readable report.
+- Tests for initial sample dataset configuration.
 - Local dataset and model-weight inventory for `autocomplete-test-dataset/` and `model weights/`.
 - Machine-readable local asset manifest and human-readable local asset inventory report.
 - Inventory-only model registry metadata for local model weight files.

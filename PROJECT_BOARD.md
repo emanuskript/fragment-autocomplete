@@ -10,7 +10,7 @@
 
 ## Ready
 
-- Initial sample dataset registration
+- Inspect model weights compatibility
 
 ## In Progress
 
@@ -28,3 +28,4 @@
 - Database schema and migrations
 - IIIF ingestion proof of concept
 - Inventory local dataset and model weights
+- Register initial sample dataset

@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+export PATH="$PATH:/usr/local/bin:/opt/homebrew/bin"
+
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 COMPOSE_FILE="$ROOT_DIR/infra/db/docker-compose.yml"
 MIGRATIONS_DIR="$ROOT_DIR/infra/db/migrations"
