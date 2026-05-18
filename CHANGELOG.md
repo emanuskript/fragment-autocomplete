@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Segmentation smoke-test runner, validator, results manifest, and report.
 - Controlled segmentation smoke-test input manifest, preparation script, validation script, and readiness report.
 - Model weights compatibility inspection script, YAML manifest, and report.
 - Initial sample dataset configuration for 5 full pages and 5 fragments from `autocomplete-test-dataset/`.
@@ -33,6 +34,7 @@ All notable changes to this project will be documented in this file.
 
 ### Updated
 
+- README, roadmap, project board, and next actions for the post-smoke-test database storage step.
 - README, roadmap, project board, and next actions for the first controlled segmentation smoke-test preparation step.
 - Model registry entries for `best_catmus.pt`, `best_emanuskript_segmentation.pt`, and `best_zone_detection.pt` after compatibility inspection.
 - README, roadmap, project board, and next actions for the post-inspection next step.

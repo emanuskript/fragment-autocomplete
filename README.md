@@ -200,6 +200,27 @@ bash scripts/validate_segmentation_test_inputs.sh
 
 This step does not run segmentation, inference, or model loading. It only verifies local file paths, database links, and the selected model path.
 
+## Segmentation smoke test
+
+Run the controlled smoke test on the two prepared inputs:
+
+```bash
+python3 scripts/run_segmentation_smoke_test.py --device cpu --verbose
+```
+
+Validate the emitted results:
+
+```bash
+bash scripts/validate_segmentation_smoke_test.sh
+```
+
+Outputs are written under `outputs/segmentation_smoke_test/`, while the machine-readable summary and report are written to:
+
+- `data/metadata/segmentation_smoke_test_results.yaml`
+- `docs/08_segmentation_smoke_test_report.md`
+
+Database storage and any UI work remain separate later steps.
+
 ## Next Task
 
-Run the first controlled eManuSkript segmentation smoke test.
+Store segmentation smoke-test outputs in the database.

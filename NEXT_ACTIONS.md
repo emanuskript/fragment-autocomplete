@@ -2,14 +2,13 @@
 
 ## Next recommended task
 
-Run the first controlled eManuSkript segmentation smoke test.
+Store segmentation smoke-test outputs in the database.
 
 ## Acceptance criteria
 
-- Install or verify the required `ultralytics` dependency in a controlled environment.
-- Load `model weights/best_emanuskript_segmentation.pt`.
-- Run inference on only the 2 prepared inputs.
-- Save raw outputs, rendered overlays, and logs.
-- Do not run on the full dataset.
-- Do not store outputs in the database yet unless explicitly requested later.
-- Produce a smoke-test report.
+- Parse smoke-test raw outputs.
+- Create `segmentation_run` records.
+- Create `layout_region` records where polygons, boxes, labels, and confidences are available.
+- Link outputs to `image_asset`, `fragment`, and `canvas`.
+- Preserve model name, version/path, parameters, confidence, output paths, and provenance.
+- Validate database records.

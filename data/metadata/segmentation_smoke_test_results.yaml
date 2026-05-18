@@ -1,0 +1,54 @@
+generated_at: '2026-05-18T10:44:54.261459+00:00'
+test_set_id: segmentation_smoke_test_v0_1
+model_id: best_emanuskript_segmentation
+model_path: model weights/best_emanuskript_segmentation.pt
+inference_run: true
+segmentation_run: true
+device: cpu
+confidence_threshold: 0.25
+imgsz: 320
+output_dir: outputs/segmentation_smoke_test
+environment:
+  python_version: 3.9.6
+  torch_version: 2.7.1
+  ultralytics_version: 8.4.51
+results:
+- sample_id: fp_01_clean_simple
+  sample_kind: full_page
+  local_path: autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg
+  db_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+  db_fragment_id: null
+  db_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+  status: success
+  raw_output_path: outputs/segmentation_smoke_test/raw/fp_01_clean_simple.json
+  overlay_path: outputs/segmentation_smoke_test/overlays/fp_01_clean_simple_overlay.jpg
+  detected_region_count: 102
+  detected_labels:
+  - Main script black
+  - Plain initial - Black
+  confidence_summary:
+    count: 102
+    min: 0.323524
+    max: 0.784519
+    mean: 0.642175
+  errors: []
+  warnings: []
+- sample_id: fr_02_text_block
+  sample_kind: fragment
+  local_path: autocomplete-test-dataset/fragments/fr_02_text_block/fragmentarium_F-sf5d_Stams_STA_Frg_235_01r02r.jpg_max.jpg
+  db_image_asset_id: 2d04e20b-a8f9-4f40-89fe-0ea3ac6d7a49
+  db_fragment_id: c0017254-558f-4cb6-ab17-3d959d2ace1a
+  db_canvas_id: null
+  status: success
+  raw_output_path: outputs/segmentation_smoke_test/raw/fr_02_text_block.json
+  overlay_path: outputs/segmentation_smoke_test/overlays/fr_02_text_block_overlay.jpg
+  detected_region_count: 98
+  detected_labels:
+  - Main script black
+  confidence_summary:
+    count: 98
+    min: 0.253079
+    max: 0.713885
+    mean: 0.464569
+  errors: []
+  warnings: []

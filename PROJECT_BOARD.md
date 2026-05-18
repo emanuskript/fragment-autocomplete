@@ -3,15 +3,14 @@
 ## Backlog
 
 - Segmentation storage implementation
-- Store segmentation outputs in DB
+- Minimal UI viewer
 - Artificial fragment generator
 - Detailed evaluation rubric
 - 20-30 use-case selection
-- Minimal UI viewer
 
 ## Ready
 
-- Run first eManuSkript segmentation smoke test
+- Store segmentation outputs in DB
 
 ## In Progress
 
@@ -32,3 +31,4 @@
 - Register initial sample dataset
 - Inspect model weights compatibility
 - Prepare controlled segmentation test inputs
+- Run first eManuSkript segmentation smoke test
