@@ -2,13 +2,14 @@
 
 ## Next recommended task
 
-Prepare controlled segmentation test inputs.
+Run the first controlled eManuSkript segmentation smoke test.
 
 ## Acceptance criteria
 
-- Select 1 clean full-page sample and 1 real-fragment sample.
-- Confirm local image paths for both samples.
-- Confirm database records exist for both samples.
-- Create a controlled segmentation test input manifest.
-- Do not run inference yet.
-- Do not implement reconstruction, retrieval, ML training, frontend UI, CoMMA ingestion, or deployment as part of this preparation task unless explicitly requested.
+- Install or verify the required `ultralytics` dependency in a controlled environment.
+- Load `model weights/best_emanuskript_segmentation.pt`.
+- Run inference on only the 2 prepared inputs.
+- Save raw outputs, rendered overlays, and logs.
+- Do not run on the full dataset.
+- Do not store outputs in the database yet unless explicitly requested later.
+- Produce a smoke-test report.

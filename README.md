@@ -184,6 +184,22 @@ The script writes:
 
 This inspection does not run inference or segmentation. It performs static archive inspection and safe CPU-side checkpoint checks only. Do not commit the model weights themselves.
 
+## Controlled segmentation test inputs
+
+Prepare the two controlled inputs for the first future smoke test:
+
+```bash
+python3 scripts/prepare_segmentation_test_inputs.py --verbose
+```
+
+Validate the prepared inputs:
+
+```bash
+bash scripts/validate_segmentation_test_inputs.sh
+```
+
+This step does not run segmentation, inference, or model loading. It only verifies local file paths, database links, and the selected model path.
+
 ## Next Task
 
-Prepare controlled segmentation test inputs.
+Run the first controlled eManuSkript segmentation smoke test.

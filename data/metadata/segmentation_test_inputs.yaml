@@ -1,0 +1,52 @@
+test_set_id: segmentation_smoke_test_v0_1
+status: prepared
+purpose: First controlled segmentation smoke test inputs for the future eManuSkript/Ultralytics
+  smoke test.
+model_id: best_emanuskript_segmentation
+model_path: model weights/best_emanuskript_segmentation.pt
+generated_at: '2026-05-18T10:12:21.212231+00:00'
+inference_run: false
+segmentation_run: false
+selected_inputs:
+- sample_id: fp_01_clean_simple
+  sample_kind: full_page
+  category: clean_simple
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/csg/0300/5/0/
+  local_path: autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg
+  db_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+  db_fragment_id: null
+  db_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+  rights_review_status: pending_review
+  training_allowed: false
+  publication_allowed: false
+  demo_allowed: false
+  access_level: internal
+  reason_selected: Preferred registered sample with local image path and verified
+    DB records.
+  readiness_status: ready
+  notes:
+  - Prepared for a future smoke test only.
+  - No model checkpoint was loaded during preparation.
+  - No inference or segmentation output exists yet.
+- sample_id: fr_02_text_block
+  sample_kind: fragment
+  category: text_block
+  source: Fragmentarium
+  source_url: https://fragmentarium.ms/view/page/F-sf5d/6321/54882
+  local_path: autocomplete-test-dataset/fragments/fr_02_text_block/fragmentarium_F-sf5d_Stams_STA_Frg_235_01r02r.jpg_max.jpg
+  db_image_asset_id: 2d04e20b-a8f9-4f40-89fe-0ea3ac6d7a49
+  db_fragment_id: c0017254-558f-4cb6-ab17-3d959d2ace1a
+  db_canvas_id: null
+  rights_review_status: pending_review
+  training_allowed: false
+  publication_allowed: false
+  demo_allowed: false
+  access_level: internal
+  reason_selected: Preferred registered sample with local image path and verified
+    DB records.
+  readiness_status: ready
+  notes:
+  - Prepared for a future smoke test only.
+  - No model checkpoint was loaded during preparation.
+  - No inference or segmentation output exists yet.
