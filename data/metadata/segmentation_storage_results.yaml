@@ -1,0 +1,35 @@
+generated_at: '2026-05-18T14:55:00+00:00'
+storage_status: stored
+smoke_test_id: segmentation_smoke_test_v0_1
+inference_rerun: false
+database_write: true
+smoke_test_results_path: data/metadata/segmentation_smoke_test_results.yaml
+segmentation_test_inputs_path: data/metadata/segmentation_test_inputs.yaml
+samples:
+- sample_id: fp_01_clean_simple
+  sample_kind: full_page
+  db_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+  db_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+  db_fragment_id: null
+  db_segmentation_run_id: 519f5e06-5ccb-421b-a54d-0db5d3d86fec
+  layout_region_count: 102
+  detected_labels:
+  - Main script black
+  - Plain initial - Black
+  raw_output_path: outputs/segmentation_smoke_test/raw/fp_01_clean_simple.json
+  overlay_path: outputs/segmentation_smoke_test/overlays/fp_01_clean_simple_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: fr_02_text_block
+  sample_kind: fragment
+  db_image_asset_id: 2d04e20b-a8f9-4f40-89fe-0ea3ac6d7a49
+  db_canvas_id: null
+  db_fragment_id: c0017254-558f-4cb6-ab17-3d959d2ace1a
+  db_segmentation_run_id: 7329ee6d-f45e-4b96-b4b5-51dc76d8201d
+  layout_region_count: 98
+  detected_labels:
+  - Main script black
+  raw_output_path: outputs/segmentation_smoke_test/raw/fr_02_text_block.json
+  overlay_path: outputs/segmentation_smoke_test/overlays/fr_02_text_block_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []

@@ -2,7 +2,6 @@
 
 ## Backlog
 
-- Segmentation storage implementation
 - Minimal UI viewer
 - Artificial fragment generator
 - Detailed evaluation rubric
@@ -10,7 +9,7 @@
 
 ## Ready
 
-- Store segmentation outputs in DB
+- Minimal UI viewer
 
 ## In Progress
 
@@ -32,3 +31,4 @@
 - Inspect model weights compatibility
 - Prepare controlled segmentation test inputs
 - Run first eManuSkript segmentation smoke test
+- Store segmentation outputs in DB

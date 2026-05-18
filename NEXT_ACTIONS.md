@@ -2,13 +2,14 @@
 
 ## Next recommended task
 
-Store segmentation smoke-test outputs in the database.
+Build a minimal local UI viewer for the stored segmentation outputs.
 
 ## Acceptance criteria
 
-- Parse smoke-test raw outputs.
-- Create `segmentation_run` records.
-- Create `layout_region` records where polygons, boxes, labels, and confidences are available.
-- Link outputs to `image_asset`, `fragment`, and `canvas`.
-- Preserve model name, version/path, parameters, confidence, output paths, and provenance.
-- Validate database records.
+- List the two stored smoke-test samples.
+- Show the original local image.
+- Show the saved overlay image.
+- Show `segmentation_run` metadata.
+- Show a `layout_region` table with labels, confidence, and bbox/polygon information.
+- Read from the database and local output paths.
+- Do not implement reconstruction, artificial fragments, retrieval, MSI, or CoMMA yet.

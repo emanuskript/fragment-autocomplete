@@ -219,6 +219,22 @@ Outputs are written under `outputs/segmentation_smoke_test/`, while the machine-
 - `data/metadata/segmentation_smoke_test_results.yaml`
 - `docs/08_segmentation_smoke_test_report.md`
 
+## Segmentation output storage
+
+Store the existing smoke-test outputs in PostgreSQL/PostGIS:
+
+```bash
+python3 scripts/store_segmentation_outputs.py --verbose
+```
+
+Validate the stored `segmentation_run` and `layout_region` records:
+
+```bash
+bash scripts/validate_segmentation_storage.sh
+```
+
+This step stores metadata and region geometry for the two smoke-test samples only. It does not rerun inference, and it does not build the local UI viewer.
+
 Database storage and any UI work remain separate later steps.
 
 ## Next Task
