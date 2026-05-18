@@ -1,12 +1,35 @@
+generated_at: '2026-05-18T10:02:35.637637+00:00'
+status: inspection_only
+inference_run: false
+trusted_pickle_load_used: false
 models:
 - id: best_catmus
-  name: 'Local model weight file: best_catmus.pt'
-  local_path: model weights/best_catmus.pt
-  status: compatibility_inspected
-  checksum: 260297f0ef2f4acf007fdebc764cb1d23c7479799dc9cb9c283e156943400818
+  path: model weights/best_catmus.pt
+  exists: true
   size_bytes: 364789070
+  modified_at: '2024-08-20T19:32:55+00:00'
+  sha256: 260297f0ef2f4acf007fdebc764cb1d23c7479799dc9cb9c283e156943400818
   likely_framework: ultralytics_yolo_pytorch
-  detected_task: segmentation
+  safe_load_status: safe_weights_only_load_blocked
+  trusted_load_required: true
+  trusted_pickle_load_status: not_requested
+  detected_keys:
+  - model
+  - names
+  - args
+  - train_args
+  - yaml
+  - yaml_file
+  - task
+  - mode
+  - data
+  - epoch
+  - optimizer
+  - ema
+  - updates
+  - date
+  - version
+  - license
   detected_labels:
   - DamageZone
   - DefaultLine
@@ -27,9 +50,9 @@ models:
   - StampZone
   - TironianSignLine
   - TitlePageZone
+  detected_num_classes: 19
+  detected_task: segmentation
   compatibility_status: compatible_secondary_candidate
-  no_inference_run: true
-  compatibility_report: docs/06_model_weights_compatibility_report.md
   notes:
   - 'Weights only load failed. This file can still be loaded, to do so you have two
     options, do those steps only if you trust the source of the checkpoint. '
@@ -42,13 +65,32 @@ models:
   - Segmentation checkpoint detected, but the checkpoint appears CATMuS-oriented rather
     than the primary eManuSkript baseline.
 - id: best_emanuskript_segmentation
-  name: 'Local model weight file: best_emanuskript_segmentation.pt'
-  local_path: model weights/best_emanuskript_segmentation.pt
-  status: compatibility_inspected
-  checksum: 9f0b03cc64c830d337a01ddac6a04616a385d573e3b923a86fc4c74c16416511
+  path: model weights/best_emanuskript_segmentation.pt
+  exists: true
   size_bytes: 122217578
+  modified_at: '2024-08-31T17:07:37+00:00'
+  sha256: 9f0b03cc64c830d337a01ddac6a04616a385d573e3b923a86fc4c74c16416511
   likely_framework: ultralytics_yolo_pytorch
-  detected_task: segmentation
+  safe_load_status: safe_weights_only_load_blocked
+  trusted_load_required: true
+  trusted_pickle_load_status: not_requested
+  detected_keys:
+  - model
+  - names
+  - args
+  - train_args
+  - yaml
+  - yaml_file
+  - task
+  - mode
+  - data
+  - epoch
+  - optimizer
+  - ema
+  - updates
+  - date
+  - version
+  - license
   detected_labels:
   - Border
   - Table
@@ -72,9 +114,9 @@ models:
   - Gloss
   - Illustrations
   - Ignore
+  detected_num_classes: 22
+  detected_task: segmentation
   compatibility_status: recommended_for_first_smoke_test
-  no_inference_run: true
-  compatibility_report: docs/06_model_weights_compatibility_report.md
   notes:
   - 'Weights only load failed. This file can still be loaded, to do so you have two
     options, do those steps only if you trust the source of the checkpoint. '
@@ -87,13 +129,32 @@ models:
   - Filename and embedded strings both point to the direct eManuSkript segmentation
     checkpoint.
 - id: best_zone_detection
-  name: 'Local model weight file: best_zone_detection.pt'
-  local_path: model weights/best_zone_detection.pt
-  status: compatibility_inspected
-  checksum: 45afebac8a7dab15aed3c0716f4cf3c44705f63a81258c5dfa949f745c9330de
+  path: model weights/best_zone_detection.pt
+  exists: true
   size_bytes: 82592595
+  modified_at: '2024-09-05T11:55:44+00:00'
+  sha256: 45afebac8a7dab15aed3c0716f4cf3c44705f63a81258c5dfa949f745c9330de
   likely_framework: ultralytics_yolo_pytorch
-  detected_task: detection
+  safe_load_status: safe_weights_only_load_blocked
+  trusted_load_required: true
+  trusted_pickle_load_status: not_requested
+  detected_keys:
+  - model
+  - names
+  - args
+  - train_args
+  - yaml
+  - yaml_file
+  - task
+  - mode
+  - data
+  - epoch
+  - optimizer
+  - ema
+  - updates
+  - date
+  - version
+  - license
   detected_labels:
   - DigitizationArtefactZone
   - DropCapitalZone
@@ -106,9 +167,9 @@ models:
   - RunningTitleZone
   - StampZone
   - TitlePageZone
+  detected_num_classes: 11
+  detected_task: detection
   compatibility_status: compatible_for_detection_only
-  no_inference_run: true
-  compatibility_report: docs/06_model_weights_compatibility_report.md
   notes:
   - 'Weights only load failed. This file can still be loaded, to do so you have two
     options, do those steps only if you trust the source of the checkpoint. '
@@ -120,3 +181,9 @@ models:
     an explicit safe-global allowlist.
   - Detection checkpoint detected; useful for zone detection but not the first segmentation
     smoke test.
+recommended_first_model:
+  model_id: best_emanuskript_segmentation
+  reason: It is a segmentation checkpoint, it appears directly tied to eManuSkript,
+    and static inspection exposed embedded layout labels without requiring a trusted
+    load.
+next_step: Prepare controlled segmentation test inputs

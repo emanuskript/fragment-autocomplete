@@ -168,6 +168,22 @@ bash scripts/validate_initial_sample_dataset.sh
 
 This registers local metadata and database records for the pilot full pages and fragments. It does not run eManuSkript, load model weights, run segmentation, or download large image sets.
 
+## Model weights compatibility inspection
+
+Inspect the local `.pt` checkpoints without running inference:
+
+```bash
+python3 scripts/inspect_model_weights.py --verbose
+```
+
+The script writes:
+
+- `data/metadata/model_weights_compatibility.yaml`
+- `docs/06_model_weights_compatibility_report.md`
+- `models/model_registry.yaml`
+
+This inspection does not run inference or segmentation. It performs static archive inspection and safe CPU-side checkpoint checks only. Do not commit the model weights themselves.
+
 ## Next Task
 
-Inspect model weights compatibility and prepare the eManuSkript segmentation test.
+Prepare controlled segmentation test inputs.

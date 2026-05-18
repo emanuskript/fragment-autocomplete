@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Model weights compatibility inspection script, YAML manifest, and report.
 - Initial sample dataset configuration for 5 full pages and 5 fragments from `autocomplete-test-dataset/`.
 - Local sample dataset registration script and validation script.
 - Initial sample dataset resolved metadata and human-readable report.
@@ -31,6 +32,8 @@ All notable changes to this project will be documented in this file.
 
 ### Updated
 
+- Model registry entries for `best_catmus.pt`, `best_emanuskript_segmentation.pt`, and `best_zone_detection.pt` after compatibility inspection.
+- README, roadmap, project board, and next actions for the post-inspection next step.
 - Git ignore rules to protect local datasets, model weights, large image formats, archives, caches, and local database files.
 - README with architecture build instructions and current project status.
 - AGENTS guidance for future Codex sessions.

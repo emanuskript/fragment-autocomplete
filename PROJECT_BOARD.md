@@ -2,7 +2,7 @@
 
 ## Backlog
 
-- eManuSkript segmentation test
+- Run first eManuSkript segmentation smoke test
 - Segmentation storage implementation
 - Artificial fragment generator
 - Detailed evaluation rubric
@@ -10,7 +10,7 @@
 
 ## Ready
 
-- Inspect model weights compatibility
+- Prepare controlled segmentation test inputs
 
 ## In Progress
 
@@ -29,3 +29,4 @@
 - IIIF ingestion proof of concept
 - Inventory local dataset and model weights
 - Register initial sample dataset
+- Inspect model weights compatibility
