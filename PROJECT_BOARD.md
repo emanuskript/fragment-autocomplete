@@ -27,3 +27,4 @@
 - Clean architecture PDF
 - Database schema and migrations
 - IIIF ingestion proof of concept
+- Inventory local dataset and model weights

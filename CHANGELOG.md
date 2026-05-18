@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Local dataset and model-weight inventory for `autocomplete-test-dataset/` and `model weights/`.
+- Machine-readable local asset manifest and human-readable local asset inventory report.
+- Inventory-only model registry metadata for local model weight files.
 - IIIF Presentation v2/v3 manifest normalization proof of concept.
 - Local and remote IIIF manifest ingestion CLI with dry-run mode.
 - Fixture manifests and normalizer tests for IIIF v2 and v3.
@@ -24,6 +27,7 @@ All notable changes to this project will be documented in this file.
 
 ### Updated
 
+- Git ignore rules to protect local datasets, model weights, large image formats, archives, caches, and local database files.
 - README with architecture build instructions and current project status.
 - AGENTS guidance for future Codex sessions.
 - ROADMAP_STATUS, PROJECT_BOARD, and NEXT_ACTIONS for the post-architecture next step.

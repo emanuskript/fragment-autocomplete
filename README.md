@@ -125,6 +125,27 @@ bash scripts/validate_iiif_ingestion.sh
 
 The ingestion proof of concept registers manifest, repository, manuscript, canvas, and image asset metadata. It does not download full-resolution image sets by default.
 
+## Local asset inventory
+
+The local asset inventory expects these folders when available:
+
+- `autocomplete-test-dataset/`
+- `model weights/`
+
+Run the inventory script:
+
+```bash
+python3 scripts/inventory_local_assets.py
+```
+
+The script writes:
+
+- `data/metadata/local_assets_manifest.yaml`
+- `docs/05_local_assets_inventory.md`
+- `models/model_registry.yaml`
+
+Do not commit local dataset images or model weights. These folders and common large model/data extensions are ignored by `.gitignore`; only inventory metadata should be committed.
+
 ## Next Task
 
 Register the initial sample dataset.

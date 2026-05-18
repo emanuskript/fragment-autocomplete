@@ -2,16 +2,18 @@
 
 ## Next recommended task
 
-Register the initial sample dataset.
+Register the initial sample dataset from `autocomplete-test-dataset/`.
 
 ## Acceptance criteria
 
-- Select 3-5 complete manuscript pages from IIIF sources.
-- Select or register 3-5 real fragment candidates if available.
+- Read the local dataset inventory/config.
+- Create or update `data/metadata/initial_sample_dataset.yaml`.
+- Register 5 full pages and 5 fragments where possible.
 - Store `repository`, `manuscript`, `canvas`, `image_asset`, and `fragment` metadata.
-- Include rights/access flags.
-- Include source links and attribution.
+- Preserve source URLs, identifiers, categories, rights-review status, and provenance.
+- Use IIIF ingestion where resolvable.
 - Do not download large assets by default.
-- Produce a small sample dataset report.
+- Produce `docs/04_initial_sample_dataset_report.md`.
+- Validate DB records.
 - Prepare inputs for first eManuSkript segmentation test.
 - Do not implement reconstruction, retrieval, ML, frontend UI, CoMMA ingestion, or deployment as part of this dataset-registration task unless explicitly requested.

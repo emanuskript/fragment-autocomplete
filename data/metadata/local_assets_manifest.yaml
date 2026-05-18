@@ -1,0 +1,251 @@
+generated_at: "2026-05-18T09:13:57.512990+00:00"
+project: "Fragment Autocomplete"
+checksum_algorithm: "sha256"
+checksum_skip_threshold_bytes: 2147483648
+asset_roots:
+  -
+    path: "autocomplete-test-dataset"
+    exists: true
+    total_files: 14
+    total_directories: 12
+    total_size_bytes: 76637191
+    extensions:
+      .jpg: 10
+      .md: 1
+      [no extension]: 3
+    largest_files:
+      -
+        path: "autocomplete-test-dataset/fragments/fr_04_decoration_initial/fragmentarium_F-5el0_amds_01_03a5_0001v.jp2_max.jpg"
+        size_bytes: 14987531
+        kind: "image"
+      -
+        path: "autocomplete-test-dataset/fragments/fr_02_text_block/fragmentarium_F-sf5d_Stams_STA_Frg_235_01r02r.jpg_max.jpg"
+        size_bytes: 11145344
+        kind: "image"
+      -
+        path: "autocomplete-test-dataset/full_pages/fp_02_clean_simple/e-codices_kba-Wett0004_009r_max.jpg"
+        size_bytes: 10633692
+        kind: "image"
+      -
+        path: "autocomplete-test-dataset/full_pages/fp_05_iiif_rights/e-codices_csg-0314_0003_max.jpg"
+        size_bytes: 10084304
+        kind: "image"
+      -
+        path: "autocomplete-test-dataset/full_pages/fp_03_complex_layout/e-codices_csg-0059_0002_max.jpg"
+        size_bytes: 9459819
+        kind: "image"
+      -
+        path: "autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg"
+        size_bytes: 8914515
+        kind: "image"
+      -
+        path: "autocomplete-test-dataset/fragments/fr_01_binding_strip/fragmentarium_F-cpkx_F19a_r.jp2_max.jpg"
+        size_bytes: 6763279
+        kind: "image"
+      -
+        path: "autocomplete-test-dataset/full_pages/fp_04_complex_layout/e-codices_ubb-F-IX-0068_0002r_max.jpg"
+        size_bytes: 3499220
+        kind: "image"
+      -
+        path: "autocomplete-test-dataset/fragments/fr_05_damaged_irregular/fragmentarium_F-knxa_LE_15_1_F_knxa_r.png_max.jpg"
+        size_bytes: 760721
+        kind: "image"
+      -
+        path: "autocomplete-test-dataset/fragments/fr_03_marginal_gloss/fragmentarium_F-0dfk_hm52g0pw5h_00003_00000_voorplatv.jpg_max.jpg"
+        size_bytes: 360879
+        kind: "image"
+      -
+        path: "autocomplete-test-dataset/fragments/.DS_Store"
+        size_bytes: 10244
+        kind: "unknown"
+      -
+        path: "autocomplete-test-dataset/full_pages/.DS_Store"
+        size_bytes: 10244
+        kind: "unknown"
+      -
+        path: "autocomplete-test-dataset/.DS_Store"
+        size_bytes: 6148
+        kind: "unknown"
+      -
+        path: "autocomplete-test-dataset/Sample Dataset for Architecture Testing.md"
+        size_bytes: 1251
+        kind: "metadata_text"
+    image_files:
+      - "autocomplete-test-dataset/fragments/fr_01_binding_strip/fragmentarium_F-cpkx_F19a_r.jp2_max.jpg"
+      - "autocomplete-test-dataset/fragments/fr_02_text_block/fragmentarium_F-sf5d_Stams_STA_Frg_235_01r02r.jpg_max.jpg"
+      - "autocomplete-test-dataset/fragments/fr_03_marginal_gloss/fragmentarium_F-0dfk_hm52g0pw5h_00003_00000_voorplatv.jpg_max.jpg"
+      - "autocomplete-test-dataset/fragments/fr_04_decoration_initial/fragmentarium_F-5el0_amds_01_03a5_0001v.jp2_max.jpg"
+      - "autocomplete-test-dataset/fragments/fr_05_damaged_irregular/fragmentarium_F-knxa_LE_15_1_F_knxa_r.png_max.jpg"
+      - "autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg"
+      - "autocomplete-test-dataset/full_pages/fp_02_clean_simple/e-codices_kba-Wett0004_009r_max.jpg"
+      - "autocomplete-test-dataset/full_pages/fp_03_complex_layout/e-codices_csg-0059_0002_max.jpg"
+      - "autocomplete-test-dataset/full_pages/fp_04_complex_layout/e-codices_ubb-F-IX-0068_0002r_max.jpg"
+      - "autocomplete-test-dataset/full_pages/fp_05_iiif_rights/e-codices_csg-0314_0003_max.jpg"
+    metadata_text_files:
+      - "autocomplete-test-dataset/Sample Dataset for Architecture Testing.md"
+    model_weight_files:
+      []
+    archive_files:
+      []
+    unknown_files:
+      - "autocomplete-test-dataset/.DS_Store"
+      - "autocomplete-test-dataset/fragments/.DS_Store"
+      - "autocomplete-test-dataset/full_pages/.DS_Store"
+    files:
+      -
+        path: "autocomplete-test-dataset/.DS_Store"
+        size_bytes: 6148
+        extension: ""
+        kind: "unknown"
+        sha256: "09ad7abff361caf281cf794c355b644025770b82e6b9e717df05158ecd0086ae"
+        checksum_status: "computed"
+      -
+        path: "autocomplete-test-dataset/Sample Dataset for Architecture Testing.md"
+        size_bytes: 1251
+        extension: ".md"
+        kind: "metadata_text"
+        sha256: "b1ec084a3fd0f496fdd9605778f456d2d9510a11d8f250454c35a31ce0d2c13b"
+        checksum_status: "computed"
+      -
+        path: "autocomplete-test-dataset/fragments/.DS_Store"
+        size_bytes: 10244
+        extension: ""
+        kind: "unknown"
+        sha256: "bbfe035a743d969a0c99d26464b5d2b525ddc84eafdc834f14c1e2595fcf8f3b"
+        checksum_status: "computed"
+      -
+        path: "autocomplete-test-dataset/fragments/fr_01_binding_strip/fragmentarium_F-cpkx_F19a_r.jp2_max.jpg"
+        size_bytes: 6763279
+        extension: ".jpg"
+        kind: "image"
+        sha256: "be44cc7df3967e762debf4a116b13b4ebbaa24e15cf37829c57111062accc37d"
+        checksum_status: "computed"
+      -
+        path: "autocomplete-test-dataset/fragments/fr_02_text_block/fragmentarium_F-sf5d_Stams_STA_Frg_235_01r02r.jpg_max.jpg"
+        size_bytes: 11145344
+        extension: ".jpg"
+        kind: "image"
+        sha256: "087aa3da686fa6f95c85d7bfd89b784cd17a2bc4a0d4ac80f274811b6eb4221d"
+        checksum_status: "computed"
+      -
+        path: "autocomplete-test-dataset/fragments/fr_03_marginal_gloss/fragmentarium_F-0dfk_hm52g0pw5h_00003_00000_voorplatv.jpg_max.jpg"
+        size_bytes: 360879
+        extension: ".jpg"
+        kind: "image"
+        sha256: "34c45496c36905329046e71328fb07a86e9fab8c7b42aad2c94746cee30e38ef"
+        checksum_status: "computed"
+      -
+        path: "autocomplete-test-dataset/fragments/fr_04_decoration_initial/fragmentarium_F-5el0_amds_01_03a5_0001v.jp2_max.jpg"
+        size_bytes: 14987531
+        extension: ".jpg"
+        kind: "image"
+        sha256: "8adbd19ef348872f5cdbf63a7d9849b293c05bb2d19a0ac4a836fd7aa41632ec"
+        checksum_status: "computed"
+      -
+        path: "autocomplete-test-dataset/fragments/fr_05_damaged_irregular/fragmentarium_F-knxa_LE_15_1_F_knxa_r.png_max.jpg"
+        size_bytes: 760721
+        extension: ".jpg"
+        kind: "image"
+        sha256: "3bfa0bb17183974ff204d6f50a1d76bfc1d363c8723d2c7ac764de0bb88a8d36"
+        checksum_status: "computed"
+      -
+        path: "autocomplete-test-dataset/full_pages/.DS_Store"
+        size_bytes: 10244
+        extension: ""
+        kind: "unknown"
+        sha256: "fdf86e24a98d62c50eba5471b71169482643a37e78beab1a94fe0e21cbbd2f8a"
+        checksum_status: "computed"
+      -
+        path: "autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg"
+        size_bytes: 8914515
+        extension: ".jpg"
+        kind: "image"
+        sha256: "8ae2d716a0ef69b137fd19e95b65a3131cd1ce78f94e416d731674c86b069d92"
+        checksum_status: "computed"
+      -
+        path: "autocomplete-test-dataset/full_pages/fp_02_clean_simple/e-codices_kba-Wett0004_009r_max.jpg"
+        size_bytes: 10633692
+        extension: ".jpg"
+        kind: "image"
+        sha256: "bac4a3055c85ca8cabdad7c4f7c458e720a8bd79a3f0f0285f5e8f584269de08"
+        checksum_status: "computed"
+      -
+        path: "autocomplete-test-dataset/full_pages/fp_03_complex_layout/e-codices_csg-0059_0002_max.jpg"
+        size_bytes: 9459819
+        extension: ".jpg"
+        kind: "image"
+        sha256: "446f6eed092de907751008834d6b6d04347815b60e3734ee723fb51bfdaf0a35"
+        checksum_status: "computed"
+      -
+        path: "autocomplete-test-dataset/full_pages/fp_04_complex_layout/e-codices_ubb-F-IX-0068_0002r_max.jpg"
+        size_bytes: 3499220
+        extension: ".jpg"
+        kind: "image"
+        sha256: "ba28433beb519e203b6422ae4bd75f298f803045ab862281b513d660bc2813d8"
+        checksum_status: "computed"
+      -
+        path: "autocomplete-test-dataset/full_pages/fp_05_iiif_rights/e-codices_csg-0314_0003_max.jpg"
+        size_bytes: 10084304
+        extension: ".jpg"
+        kind: "image"
+        sha256: "2aeeeab3381dac0a170b931a78cb423bd357c86810d8cc3c348a10cdc2467597"
+        checksum_status: "computed"
+    errors:
+      []
+  -
+    path: "model weights"
+    exists: true
+    total_files: 3
+    total_directories: 0
+    total_size_bytes: 569599243
+    extensions:
+      .pt: 3
+    largest_files:
+      -
+        path: "model weights/best_catmus.pt"
+        size_bytes: 364789070
+        kind: "model_weight"
+      -
+        path: "model weights/best_emanuskript_segmentation.pt"
+        size_bytes: 122217578
+        kind: "model_weight"
+      -
+        path: "model weights/best_zone_detection.pt"
+        size_bytes: 82592595
+        kind: "model_weight"
+    image_files:
+      []
+    metadata_text_files:
+      []
+    model_weight_files:
+      - "model weights/best_catmus.pt"
+      - "model weights/best_emanuskript_segmentation.pt"
+      - "model weights/best_zone_detection.pt"
+    archive_files:
+      []
+    unknown_files:
+      []
+    files:
+      -
+        path: "model weights/best_catmus.pt"
+        size_bytes: 364789070
+        extension: ".pt"
+        kind: "model_weight"
+        sha256: "260297f0ef2f4acf007fdebc764cb1d23c7479799dc9cb9c283e156943400818"
+        checksum_status: "computed"
+      -
+        path: "model weights/best_emanuskript_segmentation.pt"
+        size_bytes: 122217578
+        extension: ".pt"
+        kind: "model_weight"
+        sha256: "9f0b03cc64c830d337a01ddac6a04616a385d573e3b923a86fc4c74c16416511"
+        checksum_status: "computed"
+      -
+        path: "model weights/best_zone_detection.pt"
+        size_bytes: 82592595
+        extension: ".pt"
+        kind: "model_weight"
+        sha256: "45afebac8a7dab15aed3c0716f4cf3c44705f63a81258c5dfa949f745c9330de"
+        checksum_status: "computed"
+    errors:
+      []

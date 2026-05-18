@@ -1,0 +1,52 @@
+models:
+  -
+    id: "local_model_weights_001"
+    name: "Local model weight file: best_catmus.pt"
+    status: "inventory_only"
+    local_path: "model weights/best_catmus.pt"
+    file_count: 1
+    total_size_bytes: 364789070
+    likely_framework: "pytorch_probable"
+    detected_extensions:
+      - ".pt"
+    sha256: "260297f0ef2f4acf007fdebc764cb1d23c7479799dc9cb9c283e156943400818"
+    checksum_status: "computed"
+    checksum_manifest: "data/metadata/local_assets_manifest.yaml"
+    notes:
+      - "Model has not been loaded or executed."
+      - "Framework and label mapping still need compatibility inspection."
+      - "Do not commit local model weights to git."
+  -
+    id: "local_model_weights_002"
+    name: "Local model weight file: best_emanuskript_segmentation.pt"
+    status: "inventory_only"
+    local_path: "model weights/best_emanuskript_segmentation.pt"
+    file_count: 1
+    total_size_bytes: 122217578
+    likely_framework: "pytorch_probable"
+    detected_extensions:
+      - ".pt"
+    sha256: "9f0b03cc64c830d337a01ddac6a04616a385d573e3b923a86fc4c74c16416511"
+    checksum_status: "computed"
+    checksum_manifest: "data/metadata/local_assets_manifest.yaml"
+    notes:
+      - "Model has not been loaded or executed."
+      - "Framework and label mapping still need compatibility inspection."
+      - "Do not commit local model weights to git."
+  -
+    id: "local_model_weights_003"
+    name: "Local model weight file: best_zone_detection.pt"
+    status: "inventory_only"
+    local_path: "model weights/best_zone_detection.pt"
+    file_count: 1
+    total_size_bytes: 82592595
+    likely_framework: "pytorch_probable"
+    detected_extensions:
+      - ".pt"
+    sha256: "45afebac8a7dab15aed3c0716f4cf3c44705f63a81258c5dfa949f745c9330de"
+    checksum_status: "computed"
+    checksum_manifest: "data/metadata/local_assets_manifest.yaml"
+    notes:
+      - "Model has not been loaded or executed."
+      - "Framework and label mapping still need compatibility inspection."
+      - "Do not commit local model weights to git."
