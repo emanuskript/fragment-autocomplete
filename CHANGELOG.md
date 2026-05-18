@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Full pilot segmentation input preparation, runner, storage script, validators, and report.
 - Minimal local segmentation viewer scripts and viewer documentation.
 - Segmentation output storage script, validator, storage results manifest, and storage report.
 - Segmentation smoke-test runner, validator, results manifest, and report.
@@ -36,6 +37,7 @@ All notable changes to this project will be documented in this file.
 
 ### Updated
 
+- Local viewer to browse both smoke-test and full-pilot segmentation runs from PostgreSQL/PostGIS.
 - README, roadmap, project board, next actions, and requirements for the local segmentation viewer step.
 - README, roadmap, project board, and next actions for the minimal local UI viewer step after segmentation storage.
 - README, roadmap, project board, and next actions for the post-smoke-test database storage step.

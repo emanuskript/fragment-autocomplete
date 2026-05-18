@@ -2,15 +2,15 @@
 
 ## Purpose
 
-Provide a small local read-only interface for visually inspecting the two stored segmentation smoke-test samples and their database-backed metadata.
+Provide a small local read-only interface for visually inspecting stored segmentation runs from the initial pilot dataset and their database-backed metadata.
 
 ## Scope
 
-This viewer is a local development tool, not the final project UI. It displays the already stored smoke-test segmentation outputs and related metadata from PostgreSQL/PostGIS plus local file paths for the original image and overlay.
+This viewer is a local development tool, not the final project UI. It displays the already stored smoke-test and full-pilot segmentation outputs and related metadata from PostgreSQL/PostGIS plus local file paths for the original image and overlay.
 
 ## What the viewer displays
 
-- The two stored smoke-test samples.
+- Stored smoke-test and full-pilot segmentation runs for the registered pilot samples.
 - The original local image referenced by `image_asset.local_path`.
 - The saved segmentation overlay image referenced by stored smoke-test metadata.
 - `segmentation_run` metadata including model name/path, status, output path, parameters, confidence summary, and timestamps.
@@ -21,6 +21,7 @@ This viewer is a local development tool, not the final project UI. It displays t
 - PostgreSQL/PostGIS tables: `segmentation_run`, `layout_region`, `image_asset`
 - Local files under `autocomplete-test-dataset/`
 - Local smoke-test outputs under `outputs/segmentation_smoke_test/`
+- Local pilot outputs under `outputs/segmentation_pilot/`
 
 ## How to run
 
@@ -51,7 +52,15 @@ bash scripts/validate_segmentation_viewer.sh
 ## Current samples available
 
 - `fp_01_clean_simple`
+- `fp_02_clean_simple`
+- `fp_03_complex_layout`
+- `fp_04_complex_layout`
+- `fp_05_iiif_rights`
+- `fr_01_binding_strip`
 - `fr_02_text_block`
+- `fr_03_marginal_gloss`
+- `fr_04_decoration_initial`
+- `fr_05_damaged_irregular`
 
 ## Known limitations
 

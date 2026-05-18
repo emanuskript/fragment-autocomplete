@@ -32,3 +32,4 @@
 - Run first eManuSkript segmentation smoke test
 - Store segmentation outputs in DB
 - Minimal UI viewer
+- Full pilot segmentation run

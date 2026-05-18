@@ -263,6 +263,46 @@ bash scripts/validate_segmentation_viewer.sh
 
 This viewer is local-only and read-only. It displays already stored segmentation outputs from PostgreSQL/PostGIS and local files; it does not run inference, store new results, or build the final project UI.
 
+## Full pilot segmentation run
+
+Prepare the 10 pilot inputs from the registered initial sample dataset:
+
+```bash
+python3 scripts/prepare_segmentation_pilot_inputs.py --verbose
+```
+
+Validate the prepared pilot inputs:
+
+```bash
+bash scripts/validate_segmentation_pilot_inputs.sh
+```
+
+Run the full pilot segmentation on CPU:
+
+```bash
+python3 scripts/run_segmentation_pilot.py --device cpu --conf 0.25 --imgsz 320 --verbose
+```
+
+Store the pilot outputs in PostgreSQL/PostGIS:
+
+```bash
+python3 scripts/store_segmentation_pilot_outputs.py --verbose
+```
+
+Validate the pilot run and storage:
+
+```bash
+bash scripts/validate_segmentation_pilot_run.sh
+bash scripts/validate_segmentation_pilot_storage.sh
+python3 scripts/validate_segmentation_viewer_data.py
+```
+
+Run the local viewer manually:
+
+```bash
+bash scripts/run_segmentation_viewer.sh
+```
+
 Database storage and any UI work remain separate later steps.
 
 ## Next Task

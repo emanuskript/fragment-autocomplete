@@ -1,0 +1,251 @@
+generated_at: '2026-05-18T21:01:14.315720+00:00'
+pilot_run_id: segmentation_pilot_v0_1
+dataset_id: initial_sample_dataset_v0_1
+model_id: best_emanuskript_segmentation
+model_path: model weights/best_emanuskript_segmentation.pt
+inference_run: true
+segmentation_run: true
+device: cpu
+confidence_threshold: 0.25
+imgsz: 320
+output_dir: outputs/segmentation_pilot
+environment:
+  python_version: 3.12.10
+  torch_version: 2.9.0
+  ultralytics_version: 8.4.14
+results:
+- sample_id: fp_01_clean_simple
+  sample_kind: full_page
+  category: clean_simple
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/csg/0300/5/0/
+  local_path: autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg
+  db_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+  db_fragment_id: null
+  db_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+  status: success
+  raw_output_path: outputs/segmentation_pilot/raw/fp_01_clean_simple.json
+  overlay_path: outputs/segmentation_pilot/overlays/fp_01_clean_simple_overlay.jpg
+  detected_region_count: 102
+  detected_labels:
+  - Main script black
+  - Plain initial - Black
+  confidence_summary:
+    count: 102
+    min: 0.323524
+    max: 0.784519
+    mean: 0.642175
+  errors: []
+  warnings: []
+- sample_id: fp_02_clean_simple
+  sample_kind: full_page
+  category: clean_simple
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/kba/Wett0004/9r
+  local_path: autocomplete-test-dataset/full_pages/fp_02_clean_simple/e-codices_kba-Wett0004_009r_max.jpg
+  db_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+  db_fragment_id: null
+  db_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+  status: success
+  raw_output_path: outputs/segmentation_pilot/raw/fp_02_clean_simple.json
+  overlay_path: outputs/segmentation_pilot/overlays/fp_02_clean_simple_overlay.jpg
+  detected_region_count: 31
+  detected_labels:
+  - Main script black
+  confidence_summary:
+    count: 31
+    min: 0.350531
+    max: 0.864664
+    mean: 0.739257
+  errors: []
+  warnings: []
+- sample_id: fp_03_complex_layout
+  sample_kind: full_page
+  category: complex_layout
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/csg/0059/2
+  local_path: autocomplete-test-dataset/full_pages/fp_03_complex_layout/e-codices_csg-0059_0002_max.jpg
+  db_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+  db_fragment_id: null
+  db_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+  status: success
+  raw_output_path: outputs/segmentation_pilot/raw/fp_03_complex_layout.json
+  overlay_path: outputs/segmentation_pilot/overlays/fp_03_complex_layout_overlay.jpg
+  detected_region_count: 82
+  detected_labels:
+  - Embellished
+  - Main script black
+  - Plain initial - Highlighted
+  confidence_summary:
+    count: 82
+    min: 0.250488
+    max: 0.815589
+    mean: 0.49978
+  errors: []
+  warnings: []
+- sample_id: fp_04_complex_layout
+  sample_kind: full_page
+  category: complex_layout
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/ubb/F-IX-0068/2r
+  local_path: autocomplete-test-dataset/full_pages/fp_04_complex_layout/e-codices_ubb-F-IX-0068_0002r_max.jpg
+  db_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+  db_fragment_id: null
+  db_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+  status: success
+  raw_output_path: outputs/segmentation_pilot/raw/fp_04_complex_layout.json
+  overlay_path: outputs/segmentation_pilot/overlays/fp_04_complex_layout_overlay.jpg
+  detected_region_count: 34
+  detected_labels:
+  - Embellished
+  - Main script black
+  - Music
+  - Plain initial - Black
+  confidence_summary:
+    count: 34
+    min: 0.250428
+    max: 0.831343
+    mean: 0.455551
+  errors: []
+  warnings: []
+- sample_id: fp_05_iiif_rights
+  sample_kind: full_page
+  category: iiif_rights_metadata
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/csg/0314/3
+  local_path: autocomplete-test-dataset/full_pages/fp_05_iiif_rights/e-codices_csg-0314_0003_max.jpg
+  db_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+  db_fragment_id: null
+  db_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+  status: success
+  raw_output_path: outputs/segmentation_pilot/raw/fp_05_iiif_rights.json
+  overlay_path: outputs/segmentation_pilot/overlays/fp_05_iiif_rights_overlay.jpg
+  detected_region_count: 91
+  detected_labels:
+  - Embellished
+  - Gloss
+  - Main script black
+  - Main script coloured
+  - Plain initial - Black
+  - Plain initial- coloured
+  - Variant script coloured
+  confidence_summary:
+    count: 91
+    min: 0.25446
+    max: 0.914578
+    mean: 0.64755
+  errors: []
+  warnings: []
+- sample_id: fr_01_binding_strip
+  sample_kind: fragment
+  category: binding_strip
+  source: Fragmentarium
+  source_url: https://fragmentarium.ms/view/page/F-cpkx/4139/43306
+  local_path: autocomplete-test-dataset/fragments/fr_01_binding_strip/fragmentarium_F-cpkx_F19a_r.jp2_max.jpg
+  db_image_asset_id: 20c6bc5c-9c35-42a2-9da7-7b2a0c8a8da5
+  db_fragment_id: 7fb02b08-4656-48fd-bee2-107e25c32400
+  db_canvas_id: null
+  status: success
+  raw_output_path: outputs/segmentation_pilot/raw/fr_01_binding_strip.json
+  overlay_path: outputs/segmentation_pilot/overlays/fr_01_binding_strip_overlay.jpg
+  detected_region_count: 40
+  detected_labels:
+  - Illustrations
+  - Main script black
+  confidence_summary:
+    count: 40
+    min: 0.268747
+    max: 0.804203
+    mean: 0.483213
+  errors: []
+  warnings: []
+- sample_id: fr_02_text_block
+  sample_kind: fragment
+  category: text_block
+  source: Fragmentarium
+  source_url: https://fragmentarium.ms/view/page/F-sf5d/6321/54882
+  local_path: autocomplete-test-dataset/fragments/fr_02_text_block/fragmentarium_F-sf5d_Stams_STA_Frg_235_01r02r.jpg_max.jpg
+  db_image_asset_id: 2d04e20b-a8f9-4f40-89fe-0ea3ac6d7a49
+  db_fragment_id: c0017254-558f-4cb6-ab17-3d959d2ace1a
+  db_canvas_id: null
+  status: success
+  raw_output_path: outputs/segmentation_pilot/raw/fr_02_text_block.json
+  overlay_path: outputs/segmentation_pilot/overlays/fr_02_text_block_overlay.jpg
+  detected_region_count: 98
+  detected_labels:
+  - Main script black
+  confidence_summary:
+    count: 98
+    min: 0.253079
+    max: 0.713885
+    mean: 0.464569
+  errors: []
+  warnings: []
+- sample_id: fr_03_marginal_gloss
+  sample_kind: fragment
+  category: marginal_gloss
+  source: Fragmentarium
+  source_url: https://fragmentarium.ms/view/page/F-0dfk/9908/72248
+  local_path: autocomplete-test-dataset/fragments/fr_03_marginal_gloss/fragmentarium_F-0dfk_hm52g0pw5h_00003_00000_voorplatv.jpg_max.jpg
+  db_image_asset_id: 1d683b5a-9b69-4107-bdc4-5fd1b9b11802
+  db_fragment_id: 01f288ae-413c-47b6-bd58-1e9c0ac4aafa
+  db_canvas_id: null
+  status: success
+  raw_output_path: outputs/segmentation_pilot/raw/fr_03_marginal_gloss.json
+  overlay_path: outputs/segmentation_pilot/overlays/fr_03_marginal_gloss_overlay.jpg
+  detected_region_count: 24
+  detected_labels:
+  - Main script black
+  - Music
+  confidence_summary:
+    count: 24
+    min: 0.252431
+    max: 0.665129
+    mean: 0.374507
+  errors: []
+  warnings: []
+- sample_id: fr_04_decoration_initial
+  sample_kind: fragment
+  category: decoration_initial
+  source: Fragmentarium
+  source_url: https://fragmentarium.ms/view/page/F-5el0/10778/77958
+  local_path: autocomplete-test-dataset/fragments/fr_04_decoration_initial/fragmentarium_F-5el0_amds_01_03a5_0001v.jp2_max.jpg
+  db_image_asset_id: 55c57b73-6b3c-4dc0-9d6d-c50162352b94
+  db_fragment_id: 1d1a4c98-81e7-4c5b-a147-cd717403f83d
+  db_canvas_id: null
+  status: error
+  raw_output_path: outputs/segmentation_pilot/raw/fr_04_decoration_initial.json
+  overlay_path: outputs/segmentation_pilot/overlays/fr_04_decoration_initial_overlay.jpg
+  detected_region_count: 0
+  detected_labels: []
+  confidence_summary:
+    count: 0
+    min: null
+    max: null
+    mean: null
+  errors:
+  - 'RuntimeError: subprocess exited with code -9'
+  warnings:
+  - Segmentation inference failed for this sample.
+- sample_id: fr_05_damaged_irregular
+  sample_kind: fragment
+  category: damaged_irregular
+  source: Fragmentarium
+  source_url: https://fragmentarium.ms/view/page/F-knxa/11598/83378
+  local_path: autocomplete-test-dataset/fragments/fr_05_damaged_irregular/fragmentarium_F-knxa_LE_15_1_F_knxa_r.png_max.jpg
+  db_image_asset_id: 5894b176-78cb-482f-b02e-69b666533972
+  db_fragment_id: c45af019-3c18-490b-a01c-b4973768abae
+  db_canvas_id: null
+  status: success
+  raw_output_path: outputs/segmentation_pilot/raw/fr_05_damaged_irregular.json
+  overlay_path: outputs/segmentation_pilot/overlays/fr_05_damaged_irregular_overlay.jpg
+  detected_region_count: 24
+  detected_labels:
+  - Main script black
+  confidence_summary:
+    count: 24
+    min: 0.256008
+    max: 0.77172
+    mean: 0.517746
+  errors: []
+  warnings: []

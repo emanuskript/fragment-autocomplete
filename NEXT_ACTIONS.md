@@ -6,8 +6,10 @@ Build the artificial fragment generator for complete-page samples.
 
 ## Acceptance criteria
 
-- Use the registered full-page samples.
-- Create controlled masks and crops without overwriting source images.
-- Keep the first version limited to simple rectangular and irregular masks before advanced damage simulation.
-- Write local output files and metadata for the generated tasks.
-- Plan for later `artificial_fragment_task` database records, but do not require that DB write in the first generator step.
+- Use the 5 registered full-page samples.
+- Generate simple rectangular and irregular artificial fragments.
+- Preserve ground-truth placement metadata.
+- Do not overwrite source images.
+- Do not train any model.
+- Produce local output files and metadata.
+- Prepare for later `artificial_fragment_task` database storage.

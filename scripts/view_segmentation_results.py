@@ -13,6 +13,7 @@ import streamlit as st
 
 ROOT = Path(__file__).resolve().parent.parent
 SMOKE_TEST_ID = "segmentation_smoke_test_v0_1"
+PILOT_RUN_ID = "segmentation_pilot_v0_1"
 
 
 def db_connect() -> psycopg.Connection:
@@ -30,6 +31,12 @@ def fetch_runs() -> list[dict[str, Any]]:
     query = """
     SELECT
       sr.id::text AS segmentation_run_id,
+      CASE
+        WHEN sr.parameters->>'pilot_run_id' = %s THEN 'full_pilot'
+        WHEN sr.parameters->>'smoke_test_id' = %s THEN 'smoke_test'
+        ELSE 'other'
+      END AS run_type,
+      COALESCE(sr.parameters->>'pilot_run_id', sr.parameters->>'smoke_test_id') AS run_identifier,
       sr.parameters->>'sample_id' AS sample_id,
       sr.parameters->>'sample_kind' AS sample_kind,
       sr.image_asset_id::text AS image_asset_id,
@@ -42,6 +49,7 @@ def fetch_runs() -> list[dict[str, Any]]:
       sr.output_format,
       sr.parameters,
       sr.confidence_summary,
+      sr.raw_output,
       sr.created_at,
       sr.completed_at,
       ia.local_path AS image_local_path,
@@ -55,12 +63,16 @@ def fetch_runs() -> list[dict[str, Any]]:
     FROM segmentation_run sr
     LEFT JOIN image_asset ia ON ia.id = sr.image_asset_id
     LEFT JOIN layout_region lr ON lr.segmentation_run_id = sr.id
-    WHERE sr.parameters->>'smoke_test_id' = %s
+    WHERE sr.parameters->>'sample_id' IS NOT NULL
+      AND (
+        sr.parameters->>'smoke_test_id' = %s
+        OR sr.parameters->>'pilot_run_id' = %s
+      )
     GROUP BY sr.id, ia.local_path, ia.canvas_id
-    ORDER BY sr.parameters->>'sample_id'
+    ORDER BY sr.parameters->>'sample_id', sr.completed_at DESC NULLS LAST, sr.created_at DESC NULLS LAST
     """
     with db_connect() as conn, conn.cursor() as cur:
-        cur.execute(query, (SMOKE_TEST_ID,))
+        cur.execute(query, (PILOT_RUN_ID, SMOKE_TEST_ID, SMOKE_TEST_ID, PILOT_RUN_ID))
         rows = cur.fetchall()
         columns = [desc.name for desc in cur.description]
     return [dict(zip(columns, row)) for row in rows]
@@ -116,6 +128,8 @@ def render_metadata(run: dict[str, Any]) -> None:
     left, right = st.columns(2)
     with left:
         st.markdown(f"- `segmentation_run_id`: `{run['segmentation_run_id']}`")
+        st.markdown(f"- `run_type`: `{run['run_type']}`")
+        st.markdown(f"- `run_identifier`: `{run.get('run_identifier') or 'n/a'}`")
         st.markdown(f"- `sample_id`: `{run['sample_id']}`")
         st.markdown(f"- `sample_kind`: `{run['sample_kind']}`")
         st.markdown(f"- `image_asset_id`: `{run['image_asset_id']}`")
@@ -135,6 +149,8 @@ def render_metadata(run: dict[str, Any]) -> None:
         st.json(run["parameters"])
     with st.expander("Confidence summary JSON", expanded=False):
         st.json(run["confidence_summary"])
+    with st.expander("Raw output JSON", expanded=False):
+        st.json(run["raw_output"])
 
 
 def render_images(run: dict[str, Any]) -> None:
@@ -205,7 +221,7 @@ def render_region_table(regions_df: pd.DataFrame) -> None:
 def main() -> None:
     st.set_page_config(page_title="Fragment Autocomplete Segmentation Viewer", layout="wide")
     st.title("Fragment Autocomplete — Minimal Segmentation Viewer")
-    st.caption("Local read-only viewer for the two stored segmentation smoke-test samples.")
+    st.caption("Local read-only viewer for stored smoke-test and full-pilot segmentation runs.")
 
     try:
         runs = fetch_runs()
@@ -214,17 +230,38 @@ def main() -> None:
         st.stop()
 
     if not runs:
-        st.warning("No stored smoke-test segmentation runs were found.")
+        st.warning("No stored segmentation runs were found for the initial pilot dataset.")
         st.stop()
 
-    sample_options = {run["sample_id"]: run for run in runs}
-    selected_sample = st.sidebar.selectbox("Sample", list(sample_options.keys()))
-    run = sample_options[selected_sample]
+    run_type_label = st.sidebar.radio(
+        "Run type",
+        options=["all", "smoke_test", "full_pilot"],
+        format_func=lambda value: {
+            "all": "All",
+            "smoke_test": "Smoke test",
+            "full_pilot": "Full pilot",
+        }[value],
+    )
+    filtered_runs = [run for run in runs if run_type_label == "all" or run["run_type"] == run_type_label]
+    if not filtered_runs:
+        st.warning("No runs match the selected run-type filter.")
+        st.stop()
+
+    sample_ids = sorted({run["sample_id"] for run in filtered_runs})
+    selected_sample = st.sidebar.selectbox("Sample", sample_ids)
+    sample_runs = [run for run in filtered_runs if run["sample_id"] == selected_sample]
+    run_labels = [
+        f"{run['run_type']} | {run.get('completed_at') or run.get('created_at') or 'n/a'} | {run['segmentation_run_id'][:8]}"
+        for run in sample_runs
+    ]
+    selected_run_index = st.sidebar.selectbox("Stored run", range(len(sample_runs)), format_func=lambda idx: run_labels[idx])
+    run = sample_runs[selected_run_index]
     regions_df = fetch_regions(run["segmentation_run_id"])
 
-    st.sidebar.markdown("### Stored smoke-test samples")
-    for sample_id, sample_run in sample_options.items():
-        st.sidebar.markdown(f"- `{sample_id}` ({sample_run['sample_kind']})")
+    st.sidebar.markdown("### Stored samples in current filter")
+    for sample_id in sample_ids:
+        sample_kind = next(item["sample_kind"] for item in filtered_runs if item["sample_id"] == sample_id)
+        st.sidebar.markdown(f"- `{sample_id}` ({sample_kind})")
 
     render_images(run)
     render_metadata(run)

@@ -1,0 +1,158 @@
+generated_at: '2026-05-18T21:05:06+00:00'
+storage_status: stored
+pilot_run_id: segmentation_pilot_v0_1
+dataset_id: initial_sample_dataset_v0_1
+model_id: best_emanuskript_segmentation
+model_path: model weights/best_emanuskript_segmentation.pt
+device: cpu
+confidence_threshold: 0.25
+imgsz: 320
+inference_rerun: false
+database_write: true
+pilot_results_path: data/metadata/segmentation_pilot_results.yaml
+pilot_inputs_path: data/metadata/segmentation_pilot_inputs.yaml
+samples:
+- sample_id: fp_01_clean_simple
+  sample_kind: full_page
+  db_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+  db_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+  db_fragment_id: null
+  db_segmentation_run_id: fedab93c-093f-4f47-a73f-512b3d434a13
+  layout_region_count: 102
+  detected_labels:
+  - Main script black
+  - Plain initial - Black
+  raw_output_path: outputs/segmentation_pilot/raw/fp_01_clean_simple.json
+  overlay_path: outputs/segmentation_pilot/overlays/fp_01_clean_simple_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: fp_02_clean_simple
+  sample_kind: full_page
+  db_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+  db_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+  db_fragment_id: null
+  db_segmentation_run_id: e46db11e-89c2-4f6a-a7da-f18f5d94c5ba
+  layout_region_count: 31
+  detected_labels:
+  - Main script black
+  raw_output_path: outputs/segmentation_pilot/raw/fp_02_clean_simple.json
+  overlay_path: outputs/segmentation_pilot/overlays/fp_02_clean_simple_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: fp_03_complex_layout
+  sample_kind: full_page
+  db_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+  db_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+  db_fragment_id: null
+  db_segmentation_run_id: 981c1030-e28d-46fb-b6b6-f0a374c69755
+  layout_region_count: 82
+  detected_labels:
+  - Embellished
+  - Main script black
+  - Plain initial - Highlighted
+  raw_output_path: outputs/segmentation_pilot/raw/fp_03_complex_layout.json
+  overlay_path: outputs/segmentation_pilot/overlays/fp_03_complex_layout_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: fp_04_complex_layout
+  sample_kind: full_page
+  db_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+  db_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+  db_fragment_id: null
+  db_segmentation_run_id: 92591bbf-17b2-4481-b269-05af22e85b62
+  layout_region_count: 34
+  detected_labels:
+  - Embellished
+  - Main script black
+  - Music
+  - Plain initial - Black
+  raw_output_path: outputs/segmentation_pilot/raw/fp_04_complex_layout.json
+  overlay_path: outputs/segmentation_pilot/overlays/fp_04_complex_layout_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: fp_05_iiif_rights
+  sample_kind: full_page
+  db_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+  db_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+  db_fragment_id: null
+  db_segmentation_run_id: 1431e22e-afdc-4a34-b958-4671bbefe9ec
+  layout_region_count: 91
+  detected_labels:
+  - Embellished
+  - Gloss
+  - Main script black
+  - Main script coloured
+  - Plain initial - Black
+  - Plain initial- coloured
+  - Variant script coloured
+  raw_output_path: outputs/segmentation_pilot/raw/fp_05_iiif_rights.json
+  overlay_path: outputs/segmentation_pilot/overlays/fp_05_iiif_rights_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: fr_01_binding_strip
+  sample_kind: fragment
+  db_image_asset_id: 20c6bc5c-9c35-42a2-9da7-7b2a0c8a8da5
+  db_canvas_id: null
+  db_fragment_id: 7fb02b08-4656-48fd-bee2-107e25c32400
+  db_segmentation_run_id: bf4a51b9-8a03-49ed-8ba6-489ff3bce06e
+  layout_region_count: 40
+  detected_labels:
+  - Illustrations
+  - Main script black
+  raw_output_path: outputs/segmentation_pilot/raw/fr_01_binding_strip.json
+  overlay_path: outputs/segmentation_pilot/overlays/fr_01_binding_strip_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: fr_02_text_block
+  sample_kind: fragment
+  db_image_asset_id: 2d04e20b-a8f9-4f40-89fe-0ea3ac6d7a49
+  db_canvas_id: null
+  db_fragment_id: c0017254-558f-4cb6-ab17-3d959d2ace1a
+  db_segmentation_run_id: 6ee0ce5b-5e8a-4064-9365-987183ba314f
+  layout_region_count: 98
+  detected_labels:
+  - Main script black
+  raw_output_path: outputs/segmentation_pilot/raw/fr_02_text_block.json
+  overlay_path: outputs/segmentation_pilot/overlays/fr_02_text_block_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: fr_03_marginal_gloss
+  sample_kind: fragment
+  db_image_asset_id: 1d683b5a-9b69-4107-bdc4-5fd1b9b11802
+  db_canvas_id: null
+  db_fragment_id: 01f288ae-413c-47b6-bd58-1e9c0ac4aafa
+  db_segmentation_run_id: e9fc40f4-fef9-48de-a017-b68c0a8cf547
+  layout_region_count: 24
+  detected_labels:
+  - Main script black
+  - Music
+  raw_output_path: outputs/segmentation_pilot/raw/fr_03_marginal_gloss.json
+  overlay_path: outputs/segmentation_pilot/overlays/fr_03_marginal_gloss_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: fr_04_decoration_initial
+  sample_kind: fragment
+  db_image_asset_id: 55c57b73-6b3c-4dc0-9d6d-c50162352b94
+  db_canvas_id: null
+  db_fragment_id: 1d1a4c98-81e7-4c5b-a147-cd717403f83d
+  db_segmentation_run_id: 2f8c2192-8cb1-48d4-89ea-84eac5042a1f
+  layout_region_count: 0
+  detected_labels: []
+  raw_output_path: outputs/segmentation_pilot/raw/fr_04_decoration_initial.json
+  overlay_path: outputs/segmentation_pilot/overlays/fr_04_decoration_initial_overlay.jpg
+  status: matched_and_refreshed
+  warnings:
+  - Segmentation inference failed for this sample.
+- sample_id: fr_05_damaged_irregular
+  sample_kind: fragment
+  db_image_asset_id: 5894b176-78cb-482f-b02e-69b666533972
+  db_canvas_id: null
+  db_fragment_id: c45af019-3c18-490b-a01c-b4973768abae
+  db_segmentation_run_id: f7bec957-e94b-4241-8946-a00ac2ed7110
+  layout_region_count: 24
+  detected_labels:
+  - Main script black
+  raw_output_path: outputs/segmentation_pilot/raw/fr_05_damaged_irregular.json
+  overlay_path: outputs/segmentation_pilot/overlays/fr_05_damaged_irregular_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
