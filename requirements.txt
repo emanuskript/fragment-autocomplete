@@ -3,3 +3,5 @@ PyYAML>=6.0
 requests>=2.31
 pytest>=8.0
 ultralytics>=8.3
+streamlit>=1.45
+pandas>=2.2

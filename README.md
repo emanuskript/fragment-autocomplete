@@ -235,6 +235,34 @@ bash scripts/validate_segmentation_storage.sh
 
 This step stores metadata and region geometry for the two smoke-test samples only. It does not rerun inference, and it does not build the local UI viewer.
 
+## Minimal segmentation viewer
+
+Start the local PostgreSQL/PostGIS database:
+
+```bash
+bash scripts/db_start.sh
+```
+
+Validate that the stored viewer data and local image paths are available:
+
+```bash
+python3 scripts/validate_segmentation_viewer_data.py
+```
+
+Run the local read-only viewer:
+
+```bash
+bash scripts/run_segmentation_viewer.sh
+```
+
+You can also run the combined viewer validation:
+
+```bash
+bash scripts/validate_segmentation_viewer.sh
+```
+
+This viewer is local-only and read-only. It displays already stored segmentation outputs from PostgreSQL/PostGIS and local files; it does not run inference, store new results, or build the final project UI.
+
 Database storage and any UI work remain separate later steps.
 
 ## Next Task

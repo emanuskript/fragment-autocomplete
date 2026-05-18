@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Minimal local segmentation viewer scripts and viewer documentation.
 - Segmentation output storage script, validator, storage results manifest, and storage report.
 - Segmentation smoke-test runner, validator, results manifest, and report.
 - Controlled segmentation smoke-test input manifest, preparation script, validation script, and readiness report.
@@ -35,6 +36,7 @@ All notable changes to this project will be documented in this file.
 
 ### Updated
 
+- README, roadmap, project board, next actions, and requirements for the local segmentation viewer step.
 - README, roadmap, project board, and next actions for the minimal local UI viewer step after segmentation storage.
 - README, roadmap, project board, and next actions for the post-smoke-test database storage step.
 - README, roadmap, project board, and next actions for the first controlled segmentation smoke-test preparation step.

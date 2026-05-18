@@ -2,14 +2,12 @@
 
 ## Next recommended task
 
-Build a minimal local UI viewer for the stored segmentation outputs.
+Build the artificial fragment generator for complete-page samples.
 
 ## Acceptance criteria
 
-- List the two stored smoke-test samples.
-- Show the original local image.
-- Show the saved overlay image.
-- Show `segmentation_run` metadata.
-- Show a `layout_region` table with labels, confidence, and bbox/polygon information.
-- Read from the database and local output paths.
-- Do not implement reconstruction, artificial fragments, retrieval, MSI, or CoMMA yet.
+- Use the registered full-page samples.
+- Create controlled masks and crops without overwriting source images.
+- Keep the first version limited to simple rectangular and irregular masks before advanced damage simulation.
+- Write local output files and metadata for the generated tasks.
+- Plan for later `artificial_fragment_task` database records, but do not require that DB write in the first generator step.

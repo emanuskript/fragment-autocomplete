@@ -2,14 +2,13 @@
 
 ## Backlog
 
-- Minimal UI viewer
-- Artificial fragment generator
+- Layout-first reconstruction MVP
 - Detailed evaluation rubric
 - 20-30 use-case selection
 
 ## Ready
 
-- Minimal UI viewer
+- Artificial fragment generator
 
 ## In Progress
 
@@ -32,3 +31,4 @@
 - Prepare controlled segmentation test inputs
 - Run first eManuSkript segmentation smoke test
 - Store segmentation outputs in DB
+- Minimal UI viewer
