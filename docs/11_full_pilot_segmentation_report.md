@@ -32,11 +32,11 @@ Segmentation was run on the 10-item pilot dataset only. No training was performe
 | `fr_01_binding_strip` | `fragment` | 40 | Illustrations, Main script black | `matched_and_refreshed` |  |
 | `fr_02_text_block` | `fragment` | 98 | Main script black | `matched_and_refreshed` |  |
 | `fr_03_marginal_gloss` | `fragment` | 24 | Main script black, Music | `matched_and_refreshed` |  |
-| `fr_04_decoration_initial` | `fragment` | 0 | none | `matched_and_refreshed` | Segmentation inference failed for this sample. |
+| `fr_04_decoration_initial` | `fragment` | 115 | Embellished, Main script black, Main script coloured, Music, Plain initial - Highlighted, Zoo - Anthropomorphic | `matched_and_refreshed` |  |
 | `fr_05_damaged_irregular` | `fragment` | 24 | Main script black | `matched_and_refreshed` |  |
 
 ## Detected Labels Summary
-- Unique labels across the pilot run: Embellished, Gloss, Illustrations, Main script black, Main script coloured, Music, Plain initial - Black, Plain initial - Highlighted, Plain initial- coloured, Variant script coloured
+- Unique labels across the pilot run: Embellished, Gloss, Illustrations, Main script black, Main script coloured, Music, Plain initial - Black, Plain initial - Highlighted, Plain initial- coloured, Variant script coloured, Zoo - Anthropomorphic
 
 ## Output Paths
 - `fp_01_clean_simple` raw: `outputs/segmentation_pilot/raw/fp_01_clean_simple.json`
@@ -71,7 +71,6 @@ The local Streamlit viewer now lists both smoke-test and full-pilot segmentation
 ## Known Issues
 - The pilot run preserves outputs locally and in PostgreSQL/PostGIS only; it does not provide a production UI.
 - The viewer is for local development/demo use and remains read-only.
-- `fr_04_decoration_initial`: Segmentation inference failed for this sample.
 
 ## What Has Not Been Implemented
 - No artificial fragment generation was implemented.

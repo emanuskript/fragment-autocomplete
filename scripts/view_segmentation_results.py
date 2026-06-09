@@ -153,6 +153,28 @@ def render_metadata(run: dict[str, Any]) -> None:
         st.json(run["raw_output"])
 
 
+def render_run_alerts(run: dict[str, Any]) -> None:
+    """Surface failed or empty segmentation runs before the image panels."""
+    raw_output = run.get("raw_output") or {}
+    sample_result = raw_output.get("pilot_result") or raw_output.get("smoke_test_result") or {}
+    warnings = sample_result.get("warnings") or raw_output.get("warnings") or []
+    errors = sample_result.get("errors") or raw_output.get("errors") or []
+    result_status = sample_result.get("status") or run.get("status")
+
+    if errors:
+        st.error(
+            "Segmentation is not available for this run. "
+            f"Stored result status: `{result_status}`. Error: {errors[0]}"
+        )
+    elif warnings:
+        st.warning(
+            "This run has warnings. "
+            f"Stored result status: `{result_status}`. Warning: {warnings[0]}"
+        )
+    elif int(run.get("region_count") or 0) == 0:
+        st.warning("This run has zero stored layout regions.")
+
+
 def render_images(run: dict[str, Any]) -> None:
     st.subheader("Images")
     original_path, original_exists = image_exists(run.get("image_local_path"))
@@ -263,6 +285,7 @@ def main() -> None:
         sample_kind = next(item["sample_kind"] for item in filtered_runs if item["sample_id"] == sample_id)
         st.sidebar.markdown(f"- `{sample_id}` ({sample_kind})")
 
+    render_run_alerts(run)
     render_images(run)
     render_metadata(run)
     render_region_summary(run, regions_df)

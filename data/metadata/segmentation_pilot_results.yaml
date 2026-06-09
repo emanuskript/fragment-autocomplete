@@ -1,4 +1,4 @@
-generated_at: '2026-05-18T21:01:14.315720+00:00'
+generated_at: '2026-05-19T07:54:16.763016+00:00'
 pilot_run_id: segmentation_pilot_v0_1
 dataset_id: initial_sample_dataset_v0_1
 model_id: best_emanuskript_segmentation
@@ -213,20 +213,24 @@ results:
   db_image_asset_id: 55c57b73-6b3c-4dc0-9d6d-c50162352b94
   db_fragment_id: 1d1a4c98-81e7-4c5b-a147-cd717403f83d
   db_canvas_id: null
-  status: error
+  status: success
   raw_output_path: outputs/segmentation_pilot/raw/fr_04_decoration_initial.json
   overlay_path: outputs/segmentation_pilot/overlays/fr_04_decoration_initial_overlay.jpg
-  detected_region_count: 0
-  detected_labels: []
+  detected_region_count: 115
+  detected_labels:
+  - Embellished
+  - Main script black
+  - Main script coloured
+  - Music
+  - Plain initial - Highlighted
+  - Zoo - Anthropomorphic
   confidence_summary:
-    count: 0
-    min: null
-    max: null
-    mean: null
-  errors:
-  - 'RuntimeError: subprocess exited with code -9'
-  warnings:
-  - Segmentation inference failed for this sample.
+    count: 115
+    min: 0.254461
+    max: 0.865352
+    mean: 0.542605
+  errors: []
+  warnings: []
 - sample_id: fr_05_damaged_irregular
   sample_kind: fragment
   category: damaged_irregular

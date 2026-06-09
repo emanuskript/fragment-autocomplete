@@ -7,6 +7,7 @@ import os
 import platform
 import subprocess
 import sys
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import mean
@@ -106,6 +107,31 @@ def raw_detection_payload(result) -> tuple[list[dict[str, Any]], list[str], list
     return detections, sorted(set(labels)), confidences
 
 
+def scale_detections(detections: list[dict[str, Any]], *, scale_x: float, scale_y: float) -> list[dict[str, Any]]:
+    """Convert YOLO boxes from inference-image coordinates back to original-image coordinates."""
+    scaled: list[dict[str, Any]] = []
+    for detection in detections:
+        item = dict(detection)
+        bbox_xyxy = detection.get("bbox_xyxy") or []
+        bbox_xywh = detection.get("bbox_xywh") or []
+        if len(bbox_xyxy) == 4:
+            item["bbox_xyxy"] = [
+                round(float(bbox_xyxy[0]) * scale_x, 3),
+                round(float(bbox_xyxy[1]) * scale_y, 3),
+                round(float(bbox_xyxy[2]) * scale_x, 3),
+                round(float(bbox_xyxy[3]) * scale_y, 3),
+            ]
+        if len(bbox_xywh) == 4:
+            item["bbox_xywh"] = [
+                round(float(bbox_xywh[0]) * scale_x, 3),
+                round(float(bbox_xywh[1]) * scale_y, 3),
+                round(float(bbox_xywh[2]) * scale_x, 3),
+                round(float(bbox_xywh[3]) * scale_y, 3),
+            ]
+        scaled.append(item)
+    return scaled
+
+
 def overlay_color(class_id: int) -> tuple[int, int, int]:
     palette = [
         (220, 20, 60),
@@ -149,6 +175,37 @@ def render_failure_overlay(image_path: Path, overlay_path: Path, message: str) -
     image.save(overlay_path, format="JPEG", quality=85)
 
 
+def prepare_inference_source(image_path: Path, max_side: int = 2048) -> tuple[Path, dict[str, Any], Path | None]:
+    """Use a bounded temporary image for very large inputs while preserving original output coordinates."""
+    image = Image.open(image_path).convert("RGB")
+    original_width, original_height = image.size
+    largest_side = max(original_width, original_height)
+    if largest_side <= max_side:
+        return image_path, {
+            "strategy": "original",
+            "original_size": [original_width, original_height],
+            "inference_size": [original_width, original_height],
+            "scale_x": 1.0,
+            "scale_y": 1.0,
+        }, None
+
+    scale = max_side / float(largest_side)
+    resized_width = max(1, int(round(original_width * scale)))
+    resized_height = max(1, int(round(original_height * scale)))
+    resized = image.resize((resized_width, resized_height), Image.Resampling.LANCZOS)
+    fd, temp_name = tempfile.mkstemp(suffix=".jpg")
+    os.close(fd)
+    temp_path = Path(temp_name)
+    resized.save(temp_path, format="JPEG", quality=90)
+    return temp_path, {
+        "strategy": "downscaled_temp_copy",
+        "original_size": [original_width, original_height],
+        "inference_size": [resized_width, resized_height],
+        "scale_x": original_width / float(resized_width),
+        "scale_y": original_height / float(resized_height),
+    }, temp_path
+
+
 def result_from_raw(sample: dict[str, Any], raw_payload: dict[str, Any], raw_path: Path, overlay_path: Path) -> dict[str, Any]:
     detections = raw_payload.get("detections", [])
     detected_labels = sorted({item.get("label", "unknown") for item in detections})
@@ -190,44 +247,61 @@ def run_single_prediction(model, sample: dict[str, Any], output_dir: Path, devic
 
     if raw_path.exists() and overlay_path.exists():
         raw_payload = json.loads(raw_path.read_text(encoding="utf-8"))
-        return result_from_raw(sample, raw_payload, raw_path, overlay_path)
+        # Cached failures should not block a later retry after the large-image guard changes.
+        if raw_payload.get("status") != "error":
+            return result_from_raw(sample, raw_payload, raw_path, overlay_path)
 
-    results = model.predict(
-        source=str(image_path),
-        device=device,
-        conf=conf,
-        imgsz=imgsz,
-        verbose=False,
-        retina_masks=True,
-        save=False,
-    )
-    if len(results) != 1:
-        raise RuntimeError(f"Expected exactly one result for {sample['sample_id']}, got {len(results)}")
-    result = results[0]
+    inference_source, preprocessing, temp_path = prepare_inference_source(image_path)
+    try:
+        results = model.predict(
+            source=str(inference_source),
+            device=device,
+            conf=conf,
+            imgsz=imgsz,
+            verbose=False,
+            retina_masks=True,
+            save=False,
+        )
+        if len(results) != 1:
+            raise RuntimeError(f"Expected exactly one result for {sample['sample_id']}, got {len(results)}")
+        result = results[0]
 
-    detections, labels, confidences = raw_detection_payload(result)
-    raw_payload = {
-        "sample_id": sample["sample_id"],
-        "sample_kind": sample["sample_kind"],
-        "image_path": sample["local_path"],
-        "orig_shape": list(result.orig_shape),
-        "speed_ms": result.speed,
-        "names": result.names,
-        "status": "success",
-        "errors": [],
-        "warnings": [],
-        "detections": detections,
-    }
-    raw_path.write_text(json.dumps(raw_payload, indent=2), encoding="utf-8")
-    render_overlay(image_path, detections, overlay_path)
-
-    warnings: list[str] = []
-    if not detections:
-        warnings.append("No regions detected above the configured confidence threshold.")
-        raw_payload["warnings"] = warnings
+        detections, _, _ = raw_detection_payload(result)
+        detections = scale_detections(
+            detections,
+            scale_x=preprocessing["scale_x"],
+            scale_y=preprocessing["scale_y"],
+        )
+        raw_payload = {
+            "sample_id": sample["sample_id"],
+            "sample_kind": sample["sample_kind"],
+            "image_path": sample["local_path"],
+            "orig_shape": [
+                int(preprocessing["original_size"][1]),
+                int(preprocessing["original_size"][0]),
+            ],
+            "inference_shape": list(result.orig_shape),
+            "speed_ms": result.speed,
+            "names": result.names,
+            "preprocessing": preprocessing,
+            "status": "success",
+            "errors": [],
+            "warnings": [],
+            "detections": detections,
+        }
         raw_path.write_text(json.dumps(raw_payload, indent=2), encoding="utf-8")
+        render_overlay(image_path, detections, overlay_path)
 
-    return result_from_raw(sample, raw_payload, raw_path, overlay_path)
+        warnings: list[str] = []
+        if not detections:
+            warnings.append("No regions detected above the configured confidence threshold.")
+            raw_payload["warnings"] = warnings
+            raw_path.write_text(json.dumps(raw_payload, indent=2), encoding="utf-8")
+
+        return result_from_raw(sample, raw_payload, raw_path, overlay_path)
+    finally:
+        if temp_path and temp_path.exists():
+            temp_path.unlink(missing_ok=True)
 
 
 def build_error_result(sample: dict[str, Any], output_dir: Path, error: Exception) -> dict[str, Any]:

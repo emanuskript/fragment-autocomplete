@@ -1,4 +1,4 @@
-generated_at: '2026-05-18T21:05:06+00:00'
+generated_at: '2026-05-19T07:54:17+00:00'
 storage_status: stored
 pilot_run_id: segmentation_pilot_v0_1
 dataset_id: initial_sample_dataset_v0_1
@@ -136,13 +136,18 @@ samples:
   db_canvas_id: null
   db_fragment_id: 1d1a4c98-81e7-4c5b-a147-cd717403f83d
   db_segmentation_run_id: 2f8c2192-8cb1-48d4-89ea-84eac5042a1f
-  layout_region_count: 0
-  detected_labels: []
+  layout_region_count: 115
+  detected_labels:
+  - Embellished
+  - Main script black
+  - Main script coloured
+  - Music
+  - Plain initial - Highlighted
+  - Zoo - Anthropomorphic
   raw_output_path: outputs/segmentation_pilot/raw/fr_04_decoration_initial.json
   overlay_path: outputs/segmentation_pilot/overlays/fr_04_decoration_initial_overlay.jpg
   status: matched_and_refreshed
-  warnings:
-  - Segmentation inference failed for this sample.
+  warnings: []
 - sample_id: fr_05_damaged_irregular
   sample_kind: fragment
   db_image_asset_id: 5894b176-78cb-482f-b02e-69b666533972

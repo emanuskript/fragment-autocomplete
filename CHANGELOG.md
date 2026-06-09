@@ -38,6 +38,7 @@ All notable changes to this project will be documented in this file.
 
 ### Updated
 
+- Cleaned stale duplicate status files and clarified the full-pilot segmentation runner/viewer handling for large-image retries and failed-run visibility.
 - Local viewer to browse both smoke-test and full-pilot segmentation runs from PostgreSQL/PostGIS.
 - README, roadmap, project board, next actions, and requirements for the local segmentation viewer step.
 - README, roadmap, project board, and next actions for the minimal local UI viewer step after segmentation storage.

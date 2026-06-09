@@ -142,6 +142,14 @@ def upsert_segmentation_run(
     raw_prediction: dict[str, Any],
     generated_at: str,
 ) -> str:
+    sample_status = sample_result.get("status", "success")
+    # A failed sample should stay visible as failed in the database; otherwise the viewer suggests
+    # the run completed normally even when no layout regions were produced.
+    db_status = {
+        "success": "completed",
+        "warning": "completed",
+        "error": "failed",
+    }.get(sample_status, "completed")
     parameters = {
         "pilot_run_id": pilot_run_id,
         "sample_id": context.sample_id,
@@ -180,7 +188,7 @@ def upsert_segmentation_run(
         pilot_results.get("environment", {}).get("ultralytics_version"),
         pilot_results.get("model_path"),
         json.dumps(parameters),
-        "completed",
+        db_status,
         generated_at,
         generated_at,
         sample_result.get("raw_output_path"),
