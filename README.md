@@ -43,8 +43,8 @@ Key directories:
 - `docs/`: project planning, architecture, evaluation, data-source, and decision documents.
 - `docs/figures/architecture/`: Mermaid figure sources and rendered SVG architecture diagrams.
 - `src/`: future application code boundaries for backend, frontend, ingestion, ML, evaluation, and shared utilities.
-- `data/`: placeholder structure for raw, processed, and metadata assets. Large data is excluded from git.
-- `models/`: placeholder for model artifacts. Model binaries are excluded from git.
+- `data/`: raw, processed, and metadata asset structure. Large data is excluded from git.
+- `models/`: model registry metadata. Model binaries are excluded from git.
 - `outputs/`: generated reports and exports.
 - `scripts/`: reproducible validation and document build scripts.
 

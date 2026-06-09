@@ -181,7 +181,7 @@ def build_report(payload: dict[str, Any]) -> str:
     "- No inference was run.",
     "- No segmentation was produced.",
     "- Model weights were not loaded.",
-    "- This task only prepares controlled inputs for the first smoke test.",
+        "- This preparation step only selected controlled inputs for the first smoke test.",
     "",
     "## Next step",
     "",

@@ -1,6 +1,6 @@
 # 04 Evaluation Plan
 
-Status: draft placeholder
+Status: planning note
 
 This document will define how candidate reconstructions are evaluated, compared, and presented.
 

@@ -40,7 +40,7 @@ This document records the two controlled inputs selected for the first future eM
 - No inference was run.
 - No segmentation was produced.
 - Model weights were not loaded.
-- This task only prepares controlled inputs for the first smoke test.
+- This preparation step only selected controlled inputs for the first smoke test.
 
 ## Next step
 

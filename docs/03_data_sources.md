@@ -1,6 +1,6 @@
 # 03 Data Sources
 
-Status: draft placeholder
+Status: planning note
 
 This document will track source systems, sample datasets, rights constraints, identifiers, and provenance notes.
 

@@ -38,6 +38,7 @@ All notable changes to this project will be documented in this file.
 
 ### Updated
 
+- Removed boilerplate source-directory README files and kept empty source boundaries with `.gitkeep` files.
 - Cleaned stale duplicate status files and clarified the full-pilot segmentation runner/viewer handling for large-image retries and failed-run visibility.
 - Local viewer to browse both smoke-test and full-pilot segmentation runs from PostgreSQL/PostGIS.
 - README, roadmap, project board, next actions, and requirements for the local segmentation viewer step.
@@ -48,5 +49,5 @@ All notable changes to this project will be documented in this file.
 - README, roadmap, project board, and next actions for the post-inspection next step.
 - Git ignore rules to protect local datasets, model weights, large image formats, archives, caches, and local database files.
 - README with architecture build instructions and current project status.
-- AGENTS guidance for future Codex sessions.
+- AGENTS guidance for project automation and contributor sessions.
 - ROADMAP_STATUS, PROJECT_BOARD, and NEXT_ACTIONS for the post-architecture next step.

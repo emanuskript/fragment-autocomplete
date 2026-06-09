@@ -1,6 +1,6 @@
 # 06 Risks and Decisions
 
-Status: draft placeholder
+Status: planning note
 
 This document will record architectural decisions, open risks, and deferred choices.
 
