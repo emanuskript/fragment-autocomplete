@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- HSP/German metadata standards alignment migration, controlled vocabulary import, validation script, generated normdata YAML, field-mapping YAML, and alignment report.
 - Full pilot segmentation input preparation, runner, storage script, validators, and report.
 - Minimal local segmentation viewer scripts and viewer documentation.
 - Segmentation output storage script, validator, storage results manifest, and storage report.

@@ -1,0 +1,54 @@
+generated_at: '2026-06-09T09:09:19+00:00'
+status: imported
+source_yaml: data/metadata/hsp_normdata_terms.yaml
+database_write: true
+vocabularies:
+- code: SCRP
+  vocabulary_id: 3f5dfd17-08c5-4df5-b72a-cc8655747a6d
+  vocabulary_inserted: false
+  expected_term_count: 116
+  source_term_count: 116
+  inserted_terms: 0
+  updated_terms: 116
+  status: imported
+- code: FORM
+  vocabulary_id: 08bfaf5f-e258-4f4d-b6c5-c51fb6cb8bf8
+  vocabulary_inserted: false
+  expected_term_count: 92
+  source_term_count: 92
+  inserted_terms: 0
+  updated_terms: 92
+  status: imported
+- code: CODC
+  vocabulary_id: 8b1b32da-0da7-4ab1-9683-c10b4683594c
+  vocabulary_inserted: false
+  expected_term_count: 73
+  source_term_count: 73
+  inserted_terms: 0
+  updated_terms: 73
+  status: imported
+- code: BNDG
+  vocabulary_id: 9717dbfe-9629-494e-b913-168192792d4c
+  vocabulary_inserted: false
+  expected_term_count: 240
+  source_term_count: 240
+  inserted_terms: 0
+  updated_terms: 240
+  status: imported
+- code: HSP_SIMPLIFIED
+  vocabulary_id: 11e44afc-8c2d-4d16-9d79-fedb1209a4d4
+  vocabulary_inserted: false
+  expected_term_count: 18
+  source_term_count: 18
+  inserted_terms: 0
+  updated_terms: 18
+  status: imported
+validation:
+  status: passed
+  db_counts:
+    BNDG: 240
+    CODC: 73
+    FORM: 92
+    HSP_SIMPLIFIED: 18
+    SCRP: 116
+  failures: []

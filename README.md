@@ -14,7 +14,7 @@ CoMMA is a text, transcription, and metadata resource. It can support text searc
 
 ## Current Status
 
-This repository currently contains project documentation, architecture planning, figure sources, generated architecture figures, and build scripts. It does not implement the backend, frontend, database, IIIF ingestion pipeline, eManuSkript integration, ML pipeline, retrieval system, MSI viewer, or deployment.
+This repository currently contains project documentation, PostgreSQL/PostGIS migrations, IIIF ingestion proof-of-concept code, local dataset metadata registration, controlled segmentation runs, segmentation storage, and a minimal local segmentation viewer. It does not implement reconstruction, retrieval, artificial fragment generation, MSI workflows, CoMMA ingestion, production backend/frontend deployment, or a final scholarly interface.
 
 ## Repository Structure
 
@@ -124,6 +124,29 @@ bash scripts/validate_iiif_ingestion.sh
 ```
 
 The ingestion proof of concept registers manifest, repository, manuscript, canvas, and image asset metadata. It does not download full-resolution image sets by default.
+
+## HSP/German metadata standards alignment
+
+Extract the HSP/German controlled vocabularies and metadata mapping from the local source files:
+
+```bash
+python3 scripts/extract_hsp_metadata_standards.py --verbose
+```
+
+Apply the database migration, then import the controlled vocabularies:
+
+```bash
+bash scripts/db_migrate.sh
+python3 scripts/import_hsp_normdata.py --verbose
+```
+
+Validate the metadata alignment layer:
+
+```bash
+bash scripts/validate_hsp_metadata_alignment.sh
+```
+
+The alignment layer adds controlled vocabularies for `SCRP`, `FORM`, `CODC`, `BNDG`, and simplified HSP values. It also adds selected HSP-aligned metadata fields while keeping source metadata in `raw_metadata` for provenance.
 
 ## Local asset inventory
 
@@ -303,8 +326,8 @@ Run the local viewer manually:
 bash scripts/run_segmentation_viewer.sh
 ```
 
-Database storage and any UI work remain separate later steps.
+Pilot outputs are stored in PostgreSQL/PostGIS and can be inspected in the local read-only viewer. Artificial fragment generation, reconstruction, retrieval, MSI workflows, and CoMMA ingestion remain separate later steps.
 
 ## Next Task
 
-Store segmentation smoke-test outputs in the database.
+Build the artificial fragment generator for complete-page samples.

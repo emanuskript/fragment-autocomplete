@@ -24,6 +24,7 @@
 - Architecture Draft PDF
 - Clean architecture PDF
 - Database schema and migrations
+- HSP metadata standards alignment
 - IIIF ingestion proof of concept
 - Inventory local dataset and model weights
 - Register initial sample dataset

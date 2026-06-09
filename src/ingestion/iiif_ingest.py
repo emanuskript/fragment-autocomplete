@@ -39,6 +39,81 @@ def open_rights_policy(license_or_rights: str | None) -> dict[str, bool | str]:
   }
 
 
+def _metadata_value(manifest: NormalizedManifest, names: tuple[str, ...]) -> str | None:
+  return metadata_lookup(manifest.metadata, names)
+
+
+def _normalized_yes_no(value: str | None) -> str | None:
+  if value is None:
+    return None
+  lowered = value.strip().lower()
+  if lowered in {"yes", "ja", "true", "1"}:
+    return "yes"
+  if lowered in {"no", "nein", "false", "0"}:
+    return "no"
+  return None
+
+
+def _material_types(value: str | None) -> list[str]:
+  if not value:
+    return []
+  lowered = value.lower()
+  material_map = {
+    "parchment": ("parchment", "pergament"),
+    "paper": ("paper", "papier"),
+    "papyrus": ("papyrus",),
+    "linen": ("linen", "leinen"),
+    "palm": ("palm",),
+  }
+  return [name for name, tokens in material_map.items() if any(token in lowered for token in tokens)]
+
+
+def _object_form(value: str | None) -> str | None:
+  if not value:
+    return None
+  lowered = value.strip().lower()
+  form_map = {
+    "codex": ("codex", "kode", "handschrift"),
+    "fragment": ("fragment",),
+    "composite": ("composite", "zusammengesetzt"),
+    "collection": ("collection", "sammlung"),
+    "scroll": ("scroll", "rolle"),
+    "singleSheet": ("singlesheet", "single sheet", "einzelblatt"),
+  }
+  for normalized, tokens in form_map.items():
+    if any(token in lowered for token in tokens):
+      return normalized
+  return None
+
+
+def _object_status(value: str | None) -> str | None:
+  if not value:
+    return None
+  lowered = value.strip().lower()
+  allowed = {"existent", "missing", "destroyed", "displaced", "dismembered", "unknown"}
+  return lowered if lowered in allowed else None
+
+
+def normalized_hsp_metadata(manifest: NormalizedManifest) -> dict[str, Any]:
+  material = _metadata_value(manifest, ("material", "support"))
+  place = _metadata_value(manifest, ("place", "origin", "provenance"))
+  form_value = _metadata_value(manifest, ("form", "object type", "object form"))
+  script = _metadata_value(manifest, ("script", "script type"))
+  return {
+    "hsp_id": _metadata_value(manifest, ("hsp-id", "hsp id")),
+    "mxml_id": _metadata_value(manifest, ("mxml-id", "mxml id")),
+    "corpus_id": _metadata_value(manifest, ("corpus", "corpus id")),
+    "object_status": _object_status(_metadata_value(manifest, ("status",))),
+    "object_form": _object_form(form_value),
+    "material_type": _material_types(material),
+    "orig_date_display": _metadata_value(manifest, ("date", "origdate", "origin date")),
+    "orig_place_norm": [{"display": place, "role": "origin"}] if place else [],
+    "script_type_display": script,
+    "decoration": _normalized_yes_no(_metadata_value(manifest, ("decoration",))),
+    "music_notation": _normalized_yes_no(_metadata_value(manifest, ("musicnotation", "music notation"))),
+  }
+
+
 def _fetch_one(conn: Connection, query: str, params: tuple[Any, ...]) -> dict[str, Any] | None:
   with conn.cursor(row_factory=dict_row) as cur:
     cur.execute(query, params)
@@ -58,10 +133,11 @@ def upsert_repository(conn: Connection, repository_name: str, source_identifier:
   row = _execute_returning(
     conn,
     """
-    INSERT INTO repository (name, short_name, repository_type, raw_metadata)
-    VALUES (%s, %s, 'iiif_repository', %s)
+    INSERT INTO repository (name, short_name, repository_type, metadata_review_status, raw_metadata)
+    VALUES (%s, %s, 'iiif_repository', 'machine_extracted', %s)
     ON CONFLICT (name) DO UPDATE
     SET raw_metadata = repository.raw_metadata || EXCLUDED.raw_metadata,
+        metadata_review_status = 'machine_extracted',
         updated_at = now()
     RETURNING id, (xmax = 0) AS inserted
     """,
@@ -80,6 +156,7 @@ def upsert_repository(conn: Connection, repository_name: str, source_identifier:
 
 def upsert_manuscript(conn: Connection, repository_id: str, manifest: NormalizedManifest, stats: IngestStats) -> str:
   manifest_key = manifest.manifest_id or manifest.source_identifier
+  hsp_metadata = normalized_hsp_metadata(manifest)
   existing = _fetch_one(
     conn,
     """
@@ -98,6 +175,7 @@ def upsert_manuscript(conn: Connection, repository_id: str, manifest: Normalized
     "rights_statement": manifest.rights_statement,
     "license": manifest.license,
     "attribution": manifest.attribution,
+    "hsp_normalized": hsp_metadata,
   }
   params = (
     repository_id,
@@ -107,6 +185,17 @@ def upsert_manuscript(conn: Connection, repository_id: str, manifest: Normalized
     metadata_lookup(manifest.metadata, ("language",)),
     metadata_lookup(manifest.metadata, ("script",)),
     metadata_lookup(manifest.metadata, ("material",)),
+    hsp_metadata.get("hsp_id"),
+    hsp_metadata.get("mxml_id"),
+    hsp_metadata.get("corpus_id"),
+    hsp_metadata.get("object_status"),
+    hsp_metadata.get("object_form"),
+    Jsonb(hsp_metadata.get("material_type", [])),
+    hsp_metadata.get("orig_date_display"),
+    Jsonb(hsp_metadata.get("orig_place_norm", [])),
+    hsp_metadata.get("script_type_display"),
+    hsp_metadata.get("decoration"),
+    hsp_metadata.get("music_notation"),
     Jsonb(raw_metadata),
   )
 
@@ -121,12 +210,46 @@ def upsert_manuscript(conn: Connection, repository_id: str, manifest: Normalized
           language = COALESCE(%s, language),
           script = COALESCE(%s, script),
           material = COALESCE(%s, material),
+          hsp_id = COALESCE(%s, hsp_id),
+          mxml_id = COALESCE(%s, mxml_id),
+          corpus_id = COALESCE(%s, corpus_id),
+          object_status = COALESCE(%s, object_status),
+          object_form = COALESCE(%s, object_form),
+          material_type = CASE WHEN jsonb_array_length(%s::jsonb) > 0 THEN %s::jsonb ELSE material_type END,
+          orig_date_display = COALESCE(%s, orig_date_display),
+          orig_place_norm = CASE WHEN jsonb_array_length(%s::jsonb) > 0 THEN %s::jsonb ELSE orig_place_norm END,
+          script_type_display = COALESCE(%s, script_type_display),
+          decoration = COALESCE(%s, decoration),
+          music_notation = COALESCE(%s, music_notation),
+          metadata_review_status = 'machine_extracted',
           raw_metadata = raw_metadata || %s,
           updated_at = now()
       WHERE id = %s
       RETURNING id
       """,
-      params[1:] + (existing["id"],),
+      (
+        params[1],
+        params[2],
+        params[3],
+        params[4],
+        params[5],
+        params[6],
+        params[7],
+        params[8],
+        params[9],
+        params[10],
+        params[11],
+        params[12],
+        params[12],
+        params[13],
+        params[14],
+        params[14],
+        params[15],
+        params[16],
+        params[17],
+        params[18],
+        existing["id"],
+      ),
     )
     stats.manuscripts_updated += 1
     return str(row["id"])
@@ -135,9 +258,12 @@ def upsert_manuscript(conn: Connection, repository_id: str, manifest: Normalized
     conn,
     """
     INSERT INTO manuscript (
-      repository_id, shelfmark, title, place, language, script, material, raw_metadata
+      repository_id, shelfmark, title, place, language, script, material,
+      hsp_id, mxml_id, corpus_id, object_status, object_form, material_type,
+      orig_date_display, orig_place_norm, script_type_display, decoration,
+      music_notation, metadata_review_status, raw_metadata
     )
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'machine_extracted', %s)
     RETURNING id
     """,
     params,
@@ -223,6 +349,7 @@ def upsert_canvas(conn: Connection, manuscript_id: str, manifest_cache_id: str, 
           width_px = %s,
           height_px = %s,
           sequence_index = %s,
+          metadata_review_status = 'machine_extracted',
           raw_metadata = %s,
           updated_at = now()
       WHERE id = %s
@@ -237,9 +364,10 @@ def upsert_canvas(conn: Connection, manuscript_id: str, manifest_cache_id: str, 
     conn,
     """
     INSERT INTO canvas (
-      manuscript_id, iiif_manifest_cache_id, canvas_identifier, canvas_label, width_px, height_px, sequence_index, raw_metadata
+      manuscript_id, iiif_manifest_cache_id, canvas_identifier, canvas_label,
+      width_px, height_px, sequence_index, metadata_review_status, raw_metadata
     )
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, 'machine_extracted', %s)
     RETURNING id
     """,
     params,
@@ -284,6 +412,7 @@ def upsert_image_asset(
     rights["publication_allowed"],
     rights["demo_allowed"],
     rights["access_level"],
+    manifest.license or manifest.rights_statement,
     Jsonb({"source": "iiif_ingestion_poc", "raw_image": image.raw_metadata}),
   )
   if existing:
@@ -306,6 +435,8 @@ def upsert_image_asset(
           publication_allowed = %s,
           demo_allowed = %s,
           access_level = %s,
+          rights_uri = %s,
+          metadata_review_status = 'machine_extracted',
           raw_metadata = %s,
           updated_at = now()
       WHERE id = %s
@@ -322,9 +453,10 @@ def upsert_image_asset(
     INSERT INTO image_asset (
       canvas_id, repository_id, asset_type, source_url, iiif_image_service_url, media_type,
       width_px, height_px, rights_statement, license, attribution,
-      training_allowed, publication_allowed, demo_allowed, access_level, raw_metadata
+      training_allowed, publication_allowed, demo_allowed, access_level,
+      rights_uri, metadata_review_status, raw_metadata
     )
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'machine_extracted', %s)
     RETURNING id
     """,
     params,

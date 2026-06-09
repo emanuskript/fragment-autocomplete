@@ -1,0 +1,874 @@
+generated_at: '2026-06-09T09:00:40+00:00'
+source_markdown: /Users/mobasuony/Downloads/Sources_and_Metadata_data_fields.md
+table_count: 18
+field_count: 132
+tables:
+- table: repository
+  section: null
+  rows:
+  - Column: '`id`'
+    Type: SERIAL PK
+    HSP / source: —
+    Notes: Internal
+    source_table: repository
+    source_section: null
+  - Column: '`display_name`'
+    Type: TEXT NOT NULL
+    HSP / source: '**[HSP]** `msIdentifier/repository`'
+    Notes: Display name
+    source_table: repository
+    source_section: null
+  - Column: '`hsp_key`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `repository[@key]`'
+    Notes: HSP UUID
+    source_table: repository
+    source_section: null
+  - Column: '`gnd_uri`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `repository[@ref]`'
+    Notes: GND URI
+    source_table: repository
+    source_section: null
+  - Column: '`institution`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `msIdentifier/institution`'
+    Notes: Owning institution if different from repository
+    source_table: repository
+    source_section: null
+  - Column: '`institution_key`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `institution[@key]`'
+    Notes: HSP UUID
+    source_table: repository
+    source_section: null
+  - Column: '`settlement`'
+    Type: TEXT NOT NULL
+    HSP / source: '**[HSP]** `msIdentifier/settlement`'
+    Notes: City
+    source_table: repository
+    source_section: null
+  - Column: '`settlement_key`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `settlement[@key]`'
+    Notes: HSP UUID
+    source_table: repository
+    source_section: null
+  - Column: '`settlement_ref`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `settlement[@ref]`'
+    Notes: GND URI
+    source_table: repository
+    source_section: null
+  - Column: '`country`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `msIdentifier/country`'
+    Notes: ISO 3166-1 alpha-2
+    source_table: repository
+    source_section: null
+  - Column: '`repo_access_level`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: 'Repository-level access policy: `open` / `restricted` / `closed`. Named
+      `repo_access_level` to distinguish from `access_level` on `image_asset` (per-image
+      rights).'
+    source_table: repository
+    source_section: null
+  - Column: '`notes`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: Free text
+    source_table: repository
+    source_section: null
+- table: manuscript
+  section: Identity
+  rows:
+  - Column: '`id`'
+    Type: SERIAL PK
+    HSP / source: —
+    Notes: Internal
+    source_table: manuscript
+    source_section: Identity
+  - Column: '`repository_id`'
+    Type: INT FK → repository
+    HSP / source: —
+    Notes: ''
+    source_table: manuscript
+    source_section: Identity
+  - Column: '`shelfmark`'
+    Type: TEXT NOT NULL
+    HSP / source: '**[HSP]** `msIdentifier/idno[@type=''shelfmark'']`'
+    Notes: Primary shelfmark
+    source_table: manuscript
+    source_section: Identity
+  - Column: '`hsp_id`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `altIdentifier[@type=''hsp-ID'']/idno`'
+    Notes: HSP system UUID
+    source_table: manuscript
+    source_section: Identity
+  - Column: '`mxml_id`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `altIdentifier[@type=''mxml-ID'']/idno`'
+    Notes: Legacy Manuscripta Mediaevalia ID
+    source_table: manuscript
+    source_section: Identity
+  - Column: '`corpus_id`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `altIdentifier[@type=''corpus'']/idno`'
+    Notes: Project-internal ID; for fragments this becomes `fragmentarium_id`
+    source_table: manuscript
+    source_section: Identity
+  - Column: '`former_shelfmark`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `altIdentifier[@type=''former'']/idno`'
+    Notes: Repeatable; store as JSON array
+    source_table: manuscript
+    source_section: Identity
+  - Column: '`title_display`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `head/index/term[@type=''title'']`'
+    Notes: Headline title
+    source_table: manuscript
+    source_section: Identity
+- table: manuscript
+  section: Status and Form
+  rows:
+  - Column: '`object_status`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `term[@type=''status'']`'
+    Notes: '`existent` `missing` `destroyed` `displaced` `dismembered` `unknown`'
+    source_table: manuscript
+    source_section: Status and Form
+  - Column: '`object_form`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `term[@type=''form'']`'
+    Notes: '`codex` `composite` `fragment` `scroll` `singleSheet` etc.'
+    source_table: manuscript
+    source_section: Status and Form
+- table: manuscript
+  section: Material Support
+  rows:
+  - Column: '`material_display`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `term[@type=''material'']`'
+    Notes: Free text (e.g. "Pergament, 103 Bl.")
+    source_table: manuscript
+    source_section: Material Support
+  - Column: '`material_type`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `term[@type=''material_type'']`'
+    Notes: 'JSON array: `parchment` `paper` `papyrus` etc.'
+    source_table: manuscript
+    source_section: Material Support
+  - Column: '`material_notation`'
+    Type: TEXT
+    HSP / source: '**[HSP]** CODC `@ana`'
+    Notes: 'JSON array of objects: `[{"code":"CODC-A800","uuid":"NORM-..."}]`. Paired
+      code+UUID per entry; supports mixed-support manuscripts.'
+    source_table: manuscript
+    source_section: Material Support
+- table: manuscript
+  section: Dimensions and Extent
+  rows:
+  - Column: '`measure_display`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `term[@type=''measure'']`'
+    Notes: Human-readable extent (e.g. "103 Bl., aus zwei Teilen")
+    source_table: manuscript
+    source_section: Dimensions and Extent
+  - Column: '`measure_leaves`'
+    Type: INT
+    HSP / source: '**[HSP]** `term[@type=''measure_noOfLeaves'']`'
+    Notes: Leaf count
+    source_table: manuscript
+    source_section: Dimensions and Extent
+  - Column: '`height_mm`'
+    Type: INT
+    HSP / source: '**[HSP+EXT]** `term[@type=''height'']`'
+    Notes: Object height in mm; HSP source uses cm — convert on import
+    source_table: manuscript
+    source_section: Dimensions and Extent
+  - Column: '`width_mm`'
+    Type: INT
+    HSP / source: '**[HSP+EXT]** `term[@type=''width'']`'
+    Notes: mm
+    source_table: manuscript
+    source_section: Dimensions and Extent
+  - Column: '`depth_mm`'
+    Type: INT
+    HSP / source: '**[HSP+EXT]** `term[@type=''depth'']`'
+    Notes: mm
+    source_table: manuscript
+    source_section: Dimensions and Extent
+  - Column: '`dimensions_epistemic`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `dimensions_typeOfInformation`'
+    Notes: '`factual` `deduced`'
+    source_table: manuscript
+    source_section: Dimensions and Extent
+  - Column: '`format`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `term[@type=''format'']`'
+    Notes: 'JSON array: `folio` `quarto` `octavo` etc.'
+    source_table: manuscript
+    source_section: Dimensions and Extent
+  - Column: '`format_epistemic`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `format_typeOfInformation`'
+    Notes: '`factual` `deduced` `computed`'
+    source_table: manuscript
+    source_section: Dimensions and Extent
+  - Column: '`format_notation`'
+    Type: TEXT
+    HSP / source: '**[HSP]** CODC-B `@ana`'
+    Notes: CODC-B format code
+    source_table: manuscript
+    source_section: Dimensions and Extent
+- table: manuscript
+  section: Date and Origin
+  rows:
+  - Column: '`orig_date_display`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `term[@type=''origDate'']`'
+    Notes: Human-readable (e.g. "um 1300")
+    source_table: manuscript
+    source_section: Date and Origin
+  - Column: '`orig_date_not_before`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `origDate_notBefore`'
+    Notes: ISO 8601; negative for BCE
+    source_table: manuscript
+    source_section: Date and Origin
+  - Column: '`orig_date_not_after`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `origDate_notAfter`'
+    Notes: ISO 8601
+    source_table: manuscript
+    source_section: Date and Origin
+  - Column: '`orig_date_type`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `origDate_type`'
+    Notes: '`dated` `datable`'
+    source_table: manuscript
+    source_section: Date and Origin
+  - Column: '`orig_date_precision`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: '`certain` `estimated` `broad`; finer than HSP''s two-value vocab'
+    source_table: manuscript
+    source_section: Date and Origin
+  - Column: '`orig_place_display`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `term[@type=''origPlace'']`'
+    Notes: Human-readable; may include `(?)`
+    source_table: manuscript
+    source_section: Date and Origin
+  - Column: '`orig_place_norm`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `origPlace_norm`'
+    Notes: 'JSON array of objects: `[{"norm":"Bordesholm","gnd":"http://d-nb.info/gnd/...","key":"place_gnd_...","role":"origin"}]`.
+      Repeatable; keeps GND URI and HSP key paired per place entry.'
+    source_table: manuscript
+    source_section: Date and Origin
+  - Column: '`scriptorium`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: 'Named scriptorium or place of production as a free-text field. Note: may
+      overlap with `orig_place_norm` entries where `role=origin`; do not double-enter.'
+    source_table: manuscript
+    source_section: Date and Origin
+- table: manuscript
+  section: Script and Hand
+  rows:
+  - Column: '`script_type_display`'
+    Type: TEXT
+    HSP / source: '**[HSP+EXT]**'
+    Notes: Normalized script name extracted from `physDesc/handDesc/scriptNote` (e.g.
+      "Karolingische Minuskel"). Controlled-vocabulary extract; see `hand_desc` for
+      full prose.
+    source_table: manuscript
+    source_section: Script and Hand
+  - Column: '`script_type_notation`'
+    Type: TEXT
+    HSP / source: '**[HSP+EXT]** SCRP `@ana`'
+    Notes: SCRP notation code (e.g. `SCRP-X225`)
+    source_table: manuscript
+    source_section: Script and Hand
+  - Column: '`script_type_uuid`'
+    Type: TEXT
+    HSP / source: '**[HSP+EXT]** SCRP UUID'
+    Notes: '`Norm-...`'
+    source_table: manuscript
+    source_section: Script and Hand
+  - Column: '`script_grade`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: 'Simplified formality scale: `calligraphic` `semi-formal` `informal` `documentary`.
+      Maps loosely to SCRP D-codes but as a single queryable field.'
+    source_table: manuscript
+    source_section: Script and Hand
+  - Column: '`script_date_not_before`'
+    Type: TEXT
+    HSP / source: '**[HSP+EXT]**'
+    Notes: ISO 8601; script date if assessed separately from ms date
+    source_table: manuscript
+    source_section: Script and Hand
+  - Column: '`script_date_not_after`'
+    Type: TEXT
+    HSP / source: '**[HSP+EXT]**'
+    Notes: ISO 8601
+    source_table: manuscript
+    source_section: Script and Hand
+  - Column: '`scribal_region`'
+    Type: TEXT
+    HSP / source: '**[HSP+EXT]**'
+    Notes: Region of script tradition; separate from origin place
+    source_table: manuscript
+    source_section: Script and Hand
+  - Column: '`num_scribal_hands`'
+    Type: INT
+    HSP / source: '**[EXT]**'
+    Notes: Count if assessed; not in HSP
+    source_table: manuscript
+    source_section: Script and Hand
+- table: manuscript
+  section: Language and Content (Summary)
+  rows:
+  - Column: '`text_lang_display`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `term[@type=''textLang'']`'
+    Notes: Human-readable (e.g. "lateinisch, deutsch")
+    source_table: manuscript
+    source_section: Language and Content (Summary)
+  - Column: '`text_lang_id`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `textLang-ID`'
+    Notes: JSON array of ISO 639 codes
+    source_table: manuscript
+    source_section: Language and Content (Summary)
+  - Column: '`content_type`'
+    Type: TEXT
+    HSP / source: '**[HSP+EXT]** project register'
+    Notes: 'JSON array: `liturgical` `biblical` `glossed` `scholastic` `legal` `literary`
+      `documentary` `musical` `other`'
+    source_table: manuscript
+    source_section: Language and Content (Summary)
+  - Column: '`contents_summary`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `msContents/summary`'
+    Notes: Brief prose overview
+    source_table: manuscript
+    source_section: Language and Content (Summary)
+- table: manuscript
+  section: Layout and Visual Features
+  rows:
+  - Column: '`layout_class`'
+    Type: TEXT
+    HSP / source: '**[HSP+EXT]**'
+    Notes: '`single_column` `double_column` `commentary_frame` `four_column` `other`'
+    source_table: manuscript
+    source_section: Layout and Visual Features
+  - Column: '`column_count_notation`'
+    Type: TEXT
+    HSP / source: '**[HSP]** CODC-D'
+    Notes: '`CODC-D704` (1) `CODC-D252` (2) `CODC-D736` (3) `CODC-D680` (4) `CODC-D458`
+      (>4)'
+    source_table: manuscript
+    source_section: Layout and Visual Features
+  - Column: '`ruling_technique`'
+    Type: TEXT
+    HSP / source: '**[HSP+EXT]** CODC-D'
+    Notes: 'JSON array of CODC-D codes: `CODC-D210` (ink) `CODC-D187` (pencil) `CODC-D318`
+      (blind) etc.'
+    source_table: manuscript
+    source_section: Layout and Visual Features
+  - Column: '`ruling_pattern`'
+    Type: TEXT
+    HSP / source: '**[HSP+EXT]**'
+    Notes: Sautel-Leroy code if known; otherwise free text
+    source_table: manuscript
+    source_section: Layout and Visual Features
+  - Column: '`layout_desc`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `physDesc/objectDesc/layoutDesc`'
+    Notes: Full layout prose; prose complement to `layout_class` and `ruling_technique`
+    source_table: manuscript
+    source_section: Layout and Visual Features
+  - Column: '`decoration`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `term[@type=''decoration'']`'
+    Notes: '`yes` `no`. HSP head-level flag covering all decoration. Logically must
+      be `yes` if any of `decorated_initials`, `illustration_present`, or comparable
+      flags are true. Do not set `no` if specific decoration flags are set.'
+    source_table: manuscript
+    source_section: Layout and Visual Features
+  - Column: '`decorated_initials`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: '`yes` `no`; type (e.g. "puzzle initials", "KL calendar") as free text
+      in `notes`'
+    source_table: manuscript
+    source_section: Layout and Visual Features
+  - Column: '`rubrics_present`'
+    Type: BOOLEAN
+    HSP / source: '**[EXT]**'
+    Notes: Object-level boolean flag; HSP stores rubric text in msItem but has no
+      object-level flag
+    source_table: manuscript
+    source_section: Layout and Visual Features
+  - Column: '`music_notation`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `term[@type=''musicNotation'']`'
+    Notes: '`yes` `no`'
+    source_table: manuscript
+    source_section: Layout and Visual Features
+  - Column: '`music_notation_type`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: '`neumatic` `mensural` `other` `none`; HSP `musicNotation` is binary only'
+    source_table: manuscript
+    source_section: Layout and Visual Features
+  - Column: '`illustration_present`'
+    Type: BOOLEAN
+    HSP / source: '**[EXT]**'
+    Notes: Not in HSP as a flag
+    source_table: manuscript
+    source_section: Layout and Visual Features
+  - Column: '`margin_use`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: 'JSON array: `glosses` `running_headers` `catchwords` `other`'
+    source_table: manuscript
+    source_section: Layout and Visual Features
+  - Column: '`table_diagram_present`'
+    Type: BOOLEAN
+    HSP / source: '**[EXT]**'
+    Notes: Not in HSP
+    source_table: manuscript
+    source_section: Layout and Visual Features
+- table: manuscript
+  section: Binding
+  rows:
+  - Column: '`binding_type`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: '`original` `rebound` `fragmentary` `none` `late`; HSP has `binding_desc`
+      prose + BNDG codes but no normalized type summary'
+    source_table: manuscript
+    source_section: Binding
+  - Column: '`binding_material_display`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `msPart[@type=''binding'']/term[@type=''material'']`'
+    Notes: Free text
+    source_table: manuscript
+    source_section: Binding
+  - Column: '`binding_material_type`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `msPart[@type=''binding'']/term[@type=''material_type'']`'
+    Notes: '`wood` `leather` `parchment` `textile` etc.'
+    source_table: manuscript
+    source_section: Binding
+  - Column: '`binding_material_notation`'
+    Type: TEXT
+    HSP / source: '**[HSP]** BNDG `@ana` on binding msPart'
+    Notes: BNDG notation code
+    source_table: manuscript
+    source_section: Binding
+  - Column: '`binding_desc`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `msPart[@type=''binding'']` prose'
+    Notes: 'Free-text binding description. Note: in HSP the binding is `msPart[@type=''binding'']`,
+      not `physDesc/bindingDesc`.'
+    source_table: manuscript
+    source_section: Binding
+- table: manuscript
+  section: Physical Description (prose)
+  rows:
+  - Column: '`hand_desc`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `physDesc/handDesc/scriptNote`'
+    Notes: Full script description prose. `script_type_display` and SCRP codes are
+      the normalized extracts from this field.
+    source_table: manuscript
+    source_section: Physical Description (prose)
+  - Column: '`foliation`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `physDesc/objectDesc/supportDesc/foliation`'
+    Notes: 'Foliation/pagination notes; relevant CODC-D codes: `CODC-D358` (foliation)
+      `CODC-D653` (pagination)'
+    source_table: manuscript
+    source_section: Physical Description (prose)
+  - Column: '`condition`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `physDesc/objectDesc/supportDesc/condition`'
+    Notes: Conservation state
+    source_table: manuscript
+    source_section: Physical Description (prose)
+  - Column: '`collation`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `physDesc/objectDesc/supportDesc/collation`'
+    Notes: Quire structure
+    source_table: manuscript
+    source_section: Physical Description (prose)
+  - Column: '`additions`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `physDesc/additions`'
+    Notes: Later annotations, ex libris, stamps
+    source_table: manuscript
+    source_section: Physical Description (prose)
+- table: manuscript
+  section: History
+  rows:
+  - Column: '`history_prose`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `history/p`'
+    Notes: 'Full provenance narrative (HSP constraint: exactly one `<p>`)'
+    source_table: manuscript
+    source_section: History
+  - Column: '`provenance_prose`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `history/provenance`'
+    Notes: Provenance section
+    source_table: manuscript
+    source_section: History
+  - Column: '`provenance_chain`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: Brief structured summary of previous owners / sale records (docx §3). Distinct
+      from `provenance_prose` in being a concise structured field rather than narrative.
+    source_table: manuscript
+    source_section: History
+  - Column: '`acquisition_prose`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `history/acquisition`'
+    Notes: Acquisition history
+    source_table: manuscript
+    source_section: History
+- table: manuscript
+  section: Digital Surrogates and Bibliography
+  rows:
+  - Column: '`iiif_manifest_uri`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `additional/surrogates/bibl/ref[@type=''iiif-manifest'']`'
+    Notes: Canonical IIIF manifest URI; also cached in `iiif_manifest_cache`
+    source_table: manuscript
+    source_section: Digital Surrogates and Bibliography
+  - Column: '`digitisation_date`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `additional/surrogates/bibl/date[@when]`'
+    Notes: ISO 8601 `yyyy-mm-dd`
+    source_table: manuscript
+    source_section: Digital Surrogates and Bibliography
+  - Column: '`bibliography`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `additional/listBibl`'
+    Notes: Catalogue references; prose or JSON
+    source_table: manuscript
+    source_section: Digital Surrogates and Bibliography
+- table: manuscript
+  section: Persons and Organisations (junction or JSON)
+  rows:
+  - Column: '`persons`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `persName`'
+    Notes: 'JSON array of objects: `[{"display":"...","role":"scribe","gnd":"...","key":"..."}]`.
+      Roles: `scribe` `artist` `author` `donor` `previousOwner` `bookbinder` `illuminator`
+      etc.'
+    source_table: manuscript
+    source_section: Persons and Organisations (junction or JSON)
+  - Column: '`organisations`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `orgName`'
+    Notes: 'JSON array; same structure; roles: `previousOwner` `scribe` `bookbinder`
+      etc.'
+    source_table: manuscript
+    source_section: Persons and Organisations (junction or JSON)
+- table: witness
+  section: null
+  rows:
+  - Column: '`id`'
+    Type: SERIAL PK
+    HSP / source: —
+    Notes: ''
+    source_table: witness
+    source_section: null
+  - Column: '`manuscript_id`'
+    Type: INT FK → manuscript
+    HSP / source: —
+    Notes: Nullable for external (non-manuscript) witnesses. If witnesses also need
+      to link to fragments directly, add `fragment_id FK → fragment`; currently external
+      witnesses are referenced via `text_witness_link` in the Retrieval domain.
+    source_table: witness
+    source_section: null
+  - Column: '`text_title`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `msContents/msItem/title`'
+    Notes: Title type (`uniform` `supplied` `parallel`) stored as free text or separate
+      column if queried
+    source_table: witness
+    source_section: null
+  - Column: '`text_author`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `msContents/msItem/author`'
+    Notes: Display name
+    source_table: witness
+    source_section: null
+  - Column: '`author_gnd`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `author[@ref]`'
+    Notes: GND URI
+    source_table: witness
+    source_section: null
+  - Column: '`text_rubric`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `msContents/msItem/rubric`'
+    Notes: Opening rubric
+    source_table: witness
+    source_section: null
+  - Column: '`text_incipit`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `msContents/msItem/incipit`'
+    Notes: ''
+    source_table: witness
+    source_section: null
+  - Column: '`text_explicit`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `msContents/msItem/explicit`'
+    Notes: ''
+    source_table: witness
+    source_section: null
+  - Column: '`locus_from`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `msItem/locus[@from]`'
+    Notes: Start folio
+    source_table: witness
+    source_section: null
+  - Column: '`locus_to`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `msItem/locus[@to]`'
+    Notes: End folio
+    source_table: witness
+    source_section: null
+  - Column: '`specific_text_id`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: External text identifier (e.g. Pinakes ID, Corpus Thomisticum ref); docx
+      "specific text identification"
+    source_table: witness
+    source_section: null
+  - Column: '`external_source_uri`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: Link to CoMMA, MGH, BVMM etc.
+    source_table: witness
+    source_section: null
+- table: canvas
+  section: null
+  rows:
+  - Column: '`id`'
+    Type: SERIAL PK
+    HSP / source: —
+    Notes: ''
+    source_table: canvas
+    source_section: null
+  - Column: '`manuscript_id`'
+    Type: INT FK → manuscript
+    HSP / source: —
+    Notes: ''
+    source_table: canvas
+    source_section: null
+  - Column: '`manifest_cache_id`'
+    Type: INT FK → iiif_manifest_cache
+    HSP / source: —
+    Notes: ''
+    source_table: canvas
+    source_section: null
+  - Column: '`canvas_uri`'
+    Type: TEXT
+    HSP / source: '**[HSP]** `iiif_canvas_uri`'
+    Notes: IIIF canvas URI
+    source_table: canvas
+    source_section: null
+  - Column: '`canvas_label`'
+    Type: TEXT
+    HSP / source: —
+    Notes: Folio/page label (e.g. "1r", "fol. 23v")
+    source_table: canvas
+    source_section: null
+  - Column: '`sequence_order`'
+    Type: INT
+    HSP / source: —
+    Notes: ''
+    source_table: canvas
+    source_section: null
+  - Column: '`height_mm`'
+    Type: INT
+    HSP / source: '**[EXT]**'
+    Notes: Physical page height in mm
+    source_table: canvas
+    source_section: null
+  - Column: '`width_mm`'
+    Type: INT
+    HSP / source: '**[EXT]**'
+    Notes: Physical page width in mm
+    source_table: canvas
+    source_section: null
+  - Column: '`written_area_height_mm`'
+    Type: INT
+    HSP / source: '**[EXT]**'
+    Notes: Text block height in mm; per-page observation, not in HSP
+    source_table: canvas
+    source_section: null
+  - Column: '`written_area_width_mm`'
+    Type: INT
+    HSP / source: '**[EXT]**'
+    Notes: Text block width in mm; per-page observation
+    source_table: canvas
+    source_section: null
+  - Column: '`lines_per_page`'
+    Type: INT
+    HSP / source: '**[EXT]**'
+    Notes: Per-page line count; not in HSP
+    source_table: canvas
+    source_section: null
+  - Column: '`lines_per_column`'
+    Type: INT
+    HSP / source: '**[EXT]**'
+    Notes: Nullable for single-column pages
+    source_table: canvas
+    source_section: null
+  - Column: '`ruling_visible`'
+    Type: BOOLEAN
+    HSP / source: '**[EXT]**'
+    Notes: Per-page ruling observation; HSP has object-level only
+    source_table: canvas
+    source_section: null
+- table: image_asset
+  section: null
+  rows:
+  - Column: '`id`'
+    Type: SERIAL PK
+    HSP / source: —
+    Notes: ''
+    source_table: image_asset
+    source_section: null
+  - Column: '`canvas_id`'
+    Type: INT FK → canvas
+    HSP / source: —
+    Notes: ''
+    source_table: image_asset
+    source_section: null
+  - Column: '`iiif_image_uri`'
+    Type: TEXT
+    HSP / source: '**[HSP]** IIIF image service URI'
+    Notes: From manifest
+    source_table: image_asset
+    source_section: null
+  - Column: '`direct_image_uri`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: Direct JPEG/TIFF URI (e.g. Gallica); not in HSP; docx §1
+    source_table: image_asset
+    source_section: null
+  - Column: '`rights_uri`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: Rights statement URI (e.g. rightsstatements.org, CC URI); not in HSP; docx
+      §1. Distinct from `repo_access_level` on `repository`, which is an institutional
+      policy field.
+    source_table: image_asset
+    source_section: null
+  - Column: '`training_allowed`'
+    Type: BOOLEAN
+    HSP / source: '**[EXT]**'
+    Notes: Per architectural note
+    source_table: image_asset
+    source_section: null
+  - Column: '`publication_allowed`'
+    Type: BOOLEAN
+    HSP / source: '**[EXT]**'
+    Notes: ''
+    source_table: image_asset
+    source_section: null
+  - Column: '`demo_allowed`'
+    Type: BOOLEAN
+    HSP / source: '**[EXT]**'
+    Notes: ''
+    source_table: image_asset
+    source_section: null
+  - Column: '`access_level`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: 'Per-image access level: `open` `restricted` `closed`'
+    source_table: image_asset
+    source_section: null
+  - Column: '`file_path_local`'
+    Type: TEXT
+    HSP / source: '**[HSP+EXT]** `image_path_local`'
+    Notes: Local working copy path
+    source_table: image_asset
+    source_section: null
+  - Column: '`resolution_dpi`'
+    Type: INT
+    HSP / source: '**[HSP+EXT]** `image_resolution_dpi`'
+    Notes: ''
+    source_table: image_asset
+    source_section: null
+  - Column: '`checksum_sha256`'
+    Type: TEXT
+    HSP / source: '**[EXT]**'
+    Notes: Per architectural note
+    source_table: image_asset
+    source_section: null
+  - Column: '`binarisation_method`'
+    Type: TEXT
+    HSP / source: '**[HSP+EXT]**'
+    Notes: '`otsu` `sauvola` `manual`'
+    source_table: image_asset
+    source_section: null
+- table: fragment_extensions
+  section: Fields with no natural home
+  rows:
+  - Field: '`secondary_location`'
+    Docx source: Fragment §1
+    Recommended placement: New junction table `fragment_location` (`fragment_id`,
+      `repository_id`, `shelfmark`, `notes`) — handles fragments split across institutions
+    source_table: fragment_extensions
+    source_section: Fields with no natural home
+  - Field: '`parent_manuscript_id`'
+    Docx source: Fragment §1
+    Recommended placement: FK on `fragment` table
+    source_table: fragment_extensions
+    source_section: Fields with no natural home
+  - Field: '`host_volume`'
+    Docx source: Fragment §4
+    Recommended placement: FK or free-text on `fragment` table
+    source_table: fragment_extensions
+    source_section: Fields with no natural home
+  - Field: Fragment damage zone + extent %
+    Docx source: Fragment §3
+    Recommended placement: '`fragment` table EXT fields (`damage_zone`, `damage_extent_pct`)'
+    source_table: fragment_extensions
+    source_section: Fields with no natural home
+  - Field: Fragment original dimensions
+    Docx source: Fragment §2
+    Recommended placement: '`fragment` table (`orig_height_mm`, `orig_width_mm`)'
+    source_table: fragment_extensions
+    source_section: Fields with no natural home
+  - Field: Completeness %
+    Docx source: Fragment §2
+    Recommended placement: '`fragment` table (`completeness_pct`)'
+    source_table: fragment_extensions
+    source_section: Fields with no natural home
+  - Field: Lines visible / columns visible
+    Docx source: Fragment §5
+    Recommended placement: '`fragment` table (`lines_visible`, `columns_visible`)'
+    source_table: fragment_extensions
+    source_section: Fields with no natural home
+  - Field: Margin type visible
+    Docx source: Fragment §6
+    Recommended placement: '`fragment` table (`margin_visible`: `inner` `outer` `upper`
+      `lower` `unknown`)'
+    source_table: fragment_extensions
+    source_section: Fields with no natural home

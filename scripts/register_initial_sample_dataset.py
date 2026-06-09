@@ -258,10 +258,12 @@ def upsert_repository(conn: Connection, name: str, stats: RegistrationStats) -> 
   row = execute_returning(
     conn,
     """
-    INSERT INTO repository (name, short_name, repository_type, raw_metadata)
-    VALUES (%s, %s, 'sample_source', %s)
+    INSERT INTO repository (name, short_name, repository_type, repo_access_level, metadata_review_status, raw_metadata)
+    VALUES (%s, %s, 'sample_source', 'open', 'needs_review', %s)
     ON CONFLICT (name) DO UPDATE
     SET raw_metadata = repository.raw_metadata || EXCLUDED.raw_metadata,
+        repo_access_level = COALESCE(repository.repo_access_level, EXCLUDED.repo_access_level),
+        metadata_review_status = 'needs_review',
         updated_at = now()
     RETURNING id
     """,
@@ -289,6 +291,7 @@ def raw_metadata(item: dict[str, Any]) -> dict[str, Any]:
     "iiif_image_service_url": item.get("iiif_image_service_url"),
     "iiif_resolution_status": item.get("iiif_resolution_status"),
     "rights_review_status": item.get("rights_review_status"),
+    "metadata_review_status": "needs_review",
     "registration_source": "register_initial_sample_dataset.py",
   }
 
@@ -309,23 +312,30 @@ def upsert_manuscript(conn: Connection, repository_id: str, item: dict[str, Any]
           shelfmark = %s,
           title = %s,
           description = %s,
+          corpus_id = %s,
+          object_status = 'existent',
+          object_form = 'codex',
+          metadata_review_status = 'needs_review',
           raw_metadata = %s,
           updated_at = now()
       WHERE id = %s
       RETURNING id
       """,
-      (repository_id, item["id"], item["id"], item["purpose"], Jsonb(metadata), existing["id"]),
+      (repository_id, item["id"], item["id"], item["purpose"], item["id"], Jsonb(metadata), existing["id"]),
     )
     stats.manuscripts_matched += 1
   else:
     row = execute_returning(
       conn,
       """
-      INSERT INTO manuscript (repository_id, shelfmark, title, description, raw_metadata)
-      VALUES (%s, %s, %s, %s, %s)
+      INSERT INTO manuscript (
+        repository_id, shelfmark, title, description, corpus_id,
+        object_status, object_form, metadata_review_status, raw_metadata
+      )
+      VALUES (%s, %s, %s, %s, %s, 'existent', 'codex', 'needs_review', %s)
       RETURNING id
       """,
-      (repository_id, item["id"], item["id"], item["purpose"], Jsonb(metadata)),
+      (repository_id, item["id"], item["id"], item["purpose"], item["id"], Jsonb(metadata)),
     )
     stats.manuscripts_inserted += 1
   return str(row["id"])
@@ -348,6 +358,7 @@ def upsert_canvas(conn: Connection, manuscript_id: str, item: dict[str, Any], in
           canvas_identifier = %s,
           canvas_label = %s,
           sequence_index = %s,
+          metadata_review_status = 'needs_review',
           raw_metadata = %s,
           updated_at = now()
       WHERE id = %s
@@ -360,8 +371,8 @@ def upsert_canvas(conn: Connection, manuscript_id: str, item: dict[str, Any], in
     row = execute_returning(
       conn,
       """
-      INSERT INTO canvas (manuscript_id, canvas_identifier, canvas_label, sequence_index, raw_metadata)
-      VALUES (%s, %s, %s, %s, %s)
+      INSERT INTO canvas (manuscript_id, canvas_identifier, canvas_label, sequence_index, metadata_review_status, raw_metadata)
+      VALUES (%s, %s, %s, %s, 'needs_review', %s)
       RETURNING id
       """,
       (manuscript_id, canvas_identifier, item["id"], index, Jsonb(metadata)),
@@ -392,6 +403,7 @@ def upsert_image_asset(conn: Connection, repository_id: str, canvas_id: str | No
     False,
     False,
     "internal",
+    None,
     Jsonb(metadata),
   )
   if existing:
@@ -413,6 +425,8 @@ def upsert_image_asset(conn: Connection, repository_id: str, canvas_id: str | No
           publication_allowed = %s,
           demo_allowed = %s,
           access_level = %s,
+          rights_uri = %s,
+          metadata_review_status = 'needs_review',
           raw_metadata = %s,
           updated_at = now()
       WHERE id = %s
@@ -428,9 +442,10 @@ def upsert_image_asset(conn: Connection, repository_id: str, canvas_id: str | No
       INSERT INTO image_asset (
         canvas_id, repository_id, asset_type, source_url, iiif_image_service_url, local_path,
         media_type, rights_statement, license, attribution,
-        training_allowed, publication_allowed, demo_allowed, access_level, raw_metadata
+        training_allowed, publication_allowed, demo_allowed, access_level,
+        rights_uri, metadata_review_status, raw_metadata
       )
-      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'needs_review', %s)
       RETURNING id
       """,
       params,
@@ -460,6 +475,7 @@ def upsert_fragment(conn: Connection, repository_id: str, image_asset_id: str, i
     False,
     False,
     "internal",
+    "unknown",
     Jsonb(metadata),
   )
   if existing:
@@ -479,6 +495,8 @@ def upsert_fragment(conn: Connection, repository_id: str, image_asset_id: str, i
           publication_allowed = %s,
           demo_allowed = %s,
           access_level = %s,
+          margin_visible = %s,
+          metadata_review_status = 'needs_review',
           raw_metadata = %s,
           updated_at = now()
       WHERE id = %s
@@ -493,10 +511,11 @@ def upsert_fragment(conn: Connection, repository_id: str, image_asset_id: str, i
       """
       INSERT INTO fragment (
         image_asset_id, shelfmark, fragment_label, fragment_type, description,
-        rights_statement, license, attribution,
-        training_allowed, publication_allowed, demo_allowed, access_level, raw_metadata
+        rights_statement, license, attribution, training_allowed,
+        publication_allowed, demo_allowed, access_level, margin_visible,
+        metadata_review_status, raw_metadata
       )
-      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'needs_review', %s)
       RETURNING id
       """,
       params,

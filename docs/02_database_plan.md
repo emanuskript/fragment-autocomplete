@@ -191,7 +191,23 @@ The detailed evaluation rubric remains a later documentation and implementation 
 
 Exports remain linked to fragment and/or reconstruction candidate records and preserve rights metadata.
 
-## 16. Migration and Validation Commands
+## 16. HSP / German Normdata Metadata Alignment
+
+The schema now includes a metadata standards extension for HSP-aligned catalogue data and German library controlled vocabularies.
+
+The extension adds:
+
+- `controlled_vocabulary` and `controlled_term` for `SCRP`, `FORM`, `CODC`, `BNDG`, and simplified HSP values.
+- `metadata_controlled_term_assignment` for validated controlled-term assignments to project records.
+- HSP/GND identity fields on `repository`.
+- HSP-aligned manuscript fields for object status/form, material, format, origin/date, script, layout, decoration, persons, and organisations.
+- Page-level observation fields on `canvas`.
+- rights URI and processing fields on `image_asset`.
+- fragment-specific codicological fields and `fragment_location`.
+
+The standards alignment does not replace `raw_metadata`. Source metadata remains preserved there, while normalized fields are populated only when values are detectable or reviewed.
+
+## 17. Migration and Validation Commands
 
 Start the local database:
 
@@ -211,6 +227,14 @@ Validate the schema:
 bash scripts/db_validate.sh
 ```
 
+Import and validate HSP/German normdata:
+
+```bash
+python3 scripts/extract_hsp_metadata_standards.py --verbose
+python3 scripts/import_hsp_normdata.py --verbose
+bash scripts/validate_hsp_metadata_alignment.sh
+```
+
 Reset the local database volume:
 
 ```bash
@@ -223,15 +247,16 @@ Run full workspace validation:
 bash scripts/check_workspace.sh
 ```
 
-## 17. Known Limitations and Next Steps
+## 18. Known Limitations and Next Steps
 
 Known limitations:
 
 - Storage path policy needs confirmation with GWDG or the selected institutional storage environment.
 - `pgvector` is not enabled yet; retrieval vectors are stored as `FLOAT8[]` and descriptor JSON for now.
 - Polymorphic references such as `annotation.target_id` and `evaluation_run.target_id` are not enforced by foreign keys.
-- The schema supports IIIF, eManuSkript outputs, artificial fragments, reconstruction candidates, evaluation, and export, but those pipelines are not implemented yet.
+- The schema supports IIIF, eManuSkript outputs, artificial fragments, reconstruction candidates, evaluation, and export. IIIF ingestion, pilot segmentation, segmentation storage, and the local viewer exist as local proof-of-concept workflows; artificial fragments, reconstruction, retrieval, MSI, CoMMA ingestion, and deployment remain unimplemented.
+- HSP/normdata fields are available, but most pilot sample metadata is still `needs_review` until cataloguing values are reviewed or imported from authoritative source records.
 
 Next step:
 
-Build the IIIF ingestion proof of concept.
+Build the artificial fragment generator for complete-page samples.
