@@ -1,3 +1,5 @@
+"""Normalize IIIF Presentation v2/v3 payloads into a shared internal shape."""
+
 from __future__ import annotations
 
 from typing import Any
@@ -12,6 +14,7 @@ def _first(value: Any) -> Any:
 
 
 def text_value(value: Any) -> str | None:
+  """Flatten common IIIF multilingual/value containers into a readable string."""
   if value is None:
     return None
   if isinstance(value, str):
@@ -55,6 +58,7 @@ def _int_value(value: Any) -> int | None:
 
 
 def normalize_metadata(metadata: Any) -> list[dict[str, Any]]:
+  """Convert raw IIIF metadata lists into label/value records with provenance."""
   normalized: list[dict[str, Any]] = []
   if not isinstance(metadata, list):
     return normalized
@@ -69,6 +73,7 @@ def normalize_metadata(metadata: Any) -> list[dict[str, Any]]:
 
 
 def metadata_lookup(metadata: list[dict[str, Any]], names: tuple[str, ...]) -> str | None:
+  """Find the first metadata value whose label matches one of the requested names."""
   lowered = tuple(name.lower() for name in names)
   for item in metadata:
     label = (item.get("label") or "").lower()
@@ -214,6 +219,7 @@ def _normalize_v3(manifest: dict[str, Any], source_identifier: str) -> Normalize
 
 
 def normalize_manifest(manifest: dict[str, Any], source_identifier: str) -> NormalizedManifest:
+  """Normalize a IIIF Presentation manifest regardless of v2/v3 wire format."""
   manifest_type = (_type(manifest) or "").lower()
   if manifest_type == "manifest":
     return _normalize_v3(manifest, source_identifier)

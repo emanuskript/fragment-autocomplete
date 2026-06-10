@@ -1,3 +1,5 @@
+"""Checks for the committed initial sample dataset configuration files."""
+
 from pathlib import Path
 
 import yaml

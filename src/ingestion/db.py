@@ -1,3 +1,5 @@
+"""Shared PostgreSQL connection helpers for local ingestion scripts."""
+
 from __future__ import annotations
 
 import os
@@ -8,6 +10,7 @@ import psycopg
 
 
 def connection_info() -> dict[str, str]:
+  """Build the local database connection settings from environment defaults."""
   return {
     "host": os.environ.get("FRAGMENT_DB_HOST", "localhost"),
     "port": os.environ.get("FRAGMENT_DB_PORT", "55432"),
@@ -19,5 +22,6 @@ def connection_info() -> dict[str, str]:
 
 @contextmanager
 def connect() -> Iterator[psycopg.Connection]:
+  """Yield a psycopg connection using the project-local database defaults."""
   with psycopg.connect(**connection_info()) as conn:
     yield conn

@@ -1,3 +1,5 @@
+"""Load IIIF manifests from local files or remote URLs."""
+
 from __future__ import annotations
 
 import json
@@ -12,6 +14,7 @@ class ManifestLoadError(RuntimeError):
 
 
 def load_manifest_file(path: str | Path) -> tuple[dict[str, Any], str]:
+  """Load a local manifest JSON file and return it with a file URI identifier."""
   manifest_path = Path(path)
   if not manifest_path.exists():
     raise ManifestLoadError(f"Manifest file not found: {manifest_path}")
@@ -23,6 +26,7 @@ def load_manifest_file(path: str | Path) -> tuple[dict[str, Any], str]:
 
 
 def fetch_manifest_url(url: str, timeout_seconds: int = 30) -> tuple[dict[str, Any], str, dict[str, str | None]]:
+  """Fetch a remote manifest and retain cache-relevant response headers."""
   try:
     response = requests.get(url, timeout=timeout_seconds, headers={"Accept": "application/json, application/ld+json"})
     response.raise_for_status()

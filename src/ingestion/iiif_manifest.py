@@ -1,3 +1,5 @@
+"""Typed normalized IIIF manifest records shared across ingestion steps."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -6,6 +8,7 @@ from typing import Any
 
 @dataclass(frozen=True)
 class NormalizedImageAsset:
+  """Normalized image asset metadata extracted from a IIIF canvas."""
   source_url: str | None
   iiif_image_service_url: str | None
   media_type: str | None
@@ -16,6 +19,7 @@ class NormalizedImageAsset:
 
 @dataclass(frozen=True)
 class NormalizedCanvas:
+  """Normalized IIIF canvas metadata with attached image assets."""
   canvas_identifier: str
   canvas_label: str | None
   width_px: int | None
@@ -27,6 +31,7 @@ class NormalizedCanvas:
 
 @dataclass(frozen=True)
 class NormalizedManifest:
+  """Normalized IIIF manifest record used by downstream database ingestion."""
   source_identifier: str
   manifest_id: str | None
   label: str | None

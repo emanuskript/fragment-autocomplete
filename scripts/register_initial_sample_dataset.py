@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Register the initial local sample dataset in YAML reports and PostgreSQL."""
+
 from __future__ import annotations
 
 import argparse

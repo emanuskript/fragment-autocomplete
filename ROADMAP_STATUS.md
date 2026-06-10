@@ -1,8 +1,10 @@
 # ROADMAP_STATUS
 
+Last updated: 2026-06-10. The Python ingestion, script, and test modules now have explicit module-level documentation, and verified dead imports/generated cache artifacts were removed as part of repository hygiene.
+
 | Area | Expected status after 1.5 months | Concrete definition of done | Current status | Evidence / files | Next action |
 | --- | --- | --- | --- | --- | --- |
-| Repository / workspace | Done | Git repo, folder structure, docs skeleton, project board, basic setup instructions. | Done | README.md, AGENTS.md, docs/, src/, data/, scripts/ | Maintain as project evolves. |
+| Repository / workspace | Done | Git repo, folder structure, docs skeleton, project board, basic setup instructions. | Done | README.md, AGENTS.md, docs/, src/, data/, scripts/, tests/ | Maintain code/documentation hygiene as project evolves. |
 | Architecture draft | Done | Complete technical architecture document with figures and PDF/HTML export. | Done | docs/01_architecture_overview.md, docs/figures/architecture/, outputs/Fragment_Autocomplete_Architecture_Draft.pdf | Review with Anna, Jeremy, SUB Göttingen, and Fragmentarium collaborators. |
 | Database schema draft | Done | PostgreSQL/PostGIS Docker setup, SQL migration, seed values, validation script, and schema documentation. | Done | infra/db/docker-compose.yml, infra/db/migrations/001_init.sql, infra/db/seed/001_seed_lookup_values.sql, scripts/db_validate.sh, docs/02_database_plan.md | Maintain schema as ingestion needs mature. |
 | HSP metadata standards alignment | Done | HSP/German normdata vocabularies imported, selected normalized metadata fields added, and metadata validation documented. | Done | infra/db/migrations/002_hsp_normdata_metadata_alignment.sql, data/metadata/hsp_normdata_terms.yaml, data/metadata/hsp_metadata_field_mapping.yaml, scripts/import_hsp_normdata.py, docs/12_metadata_standards_alignment.md | Use normalized metadata in dataset expansion and artificial-fragment metadata. |

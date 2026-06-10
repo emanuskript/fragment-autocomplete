@@ -1,3 +1,5 @@
+"""Validation tests for extracted HSP normdata and field-mapping metadata."""
+
 from pathlib import Path
 
 import yaml

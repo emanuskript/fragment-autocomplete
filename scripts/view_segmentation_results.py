@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Streamlit viewer for local smoke-test and pilot segmentation runs."""
+
 from __future__ import annotations
 
 import json

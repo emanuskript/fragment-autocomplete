@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Inventory local dataset/model folders and emit lightweight metadata manifests."""
+
 from __future__ import annotations
 
 import hashlib

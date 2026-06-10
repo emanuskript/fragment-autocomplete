@@ -1,3 +1,5 @@
+"""Regression tests for IIIF v2/v3 normalization helpers."""
+
 import json
 import sys
 from pathlib import Path

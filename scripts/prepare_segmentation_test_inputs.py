@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
+"""Prepare the two-sample smoke-test manifest for future segmentation runs."""
+
 from __future__ import annotations
 
 import argparse
 from datetime import datetime, timezone
 from pathlib import Path
+import sys
 from typing import Any
 
 import yaml
@@ -16,8 +19,6 @@ DEFAULT_MODEL_COMPAT = ROOT / "data/metadata/model_weights_compatibility.yaml"
 DEFAULT_REPORT = ROOT / "docs/07_segmentation_test_inputs.md"
 TARGET_MODEL_ID = "best_emanuskript_segmentation"
 TARGET_MODEL_PATH = "model weights/best_emanuskript_segmentation.pt"
-
-import sys
 
 sys.path.insert(0, str(ROOT))
 from src.ingestion.db import connect  # noqa: E402
