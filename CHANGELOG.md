@@ -38,6 +38,7 @@ All notable changes to this project will be documented in this file.
 
 ### Updated
 
+- Documented Python ingestion/scripts/tests modules with module-level docstrings, added core ingestion API docstrings, and removed dead imports plus generated `__pycache__` artifacts.
 - Removed boilerplate source-directory README files and kept empty source boundaries with `.gitkeep` files.
 - Cleaned stale duplicate status files and clarified the full-pilot segmentation runner/viewer handling for large-image retries and failed-run visibility.
 - Local viewer to browse both smoke-test and full-pilot segmentation runs from PostgreSQL/PostGIS.

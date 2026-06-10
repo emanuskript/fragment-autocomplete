@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Extract local HSP/German metadata standards into YAML and a markdown report."""
+
 from __future__ import annotations
 
 import argparse

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
+"""Validate that stored segmentation runs are ready for the local viewer."""
+
 from __future__ import annotations
 
 import os
-import sys
 from pathlib import Path
 
 import psycopg
@@ -29,6 +30,7 @@ EXPECTED_PILOT = {
 
 
 def connect() -> psycopg.Connection:
+    """Open a direct database connection for viewer validation queries."""
     return psycopg.connect(
         host=os.environ.get("FRAGMENT_DB_HOST", "localhost"),
         port=os.environ.get("FRAGMENT_DB_PORT", "55432"),
@@ -39,6 +41,7 @@ def connect() -> psycopg.Connection:
 
 
 def resolve_path(value: str | None) -> Path | None:
+    """Resolve stored relative paths against the repository root."""
     if not value:
         return None
     path = Path(value)

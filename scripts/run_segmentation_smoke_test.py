@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Run the controlled two-sample segmentation smoke test and summarize outputs."""
+
 from __future__ import annotations
 
 import argparse

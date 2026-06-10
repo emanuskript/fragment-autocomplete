@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
+"""Inspect local model checkpoints without loading them for inference."""
+
 from __future__ import annotations
 
 import argparse
 import hashlib
 import pickletools
 import re
-import sys
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path

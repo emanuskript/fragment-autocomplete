@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Import extracted HSP normdata YAML into PostgreSQL lookup tables."""
+
 from __future__ import annotations
 
 import argparse
@@ -9,7 +11,6 @@ from pathlib import Path
 from typing import Any
 
 import yaml
-from psycopg.types.json import Jsonb
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))

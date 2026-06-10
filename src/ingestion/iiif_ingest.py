@@ -1,3 +1,5 @@
+"""Persist normalized IIIF manifest data into the local PostgreSQL schema."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -14,6 +16,7 @@ from .iiif_normalizer import metadata_lookup
 
 @dataclass
 class IngestStats:
+  """Track insert/update counts and soft warnings emitted during ingestion."""
   repositories_inserted: int = 0
   repositories_updated: int = 0
   manuscripts_inserted: int = 0
@@ -28,6 +31,7 @@ class IngestStats:
 
 
 def open_rights_policy(license_or_rights: str | None) -> dict[str, bool | str]:
+  """Apply the project's conservative open-rights policy to a manifest value."""
   value = (license_or_rights or "").lower()
   is_open_for_publication = any(token in value for token in ("creativecommons.org/publicdomain/zero", "creativecommons.org/publicdomain/mark", "creativecommons.org/licenses/by/"))
   # Training remains conservative even for open manifests until project policy is reviewed.
@@ -95,6 +99,7 @@ def _object_status(value: str | None) -> str | None:
 
 
 def normalized_hsp_metadata(manifest: NormalizedManifest) -> dict[str, Any]:
+  """Map selected IIIF metadata labels into the HSP-aligned manuscript fields."""
   material = _metadata_value(manifest, ("material", "support"))
   place = _metadata_value(manifest, ("place", "origin", "provenance"))
   form_value = _metadata_value(manifest, ("form", "object type", "object form"))
@@ -130,6 +135,7 @@ def _execute_returning(conn: Connection, query: str, params: tuple[Any, ...]) ->
 
 
 def upsert_repository(conn: Connection, repository_name: str, source_identifier: str, stats: IngestStats) -> str:
+  """Insert or update the source repository row for a manifest."""
   row = _execute_returning(
     conn,
     """
@@ -155,6 +161,7 @@ def upsert_repository(conn: Connection, repository_name: str, source_identifier:
 
 
 def upsert_manuscript(conn: Connection, repository_id: str, manifest: NormalizedManifest, stats: IngestStats) -> str:
+  """Insert or update the manuscript row that groups the manifest canvases."""
   manifest_key = manifest.manifest_id or manifest.source_identifier
   hsp_metadata = normalized_hsp_metadata(manifest)
   existing = _fetch_one(
@@ -280,6 +287,7 @@ def upsert_manifest_cache(
   fetch_headers: dict[str, str | None],
   stats: IngestStats,
 ) -> str:
+  """Upsert the cached raw manifest payload plus fetch metadata."""
   existing = _fetch_one(conn, "SELECT id FROM iiif_manifest_cache WHERE manifest_url = %s", (manifest.source_identifier,))
   row = _execute_returning(
     conn,
@@ -318,6 +326,7 @@ def upsert_manifest_cache(
 
 
 def upsert_canvas(conn: Connection, manuscript_id: str, manifest_cache_id: str, canvas: NormalizedCanvas, stats: IngestStats) -> str:
+  """Insert or update one normalized canvas row."""
   existing = _fetch_one(
     conn,
     """
@@ -384,6 +393,7 @@ def upsert_image_asset(
   manifest: NormalizedManifest,
   stats: IngestStats,
 ) -> str:
+  """Insert or update one normalized image asset row for a canvas."""
   rights = open_rights_policy(manifest.license or manifest.rights_statement)
   existing = _fetch_one(
     conn,
@@ -471,6 +481,7 @@ def ingest_manifest(
   repository_name: str,
   fetch_headers: dict[str, str | None] | None = None,
 ) -> IngestStats:
+  """Persist a normalized manifest and all dependent rows in one transaction."""
   stats = IngestStats()
   fetch_headers = fetch_headers or {}
   repository_id = upsert_repository(conn, repository_name, manifest.source_identifier, stats)

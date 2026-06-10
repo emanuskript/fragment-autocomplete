@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Run the full pilot segmentation batch and emit reproducible result metadata."""
+
 from __future__ import annotations
 
 import argparse

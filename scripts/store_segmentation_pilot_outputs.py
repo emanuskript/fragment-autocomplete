@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Store full-pilot segmentation outputs in PostgreSQL/PostGIS."""
+
 from __future__ import annotations
 
 import argparse

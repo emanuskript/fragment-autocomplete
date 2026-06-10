@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Assemble the 10-sample pilot segmentation input manifest from registered data."""
+
 from __future__ import annotations
 
 import argparse

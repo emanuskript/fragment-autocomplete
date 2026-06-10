@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""CLI entry point for IIIF manifest normalization and database ingestion."""
+
 from __future__ import annotations
 
 import argparse
