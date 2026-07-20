@@ -5,10 +5,11 @@
 - Layout-first reconstruction MVP
 - Detailed evaluation rubric
 - 20-30 use-case selection
+- Artificial fragment task database storage
 
 ## Ready
 
-- Artificial fragment generator
+- None
 
 ## In Progress
 
@@ -34,3 +35,4 @@
 - Store segmentation outputs in DB
 - Minimal UI viewer
 - Full pilot segmentation run
+- Artificial fragment generator

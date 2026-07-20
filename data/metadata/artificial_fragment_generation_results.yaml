@@ -1,0 +1,550 @@
+generated_at: '2026-07-20T13:25:47+00:00'
+generation_version: artificial_fragment_generator_v0_1
+status: generated
+dataset_id: initial_sample_dataset_v0_1
+source_resolved_dataset: data/metadata/initial_sample_dataset_resolved.yaml
+source_full_page_count: 5
+generated_task_count: 10
+mask_families:
+- rectangular
+- irregular
+base_seed: 20260720
+output_dir: outputs/artificial_fragments
+database_write: false
+tasks:
+- task_id: af_fp_01_clean_simple_rectangular
+  generation_version: artificial_fragment_generator_v0_1
+  source_sample_id: fp_01_clean_simple
+  source_category: clean_simple
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/csg/0300/5/0/
+  source_local_path: autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg
+  source_db_ids:
+    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
+    manuscript_id: 8494d13c-1faf-4744-8396-13f8928fa96f
+    canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+  source_metadata:
+    purpose: Simple full-page baseline for segmentation and artificial-fragment generation.
+    iiif_manifest_url: null
+    iiif_image_service_url: null
+    iiif_resolution_status: not_attempted
+  hsp_normalized_metadata: {}
+  rights_review_status: pending_review
+  access_level: internal
+  mask_family: rectangular
+  random_seed: 198946019070926
+  split_name: demo
+  fragment_path: outputs/artificial_fragments/fragments/af_fp_01_clean_simple_rectangular.png
+  mask_path: outputs/artificial_fragments/masks/af_fp_01_clean_simple_rectangular_mask.png
+  crop_transform:
+    type: source_page_crop
+    bbox_xywh_px:
+    - 71
+    - 4270
+    - 2307
+    - 3007
+    rotation_degrees: 0
+    scale: 1
+  ground_truth_placement:
+    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+    source_page_width_px: 6132
+    source_page_height_px: 8176
+    bbox_xyxy_px:
+    - 71
+    - 4270
+    - 2378
+    - 7277
+    placement_is_known: true
+  degradation_profile:
+    profile: none
+    note: The output is a controlled crop/mask task, not a claim about a real damaged
+      fragment.
+  parameters:
+    source: initial_sample_dataset_resolved
+    mask_family: rectangular
+    generator_version: artificial_fragment_generator_v0_1
+- task_id: af_fp_01_clean_simple_irregular
+  generation_version: artificial_fragment_generator_v0_1
+  source_sample_id: fp_01_clean_simple
+  source_category: clean_simple
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/csg/0300/5/0/
+  source_local_path: autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg
+  source_db_ids:
+    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
+    manuscript_id: 8494d13c-1faf-4744-8396-13f8928fa96f
+    canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+  source_metadata:
+    purpose: Simple full-page baseline for segmentation and artificial-fragment generation.
+    iiif_manifest_url: null
+    iiif_image_service_url: null
+    iiif_resolution_status: not_attempted
+  hsp_normalized_metadata: {}
+  rights_review_status: pending_review
+  access_level: internal
+  mask_family: irregular
+  random_seed: 19728602913883
+  split_name: demo
+  fragment_path: outputs/artificial_fragments/fragments/af_fp_01_clean_simple_irregular.png
+  mask_path: outputs/artificial_fragments/masks/af_fp_01_clean_simple_irregular_mask.png
+  crop_transform:
+    type: source_page_crop
+    bbox_xywh_px:
+    - 686
+    - 4072
+    - 3458
+    - 3097
+    rotation_degrees: 0
+    scale: 1
+  ground_truth_placement:
+    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+    source_page_width_px: 6132
+    source_page_height_px: 8176
+    bbox_xyxy_px:
+    - 686
+    - 4072
+    - 4144
+    - 7169
+    placement_is_known: true
+  degradation_profile:
+    profile: none
+    note: The output is a controlled crop/mask task, not a claim about a real damaged
+      fragment.
+  parameters:
+    source: initial_sample_dataset_resolved
+    mask_family: irregular
+    generator_version: artificial_fragment_generator_v0_1
+- task_id: af_fp_02_clean_simple_rectangular
+  generation_version: artificial_fragment_generator_v0_1
+  source_sample_id: fp_02_clean_simple
+  source_category: clean_simple
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/kba/Wett0004/9r
+  source_local_path: autocomplete-test-dataset/full_pages/fp_02_clean_simple/e-codices_kba-Wett0004_009r_max.jpg
+  source_db_ids:
+    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
+    manuscript_id: f7cc5f80-7661-4a6e-aed3-46c267cfe189
+    canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+    image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+  source_metadata:
+    purpose: Simple full-page baseline for segmentation and artificial-fragment generation.
+    iiif_manifest_url: null
+    iiif_image_service_url: null
+    iiif_resolution_status: not_attempted
+  hsp_normalized_metadata: {}
+  rights_review_status: pending_review
+  access_level: internal
+  mask_family: rectangular
+  random_seed: 54046460189988
+  split_name: demo
+  fragment_path: outputs/artificial_fragments/fragments/af_fp_02_clean_simple_rectangular.png
+  mask_path: outputs/artificial_fragments/masks/af_fp_02_clean_simple_rectangular_mask.png
+  crop_transform:
+    type: source_page_crop
+    bbox_xywh_px:
+    - 1325
+    - 3261
+    - 2734
+    - 3299
+    rotation_degrees: 0
+    scale: 1
+  ground_truth_placement:
+    source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+    source_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+    source_page_width_px: 6132
+    source_page_height_px: 8176
+    bbox_xyxy_px:
+    - 1325
+    - 3261
+    - 4059
+    - 6560
+    placement_is_known: true
+  degradation_profile:
+    profile: none
+    note: The output is a controlled crop/mask task, not a claim about a real damaged
+      fragment.
+  parameters:
+    source: initial_sample_dataset_resolved
+    mask_family: rectangular
+    generator_version: artificial_fragment_generator_v0_1
+- task_id: af_fp_02_clean_simple_irregular
+  generation_version: artificial_fragment_generator_v0_1
+  source_sample_id: fp_02_clean_simple
+  source_category: clean_simple
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/kba/Wett0004/9r
+  source_local_path: autocomplete-test-dataset/full_pages/fp_02_clean_simple/e-codices_kba-Wett0004_009r_max.jpg
+  source_db_ids:
+    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
+    manuscript_id: f7cc5f80-7661-4a6e-aed3-46c267cfe189
+    canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+    image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+  source_metadata:
+    purpose: Simple full-page baseline for segmentation and artificial-fragment generation.
+    iiif_manifest_url: null
+    iiif_image_service_url: null
+    iiif_resolution_status: not_attempted
+  hsp_normalized_metadata: {}
+  rights_review_status: pending_review
+  access_level: internal
+  mask_family: irregular
+  random_seed: 141396814113701
+  split_name: demo
+  fragment_path: outputs/artificial_fragments/fragments/af_fp_02_clean_simple_irregular.png
+  mask_path: outputs/artificial_fragments/masks/af_fp_02_clean_simple_irregular_mask.png
+  crop_transform:
+    type: source_page_crop
+    bbox_xywh_px:
+    - 1483
+    - 1258
+    - 2542
+    - 3171
+    rotation_degrees: 0
+    scale: 1
+  ground_truth_placement:
+    source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+    source_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+    source_page_width_px: 6132
+    source_page_height_px: 8176
+    bbox_xyxy_px:
+    - 1483
+    - 1258
+    - 4025
+    - 4429
+    placement_is_known: true
+  degradation_profile:
+    profile: none
+    note: The output is a controlled crop/mask task, not a claim about a real damaged
+      fragment.
+  parameters:
+    source: initial_sample_dataset_resolved
+    mask_family: irregular
+    generator_version: artificial_fragment_generator_v0_1
+- task_id: af_fp_03_complex_layout_rectangular
+  generation_version: artificial_fragment_generator_v0_1
+  source_sample_id: fp_03_complex_layout
+  source_category: complex_layout
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/csg/0059/2
+  source_local_path: autocomplete-test-dataset/full_pages/fp_03_complex_layout/e-codices_csg-0059_0002_max.jpg
+  source_db_ids:
+    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
+    manuscript_id: 075f21ea-ae80-41d4-862c-7a40a8bd27a0
+    canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+    image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+  source_metadata:
+    purpose: Complex page for testing glosses, initials, music, illustration, or multi-zone
+      layout.
+    iiif_manifest_url: null
+    iiif_image_service_url: null
+    iiif_resolution_status: not_attempted
+  hsp_normalized_metadata: {}
+  rights_review_status: pending_review
+  access_level: internal
+  mask_family: rectangular
+  random_seed: 72214225611549
+  split_name: demo
+  fragment_path: outputs/artificial_fragments/fragments/af_fp_03_complex_layout_rectangular.png
+  mask_path: outputs/artificial_fragments/masks/af_fp_03_complex_layout_rectangular_mask.png
+  crop_transform:
+    type: source_page_crop
+    bbox_xywh_px:
+    - 3368
+    - 2727
+    - 2189
+    - 3135
+    rotation_degrees: 0
+    scale: 1
+  ground_truth_placement:
+    source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+    source_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+    source_page_width_px: 6132
+    source_page_height_px: 8176
+    bbox_xyxy_px:
+    - 3368
+    - 2727
+    - 5557
+    - 5862
+    placement_is_known: true
+  degradation_profile:
+    profile: none
+    note: The output is a controlled crop/mask task, not a claim about a real damaged
+      fragment.
+  parameters:
+    source: initial_sample_dataset_resolved
+    mask_family: rectangular
+    generator_version: artificial_fragment_generator_v0_1
+- task_id: af_fp_03_complex_layout_irregular
+  generation_version: artificial_fragment_generator_v0_1
+  source_sample_id: fp_03_complex_layout
+  source_category: complex_layout
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/csg/0059/2
+  source_local_path: autocomplete-test-dataset/full_pages/fp_03_complex_layout/e-codices_csg-0059_0002_max.jpg
+  source_db_ids:
+    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
+    manuscript_id: 075f21ea-ae80-41d4-862c-7a40a8bd27a0
+    canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+    image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+  source_metadata:
+    purpose: Complex page for testing glosses, initials, music, illustration, or multi-zone
+      layout.
+    iiif_manifest_url: null
+    iiif_image_service_url: null
+    iiif_resolution_status: not_attempted
+  hsp_normalized_metadata: {}
+  rights_review_status: pending_review
+  access_level: internal
+  mask_family: irregular
+  random_seed: 74036944232695
+  split_name: demo
+  fragment_path: outputs/artificial_fragments/fragments/af_fp_03_complex_layout_irregular.png
+  mask_path: outputs/artificial_fragments/masks/af_fp_03_complex_layout_irregular_mask.png
+  crop_transform:
+    type: source_page_crop
+    bbox_xywh_px:
+    - 702
+    - 1665
+    - 2346
+    - 3223
+    rotation_degrees: 0
+    scale: 1
+  ground_truth_placement:
+    source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+    source_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+    source_page_width_px: 6132
+    source_page_height_px: 8176
+    bbox_xyxy_px:
+    - 702
+    - 1665
+    - 3048
+    - 4888
+    placement_is_known: true
+  degradation_profile:
+    profile: none
+    note: The output is a controlled crop/mask task, not a claim about a real damaged
+      fragment.
+  parameters:
+    source: initial_sample_dataset_resolved
+    mask_family: irregular
+    generator_version: artificial_fragment_generator_v0_1
+- task_id: af_fp_04_complex_layout_rectangular
+  generation_version: artificial_fragment_generator_v0_1
+  source_sample_id: fp_04_complex_layout
+  source_category: complex_layout
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/ubb/F-IX-0068/2r
+  source_local_path: autocomplete-test-dataset/full_pages/fp_04_complex_layout/e-codices_ubb-F-IX-0068_0002r_max.jpg
+  source_db_ids:
+    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
+    manuscript_id: 12716d22-3e4e-4d6f-9b75-a790b52c7c21
+    canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+    image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+  source_metadata:
+    purpose: Complex page for testing glosses, initials, music, illustration, or multi-column
+      layout.
+    iiif_manifest_url: null
+    iiif_image_service_url: null
+    iiif_resolution_status: not_attempted
+  hsp_normalized_metadata: {}
+  rights_review_status: pending_review
+  access_level: internal
+  mask_family: rectangular
+  random_seed: 246017148492394
+  split_name: demo
+  fragment_path: outputs/artificial_fragments/fragments/af_fp_04_complex_layout_rectangular.png
+  mask_path: outputs/artificial_fragments/masks/af_fp_04_complex_layout_rectangular_mask.png
+  crop_transform:
+    type: source_page_crop
+    bbox_xywh_px:
+    - 103
+    - 344
+    - 1468
+    - 1727
+    rotation_degrees: 0
+    scale: 1
+  ground_truth_placement:
+    source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+    source_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+    source_page_width_px: 3210
+    source_page_height_px: 4891
+    bbox_xyxy_px:
+    - 103
+    - 344
+    - 1571
+    - 2071
+    placement_is_known: true
+  degradation_profile:
+    profile: none
+    note: The output is a controlled crop/mask task, not a claim about a real damaged
+      fragment.
+  parameters:
+    source: initial_sample_dataset_resolved
+    mask_family: rectangular
+    generator_version: artificial_fragment_generator_v0_1
+- task_id: af_fp_04_complex_layout_irregular
+  generation_version: artificial_fragment_generator_v0_1
+  source_sample_id: fp_04_complex_layout
+  source_category: complex_layout
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/ubb/F-IX-0068/2r
+  source_local_path: autocomplete-test-dataset/full_pages/fp_04_complex_layout/e-codices_ubb-F-IX-0068_0002r_max.jpg
+  source_db_ids:
+    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
+    manuscript_id: 12716d22-3e4e-4d6f-9b75-a790b52c7c21
+    canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+    image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+  source_metadata:
+    purpose: Complex page for testing glosses, initials, music, illustration, or multi-column
+      layout.
+    iiif_manifest_url: null
+    iiif_image_service_url: null
+    iiif_resolution_status: not_attempted
+  hsp_normalized_metadata: {}
+  rights_review_status: pending_review
+  access_level: internal
+  mask_family: irregular
+  random_seed: 193457427727761
+  split_name: demo
+  fragment_path: outputs/artificial_fragments/fragments/af_fp_04_complex_layout_irregular.png
+  mask_path: outputs/artificial_fragments/masks/af_fp_04_complex_layout_irregular_mask.png
+  crop_transform:
+    type: source_page_crop
+    bbox_xywh_px:
+    - 1766
+    - 2364
+    - 1402
+    - 2320
+    rotation_degrees: 0
+    scale: 1
+  ground_truth_placement:
+    source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+    source_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+    source_page_width_px: 3210
+    source_page_height_px: 4891
+    bbox_xyxy_px:
+    - 1766
+    - 2364
+    - 3168
+    - 4684
+    placement_is_known: true
+  degradation_profile:
+    profile: none
+    note: The output is a controlled crop/mask task, not a claim about a real damaged
+      fragment.
+  parameters:
+    source: initial_sample_dataset_resolved
+    mask_family: irregular
+    generator_version: artificial_fragment_generator_v0_1
+- task_id: af_fp_05_iiif_rights_rectangular
+  generation_version: artificial_fragment_generator_v0_1
+  source_sample_id: fp_05_iiif_rights
+  source_category: iiif_rights_metadata
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/csg/0314/3
+  source_local_path: autocomplete-test-dataset/full_pages/fp_05_iiif_rights/e-codices_csg-0314_0003_max.jpg
+  source_db_ids:
+    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
+    manuscript_id: d7e8ded7-5016-49ac-8b0a-5c0e450a578f
+    canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+    image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+  source_metadata:
+    purpose: Validate IIIF manifest extraction, image service extraction, rights metadata,
+      and attribution.
+    iiif_manifest_url: null
+    iiif_image_service_url: null
+    iiif_resolution_status: not_attempted
+  hsp_normalized_metadata: {}
+  rights_review_status: pending_review
+  access_level: internal
+  mask_family: rectangular
+  random_seed: 75332990063857
+  split_name: demo
+  fragment_path: outputs/artificial_fragments/fragments/af_fp_05_iiif_rights_rectangular.png
+  mask_path: outputs/artificial_fragments/masks/af_fp_05_iiif_rights_rectangular_mask.png
+  crop_transform:
+    type: source_page_crop
+    bbox_xywh_px:
+    - 1210
+    - 1512
+    - 2064
+    - 2852
+    rotation_degrees: 0
+    scale: 1
+  ground_truth_placement:
+    source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+    source_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+    source_page_width_px: 6132
+    source_page_height_px: 8176
+    bbox_xyxy_px:
+    - 1210
+    - 1512
+    - 3274
+    - 4364
+    placement_is_known: true
+  degradation_profile:
+    profile: none
+    note: The output is a controlled crop/mask task, not a claim about a real damaged
+      fragment.
+  parameters:
+    source: initial_sample_dataset_resolved
+    mask_family: rectangular
+    generator_version: artificial_fragment_generator_v0_1
+- task_id: af_fp_05_iiif_rights_irregular
+  generation_version: artificial_fragment_generator_v0_1
+  source_sample_id: fp_05_iiif_rights
+  source_category: iiif_rights_metadata
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/en/csg/0314/3
+  source_local_path: autocomplete-test-dataset/full_pages/fp_05_iiif_rights/e-codices_csg-0314_0003_max.jpg
+  source_db_ids:
+    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
+    manuscript_id: d7e8ded7-5016-49ac-8b0a-5c0e450a578f
+    canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+    image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+  source_metadata:
+    purpose: Validate IIIF manifest extraction, image service extraction, rights metadata,
+      and attribution.
+    iiif_manifest_url: null
+    iiif_image_service_url: null
+    iiif_resolution_status: not_attempted
+  hsp_normalized_metadata: {}
+  rights_review_status: pending_review
+  access_level: internal
+  mask_family: irregular
+  random_seed: 181756107986379
+  split_name: demo
+  fragment_path: outputs/artificial_fragments/fragments/af_fp_05_iiif_rights_irregular.png
+  mask_path: outputs/artificial_fragments/masks/af_fp_05_iiif_rights_irregular_mask.png
+  crop_transform:
+    type: source_page_crop
+    bbox_xywh_px:
+    - 370
+    - 1843
+    - 2598
+    - 2927
+    rotation_degrees: 0
+    scale: 1
+  ground_truth_placement:
+    source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+    source_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+    source_page_width_px: 6132
+    source_page_height_px: 8176
+    bbox_xyxy_px:
+    - 370
+    - 1843
+    - 2968
+    - 4770
+    placement_is_known: true
+  degradation_profile:
+    profile: none
+    note: The output is a controlled crop/mask task, not a claim about a real damaged
+      fragment.
+  parameters:
+    source: initial_sample_dataset_resolved
+    mask_family: irregular
+    generator_version: artificial_fragment_generator_v0_1

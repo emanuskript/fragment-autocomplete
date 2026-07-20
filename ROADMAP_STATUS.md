@@ -1,6 +1,6 @@
 # ROADMAP_STATUS
 
-Last updated: 2026-06-10. The Python ingestion, script, and test modules now have explicit module-level documentation, and verified dead imports/generated cache artifacts were removed as part of repository hygiene.
+Last updated: 2026-07-20. The artificial fragment generator now creates local rectangular and irregular crop/mask tasks for the five registered full-page samples and records ground-truth placement metadata for later database storage.
 
 | Area | Expected status after 1.5 months | Concrete definition of done | Current status | Evidence / files | Next action |
 | --- | --- | --- | --- | --- | --- |
@@ -19,7 +19,7 @@ Last updated: 2026-06-10. The Python ingestion, script, and test modules now hav
 | Full pilot segmentation | Next | The 10 registered pilot samples are segmented, stored in PostgreSQL/PostGIS, and visible in the local viewer. | Done | data/metadata/segmentation_pilot_inputs.yaml, data/metadata/segmentation_pilot_results.yaml, data/metadata/segmentation_pilot_storage_results.yaml, docs/11_full_pilot_segmentation_report.md, scripts/run_segmentation_pilot.py, scripts/store_segmentation_pilot_outputs.py | Use the pilot outputs to guide artificial fragment generation. |
 | 20-30 use-case selection | In progress | Representative fragments/use cases selected for first evaluation cycle. | Not started | None | Coordinate with Anna/Jeremy to select representative fragments. |
 | Evaluation criteria draft | In progress | Metrics and expert-review dimensions initially described. | In progress | docs/01_architecture_overview.md evaluation section, docs/02_database_plan.md | Create detailed evaluation rubric and metrics document. |
-| Artificial fragment generator | Next | Prototype creates controlled synthetic fragment tasks from complete pages and preserves source/normalized metadata for evaluation. | Next | docs/02_database_plan.md artificial-fragment schema section | Build the artificial fragment generator for complete-page samples. |
+| Artificial fragment generator | Next | Prototype creates controlled synthetic fragment tasks from complete pages and preserves source/normalized metadata for evaluation. | Done | scripts/generate_artificial_fragments.py, scripts/validate_artificial_fragments.sh, src/evaluation/artificial_fragments.py, data/metadata/artificial_fragment_generation_results.yaml, docs/13_artificial_fragment_generator_report.md, tests/evaluation/test_artificial_fragments.py | Add PostgreSQL storage for generated artificial-fragment task metadata. |
 | Minimal UI viewer | Backlog | Minimal local viewer can display sample images, overlays, and metadata for inspection. | Done | scripts/view_segmentation_results.py, scripts/run_segmentation_viewer.sh, scripts/validate_segmentation_viewer_data.py, docs/10_minimal_segmentation_viewer.md | Keep it aligned with stored segmentation outputs. |
 | Reconstruction MVP | Backlog | Layout-first page geometry and placement workflow exists for controlled fragment/page experiments. | Not started | None | Revisit after artificial fragment generation groundwork exists. |
 | Retrieval | Backlog | Retrieval of analogous pages/templates exists for candidate comparison. | Not started | None | Revisit after reconstruction MVP prerequisites exist. |

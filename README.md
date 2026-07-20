@@ -328,6 +328,24 @@ bash scripts/run_segmentation_viewer.sh
 
 Pilot outputs are stored in PostgreSQL/PostGIS and can be inspected in the local read-only viewer. Artificial fragment generation, reconstruction, retrieval, MSI workflows, and CoMMA ingestion remain separate later steps.
 
+## Artificial fragment generation
+
+Generate controlled artificial fragment tasks from the five registered full-page samples:
+
+```bash
+python3 scripts/generate_artificial_fragments.py --verbose
+```
+
+Validate the generated local outputs and metadata:
+
+```bash
+bash scripts/validate_artificial_fragments.sh
+```
+
+The generator writes local PNG fragments and masks under `outputs/artificial_fragments/` and a small metadata manifest at `data/metadata/artificial_fragment_generation_results.yaml`. The generated images and masks are local outputs and should not be committed. The metadata records exact crop transforms, random seeds, source database identifiers, rights/access status, and known ground-truth placement for later `artificial_fragment_task` database storage.
+
+This step creates controlled evaluation tasks only. It does not train a model, run reconstruction, infer missing manuscript content, or claim that generated fragments are historical evidence.
+
 ## Next Task
 
-Build the artificial fragment generator for complete-page samples.
+Add PostgreSQL storage for generated artificial-fragment task metadata.
