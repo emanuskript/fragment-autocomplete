@@ -109,6 +109,7 @@ required_files=(
   "src/ingestion/iiif_normalizer.py"
   "src/ingestion/iiif_ingest.py"
   "src/evaluation/artificial_fragments.py"
+  "src/evaluation/layout_survival.py"
   "tests/ingestion/fixtures/iiif_v2_minimal_manifest.json"
   "tests/ingestion/fixtures/iiif_v3_minimal_manifest.json"
   "tests/ingestion/test_iiif_normalizer.py"

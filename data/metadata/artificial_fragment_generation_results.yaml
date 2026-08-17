@@ -1,550 +1,4884 @@
-generated_at: '2026-07-20T13:25:47+00:00'
-generation_version: artificial_fragment_generator_v0_1
+generated_at: '2026-08-17T12:48:16+00:00'
+generation_version: artificial_fragment_generator_v0_1_1
 status: generated
+run_mode: pilot
 dataset_id: initial_sample_dataset_v0_1
 source_resolved_dataset: data/metadata/initial_sample_dataset_resolved.yaml
+segmentation_results: data/metadata/segmentation_pilot_results.yaml
+segmentation_storage_results: data/metadata/segmentation_pilot_storage_results.yaml
 source_full_page_count: 5
-generated_task_count: 10
+core_pilot_task_count: 20
+transformation_sanity_task_count: 3
+generated_task_count: 23
 mask_families:
 - rectangular
 - irregular
-base_seed: 20260720
-output_dir: outputs/artificial_fragments
+core_severities:
+- 0.3
+- 0.6
+base_seed: 20260817
+output_dir: outputs/artificial_fragments/v0_1_1
 database_write: false
-tasks:
-- task_id: af_fp_01_clean_simple_rectangular
-  generation_version: artificial_fragment_generator_v0_1
+scientific_roles:
+  generated_fragment: observed_evidence
+  complete_source_page: hidden_ground_truth
+  contains_inferred_or_reconstructed_content: false
+metadata_storage_note: This committed manifest is a compact index. Full per-region
+  metadata is stored in the checksummed per-task JSON referenced by each task.
+core_pilot_tasks:
+- task_id: af_fp_01_clean_simple_rectangular_s030
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: e56253231492aa71b888abb79574b1c0b4dad4af9dd9611e1036ee13045dc0ec
   source_sample_id: fp_01_clean_simple
-  source_category: clean_simple
-  source: e-codices
-  source_url: https://www.e-codices.unifr.ch/en/csg/0300/5/0/
-  source_local_path: autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg
-  source_db_ids:
-    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
-    manuscript_id: 8494d13c-1faf-4744-8396-13f8928fa96f
-    canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
-    image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
-  source_metadata:
-    purpose: Simple full-page baseline for segmentation and artificial-fragment generation.
-    iiif_manifest_url: null
-    iiif_image_service_url: null
-    iiif_resolution_status: not_attempted
-  hsp_normalized_metadata: {}
-  rights_review_status: pending_review
-  access_level: internal
+  source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+  source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+  source_path: autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg
+  source_sha256: 8ae2d716a0ef69b137fd19e95b65a3131cd1ce78f94e416d731674c86b069d92
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 4936
+  - 7110
   mask_family: rectangular
-  random_seed: 198946019070926
-  split_name: demo
-  fragment_path: outputs/artificial_fragments/fragments/af_fp_01_clean_simple_rectangular.png
-  mask_path: outputs/artificial_fragments/masks/af_fp_01_clean_simple_rectangular_mask.png
+  random_seed: 221572160481769458
+  requested_severity: 0.3
+  measured_severity: 0.2999940641
+  surviving_fraction: 0.7000059359
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_01_clean_simple_rectangular_s030.png
+      sha256: a2bf0c134d1fd36b7ae11e6a0813e6f441c82928a3c97c25bf5c5f57f374a5de
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 4936
+      - 7110
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_01_clean_simple_rectangular_s030_observed_survival.png
+      sha256: 1dc6f160bfa89cf357c85fb3d374a7fb339ce6f56f02e8b3f9e5cd0b34be24d1
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 4936
+      - 7110
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_01_clean_simple_rectangular_s030_survival.png
+      sha256: 2f0e8ccbeda27cf7ec9a5a11a0fed644c32a456c3b53ccea18b87baf1f7346d3
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_01_clean_simple_rectangular_s030_damage.png
+      sha256: 507e2cbc4384a982b3e7d5ad362324eb9836a013e3e168e0ac71e439a24bf310
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_rectangular_s030.json
+      sha256: c9f9553ba2730dff0bc88795e734c9ef6b083eecdd879c3943b244ebbb9f4c04
+      coordinate_space: not_applicable
   crop_transform:
-    type: source_page_crop
-    bbox_xywh_px:
-    - 71
-    - 4270
-    - 2307
-    - 3007
-    rotation_degrees: 0
-    scale: 1
+    source_bbox_xyxy_px:
+    - 1190
+    - 380
+    - 6126
+    - 7490
+    source_bbox_xywh_px:
+    - 1190
+    - 380
+    - 4936
+    - 7110
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -1190.0
+    - - 0.0
+      - 1.0
+      - -380.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 1190.0
+    - - -0.0
+      - 1.0
+      - 380.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 4936
+    - 7110
+    exported_dimensions_px:
+    - 4936
+    - 7110
   ground_truth_placement:
-    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
-    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
-    source_page_width_px: 6132
-    source_page_height_px: 8176
-    bbox_xyxy_px:
-    - 71
-    - 4270
-    - 2378
-    - 7277
+    coordinate_space: source_page
     placement_is_known: true
-  degradation_profile:
-    profile: none
-    note: The output is a controlled crop/mask task, not a claim about a real damaged
-      fragment.
-  parameters:
-    source: initial_sample_dataset_resolved
-    mask_family: rectangular
-    generator_version: artificial_fragment_generator_v0_1
-- task_id: af_fp_01_clean_simple_irregular
-  generation_version: artificial_fragment_generator_v0_1
-  source_sample_id: fp_01_clean_simple
-  source_category: clean_simple
-  source: e-codices
-  source_url: https://www.e-codices.unifr.ch/en/csg/0300/5/0/
-  source_local_path: autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg
-  source_db_ids:
-    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
-    manuscript_id: 8494d13c-1faf-4744-8396-13f8928fa96f
-    canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
-    image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
-  source_metadata:
-    purpose: Simple full-page baseline for segmentation and artificial-fragment generation.
-    iiif_manifest_url: null
-    iiif_image_service_url: null
-    iiif_resolution_status: not_attempted
-  hsp_normalized_metadata: {}
-  rights_review_status: pending_review
-  access_level: internal
-  mask_family: irregular
-  random_seed: 19728602913883
-  split_name: demo
-  fragment_path: outputs/artificial_fragments/fragments/af_fp_01_clean_simple_irregular.png
-  mask_path: outputs/artificial_fragments/masks/af_fp_01_clean_simple_irregular_mask.png
-  crop_transform:
-    type: source_page_crop
-    bbox_xywh_px:
-    - 686
-    - 4072
-    - 3458
-    - 3097
-    rotation_degrees: 0
-    scale: 1
-  ground_truth_placement:
     source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
     source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
-    source_page_width_px: 6132
-    source_page_height_px: 8176
-    bbox_xyxy_px:
-    - 686
-    - 4072
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 1190
+      - 380
+    - - 6126
+      - 380
+    - - 6126
+      - 7490
+    - - 1190
+      - 7490
+    source_bbox_xyxy_px:
+    - 1190
+    - 380
+    - 6126
+    - 7490
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_01_clean_simple_rectangular_s030_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_01_clean_simple_rectangular_s030_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_01_clean_simple
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_01_clean_simple.json
+      db_segmentation_run_id: fedab93c-093f-4f47-a73f-512b3d434a13
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 102
+      completely_visible_count: 59
+      partially_visible_count: 43
+      completely_lost_count: 0
+      labels_completely_lost: []
+      labels_with_completely_lost_regions: []
+      surviving_fractions_by_label:
+        Main script black:
+          region_count: 101
+          original_rasterized_area_px: 24187998
+          surviving_area_px: 20221174
+          area_weighted_surviving_fraction: 0.83600032
+          completely_lost_region_count: 0
+        Plain initial - Black:
+          region_count: 1
+          original_rasterized_area_px: 23552
+          surviving_area_px: 23552
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_rectangular_s030.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_01_clean_simple_rectangular_s030_survival.png
+    mask_family: rectangular
+    random_seed: 221572160481769458
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_01_clean_simple_rectangular_s060
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: 1b6fb84326cfb9bf73e4a47c34d4c99b26d8e7356054c379f64a7a169f9346f7
+  source_sample_id: fp_01_clean_simple
+  source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+  source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+  source_path: autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg
+  source_sha256: 8ae2d716a0ef69b137fd19e95b65a3131cd1ce78f94e416d731674c86b069d92
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 3716
+  - 5397
+  mask_family: rectangular
+  random_seed: 1113912352797676944
+  requested_severity: 0.6
+  measured_severity: 0.5999768785
+  surviving_fraction: 0.4000231215
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_01_clean_simple_rectangular_s060.png
+      sha256: e0e40cf7055a38ee60bbc8c9a4b2198047040ba6a9bad19bf09503650a5bf554
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 3716
+      - 5397
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_01_clean_simple_rectangular_s060_observed_survival.png
+      sha256: 22840fea9e2c4d10563c20e833d156fabece4e59fe49053f9347f3e69abf64fc
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 3716
+      - 5397
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_01_clean_simple_rectangular_s060_survival.png
+      sha256: 489d80ee4b38171329d957c80a0d4fd05add2126577490e79f8c5bf4cf4aa8cf
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_01_clean_simple_rectangular_s060_damage.png
+      sha256: 55f1eae325c4decaecb79ac39e3a0a3c8ee2d49972fba667db11847ddbc68aea
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_rectangular_s060.json
+      sha256: 4c135306c938bea929f8252b89c5e84cb77dea1d775480f8c8352a39822d80b2
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 2332
+    - 1451
+    - 6048
+    - 6848
+    source_bbox_xywh_px:
+    - 2332
+    - 1451
+    - 3716
+    - 5397
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -2332.0
+    - - 0.0
+      - 1.0
+      - -1451.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 2332.0
+    - - -0.0
+      - 1.0
+      - 1451.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 3716
+    - 5397
+    exported_dimensions_px:
+    - 3716
+    - 5397
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 2332
+      - 1451
+    - - 6048
+      - 1451
+    - - 6048
+      - 6848
+    - - 2332
+      - 6848
+    source_bbox_xyxy_px:
+    - 2332
+    - 1451
+    - 6048
+    - 6848
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_01_clean_simple_rectangular_s060_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_01_clean_simple_rectangular_s060_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_01_clean_simple
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_01_clean_simple.json
+      db_segmentation_run_id: fedab93c-093f-4f47-a73f-512b3d434a13
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 102
+      completely_visible_count: 5
+      partially_visible_count: 44
+      completely_lost_count: 53
+      labels_completely_lost: []
+      labels_with_completely_lost_regions:
+      - Main script black
+      surviving_fractions_by_label:
+        Main script black:
+          region_count: 101
+          original_rasterized_area_px: 24187998
+          surviving_area_px: 11209827
+          area_weighted_surviving_fraction: 0.46344584
+          completely_lost_region_count: 53
+        Plain initial - Black:
+          region_count: 1
+          original_rasterized_area_px: 23552
+          surviving_area_px: 23552
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_rectangular_s060.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_01_clean_simple_rectangular_s060_survival.png
+    mask_family: rectangular
+    random_seed: 1113912352797676944
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_01_clean_simple_irregular_s030
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: 1aac4df4cf96ad20177828cb2609473225465bdaeee920be78db13755d04548d
+  source_sample_id: fp_01_clean_simple
+  source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+  source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+  source_path: autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg
+  source_sha256: 8ae2d716a0ef69b137fd19e95b65a3131cd1ce78f94e416d731674c86b069d92
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 5401
+  - 7042
+  mask_family: irregular
+  random_seed: 994231466795578815
+  requested_severity: 0.3
+  measured_severity: 0.2999660997
+  surviving_fraction: 0.7000339003
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_01_clean_simple_irregular_s030.png
+      sha256: e52dbf2fd03325ea1530d1f53f5e9491cff85ea0a97630f8b1694790f55f4e33
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5401
+      - 7042
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_01_clean_simple_irregular_s030_observed_survival.png
+      sha256: d67e25abc0b492b445a5bf5d6a30a6a02e9dd0ae38076fff64ee0e69530cadfb
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5401
+      - 7042
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_01_clean_simple_irregular_s030_survival.png
+      sha256: 30c2eff093d5413af3de3a707ba77cb585c9ebf76a13e7ce4844957b0adedee2
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_01_clean_simple_irregular_s030_damage.png
+      sha256: 9965bc30a16702e1b9e469c90c6e15a4f23783ae60f215c4d94cd985b01014ef
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_irregular_s030.json
+      sha256: 27e9d1debcca5e3adbd12d619cc210117c1f5d7fbdbf53a5d3caef2496417908
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 418
+    - 983
+    - 5819
+    - 8025
+    source_bbox_xywh_px:
+    - 418
+    - 983
+    - 5401
+    - 7042
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -418.0
+    - - 0.0
+      - 1.0
+      - -983.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 418.0
+    - - -0.0
+      - 1.0
+      - 983.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 5401
+    - 7042
+    exported_dimensions_px:
+    - 5401
+    - 7042
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 418
+      - 1010
+    - - 1318
+      - 1114
+    - - 2218
+      - 1008
+    - - 3118
+      - 1151
+    - - 4018
+      - 983
+    - - 4918
+      - 1209
+    - - 5818
+      - 1064
+    - - 5538
+      - 2024
+    - - 5779
+      - 3224
+    - - 5691
+      - 4424
+    - - 5762
+      - 5624
+    - - 5572
+      - 6824
+    - - 5629
+      - 8024
+    - - 4918
+      - 7740
+    - - 4018
+      - 7754
+    - - 3118
+      - 8018
+    - - 2218
+      - 7921
+    - - 1318
+      - 7669
+    - - 418
+      - 7929
+    - - 452
+      - 6824
+    - - 444
+      - 5624
+    - - 438
+      - 4424
+    - - 706
+      - 3224
+    - - 454
+      - 2024
+    source_bbox_xyxy_px:
+    - 418
+    - 983
+    - 5819
+    - 8025
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_01_clean_simple_irregular_s030_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_01_clean_simple_irregular_s030_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_01_clean_simple
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_01_clean_simple.json
+      db_segmentation_run_id: fedab93c-093f-4f47-a73f-512b3d434a13
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 102
+      completely_visible_count: 77
+      partially_visible_count: 18
+      completely_lost_count: 7
+      labels_completely_lost: []
+      labels_with_completely_lost_regions:
+      - Main script black
+      surviving_fractions_by_label:
+        Main script black:
+          region_count: 101
+          original_rasterized_area_px: 24187998
+          surviving_area_px: 21608105
+          area_weighted_surviving_fraction: 0.89333995
+          completely_lost_region_count: 7
+        Plain initial - Black:
+          region_count: 1
+          original_rasterized_area_px: 23552
+          surviving_area_px: 23552
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_irregular_s030.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_01_clean_simple_irregular_s030_survival.png
+    mask_family: irregular
+    random_seed: 994231466795578815
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_01_clean_simple_irregular_s060
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: 8d78ca77a0e576e210b58f9051742f8f61e69829acf7e98591d2ecf9668dfa69
+  source_sample_id: fp_01_clean_simple
+  source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+  source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+  source_path: autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg
+  source_sha256: 8ae2d716a0ef69b137fd19e95b65a3131cd1ce78f94e416d731674c86b069d92
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 4054
+  - 5336
+  mask_family: irregular
+  random_seed: 415643423173980951
+  requested_severity: 0.6
+  measured_severity: 0.5999938327
+  surviving_fraction: 0.4000061673
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_01_clean_simple_irregular_s060.png
+      sha256: f6c0bb1675ff39dbbb7bc052a92f8a31f1dc5c500b23d9fbfccca844f18afdce
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 4054
+      - 5336
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_01_clean_simple_irregular_s060_observed_survival.png
+      sha256: ac133550747ba26fb6e8545687d220675a15ede39abe83c3378533613903b871
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 4054
+      - 5336
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_01_clean_simple_irregular_s060_survival.png
+      sha256: 8ba8383fb2ccd4049b8bf7cd616eb3f25f9f07aa90584fe2f75cb9d83697695c
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_01_clean_simple_irregular_s060_damage.png
+      sha256: 2272a25f94f7cd556b29e14705a89ca4b2f5e486674917a9795a73381c0d555d
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_irregular_s060.json
+      sha256: 53d9acef2049f1355cfe8f784bbdd0d1f790e9e453a3e602c29ba8bc4ab47ad6
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 758
+    - 2704
+    - 4812
+    - 8040
+    source_bbox_xywh_px:
+    - 758
+    - 2704
+    - 4054
+    - 5336
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -758.0
+    - - 0.0
+      - 1.0
+      - -2704.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 758.0
+    - - -0.0
+      - 1.0
+      - 2704.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 4054
+    - 5336
+    exported_dimensions_px:
+    - 4054
+    - 5336
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 758
+      - 2862
+    - - 1434
+      - 2783
+    - - 2109
+      - 2891
+    - - 2785
+      - 2704
+    - - 3460
+      - 2758
+    - - 4136
+      - 2758
+    - - 4811
+      - 2865
+    - - 4722
+      - 3536
+    - - 4748
+      - 4437
+    - - 4684
+      - 5338
+    - - 4604
+      - 6238
+    - - 4774
+      - 7139
+    - - 4734
+      - 8039
+    - - 4136
+      - 7885
+    - - 3460
+      - 8007
+    - - 2785
+      - 7984
+    - - 2109
+      - 7970
+    - - 1434
+      - 8034
+    - - 758
+      - 7831
+    - - 918
+      - 7139
+    - - 930
+      - 6238
+    - - 807
+      - 5338
+    - - 861
+      - 4437
+    - - 786
+      - 3536
+    source_bbox_xyxy_px:
+    - 758
+    - 2704
+    - 4812
+    - 8040
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_01_clean_simple_irregular_s060_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_01_clean_simple_irregular_s060_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_01_clean_simple
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_01_clean_simple.json
+      db_segmentation_run_id: fedab93c-093f-4f47-a73f-512b3d434a13
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 102
+      completely_visible_count: 35
+      partially_visible_count: 29
+      completely_lost_count: 38
+      labels_completely_lost: []
+      labels_with_completely_lost_regions:
+      - Main script black
+      surviving_fractions_by_label:
+        Main script black:
+          region_count: 101
+          original_rasterized_area_px: 24187998
+          surviving_area_px: 13026377
+          area_weighted_surviving_fraction: 0.53854713
+          completely_lost_region_count: 38
+        Plain initial - Black:
+          region_count: 1
+          original_rasterized_area_px: 23552
+          surviving_area_px: 23552
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_irregular_s060.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_01_clean_simple_irregular_s060_survival.png
+    mask_family: irregular
+    random_seed: 415643423173980951
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_02_clean_simple_rectangular_s030
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: 3cf8d7ab97214f2b9208fe8e8115e53e6db5e0fca99026192b61ba1e54d2d7f9
+  source_sample_id: fp_02_clean_simple
+  source_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+  source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+  source_path: autocomplete-test-dataset/full_pages/fp_02_clean_simple/e-codices_kba-Wett0004_009r_max.jpg
+  source_sha256: bac4a3055c85ca8cabdad7c4f7c458e720a8bd79a3f0f0285f5e8f584269de08
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 5463
+  - 6425
+  mask_family: rectangular
+  random_seed: 207336905320781836
+  requested_severity: 0.3
+  measured_severity: 0.2998980238
+  surviving_fraction: 0.7001019762
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_02_clean_simple_rectangular_s030.png
+      sha256: df8e09a73c23e2a6fcc0ae8acc6f234565cb6f4b7009b808cb7197f314d8ff35
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5463
+      - 6425
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_02_clean_simple_rectangular_s030_observed_survival.png
+      sha256: a0ca12341842c7013e830dcfd824681cbfc81e838e050021aaf33130d6a23e29
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5463
+      - 6425
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_02_clean_simple_rectangular_s030_survival.png
+      sha256: f03ce36acb935cbf74ec95e64001767a540af966a4a822bdcf73a82843c7b1c5
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_02_clean_simple_rectangular_s030_damage.png
+      sha256: 27194cfcc99de81b463146dad3931760e365827782d2c0437408d109deb395a0
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_rectangular_s030.json
+      sha256: be229180e8ea2f532cc07e87344203dc219e50a80f2b3a76fd7575ea0a0a2e8e
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 577
+    - 1317
+    - 6040
+    - 7742
+    source_bbox_xywh_px:
+    - 577
+    - 1317
+    - 5463
+    - 6425
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -577.0
+    - - 0.0
+      - 1.0
+      - -1317.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 577.0
+    - - -0.0
+      - 1.0
+      - 1317.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 5463
+    - 6425
+    exported_dimensions_px:
+    - 5463
+    - 6425
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+    source_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 577
+      - 1317
+    - - 6040
+      - 1317
+    - - 6040
+      - 7742
+    - - 577
+      - 7742
+    source_bbox_xyxy_px:
+    - 577
+    - 1317
+    - 6040
+    - 7742
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_02_clean_simple_rectangular_s030_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_02_clean_simple_rectangular_s030_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_02_clean_simple
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_02_clean_simple.json
+      db_segmentation_run_id: e46db11e-89c2-4f6a-a7da-f18f5d94c5ba
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 31
+      completely_visible_count: 28
+      partially_visible_count: 1
+      completely_lost_count: 2
+      labels_completely_lost: []
+      labels_with_completely_lost_regions:
+      - Main script black
+      surviving_fractions_by_label:
+        Main script black:
+          region_count: 31
+          original_rasterized_area_px: 27631927
+          surviving_area_px: 25101028
+          area_weighted_surviving_fraction: 0.90840671
+          completely_lost_region_count: 2
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_rectangular_s030.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+    source_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_02_clean_simple_rectangular_s030_survival.png
+    mask_family: rectangular
+    random_seed: 207336905320781836
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_02_clean_simple_rectangular_s060
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: 1de24602c93619007e77065d3613e5507cd70c07dead61f679f8938118a279a9
+  source_sample_id: fp_02_clean_simple
+  source_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+  source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+  source_path: autocomplete-test-dataset/full_pages/fp_02_clean_simple/e-codices_kba-Wett0004_009r_max.jpg
+  source_sha256: bac4a3055c85ca8cabdad7c4f7c458e720a8bd79a3f0f0285f5e8f584269de08
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 4144
+  - 4840
+  mask_family: rectangular
+  random_seed: 480472343517003485
+  requested_severity: 0.6
+  measured_severity: 0.5999428107
+  surviving_fraction: 0.4000571893
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_02_clean_simple_rectangular_s060.png
+      sha256: d631910757d5d09fee413fd78ab3b8bc835167a0cd35538ca8c9b9f7341481fc
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 4144
+      - 4840
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_02_clean_simple_rectangular_s060_observed_survival.png
+      sha256: 0784d1ed954e8d5cdf39fee1e3808bf303ec01012edd727dcbf48335add66923
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 4144
+      - 4840
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_02_clean_simple_rectangular_s060_survival.png
+      sha256: 5549a78e400590d1bff97404bd97be37d99f2d07ba96d71803b8ce3f0037a3a5
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_02_clean_simple_rectangular_s060_damage.png
+      sha256: 35105eeaca81950181178216cba1d310be51e78a418ad940516a61b154c22988
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_rectangular_s060.json
+      sha256: 82ed3f73fcfc1107759cc70b19b409c5b7f2a45f81a3a7ec39befab6267141ab
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 1123
+    - 629
+    - 5267
+    - 5469
+    source_bbox_xywh_px:
+    - 1123
+    - 629
     - 4144
-    - 7169
-    placement_is_known: true
-  degradation_profile:
-    profile: none
-    note: The output is a controlled crop/mask task, not a claim about a real damaged
-      fragment.
-  parameters:
-    source: initial_sample_dataset_resolved
-    mask_family: irregular
-    generator_version: artificial_fragment_generator_v0_1
-- task_id: af_fp_02_clean_simple_rectangular
-  generation_version: artificial_fragment_generator_v0_1
-  source_sample_id: fp_02_clean_simple
-  source_category: clean_simple
-  source: e-codices
-  source_url: https://www.e-codices.unifr.ch/en/kba/Wett0004/9r
-  source_local_path: autocomplete-test-dataset/full_pages/fp_02_clean_simple/e-codices_kba-Wett0004_009r_max.jpg
-  source_db_ids:
-    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
-    manuscript_id: f7cc5f80-7661-4a6e-aed3-46c267cfe189
-    canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
-    image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
-  source_metadata:
-    purpose: Simple full-page baseline for segmentation and artificial-fragment generation.
-    iiif_manifest_url: null
-    iiif_image_service_url: null
-    iiif_resolution_status: not_attempted
-  hsp_normalized_metadata: {}
-  rights_review_status: pending_review
-  access_level: internal
-  mask_family: rectangular
-  random_seed: 54046460189988
-  split_name: demo
-  fragment_path: outputs/artificial_fragments/fragments/af_fp_02_clean_simple_rectangular.png
-  mask_path: outputs/artificial_fragments/masks/af_fp_02_clean_simple_rectangular_mask.png
-  crop_transform:
-    type: source_page_crop
-    bbox_xywh_px:
-    - 1325
-    - 3261
-    - 2734
-    - 3299
-    rotation_degrees: 0
-    scale: 1
+    - 4840
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -1123.0
+    - - 0.0
+      - 1.0
+      - -629.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 1123.0
+    - - -0.0
+      - 1.0
+      - 629.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 4144
+    - 4840
+    exported_dimensions_px:
+    - 4144
+    - 4840
   ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
     source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
     source_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
-    source_page_width_px: 6132
-    source_page_height_px: 8176
-    bbox_xyxy_px:
-    - 1325
-    - 3261
-    - 4059
-    - 6560
-    placement_is_known: true
-  degradation_profile:
-    profile: none
-    note: The output is a controlled crop/mask task, not a claim about a real damaged
-      fragment.
-  parameters:
-    source: initial_sample_dataset_resolved
-    mask_family: rectangular
-    generator_version: artificial_fragment_generator_v0_1
-- task_id: af_fp_02_clean_simple_irregular
-  generation_version: artificial_fragment_generator_v0_1
-  source_sample_id: fp_02_clean_simple
-  source_category: clean_simple
-  source: e-codices
-  source_url: https://www.e-codices.unifr.ch/en/kba/Wett0004/9r
-  source_local_path: autocomplete-test-dataset/full_pages/fp_02_clean_simple/e-codices_kba-Wett0004_009r_max.jpg
-  source_db_ids:
-    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
-    manuscript_id: f7cc5f80-7661-4a6e-aed3-46c267cfe189
-    canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
-    image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
-  source_metadata:
-    purpose: Simple full-page baseline for segmentation and artificial-fragment generation.
-    iiif_manifest_url: null
-    iiif_image_service_url: null
-    iiif_resolution_status: not_attempted
-  hsp_normalized_metadata: {}
-  rights_review_status: pending_review
-  access_level: internal
-  mask_family: irregular
-  random_seed: 141396814113701
-  split_name: demo
-  fragment_path: outputs/artificial_fragments/fragments/af_fp_02_clean_simple_irregular.png
-  mask_path: outputs/artificial_fragments/masks/af_fp_02_clean_simple_irregular_mask.png
-  crop_transform:
-    type: source_page_crop
-    bbox_xywh_px:
-    - 1483
-    - 1258
-    - 2542
-    - 3171
-    rotation_degrees: 0
-    scale: 1
-  ground_truth_placement:
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 1123
+      - 629
+    - - 5267
+      - 629
+    - - 5267
+      - 5469
+    - - 1123
+      - 5469
+    source_bbox_xyxy_px:
+    - 1123
+    - 629
+    - 5267
+    - 5469
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_02_clean_simple_rectangular_s060_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_02_clean_simple_rectangular_s060_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_02_clean_simple
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_02_clean_simple.json
+      db_segmentation_run_id: e46db11e-89c2-4f6a-a7da-f18f5d94c5ba
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 31
+      completely_visible_count: 0
+      partially_visible_count: 25
+      completely_lost_count: 6
+      labels_completely_lost: []
+      labels_with_completely_lost_regions:
+      - Main script black
+      surviving_fractions_by_label:
+        Main script black:
+          region_count: 31
+          original_rasterized_area_px: 27631927
+          surviving_area_px: 19645695
+          area_weighted_surviving_fraction: 0.7109781
+          completely_lost_region_count: 6
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_rectangular_s060.json
+  artificial_fragment_task_mapping:
     source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
     source_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
-    source_page_width_px: 6132
-    source_page_height_px: 8176
-    bbox_xyxy_px:
-    - 1483
-    - 1258
-    - 4025
-    - 4429
-    placement_is_known: true
-  degradation_profile:
-    profile: none
-    note: The output is a controlled crop/mask task, not a claim about a real damaged
-      fragment.
-  parameters:
-    source: initial_sample_dataset_resolved
-    mask_family: irregular
-    generator_version: artificial_fragment_generator_v0_1
-- task_id: af_fp_03_complex_layout_rectangular
-  generation_version: artificial_fragment_generator_v0_1
-  source_sample_id: fp_03_complex_layout
-  source_category: complex_layout
-  source: e-codices
-  source_url: https://www.e-codices.unifr.ch/en/csg/0059/2
-  source_local_path: autocomplete-test-dataset/full_pages/fp_03_complex_layout/e-codices_csg-0059_0002_max.jpg
-  source_db_ids:
-    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
-    manuscript_id: 075f21ea-ae80-41d4-862c-7a40a8bd27a0
-    canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
-    image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
-  source_metadata:
-    purpose: Complex page for testing glosses, initials, music, illustration, or multi-zone
-      layout.
-    iiif_manifest_url: null
-    iiif_image_service_url: null
-    iiif_resolution_status: not_attempted
-  hsp_normalized_metadata: {}
-  rights_review_status: pending_review
-  access_level: internal
-  mask_family: rectangular
-  random_seed: 72214225611549
-  split_name: demo
-  fragment_path: outputs/artificial_fragments/fragments/af_fp_03_complex_layout_rectangular.png
-  mask_path: outputs/artificial_fragments/masks/af_fp_03_complex_layout_rectangular_mask.png
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_02_clean_simple_rectangular_s060_survival.png
+    mask_family: rectangular
+    random_seed: 480472343517003485
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_02_clean_simple_irregular_s030
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: 93d8879d1032a9fa8855d2e4d3784928b80b074cdf07c7360f6b456668a42424
+  source_sample_id: fp_02_clean_simple
+  source_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+  source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+  source_path: autocomplete-test-dataset/full_pages/fp_02_clean_simple/e-codices_kba-Wett0004_009r_max.jpg
+  source_sha256: bac4a3055c85ca8cabdad7c4f7c458e720a8bd79a3f0f0285f5e8f584269de08
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 5412
+  - 7139
+  mask_family: irregular
+  random_seed: 489164783953241500
+  requested_severity: 0.3
+  measured_severity: 0.2999630679
+  surviving_fraction: 0.7000369321
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_02_clean_simple_irregular_s030.png
+      sha256: 67320f97f0a374fcc65e571b50554a0fd7693e121c7cf2b5f48c56e68df94e22
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5412
+      - 7139
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_02_clean_simple_irregular_s030_observed_survival.png
+      sha256: b3ba244efced5c1c0442a84613285db8dac03e01cc703a3b3cfbfec93604bc76
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5412
+      - 7139
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_02_clean_simple_irregular_s030_survival.png
+      sha256: 5605478ddd1a574c6bc95619773caca317100a6cd5944b3c12729efce6579ccc
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_02_clean_simple_irregular_s030_damage.png
+      sha256: b3964b6024a0a783c177d50c4623d9de961d05812876d2f23bfa626f174acb77
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_irregular_s030.json
+      sha256: 0784da81f6bdf88f93fd50a3e90a2810460fc77e105ffafa7de942745d5c6b0b
+      coordinate_space: not_applicable
   crop_transform:
-    type: source_page_crop
-    bbox_xywh_px:
-    - 3368
-    - 2727
-    - 2189
-    - 3135
-    rotation_degrees: 0
-    scale: 1
+    source_bbox_xyxy_px:
+    - 207
+    - 990
+    - 5619
+    - 8129
+    source_bbox_xywh_px:
+    - 207
+    - 990
+    - 5412
+    - 7139
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -207.0
+    - - 0.0
+      - 1.0
+      - -990.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 207.0
+    - - -0.0
+      - 1.0
+      - 990.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 5412
+    - 7139
+    exported_dimensions_px:
+    - 5412
+    - 7139
   ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+    source_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 207
+      - 990
+    - - 1109
+      - 1068
+    - - 2011
+      - 1059
+    - - 2913
+      - 1181
+    - - 3814
+      - 1093
+    - - 4716
+      - 1221
+    - - 5618
+      - 1308
+    - - 5603
+      - 2117
+    - - 5420
+      - 3319
+    - - 5526
+      - 4521
+    - - 5403
+      - 5724
+    - - 5437
+      - 6926
+    - - 5516
+      - 8128
+    - - 4716
+      - 8092
+    - - 3814
+      - 7791
+    - - 2913
+      - 7751
+    - - 2011
+      - 7809
+    - - 1109
+      - 8032
+    - - 207
+      - 7822
+    - - 428
+      - 6926
+    - - 277
+      - 5724
+    - - 475
+      - 4521
+    - - 235
+      - 3319
+    - - 229
+      - 2117
+    source_bbox_xyxy_px:
+    - 207
+    - 990
+    - 5619
+    - 8129
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_02_clean_simple_irregular_s030_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_02_clean_simple_irregular_s030_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_02_clean_simple
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_02_clean_simple.json
+      db_segmentation_run_id: e46db11e-89c2-4f6a-a7da-f18f5d94c5ba
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 31
+      completely_visible_count: 28
+      partially_visible_count: 2
+      completely_lost_count: 1
+      labels_completely_lost: []
+      labels_with_completely_lost_regions:
+      - Main script black
+      surviving_fractions_by_label:
+        Main script black:
+          region_count: 31
+          original_rasterized_area_px: 27631927
+          surviving_area_px: 26059821
+          area_weighted_surviving_fraction: 0.94310545
+          completely_lost_region_count: 1
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_irregular_s030.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+    source_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_02_clean_simple_irregular_s030_survival.png
+    mask_family: irregular
+    random_seed: 489164783953241500
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_02_clean_simple_irregular_s060
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: 23187d5e746ae85cdc95e942ed599ecbe874ebf09bfc34fd064a70d20c3b86b5
+  source_sample_id: fp_02_clean_simple
+  source_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+  source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+  source_path: autocomplete-test-dataset/full_pages/fp_02_clean_simple/e-codices_kba-Wett0004_009r_max.jpg
+  source_sha256: bac4a3055c85ca8cabdad7c4f7c458e720a8bd79a3f0f0285f5e8f584269de08
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 4077
+  - 5402
+  mask_family: irregular
+  random_seed: 981474021031210683
+  requested_severity: 0.6
+  measured_severity: 0.5999885071
+  surviving_fraction: 0.4000114929
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_02_clean_simple_irregular_s060.png
+      sha256: ece9a8041206042859b2be4d1ef0c5714e1af09a938cddc7b990b36b351def5c
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 4077
+      - 5402
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_02_clean_simple_irregular_s060_observed_survival.png
+      sha256: 506cff11f0b464a12caa41dc098c00a5fdec100cd3a3ddc5bbfabec87cdff611
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 4077
+      - 5402
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_02_clean_simple_irregular_s060_survival.png
+      sha256: 174cc3d8b8bc316b34f35ae9d31b78145a1c0e06e6911bf17ff0a251b29b0111
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_02_clean_simple_irregular_s060_damage.png
+      sha256: 328edc784b707bbbce9fbe8165563dc051caec23fda99f7e7a08fd79d6d193a6
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_irregular_s060.json
+      sha256: 5b2f622864a2a3e25ecbfc41447d3578cf60e3d17cc466221e0f6d25bde6b5a1
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 540
+    - 2086
+    - 4617
+    - 7488
+    source_bbox_xywh_px:
+    - 540
+    - 2086
+    - 4077
+    - 5402
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -540.0
+    - - 0.0
+      - 1.0
+      - -2086.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 540.0
+    - - -0.0
+      - 1.0
+      - 2086.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 4077
+    - 5402
+    exported_dimensions_px:
+    - 4077
+    - 5402
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+    source_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 540
+      - 2086
+    - - 1219
+      - 2204
+    - - 1899
+      - 2304
+    - - 2578
+      - 2131
+    - - 3257
+      - 2158
+    - - 3937
+      - 2249
+    - - 4616
+      - 2102
+    - - 4579
+      - 2958
+    - - 4524
+      - 3864
+    - - 4583
+      - 4770
+    - - 4580
+      - 5676
+    - - 4530
+      - 6581
+    - - 4503
+      - 7487
+    - - 3937
+      - 7381
+    - - 3257
+      - 7342
+    - - 2578
+      - 7261
+    - - 1899
+      - 7299
+    - - 1219
+      - 7388
+    - - 540
+      - 7249
+    - - 704
+      - 6581
+    - - 623
+      - 5676
+    - - 724
+      - 4770
+    - - 651
+      - 3864
+    - - 730
+      - 2958
+    source_bbox_xyxy_px:
+    - 540
+    - 2086
+    - 4617
+    - 7488
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_02_clean_simple_irregular_s060_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_02_clean_simple_irregular_s060_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_02_clean_simple
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_02_clean_simple.json
+      db_segmentation_run_id: e46db11e-89c2-4f6a-a7da-f18f5d94c5ba
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 31
+      completely_visible_count: 12
+      partially_visible_count: 12
+      completely_lost_count: 7
+      labels_completely_lost: []
+      labels_with_completely_lost_regions:
+      - Main script black
+      surviving_fractions_by_label:
+        Main script black:
+          region_count: 31
+          original_rasterized_area_px: 27631927
+          surviving_area_px: 20760561
+          area_weighted_surviving_fraction: 0.75132512
+          completely_lost_region_count: 7
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_irregular_s060.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
+    source_image_asset_id: f32a23e1-939e-4796-aafe-1b71994895f2
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_02_clean_simple_irregular_s060_survival.png
+    mask_family: irregular
+    random_seed: 981474021031210683
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_03_complex_layout_rectangular_s030
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: 11d20ff29897cc80c6800af97ef512188230719bda5cb4c43fe78bff36bbfcbc
+  source_sample_id: fp_03_complex_layout
+  source_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+  source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+  source_path: autocomplete-test-dataset/full_pages/fp_03_complex_layout/e-codices_csg-0059_0002_max.jpg
+  source_sha256: 446f6eed092de907751008834d6b6d04347815b60e3734ee723fb51bfdaf0a35
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 5521
+  - 6357
+  mask_family: rectangular
+  random_seed: 1135287391201526232
+  requested_severity: 0.3
+  measured_severity: 0.2999534339
+  surviving_fraction: 0.7000465661
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_03_complex_layout_rectangular_s030.png
+      sha256: 0b47f348eaa90d340b56a09109993edbdf5c2cf9397af5c428bf3ea91a2b6e4e
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5521
+      - 6357
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_03_complex_layout_rectangular_s030_observed_survival.png
+      sha256: 37d0d2f87cfc6108ff293b39948d80f9b0049e5bbca069cb4afc9bbdc36c1a52
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5521
+      - 6357
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_03_complex_layout_rectangular_s030_survival.png
+      sha256: 499e3dbc16b7d18a596af0a4f6d9090f88a6e6abd74494e1afff5b207cb5e995
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_03_complex_layout_rectangular_s030_damage.png
+      sha256: 144909cd4059362ee9d03b5dbe0d25a7d645f13a74684d3128bb1d78eeb85470
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_rectangular_s030.json
+      sha256: f5df13d61105899c96b2de7766cccfe012e3ffa8fa0fd8c80a0f40b10751cd22
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 351
+    - 705
+    - 5872
+    - 7062
+    source_bbox_xywh_px:
+    - 351
+    - 705
+    - 5521
+    - 6357
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -351.0
+    - - 0.0
+      - 1.0
+      - -705.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 351.0
+    - - -0.0
+      - 1.0
+      - 705.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 5521
+    - 6357
+    exported_dimensions_px:
+    - 5521
+    - 6357
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
     source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
     source_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
-    source_page_width_px: 6132
-    source_page_height_px: 8176
-    bbox_xyxy_px:
-    - 3368
-    - 2727
-    - 5557
-    - 5862
-    placement_is_known: true
-  degradation_profile:
-    profile: none
-    note: The output is a controlled crop/mask task, not a claim about a real damaged
-      fragment.
-  parameters:
-    source: initial_sample_dataset_resolved
-    mask_family: rectangular
-    generator_version: artificial_fragment_generator_v0_1
-- task_id: af_fp_03_complex_layout_irregular
-  generation_version: artificial_fragment_generator_v0_1
-  source_sample_id: fp_03_complex_layout
-  source_category: complex_layout
-  source: e-codices
-  source_url: https://www.e-codices.unifr.ch/en/csg/0059/2
-  source_local_path: autocomplete-test-dataset/full_pages/fp_03_complex_layout/e-codices_csg-0059_0002_max.jpg
-  source_db_ids:
-    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
-    manuscript_id: 075f21ea-ae80-41d4-862c-7a40a8bd27a0
-    canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
-    image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
-  source_metadata:
-    purpose: Complex page for testing glosses, initials, music, illustration, or multi-zone
-      layout.
-    iiif_manifest_url: null
-    iiif_image_service_url: null
-    iiif_resolution_status: not_attempted
-  hsp_normalized_metadata: {}
-  rights_review_status: pending_review
-  access_level: internal
-  mask_family: irregular
-  random_seed: 74036944232695
-  split_name: demo
-  fragment_path: outputs/artificial_fragments/fragments/af_fp_03_complex_layout_irregular.png
-  mask_path: outputs/artificial_fragments/masks/af_fp_03_complex_layout_irregular_mask.png
-  crop_transform:
-    type: source_page_crop
-    bbox_xywh_px:
-    - 702
-    - 1665
-    - 2346
-    - 3223
-    rotation_degrees: 0
-    scale: 1
-  ground_truth_placement:
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 351
+      - 705
+    - - 5872
+      - 705
+    - - 5872
+      - 7062
+    - - 351
+      - 7062
+    source_bbox_xyxy_px:
+    - 351
+    - 705
+    - 5872
+    - 7062
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_03_complex_layout_rectangular_s030_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_03_complex_layout_rectangular_s030_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_03_complex_layout
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_03_complex_layout.json
+      db_segmentation_run_id: 981c1030-e28d-46fb-b6b6-f0a374c69755
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 82
+      completely_visible_count: 78
+      partially_visible_count: 4
+      completely_lost_count: 0
+      labels_completely_lost: []
+      labels_with_completely_lost_regions: []
+      surviving_fractions_by_label:
+        Embellished:
+          region_count: 1
+          original_rasterized_area_px: 5794544
+          surviving_area_px: 5794544
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+        Main script black:
+          region_count: 80
+          original_rasterized_area_px: 38112882
+          surviving_area_px: 38050617
+          area_weighted_surviving_fraction: 0.9983663
+          completely_lost_region_count: 0
+        Plain initial - Highlighted:
+          region_count: 1
+          original_rasterized_area_px: 89452
+          surviving_area_px: 89452
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_rectangular_s030.json
+  artificial_fragment_task_mapping:
     source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
     source_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
-    source_page_width_px: 6132
-    source_page_height_px: 8176
-    bbox_xyxy_px:
-    - 702
-    - 1665
-    - 3048
-    - 4888
-    placement_is_known: true
-  degradation_profile:
-    profile: none
-    note: The output is a controlled crop/mask task, not a claim about a real damaged
-      fragment.
-  parameters:
-    source: initial_sample_dataset_resolved
-    mask_family: irregular
-    generator_version: artificial_fragment_generator_v0_1
-- task_id: af_fp_04_complex_layout_rectangular
-  generation_version: artificial_fragment_generator_v0_1
-  source_sample_id: fp_04_complex_layout
-  source_category: complex_layout
-  source: e-codices
-  source_url: https://www.e-codices.unifr.ch/en/ubb/F-IX-0068/2r
-  source_local_path: autocomplete-test-dataset/full_pages/fp_04_complex_layout/e-codices_ubb-F-IX-0068_0002r_max.jpg
-  source_db_ids:
-    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
-    manuscript_id: 12716d22-3e4e-4d6f-9b75-a790b52c7c21
-    canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
-    image_asset_id: d01b358a-03fb-493b-8839-53346395655b
-  source_metadata:
-    purpose: Complex page for testing glosses, initials, music, illustration, or multi-column
-      layout.
-    iiif_manifest_url: null
-    iiif_image_service_url: null
-    iiif_resolution_status: not_attempted
-  hsp_normalized_metadata: {}
-  rights_review_status: pending_review
-  access_level: internal
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_03_complex_layout_rectangular_s030_survival.png
+    mask_family: rectangular
+    random_seed: 1135287391201526232
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_03_complex_layout_rectangular_s060
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: e24e8183cef2a3ba47ee6093e72c02f207316134f82b0bd75b84e2245485e737
+  source_sample_id: fp_03_complex_layout
+  source_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+  source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+  source_path: autocomplete-test-dataset/full_pages/fp_03_complex_layout/e-codices_csg-0059_0002_max.jpg
+  source_sha256: 446f6eed092de907751008834d6b6d04347815b60e3734ee723fb51bfdaf0a35
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 4195
+  - 4781
   mask_family: rectangular
-  random_seed: 246017148492394
-  split_name: demo
-  fragment_path: outputs/artificial_fragments/fragments/af_fp_04_complex_layout_rectangular.png
-  mask_path: outputs/artificial_fragments/masks/af_fp_04_complex_layout_rectangular_mask.png
+  random_seed: 397886739914135339
+  requested_severity: 0.6
+  measured_severity: 0.5999560748
+  surviving_fraction: 0.4000439252
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_03_complex_layout_rectangular_s060.png
+      sha256: 2961f5b3ef039050f227c6593295dec9f6f57c84a78a1d5a1120ecd9f63511a1
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 4195
+      - 4781
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_03_complex_layout_rectangular_s060_observed_survival.png
+      sha256: dc715abbeeee09124936029b42882aae605ca518321ce8ca18f5e85fa6b1ae5b
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 4195
+      - 4781
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_03_complex_layout_rectangular_s060_survival.png
+      sha256: 75c56a43f4f2e8119c9eb2d8159a53953e54823b47e21459475827646605d78a
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_03_complex_layout_rectangular_s060_damage.png
+      sha256: b2ac9bf98b36759bab3c838e492c6dc054d3834b77d8e756ab8bbea478dc2b94
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_rectangular_s060.json
+      sha256: cfb688cd0848b4c00fc11d7dd984aa94d39e013a9379e2f9d7ccfc9ed9c1f8f1
+      coordinate_space: not_applicable
   crop_transform:
-    type: source_page_crop
-    bbox_xywh_px:
-    - 103
-    - 344
-    - 1468
-    - 1727
-    rotation_degrees: 0
-    scale: 1
+    source_bbox_xyxy_px:
+    - 100
+    - 2680
+    - 4295
+    - 7461
+    source_bbox_xywh_px:
+    - 100
+    - 2680
+    - 4195
+    - 4781
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -100.0
+    - - 0.0
+      - 1.0
+      - -2680.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 100.0
+    - - -0.0
+      - 1.0
+      - 2680.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 4195
+    - 4781
+    exported_dimensions_px:
+    - 4195
+    - 4781
   ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+    source_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 100
+      - 2680
+    - - 4295
+      - 2680
+    - - 4295
+      - 7461
+    - - 100
+      - 7461
+    source_bbox_xyxy_px:
+    - 100
+    - 2680
+    - 4295
+    - 7461
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_03_complex_layout_rectangular_s060_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_03_complex_layout_rectangular_s060_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_03_complex_layout
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_03_complex_layout.json
+      db_segmentation_run_id: 981c1030-e28d-46fb-b6b6-f0a374c69755
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 82
+      completely_visible_count: 14
+      partially_visible_count: 38
+      completely_lost_count: 30
+      labels_completely_lost: []
+      labels_with_completely_lost_regions:
+      - Main script black
+      surviving_fractions_by_label:
+        Embellished:
+          region_count: 1
+          original_rasterized_area_px: 5794544
+          surviving_area_px: 3168016
+          area_weighted_surviving_fraction: 0.54672395
+          completely_lost_region_count: 0
+        Main script black:
+          region_count: 80
+          original_rasterized_area_px: 38112882
+          surviving_area_px: 19206717
+          area_weighted_surviving_fraction: 0.50394292
+          completely_lost_region_count: 30
+        Plain initial - Highlighted:
+          region_count: 1
+          original_rasterized_area_px: 89452
+          surviving_area_px: 89452
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_rectangular_s060.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+    source_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_03_complex_layout_rectangular_s060_survival.png
+    mask_family: rectangular
+    random_seed: 397886739914135339
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_03_complex_layout_irregular_s030
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: f5e509c14aa72d4d46eb55e18c523737f8cc46654c8b25dadbd69126abc8fd82
+  source_sample_id: fp_03_complex_layout
+  source_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+  source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+  source_path: autocomplete-test-dataset/full_pages/fp_03_complex_layout/e-codices_csg-0059_0002_max.jpg
+  source_sha256: 446f6eed092de907751008834d6b6d04347815b60e3734ee723fb51bfdaf0a35
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 5459
+  - 7134
+  mask_family: irregular
+  random_seed: 828440551443526365
+  requested_severity: 0.3
+  measured_severity: 0.300019954
+  surviving_fraction: 0.699980046
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_03_complex_layout_irregular_s030.png
+      sha256: ef5c99e16b605b58f9ab0dce6c6d0cd882c0d29aeb6f654df9f3c95ecac3b821
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5459
+      - 7134
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_03_complex_layout_irregular_s030_observed_survival.png
+      sha256: 58621084acbc035fcc3cd8d22f9379bed9893613546c6010f9ff0936e9135f71
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5459
+      - 7134
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_03_complex_layout_irregular_s030_survival.png
+      sha256: bd87f32dced662f8865fcf15b066bfbdb18aff81777868ac6730019b0934c07b
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_03_complex_layout_irregular_s030_damage.png
+      sha256: c759fa1fd27bb2b13092d33432785337ee70713025b92a056fbf83e0515956ce
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_irregular_s030.json
+      sha256: 0f3846af32652769a9e57f05f41b50c1caa3457ebf39984f22013f0fa92016c9
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 524
+    - 1015
+    - 5983
+    - 8149
+    source_bbox_xywh_px:
+    - 524
+    - 1015
+    - 5459
+    - 7134
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -524.0
+    - - 0.0
+      - 1.0
+      - -1015.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 524.0
+    - - -0.0
+      - 1.0
+      - 1015.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 5459
+    - 7134
+    exported_dimensions_px:
+    - 5459
+    - 7134
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+    source_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 524
+      - 1114
+    - - 1434
+      - 1124
+    - - 2343
+      - 1015
+    - - 3253
+      - 1266
+    - - 4163
+      - 1021
+    - - 5072
+      - 1212
+    - - 5982
+      - 1016
+    - - 5876
+      - 2083
+    - - 5701
+      - 3296
+    - - 5697
+      - 4509
+    - - 5693
+      - 5722
+    - - 5727
+      - 6935
+    - - 5810
+      - 8148
+    - - 5072
+      - 8110
+    - - 4163
+      - 7818
+    - - 3253
+      - 8091
+    - - 2343
+      - 7754
+    - - 1434
+      - 7760
+    - - 524
+      - 8106
+    - - 564
+      - 6935
+    - - 609
+      - 5722
+    - - 533
+      - 4509
+    - - 676
+      - 3296
+    - - 760
+      - 2083
+    source_bbox_xyxy_px:
+    - 524
+    - 1015
+    - 5983
+    - 8149
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_03_complex_layout_irregular_s030_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_03_complex_layout_irregular_s030_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_03_complex_layout
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_03_complex_layout.json
+      db_segmentation_run_id: 981c1030-e28d-46fb-b6b6-f0a374c69755
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 82
+      completely_visible_count: 55
+      partially_visible_count: 27
+      completely_lost_count: 0
+      labels_completely_lost: []
+      labels_with_completely_lost_regions: []
+      surviving_fractions_by_label:
+        Embellished:
+          region_count: 1
+          original_rasterized_area_px: 5794544
+          surviving_area_px: 5532567
+          area_weighted_surviving_fraction: 0.95478902
+          completely_lost_region_count: 0
+        Main script black:
+          region_count: 80
+          original_rasterized_area_px: 38112882
+          surviving_area_px: 36361033
+          area_weighted_surviving_fraction: 0.95403525
+          completely_lost_region_count: 0
+        Plain initial - Highlighted:
+          region_count: 1
+          original_rasterized_area_px: 89452
+          surviving_area_px: 89452
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_irregular_s030.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+    source_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_03_complex_layout_irregular_s030_survival.png
+    mask_family: irregular
+    random_seed: 828440551443526365
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_03_complex_layout_irregular_s060
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: 52108fc19babbb8503af764673d855b104ff12e4523e03cb959d81a97bec3abc
+  source_sample_id: fp_03_complex_layout
+  source_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+  source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+  source_path: autocomplete-test-dataset/full_pages/fp_03_complex_layout/e-codices_csg-0059_0002_max.jpg
+  source_sha256: 446f6eed092de907751008834d6b6d04347815b60e3734ee723fb51bfdaf0a35
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 4087
+  - 5431
+  mask_family: irregular
+  random_seed: 55959555305334568
+  requested_severity: 0.6
+  measured_severity: 0.6000242903
+  surviving_fraction: 0.3999757097
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_03_complex_layout_irregular_s060.png
+      sha256: 18e9b2cd66d5f83687e7a8c96d24b4d34e3ddad6125c15cc440b3befa0fffd48
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 4087
+      - 5431
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_03_complex_layout_irregular_s060_observed_survival.png
+      sha256: 4040ae9fb00d92b7a3f4753e3c115dabed8eec96d99e6ab60acdf2907c9e51d1
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 4087
+      - 5431
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_03_complex_layout_irregular_s060_survival.png
+      sha256: 2a39b7fce6b1d252c2c70d159b27bd583ffd5619ed788c2d579500a96a3fa4bf
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_03_complex_layout_irregular_s060_damage.png
+      sha256: e35784ceb87d852cfedebaa8e2c8bd96964b6ea555fa99ca6b6d62bda509de04
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_irregular_s060.json
+      sha256: 8bed706b2d0bfab0a22f53044cc16d9a787a837ff8deea666b8426155a7d131f
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 1464
+    - 791
+    - 5551
+    - 6222
+    source_bbox_xywh_px:
+    - 1464
+    - 791
+    - 4087
+    - 5431
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -1464.0
+    - - 0.0
+      - 1.0
+      - -791.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 1464.0
+    - - -0.0
+      - 1.0
+      - 791.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 4087
+    - 5431
+    exported_dimensions_px:
+    - 4087
+    - 5431
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+    source_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 1464
+      - 874
+    - - 2145
+      - 959
+    - - 2826
+      - 841
+    - - 3507
+      - 828
+    - - 4188
+      - 820
+    - - 4869
+      - 1026
+    - - 5550
+      - 791
+    - - 5442
+      - 1680
+    - - 5442
+      - 2588
+    - - 5508
+      - 3497
+    - - 5353
+      - 4405
+    - - 5440
+      - 5313
+    - - 5547
+      - 6221
+    - - 4869
+      - 6067
+    - - 4188
+      - 5923
+    - - 3507
+      - 6098
+    - - 2826
+      - 6059
+    - - 2145
+      - 6024
+    - - 1464
+      - 5967
+    - - 1590
+      - 5313
+    - - 1618
+      - 4405
+    - - 1470
+      - 3497
+    - - 1587
+      - 2588
+    - - 1659
+      - 1680
+    source_bbox_xyxy_px:
+    - 1464
+    - 791
+    - 5551
+    - 6222
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_03_complex_layout_irregular_s060_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_03_complex_layout_irregular_s060_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_03_complex_layout
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_03_complex_layout.json
+      db_segmentation_run_id: 981c1030-e28d-46fb-b6b6-f0a374c69755
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 82
+      completely_visible_count: 13
+      partially_visible_count: 69
+      completely_lost_count: 0
+      labels_completely_lost: []
+      labels_with_completely_lost_regions: []
+      surviving_fractions_by_label:
+        Embellished:
+          region_count: 1
+          original_rasterized_area_px: 5794544
+          surviving_area_px: 5794544
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+        Main script black:
+          region_count: 80
+          original_rasterized_area_px: 38112882
+          surviving_area_px: 30995109
+          area_weighted_surviving_fraction: 0.81324495
+          completely_lost_region_count: 0
+        Plain initial - Highlighted:
+          region_count: 1
+          original_rasterized_area_px: 89452
+          surviving_area_px: 89452
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_irregular_s060.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
+    source_image_asset_id: e075eefd-bb96-4632-868d-21044f4eb54a
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_03_complex_layout_irregular_s060_survival.png
+    mask_family: irregular
+    random_seed: 55959555305334568
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_04_complex_layout_rectangular_s030
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: ef42f71ad1d6a4710231a30d27fa94cd845365e5de4fec8c4ade0dae92b765b4
+  source_sample_id: fp_04_complex_layout
+  source_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+  source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+  source_path: autocomplete-test-dataset/full_pages/fp_04_complex_layout/e-codices_ubb-F-IX-0068_0002r_max.jpg
+  source_sha256: ba28433beb519e203b6422ae4bd75f298f803045ab862281b513d660bc2813d8
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 3210
+  - 4891
+  generated_fragment_dimensions_px:
+  - 2511
+  - 4377
+  mask_family: rectangular
+  random_seed: 357027695797926262
+  requested_severity: 0.3
+  measured_severity: 0.2999636945
+  surviving_fraction: 0.7000363055
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_04_complex_layout_rectangular_s030.png
+      sha256: 6da05cbac17f1763fbef4b9643708a2e801ae55b9e5bea37ef7f5347b69cca74
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 2511
+      - 4377
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_04_complex_layout_rectangular_s030_observed_survival.png
+      sha256: 820b594c4ff714fcbe6f0b3ba52eb41aa486a0cb97f77641976c3b40a9d163b9
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 2511
+      - 4377
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_04_complex_layout_rectangular_s030_survival.png
+      sha256: 93d5ff093e0de25ec77159ddb0065ab660b6766b957ee9c5c69818f57e5bcd02
+      coordinate_space: source_page
+      dimensions_px:
+      - 3210
+      - 4891
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_04_complex_layout_rectangular_s030_damage.png
+      sha256: 62eaf4fbbfd0d19c112bfa703aa29afaadab73b5ad249861f962ff2a6b270bac
+      coordinate_space: source_page
+      dimensions_px:
+      - 3210
+      - 4891
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_rectangular_s030.json
+      sha256: c33b8352b38b2c9df71597df56a92a97fa7318f8307e0849f60eedb2fea26faf
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 666
+    - 343
+    - 3177
+    - 4720
+    source_bbox_xywh_px:
+    - 666
+    - 343
+    - 2511
+    - 4377
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -666.0
+    - - 0.0
+      - 1.0
+      - -343.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 666.0
+    - - -0.0
+      - 1.0
+      - 343.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 2511
+    - 4377
+    exported_dimensions_px:
+    - 2511
+    - 4377
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
     source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
     source_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
-    source_page_width_px: 3210
-    source_page_height_px: 4891
-    bbox_xyxy_px:
-    - 103
-    - 344
-    - 1571
-    - 2071
-    placement_is_known: true
-  degradation_profile:
-    profile: none
-    note: The output is a controlled crop/mask task, not a claim about a real damaged
-      fragment.
-  parameters:
-    source: initial_sample_dataset_resolved
-    mask_family: rectangular
-    generator_version: artificial_fragment_generator_v0_1
-- task_id: af_fp_04_complex_layout_irregular
-  generation_version: artificial_fragment_generator_v0_1
-  source_sample_id: fp_04_complex_layout
-  source_category: complex_layout
-  source: e-codices
-  source_url: https://www.e-codices.unifr.ch/en/ubb/F-IX-0068/2r
-  source_local_path: autocomplete-test-dataset/full_pages/fp_04_complex_layout/e-codices_ubb-F-IX-0068_0002r_max.jpg
-  source_db_ids:
-    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
-    manuscript_id: 12716d22-3e4e-4d6f-9b75-a790b52c7c21
-    canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
-    image_asset_id: d01b358a-03fb-493b-8839-53346395655b
-  source_metadata:
-    purpose: Complex page for testing glosses, initials, music, illustration, or multi-column
-      layout.
-    iiif_manifest_url: null
-    iiif_image_service_url: null
-    iiif_resolution_status: not_attempted
-  hsp_normalized_metadata: {}
-  rights_review_status: pending_review
-  access_level: internal
-  mask_family: irregular
-  random_seed: 193457427727761
-  split_name: demo
-  fragment_path: outputs/artificial_fragments/fragments/af_fp_04_complex_layout_irregular.png
-  mask_path: outputs/artificial_fragments/masks/af_fp_04_complex_layout_irregular_mask.png
-  crop_transform:
-    type: source_page_crop
-    bbox_xywh_px:
-    - 1766
-    - 2364
-    - 1402
-    - 2320
-    rotation_degrees: 0
-    scale: 1
-  ground_truth_placement:
+    source_page_dimensions_px:
+    - 3210
+    - 4891
+    source_contour_xy_px:
+    - - 666
+      - 343
+    - - 3177
+      - 343
+    - - 3177
+      - 4720
+    - - 666
+      - 4720
+    source_bbox_xyxy_px:
+    - 666
+    - 343
+    - 3177
+    - 4720
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_04_complex_layout_rectangular_s030_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_04_complex_layout_rectangular_s030_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_04_complex_layout
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_04_complex_layout.json
+      db_segmentation_run_id: 92591bbf-17b2-4481-b269-05af22e85b62
+      orig_shape:
+      - 4891
+      - 3210
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 34
+      completely_visible_count: 18
+      partially_visible_count: 13
+      completely_lost_count: 3
+      labels_completely_lost: []
+      labels_with_completely_lost_regions:
+      - Main script black
+      surviving_fractions_by_label:
+        Embellished:
+          region_count: 1
+          original_rasterized_area_px: 1766772
+          surviving_area_px: 802750
+          area_weighted_surviving_fraction: 0.4543597
+          completely_lost_region_count: 0
+        Main script black:
+          region_count: 19
+          original_rasterized_area_px: 3802125
+          surviving_area_px: 3505024
+          area_weighted_surviving_fraction: 0.92185922
+          completely_lost_region_count: 3
+        Music:
+          region_count: 7
+          original_rasterized_area_px: 1974260
+          surviving_area_px: 1734439
+          area_weighted_surviving_fraction: 0.87852613
+          completely_lost_region_count: 0
+        Plain initial - Black:
+          region_count: 7
+          original_rasterized_area_px: 181891
+          surviving_area_px: 181891
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_rectangular_s030.json
+  artificial_fragment_task_mapping:
     source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
     source_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
-    source_page_width_px: 3210
-    source_page_height_px: 4891
-    bbox_xyxy_px:
-    - 1766
-    - 2364
-    - 3168
-    - 4684
-    placement_is_known: true
-  degradation_profile:
-    profile: none
-    note: The output is a controlled crop/mask task, not a claim about a real damaged
-      fragment.
-  parameters:
-    source: initial_sample_dataset_resolved
-    mask_family: irregular
-    generator_version: artificial_fragment_generator_v0_1
-- task_id: af_fp_05_iiif_rights_rectangular
-  generation_version: artificial_fragment_generator_v0_1
-  source_sample_id: fp_05_iiif_rights
-  source_category: iiif_rights_metadata
-  source: e-codices
-  source_url: https://www.e-codices.unifr.ch/en/csg/0314/3
-  source_local_path: autocomplete-test-dataset/full_pages/fp_05_iiif_rights/e-codices_csg-0314_0003_max.jpg
-  source_db_ids:
-    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
-    manuscript_id: d7e8ded7-5016-49ac-8b0a-5c0e450a578f
-    canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
-    image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
-  source_metadata:
-    purpose: Validate IIIF manifest extraction, image service extraction, rights metadata,
-      and attribution.
-    iiif_manifest_url: null
-    iiif_image_service_url: null
-    iiif_resolution_status: not_attempted
-  hsp_normalized_metadata: {}
-  rights_review_status: pending_review
-  access_level: internal
-  mask_family: rectangular
-  random_seed: 75332990063857
-  split_name: demo
-  fragment_path: outputs/artificial_fragments/fragments/af_fp_05_iiif_rights_rectangular.png
-  mask_path: outputs/artificial_fragments/masks/af_fp_05_iiif_rights_rectangular_mask.png
-  crop_transform:
-    type: source_page_crop
-    bbox_xywh_px:
-    - 1210
-    - 1512
-    - 2064
-    - 2852
-    rotation_degrees: 0
-    scale: 1
-  ground_truth_placement:
-    source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
-    source_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
-    source_page_width_px: 6132
-    source_page_height_px: 8176
-    bbox_xyxy_px:
-    - 1210
-    - 1512
-    - 3274
-    - 4364
-    placement_is_known: true
-  degradation_profile:
-    profile: none
-    note: The output is a controlled crop/mask task, not a claim about a real damaged
-      fragment.
-  parameters:
-    source: initial_sample_dataset_resolved
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_04_complex_layout_rectangular_s030_survival.png
     mask_family: rectangular
-    generator_version: artificial_fragment_generator_v0_1
-- task_id: af_fp_05_iiif_rights_irregular
-  generation_version: artificial_fragment_generator_v0_1
-  source_sample_id: fp_05_iiif_rights
-  source_category: iiif_rights_metadata
-  source: e-codices
-  source_url: https://www.e-codices.unifr.ch/en/csg/0314/3
-  source_local_path: autocomplete-test-dataset/full_pages/fp_05_iiif_rights/e-codices_csg-0314_0003_max.jpg
-  source_db_ids:
-    repository_id: 2526020e-0565-4a14-ad80-1be3968df2e7
-    manuscript_id: d7e8ded7-5016-49ac-8b0a-5c0e450a578f
-    canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
-    image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
-  source_metadata:
-    purpose: Validate IIIF manifest extraction, image service extraction, rights metadata,
-      and attribution.
-    iiif_manifest_url: null
-    iiif_image_service_url: null
-    iiif_resolution_status: not_attempted
-  hsp_normalized_metadata: {}
-  rights_review_status: pending_review
-  access_level: internal
-  mask_family: irregular
-  random_seed: 181756107986379
-  split_name: demo
-  fragment_path: outputs/artificial_fragments/fragments/af_fp_05_iiif_rights_irregular.png
-  mask_path: outputs/artificial_fragments/masks/af_fp_05_iiif_rights_irregular_mask.png
+    random_seed: 357027695797926262
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_04_complex_layout_rectangular_s060
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: 5e4a71e62deba45e7f37dc40df09dcd27d5bc18783c8447128a775452effda46
+  source_sample_id: fp_04_complex_layout
+  source_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+  source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+  source_path: autocomplete-test-dataset/full_pages/fp_04_complex_layout/e-codices_ubb-F-IX-0068_0002r_max.jpg
+  source_sha256: ba28433beb519e203b6422ae4bd75f298f803045ab862281b513d660bc2813d8
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 3210
+  - 4891
+  generated_fragment_dimensions_px:
+  - 2028
+  - 3097
+  mask_family: rectangular
+  random_seed: 1039982619074905191
+  requested_severity: 0.6
+  measured_severity: 0.5999571978
+  surviving_fraction: 0.4000428022
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_04_complex_layout_rectangular_s060.png
+      sha256: edd7e11b3671187e9b710b01713cf16ed251499857f877ec444be9bc622060e6
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 2028
+      - 3097
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_04_complex_layout_rectangular_s060_observed_survival.png
+      sha256: b5b025239de5c568bf1d55df015d84737c8d84808da78ff5b9e33afdda7537aa
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 2028
+      - 3097
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_04_complex_layout_rectangular_s060_survival.png
+      sha256: 4358299ebb122b556a8c9aa7b677abda834a331586c8314e7af9db1f0d6c3e5f
+      coordinate_space: source_page
+      dimensions_px:
+      - 3210
+      - 4891
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_04_complex_layout_rectangular_s060_damage.png
+      sha256: 1e89286d13b52bae3a44f3951e46e0bccab7a2ad05d4a5b02800ec419ad85276
+      coordinate_space: source_page
+      dimensions_px:
+      - 3210
+      - 4891
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_rectangular_s060.json
+      sha256: 0e387e1f1e95e30b7bb9918af9694d986347d0e39d50c6e4413455b2c7608251
+      coordinate_space: not_applicable
   crop_transform:
-    type: source_page_crop
-    bbox_xywh_px:
-    - 370
-    - 1843
-    - 2598
-    - 2927
-    rotation_degrees: 0
-    scale: 1
+    source_bbox_xyxy_px:
+    - 765
+    - 1380
+    - 2793
+    - 4477
+    source_bbox_xywh_px:
+    - 765
+    - 1380
+    - 2028
+    - 3097
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -765.0
+    - - 0.0
+      - 1.0
+      - -1380.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 765.0
+    - - -0.0
+      - 1.0
+      - 1380.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 2028
+    - 3097
+    exported_dimensions_px:
+    - 2028
+    - 3097
   ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+    source_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+    source_page_dimensions_px:
+    - 3210
+    - 4891
+    source_contour_xy_px:
+    - - 765
+      - 1380
+    - - 2793
+      - 1380
+    - - 2793
+      - 4477
+    - - 765
+      - 4477
+    source_bbox_xyxy_px:
+    - 765
+    - 1380
+    - 2793
+    - 4477
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_04_complex_layout_rectangular_s060_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_04_complex_layout_rectangular_s060_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_04_complex_layout
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_04_complex_layout.json
+      db_segmentation_run_id: 92591bbf-17b2-4481-b269-05af22e85b62
+      orig_shape:
+      - 4891
+      - 3210
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 34
+      completely_visible_count: 11
+      partially_visible_count: 13
+      completely_lost_count: 10
+      labels_completely_lost: []
+      labels_with_completely_lost_regions:
+      - Main script black
+      - Music
+      surviving_fractions_by_label:
+        Embellished:
+          region_count: 1
+          original_rasterized_area_px: 1766772
+          surviving_area_px: 232260
+          area_weighted_surviving_fraction: 0.13146009
+          completely_lost_region_count: 0
+        Main script black:
+          region_count: 19
+          original_rasterized_area_px: 3802125
+          surviving_area_px: 2525765
+          area_weighted_surviving_fraction: 0.66430351
+          completely_lost_region_count: 8
+        Music:
+          region_count: 7
+          original_rasterized_area_px: 1974260
+          surviving_area_px: 1219170
+          area_weighted_surviving_fraction: 0.61753265
+          completely_lost_region_count: 2
+        Plain initial - Black:
+          region_count: 7
+          original_rasterized_area_px: 181891
+          surviving_area_px: 181891
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_rectangular_s060.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+    source_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_04_complex_layout_rectangular_s060_survival.png
+    mask_family: rectangular
+    random_seed: 1039982619074905191
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_04_complex_layout_irregular_s030
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: b6ba7aa98ba5c8f5072319c5f6f29a899df0800d82b23c3972794a5c47ed98da
+  source_sample_id: fp_04_complex_layout
+  source_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+  source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+  source_path: autocomplete-test-dataset/full_pages/fp_04_complex_layout/e-codices_ubb-F-IX-0068_0002r_max.jpg
+  source_sha256: ba28433beb519e203b6422ae4bd75f298f803045ab862281b513d660bc2813d8
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 3210
+  - 4891
+  generated_fragment_dimensions_px:
+  - 2856
+  - 4331
+  mask_family: irregular
+  random_seed: 401479796787843040
+  requested_severity: 0.3
+  measured_severity: 0.3000001911
+  surviving_fraction: 0.6999998089
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_04_complex_layout_irregular_s030.png
+      sha256: 7a7742d8cd4a3f78685ca634154883ecd0ef6c6f5be63f33a509afe82e5643bc
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 2856
+      - 4331
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_04_complex_layout_irregular_s030_observed_survival.png
+      sha256: 8cbd6410db8a0cd047428dbd5328cfad9c9f58d384a7b6254016a934cfda35ff
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 2856
+      - 4331
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_04_complex_layout_irregular_s030_survival.png
+      sha256: f51f1d85a8dbbc161e7ca807a248581095e8ab94ae98011d7cf406be2d7e3111
+      coordinate_space: source_page
+      dimensions_px:
+      - 3210
+      - 4891
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_04_complex_layout_irregular_s030_damage.png
+      sha256: d1b7460667c418c5951e457324a9b7babc3b1049ed68ad77c44fef1ccc95ff86
+      coordinate_space: source_page
+      dimensions_px:
+      - 3210
+      - 4891
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_irregular_s030.json
+      sha256: 2f833beb201ae0619e06105e570b416d22ea3aba52cb1c7e8e8a763a7e331d29
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 240
+    - 185
+    - 3096
+    - 4516
+    source_bbox_xywh_px:
+    - 240
+    - 185
+    - 2856
+    - 4331
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -240.0
+    - - 0.0
+      - 1.0
+      - -185.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 240.0
+    - - -0.0
+      - 1.0
+      - 185.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 2856
+    - 4331
+    exported_dimensions_px:
+    - 2856
+    - 4331
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+    source_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+    source_page_dimensions_px:
+    - 3210
+    - 4891
+    source_contour_xy_px:
+    - - 240
+      - 255
+    - - 715
+      - 394
+    - - 1191
+      - 378
+    - - 1667
+      - 204
+    - - 2143
+      - 379
+    - - 2619
+      - 185
+    - - 3095
+      - 377
+    - - 3059
+      - 890
+    - - 2976
+      - 1615
+    - - 3053
+      - 2340
+    - - 3000
+      - 3065
+    - - 3056
+      - 3790
+    - - 3075
+      - 4515
+    - - 2619
+      - 4405
+    - - 2143
+      - 4278
+    - - 1667
+      - 4276
+    - - 1191
+      - 4300
+    - - 715
+      - 4321
+    - - 240
+      - 4382
+    - - 357
+      - 3790
+    - - 316
+      - 3065
+    - - 360
+      - 2340
+    - - 260
+      - 1615
+    - - 300
+      - 890
+    source_bbox_xyxy_px:
+    - 240
+    - 185
+    - 3096
+    - 4516
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_04_complex_layout_irregular_s030_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_04_complex_layout_irregular_s030_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_04_complex_layout
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_04_complex_layout.json
+      db_segmentation_run_id: 92591bbf-17b2-4481-b269-05af22e85b62
+      orig_shape:
+      - 4891
+      - 3210
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 34
+      completely_visible_count: 27
+      partially_visible_count: 4
+      completely_lost_count: 3
+      labels_completely_lost: []
+      labels_with_completely_lost_regions:
+      - Main script black
+      surviving_fractions_by_label:
+        Embellished:
+          region_count: 1
+          original_rasterized_area_px: 1766772
+          surviving_area_px: 1420429
+          area_weighted_surviving_fraction: 0.80396848
+          completely_lost_region_count: 0
+        Main script black:
+          region_count: 19
+          original_rasterized_area_px: 3802125
+          surviving_area_px: 3758283
+          area_weighted_surviving_fraction: 0.98846908
+          completely_lost_region_count: 3
+        Music:
+          region_count: 7
+          original_rasterized_area_px: 1974260
+          surviving_area_px: 1970603
+          area_weighted_surviving_fraction: 0.99814766
+          completely_lost_region_count: 0
+        Plain initial - Black:
+          region_count: 7
+          original_rasterized_area_px: 181891
+          surviving_area_px: 181891
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_irregular_s030.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+    source_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_04_complex_layout_irregular_s030_survival.png
+    mask_family: irregular
+    random_seed: 401479796787843040
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_04_complex_layout_irregular_s060
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: 23daafd36aa30c584600772c94b8cbe7b80f9b8c3faf2f1072e39472499a7953
+  source_sample_id: fp_04_complex_layout
+  source_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+  source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+  source_path: autocomplete-test-dataset/full_pages/fp_04_complex_layout/e-codices_ubb-F-IX-0068_0002r_max.jpg
+  source_sha256: ba28433beb519e203b6422ae4bd75f298f803045ab862281b513d660bc2813d8
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 3210
+  - 4891
+  generated_fragment_dimensions_px:
+  - 2128
+  - 3220
+  mask_family: irregular
+  random_seed: 344434078465982464
+  requested_severity: 0.6
+  measured_severity: 0.5999863695
+  surviving_fraction: 0.4000136305
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_04_complex_layout_irregular_s060.png
+      sha256: 140824080b863694382c0eddfb020a4b47131eb0a9f9e2cc9e967ddead03921a
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 2128
+      - 3220
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_04_complex_layout_irregular_s060_observed_survival.png
+      sha256: 52a024e9f67ba22803046f888f9edcc1116ce9c22872c19d2d38fadcb0c666da
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 2128
+      - 3220
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_04_complex_layout_irregular_s060_survival.png
+      sha256: 1466d4cc1b8410b06c4efb7af912d0a0cbf81291998c1bf09015956ce5c44ba0
+      coordinate_space: source_page
+      dimensions_px:
+      - 3210
+      - 4891
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_04_complex_layout_irregular_s060_damage.png
+      sha256: 82e509bd568e3c8beb97e115aac70d6241fc53dd6f4955746378e8cd6f64d9d5
+      coordinate_space: source_page
+      dimensions_px:
+      - 3210
+      - 4891
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_irregular_s060.json
+      sha256: bf3c2c6ac881b4ec5023f4ca1fab3895d07237181adf1f40157bd2317bf74df7
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 237
+    - 1097
+    - 2365
+    - 4317
+    source_bbox_xywh_px:
+    - 237
+    - 1097
+    - 2128
+    - 3220
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -237.0
+    - - 0.0
+      - 1.0
+      - -1097.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 237.0
+    - - -0.0
+      - 1.0
+      - 1097.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 2128
+    - 3220
+    exported_dimensions_px:
+    - 2128
+    - 3220
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+    source_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+    source_page_dimensions_px:
+    - 3210
+    - 4891
+    source_contour_xy_px:
+    - - 237
+      - 1192
+    - - 592
+      - 1156
+    - - 946
+      - 1097
+    - - 1300
+      - 1099
+    - - 1655
+      - 1245
+    - - 2009
+      - 1181
+    - - 2364
+      - 1185
+    - - 2347
+      - 1616
+    - - 2262
+      - 2156
+    - - 2342
+      - 2696
+    - - 2338
+      - 3236
+    - - 2284
+      - 3776
+    - - 2301
+      - 4316
+    - - 2009
+      - 4212
+    - - 1655
+      - 4270
+    - - 1300
+      - 4141
+    - - 946
+      - 4207
+    - - 592
+      - 4275
+    - - 237
+      - 4302
+    - - 313
+      - 3776
+    - - 248
+      - 3236
+    - - 321
+      - 2696
+    - - 250
+      - 2156
+    - - 274
+      - 1616
+    source_bbox_xyxy_px:
+    - 237
+    - 1097
+    - 2365
+    - 4317
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_04_complex_layout_irregular_s060_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_04_complex_layout_irregular_s060_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_04_complex_layout
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_04_complex_layout.json
+      db_segmentation_run_id: 92591bbf-17b2-4481-b269-05af22e85b62
+      orig_shape:
+      - 4891
+      - 3210
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 34
+      completely_visible_count: 10
+      partially_visible_count: 18
+      completely_lost_count: 6
+      labels_completely_lost: []
+      labels_with_completely_lost_regions:
+      - Main script black
+      - Music
+      surviving_fractions_by_label:
+        Embellished:
+          region_count: 1
+          original_rasterized_area_px: 1766772
+          surviving_area_px: 747445
+          area_weighted_surviving_fraction: 0.42305685
+          completely_lost_region_count: 0
+        Main script black:
+          region_count: 19
+          original_rasterized_area_px: 3802125
+          surviving_area_px: 2918687
+          area_weighted_surviving_fraction: 0.76764625
+          completely_lost_region_count: 4
+        Music:
+          region_count: 7
+          original_rasterized_area_px: 1974260
+          surviving_area_px: 1426479
+          area_weighted_surviving_fraction: 0.72253857
+          completely_lost_region_count: 2
+        Plain initial - Black:
+          region_count: 7
+          original_rasterized_area_px: 181891
+          surviving_area_px: 181891
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_irregular_s060.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
+    source_image_asset_id: d01b358a-03fb-493b-8839-53346395655b
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_04_complex_layout_irregular_s060_survival.png
+    mask_family: irregular
+    random_seed: 344434078465982464
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_05_iiif_rights_rectangular_s030
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: c64adeba3956b0bb7c82eea24879bc98bb8b9c44a00fca624190caf83c5f4f5d
+  source_sample_id: fp_05_iiif_rights
+  source_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+  source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+  source_path: autocomplete-test-dataset/full_pages/fp_05_iiif_rights/e-codices_csg-0314_0003_max.jpg
+  source_sha256: 2aeeeab3381dac0a170b931a78cb423bd357c86810d8cc3c348a10cdc2467597
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 5254
+  - 6680
+  mask_family: rectangular
+  random_seed: 752789174305758731
+  requested_severity: 0.3
+  measured_severity: 0.299958959
+  surviving_fraction: 0.700041041
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_05_iiif_rights_rectangular_s030.png
+      sha256: d514afcd5a2a3aef09678e96020cf45456393ddfcadcb116f874209110d6f6cd
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5254
+      - 6680
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_05_iiif_rights_rectangular_s030_observed_survival.png
+      sha256: d68f41f485fc120b86411b3002130de62e65080bf6867629399cfae640839747
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5254
+      - 6680
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_05_iiif_rights_rectangular_s030_survival.png
+      sha256: f7ffdd18bfa440bef045c147c8e675e5e0fb3b51095f840f55fdaf1bb92c0d2d
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_05_iiif_rights_rectangular_s030_damage.png
+      sha256: 879480161a578d3baf902d1c58bc2ad3d69e0274ab136288c47f2a6716789bf4
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_rectangular_s030.json
+      sha256: 94942deb15b69aac5ac4affdd83cf1c7ca92944587d8b87bf88137d65151b901
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 774
+    - 52
+    - 6028
+    - 6732
+    source_bbox_xywh_px:
+    - 774
+    - 52
+    - 5254
+    - 6680
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -774.0
+    - - 0.0
+      - 1.0
+      - -52.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 774.0
+    - - -0.0
+      - 1.0
+      - 52.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 5254
+    - 6680
+    exported_dimensions_px:
+    - 5254
+    - 6680
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
     source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
     source_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
-    source_page_width_px: 6132
-    source_page_height_px: 8176
-    bbox_xyxy_px:
-    - 370
-    - 1843
-    - 2968
-    - 4770
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 774
+      - 52
+    - - 6028
+      - 52
+    - - 6028
+      - 6732
+    - - 774
+      - 6732
+    source_bbox_xyxy_px:
+    - 774
+    - 52
+    - 6028
+    - 6732
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_05_iiif_rights_rectangular_s030_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_05_iiif_rights_rectangular_s030_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_05_iiif_rights
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_05_iiif_rights.json
+      db_segmentation_run_id: 1431e22e-afdc-4a34-b958-4671bbefe9ec
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 91
+      completely_visible_count: 57
+      partially_visible_count: 33
+      completely_lost_count: 1
+      labels_completely_lost:
+      - Gloss
+      labels_with_completely_lost_regions:
+      - Gloss
+      surviving_fractions_by_label:
+        Embellished:
+          region_count: 1
+          original_rasterized_area_px: 439425
+          surviving_area_px: 262353
+          area_weighted_surviving_fraction: 0.59703704
+          completely_lost_region_count: 0
+        Gloss:
+          region_count: 1
+          original_rasterized_area_px: 41328
+          surviving_area_px: 0
+          area_weighted_surviving_fraction: 0.0
+          completely_lost_region_count: 1
+        Main script black:
+          region_count: 79
+          original_rasterized_area_px: 16950579
+          surviving_area_px: 16570331
+          area_weighted_surviving_fraction: 0.97756726
+          completely_lost_region_count: 0
+        Main script coloured:
+          region_count: 1
+          original_rasterized_area_px: 60840
+          surviving_area_px: 60840
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+        Plain initial - Black:
+          region_count: 1
+          original_rasterized_area_px: 25330
+          surviving_area_px: 25330
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+        Plain initial- coloured:
+          region_count: 3
+          original_rasterized_area_px: 133688
+          surviving_area_px: 133688
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+        Variant script coloured:
+          region_count: 5
+          original_rasterized_area_px: 477355
+          surviving_area_px: 464067
+          area_weighted_surviving_fraction: 0.97216327
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_rectangular_s030.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+    source_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_05_iiif_rights_rectangular_s030_survival.png
+    mask_family: rectangular
+    random_seed: 752789174305758731
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_05_iiif_rights_rectangular_s060
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: c590cb010b47b1017174869425a36caa153bee1f16980b07d0b7c61328f74be6
+  source_sample_id: fp_05_iiif_rights
+  source_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+  source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+  source_path: autocomplete-test-dataset/full_pages/fp_05_iiif_rights/e-codices_csg-0314_0003_max.jpg
+  source_sha256: 2aeeeab3381dac0a170b931a78cb423bd357c86810d8cc3c348a10cdc2467597
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 3977
+  - 5043
+  mask_family: rectangular
+  random_seed: 164480280604875342
+  requested_severity: 0.6
+  measured_severity: 0.5999617395
+  surviving_fraction: 0.4000382605
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_05_iiif_rights_rectangular_s060.png
+      sha256: 96bd1b1a823830abed29e687b346e0756fac65ac3e6c0408395c6beea44ae93f
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 3977
+      - 5043
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_05_iiif_rights_rectangular_s060_observed_survival.png
+      sha256: 610f3b2656c56edbaab5dda20cf357b1676f14012ed54f17642ca3252e284660
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 3977
+      - 5043
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_05_iiif_rights_rectangular_s060_survival.png
+      sha256: da0c859c18cfaa8912135a376a48dbb58d24de4895d6fbbbe47ba630a855abc5
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_05_iiif_rights_rectangular_s060_damage.png
+      sha256: f441c0afddcf14ed841f52a0663858f412c6d2ed2ca1435d5cbae9d447d974e1
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_rectangular_s060.json
+      sha256: 050e4acfd6d2de5e69b44893c56623664078a590fa686d163cc83ac42cce1075
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 517
+    - 471
+    - 4494
+    - 5514
+    source_bbox_xywh_px:
+    - 517
+    - 471
+    - 3977
+    - 5043
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -517.0
+    - - 0.0
+      - 1.0
+      - -471.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 517.0
+    - - -0.0
+      - 1.0
+      - 471.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 3977
+    - 5043
+    exported_dimensions_px:
+    - 3977
+    - 5043
+  ground_truth_placement:
+    coordinate_space: source_page
     placement_is_known: true
-  degradation_profile:
-    profile: none
-    note: The output is a controlled crop/mask task, not a claim about a real damaged
-      fragment.
-  parameters:
-    source: initial_sample_dataset_resolved
+    source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+    source_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 517
+      - 471
+    - - 4494
+      - 471
+    - - 4494
+      - 5514
+    - - 517
+      - 5514
+    source_bbox_xyxy_px:
+    - 517
+    - 471
+    - 4494
+    - 5514
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_05_iiif_rights_rectangular_s060_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_05_iiif_rights_rectangular_s060_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_05_iiif_rights
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_05_iiif_rights.json
+      db_segmentation_run_id: 1431e22e-afdc-4a34-b958-4671bbefe9ec
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 91
+      completely_visible_count: 69
+      partially_visible_count: 4
+      completely_lost_count: 18
+      labels_completely_lost:
+      - Gloss
+      labels_with_completely_lost_regions:
+      - Gloss
+      - Main script black
+      surviving_fractions_by_label:
+        Embellished:
+          region_count: 1
+          original_rasterized_area_px: 439425
+          surviving_area_px: 429660
+          area_weighted_surviving_fraction: 0.97777778
+          completely_lost_region_count: 0
+        Gloss:
+          region_count: 1
+          original_rasterized_area_px: 41328
+          surviving_area_px: 0
+          area_weighted_surviving_fraction: 0.0
+          completely_lost_region_count: 1
+        Main script black:
+          region_count: 79
+          original_rasterized_area_px: 16950579
+          surviving_area_px: 12936332
+          area_weighted_surviving_fraction: 0.76317936
+          completely_lost_region_count: 17
+        Main script coloured:
+          region_count: 1
+          original_rasterized_area_px: 60840
+          surviving_area_px: 60840
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+        Plain initial - Black:
+          region_count: 1
+          original_rasterized_area_px: 25330
+          surviving_area_px: 25330
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+        Plain initial- coloured:
+          region_count: 3
+          original_rasterized_area_px: 133688
+          surviving_area_px: 75548
+          area_weighted_surviving_fraction: 0.56510682
+          completely_lost_region_count: 0
+        Variant script coloured:
+          region_count: 5
+          original_rasterized_area_px: 477355
+          surviving_area_px: 477355
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_rectangular_s060.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+    source_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_05_iiif_rights_rectangular_s060_survival.png
+    mask_family: rectangular
+    random_seed: 164480280604875342
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_05_iiif_rights_irregular_s030
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: 4637bb6c6edff64db56b1f932b978890f3c81d4b76b8fd44d7dff0ec3f445e8c
+  source_sample_id: fp_05_iiif_rights
+  source_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+  source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+  source_path: autocomplete-test-dataset/full_pages/fp_05_iiif_rights/e-codices_csg-0314_0003_max.jpg
+  source_sha256: 2aeeeab3381dac0a170b931a78cb423bd357c86810d8cc3c348a10cdc2467597
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 5466
+  - 7280
+  mask_family: irregular
+  random_seed: 1055890470363193915
+  requested_severity: 0.3
+  measured_severity: 0.2999731008
+  surviving_fraction: 0.7000268992
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_05_iiif_rights_irregular_s030.png
+      sha256: c27fa53173b5d3ea6388ed24bbfbbf4f4983dc01557f433780f6c29375b9e56b
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5466
+      - 7280
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_05_iiif_rights_irregular_s030_observed_survival.png
+      sha256: 7c520b9591d7c29152392afe164fcee34757eb664e06a21d459f5c2bbf02cc32
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5466
+      - 7280
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_05_iiif_rights_irregular_s030_survival.png
+      sha256: 66de4fd5eb920d8d325641ea6e618e53ca5a146bb3f8e50f1a1dfd418b782e99
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_05_iiif_rights_irregular_s030_damage.png
+      sha256: fa3c86ad89bbee1c7d553bc5ce64012a6055bcffcf448f7cae1cb359db43a5b1
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_irregular_s030.json
+      sha256: 15ae045613d2d6d96f77c33b59786036b6018989f547115cd19e02a39bdb4439
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 524
+    - 628
+    - 5990
+    - 7908
+    source_bbox_xywh_px:
+    - 524
+    - 628
+    - 5466
+    - 7280
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -524.0
+    - - 0.0
+      - 1.0
+      - -628.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 524.0
+    - - -0.0
+      - 1.0
+      - 628.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 5466
+    - 7280
+    exported_dimensions_px:
+    - 5466
+    - 7280
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+    source_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 524
+      - 628
+    - - 1435
+      - 967
+    - - 2345
+      - 757
+    - - 3256
+      - 881
+    - - 4167
+      - 632
+    - - 5078
+      - 882
+    - - 5989
+      - 887
+    - - 5727
+      - 1834
+    - - 5941
+      - 3049
+    - - 5761
+      - 4263
+    - - 5832
+      - 5478
+    - - 5734
+      - 6692
+    - - 5855
+      - 7907
+    - - 5078
+      - 7569
+    - - 4167
+      - 7800
+    - - 3256
+      - 7692
+    - - 2345
+      - 7547
+    - - 1435
+      - 7619
+    - - 524
+      - 7629
+    - - 779
+      - 6692
+    - - 607
+      - 5478
+    - - 747
+      - 4263
+    - - 759
+      - 3049
+    - - 735
+      - 1834
+    source_bbox_xyxy_px:
+    - 524
+    - 628
+    - 5990
+    - 7908
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_05_iiif_rights_irregular_s030_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_05_iiif_rights_irregular_s030_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_05_iiif_rights
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_05_iiif_rights.json
+      db_segmentation_run_id: 1431e22e-afdc-4a34-b958-4671bbefe9ec
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 91
+      completely_visible_count: 67
+      partially_visible_count: 23
+      completely_lost_count: 1
+      labels_completely_lost:
+      - Gloss
+      labels_with_completely_lost_regions:
+      - Gloss
+      surviving_fractions_by_label:
+        Embellished:
+          region_count: 1
+          original_rasterized_area_px: 439425
+          surviving_area_px: 313925
+          area_weighted_surviving_fraction: 0.7143995
+          completely_lost_region_count: 0
+        Gloss:
+          region_count: 1
+          original_rasterized_area_px: 41328
+          surviving_area_px: 0
+          area_weighted_surviving_fraction: 0.0
+          completely_lost_region_count: 1
+        Main script black:
+          region_count: 79
+          original_rasterized_area_px: 16950579
+          surviving_area_px: 16560746
+          area_weighted_surviving_fraction: 0.97700179
+          completely_lost_region_count: 0
+        Main script coloured:
+          region_count: 1
+          original_rasterized_area_px: 60840
+          surviving_area_px: 60840
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+        Plain initial - Black:
+          region_count: 1
+          original_rasterized_area_px: 25330
+          surviving_area_px: 25330
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+        Plain initial- coloured:
+          region_count: 3
+          original_rasterized_area_px: 133688
+          surviving_area_px: 133688
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+        Variant script coloured:
+          region_count: 5
+          original_rasterized_area_px: 477355
+          surviving_area_px: 466728
+          area_weighted_surviving_fraction: 0.97773774
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_irregular_s030.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+    source_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_05_iiif_rights_irregular_s030_survival.png
     mask_family: irregular
-    generator_version: artificial_fragment_generator_v0_1
+    random_seed: 1055890470363193915
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_05_iiif_rights_irregular_s060
+  task_group: core_pilot
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: 09cfc948ad4a2ebd37b44e8823ebce9bd1852a8180db1e080af40ccc9ed80818
+  source_sample_id: fp_05_iiif_rights
+  source_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+  source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+  source_path: autocomplete-test-dataset/full_pages/fp_05_iiif_rights/e-codices_csg-0314_0003_max.jpg
+  source_sha256: 2aeeeab3381dac0a170b931a78cb423bd357c86810d8cc3c348a10cdc2467597
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 4055
+  - 5374
+  mask_family: irregular
+  random_seed: 550914057828397989
+  requested_severity: 0.6
+  measured_severity: 0.5999743653
+  surviving_fraction: 0.4000256347
+  rotation_degrees: 0.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/fragments/af_fp_05_iiif_rights_irregular_s060.png
+      sha256: bb5943bedeef93a6899cb90d5a62661bb514963ae4f9bf021f705c1c3650b2ee
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 4055
+      - 5374
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/observed_masks/af_fp_05_iiif_rights_irregular_s060_observed_survival.png
+      sha256: 7eb33abab65ea9b9a6adf874c39fa97027175f18929d101cffc82a56bceadb2c
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 4055
+      - 5374
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_05_iiif_rights_irregular_s060_survival.png
+      sha256: 24f1e9551ddc813da649cc3a7ebd42fee3d916043cc664fba71f2f2aba0642a5
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_05_iiif_rights_irregular_s060_damage.png
+      sha256: 4e421d91374289682d3aa4dce5098c6ad71c64a18e9eab23970586e929878da3
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_irregular_s060.json
+      sha256: 02e06d6b1b5a01cd1635267896759a68272d910baaea3a75b604f4edb67d55d5
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 159
+    - 2277
+    - 4214
+    - 7651
+    source_bbox_xywh_px:
+    - 159
+    - 2277
+    - 4055
+    - 5374
+    rotation_degrees: 0.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 1.0
+      - 0.0
+      - -159.0
+    - - 0.0
+      - 1.0
+      - -2277.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.0
+      - -0.0
+      - 159.0
+    - - -0.0
+      - 1.0
+      - 2277.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 4055
+    - 5374
+    exported_dimensions_px:
+    - 4055
+    - 5374
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+    source_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 159
+      - 2343
+    - - 835
+      - 2439
+    - - 1511
+      - 2307
+    - - 2186
+      - 2443
+    - - 2862
+      - 2277
+    - - 3537
+      - 2454
+    - - 4213
+      - 2400
+    - - 4074
+      - 3145
+    - - 4015
+      - 4046
+    - - 4183
+      - 4947
+    - - 4017
+      - 5848
+    - - 4209
+      - 6749
+    - - 4205
+      - 7650
+    - - 3537
+      - 7562
+    - - 2862
+      - 7542
+    - - 2186
+      - 7605
+    - - 1511
+      - 7480
+    - - 835
+      - 7631
+    - - 159
+      - 7381
+    - - 210
+      - 6749
+    - - 164
+      - 5848
+    - - 334
+      - 4947
+    - - 261
+      - 4046
+    - - 311
+      - 3145
+    source_bbox_xyxy_px:
+    - 159
+    - 2277
+    - 4214
+    - 7651
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_05_iiif_rights_irregular_s060_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_05_iiif_rights_irregular_s060_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_05_iiif_rights
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_05_iiif_rights.json
+      db_segmentation_run_id: 1431e22e-afdc-4a34-b958-4671bbefe9ec
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 91
+      completely_visible_count: 44
+      partially_visible_count: 26
+      completely_lost_count: 21
+      labels_completely_lost:
+      - Embellished
+      labels_with_completely_lost_regions:
+      - Embellished
+      - Main script black
+      - Variant script coloured
+      surviving_fractions_by_label:
+        Embellished:
+          region_count: 1
+          original_rasterized_area_px: 439425
+          surviving_area_px: 0
+          area_weighted_surviving_fraction: 0.0
+          completely_lost_region_count: 1
+        Gloss:
+          region_count: 1
+          original_rasterized_area_px: 41328
+          surviving_area_px: 7054
+          area_weighted_surviving_fraction: 0.17068331
+          completely_lost_region_count: 0
+        Main script black:
+          region_count: 79
+          original_rasterized_area_px: 16950579
+          surviving_area_px: 11926169
+          area_weighted_surviving_fraction: 0.70358476
+          completely_lost_region_count: 19
+        Main script coloured:
+          region_count: 1
+          original_rasterized_area_px: 60840
+          surviving_area_px: 60840
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+        Plain initial - Black:
+          region_count: 1
+          original_rasterized_area_px: 25330
+          surviving_area_px: 25330
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+        Plain initial- coloured:
+          region_count: 3
+          original_rasterized_area_px: 133688
+          surviving_area_px: 133688
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+        Variant script coloured:
+          region_count: 5
+          original_rasterized_area_px: 477355
+          surviving_area_px: 440788
+          area_weighted_surviving_fraction: 0.92339663
+          completely_lost_region_count: 1
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_irregular_s060.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
+    source_image_asset_id: 0d7c31f1-174e-4218-9a56-b1bd0df4da38
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_survival_masks/af_fp_05_iiif_rights_irregular_s060_survival.png
+    mask_family: irregular
+    random_seed: 550914057828397989
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+transformation_sanity_tasks:
+- task_id: af_fp_01_clean_simple_sanity_positive_rotation
+  task_group: transformation_sanity
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: 8b6c006cb79f23db1ba3c5d106644aa17d25bd1ec7d6c5d93d371fe06efc04be
+  source_sample_id: fp_01_clean_simple
+  source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+  source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+  source_path: autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg
+  source_sha256: 8ae2d716a0ef69b137fd19e95b65a3131cd1ce78f94e416d731674c86b069d92
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 6034
+  - 7213
+  mask_family: irregular
+  random_seed: 609348718383654260
+  requested_severity: 0.45
+  measured_severity: 0.4499695743
+  surviving_fraction: 0.5500304257
+  rotation_degrees: 12.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/transformation_sanity/fragments/af_fp_01_clean_simple_sanity_positive_rotation.png
+      sha256: 898da48677b0e0dc741bc55311efc10fb6bd82efdcc5ce1b3c69d3a69276362c
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 6034
+      - 7213
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/transformation_sanity/observed_masks/af_fp_01_clean_simple_sanity_positive_rotation_observed_survival.png
+      sha256: 0a928c030d9f9b25af26f9b0cd5a55c01ffb2f0ea1042b1224ed18212b118f83
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 6034
+      - 7213
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_survival_masks/af_fp_01_clean_simple_sanity_positive_rotation_survival.png
+      sha256: 099f0e92c3861bc8b93256ed08f3506761a8b61e4601fbb26b81cea928e24acf
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_damage_masks/af_fp_01_clean_simple_sanity_positive_rotation_damage.png
+      sha256: 620352411c4f489aad521b6c5edfa54a324d7c78102baf1b029b6fefe12b5dfe
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/transformation_sanity/metadata/af_fp_01_clean_simple_sanity_positive_rotation.json
+      sha256: fade5914435274bb2ac3d8dc19a8801aa503925f95d4fcd08558bb38e7c127aa
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 934
+    - 588
+    - 5752
+    - 6937
+    source_bbox_xywh_px:
+    - 934
+    - 588
+    - 4818
+    - 6349
+    rotation_degrees: 12.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 0.978147600734
+      - 0.207911690818
+      - -1035.215165954932
+    - - -0.207911690818
+      - 0.978147600734
+      - 621.268434642826
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 0.978147600734
+      - -0.207911690818
+      - 1141.762201520358
+    - - 0.207911690818
+      - 0.978147600734
+      - -392.45889324365
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 6034
+    - 7213
+    exported_dimensions_px:
+    - 6034
+    - 7213
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 934
+      - 766
+    - - 1737
+      - 837
+    - - 2540
+      - 588
+    - - 3343
+      - 825
+    - - 4146
+      - 807
+    - - 4949
+      - 615
+    - - 5751
+      - 834
+    - - 5631
+      - 1584
+    - - 5559
+      - 2655
+    - - 5712
+      - 3725
+    - - 5725
+      - 4795
+    - - 5521
+      - 5866
+    - - 5607
+      - 6936
+    - - 4949
+      - 6608
+    - - 4146
+      - 6590
+    - - 3343
+      - 6671
+    - - 2540
+      - 6799
+    - - 1737
+      - 6862
+    - - 934
+      - 6662
+    - - 978
+      - 5866
+    - - 1175
+      - 4795
+    - - 957
+      - 3725
+    - - 1090
+      - 2655
+    - - 980
+      - 1584
+    source_bbox_xyxy_px:
+    - 934
+    - 588
+    - 5752
+    - 6937
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_survival_masks/af_fp_01_clean_simple_sanity_positive_rotation_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_damage_masks/af_fp_01_clean_simple_sanity_positive_rotation_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_01_clean_simple
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_01_clean_simple.json
+      db_segmentation_run_id: fedab93c-093f-4f47-a73f-512b3d434a13
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 102
+      completely_visible_count: 52
+      partially_visible_count: 50
+      completely_lost_count: 0
+      labels_completely_lost: []
+      labels_with_completely_lost_regions: []
+      surviving_fractions_by_label:
+        Main script black:
+          region_count: 101
+          original_rasterized_area_px: 24187998
+          surviving_area_px: 19677782
+          area_weighted_surviving_fraction: 0.81353496
+          completely_lost_region_count: 0
+        Plain initial - Black:
+          region_count: 1
+          original_rasterized_area_px: 23552
+          surviving_area_px: 23552
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/metadata/af_fp_01_clean_simple_sanity_positive_rotation.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_survival_masks/af_fp_01_clean_simple_sanity_positive_rotation_survival.png
+    mask_family: irregular
+    random_seed: 609348718383654260
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_01_clean_simple_sanity_negative_rotation
+  task_group: transformation_sanity
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: 0f9882e7aa9b8e288537e0d959b0f68af75fb9576c32eac54d18c973c9c7aad7
+  source_sample_id: fp_01_clean_simple
+  source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+  source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+  source_path: autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg
+  source_sha256: 8ae2d716a0ef69b137fd19e95b65a3131cd1ce78f94e416d731674c86b069d92
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 5663
+  - 6946
+  mask_family: irregular
+  random_seed: 1148464251358699275
+  requested_severity: 0.45
+  measured_severity: 0.4500256626
+  surviving_fraction: 0.5499743374
+  rotation_degrees: -9.0
+  scale: 1.0
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/transformation_sanity/fragments/af_fp_01_clean_simple_sanity_negative_rotation.png
+      sha256: d4103e8faebca0ab91954bd0ab8fa4d40767eb5bd4975f915af842213c8ef10a
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5663
+      - 6946
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/transformation_sanity/observed_masks/af_fp_01_clean_simple_sanity_negative_rotation_observed_survival.png
+      sha256: 0ddc2eea0bae5f3393ea88aa9868677cf4aaf2c8a362b2dbb3c18d8e37a6e5c7
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 5663
+      - 6946
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_survival_masks/af_fp_01_clean_simple_sanity_negative_rotation_survival.png
+      sha256: bcfd2f1ac7adde4e84af43ed6bc6158fbdeaa17a19ba66ae9d876a3b69e32120
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_damage_masks/af_fp_01_clean_simple_sanity_negative_rotation_damage.png
+      sha256: 87e5b6294482cdccb9d5da3d55fe9bfcc37434039ffc7219ef60bb1756353211
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/transformation_sanity/metadata/af_fp_01_clean_simple_sanity_negative_rotation.json
+      sha256: 564aea51612de71ae569bf5dcf2cf8b580bd9f3e620303e68931c22b7446f397
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 183
+    - 1837
+    - 4920
+    - 8119
+    source_bbox_xywh_px:
+    - 183
+    - 1837
+    - 4737
+    - 6282
+    rotation_degrees: -9.0
+    scale: 1.0
+    source_to_observed_fragment_matrix:
+    - - 0.987688340595
+      - -0.15643446504
+      - 1090.143965941775
+    - - 0.15643446504
+      - 0.987688340595
+      - -1842.855097032745
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 0.987688340595
+      - 0.15643446504
+      - -788.436433479854
+    - - -0.15643446504
+      - 0.987688340595
+      - 1990.7025808745
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 5663
+    - 6946
+    exported_dimensions_px:
+    - 5663
+    - 6946
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 183
+      - 1970
+    - - 972
+      - 1917
+    - - 1762
+      - 1837
+    - - 2551
+      - 1951
+    - - 3340
+      - 2070
+    - - 4130
+      - 1850
+    - - 4919
+      - 2055
+    - - 4708
+      - 2855
+    - - 4891
+      - 3908
+    - - 4725
+      - 4960
+    - - 4901
+      - 6013
+    - - 4720
+      - 7065
+    - - 4856
+      - 8118
+    - - 4130
+      - 7842
+    - - 3340
+      - 8077
+    - - 2551
+      - 8093
+    - - 1762
+      - 7991
+    - - 972
+      - 7956
+    - - 183
+      - 7963
+    - - 216
+      - 7065
+    - - 210
+      - 6013
+    - - 194
+      - 4960
+    - - 373
+      - 3908
+    - - 370
+      - 2855
+    source_bbox_xyxy_px:
+    - 183
+    - 1837
+    - 4920
+    - 8119
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_survival_masks/af_fp_01_clean_simple_sanity_negative_rotation_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_damage_masks/af_fp_01_clean_simple_sanity_negative_rotation_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_01_clean_simple
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_01_clean_simple.json
+      db_segmentation_run_id: fedab93c-093f-4f47-a73f-512b3d434a13
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 102
+      completely_visible_count: 74
+      partially_visible_count: 4
+      completely_lost_count: 24
+      labels_completely_lost: []
+      labels_with_completely_lost_regions:
+      - Main script black
+      surviving_fractions_by_label:
+        Main script black:
+          region_count: 101
+          original_rasterized_area_px: 24187998
+          surviving_area_px: 17239880
+          area_weighted_surviving_fraction: 0.71274522
+          completely_lost_region_count: 24
+        Plain initial - Black:
+          region_count: 1
+          original_rasterized_area_px: 23552
+          surviving_area_px: 23552
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/metadata/af_fp_01_clean_simple_sanity_negative_rotation.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_survival_masks/af_fp_01_clean_simple_sanity_negative_rotation_survival.png
+    mask_family: irregular
+    random_seed: 1148464251358699275
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false
+- task_id: af_fp_01_clean_simple_sanity_non_unit_scale
+  task_group: transformation_sanity
+  generation_version: artificial_fragment_generator_v0_1_1
+  generation_fingerprint_sha256: cba0d50f932d371b0200551f049d390be58f1cbf939934b65a575fc3c6998b50
+  source_sample_id: fp_01_clean_simple
+  source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+  source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+  source_path: autocomplete-test-dataset/full_pages/fp_01_clean_simple/e-codices_csg-0300_0005_max.jpg
+  source_sha256: 8ae2d716a0ef69b137fd19e95b65a3131cd1ce78f94e416d731674c86b069d92
+  source_integrity_verified: true
+  original_image_dimensions_px:
+  - 6132
+  - 8176
+  generated_fragment_dimensions_px:
+  - 3842
+  - 5076
+  mask_family: irregular
+  random_seed: 829488391348068346
+  requested_severity: 0.45
+  measured_severity: 0.4500316265
+  surviving_fraction: 0.5499683735
+  rotation_degrees: 0.0
+  scale: 0.8
+  artifacts:
+    fragment_image:
+      path: outputs/artificial_fragments/v0_1_1/transformation_sanity/fragments/af_fp_01_clean_simple_sanity_non_unit_scale.png
+      sha256: fd59d9a4d7c46721c0122fa40956ceea365460fc00477071c50380f0ec685079
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 3842
+      - 5076
+      mode: RGBA
+    observed_fragment_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/transformation_sanity/observed_masks/af_fp_01_clean_simple_sanity_non_unit_scale_observed_survival.png
+      sha256: 166366625d5ec6e8e1714f845f38958c88d34f5ae8185bf6304b570c14e774e4
+      coordinate_space: observed_fragment
+      dimensions_px:
+      - 3842
+      - 5076
+      semantics: 255=observed source pixel survives; 0=missing
+    source_survival_mask:
+      path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_survival_masks/af_fp_01_clean_simple_sanity_non_unit_scale_survival.png
+      sha256: d6ce426f62c910aebf96338751b88d986476f82fc00a401672d88643c138a6d3
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=observed source pixel survives; 0=missing
+    source_damage_mask:
+      path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_damage_masks/af_fp_01_clean_simple_sanity_non_unit_scale_damage.png
+      sha256: af55a2c755dc4e58460da5ddceba1cc9dfa466f8c76bee70d16ecc7d7f7376bb
+      coordinate_space: source_page
+      dimensions_px:
+      - 6132
+      - 8176
+      semantics: 255=source pixel removed; 0=survives
+    metadata:
+      path: outputs/artificial_fragments/v0_1_1/transformation_sanity/metadata/af_fp_01_clean_simple_sanity_non_unit_scale.json
+      sha256: f3ea758a1c2d26c0275c7eeffbe8e7e64019a5c70e27d02524979e51fdf9b053
+      coordinate_space: not_applicable
+  crop_transform:
+    source_bbox_xyxy_px:
+    - 405
+    - 1021
+    - 5207
+    - 7366
+    source_bbox_xywh_px:
+    - 405
+    - 1021
+    - 4802
+    - 6345
+    rotation_degrees: 0.0
+    scale: 0.8
+    source_to_observed_fragment_matrix:
+    - - 0.800083298626
+      - 0.0
+      - -324.033735943357
+    - - 0.0
+      - 0.8
+      - -816.8
+    - - 0.0
+      - 0.0
+      - 1.0
+    observed_fragment_to_source_matrix:
+    - - 1.249869859448
+      - -0.0
+      - 405.0
+    - - -0.0
+      - 1.25
+      - 1021.0
+    - - 0.0
+      - 0.0
+      - 1.0
+    matrix_expected_dimensions_px:
+    - 3842
+    - 5076
+    exported_dimensions_px:
+    - 3842
+    - 5076
+  ground_truth_placement:
+    coordinate_space: source_page
+    placement_is_known: true
+    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+    source_page_dimensions_px:
+    - 6132
+    - 8176
+    source_contour_xy_px:
+    - - 405
+      - 1021
+    - - 1206
+      - 1264
+    - - 2006
+      - 1169
+    - - 2806
+      - 1199
+    - - 3606
+      - 1098
+    - - 4406
+      - 1278
+    - - 5206
+      - 1231
+    - - 5076
+      - 2031
+    - - 5053
+      - 3098
+    - - 5161
+      - 4165
+    - - 5110
+      - 5231
+    - - 5056
+      - 6298
+    - - 5051
+      - 7365
+    - - 4406
+      - 7136
+    - - 3606
+      - 7027
+    - - 2806
+      - 7100
+    - - 2006
+      - 7216
+    - - 1206
+      - 7290
+    - - 405
+      - 7340
+    - - 415
+      - 6298
+    - - 666
+      - 5231
+    - - 591
+      - 4165
+    - - 476
+      - 3098
+    - - 412
+      - 2031
+    source_bbox_xyxy_px:
+    - 405
+    - 1021
+    - 5207
+    - 7366
+    source_survival_mask_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_survival_masks/af_fp_01_clean_simple_sanity_non_unit_scale_survival.png
+    source_damage_mask_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_damage_masks/af_fp_01_clean_simple_sanity_non_unit_scale_damage.png
+    scientific_role: hidden_ground_truth
+  layout_survival_estimate:
+    geometry_method: rasterized_bbox_xyxy
+    segmentation_run_provenance:
+      sample_id: fp_01_clean_simple
+      pilot_run_id: segmentation_pilot_v0_1
+      dataset_id: initial_sample_dataset_v0_1
+      model_id: best_emanuskript_segmentation
+      model_path: model weights/best_emanuskript_segmentation.pt
+      confidence_threshold: 0.25
+      imgsz: 320
+      raw_output_path: outputs/segmentation_pilot/raw/fp_01_clean_simple.json
+      db_segmentation_run_id: fedab93c-093f-4f47-a73f-512b3d434a13
+      orig_shape:
+      - 8176
+      - 6132
+      geometry_method: rasterized_bbox_xyxy
+      interpretation: layout_survival_estimate
+    summary:
+      metric_name: layout_survival_estimate
+      geometry_method: rasterized_bbox_xyxy
+      total_regions: 102
+      completely_visible_count: 72
+      partially_visible_count: 20
+      completely_lost_count: 10
+      labels_completely_lost: []
+      labels_with_completely_lost_regions:
+      - Main script black
+      surviving_fractions_by_label:
+        Main script black:
+          region_count: 101
+          original_rasterized_area_px: 24187998
+          surviving_area_px: 20991004
+          area_weighted_surviving_fraction: 0.86782726
+          completely_lost_region_count: 10
+        Plain initial - Black:
+          region_count: 1
+          original_rasterized_area_px: 23552
+          surviving_area_px: 23552
+          area_weighted_surviving_fraction: 1.0
+          completely_lost_region_count: 0
+      interpretation_note: Calculated from rasterized source-region bounding boxes;
+        this is not pixel-accurate segmentation-mask survival.
+    full_region_metadata_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/metadata/af_fp_01_clean_simple_sanity_non_unit_scale.json
+  artificial_fragment_task_mapping:
+    source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
+    source_image_asset_id: 4f2aa890-aac2-4813-acc9-47b68cd7967b
+    generated_fragment_image_asset_id: null
+    mask_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_survival_masks/af_fp_01_clean_simple_sanity_non_unit_scale_survival.png
+    mask_family: irregular
+    random_seed: 829488391348068346
+    crop_transform: crop_transform
+    degradation_profile: degradation_profile
+    ground_truth_placement: ground_truth_placement
+    split_name: demo
+    generation_version: artificial_fragment_generator_v0_1_1
+    parameters: parameters
+    database_write: false

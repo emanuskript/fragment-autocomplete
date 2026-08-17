@@ -14,7 +14,7 @@ CoMMA is a text, transcription, and metadata resource. It can support text searc
 
 ## Current Status
 
-This repository currently contains project documentation, PostgreSQL/PostGIS migrations, IIIF ingestion proof-of-concept code, local dataset metadata registration, controlled segmentation runs, segmentation storage, and a minimal local segmentation viewer. It does not implement reconstruction, retrieval, artificial fragment generation, MSI workflows, CoMMA ingestion, production backend/frontend deployment, or a final scholarly interface.
+This repository currently contains project documentation, PostgreSQL/PostGIS migrations, IIIF ingestion proof-of-concept code, local dataset metadata registration, controlled segmentation runs, segmentation storage, a minimal local segmentation viewer, and deterministic artificial-fragment generation with source-space ground truth. It does not implement reconstruction, retrieval, model training, MSI workflows, CoMMA ingestion, production backend/frontend deployment, or a final scholarly interface.
 
 ## Repository Structure
 
@@ -326,11 +326,11 @@ Run the local viewer manually:
 bash scripts/run_segmentation_viewer.sh
 ```
 
-Pilot outputs are stored in PostgreSQL/PostGIS and can be inspected in the local read-only viewer. Artificial fragment generation, reconstruction, retrieval, MSI workflows, and CoMMA ingestion remain separate later steps.
+Pilot segmentation outputs are stored in PostgreSQL/PostGIS and can be inspected in the local read-only viewer. Artificial-fragment generation consumes the five full-page outputs as a separate evaluation-groundwork step; reconstruction, retrieval, MSI workflows, and CoMMA ingestion remain later work.
 
 ## Artificial fragment generation
 
-Generate controlled artificial fragment tasks from the five registered full-page samples:
+Generate the controlled 20-task pilot from the five registered full-page samples, plus three separate transformation sanity cases:
 
 ```bash
 python3 scripts/generate_artificial_fragments.py --verbose
@@ -342,7 +342,21 @@ Validate the generated local outputs and metadata:
 bash scripts/validate_artificial_fragments.sh
 ```
 
-The generator writes local PNG fragments and masks under `outputs/artificial_fragments/` and a small metadata manifest at `data/metadata/artificial_fragment_generation_results.yaml`. The generated images and masks are local outputs and should not be committed. The metadata records exact crop transforms, random seeds, source database identifiers, rights/access status, and known ground-truth placement for later `artificial_fragment_task` database storage.
+Generate one configured task:
+
+```bash
+python3 scripts/generate_artificial_fragments.py \
+  --sample fp_01_clean_simple \
+  --mask irregular \
+  --severity 0.5 \
+  --seed 42
+```
+
+The core pilot is five pages × rectangular/irregular masks × severity 0.30/0.60, with rotation 0 and scale 1. The separate sanity tasks cover positive rotation, negative rotation, and non-unit scale.
+
+The generator writes local PNG fragments, source-coordinate survival/damage masks, observed-coordinate masks, and per-task JSON under `outputs/artificial_fragments/v0_1_1/`, plus the metadata manifest at `data/metadata/artificial_fragment_generation_results.yaml`. Generated binaries are local outputs and should not be committed. Metadata records source SHA-256, requested/measured severity, deterministic seeds, source provenance, contours, exact forward/inverse transforms, and known ground-truth placement for later `artificial_fragment_task` storage.
+
+Current layout survival values use clipped, rasterized source-region bounding boxes (`geometry_method: rasterized_bbox_xyxy`). They are structural `layout_survival_estimate` values, not pixel-accurate segmentation-mask survival measurements.
 
 This step creates controlled evaluation tasks only. It does not train a model, run reconstruction, infer missing manuscript content, or claim that generated fragments are historical evidence.
 
