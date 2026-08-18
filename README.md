@@ -354,7 +354,16 @@ python3 scripts/generate_artificial_fragments.py \
 
 The core pilot is five pages × rectangular/irregular masks × severity 0.30/0.60, with rotation 0 and scale 1. The separate sanity tasks cover positive rotation, negative rotation, and non-unit scale.
 
-The generator writes local PNG fragments, source-coordinate survival/damage masks, observed-coordinate masks, and per-task JSON under `outputs/artificial_fragments/v0_1_1/`, plus the metadata manifest at `data/metadata/artificial_fragment_generation_results.yaml`. Generated binaries are local outputs and should not be committed. Metadata records source SHA-256, requested/measured severity, deterministic seeds, source provenance, contours, exact forward/inverse transforms, and known ground-truth placement for later `artificial_fragment_task` storage.
+The generator writes local PNG fragments, source-coordinate survival/damage masks, observed-coordinate masks, and per-task JSON under `outputs/artificial_fragments/v0_1_1/`, plus the metadata manifest at `data/metadata/artificial_fragment_generation_results.yaml`. Generated binaries are local outputs and should not be committed. Metadata records source SHA-256, requested/measured severity, deterministic seeds, source provenance, contours, exact forward/inverse transforms, and known ground-truth placement.
+
+Register the 20 core and three transformation-sanity tasks in PostgreSQL, then validate their identities, source relationships, and local artifact references:
+
+```bash
+python3 scripts/register_artificial_fragment_tasks.py --verbose
+bash scripts/validate_artificial_fragment_task_registration.sh
+```
+
+Registration is idempotent. Scientific generation parameters produce a deterministic identity hash and UUIDv5 primary key; an unchanged rerun matches the same 23 rows without updating them. PostgreSQL stores paths, checksums, dimensions, transforms, provenance, and layout-survival JSON, never the generated image or mask bytes.
 
 Current full-page layout survival values use the restored, source-sized eManuSkript instance masks (`geometry_method: segmentation_mask`). Bounding boxes remain recorded, and `rasterized_bbox_xyxy` is retained only as an explicit fallback for legacy runs without mask artifacts. Because the five pages were temporarily downscaled for inference, the masks are authoritative model outputs restored to source coordinates, not manual pixel-level annotations.
 
@@ -362,4 +371,4 @@ This step creates controlled evaluation tasks only. It does not train a model, r
 
 ## Next Task
 
-Add PostgreSQL storage for generated artificial-fragment task metadata.
+Expand the training corpus from complete manuscript pages while preserving rights, provenance, source checksums, and eManuSkript mask evidence.

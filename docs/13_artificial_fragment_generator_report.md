@@ -59,7 +59,7 @@ The compact committed manifest is `data/metadata/artificial_fragment_generation_
 - Generation version, deterministic seed, mask family and family-specific parameters, requested/measured severity, surviving fraction, rotation, and scale.
 - Source and observed contours/bounding boxes plus forward/inverse transforms.
 - Artifact paths, dimensions, coordinate-space labels, and SHA-256 checksums.
-- Database-ready mappings for the existing `artificial_fragment_task` fields; `database_write` remains false. A later importer should follow each checksummed per-task metadata path from the compact manifest.
+- Database-ready mappings for the existing `artificial_fragment_task` fields. Generator-side `database_write` remains false; the separate validated registration workflow follows each checksummed per-task metadata path from the compact manifest.
 - Per-region layout survival estimates and a per-fragment summary.
 
 Each task writes a transparent fragment PNG, an observed-fragment survival mask, a full-page source survival mask, a full-page source damage mask, and JSON metadata under `outputs/artificial_fragments/v0_1_1/`. These generated binaries are git-ignored and must not be committed.
@@ -79,7 +79,7 @@ The per-fragment summary reports total, completely visible, partially visible, a
 
 ## Validation
 
-The complete repository test suite passes with 33 tests, including 22 evaluation tests. The segmentation, database-storage, and artificial-fragment artifact validators pass. Validation covers mask coordinate restoration, binary validity, source dimensions, deterministic mask serialization, known mask intersections, bbox fallback, deterministic fragment generation, source integrity, severity tolerance, bbox clipping, completely lost regions, transform round trips, rotation/scale dimensions, source-overwrite prevention, task matrix coverage, checksums, and provenance fields.
+The complete repository test suite passes with 39 tests, including 28 evaluation tests. The segmentation, database-storage, artificial-fragment artifact, and task-registration validators pass. Registration validation covers first insertion, unchanged reruns, bad source IDs, missing artifacts, checksum mismatches, duplicate scientific configurations, JSON serialization, task counts, source relationships, deterministic identities, and the 20 core `segmentation_mask` records. Generator validation continues to cover mask coordinate restoration, binary validity, source dimensions, deterministic mask serialization, known intersections, bbox fallback, source integrity, severity tolerance, clipping, complete loss, transform round trips, task matrix coverage, checksums, and provenance.
 
 ## Known limitations
 
@@ -89,8 +89,8 @@ The complete repository test suite passes with 33 tests, including 22 evaluation
 - Rotation and scaling are image-space transformations; they do not model camera calibration, physical dimensions, or parchment deformation.
 - Full-page ground-truth masks make the local pilot auditable but produce approximately 730 MB of ignored output. A later iteration may add lossless compact mask encoding while retaining the current PNG reference behavior.
 - HSP-normalized metadata is preserved when present; the current resolved five-page registry does not contain populated HSP-normalized values, which is recorded explicitly rather than inferred.
-- Segmentation rows were refreshed with mask paths and mask areas, but no `artificial_fragment_task` rows were written. No reconstruction, retrieval, model training, LLM integration, recto/verso reasoning, or bifolium modelling is included.
+- The 23 generated tasks are registered idempotently in `artificial_fragment_task` using deterministic scientific identities. PostgreSQL stores metadata and artifact references only; no generated image or mask bytes are stored. No reconstruction, retrieval, model training, LLM integration, recto/verso reasoning, or bifolium modelling is included.
 
 ## Next recommended iteration
 
-Add idempotent PostgreSQL storage for the generated task metadata using the existing `artificial_fragment_task` table. Store paths and JSON provenance only, not image or mask binaries, and preserve the distinction between observed fragment evidence, hidden ground truth, mask-based model evidence, legacy bbox fallback, and future reconstruction inference.
+Expand the training corpus from complete manuscript pages. Preserve rights and access decisions, source checksums, stable source/canvas identifiers, eManuSkript segmentation-mask evidence, and the distinction between observed evidence, hidden ground truth, and future reconstruction inference.

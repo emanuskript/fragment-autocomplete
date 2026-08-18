@@ -2,16 +2,15 @@
 
 ## Next recommended task
 
-Add idempotent PostgreSQL storage for Artificial Fragment Generator v0.1.1 task metadata.
+Expand the training corpus from complete manuscript pages.
 
 ## Acceptance criteria
 
-- Read and validate the compact `data/metadata/artificial_fragment_generation_results.yaml` index and each referenced, checksummed per-task JSON metadata file.
-- Insert or match the 20 core pilot and three transformation-sanity records in `artificial_fragment_task` without rerunning generation.
-- Preserve source canvas/image IDs, source SHA-256, mask paths and semantics, requested/measured severity, crop transforms, random seeds, ground-truth placement, and segmentation-mask layout-survival provenance in the existing JSONB fields.
-- Preserve `geometry_method: segmentation_mask` for the refreshed full-page evidence and retain `rasterized_bbox_xyxy` only for explicitly identified legacy fallback records.
-- Do not store generated image binaries in PostgreSQL.
-- Do not add a migration unless a concrete incompatibility with the existing table is demonstrated.
-- Do not train any model or run reconstruction.
-- Add a validation script that confirms stored task counts and required provenance fields.
-- Keep evidence, generated evaluation tasks, and later reconstruction inference clearly separated.
+- Define a controlled expansion manifest for complete manuscript pages before downloading or processing bulk data.
+- Record repository, manuscript, canvas, image-service, rights/access, and source-checksum provenance for every candidate page.
+- Establish explicit inclusion/exclusion criteria for layout diversity, manuscript/source diversity, image quality, and permitted training use.
+- Reuse the eManuSkript segmentation-mask workflow and retain restored instance masks as model evidence rather than manual ground truth.
+- Keep complete pages, artificial-fragment evaluation tasks, and real damaged fragments as distinct dataset roles and splits.
+- Add bounded dry-run and pilot modes before any large acquisition or processing run.
+- Estimate storage and compute requirements before expansion and continue excluding downloaded pages, masks, and derived binaries from Git.
+- Do not begin reconstruction, retrieval, LLM integration, or UI expansion as part of corpus preparation.

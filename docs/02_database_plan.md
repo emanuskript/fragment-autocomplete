@@ -155,7 +155,7 @@ The schema supports IIIF ingestion through:
 - `image_asset` for IIIF Image API service URLs and registered image references.
 - JSONB fields for raw source metadata while normalized fields remain queryable.
 
-The IIIF parser and image cache prototype is the next task; it is not implemented in this milestone.
+The local IIIF parser and manifest-cache proof of concept are implemented. Corpus expansion should reuse those registration and provenance conventions rather than introduce a parallel source model.
 
 ## 11. How the Schema Supports eManuSkript Outputs
 
@@ -165,13 +165,17 @@ The schema supports eManuSkript outputs through:
 - `layout_region` for semantic layout labels, label IDs, confidence values, polygons, bounding boxes, reading order, area, mask paths, and raw region payloads.
 - GiST indexes on layout-region geometry.
 
-The eManuSkript model is not run or integrated in this milestone.
+The controlled eManuSkript pilot is implemented and stored. Complete-page regions retain source-sized binary instance-mask paths as authoritative model evidence, while bounding boxes remain queryable metadata and an explicit fallback for legacy maskless runs.
 
 ## 12. How the Schema Supports Artificial Fragments
 
 `artificial_fragment_task` links generated fragment tasks to complete source pages and images. It records mask family, random seed, crop transform, degradation profile, ground-truth placement, split name, generation version, and parameters.
 
-This supports later supervised evaluation while keeping synthetic fragment generation reproducible. The generator itself is not implemented in this milestone.
+The controlled v0.1.1 pilot now registers 20 core tasks and three transformation-sanity tasks through `scripts/register_artificial_fragment_tasks.py`. Each task ID is a deterministic UUIDv5 derived from a canonical SHA-256 identity over the source sample/checksum, generator version, mask family, seed, requested severity, rotation, scale, and realized mask parameters. The identity payload and digest are also retained in JSONB. This provides idempotency without a new uniqueness migration: an unchanged rerun matches the same row and does not change `updated_at`; duplicate configurations in one input manifest are rejected before database writes.
+
+`source_canvas_id` and `source_image_asset_id` are checked against the registered source relationship, and the eManuSkript segmentation-run provenance must resolve to the same image asset. Source files and every referenced fragment/mask/metadata artifact are checked locally against recorded paths, dimensions, and SHA-256 values before insertion. A conflicting non-null source checksum in `image_asset` is rejected.
+
+Only paths, checksums, dimensions, transforms, provenance, generation settings, per-region layout-survival measurements, and summaries are stored. The approximately 730 MB of generated image and mask binaries remain ignored filesystem artifacts. `generated_fragment_image_asset_id` remains null because no generated binary asset is registered in this milestone.
 
 ## 13. How the Schema Supports Reconstruction Candidates
 
@@ -235,6 +239,13 @@ python3 scripts/import_hsp_normdata.py --verbose
 bash scripts/validate_hsp_metadata_alignment.sh
 ```
 
+Register and validate the artificial-fragment task pilot:
+
+```bash
+python3 scripts/register_artificial_fragment_tasks.py --verbose
+bash scripts/validate_artificial_fragment_task_registration.sh
+```
+
 Reset the local database volume:
 
 ```bash
@@ -254,9 +265,9 @@ Known limitations:
 - Storage path policy needs confirmation with GWDG or the selected institutional storage environment.
 - `pgvector` is not enabled yet; retrieval vectors are stored as `FLOAT8[]` and descriptor JSON for now.
 - Polymorphic references such as `annotation.target_id` and `evaluation_run.target_id` are not enforced by foreign keys.
-- The schema supports IIIF, eManuSkript outputs, artificial fragments, reconstruction candidates, evaluation, and export. IIIF ingestion, pilot segmentation, segmentation storage, and the local viewer exist as local proof-of-concept workflows; artificial fragments, reconstruction, retrieval, MSI, CoMMA ingestion, and deployment remain unimplemented.
+- The schema supports IIIF, eManuSkript outputs, artificial fragments, reconstruction candidates, evaluation, and export. IIIF ingestion, pilot segmentation, segmentation-mask storage, the local viewer, artificial-fragment generation, and idempotent task registration exist as local proof-of-concept workflows; reconstruction, retrieval, training, MSI, CoMMA ingestion, and deployment remain unimplemented.
 - HSP/normdata fields are available, but most pilot sample metadata is still `needs_review` until cataloguing values are reviewed or imported from authoritative source records.
 
 Next step:
 
-Build the artificial fragment generator for complete-page samples.
+Expand the training corpus from complete manuscript pages while retaining rights, provenance, checksums, and segmentation-mask evidence.

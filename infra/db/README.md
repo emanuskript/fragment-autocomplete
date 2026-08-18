@@ -9,7 +9,7 @@ It provides:
 - Initial repository lookup seed values.
 - Shell scripts for start, reset, migration, and validation.
 
-This is database infrastructure only. It does not implement IIIF ingestion, eManuSkript integration, artificial fragment generation, reconstruction, retrieval, ML, frontend, backend API, or deployment.
+The database foundation is accompanied by local registration scripts for IIIF/sample metadata, eManuSkript segmentation outputs, and artificial-fragment task metadata. Generated image and mask binaries remain filesystem artifacts and are never stored in PostgreSQL. Reconstruction, retrieval, training, frontend/backend product work, and deployment remain outside this milestone.
 
 ## Defaults
 
@@ -45,6 +45,15 @@ Validate the schema:
 ```bash
 bash scripts/db_validate.sh
 ```
+
+Register and validate the controlled 23-task artificial-fragment pilot:
+
+```bash
+python3 scripts/register_artificial_fragment_tasks.py --verbose
+bash scripts/validate_artificial_fragment_task_registration.sh
+```
+
+The registration command uses deterministic scientific task identities and is safe to rerun. It stores artifact paths, SHA-256 checksums, dimensions, source relationships, transforms, generation settings, and layout-survival JSON in the existing `artificial_fragment_task` table. It does not register generated images as `image_asset` rows and does not store binary payloads.
 
 Reset the local database volume:
 
