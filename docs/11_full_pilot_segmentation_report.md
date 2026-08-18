@@ -4,7 +4,7 @@
 Document the full 10-item pilot segmentation run and the subsequent PostgreSQL/PostGIS storage step.
 
 ## Scope
-Segmentation was run on the 10-item pilot dataset only. No training was performed, and no artificial fragment generation, reconstruction, retrieval, MSI workflow, or CoMMA workflow was implemented here.
+The five registered complete pages were rerun to preserve eManuSkript per-instance masks; the five existing fragment results remain available as legacy bbox-only outputs. No training, reconstruction, retrieval, MSI workflow, or CoMMA workflow was performed.
 
 ## Input Dataset
 - Pilot run ID: `segmentation_pilot_v0_1`
@@ -22,18 +22,18 @@ Segmentation was run on the 10-item pilot dataset only. No training was performe
 
 ## Per-sample Results Table
 
-| Sample | Kind | Regions | Labels | Status | Warnings |
-| --- | --- | ---: | --- | --- | --- |
-| `fp_01_clean_simple` | `full_page` | 102 | Main script black, Plain initial - Black | `matched_and_refreshed` |  |
-| `fp_02_clean_simple` | `full_page` | 31 | Main script black | `matched_and_refreshed` |  |
-| `fp_03_complex_layout` | `full_page` | 82 | Embellished, Main script black, Plain initial - Highlighted | `matched_and_refreshed` |  |
-| `fp_04_complex_layout` | `full_page` | 34 | Embellished, Main script black, Music, Plain initial - Black | `matched_and_refreshed` |  |
-| `fp_05_iiif_rights` | `full_page` | 91 | Embellished, Gloss, Main script black, Main script coloured, Plain initial - Black, Plain initial- coloured, Variant script coloured | `matched_and_refreshed` |  |
-| `fr_01_binding_strip` | `fragment` | 40 | Illustrations, Main script black | `matched_and_refreshed` |  |
-| `fr_02_text_block` | `fragment` | 98 | Main script black | `matched_and_refreshed` |  |
-| `fr_03_marginal_gloss` | `fragment` | 24 | Main script black, Music | `matched_and_refreshed` |  |
-| `fr_04_decoration_initial` | `fragment` | 115 | Embellished, Main script black, Main script coloured, Music, Plain initial - Highlighted, Zoo - Anthropomorphic | `matched_and_refreshed` |  |
-| `fr_05_damaged_irregular` | `fragment` | 24 | Main script black | `matched_and_refreshed` |  |
+| Sample | Kind | Regions | Region masks | Labels | Status | Warnings |
+| --- | --- | ---: | ---: | --- | --- | --- |
+| `fp_01_clean_simple` | `full_page` | 102 | 102 | Main script black | `matched_and_refreshed` |  |
+| `fp_02_clean_simple` | `full_page` | 31 | 31 | Main script black | `matched_and_refreshed` |  |
+| `fp_03_complex_layout` | `full_page` | 81 | 81 | Embellished, Main script black, Plain initial - Highlighted | `matched_and_refreshed` |  |
+| `fp_04_complex_layout` | `full_page` | 34 | 34 | Embellished, Main script black, Music, Plain initial - Black | `matched_and_refreshed` |  |
+| `fp_05_iiif_rights` | `full_page` | 90 | 90 | Embellished, Gloss, Main script black, Main script coloured, Plain initial - Black, Plain initial- coloured, Variant script coloured | `matched_and_refreshed` |  |
+| `fr_01_binding_strip` | `fragment` | 40 | 0 | Illustrations, Main script black | `matched_and_refreshed` |  |
+| `fr_02_text_block` | `fragment` | 98 | 0 | Main script black | `matched_and_refreshed` |  |
+| `fr_03_marginal_gloss` | `fragment` | 24 | 0 | Main script black, Music | `matched_and_refreshed` |  |
+| `fr_04_decoration_initial` | `fragment` | 115 | 0 | Embellished, Main script black, Main script coloured, Music, Plain initial - Highlighted, Zoo - Anthropomorphic | `matched_and_refreshed` |  |
+| `fr_05_damaged_irregular` | `fragment` | 24 | 0 | Main script black | `matched_and_refreshed` |  |
 
 ## Detected Labels Summary
 - Unique labels across the pilot run: Embellished, Gloss, Illustrations, Main script black, Main script coloured, Music, Plain initial - Black, Plain initial - Highlighted, Plain initial- coloured, Variant script coloured, Zoo - Anthropomorphic
@@ -63,7 +63,9 @@ Segmentation was run on the 10-item pilot dataset only. No training was performe
 ## Database Storage Summary
 - Stored sample count: `10`
 - Tables written: `segmentation_run`, `layout_region`
-- Geometry strategy: SRID 0 polygons derived from bbox coordinates where persisted mask polygons were unavailable.
+- Authoritative pixel evidence: source-sized binary per-instance segmentation masks referenced by `layout_region.mask_path`.
+- `bbox_geom` remains the detected bounding box. `region_geom` remains the same compatibility bbox polygon because no PostGIS raster/geometry migration is required for this milestone.
+- `region_area_px` uses mask pixel area when a mask is available and bbox area only for legacy fallback rows.
 
 ## Viewer Update
 The local Streamlit viewer now lists both smoke-test and full-pilot segmentation runs, supports filtering by run type, and allows selecting multiple runs for the same sample.
@@ -71,12 +73,12 @@ The local Streamlit viewer now lists both smoke-test and full-pilot segmentation
 ## Known Issues
 - The pilot run preserves outputs locally and in PostgreSQL/PostGIS only; it does not provide a production UI.
 - The viewer is for local development/demo use and remains read-only.
+- Region masks are ignored local artifacts and are not stored as database binaries.
 
 ## What Has Not Been Implemented
-- No artificial fragment generation was implemented.
 - No reconstruction was implemented.
 - No retrieval was implemented.
 - No MSI or CoMMA workflow was implemented.
 
 ## Next Step
-Build the artificial fragment generator for complete-page samples.
+Use the source-sized masks as authoritative layout-region evidence in artificial-fragment survival evaluation, retaining bbox fallback only for legacy runs without masks.

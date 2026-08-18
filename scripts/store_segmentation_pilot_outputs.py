@@ -19,6 +19,9 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from src.ingestion.db import connect
+from src.evaluation.segmentation_masks import mask_pixel_area, validate_binary_mask
+
+from PIL import Image
 
 
 DEFAULT_RESULTS = ROOT / "data/metadata/segmentation_pilot_results.yaml"
@@ -172,6 +175,7 @@ def upsert_segmentation_run(
         "rights_review_status": context.rights_review_status,
         "access_level": context.access_level,
         "dataset_id": pilot_results.get("dataset_id"),
+        "mask_geometry_available": sample_result.get("mask_geometry_available", False),
     }
     raw_output = {
         "sample_id": context.sample_id,
@@ -183,6 +187,11 @@ def upsert_segmentation_run(
         "raw_prediction": raw_prediction,
         "pilot_result": sample_result,
     }
+    output_format = (
+        "ultralytics_segmentation_json_with_binary_masks"
+        if sample_result.get("mask_geometry_available")
+        else "ultralytics_segmentation_json_legacy_bbox"
+    )
     values = (
         context.db_image_asset_id,
         context.db_fragment_id,
@@ -194,7 +203,7 @@ def upsert_segmentation_run(
         generated_at,
         generated_at,
         sample_result.get("raw_output_path"),
-        "ultralytics_segmentation_json",
+        output_format,
         json.dumps(sample_result.get("confidence_summary", {})),
         json.dumps(raw_output),
     )
@@ -258,7 +267,22 @@ def replace_layout_regions(cur: Any, segmentation_run_id: str, detections: list[
         if x2 <= x1 or y2 <= y1:
             continue
         wkt = make_polygon_wkt(x1, y1, x2, y2)
-        area = max(0.0, (x2 - x1) * (y2 - y1))
+        bbox_area = max(0.0, (x2 - x1) * (y2 - y1))
+        mask_path = detection.get("mask_path")
+        if mask_path:
+            resolved_mask_path = (ROOT / mask_path).resolve()
+            if not resolved_mask_path.exists():
+                raise FileNotFoundError(f"Referenced segmentation mask is missing: {mask_path}")
+            with Image.open(resolved_mask_path) as mask:
+                binary_mask = mask.convert("L")
+                expected_dimensions = detection.get("mask_dimensions_px")
+                expected_size = tuple(expected_dimensions) if expected_dimensions else None
+                validate_binary_mask(binary_mask, expected_size)
+                area = mask_pixel_area(binary_mask)
+            if detection.get("mask_pixel_area") != area:
+                raise ValueError(f"Mask area metadata mismatch for {mask_path}")
+        else:
+            area = bbox_area
         cur.execute(
             """
             INSERT INTO layout_region (
@@ -295,7 +319,7 @@ def replace_layout_regions(cur: Any, segmentation_run_id: str, detections: list[
                 wkt,
                 detection.get("index"),
                 area,
-                detection.get("mask_path"),
+                mask_path,
                 json.dumps(detection),
             ),
         )
@@ -329,7 +353,7 @@ def write_report(path: Path, payload: dict[str, Any]) -> None:
         "Document the full 10-item pilot segmentation run and the subsequent PostgreSQL/PostGIS storage step.",
         "",
         "## Scope",
-        "Segmentation was run on the 10-item pilot dataset only. No training was performed, and no artificial fragment generation, reconstruction, retrieval, MSI workflow, or CoMMA workflow was implemented here.",
+        "The five registered complete pages were rerun to preserve eManuSkript per-instance masks; the five existing fragment results remain available as legacy bbox-only outputs. No training, reconstruction, retrieval, MSI workflow, or CoMMA workflow was performed.",
         "",
         "## Input Dataset",
         f"- Pilot run ID: `{payload['pilot_run_id']}`",
@@ -347,8 +371,8 @@ def write_report(path: Path, payload: dict[str, Any]) -> None:
         "",
         "## Per-sample Results Table",
         "",
-        "| Sample | Kind | Regions | Labels | Status | Warnings |",
-        "| --- | --- | ---: | --- | --- | --- |",
+        "| Sample | Kind | Regions | Region masks | Labels | Status | Warnings |",
+        "| --- | --- | ---: | ---: | --- | --- | --- |",
     ]
     all_labels: set[str] = set()
     for sample in payload["samples"]:
@@ -356,7 +380,7 @@ def write_report(path: Path, payload: dict[str, Any]) -> None:
         all_labels.update(sample["detected_labels"])
         warnings_text = "; ".join(sample.get("warnings", [])) if sample.get("warnings") else ""
         lines.append(
-            f"| `{sample['sample_id']}` | `{sample['sample_kind']}` | {sample['layout_region_count']} | {labels} | `{sample['status']}` | {warnings_text} |"
+            f"| `{sample['sample_id']}` | `{sample['sample_kind']}` | {sample['layout_region_count']} | {sample.get('mask_region_count', 0)} | {labels} | `{sample['status']}` | {warnings_text} |"
         )
     lines.extend(
         [
@@ -376,7 +400,9 @@ def write_report(path: Path, payload: dict[str, Any]) -> None:
             "## Database Storage Summary",
             f"- Stored sample count: `{len(payload['samples'])}`",
             "- Tables written: `segmentation_run`, `layout_region`",
-            "- Geometry strategy: SRID 0 polygons derived from bbox coordinates where persisted mask polygons were unavailable.",
+            "- Authoritative pixel evidence: source-sized binary per-instance segmentation masks referenced by `layout_region.mask_path`.",
+            "- `bbox_geom` remains the detected bounding box. `region_geom` remains the same compatibility bbox polygon because no PostGIS raster/geometry migration is required for this milestone.",
+            "- `region_area_px` uses mask pixel area when a mask is available and bbox area only for legacy fallback rows.",
             "",
             "## Viewer Update",
             "The local Streamlit viewer now lists both smoke-test and full-pilot segmentation runs, supports filtering by run type, and allows selecting multiple runs for the same sample.",
@@ -384,6 +410,7 @@ def write_report(path: Path, payload: dict[str, Any]) -> None:
             "## Known Issues",
             "- The pilot run preserves outputs locally and in PostgreSQL/PostGIS only; it does not provide a production UI.",
             "- The viewer is for local development/demo use and remains read-only.",
+            "- Region masks are ignored local artifacts and are not stored as database binaries.",
         ]
     )
     for sample in payload["samples"]:
@@ -393,13 +420,12 @@ def write_report(path: Path, payload: dict[str, Any]) -> None:
         [
             "",
             "## What Has Not Been Implemented",
-            "- No artificial fragment generation was implemented.",
             "- No reconstruction was implemented.",
             "- No retrieval was implemented.",
             "- No MSI or CoMMA workflow was implemented.",
             "",
             "## Next Step",
-            "Build the artificial fragment generator for complete-page samples.",
+            "Use the source-sized masks as authoritative layout-region evidence in artificial-fragment survival evaluation, retaining bbox fallback only for legacy runs without masks.",
             "",
         ]
     )
@@ -435,6 +461,8 @@ def main() -> int:
                     "db_fragment_id": context.db_fragment_id,
                     "db_segmentation_run_id": None,
                     "layout_region_count": len(detections),
+                    "mask_region_count": sum(bool(item.get("mask_path")) for item in detections),
+                    "mask_geometry_available": bool(detections) and all(bool(item.get("mask_path")) for item in detections),
                     "detected_labels": sample_result.get("detected_labels", []),
                     "raw_output_path": sample_result.get("raw_output_path"),
                     "overlay_path": sample_result.get("overlay_path"),
@@ -485,6 +513,8 @@ def main() -> int:
                         "db_fragment_id": context.db_fragment_id,
                         "db_segmentation_run_id": run_id,
                         "layout_region_count": layout_count,
+                        "mask_region_count": sum(bool(item.get("mask_path")) for item in detections),
+                        "mask_geometry_available": bool(detections) and all(bool(item.get("mask_path")) for item in detections),
                         "detected_labels": sample_result.get("detected_labels", []),
                         "raw_output_path": sample_result.get("raw_output_path"),
                         "overlay_path": sample_result.get("overlay_path"),

@@ -125,6 +125,14 @@ def build_layout_sources(
     raw_path = ROOT / result["raw_output_path"]
     raw = load_json(raw_path)
     storage = storage_by_sample.get(sample_id, {})
+    detections = raw.get("detections", [])
+    mask_count = sum(bool(item.get("mask_path")) for item in detections)
+    if detections and mask_count == len(detections):
+      geometry_method = "segmentation_mask"
+    elif mask_count == 0:
+      geometry_method = "rasterized_bbox_xyxy"
+    else:
+      geometry_method = "mixed"
     provenance = {
       "sample_id": sample_id,
       "pilot_run_id": segmentation_results.get("pilot_run_id"),
@@ -136,10 +144,9 @@ def build_layout_sources(
       "raw_output_path": result["raw_output_path"],
       "db_segmentation_run_id": storage.get("db_segmentation_run_id"),
       "orig_shape": raw.get("orig_shape"),
-      "geometry_method": "rasterized_bbox_xyxy",
+      "geometry_method": geometry_method,
       "interpretation": "layout_survival_estimate",
     }
-    detections = raw.get("detections", [])
     if len(detections) != result.get("detected_region_count"):
       raise ValueError(f"Segmentation detection count mismatch for {sample_id}")
     sources[sample_id] = (detections, provenance)

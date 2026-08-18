@@ -1,4 +1,4 @@
-generated_at: '2026-05-19T07:54:17+00:00'
+generated_at: '2026-08-18T13:15:14+00:00'
 storage_status: stored
 pilot_run_id: segmentation_pilot_v0_1
 dataset_id: initial_sample_dataset_v0_1
@@ -19,9 +19,10 @@ samples:
   db_fragment_id: null
   db_segmentation_run_id: fedab93c-093f-4f47-a73f-512b3d434a13
   layout_region_count: 102
+  mask_region_count: 102
+  mask_geometry_available: true
   detected_labels:
   - Main script black
-  - Plain initial - Black
   raw_output_path: outputs/segmentation_pilot/raw/fp_01_clean_simple.json
   overlay_path: outputs/segmentation_pilot/overlays/fp_01_clean_simple_overlay.jpg
   status: matched_and_refreshed
@@ -33,6 +34,8 @@ samples:
   db_fragment_id: null
   db_segmentation_run_id: e46db11e-89c2-4f6a-a7da-f18f5d94c5ba
   layout_region_count: 31
+  mask_region_count: 31
+  mask_geometry_available: true
   detected_labels:
   - Main script black
   raw_output_path: outputs/segmentation_pilot/raw/fp_02_clean_simple.json
@@ -45,7 +48,9 @@ samples:
   db_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
   db_fragment_id: null
   db_segmentation_run_id: 981c1030-e28d-46fb-b6b6-f0a374c69755
-  layout_region_count: 82
+  layout_region_count: 81
+  mask_region_count: 81
+  mask_geometry_available: true
   detected_labels:
   - Embellished
   - Main script black
@@ -61,6 +66,8 @@ samples:
   db_fragment_id: null
   db_segmentation_run_id: 92591bbf-17b2-4481-b269-05af22e85b62
   layout_region_count: 34
+  mask_region_count: 34
+  mask_geometry_available: true
   detected_labels:
   - Embellished
   - Main script black
@@ -76,7 +83,9 @@ samples:
   db_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
   db_fragment_id: null
   db_segmentation_run_id: 1431e22e-afdc-4a34-b958-4671bbefe9ec
-  layout_region_count: 91
+  layout_region_count: 90
+  mask_region_count: 90
+  mask_geometry_available: true
   detected_labels:
   - Embellished
   - Gloss
@@ -96,6 +105,8 @@ samples:
   db_fragment_id: 7fb02b08-4656-48fd-bee2-107e25c32400
   db_segmentation_run_id: bf4a51b9-8a03-49ed-8ba6-489ff3bce06e
   layout_region_count: 40
+  mask_region_count: 0
+  mask_geometry_available: false
   detected_labels:
   - Illustrations
   - Main script black
@@ -110,6 +121,8 @@ samples:
   db_fragment_id: c0017254-558f-4cb6-ab17-3d959d2ace1a
   db_segmentation_run_id: 6ee0ce5b-5e8a-4064-9365-987183ba314f
   layout_region_count: 98
+  mask_region_count: 0
+  mask_geometry_available: false
   detected_labels:
   - Main script black
   raw_output_path: outputs/segmentation_pilot/raw/fr_02_text_block.json
@@ -123,6 +136,8 @@ samples:
   db_fragment_id: 01f288ae-413c-47b6-bd58-1e9c0ac4aafa
   db_segmentation_run_id: e9fc40f4-fef9-48de-a017-b68c0a8cf547
   layout_region_count: 24
+  mask_region_count: 0
+  mask_geometry_available: false
   detected_labels:
   - Main script black
   - Music
@@ -137,6 +152,8 @@ samples:
   db_fragment_id: 1d1a4c98-81e7-4c5b-a147-cd717403f83d
   db_segmentation_run_id: 2f8c2192-8cb1-48d4-89ea-84eac5042a1f
   layout_region_count: 115
+  mask_region_count: 0
+  mask_geometry_available: false
   detected_labels:
   - Embellished
   - Main script black
@@ -155,6 +172,8 @@ samples:
   db_fragment_id: c45af019-3c18-490b-a01c-b4973768abae
   db_segmentation_run_id: f7bec957-e94b-4241-8946-a00ac2ed7110
   layout_region_count: 24
+  mask_region_count: 0
+  mask_geometry_available: false
   detected_labels:
   - Main script black
   raw_output_path: outputs/segmentation_pilot/raw/fr_05_damaged_irregular.json

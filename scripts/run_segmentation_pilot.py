@@ -20,6 +20,15 @@ from PIL import Image, ImageDraw
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.evaluation.segmentation_masks import (  # noqa: E402
+    mask_pixel_area,
+    restore_mask_to_source,
+    save_binary_mask,
+)
+
 DEFAULT_INPUTS = ROOT / "data/metadata/segmentation_pilot_inputs.yaml"
 DEFAULT_RESULTS = ROOT / "data/metadata/segmentation_pilot_results.yaml"
 DEFAULT_OUTPUT_DIR = ROOT / "outputs/segmentation_pilot"
@@ -32,6 +41,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--conf", type=float, default=0.25)
     parser.add_argument("--imgsz", type=int, default=320)
+    parser.add_argument("--sample-kind", choices=("all", "full_page", "fragment"), default="all")
+    parser.add_argument("--force", action="store_true", help="Ignore cached raw/overlay outputs and rerun inference.")
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("--single-sample-json", default=None, help=argparse.SUPPRESS)
     return parser.parse_args()
@@ -107,6 +118,85 @@ def raw_detection_payload(result) -> tuple[list[dict[str, Any]], list[str], list
         )
 
     return detections, sorted(set(labels)), confidences
+
+
+def attach_instance_masks(
+    result: Any,
+    detections: list[dict[str, Any]],
+    *,
+    sample_id: str,
+    mask_dir: Path,
+    preprocessing: dict[str, Any],
+    run_provenance: dict[str, Any],
+) -> list[dict[str, Any]]:
+    """Restore and save one authoritative binary mask for every detection."""
+    if not detections:
+        return detections
+    if result.masks is None or result.masks.data is None:
+        raise RuntimeError(f"Segmentation checkpoint returned boxes without masks for {sample_id}")
+    mask_tensors = result.masks.data
+    if len(mask_tensors) != len(detections):
+        raise RuntimeError(
+            f"Mask/detection count mismatch for {sample_id}: masks={len(mask_tensors)}, detections={len(detections)}"
+        )
+
+    inference_size = tuple(int(value) for value in preprocessing["inference_size"])
+    source_size = tuple(int(value) for value in preprocessing["original_size"])
+    result_size = (int(result.orig_shape[1]), int(result.orig_shape[0]))
+    if result_size != inference_size:
+        raise RuntimeError(
+            f"Inference result dimensions do not match preprocessing metadata for {sample_id}: "
+            f"result={result_size}, preprocessing={inference_size}"
+        )
+
+    enriched: list[dict[str, Any]] = []
+    for detection, tensor in zip(detections, mask_tensors):
+        array = tensor.detach().cpu().ge(0.5).to(dtype=tensor.dtype).mul(255).byte().numpy()
+        model_mask = Image.fromarray(array)
+        source_mask = restore_mask_to_source(
+            model_mask,
+            inference_size=inference_size,
+            source_size=source_size,
+        )
+        index = int(detection["index"])
+        mask_path = mask_dir / sample_id / f"region_{index:04d}.png"
+        mask_sha256 = save_binary_mask(source_mask, mask_path)
+        item = dict(detection)
+        item.update(
+            {
+                "mask_path": rel(mask_path),
+                "mask_sha256": mask_sha256,
+                "mask_pixel_area": mask_pixel_area(source_mask),
+                "mask_dimensions_px": [source_mask.width, source_mask.height],
+                "mask_coordinate_space": "original_source_image",
+                "mask_value_semantics": "255=region pixel; 0=outside region",
+                "mask_threshold": 0.5,
+                "segmentation_provenance": {
+                    **run_provenance,
+                    "preprocessing": preprocessing,
+                    "model_mask_dimensions_px": [model_mask.width, model_mask.height],
+                    "inference_image_dimensions_px": list(inference_size),
+                    "restored_source_dimensions_px": list(source_size),
+                    "coordinate_restoration": "nearest_neighbor_binary_resize",
+                },
+            }
+        )
+        enriched.append(item)
+    return enriched
+
+
+def cached_mask_artifacts_complete(raw_payload: dict[str, Any]) -> bool:
+    """Return true only when every cached detection has a valid referenced mask."""
+    detections = raw_payload.get("detections", [])
+    source_shape = raw_payload.get("orig_shape") or []
+    expected_dimensions = [source_shape[1], source_shape[0]] if len(source_shape) == 2 else None
+    for detection in detections:
+        mask_path = detection.get("mask_path")
+        if not mask_path or detection.get("mask_dimensions_px") != expected_dimensions:
+            return False
+        if not (ROOT / mask_path).exists():
+            return False
+    return raw_payload.get("status") != "error"
 
 
 def scale_detections(detections: list[dict[str, Any]], *, scale_x: float, scale_y: float) -> list[dict[str, Any]]:
@@ -229,6 +319,8 @@ def result_from_raw(sample: dict[str, Any], raw_payload: dict[str, Any], raw_pat
         "raw_output_path": rel(raw_path),
         "overlay_path": rel(overlay_path),
         "detected_region_count": len(detections),
+        "mask_region_count": sum(bool(item.get("mask_path")) for item in detections),
+        "mask_geometry_available": bool(detections) and all(bool(item.get("mask_path")) for item in detections),
         "detected_labels": detected_labels,
         "confidence_summary": confidence_summary(confidences),
         "errors": errors,
@@ -236,21 +328,31 @@ def result_from_raw(sample: dict[str, Any], raw_payload: dict[str, Any], raw_pat
     }
 
 
-def run_single_prediction(model, sample: dict[str, Any], output_dir: Path, device: str, conf: float, imgsz: int) -> dict[str, Any]:
+def run_single_prediction(
+    model: Any,
+    sample: dict[str, Any],
+    output_dir: Path,
+    device: str,
+    conf: float,
+    imgsz: int,
+    *,
+    force: bool,
+    run_provenance: dict[str, Any],
+) -> dict[str, Any]:
     image_path = ROOT / sample["local_path"]
     if not image_path.exists():
         raise FileNotFoundError(f"Input image does not exist: {sample['local_path']}")
     raw_dir = output_dir / "raw"
     overlay_dir = output_dir / "overlays"
+    mask_dir = output_dir / "masks"
     raw_dir.mkdir(parents=True, exist_ok=True)
     overlay_dir.mkdir(parents=True, exist_ok=True)
     raw_path = raw_dir / f"{sample['sample_id']}.json"
     overlay_path = overlay_dir / f"{sample['sample_id']}_overlay.jpg"
 
-    if raw_path.exists() and overlay_path.exists():
+    if not force and raw_path.exists() and overlay_path.exists():
         raw_payload = json.loads(raw_path.read_text(encoding="utf-8"))
-        # Cached failures should not block a later retry after the large-image guard changes.
-        if raw_payload.get("status") != "error":
+        if cached_mask_artifacts_complete(raw_payload):
             return result_from_raw(sample, raw_payload, raw_path, overlay_path)
 
     inference_source, preprocessing, temp_path = prepare_inference_source(image_path)
@@ -269,6 +371,14 @@ def run_single_prediction(model, sample: dict[str, Any], output_dir: Path, devic
         result = results[0]
 
         detections, _, _ = raw_detection_payload(result)
+        detections = attach_instance_masks(
+            result,
+            detections,
+            sample_id=sample["sample_id"],
+            mask_dir=mask_dir,
+            preprocessing=preprocessing,
+            run_provenance=run_provenance,
+        )
         detections = scale_detections(
             detections,
             scale_x=preprocessing["scale_x"],
@@ -286,6 +396,9 @@ def run_single_prediction(model, sample: dict[str, Any], output_dir: Path, devic
             "speed_ms": result.speed,
             "names": result.names,
             "preprocessing": preprocessing,
+            "mask_artifact_directory": rel(mask_dir / sample["sample_id"]),
+            "mask_coordinate_space": "original_source_image",
+            "segmentation_provenance": run_provenance,
             "status": "success",
             "errors": [],
             "warnings": [],
@@ -326,7 +439,16 @@ def build_error_result(sample: dict[str, Any], output_dir: Path, error: Exceptio
     return result_from_raw(sample, raw_payload, raw_path, overlay_path)
 
 
-def run_sample_subprocess(sample: dict[str, Any], inputs_path: Path, output_dir: Path, device: str, conf: float, imgsz: int) -> dict[str, Any]:
+def run_sample_subprocess(
+    sample: dict[str, Any],
+    inputs_path: Path,
+    output_dir: Path,
+    device: str,
+    conf: float,
+    imgsz: int,
+    *,
+    force: bool,
+) -> dict[str, Any]:
     env = os.environ.copy()
     env.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
     command = [
@@ -345,6 +467,8 @@ def run_sample_subprocess(sample: dict[str, Any], inputs_path: Path, output_dir:
         "--single-sample-json",
         json.dumps(sample),
     ]
+    if force:
+        command.append("--force")
     completed = subprocess.run(command, cwd=ROOT, env=env, capture_output=True, text=True)
     raw_path = output_dir / "raw" / f"{sample['sample_id']}.json"
     overlay_path = output_dir / "overlays" / f"{sample['sample_id']}_overlay.jpg"
@@ -365,19 +489,42 @@ def main() -> int:
     output_dir = ROOT / Path(args.output_dir)
 
     if args.single_sample_json:
-        YOLO, _, _ = require_ultralytics()
+        YOLO, ultralytics, torch = require_ultralytics()
         payload = load_yaml(inputs_path)
         model_path = ROOT / payload["model_path"]
         model = YOLO(str(model_path))
         sample = json.loads(args.single_sample_json)
-        run_single_prediction(model, sample, output_dir, args.device, args.conf, args.imgsz)
+        run_provenance = {
+            "pilot_run_id": payload["pilot_run_id"],
+            "model_id": payload["model_id"],
+            "model_path": payload["model_path"],
+            "device": args.device,
+            "confidence_threshold": args.conf,
+            "imgsz": args.imgsz,
+            "retina_masks": True,
+            "ultralytics_version": str(ultralytics.__version__),
+            "torch_version": str(torch.__version__),
+        }
+        run_single_prediction(
+            model,
+            sample,
+            output_dir,
+            args.device,
+            args.conf,
+            args.imgsz,
+            force=args.force,
+            run_provenance=run_provenance,
+        )
         return 0
 
     YOLO, ultralytics, torch = require_ultralytics()
     payload = load_yaml(inputs_path)
-    selected_inputs = payload.get("selected_inputs", [])
-    if len(selected_inputs) != 10:
-        raise RuntimeError(f"Expected exactly 10 pilot inputs, found {len(selected_inputs)}")
+    all_inputs = payload.get("selected_inputs", [])
+    if len(all_inputs) != 10:
+        raise RuntimeError(f"Expected exactly 10 pilot inputs, found {len(all_inputs)}")
+    selected_inputs = [
+        sample for sample in all_inputs if args.sample_kind == "all" or sample.get("sample_kind") == args.sample_kind
+    ]
     model_path = ROOT / payload["model_path"]
     if not model_path.exists():
         raise FileNotFoundError(f"Model path does not exist: {payload['model_path']}")
@@ -385,15 +532,24 @@ def main() -> int:
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "raw").mkdir(parents=True, exist_ok=True)
     (output_dir / "overlays").mkdir(parents=True, exist_ok=True)
+    (output_dir / "masks").mkdir(parents=True, exist_ok=True)
     (output_dir / "logs").mkdir(parents=True, exist_ok=True)
 
-    results: list[dict[str, Any]] = []
+    refreshed_results: dict[str, dict[str, Any]] = {}
     for sample in selected_inputs:
         try:
-            result_payload = run_sample_subprocess(sample, inputs_path, output_dir, args.device, args.conf, args.imgsz)
+            result_payload = run_sample_subprocess(
+                sample,
+                inputs_path,
+                output_dir,
+                args.device,
+                args.conf,
+                args.imgsz,
+                force=args.force,
+            )
         except Exception as exc:  # noqa: BLE001
             result_payload = build_error_result(sample, output_dir, exc)
-        results.append(result_payload)
+        refreshed_results[sample["sample_id"]] = result_payload
         if args.verbose:
             labels = ", ".join(result_payload["detected_labels"]) if result_payload["detected_labels"] else "none"
             print(
@@ -403,6 +559,20 @@ def main() -> int:
             if result_payload["errors"]:
                 print(f"  errors={'; '.join(result_payload['errors'])}")
 
+    existing_results: dict[str, dict[str, Any]] = {}
+    if DEFAULT_RESULTS.exists() and args.sample_kind != "all":
+        previous_payload = load_yaml(DEFAULT_RESULTS)
+        existing_results = {item["sample_id"]: item for item in previous_payload.get("results", [])}
+    results: list[dict[str, Any]] = []
+    for sample in all_inputs:
+        sample_id = sample["sample_id"]
+        if sample_id in refreshed_results:
+            results.append(refreshed_results[sample_id])
+        elif sample_id in existing_results:
+            results.append(existing_results[sample_id])
+        else:
+            raise RuntimeError(f"No refreshed or existing pilot result available for {sample_id}")
+
     run_payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "pilot_run_id": payload["pilot_run_id"],
@@ -411,6 +581,9 @@ def main() -> int:
         "model_path": payload["model_path"],
         "inference_run": True,
         "segmentation_run": True,
+        "rerun_scope": args.sample_kind,
+        "selected_run_count": len(selected_inputs),
+        "mask_artifact_count": sum(int(result.get("mask_region_count", 0)) for result in results),
         "device": args.device,
         "confidence_threshold": args.conf,
         "imgsz": args.imgsz,

@@ -173,6 +173,43 @@ def test_known_region_survival_and_completely_lost_region():
   assert summary["geometry_method"] == "rasterized_bbox_xyxy"
 
 
+def test_known_segmentation_mask_survival_intersection(tmp_path: Path):
+  fragment_survival = Image.new("L", (100, 80), 0)
+  fragment_survival.paste(255, (0, 0, 50, 80))
+  region_mask = Image.new("L", (100, 80), 0)
+  region_mask.paste(255, (25, 10, 75, 30))
+  mask_path = tmp_path / "region.png"
+  region_mask.save(mask_path)
+  regions = [
+    {
+      "index": 2,
+      "class_id": 4,
+      "label": "Main",
+      "confidence": 0.9,
+      "bbox_xyxy": [25, 10, 75, 30],
+      "mask_path": "region.png",
+      "mask_pixel_area": 1000,
+      "mask_dimensions_px": [100, 80],
+    }
+  ]
+
+  estimates, summary = estimate_layout_survival(regions, fragment_survival, provenance(), artifact_root=tmp_path)
+
+  assert estimates[0]["original_region_area_px"] == 1000
+  assert estimates[0]["surviving_area_px"] == 500
+  assert estimates[0]["surviving_fraction"] == 0.5
+  assert estimates[0]["geometry_method"] == "segmentation_mask"
+  assert summary["geometry_method"] == "segmentation_mask"
+
+
+def test_referenced_segmentation_mask_must_exist(tmp_path: Path):
+  fragment_survival = Image.new("L", (20, 20), 255)
+  regions = [{"index": 0, "bbox_xyxy": [0, 0, 10, 10], "mask_path": "missing.png"}]
+
+  with pytest.raises(FileNotFoundError, match="missing"):
+    estimate_layout_survival(regions, fragment_survival, provenance((20, 20)), artifact_root=tmp_path)
+
+
 @pytest.mark.parametrize("rotation,scale", [(12.0, 1.0), (-9.0, 1.0), (0.0, 0.8)])
 def test_coordinate_forward_inverse_round_trip(rotation: float, scale: float):
   forward, inverse, dimensions = source_to_observed_transform((10, 20, 90, 70), rotation, scale)

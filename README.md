@@ -356,7 +356,7 @@ The core pilot is five pages × rectangular/irregular masks × severity 0.30/0.6
 
 The generator writes local PNG fragments, source-coordinate survival/damage masks, observed-coordinate masks, and per-task JSON under `outputs/artificial_fragments/v0_1_1/`, plus the metadata manifest at `data/metadata/artificial_fragment_generation_results.yaml`. Generated binaries are local outputs and should not be committed. Metadata records source SHA-256, requested/measured severity, deterministic seeds, source provenance, contours, exact forward/inverse transforms, and known ground-truth placement for later `artificial_fragment_task` storage.
 
-Current layout survival values use clipped, rasterized source-region bounding boxes (`geometry_method: rasterized_bbox_xyxy`). They are structural `layout_survival_estimate` values, not pixel-accurate segmentation-mask survival measurements.
+Current full-page layout survival values use the restored, source-sized eManuSkript instance masks (`geometry_method: segmentation_mask`). Bounding boxes remain recorded, and `rasterized_bbox_xyxy` is retained only as an explicit fallback for legacy runs without mask artifacts. Because the five pages were temporarily downscaled for inference, the masks are authoritative model outputs restored to source coordinates, not manual pixel-level annotations.
 
 This step creates controlled evaluation tasks only. It does not train a model, run reconstruction, infer missing manuscript content, or claim that generated fragments are historical evidence.
 

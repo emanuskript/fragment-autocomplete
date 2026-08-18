@@ -6,7 +6,7 @@ Version `artificial_fragment_generator_v0_1_1` creates deterministic artificial 
 
 ## Implementation
 
-The implementation extends `src/evaluation/artificial_fragments.py` and adds the focused `src/evaluation/layout_survival.py` helper. It supports rectangular and irregular masks, requested severity, deterministic seeds, crop extraction, positive or negative rotation, uniform scale, SHA-256 provenance, and forward/inverse affine transforms. The CLI supports both a controlled pilot and a single task:
+The implementation extends `src/evaluation/artificial_fragments.py` and uses the focused `src/evaluation/layout_survival.py` and `src/evaluation/segmentation_masks.py` helpers. It supports rectangular and irregular masks, requested severity, deterministic seeds, crop extraction, positive or negative rotation, uniform scale, SHA-256 provenance, forward/inverse affine transforms, and source-sized eManuSkript instance-mask intersections. The CLI supports both a controlled pilot and a single task:
 
 ```bash
 python3 scripts/generate_artificial_fragments.py \
@@ -66,30 +66,31 @@ Each task writes a transparent fragment PNG, an observed-fragment survival mask,
 
 ## Layout survival estimate
 
-The stored eManuSkript pilot output currently provides detection bounding boxes, not pixel-level region masks. Consequently, the implementation uses:
+The five complete pages were rerun with `retina_masks=True`. All 338 detected instances now preserve binary masks restored from the temporary inference image to original source-page dimensions. Consequently, the regenerated pilot uses:
 
 ```yaml
-geometry_method: rasterized_bbox_xyxy
+geometry_method: segmentation_mask
 metric_name: layout_survival_estimate
 ```
 
-Every bounding box is clipped to source bounds and rasterized as a half-open pixel rectangle before intersection with the source-coordinate survival mask. Every source region retains its source index/identifier, label, class ID, confidence, original and clipped bbox, original rasterized area, surviving area/fraction, complete-loss flag, geometry method, and segmentation-run provenance.
+Every region mask is validated against the source dimensions and intersected with the source-coordinate artificial-fragment survival mask. Every source region retains its source index/identifier, label, class ID, confidence, bounding box, mask path, mask pixel area and dimensions, surviving area/fraction, complete-loss flag, geometry method, and segmentation-run provenance. Bounding boxes remain useful metadata. `rasterized_bbox_xyxy` remains an explicit fallback only for legacy detections that have no `mask_path`; a referenced mask that is missing or dimensionally invalid causes generation to fail.
 
-The per-fragment summary reports total, completely visible, partially visible, and completely lost region counts; labels completely lost; labels containing lost regions; and area-weighted surviving fractions grouped by label. These values are bbox-based structural estimates. They are not pixel-accurate segmentation-mask survival measurements.
+The per-fragment summary reports total, completely visible, partially visible, and completely lost region counts; labels completely lost; labels containing lost regions; and area-weighted surviving fractions grouped by label. All 1,658 region records across the 20 core and three sanity tasks use `segmentation_mask`.
 
 ## Validation
 
-The complete repository test suite passes with 27 tests, including 16 generator-specific tests. The artifact validator also passes across the 20 core and three sanity tasks. Validation covers deterministic generation, source integrity, binary complementary masks, severity tolerance, bbox clipping, known and completely lost regions, transform round trips, rotation/scale dimensions, segmentation/source dimension agreement, source-overwrite prevention, task matrix coverage, checksums, and provenance fields.
+The complete repository test suite passes with 33 tests, including 22 evaluation tests. The segmentation, database-storage, and artificial-fragment artifact validators pass. Validation covers mask coordinate restoration, binary validity, source dimensions, deterministic mask serialization, known mask intersections, bbox fallback, deterministic fragment generation, source integrity, severity tolerance, bbox clipping, completely lost regions, transform round trips, rotation/scale dimensions, source-overwrite prevention, task matrix coverage, checksums, and provenance fields.
 
 ## Known limitations
 
-- Current layout survival is based on rasterized bounding boxes because the stored pilot output does not expose per-region segmentation masks.
+- The authoritative masks are model outputs, not manually annotated ground truth. All five complete pages were downscaled to a maximum side of 2048 pixels before inference, so nearest-neighbour restoration preserves model membership but cannot recreate spatial detail absent from the inference raster.
+- The unchanged legacy real-fragment runs do not yet have per-instance masks and therefore retain the documented bbox fallback.
 - Irregular masks are controlled synthetic polygons and do not model the full physical, chemical, biological, binding, or handling damage found in real manuscript fragments.
 - Rotation and scaling are image-space transformations; they do not model camera calibration, physical dimensions, or parchment deformation.
 - Full-page ground-truth masks make the local pilot auditable but produce approximately 730 MB of ignored output. A later iteration may add lossless compact mask encoding while retaining the current PNG reference behavior.
 - HSP-normalized metadata is preserved when present; the current resolved five-page registry does not contain populated HSP-normalized values, which is recorded explicitly rather than inferred.
-- No database rows, reconstruction, retrieval, model training, LLM integration, recto/verso reasoning, or bifolium modelling are included.
+- Segmentation rows were refreshed with mask paths and mask areas, but no `artificial_fragment_task` rows were written. No reconstruction, retrieval, model training, LLM integration, recto/verso reasoning, or bifolium modelling is included.
 
 ## Next recommended iteration
 
-Add idempotent PostgreSQL storage for the generated task metadata using the existing `artificial_fragment_task` table. Store paths and JSON provenance only, not image or mask binaries, and preserve the distinction between observed fragment evidence, hidden ground truth, bbox-based layout estimates, and future reconstruction inference.
+Add idempotent PostgreSQL storage for the generated task metadata using the existing `artificial_fragment_task` table. Store paths and JSON provenance only, not image or mask binaries, and preserve the distinction between observed fragment evidence, hidden ground truth, mask-based model evidence, legacy bbox fallback, and future reconstruction inference.

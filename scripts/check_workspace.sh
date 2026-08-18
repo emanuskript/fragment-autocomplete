@@ -110,12 +110,14 @@ required_files=(
   "src/ingestion/iiif_ingest.py"
   "src/evaluation/artificial_fragments.py"
   "src/evaluation/layout_survival.py"
+  "src/evaluation/segmentation_masks.py"
   "tests/ingestion/fixtures/iiif_v2_minimal_manifest.json"
   "tests/ingestion/fixtures/iiif_v3_minimal_manifest.json"
   "tests/ingestion/test_iiif_normalizer.py"
   "tests/ingestion/test_sample_dataset_config.py"
   "tests/metadata/test_hsp_normdata.py"
   "tests/evaluation/test_artificial_fragments.py"
+  "tests/evaluation/test_segmentation_masks.py"
   "docs/04_initial_sample_dataset_report.md"
 )
 

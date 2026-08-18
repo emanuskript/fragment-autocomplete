@@ -1,4 +1,4 @@
-generated_at: '2026-08-17T12:48:16+00:00'
+generated_at: '2026-08-18T13:10:37+00:00'
 generation_version: artificial_fragment_generator_v0_1_1
 status: generated
 run_mode: pilot
@@ -84,7 +84,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_rectangular_s030.json
-      sha256: c9f9553ba2730dff0bc88795e734c9ef6b083eecdd879c3943b244ebbb9f4c04
+      sha256: 828db6c1f2c59b705d1db591197600ad492679cae174847a35e3860e12a33f1e
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -151,7 +151,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_01_clean_simple_rectangular_s030_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_01_clean_simple
       pilot_run_id: segmentation_pilot_v0_1
@@ -165,32 +165,26 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       total_regions: 102
-      completely_visible_count: 59
-      partially_visible_count: 43
+      completely_visible_count: 21
+      partially_visible_count: 81
       completely_lost_count: 0
       labels_completely_lost: []
       labels_with_completely_lost_regions: []
       surviving_fractions_by_label:
         Main script black:
-          region_count: 101
-          original_rasterized_area_px: 24187998
-          surviving_area_px: 20221174
-          area_weighted_surviving_fraction: 0.83600032
+          region_count: 102
+          original_rasterized_area_px: 19208231
+          surviving_area_px: 16212809
+          area_weighted_surviving_fraction: 0.84405529
           completely_lost_region_count: 0
-        Plain initial - Black:
-          region_count: 1
-          original_rasterized_area_px: 23552
-          surviving_area_px: 23552
-          area_weighted_surviving_fraction: 1.0
-          completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_rectangular_s030.json
   artificial_fragment_task_mapping:
     source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
@@ -264,7 +258,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_rectangular_s060.json
-      sha256: 4c135306c938bea929f8252b89c5e84cb77dea1d775480f8c8352a39822d80b2
+      sha256: aafb7777707ab1a3f2669adc65a369acab0efa4f0dffacef5809d857fa29656a
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -331,7 +325,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_01_clean_simple_rectangular_s060_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_01_clean_simple
       pilot_run_id: segmentation_pilot_v0_1
@@ -345,33 +339,27 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       total_regions: 102
-      completely_visible_count: 5
-      partially_visible_count: 44
+      completely_visible_count: 1
+      partially_visible_count: 48
       completely_lost_count: 53
       labels_completely_lost: []
       labels_with_completely_lost_regions:
       - Main script black
       surviving_fractions_by_label:
         Main script black:
-          region_count: 101
-          original_rasterized_area_px: 24187998
-          surviving_area_px: 11209827
-          area_weighted_surviving_fraction: 0.46344584
+          region_count: 102
+          original_rasterized_area_px: 19208231
+          surviving_area_px: 9135790
+          area_weighted_surviving_fraction: 0.4756185
           completely_lost_region_count: 53
-        Plain initial - Black:
-          region_count: 1
-          original_rasterized_area_px: 23552
-          surviving_area_px: 23552
-          area_weighted_surviving_fraction: 1.0
-          completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_rectangular_s060.json
   artificial_fragment_task_mapping:
     source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
@@ -445,7 +433,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_irregular_s030.json
-      sha256: 27e9d1debcca5e3adbd12d619cc210117c1f5d7fbdbf53a5d3caef2496417908
+      sha256: 8d1ed2091abbb167c5a6f16396fc8707f80b70a0ab8d2fc1345627c946c3be60
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -552,7 +540,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_01_clean_simple_irregular_s030_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_01_clean_simple
       pilot_run_id: segmentation_pilot_v0_1
@@ -566,33 +554,27 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       total_regions: 102
-      completely_visible_count: 77
-      partially_visible_count: 18
+      completely_visible_count: 27
+      partially_visible_count: 68
       completely_lost_count: 7
       labels_completely_lost: []
       labels_with_completely_lost_regions:
       - Main script black
       surviving_fractions_by_label:
         Main script black:
-          region_count: 101
-          original_rasterized_area_px: 24187998
-          surviving_area_px: 21608105
-          area_weighted_surviving_fraction: 0.89333995
+          region_count: 102
+          original_rasterized_area_px: 19208231
+          surviving_area_px: 17036115
+          area_weighted_surviving_fraction: 0.88691744
           completely_lost_region_count: 7
-        Plain initial - Black:
-          region_count: 1
-          original_rasterized_area_px: 23552
-          surviving_area_px: 23552
-          area_weighted_surviving_fraction: 1.0
-          completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_irregular_s030.json
   artificial_fragment_task_mapping:
     source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
@@ -666,7 +648,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_irregular_s060.json
-      sha256: 53d9acef2049f1355cfe8f784bbdd0d1f790e9e453a3e602c29ba8bc4ab47ad6
+      sha256: e8974a91b3e6bcaf1f011648a063ccf7269ccca2bab6583e8fd574d7861afe1c
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -773,7 +755,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_01_clean_simple_irregular_s060_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_01_clean_simple
       pilot_run_id: segmentation_pilot_v0_1
@@ -787,33 +769,27 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       total_regions: 102
-      completely_visible_count: 35
-      partially_visible_count: 29
+      completely_visible_count: 14
+      partially_visible_count: 50
       completely_lost_count: 38
       labels_completely_lost: []
       labels_with_completely_lost_regions:
       - Main script black
       surviving_fractions_by_label:
         Main script black:
-          region_count: 101
-          original_rasterized_area_px: 24187998
-          surviving_area_px: 13026377
-          area_weighted_surviving_fraction: 0.53854713
+          region_count: 102
+          original_rasterized_area_px: 19208231
+          surviving_area_px: 10426842
+          area_weighted_surviving_fraction: 0.54283198
           completely_lost_region_count: 38
-        Plain initial - Black:
-          region_count: 1
-          original_rasterized_area_px: 23552
-          surviving_area_px: 23552
-          area_weighted_surviving_fraction: 1.0
-          completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_01_clean_simple_irregular_s060.json
   artificial_fragment_task_mapping:
     source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
@@ -887,7 +863,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_rectangular_s030.json
-      sha256: be229180e8ea2f532cc07e87344203dc219e50a80f2b3a76fd7575ea0a0a2e8e
+      sha256: 72921d43c6baf435e6b5a39d9bca92985aebf79b1485857ed6a4c7578ed48fd6
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -954,7 +930,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_02_clean_simple_rectangular_s030_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_02_clean_simple
       pilot_run_id: segmentation_pilot_v0_1
@@ -968,14 +944,14 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       total_regions: 31
-      completely_visible_count: 28
-      partially_visible_count: 1
+      completely_visible_count: 14
+      partially_visible_count: 15
       completely_lost_count: 2
       labels_completely_lost: []
       labels_with_completely_lost_regions:
@@ -983,12 +959,12 @@ core_pilot_tasks:
       surviving_fractions_by_label:
         Main script black:
           region_count: 31
-          original_rasterized_area_px: 27631927
-          surviving_area_px: 25101028
-          area_weighted_surviving_fraction: 0.90840671
+          original_rasterized_area_px: 20112861
+          surviving_area_px: 18287775
+          area_weighted_surviving_fraction: 0.90925776
           completely_lost_region_count: 2
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_rectangular_s030.json
   artificial_fragment_task_mapping:
     source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
@@ -1062,7 +1038,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_rectangular_s060.json
-      sha256: 82ed3f73fcfc1107759cc70b19b409c5b7f2a45f81a3a7ec39befab6267141ab
+      sha256: 5ab71868740a8c953c75cc3e56a908f52ad5ba8af0f40fde2d24cae877dbfa46
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -1129,7 +1105,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_02_clean_simple_rectangular_s060_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_02_clean_simple
       pilot_run_id: segmentation_pilot_v0_1
@@ -1143,11 +1119,11 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       total_regions: 31
       completely_visible_count: 0
       partially_visible_count: 25
@@ -1158,12 +1134,12 @@ core_pilot_tasks:
       surviving_fractions_by_label:
         Main script black:
           region_count: 31
-          original_rasterized_area_px: 27631927
-          surviving_area_px: 19645695
-          area_weighted_surviving_fraction: 0.7109781
+          original_rasterized_area_px: 20112861
+          surviving_area_px: 14601704
+          area_weighted_surviving_fraction: 0.72598841
           completely_lost_region_count: 6
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_rectangular_s060.json
   artificial_fragment_task_mapping:
     source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
@@ -1237,7 +1213,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_irregular_s030.json
-      sha256: 0784da81f6bdf88f93fd50a3e90a2810460fc77e105ffafa7de942745d5c6b0b
+      sha256: 9233c8cff0b8e497d772fd575d983193a6ed85dc15824dfbd0bf6625ddabe1e8
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -1344,7 +1320,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_02_clean_simple_irregular_s030_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_02_clean_simple
       pilot_run_id: segmentation_pilot_v0_1
@@ -1358,14 +1334,14 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       total_regions: 31
-      completely_visible_count: 28
-      partially_visible_count: 2
+      completely_visible_count: 14
+      partially_visible_count: 16
       completely_lost_count: 1
       labels_completely_lost: []
       labels_with_completely_lost_regions:
@@ -1373,12 +1349,12 @@ core_pilot_tasks:
       surviving_fractions_by_label:
         Main script black:
           region_count: 31
-          original_rasterized_area_px: 27631927
-          surviving_area_px: 26059821
-          area_weighted_surviving_fraction: 0.94310545
+          original_rasterized_area_px: 20112861
+          surviving_area_px: 18953924
+          area_weighted_surviving_fraction: 0.94237831
           completely_lost_region_count: 1
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_irregular_s030.json
   artificial_fragment_task_mapping:
     source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
@@ -1452,7 +1428,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_irregular_s060.json
-      sha256: 5b2f622864a2a3e25ecbfc41447d3578cf60e3d17cc466221e0f6d25bde6b5a1
+      sha256: 8ac32a85e367e1d8fe8d7086b6849c286dcb2b76f3321e3d0b0f9bcb72a659a2
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -1559,7 +1535,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_02_clean_simple_irregular_s060_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_02_clean_simple
       pilot_run_id: segmentation_pilot_v0_1
@@ -1573,14 +1549,14 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       total_regions: 31
-      completely_visible_count: 12
-      partially_visible_count: 12
+      completely_visible_count: 7
+      partially_visible_count: 17
       completely_lost_count: 7
       labels_completely_lost: []
       labels_with_completely_lost_regions:
@@ -1588,12 +1564,12 @@ core_pilot_tasks:
       surviving_fractions_by_label:
         Main script black:
           region_count: 31
-          original_rasterized_area_px: 27631927
-          surviving_area_px: 20760561
-          area_weighted_surviving_fraction: 0.75132512
+          original_rasterized_area_px: 20112861
+          surviving_area_px: 15053571
+          area_weighted_surviving_fraction: 0.74845498
           completely_lost_region_count: 7
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_02_clean_simple_irregular_s060.json
   artificial_fragment_task_mapping:
     source_canvas_id: bdbdd369-abbe-4d8c-8e0f-922a4ba777e5
@@ -1667,7 +1643,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_rectangular_s030.json
-      sha256: f5df13d61105899c96b2de7766cccfe012e3ffa8fa0fd8c80a0f40b10751cd22
+      sha256: 12dcda20b0131f301874acd620d1c58477397626756de7ccd8cdb6befa384712
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -1734,7 +1710,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_03_complex_layout_rectangular_s030_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_03_complex_layout
       pilot_run_id: segmentation_pilot_v0_1
@@ -1748,38 +1724,38 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
-      total_regions: 82
-      completely_visible_count: 78
-      partially_visible_count: 4
+      geometry_method: segmentation_mask
+      total_regions: 81
+      completely_visible_count: 17
+      partially_visible_count: 64
       completely_lost_count: 0
       labels_completely_lost: []
       labels_with_completely_lost_regions: []
       surviving_fractions_by_label:
         Embellished:
           region_count: 1
-          original_rasterized_area_px: 5794544
-          surviving_area_px: 5794544
-          area_weighted_surviving_fraction: 1.0
+          original_rasterized_area_px: 2593607
+          surviving_area_px: 2592935
+          area_weighted_surviving_fraction: 0.9997409
           completely_lost_region_count: 0
         Main script black:
-          region_count: 80
-          original_rasterized_area_px: 38112882
-          surviving_area_px: 38050617
-          area_weighted_surviving_fraction: 0.9983663
+          region_count: 79
+          original_rasterized_area_px: 23925492
+          surviving_area_px: 23741847
+          area_weighted_surviving_fraction: 0.9923243
           completely_lost_region_count: 0
         Plain initial - Highlighted:
           region_count: 1
-          original_rasterized_area_px: 89452
-          surviving_area_px: 89452
-          area_weighted_surviving_fraction: 1.0
+          original_rasterized_area_px: 106840
+          surviving_area_px: 105650
+          area_weighted_surviving_fraction: 0.98886185
           completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_rectangular_s030.json
   artificial_fragment_task_mapping:
     source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
@@ -1853,7 +1829,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_rectangular_s060.json
-      sha256: cfb688cd0848b4c00fc11d7dd984aa94d39e013a9379e2f9d7ccfc9ed9c1f8f1
+      sha256: 57246ccd93ed23f6288c9eb1f6c9e47ae9954b5950c01ffee4942cda52e48c85
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -1920,7 +1896,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_03_complex_layout_rectangular_s060_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_03_complex_layout
       pilot_run_id: segmentation_pilot_v0_1
@@ -1934,39 +1910,39 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
-      total_regions: 82
-      completely_visible_count: 14
-      partially_visible_count: 38
-      completely_lost_count: 30
+      geometry_method: segmentation_mask
+      total_regions: 81
+      completely_visible_count: 5
+      partially_visible_count: 47
+      completely_lost_count: 29
       labels_completely_lost: []
       labels_with_completely_lost_regions:
       - Main script black
       surviving_fractions_by_label:
         Embellished:
           region_count: 1
-          original_rasterized_area_px: 5794544
-          surviving_area_px: 3168016
-          area_weighted_surviving_fraction: 0.54672395
+          original_rasterized_area_px: 2593607
+          surviving_area_px: 999825
+          area_weighted_surviving_fraction: 0.38549595
           completely_lost_region_count: 0
         Main script black:
-          region_count: 80
-          original_rasterized_area_px: 38112882
-          surviving_area_px: 19206717
-          area_weighted_surviving_fraction: 0.50394292
-          completely_lost_region_count: 30
+          region_count: 79
+          original_rasterized_area_px: 23925492
+          surviving_area_px: 13030879
+          area_weighted_surviving_fraction: 0.54464414
+          completely_lost_region_count: 29
         Plain initial - Highlighted:
           region_count: 1
-          original_rasterized_area_px: 89452
-          surviving_area_px: 89452
-          area_weighted_surviving_fraction: 1.0
+          original_rasterized_area_px: 106840
+          surviving_area_px: 105650
+          area_weighted_surviving_fraction: 0.98886185
           completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_rectangular_s060.json
   artificial_fragment_task_mapping:
     source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
@@ -2040,7 +2016,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_irregular_s030.json
-      sha256: 0f3846af32652769a9e57f05f41b50c1caa3457ebf39984f22013f0fa92016c9
+      sha256: b0c733222cbf6fe804dabf3fe64f4e58ef96a8caf53c5b81b6a3f24bc46dd79e
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -2147,7 +2123,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_03_complex_layout_irregular_s030_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_03_complex_layout
       pilot_run_id: segmentation_pilot_v0_1
@@ -2161,38 +2137,39 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
-      total_regions: 82
-      completely_visible_count: 55
-      partially_visible_count: 27
-      completely_lost_count: 0
+      geometry_method: segmentation_mask
+      total_regions: 81
+      completely_visible_count: 14
+      partially_visible_count: 65
+      completely_lost_count: 2
       labels_completely_lost: []
-      labels_with_completely_lost_regions: []
+      labels_with_completely_lost_regions:
+      - Main script black
       surviving_fractions_by_label:
         Embellished:
           region_count: 1
-          original_rasterized_area_px: 5794544
-          surviving_area_px: 5532567
-          area_weighted_surviving_fraction: 0.95478902
+          original_rasterized_area_px: 2593607
+          surviving_area_px: 2416869
+          area_weighted_surviving_fraction: 0.93185629
           completely_lost_region_count: 0
         Main script black:
-          region_count: 80
-          original_rasterized_area_px: 38112882
-          surviving_area_px: 36361033
-          area_weighted_surviving_fraction: 0.95403525
-          completely_lost_region_count: 0
+          region_count: 79
+          original_rasterized_area_px: 23925492
+          surviving_area_px: 22236275
+          area_weighted_surviving_fraction: 0.92939677
+          completely_lost_region_count: 2
         Plain initial - Highlighted:
           region_count: 1
-          original_rasterized_area_px: 89452
-          surviving_area_px: 89452
-          area_weighted_surviving_fraction: 1.0
+          original_rasterized_area_px: 106840
+          surviving_area_px: 105650
+          area_weighted_surviving_fraction: 0.98886185
           completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_irregular_s030.json
   artificial_fragment_task_mapping:
     source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
@@ -2266,7 +2243,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_irregular_s060.json
-      sha256: 8bed706b2d0bfab0a22f53044cc16d9a787a837ff8deea666b8426155a7d131f
+      sha256: f5c19037f21010afdfcfde5a73267e721e35b4a327318fb7a8d04d48bed2e44b
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -2373,7 +2350,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_03_complex_layout_irregular_s060_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_03_complex_layout
       pilot_run_id: segmentation_pilot_v0_1
@@ -2387,38 +2364,39 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
-      total_regions: 82
-      completely_visible_count: 13
-      partially_visible_count: 69
-      completely_lost_count: 0
+      geometry_method: segmentation_mask
+      total_regions: 81
+      completely_visible_count: 3
+      partially_visible_count: 75
+      completely_lost_count: 3
       labels_completely_lost: []
-      labels_with_completely_lost_regions: []
+      labels_with_completely_lost_regions:
+      - Main script black
       surviving_fractions_by_label:
         Embellished:
           region_count: 1
-          original_rasterized_area_px: 5794544
-          surviving_area_px: 5794544
-          area_weighted_surviving_fraction: 1.0
+          original_rasterized_area_px: 2593607
+          surviving_area_px: 2592935
+          area_weighted_surviving_fraction: 0.9997409
           completely_lost_region_count: 0
         Main script black:
-          region_count: 80
-          original_rasterized_area_px: 38112882
-          surviving_area_px: 30995109
-          area_weighted_surviving_fraction: 0.81324495
-          completely_lost_region_count: 0
+          region_count: 79
+          original_rasterized_area_px: 23925492
+          surviving_area_px: 18962671
+          area_weighted_surviving_fraction: 0.79257183
+          completely_lost_region_count: 3
         Plain initial - Highlighted:
           region_count: 1
-          original_rasterized_area_px: 89452
-          surviving_area_px: 89452
-          area_weighted_surviving_fraction: 1.0
+          original_rasterized_area_px: 106840
+          surviving_area_px: 105650
+          area_weighted_surviving_fraction: 0.98886185
           completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_03_complex_layout_irregular_s060.json
   artificial_fragment_task_mapping:
     source_canvas_id: b3963657-a552-4aa9-8724-affa7a5b3106
@@ -2492,7 +2470,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_rectangular_s030.json
-      sha256: c33b8352b38b2c9df71597df56a92a97fa7318f8307e0849f60eedb2fea26faf
+      sha256: b0d63afe4a784985ef1e0d7b195c0b5bf909f7279b81a6f02166f0c2863d8147
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -2559,7 +2537,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_04_complex_layout_rectangular_s030_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_04_complex_layout
       pilot_run_id: segmentation_pilot_v0_1
@@ -2573,14 +2551,14 @@ core_pilot_tasks:
       orig_shape:
       - 4891
       - 3210
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       total_regions: 34
-      completely_visible_count: 18
-      partially_visible_count: 13
+      completely_visible_count: 10
+      partially_visible_count: 21
       completely_lost_count: 3
       labels_completely_lost: []
       labels_with_completely_lost_regions:
@@ -2588,30 +2566,30 @@ core_pilot_tasks:
       surviving_fractions_by_label:
         Embellished:
           region_count: 1
-          original_rasterized_area_px: 1766772
-          surviving_area_px: 802750
-          area_weighted_surviving_fraction: 0.4543597
+          original_rasterized_area_px: 1246617
+          surviving_area_px: 553809
+          area_weighted_surviving_fraction: 0.44424952
           completely_lost_region_count: 0
         Main script black:
-          region_count: 19
-          original_rasterized_area_px: 3802125
-          surviving_area_px: 3505024
-          area_weighted_surviving_fraction: 0.92185922
+          region_count: 17
+          original_rasterized_area_px: 2824283
+          surviving_area_px: 2586031
+          area_weighted_surviving_fraction: 0.9156416
           completely_lost_region_count: 3
         Music:
-          region_count: 7
-          original_rasterized_area_px: 1974260
-          surviving_area_px: 1734439
-          area_weighted_surviving_fraction: 0.87852613
+          region_count: 11
+          original_rasterized_area_px: 2636383
+          surviving_area_px: 2417611
+          area_weighted_surviving_fraction: 0.91701813
           completely_lost_region_count: 0
         Plain initial - Black:
-          region_count: 7
-          original_rasterized_area_px: 181891
-          surviving_area_px: 181891
-          area_weighted_surviving_fraction: 1.0
+          region_count: 5
+          original_rasterized_area_px: 99674
+          surviving_area_px: 99600
+          area_weighted_surviving_fraction: 0.99925758
           completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_rectangular_s030.json
   artificial_fragment_task_mapping:
     source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
@@ -2685,7 +2663,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_rectangular_s060.json
-      sha256: 0e387e1f1e95e30b7bb9918af9694d986347d0e39d50c6e4413455b2c7608251
+      sha256: 052028a8dbef39e42a46f9a60cf2eba728ed25ba61523a5129ad7cfbe255816b
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -2752,7 +2730,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_04_complex_layout_rectangular_s060_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_04_complex_layout
       pilot_run_id: segmentation_pilot_v0_1
@@ -2766,15 +2744,15 @@ core_pilot_tasks:
       orig_shape:
       - 4891
       - 3210
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       total_regions: 34
-      completely_visible_count: 11
-      partially_visible_count: 13
-      completely_lost_count: 10
+      completely_visible_count: 7
+      partially_visible_count: 20
+      completely_lost_count: 7
       labels_completely_lost: []
       labels_with_completely_lost_regions:
       - Main script black
@@ -2782,30 +2760,30 @@ core_pilot_tasks:
       surviving_fractions_by_label:
         Embellished:
           region_count: 1
-          original_rasterized_area_px: 1766772
-          surviving_area_px: 232260
-          area_weighted_surviving_fraction: 0.13146009
+          original_rasterized_area_px: 1246617
+          surviving_area_px: 101519
+          area_weighted_surviving_fraction: 0.0814356
           completely_lost_region_count: 0
         Main script black:
-          region_count: 19
-          original_rasterized_area_px: 3802125
-          surviving_area_px: 2525765
-          area_weighted_surviving_fraction: 0.66430351
-          completely_lost_region_count: 8
+          region_count: 17
+          original_rasterized_area_px: 2824283
+          surviving_area_px: 1933080
+          area_weighted_surviving_fraction: 0.68444982
+          completely_lost_region_count: 6
         Music:
-          region_count: 7
-          original_rasterized_area_px: 1974260
-          surviving_area_px: 1219170
-          area_weighted_surviving_fraction: 0.61753265
-          completely_lost_region_count: 2
+          region_count: 11
+          original_rasterized_area_px: 2636383
+          surviving_area_px: 2032299
+          area_weighted_surviving_fraction: 0.77086637
+          completely_lost_region_count: 1
         Plain initial - Black:
-          region_count: 7
-          original_rasterized_area_px: 181891
-          surviving_area_px: 181891
-          area_weighted_surviving_fraction: 1.0
+          region_count: 5
+          original_rasterized_area_px: 99674
+          surviving_area_px: 99600
+          area_weighted_surviving_fraction: 0.99925758
           completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_rectangular_s060.json
   artificial_fragment_task_mapping:
     source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
@@ -2879,7 +2857,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_irregular_s030.json
-      sha256: 2f833beb201ae0619e06105e570b416d22ea3aba52cb1c7e8e8a763a7e331d29
+      sha256: f0cf0c2ac129c7cbb4bc9bfc9f92be8922a412f9c5c3528c3220c298cb08cb52
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -2986,7 +2964,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_04_complex_layout_irregular_s030_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_04_complex_layout
       pilot_run_id: segmentation_pilot_v0_1
@@ -3000,14 +2978,14 @@ core_pilot_tasks:
       orig_shape:
       - 4891
       - 3210
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       total_regions: 34
-      completely_visible_count: 27
-      partially_visible_count: 4
+      completely_visible_count: 22
+      partially_visible_count: 9
       completely_lost_count: 3
       labels_completely_lost: []
       labels_with_completely_lost_regions:
@@ -3015,30 +2993,30 @@ core_pilot_tasks:
       surviving_fractions_by_label:
         Embellished:
           region_count: 1
-          original_rasterized_area_px: 1766772
-          surviving_area_px: 1420429
-          area_weighted_surviving_fraction: 0.80396848
+          original_rasterized_area_px: 1246617
+          surviving_area_px: 1095430
+          area_weighted_surviving_fraction: 0.87872217
           completely_lost_region_count: 0
         Main script black:
-          region_count: 19
-          original_rasterized_area_px: 3802125
-          surviving_area_px: 3758283
-          area_weighted_surviving_fraction: 0.98846908
+          region_count: 17
+          original_rasterized_area_px: 2824283
+          surviving_area_px: 2792533
+          area_weighted_surviving_fraction: 0.98875821
           completely_lost_region_count: 3
         Music:
-          region_count: 7
-          original_rasterized_area_px: 1974260
-          surviving_area_px: 1970603
-          area_weighted_surviving_fraction: 0.99814766
+          region_count: 11
+          original_rasterized_area_px: 2636383
+          surviving_area_px: 2633085
+          area_weighted_surviving_fraction: 0.99874904
           completely_lost_region_count: 0
         Plain initial - Black:
-          region_count: 7
-          original_rasterized_area_px: 181891
-          surviving_area_px: 181891
-          area_weighted_surviving_fraction: 1.0
+          region_count: 5
+          original_rasterized_area_px: 99674
+          surviving_area_px: 99600
+          area_weighted_surviving_fraction: 0.99925758
           completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_irregular_s030.json
   artificial_fragment_task_mapping:
     source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
@@ -3112,7 +3090,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_irregular_s060.json
-      sha256: bf3c2c6ac881b4ec5023f4ca1fab3895d07237181adf1f40157bd2317bf74df7
+      sha256: 4458c3dc8b772b67b0671812a015c5409c2e7adeae63be281b6e43c72e93a26f
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -3219,7 +3197,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_04_complex_layout_irregular_s060_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_04_complex_layout
       pilot_run_id: segmentation_pilot_v0_1
@@ -3233,15 +3211,15 @@ core_pilot_tasks:
       orig_shape:
       - 4891
       - 3210
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       total_regions: 34
-      completely_visible_count: 10
-      partially_visible_count: 18
-      completely_lost_count: 6
+      completely_visible_count: 5
+      partially_visible_count: 25
+      completely_lost_count: 4
       labels_completely_lost: []
       labels_with_completely_lost_regions:
       - Main script black
@@ -3249,30 +3227,30 @@ core_pilot_tasks:
       surviving_fractions_by_label:
         Embellished:
           region_count: 1
-          original_rasterized_area_px: 1766772
-          surviving_area_px: 747445
-          area_weighted_surviving_fraction: 0.42305685
+          original_rasterized_area_px: 1246617
+          surviving_area_px: 492129
+          area_weighted_surviving_fraction: 0.39477161
           completely_lost_region_count: 0
         Main script black:
-          region_count: 19
-          original_rasterized_area_px: 3802125
-          surviving_area_px: 2918687
-          area_weighted_surviving_fraction: 0.76764625
-          completely_lost_region_count: 4
+          region_count: 17
+          original_rasterized_area_px: 2824283
+          surviving_area_px: 2229976
+          area_weighted_surviving_fraction: 0.78957243
+          completely_lost_region_count: 3
         Music:
-          region_count: 7
-          original_rasterized_area_px: 1974260
-          surviving_area_px: 1426479
-          area_weighted_surviving_fraction: 0.72253857
-          completely_lost_region_count: 2
+          region_count: 11
+          original_rasterized_area_px: 2636383
+          surviving_area_px: 2142653
+          area_weighted_surviving_fraction: 0.81272448
+          completely_lost_region_count: 1
         Plain initial - Black:
-          region_count: 7
-          original_rasterized_area_px: 181891
-          surviving_area_px: 181891
-          area_weighted_surviving_fraction: 1.0
+          region_count: 5
+          original_rasterized_area_px: 99674
+          surviving_area_px: 99600
+          area_weighted_surviving_fraction: 0.99925758
           completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_04_complex_layout_irregular_s060.json
   artificial_fragment_task_mapping:
     source_canvas_id: 42184aaa-d7f8-453f-bdc9-27ec9b61c18f
@@ -3346,7 +3324,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_rectangular_s030.json
-      sha256: 94942deb15b69aac5ac4affdd83cf1c7ca92944587d8b87bf88137d65151b901
+      sha256: fde909d1a775218213f2be644bd79f0cb64feefa622bea80e744f459a0e45f8b
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -3413,7 +3391,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_05_iiif_rights_rectangular_s030_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_05_iiif_rights
       pilot_run_id: segmentation_pilot_v0_1
@@ -3427,64 +3405,65 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
-      total_regions: 91
-      completely_visible_count: 57
-      partially_visible_count: 33
-      completely_lost_count: 1
+      geometry_method: segmentation_mask
+      total_regions: 90
+      completely_visible_count: 10
+      partially_visible_count: 77
+      completely_lost_count: 3
       labels_completely_lost:
       - Gloss
       labels_with_completely_lost_regions:
       - Gloss
+      - Variant script coloured
       surviving_fractions_by_label:
         Embellished:
           region_count: 1
-          original_rasterized_area_px: 439425
-          surviving_area_px: 262353
-          area_weighted_surviving_fraction: 0.59703704
+          original_rasterized_area_px: 344622
+          surviving_area_px: 226596
+          area_weighted_surviving_fraction: 0.65752041
           completely_lost_region_count: 0
         Gloss:
           region_count: 1
-          original_rasterized_area_px: 41328
+          original_rasterized_area_px: 94129
           surviving_area_px: 0
           area_weighted_surviving_fraction: 0.0
           completely_lost_region_count: 1
         Main script black:
-          region_count: 79
-          original_rasterized_area_px: 16950579
-          surviving_area_px: 16570331
-          area_weighted_surviving_fraction: 0.97756726
+          region_count: 74
+          original_rasterized_area_px: 12959072
+          surviving_area_px: 12676413
+          area_weighted_surviving_fraction: 0.97818833
           completely_lost_region_count: 0
         Main script coloured:
           region_count: 1
-          original_rasterized_area_px: 60840
-          surviving_area_px: 60840
+          original_rasterized_area_px: 42112
+          surviving_area_px: 42112
           area_weighted_surviving_fraction: 1.0
           completely_lost_region_count: 0
         Plain initial - Black:
           region_count: 1
-          original_rasterized_area_px: 25330
-          surviving_area_px: 25330
+          original_rasterized_area_px: 2784
+          surviving_area_px: 2784
           area_weighted_surviving_fraction: 1.0
           completely_lost_region_count: 0
         Plain initial- coloured:
           region_count: 3
-          original_rasterized_area_px: 133688
-          surviving_area_px: 133688
-          area_weighted_surviving_fraction: 1.0
+          original_rasterized_area_px: 104285
+          surviving_area_px: 104150
+          area_weighted_surviving_fraction: 0.99870547
           completely_lost_region_count: 0
         Variant script coloured:
-          region_count: 5
-          original_rasterized_area_px: 477355
-          surviving_area_px: 464067
-          area_weighted_surviving_fraction: 0.97216327
-          completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+          region_count: 9
+          original_rasterized_area_px: 457982
+          surviving_area_px: 394394
+          area_weighted_surviving_fraction: 0.86115612
+          completely_lost_region_count: 2
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_rectangular_s030.json
   artificial_fragment_task_mapping:
     source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
@@ -3558,7 +3537,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_rectangular_s060.json
-      sha256: 050e4acfd6d2de5e69b44893c56623664078a590fa686d163cc83ac42cce1075
+      sha256: f790582619b5ddcce300d1c7989145d942343fd9a1e00a8d074cbd5c7a9902c5
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -3625,7 +3604,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_05_iiif_rights_rectangular_s060_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_05_iiif_rights
       pilot_run_id: segmentation_pilot_v0_1
@@ -3639,65 +3618,66 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
-      total_regions: 91
-      completely_visible_count: 69
-      partially_visible_count: 4
-      completely_lost_count: 18
+      geometry_method: segmentation_mask
+      total_regions: 90
+      completely_visible_count: 13
+      partially_visible_count: 57
+      completely_lost_count: 20
       labels_completely_lost:
       - Gloss
       labels_with_completely_lost_regions:
       - Gloss
       - Main script black
+      - Variant script coloured
       surviving_fractions_by_label:
         Embellished:
           region_count: 1
-          original_rasterized_area_px: 439425
-          surviving_area_px: 429660
-          area_weighted_surviving_fraction: 0.97777778
+          original_rasterized_area_px: 344622
+          surviving_area_px: 333894
+          area_weighted_surviving_fraction: 0.96887024
           completely_lost_region_count: 0
         Gloss:
           region_count: 1
-          original_rasterized_area_px: 41328
+          original_rasterized_area_px: 94129
           surviving_area_px: 0
           area_weighted_surviving_fraction: 0.0
           completely_lost_region_count: 1
         Main script black:
-          region_count: 79
-          original_rasterized_area_px: 16950579
-          surviving_area_px: 12936332
-          area_weighted_surviving_fraction: 0.76317936
-          completely_lost_region_count: 17
+          region_count: 74
+          original_rasterized_area_px: 12959072
+          surviving_area_px: 9751372
+          area_weighted_surviving_fraction: 0.75247456
+          completely_lost_region_count: 18
         Main script coloured:
           region_count: 1
-          original_rasterized_area_px: 60840
-          surviving_area_px: 60840
+          original_rasterized_area_px: 42112
+          surviving_area_px: 42112
           area_weighted_surviving_fraction: 1.0
           completely_lost_region_count: 0
         Plain initial - Black:
           region_count: 1
-          original_rasterized_area_px: 25330
-          surviving_area_px: 25330
+          original_rasterized_area_px: 2784
+          surviving_area_px: 2784
           area_weighted_surviving_fraction: 1.0
           completely_lost_region_count: 0
         Plain initial- coloured:
           region_count: 3
-          original_rasterized_area_px: 133688
-          surviving_area_px: 75548
-          area_weighted_surviving_fraction: 0.56510682
+          original_rasterized_area_px: 104285
+          surviving_area_px: 46253
+          area_weighted_surviving_fraction: 0.44352496
           completely_lost_region_count: 0
         Variant script coloured:
-          region_count: 5
-          original_rasterized_area_px: 477355
-          surviving_area_px: 477355
-          area_weighted_surviving_fraction: 1.0
-          completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+          region_count: 9
+          original_rasterized_area_px: 457982
+          surviving_area_px: 423171
+          area_weighted_surviving_fraction: 0.92399046
+          completely_lost_region_count: 1
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_rectangular_s060.json
   artificial_fragment_task_mapping:
     source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
@@ -3771,7 +3751,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_irregular_s030.json
-      sha256: 15ae045613d2d6d96f77c33b59786036b6018989f547115cd19e02a39bdb4439
+      sha256: c648a27b58682391c187c5e2ece2bd4f74da2b99d29967e5f7fce7f981ff922b
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -3878,7 +3858,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_05_iiif_rights_irregular_s030_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_05_iiif_rights
       pilot_run_id: segmentation_pilot_v0_1
@@ -3892,64 +3872,65 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
-      total_regions: 91
-      completely_visible_count: 67
-      partially_visible_count: 23
-      completely_lost_count: 1
+      geometry_method: segmentation_mask
+      total_regions: 90
+      completely_visible_count: 12
+      partially_visible_count: 75
+      completely_lost_count: 3
       labels_completely_lost:
       - Gloss
       labels_with_completely_lost_regions:
       - Gloss
+      - Variant script coloured
       surviving_fractions_by_label:
         Embellished:
           region_count: 1
-          original_rasterized_area_px: 439425
-          surviving_area_px: 313925
-          area_weighted_surviving_fraction: 0.7143995
+          original_rasterized_area_px: 344622
+          surviving_area_px: 257110
+          area_weighted_surviving_fraction: 0.7460638
           completely_lost_region_count: 0
         Gloss:
           region_count: 1
-          original_rasterized_area_px: 41328
+          original_rasterized_area_px: 94129
           surviving_area_px: 0
           area_weighted_surviving_fraction: 0.0
           completely_lost_region_count: 1
         Main script black:
-          region_count: 79
-          original_rasterized_area_px: 16950579
-          surviving_area_px: 16560746
-          area_weighted_surviving_fraction: 0.97700179
+          region_count: 74
+          original_rasterized_area_px: 12959072
+          surviving_area_px: 12623500
+          area_weighted_surviving_fraction: 0.97410524
           completely_lost_region_count: 0
         Main script coloured:
           region_count: 1
-          original_rasterized_area_px: 60840
-          surviving_area_px: 60840
+          original_rasterized_area_px: 42112
+          surviving_area_px: 42112
           area_weighted_surviving_fraction: 1.0
           completely_lost_region_count: 0
         Plain initial - Black:
           region_count: 1
-          original_rasterized_area_px: 25330
-          surviving_area_px: 25330
+          original_rasterized_area_px: 2784
+          surviving_area_px: 2784
           area_weighted_surviving_fraction: 1.0
           completely_lost_region_count: 0
         Plain initial- coloured:
           region_count: 3
-          original_rasterized_area_px: 133688
-          surviving_area_px: 133688
-          area_weighted_surviving_fraction: 1.0
+          original_rasterized_area_px: 104285
+          surviving_area_px: 104150
+          area_weighted_surviving_fraction: 0.99870547
           completely_lost_region_count: 0
         Variant script coloured:
-          region_count: 5
-          original_rasterized_area_px: 477355
-          surviving_area_px: 466728
-          area_weighted_surviving_fraction: 0.97773774
-          completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+          region_count: 9
+          original_rasterized_area_px: 457982
+          surviving_area_px: 400208
+          area_weighted_surviving_fraction: 0.87385094
+          completely_lost_region_count: 2
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_irregular_s030.json
   artificial_fragment_task_mapping:
     source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
@@ -4023,7 +4004,7 @@ core_pilot_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_irregular_s060.json
-      sha256: 02e06d6b1b5a01cd1635267896759a68272d910baaea3a75b604f4edb67d55d5
+      sha256: 82a01fa62cea96b9474d498704dd79ccea81f0b9f7863d05555301bad0864fd7
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -4130,7 +4111,7 @@ core_pilot_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/core_pilot/source_damage_masks/af_fp_05_iiif_rights_irregular_s060_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_05_iiif_rights
       pilot_run_id: segmentation_pilot_v0_1
@@ -4144,14 +4125,14 @@ core_pilot_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
-      total_regions: 91
-      completely_visible_count: 44
-      partially_visible_count: 26
+      geometry_method: segmentation_mask
+      total_regions: 90
+      completely_visible_count: 14
+      partially_visible_count: 55
       completely_lost_count: 21
       labels_completely_lost:
       - Embellished
@@ -4162,48 +4143,48 @@ core_pilot_tasks:
       surviving_fractions_by_label:
         Embellished:
           region_count: 1
-          original_rasterized_area_px: 439425
+          original_rasterized_area_px: 344622
           surviving_area_px: 0
           area_weighted_surviving_fraction: 0.0
           completely_lost_region_count: 1
         Gloss:
           region_count: 1
-          original_rasterized_area_px: 41328
-          surviving_area_px: 7054
-          area_weighted_surviving_fraction: 0.17068331
+          original_rasterized_area_px: 94129
+          surviving_area_px: 50140
+          area_weighted_surviving_fraction: 0.53267325
           completely_lost_region_count: 0
         Main script black:
-          region_count: 79
-          original_rasterized_area_px: 16950579
-          surviving_area_px: 11926169
-          area_weighted_surviving_fraction: 0.70358476
-          completely_lost_region_count: 19
+          region_count: 74
+          original_rasterized_area_px: 12959072
+          surviving_area_px: 9146900
+          area_weighted_surviving_fraction: 0.70582986
+          completely_lost_region_count: 18
         Main script coloured:
           region_count: 1
-          original_rasterized_area_px: 60840
-          surviving_area_px: 60840
+          original_rasterized_area_px: 42112
+          surviving_area_px: 42112
           area_weighted_surviving_fraction: 1.0
           completely_lost_region_count: 0
         Plain initial - Black:
           region_count: 1
-          original_rasterized_area_px: 25330
-          surviving_area_px: 25330
+          original_rasterized_area_px: 2784
+          surviving_area_px: 2784
           area_weighted_surviving_fraction: 1.0
           completely_lost_region_count: 0
         Plain initial- coloured:
           region_count: 3
-          original_rasterized_area_px: 133688
-          surviving_area_px: 133688
-          area_weighted_surviving_fraction: 1.0
+          original_rasterized_area_px: 104285
+          surviving_area_px: 104150
+          area_weighted_surviving_fraction: 0.99870547
           completely_lost_region_count: 0
         Variant script coloured:
-          region_count: 5
-          original_rasterized_area_px: 477355
-          surviving_area_px: 440788
-          area_weighted_surviving_fraction: 0.92339663
-          completely_lost_region_count: 1
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+          region_count: 9
+          original_rasterized_area_px: 457982
+          surviving_area_px: 402981
+          area_weighted_surviving_fraction: 0.87990576
+          completely_lost_region_count: 2
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/core_pilot/metadata/af_fp_05_iiif_rights_irregular_s060.json
   artificial_fragment_task_mapping:
     source_canvas_id: 54ea0e85-da10-46ba-838e-7a667b91c844
@@ -4278,7 +4259,7 @@ transformation_sanity_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/transformation_sanity/metadata/af_fp_01_clean_simple_sanity_positive_rotation.json
-      sha256: fade5914435274bb2ac3d8dc19a8801aa503925f95d4fcd08558bb38e7c127aa
+      sha256: 0a37e5d44fc12839d7b6416d3487435fc5c49f6aae27fa33120fdb23f0ff2ef3
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -4385,7 +4366,7 @@ transformation_sanity_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_damage_masks/af_fp_01_clean_simple_sanity_positive_rotation_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_01_clean_simple
       pilot_run_id: segmentation_pilot_v0_1
@@ -4399,32 +4380,27 @@ transformation_sanity_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       total_regions: 102
-      completely_visible_count: 52
-      partially_visible_count: 50
-      completely_lost_count: 0
+      completely_visible_count: 18
+      partially_visible_count: 83
+      completely_lost_count: 1
       labels_completely_lost: []
-      labels_with_completely_lost_regions: []
+      labels_with_completely_lost_regions:
+      - Main script black
       surviving_fractions_by_label:
         Main script black:
-          region_count: 101
-          original_rasterized_area_px: 24187998
-          surviving_area_px: 19677782
-          area_weighted_surviving_fraction: 0.81353496
-          completely_lost_region_count: 0
-        Plain initial - Black:
-          region_count: 1
-          original_rasterized_area_px: 23552
-          surviving_area_px: 23552
-          area_weighted_surviving_fraction: 1.0
-          completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+          region_count: 102
+          original_rasterized_area_px: 19208231
+          surviving_area_px: 15712715
+          area_weighted_surviving_fraction: 0.81801989
+          completely_lost_region_count: 1
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/metadata/af_fp_01_clean_simple_sanity_positive_rotation.json
   artificial_fragment_task_mapping:
     source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
@@ -4498,7 +4474,7 @@ transformation_sanity_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/transformation_sanity/metadata/af_fp_01_clean_simple_sanity_negative_rotation.json
-      sha256: 564aea51612de71ae569bf5dcf2cf8b580bd9f3e620303e68931c22b7446f397
+      sha256: 97b191199c3bfadd9ce190637b5c2caf89c34c09d102dc36b18ee7b77ed24246
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -4605,7 +4581,7 @@ transformation_sanity_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_damage_masks/af_fp_01_clean_simple_sanity_negative_rotation_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_01_clean_simple
       pilot_run_id: segmentation_pilot_v0_1
@@ -4619,33 +4595,27 @@ transformation_sanity_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       total_regions: 102
-      completely_visible_count: 74
-      partially_visible_count: 4
-      completely_lost_count: 24
+      completely_visible_count: 27
+      partially_visible_count: 49
+      completely_lost_count: 26
       labels_completely_lost: []
       labels_with_completely_lost_regions:
       - Main script black
       surviving_fractions_by_label:
         Main script black:
-          region_count: 101
-          original_rasterized_area_px: 24187998
-          surviving_area_px: 17239880
-          area_weighted_surviving_fraction: 0.71274522
-          completely_lost_region_count: 24
-        Plain initial - Black:
-          region_count: 1
-          original_rasterized_area_px: 23552
-          surviving_area_px: 23552
-          area_weighted_surviving_fraction: 1.0
-          completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+          region_count: 102
+          original_rasterized_area_px: 19208231
+          surviving_area_px: 13571826
+          area_weighted_surviving_fraction: 0.70656304
+          completely_lost_region_count: 26
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/metadata/af_fp_01_clean_simple_sanity_negative_rotation.json
   artificial_fragment_task_mapping:
     source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47
@@ -4719,7 +4689,7 @@ transformation_sanity_tasks:
       semantics: 255=source pixel removed; 0=survives
     metadata:
       path: outputs/artificial_fragments/v0_1_1/transformation_sanity/metadata/af_fp_01_clean_simple_sanity_non_unit_scale.json
-      sha256: f3ea758a1c2d26c0275c7eeffbe8e7e64019a5c70e27d02524979e51fdf9b053
+      sha256: daf9283f42cc484dcc794e781582c54ec7bdcbe51f122c0a48948d967f2dc718
       coordinate_space: not_applicable
   crop_transform:
     source_bbox_xyxy_px:
@@ -4826,7 +4796,7 @@ transformation_sanity_tasks:
     source_damage_mask_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/source_damage_masks/af_fp_01_clean_simple_sanity_non_unit_scale_damage.png
     scientific_role: hidden_ground_truth
   layout_survival_estimate:
-    geometry_method: rasterized_bbox_xyxy
+    geometry_method: segmentation_mask
     segmentation_run_provenance:
       sample_id: fp_01_clean_simple
       pilot_run_id: segmentation_pilot_v0_1
@@ -4840,33 +4810,27 @@ transformation_sanity_tasks:
       orig_shape:
       - 8176
       - 6132
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       interpretation: layout_survival_estimate
     summary:
       metric_name: layout_survival_estimate
-      geometry_method: rasterized_bbox_xyxy
+      geometry_method: segmentation_mask
       total_regions: 102
-      completely_visible_count: 72
-      partially_visible_count: 20
+      completely_visible_count: 26
+      partially_visible_count: 66
       completely_lost_count: 10
       labels_completely_lost: []
       labels_with_completely_lost_regions:
       - Main script black
       surviving_fractions_by_label:
         Main script black:
-          region_count: 101
-          original_rasterized_area_px: 24187998
-          surviving_area_px: 20991004
-          area_weighted_surviving_fraction: 0.86782726
+          region_count: 102
+          original_rasterized_area_px: 19208231
+          surviving_area_px: 16531650
+          area_weighted_surviving_fraction: 0.86065448
           completely_lost_region_count: 10
-        Plain initial - Black:
-          region_count: 1
-          original_rasterized_area_px: 23552
-          surviving_area_px: 23552
-          area_weighted_surviving_fraction: 1.0
-          completely_lost_region_count: 0
-      interpretation_note: Calculated from rasterized source-region bounding boxes;
-        this is not pixel-accurate segmentation-mask survival.
+      interpretation_note: Calculated from authoritative source-sized binary segmentation
+        masks.
     full_region_metadata_path: outputs/artificial_fragments/v0_1_1/transformation_sanity/metadata/af_fp_01_clean_simple_sanity_non_unit_scale.json
   artificial_fragment_task_mapping:
     source_canvas_id: a9fecfcf-2e44-4d0e-bd18-89c368400b47

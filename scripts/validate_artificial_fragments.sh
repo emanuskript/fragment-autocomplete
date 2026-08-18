@@ -37,6 +37,7 @@ expected_fields = {
   "source_region_index", "source_region_identifier", "label", "class_id", "confidence",
   "original_bbox_xyxy", "original_rasterized_area_px", "surviving_area_px",
   "surviving_fraction", "completely_lost", "geometry_method", "segmentation_run_provenance",
+  "mask_path", "mask_pixel_area", "mask_dimensions_px",
 }
 groups = {}
 seeds = set()
@@ -98,7 +99,7 @@ for index_task in core + sanity:
     raise SystemExit(f"FAIL: source placement outside page for {task['task_id']}")
 
   estimate = task["layout_survival_estimate"]
-  if estimate.get("geometry_method") != "rasterized_bbox_xyxy":
+  if estimate.get("geometry_method") != "segmentation_mask":
     raise SystemExit(f"FAIL: layout geometry method missing for {task['task_id']}")
   regions = estimate.get("regions", [])
   summary = estimate.get("summary", {})
@@ -110,7 +111,7 @@ for index_task in core + sanity:
   for region in regions:
     if not expected_fields.issubset(region):
       raise SystemExit(f"FAIL: incomplete region metadata for {task['task_id']}")
-    if region.get("geometry_method") != "rasterized_bbox_xyxy":
+    if region.get("geometry_method") != "segmentation_mask":
       raise SystemExit(f"FAIL: incorrect region geometry method for {task['task_id']}")
 
 for index_task in core:

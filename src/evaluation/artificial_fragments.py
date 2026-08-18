@@ -439,7 +439,12 @@ def generate_fragment_task(
   if not (0 <= left < right <= source_width and 0 <= top < bottom <= source_height):
     raise ValueError("Generated fragment lies outside source-page coordinate space")
 
-  layout_estimates, layout_summary = estimate_layout_survival(layout_detections, survival_mask, segmentation_run_provenance)
+  layout_estimates, layout_summary = estimate_layout_survival(
+    layout_detections,
+    survival_mask,
+    segmentation_run_provenance,
+    artifact_root=root,
+  )
   observed = source.crop(source_bbox)
   observed_mask = survival_mask.crop(source_bbox)
   observed.putalpha(observed_mask)
@@ -543,7 +548,12 @@ def generate_fragment_task(
       "source_damage_mask_path": artifact_metadata["source_damage_mask"]["path"],
       "scientific_role": "hidden_ground_truth",
     },
-    "layout_survival_estimate": {"geometry_method": "rasterized_bbox_xyxy", "segmentation_run_provenance": segmentation_run_provenance, "regions": layout_estimates, "summary": layout_summary},
+    "layout_survival_estimate": {
+      "geometry_method": layout_summary["geometry_method"],
+      "segmentation_run_provenance": segmentation_run_provenance,
+      "regions": layout_estimates,
+      "summary": layout_summary,
+    },
     "degradation_profile": {"profile": "mask_crop_rotation_scale_only", "contains_inferred_or_reconstructed_content": False, "note": "The exported fragment contains only transformed observed pixels from the complete source page."},
     "split_name": "demo",
     "parameters": parameters,

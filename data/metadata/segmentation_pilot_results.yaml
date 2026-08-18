@@ -1,17 +1,20 @@
-generated_at: '2026-05-19T07:54:16.763016+00:00'
+generated_at: '2026-08-18T13:03:26.898185+00:00'
 pilot_run_id: segmentation_pilot_v0_1
 dataset_id: initial_sample_dataset_v0_1
 model_id: best_emanuskript_segmentation
 model_path: model weights/best_emanuskript_segmentation.pt
 inference_run: true
 segmentation_run: true
+rerun_scope: full_page
+selected_run_count: 5
+mask_artifact_count: 338
 device: cpu
 confidence_threshold: 0.25
 imgsz: 320
 output_dir: outputs/segmentation_pilot
 environment:
-  python_version: 3.12.10
-  torch_version: 2.9.0
+  python_version: 3.11.13
+  torch_version: 2.8.0
   ultralytics_version: 8.4.14
 results:
 - sample_id: fp_01_clean_simple
@@ -27,14 +30,15 @@ results:
   raw_output_path: outputs/segmentation_pilot/raw/fp_01_clean_simple.json
   overlay_path: outputs/segmentation_pilot/overlays/fp_01_clean_simple_overlay.jpg
   detected_region_count: 102
+  mask_region_count: 102
+  mask_geometry_available: true
   detected_labels:
   - Main script black
-  - Plain initial - Black
   confidence_summary:
     count: 102
-    min: 0.323524
-    max: 0.784519
-    mean: 0.642175
+    min: 0.26274
+    max: 0.79787
+    mean: 0.638839
   errors: []
   warnings: []
 - sample_id: fp_02_clean_simple
@@ -50,13 +54,15 @@ results:
   raw_output_path: outputs/segmentation_pilot/raw/fp_02_clean_simple.json
   overlay_path: outputs/segmentation_pilot/overlays/fp_02_clean_simple_overlay.jpg
   detected_region_count: 31
+  mask_region_count: 31
+  mask_geometry_available: true
   detected_labels:
   - Main script black
   confidence_summary:
     count: 31
-    min: 0.350531
-    max: 0.864664
-    mean: 0.739257
+    min: 0.299055
+    max: 0.869705
+    mean: 0.744425
   errors: []
   warnings: []
 - sample_id: fp_03_complex_layout
@@ -71,16 +77,18 @@ results:
   status: success
   raw_output_path: outputs/segmentation_pilot/raw/fp_03_complex_layout.json
   overlay_path: outputs/segmentation_pilot/overlays/fp_03_complex_layout_overlay.jpg
-  detected_region_count: 82
+  detected_region_count: 81
+  mask_region_count: 81
+  mask_geometry_available: true
   detected_labels:
   - Embellished
   - Main script black
   - Plain initial - Highlighted
   confidence_summary:
-    count: 82
-    min: 0.250488
-    max: 0.815589
-    mean: 0.49978
+    count: 81
+    min: 0.255496
+    max: 0.794859
+    mean: 0.502691
   errors: []
   warnings: []
 - sample_id: fp_04_complex_layout
@@ -96,6 +104,8 @@ results:
   raw_output_path: outputs/segmentation_pilot/raw/fp_04_complex_layout.json
   overlay_path: outputs/segmentation_pilot/overlays/fp_04_complex_layout_overlay.jpg
   detected_region_count: 34
+  mask_region_count: 34
+  mask_geometry_available: true
   detected_labels:
   - Embellished
   - Main script black
@@ -103,9 +113,9 @@ results:
   - Plain initial - Black
   confidence_summary:
     count: 34
-    min: 0.250428
-    max: 0.831343
-    mean: 0.455551
+    min: 0.26282
+    max: 0.822323
+    mean: 0.457043
   errors: []
   warnings: []
 - sample_id: fp_05_iiif_rights
@@ -120,7 +130,9 @@ results:
   status: success
   raw_output_path: outputs/segmentation_pilot/raw/fp_05_iiif_rights.json
   overlay_path: outputs/segmentation_pilot/overlays/fp_05_iiif_rights_overlay.jpg
-  detected_region_count: 91
+  detected_region_count: 90
+  mask_region_count: 90
+  mask_geometry_available: true
   detected_labels:
   - Embellished
   - Gloss
@@ -130,10 +142,10 @@ results:
   - Plain initial- coloured
   - Variant script coloured
   confidence_summary:
-    count: 91
-    min: 0.25446
-    max: 0.914578
-    mean: 0.64755
+    count: 90
+    min: 0.252544
+    max: 0.943652
+    mean: 0.626464
   errors: []
   warnings: []
 - sample_id: fr_01_binding_strip

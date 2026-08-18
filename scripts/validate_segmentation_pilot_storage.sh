@@ -4,7 +4,8 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
-python3 - <<'PY'
+PYTHON_BIN="${PYTHON_BIN:-python3}"
+"$PYTHON_BIN" - <<'PY'
 import os
 from pathlib import Path
 
@@ -45,7 +46,7 @@ with conn, conn.cursor() as cur:
             raise SystemExit(f"FAIL: missing db_segmentation_run_id for {sample['sample_id']}")
         cur.execute(
             """
-            SELECT model_name, model_source, output_path
+            SELECT model_name, model_source, output_path, output_format
             FROM segmentation_run
             WHERE id = %s
             """,
@@ -54,14 +55,30 @@ with conn, conn.cursor() as cur:
         row = cur.fetchone()
         if not row:
             raise SystemExit(f"FAIL: segmentation_run missing for {sample['sample_id']}: {run_id}")
-        model_name, model_source, output_path = row
+        model_name, model_source, output_path, output_format = row
         if not model_name or not model_source or not output_path:
             raise SystemExit(f"FAIL: incomplete model/output metadata for {sample['sample_id']}")
+        expected_format = (
+            "ultralytics_segmentation_json_with_binary_masks"
+            if sample.get("sample_kind") == "full_page"
+            else "ultralytics_segmentation_json_legacy_bbox"
+        )
+        if output_format != expected_format:
+            raise SystemExit(f"FAIL: output format mismatch for {sample['sample_id']}: {output_format}")
         cur.execute("SELECT COUNT(*), COUNT(DISTINCT label) FROM layout_region WHERE segmentation_run_id = %s", (run_id,))
         region_count, label_count = cur.fetchone()
         if region_count < 1 and not sample.get("warnings"):
             raise SystemExit(f"FAIL: no layout_region rows for {sample['sample_id']}")
         if region_count >= 1 and label_count < 1:
             raise SystemExit(f"FAIL: labels missing for {sample['sample_id']}")
+        if sample.get("sample_kind") == "full_page":
+            cur.execute(
+                "SELECT COUNT(*), COUNT(mask_path), COUNT(*) FILTER (WHERE region_area_px > 0) "
+                "FROM layout_region WHERE segmentation_run_id = %s",
+                (run_id,),
+            )
+            total, with_mask, with_area = cur.fetchone()
+            if not sample.get("mask_geometry_available") or with_mask != total or with_area != total:
+                raise SystemExit(f"FAIL: persisted masks/areas incomplete for {sample['sample_id']}")
 print("PASS: pilot segmentation outputs are stored in PostgreSQL/PostGIS")
 PY
