@@ -1,4 +1,4 @@
-"""Estimate source-layout survival from rasterized bounding-box geometry."""
+"""Estimate source-layout survival from segmentation masks with bbox fallback."""
 
 from __future__ import annotations
 
