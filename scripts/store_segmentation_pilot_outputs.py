@@ -43,6 +43,8 @@ class SampleContext:
     source: str | None
     rights_review_status: str | None
     access_level: str | None
+    manuscript_id: str | None
+    dataset_split: str | None
 
 
 def parse_args() -> argparse.Namespace:
@@ -107,11 +109,42 @@ def normalize_inputs(inputs_yaml: dict[str, Any]) -> dict[str, SampleContext]:
             source=item.get("source"),
             rights_review_status=item.get("rights_review_status"),
             access_level=item.get("access_level"),
+            manuscript_id=item.get("manuscript_id"),
+            dataset_split=item.get("dataset_split"),
         )
     return contexts
 
 
-def find_existing_run(cur: Any, context: SampleContext, pilot_run_id: str, model_name: str) -> str | None:
+def find_existing_run(
+    cur: Any,
+    context: SampleContext,
+    pilot_run_id: str,
+    model_name: str,
+    run_identity_sha256: str | None,
+) -> str | None:
+    if run_identity_sha256:
+        cur.execute(
+            """
+            SELECT id
+            FROM segmentation_run
+            WHERE image_asset_id = %s
+              AND COALESCE(fragment_id::text, '') = COALESCE(%s, '')
+              AND model_name = %s
+              AND parameters->>'run_identity_sha256' = %s
+              AND parameters->>'sample_id' = %s
+            ORDER BY created_at DESC
+            LIMIT 1
+            """,
+            (
+                context.db_image_asset_id,
+                context.db_fragment_id,
+                model_name,
+                run_identity_sha256,
+                context.sample_id,
+            ),
+        )
+        row = cur.fetchone()
+        return row[0] if row else None
     cur.execute(
         """
         SELECT id
@@ -155,8 +188,19 @@ def upsert_segmentation_run(
         "warning": "completed",
         "error": "failed",
     }.get(sample_status, "completed")
+    identity_descriptor = pilot_results.get("run_identity_descriptor") or {}
+    source_identity = next(
+        (
+            item
+            for item in identity_descriptor.get("source_assets", [])
+            if item.get("sample_id") == context.sample_id
+        ),
+        {},
+    )
     parameters = {
         "pilot_run_id": pilot_run_id,
+        "run_identity_sha256": pilot_results.get("run_identity_sha256"),
+        "run_identity_version": identity_descriptor.get("identity_version"),
         "sample_id": context.sample_id,
         "sample_kind": context.sample_kind,
         "source_url": context.source_url,
@@ -175,6 +219,10 @@ def upsert_segmentation_run(
         "rights_review_status": context.rights_review_status,
         "access_level": context.access_level,
         "dataset_id": pilot_results.get("dataset_id"),
+        "manuscript_id": context.manuscript_id,
+        "dataset_split": context.dataset_split,
+        "source_sha256": source_identity.get("source_sha256"),
+        "model_sha256": pilot_results.get("model_sha256"),
         "mask_geometry_available": sample_result.get("mask_geometry_available", False),
     }
     raw_output = {
@@ -459,6 +507,8 @@ def main() -> int:
                     "db_image_asset_id": context.db_image_asset_id,
                     "db_canvas_id": context.db_canvas_id,
                     "db_fragment_id": context.db_fragment_id,
+                    "manuscript_id": context.manuscript_id,
+                    "dataset_split": context.dataset_split,
                     "db_segmentation_run_id": None,
                     "layout_region_count": len(detections),
                     "mask_region_count": sum(bool(item.get("mask_path")) for item in detections),
@@ -492,7 +542,13 @@ def main() -> int:
                 context = contexts[sample_result["sample_id"]]
                 raw_prediction = load_json((ROOT / sample_result["raw_output_path"]).resolve())
                 detections = raw_prediction.get("detections", [])
-                existing_run_id = find_existing_run(cur, context, pilot_run_id, pilot_results.get("model_id"))
+                existing_run_id = find_existing_run(
+                    cur,
+                    context,
+                    pilot_run_id,
+                    pilot_results.get("model_id"),
+                    pilot_results.get("run_identity_sha256"),
+                )
                 run_id = upsert_segmentation_run(
                     cur,
                     existing_run_id=existing_run_id,
@@ -511,6 +567,8 @@ def main() -> int:
                         "db_image_asset_id": context.db_image_asset_id,
                         "db_canvas_id": context.db_canvas_id,
                         "db_fragment_id": context.db_fragment_id,
+                        "manuscript_id": context.manuscript_id,
+                        "dataset_split": context.dataset_split,
                         "db_segmentation_run_id": run_id,
                         "layout_region_count": layout_count,
                         "mask_region_count": sum(bool(item.get("mask_path")) for item in detections),
@@ -534,6 +592,8 @@ def main() -> int:
         "dataset_id": pilot_results.get("dataset_id"),
         "model_id": pilot_results.get("model_id"),
         "model_path": pilot_results.get("model_path"),
+        "model_sha256": pilot_results.get("model_sha256"),
+        "run_identity_sha256": pilot_results.get("run_identity_sha256"),
         "device": pilot_results.get("device"),
         "confidence_threshold": pilot_results.get("confidence_threshold"),
         "imgsz": pilot_results.get("imgsz"),

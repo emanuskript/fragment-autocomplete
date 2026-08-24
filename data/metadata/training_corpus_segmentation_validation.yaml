@@ -1,0 +1,18 @@
+validation_version: training_corpus_emanuskript_integration_validation_v0_1
+status: passed
+corpus_id: ecodices_training_source_validation_v0_1
+run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+source_snapshot_sha256: 678c411bf15748d6aa9208dae7241a51ef7efb7b7c9d7e9275bc87a11b751919
+mask_snapshot_sha256: 08eeed0827ea3b279a2be5569a00808070ca68836b7e1b26dc593d0627364611
+attempted_page_count: 15
+source_invariants_unchanged: true
+manuscript_splits_unchanged: true
+mask_hashes_reproducible: true
+database_relationships_resolve: true
+idempotency:
+  storage_rerun_performed: false
+  stable_run_count: 15
+  stable_region_set_count: 15
+  duplicate_run_count: 0
+statistics_path: data/metadata/training_corpus_segmentation_statistics.yaml
+report_path: docs/15_training_corpus_segmentation_integration.md

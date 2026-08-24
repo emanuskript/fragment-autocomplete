@@ -1,0 +1,300 @@
+generated_at: '2026-08-24T09:34:30+00:00'
+storage_status: stored
+pilot_run_id: ecodices_training_source_validation_v0_1_emanuskript_segmentation
+dataset_id: ecodices_training_source_validation_v0_1
+model_id: best_emanuskript_segmentation
+model_path: model weights/best_emanuskript_segmentation.pt
+model_sha256: 9f0b03cc64c830d337a01ddac6a04616a385d573e3b923a86fc4c74c16416511
+run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+device: cpu
+confidence_threshold: 0.25
+imgsz: 320
+inference_rerun: false
+database_write: true
+pilot_results_path: data/metadata/training_corpus_segmentation_results.yaml
+pilot_inputs_path: data/metadata/training_corpus_segmentation_inputs.yaml
+samples:
+- sample_id: 425e3785668f4b45417a
+  sample_kind: full_page
+  db_image_asset_id: 4dfa5942-b131-4f30-b60c-8790cf70e939
+  db_canvas_id: cb67910a-8677-461a-96cc-2d2035fbf0cd
+  db_fragment_id: null
+  manuscript_id: csg-0300
+  dataset_split: train
+  db_segmentation_run_id: 5df93e0c-187e-4e3a-b475-83e32455bf70
+  layout_region_count: 125
+  mask_region_count: 125
+  mask_geometry_available: true
+  detected_labels:
+  - Main script black
+  - Page Number
+  raw_output_path: outputs/training_corpus_segmentation/raw/425e3785668f4b45417a.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/425e3785668f4b45417a_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: a8207890d102ac4ed03a
+  sample_kind: full_page
+  db_image_asset_id: b3637f25-e618-4fa0-92d3-4451af849f16
+  db_canvas_id: f897632b-a5af-4646-9d34-425b2dcfa1b8
+  db_fragment_id: null
+  manuscript_id: csg-0300
+  dataset_split: train
+  db_segmentation_run_id: ee2fbab1-72d4-4dea-9865-5682b7fe2d15
+  layout_region_count: 107
+  mask_region_count: 107
+  mask_geometry_available: true
+  detected_labels:
+  - Gloss
+  - Main script black
+  - Page Number
+  - Plain initial- coloured
+  raw_output_path: outputs/training_corpus_segmentation/raw/a8207890d102ac4ed03a.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/a8207890d102ac4ed03a_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: babb20f169bd9da8a0b1
+  sample_kind: full_page
+  db_image_asset_id: 096529ba-72fd-41ec-b6bb-34fe39a5475b
+  db_canvas_id: 6a0f2e0a-b444-4596-88c9-4eca464d1266
+  db_fragment_id: null
+  manuscript_id: csg-0300
+  dataset_split: train
+  db_segmentation_run_id: a628a225-a61b-4198-b668-4283daff6540
+  layout_region_count: 119
+  mask_region_count: 119
+  mask_geometry_available: true
+  detected_labels:
+  - Main script black
+  - Page Number
+  raw_output_path: outputs/training_corpus_segmentation/raw/babb20f169bd9da8a0b1.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/babb20f169bd9da8a0b1_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: a4f4e588f0055430b22f
+  sample_kind: full_page
+  db_image_asset_id: 28e935d7-8051-49d3-adc3-1894953d047c
+  db_canvas_id: 6e7e8b3d-d911-45bb-9224-f6f06c0da5fb
+  db_fragment_id: null
+  manuscript_id: kba-Wett0004
+  dataset_split: train
+  db_segmentation_run_id: 331acefd-fbad-4531-82ac-430b3e636ef8
+  layout_region_count: 34
+  mask_region_count: 34
+  mask_geometry_available: true
+  detected_labels:
+  - Main script black
+  raw_output_path: outputs/training_corpus_segmentation/raw/a4f4e588f0055430b22f.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/a4f4e588f0055430b22f_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: c63d67ffbd8b307be771
+  sample_kind: full_page
+  db_image_asset_id: a29272aa-720b-44f0-a6d0-61214386650b
+  db_canvas_id: 14299833-1139-4068-88db-d82de1a9e008
+  db_fragment_id: null
+  manuscript_id: kba-Wett0004
+  dataset_split: train
+  db_segmentation_run_id: aa2a4bf5-f4d5-4519-8789-93fb3761cb1c
+  layout_region_count: 32
+  mask_region_count: 32
+  mask_geometry_available: true
+  detected_labels:
+  - Main script black
+  - Plain initial - Highlighted
+  raw_output_path: outputs/training_corpus_segmentation/raw/c63d67ffbd8b307be771.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/c63d67ffbd8b307be771_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: b1a39922209cbe0e3288
+  sample_kind: full_page
+  db_image_asset_id: 377fbbc2-2a8e-43b3-b35c-c6a57af0f850
+  db_canvas_id: ad0f7592-4c68-496f-9598-424b0b2cc500
+  db_fragment_id: null
+  manuscript_id: kba-Wett0004
+  dataset_split: train
+  db_segmentation_run_id: 4880cb8e-5bdc-4add-9631-d83598768462
+  layout_region_count: 38
+  mask_region_count: 38
+  mask_geometry_available: true
+  detected_labels:
+  - Gloss
+  - Main script black
+  - Plain initial - Black
+  raw_output_path: outputs/training_corpus_segmentation/raw/b1a39922209cbe0e3288.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/b1a39922209cbe0e3288_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: 6e83952ab08276d44838
+  sample_kind: full_page
+  db_image_asset_id: 6ff4563b-15ac-46c7-8d75-9c7e5d0bf322
+  db_canvas_id: 0b7fc39e-b432-4f5f-80f5-8ae65e76cede
+  db_fragment_id: null
+  manuscript_id: csg-0059
+  dataset_split: train
+  db_segmentation_run_id: 1208e066-a54f-45f5-bfd5-4b6400b8e01e
+  layout_region_count: 73
+  mask_region_count: 73
+  mask_geometry_available: true
+  detected_labels:
+  - Gloss
+  - Main script black
+  - Page Number
+  - Plain initial - Black
+  raw_output_path: outputs/training_corpus_segmentation/raw/6e83952ab08276d44838.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/6e83952ab08276d44838_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: 7ad34a03a62820c15611
+  sample_kind: full_page
+  db_image_asset_id: 41170d88-685a-4057-bf7a-c442998b3506
+  db_canvas_id: d9516253-b0ac-4acd-9baf-48e7cd37f81b
+  db_fragment_id: null
+  manuscript_id: csg-0059
+  dataset_split: train
+  db_segmentation_run_id: 18359d6f-3b7f-4148-92d6-51a152ab7102
+  layout_region_count: 60
+  mask_region_count: 60
+  mask_geometry_available: true
+  detected_labels:
+  - Main script black
+  - Page Number
+  - Plain initial - Black
+  raw_output_path: outputs/training_corpus_segmentation/raw/7ad34a03a62820c15611.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/7ad34a03a62820c15611_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: fec5711a3a0b88f1226f
+  sample_kind: full_page
+  db_image_asset_id: fc5123ea-2615-4a94-834e-dc5ae99d2d0f
+  db_canvas_id: c9f26eae-09d7-48ed-bfd1-605f7d69166d
+  db_fragment_id: null
+  manuscript_id: csg-0059
+  dataset_split: train
+  db_segmentation_run_id: 362e3cbe-4d75-4d79-b4c6-9caaec015449
+  layout_region_count: 23
+  mask_region_count: 23
+  mask_geometry_available: true
+  detected_labels:
+  - Gloss
+  - Main script black
+  - Plain initial - Black
+  - Running header
+  raw_output_path: outputs/training_corpus_segmentation/raw/fec5711a3a0b88f1226f.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/fec5711a3a0b88f1226f_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: a57947d883c928bdeae4
+  sample_kind: full_page
+  db_image_asset_id: 0a763fa3-e1c5-4ce9-8779-0749f83167c8
+  db_canvas_id: c7536e8a-e6b5-40ef-94b7-542a5256c763
+  db_fragment_id: null
+  manuscript_id: ubb-F-IX-0068
+  dataset_split: validation
+  db_segmentation_run_id: 261b7184-fdad-4981-8218-fe5e513a8fe2
+  layout_region_count: 0
+  mask_region_count: 0
+  mask_geometry_available: false
+  detected_labels: []
+  raw_output_path: outputs/training_corpus_segmentation/raw/a57947d883c928bdeae4.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/a57947d883c928bdeae4_overlay.jpg
+  status: matched_and_refreshed
+  warnings:
+  - No regions detected above the configured confidence threshold.
+- sample_id: 425d05fd9a5871117c02
+  sample_kind: full_page
+  db_image_asset_id: 011db90b-e953-4987-9b32-68f144705227
+  db_canvas_id: b208cc95-3ea5-4105-bb37-110daf91cf68
+  db_fragment_id: null
+  manuscript_id: ubb-F-IX-0068
+  dataset_split: validation
+  db_segmentation_run_id: dd1636df-d8b4-4de5-bbaa-ef20532fad95
+  layout_region_count: 36
+  mask_region_count: 36
+  mask_geometry_available: true
+  detected_labels:
+  - Main script black
+  - Main script coloured
+  - Music
+  - Plain initial - Black
+  - Plain initial - Highlighted
+  raw_output_path: outputs/training_corpus_segmentation/raw/425d05fd9a5871117c02.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/425d05fd9a5871117c02_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: 86236cd76a738eebc657
+  sample_kind: full_page
+  db_image_asset_id: c85109fb-b416-41b6-a215-6e0e908c349c
+  db_canvas_id: c27063c5-5396-412c-a18b-70531fd62b32
+  db_fragment_id: null
+  manuscript_id: ubb-F-IX-0068
+  dataset_split: validation
+  db_segmentation_run_id: 674c9ffd-caa0-4026-88cc-f0ff938c85a6
+  layout_region_count: 28
+  mask_region_count: 28
+  mask_geometry_available: true
+  detected_labels:
+  - Gloss
+  - Main script black
+  - Music
+  - Plain initial - Highlighted
+  - Variant script coloured
+  raw_output_path: outputs/training_corpus_segmentation/raw/86236cd76a738eebc657.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/86236cd76a738eebc657_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: c7b3da10f47f44182a27
+  sample_kind: full_page
+  db_image_asset_id: 56a0dc3e-943b-4d79-999e-b35613bac2c6
+  db_canvas_id: ccf2ae0d-bf79-4def-9a55-c40c5f2787f1
+  db_fragment_id: null
+  manuscript_id: csg-0314
+  dataset_split: test
+  db_segmentation_run_id: c56183a0-64a7-4b57-9791-2710855f32db
+  layout_region_count: 79
+  mask_region_count: 79
+  mask_geometry_available: true
+  detected_labels:
+  - Gloss
+  - Main script black
+  - Page Number
+  - Variant script coloured
+  raw_output_path: outputs/training_corpus_segmentation/raw/c7b3da10f47f44182a27.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/c7b3da10f47f44182a27_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: 82974a64d5efd6f43eb8
+  sample_kind: full_page
+  db_image_asset_id: 299d188b-1cf7-4e01-b16f-41b0456cd95c
+  db_canvas_id: 08611046-b304-4f64-bb93-644fca054697
+  db_fragment_id: null
+  manuscript_id: csg-0314
+  dataset_split: test
+  db_segmentation_run_id: e2517f29-b9b9-43fb-9244-6201b8390ffd
+  layout_region_count: 63
+  mask_region_count: 63
+  mask_geometry_available: true
+  detected_labels:
+  - Main script black
+  raw_output_path: outputs/training_corpus_segmentation/raw/82974a64d5efd6f43eb8.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/82974a64d5efd6f43eb8_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []
+- sample_id: cfd85f99336a8f5a35f9
+  sample_kind: full_page
+  db_image_asset_id: 3d6e2b8d-2ccb-4047-b462-74e231901301
+  db_canvas_id: 9d6afd63-1ab0-4057-a40a-b38c77b1c490
+  db_fragment_id: null
+  manuscript_id: csg-0314
+  dataset_split: test
+  db_segmentation_run_id: 41954661-3f9a-4304-8268-8c388afec714
+  layout_region_count: 55
+  mask_region_count: 55
+  mask_geometry_available: true
+  detected_labels:
+  - Embellished
+  - Main script black
+  - Plain initial - Black
+  raw_output_path: outputs/training_corpus_segmentation/raw/cfd85f99336a8f5a35f9.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/cfd85f99336a8f5a35f9_overlay.jpg
+  status: matched_and_refreshed
+  warnings: []

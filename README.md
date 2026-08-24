@@ -395,6 +395,26 @@ python3 scripts/build_training_corpus.py --register --prepare-segmentation
 
 Use `--run-segmentation` only for an explicitly intended later segmentation run. The corpus builder delegates to the existing runner and does not implement a second segmentation path.
 
+## Training corpus → eManuSkript integration validation
+
+Run the existing eManuSkript inference and PostgreSQL storage workflow against exactly the 15 prepared validation pages:
+
+```bash
+PYTHON_BIN=/path/to/compatible/python bash scripts/run_training_corpus_segmentation_validation.sh
+```
+
+The validated workstation used Python 3.9.6, Torch 2.7.1, Torchvision 0.22.1, and Ultralytics 8.4.51. The orchestration captures source invariants, runs the existing segmentation command, snapshots restored mask hashes, performs an unchanged cached rerun, stores through the existing `segmentation_run`/`layout_region` path, and repeats storage to prove idempotency. Its deterministic identity covers the corpus, 15 source checksums and DB identities, manuscript splits, model checksum, inference configuration, and software versions.
+
+The committed validation records are:
+
+- `data/metadata/training_corpus_segmentation_results.yaml`
+- `data/metadata/training_corpus_segmentation_storage_results.yaml`
+- `data/metadata/training_corpus_segmentation_statistics.yaml`
+- `data/metadata/training_corpus_segmentation_validation.yaml`
+- `docs/15_training_corpus_segmentation_integration.md`
+
+The 872 source-sized mask PNGs, raw predictions, and overlays remain ignored under `outputs/training_corpus_segmentation/`. Segmentation does not change corpus selection, source metadata, manuscript splits, or rights fields; the 15 sources remain `training_allowed: false` and `rights_review_status: pending_review`.
+
 ## Next Task
 
-Review validation-corpus decisions and storage/rights policy, then expand the manifest specification toward approximately 100 distinct manuscripts without beginning model training.
+Expand the source corpus toward approximately 100 manuscripts / 500 selected pages while preserving manuscript-level splits, checksum-resumable assets, and pending rights review. Do not begin model training during acquisition.

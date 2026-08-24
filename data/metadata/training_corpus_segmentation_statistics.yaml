@@ -1,0 +1,69 @@
+corpus_id: ecodices_training_source_validation_v0_1
+run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+model_id: best_emanuskript_segmentation
+model_sha256: 9f0b03cc64c830d337a01ddac6a04616a385d573e3b923a86fc4c74c16416511
+attempted_pages: 15
+successful_pages: 15
+failed_pages: 0
+failures: []
+total_detected_regions: 872
+regions_per_page:
+  minimum: 0
+  maximum: 125
+  mean: 58.1333
+  median: 55
+  values:
+  - 125
+  - 107
+  - 119
+  - 34
+  - 32
+  - 38
+  - 73
+  - 60
+  - 23
+  - 0
+  - 36
+  - 28
+  - 79
+  - 63
+  - 55
+label_distribution:
+  Embellished: 1
+  Gloss: 10
+  Main script black: 793
+  Main script coloured: 4
+  Music: 36
+  Page Number: 7
+  Plain initial - Black: 7
+  Plain initial - Highlighted: 6
+  Plain initial- coloured: 1
+  Running header: 1
+  Variant script coloured: 6
+confidence_distribution:
+  count: 872
+  minimum: 0.250429
+  maximum: 0.881027
+  mean: 0.635561
+  median: 0.67616
+split_counts:
+  train:
+    attempted_pages: 9
+    successful_pages: 9
+    failed_pages: 0
+    detected_regions: 611
+  validation:
+    attempted_pages: 3
+    successful_pages: 3
+    failed_pages: 0
+    detected_regions: 64
+  test:
+    attempted_pages: 3
+    successful_pages: 3
+    failed_pages: 0
+    detected_regions: 197
+mask_artifacts:
+  count: 872
+  total_size_bytes: 4874819
+  minimum_size_bytes: 5323
+  maximum_size_bytes: 9441

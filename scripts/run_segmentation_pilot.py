@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import platform
@@ -46,6 +47,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--force", action="store_true", help="Ignore cached raw/overlay outputs and rerun inference.")
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("--single-sample-json", default=None, help=argparse.SUPPRESS)
+    parser.add_argument("--run-identity-json", default=None, help=argparse.SUPPRESS)
     return parser.parse_args()
 
 
@@ -68,6 +70,65 @@ def rel(path: Path) -> str:
         return path.relative_to(ROOT).as_posix()
     except ValueError:
         return path.as_posix()
+
+
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def build_run_identity(
+    payload: dict[str, Any],
+    selected_inputs: list[dict[str, Any]],
+    model_path: Path,
+    *,
+    device: str,
+    conf: float,
+    imgsz: int,
+    software_versions: dict[str, str],
+) -> dict[str, Any]:
+    source_assets: list[dict[str, Any]] = []
+    for sample in sorted(selected_inputs, key=lambda item: item["sample_id"]):
+        local_path = ROOT / sample["local_path"]
+        if not local_path.is_file():
+            raise FileNotFoundError(f"Input image does not exist: {sample['local_path']}")
+        source_assets.append(
+            {
+                "sample_id": sample["sample_id"],
+                "db_image_asset_id": sample.get("db_image_asset_id"),
+                "db_canvas_id": sample.get("db_canvas_id"),
+                "manuscript_id": sample.get("manuscript_id"),
+                "dataset_split": sample.get("dataset_split"),
+                "local_path": sample["local_path"],
+                "source_sha256": file_sha256(local_path),
+            }
+        )
+    descriptor = {
+        "identity_version": "emanuskript_corpus_run_identity_v0_1",
+        "dataset_id": payload.get("dataset_id"),
+        "prepared_run_id": payload.get("pilot_run_id"),
+        "model_id": payload.get("model_id"),
+        "model_path": rel(model_path),
+        "model_sha256": file_sha256(model_path),
+        "configuration": {
+            "device": device,
+            "confidence_threshold": conf,
+            "imgsz": imgsz,
+            "retina_masks": True,
+            "preprocessing_max_side": 2048,
+            "mask_restoration": "nearest_neighbor_binary_to_original_source_dimensions",
+        },
+        "software_versions": software_versions,
+        "source_assets": source_assets,
+    }
+    canonical = json.dumps(descriptor, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return {
+        "run_identity_sha256": hashlib.sha256(canonical).hexdigest(),
+        "descriptor": descriptor,
+    }
 
 
 def require_ultralytics():
@@ -189,8 +250,11 @@ def attach_instance_masks(
     return enriched
 
 
-def cached_mask_artifacts_complete(raw_payload: dict[str, Any]) -> bool:
+def cached_mask_artifacts_complete(raw_payload: dict[str, Any], expected_run_identity: str) -> bool:
     """Return true only when every cached detection has a valid referenced mask."""
+    provenance = raw_payload.get("segmentation_provenance") or {}
+    if provenance.get("run_identity_sha256") != expected_run_identity:
+        return False
     detections = raw_payload.get("detections", [])
     source_shape = raw_payload.get("orig_shape") or []
     expected_dimensions = [source_shape[1], source_shape[0]] if len(source_shape) == 2 else None
@@ -198,8 +262,14 @@ def cached_mask_artifacts_complete(raw_payload: dict[str, Any]) -> bool:
         mask_path = detection.get("mask_path")
         if not mask_path or detection.get("mask_dimensions_px") != expected_dimensions:
             return False
-        if not (ROOT / mask_path).exists():
+        resolved_mask = ROOT / mask_path
+        if not resolved_mask.exists():
             return False
+        if not detection.get("mask_sha256") or file_sha256(resolved_mask) != detection["mask_sha256"]:
+            return False
+        with Image.open(resolved_mask) as mask:
+            if [mask.width, mask.height] != expected_dimensions:
+                return False
     return raw_payload.get("status") != "error"
 
 
@@ -309,6 +379,7 @@ def result_from_raw(sample: dict[str, Any], raw_payload: dict[str, Any], raw_pat
     status = raw_payload.get("status", "success")
     errors = raw_payload.get("errors", [])
     warnings = raw_payload.get("warnings", [])
+    provenance = raw_payload.get("segmentation_provenance") or {}
     return {
         "sample_id": sample["sample_id"],
         "sample_kind": sample["sample_kind"],
@@ -319,6 +390,9 @@ def result_from_raw(sample: dict[str, Any], raw_payload: dict[str, Any], raw_pat
         "db_image_asset_id": sample.get("db_image_asset_id"),
         "db_fragment_id": sample.get("db_fragment_id"),
         "db_canvas_id": sample.get("db_canvas_id"),
+        "manuscript_id": sample.get("manuscript_id"),
+        "dataset_split": sample.get("dataset_split"),
+        "run_identity_sha256": provenance.get("run_identity_sha256"),
         "status": status,
         "raw_output_path": rel(raw_path),
         "overlay_path": rel(overlay_path),
@@ -356,7 +430,7 @@ def run_single_prediction(
 
     if not force and raw_path.exists() and overlay_path.exists():
         raw_payload = json.loads(raw_path.read_text(encoding="utf-8"))
-        if cached_mask_artifacts_complete(raw_payload):
+        if cached_mask_artifacts_complete(raw_payload, run_provenance["run_identity_sha256"]):
             return result_from_raw(sample, raw_payload, raw_path, overlay_path)
 
     inference_source, preprocessing, temp_path = prepare_inference_source(image_path)
@@ -423,7 +497,12 @@ def run_single_prediction(
             temp_path.unlink(missing_ok=True)
 
 
-def build_error_result(sample: dict[str, Any], output_dir: Path, error: Exception) -> dict[str, Any]:
+def build_error_result(
+    sample: dict[str, Any],
+    output_dir: Path,
+    error: Exception,
+    run_identity: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     image_path = ROOT / sample["local_path"]
     raw_path = output_dir / "raw" / f"{sample['sample_id']}.json"
     overlay_path = output_dir / "overlays" / f"{sample['sample_id']}_overlay.jpg"
@@ -435,6 +514,10 @@ def build_error_result(sample: dict[str, Any], output_dir: Path, error: Exceptio
         "status": "error",
         "errors": [error_message],
         "warnings": ["Segmentation inference failed for this sample."],
+        "segmentation_provenance": {
+            "run_identity_sha256": (run_identity or {}).get("run_identity_sha256"),
+            "run_identity_descriptor": (run_identity or {}).get("descriptor"),
+        },
         "detections": [],
     }
     raw_path.parent.mkdir(parents=True, exist_ok=True)
@@ -452,6 +535,7 @@ def run_sample_subprocess(
     imgsz: int,
     *,
     force: bool,
+    run_identity: dict[str, Any],
 ) -> dict[str, Any]:
     env = os.environ.copy()
     env.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
@@ -470,6 +554,8 @@ def run_sample_subprocess(
         str(imgsz),
         "--single-sample-json",
         json.dumps(sample),
+        "--run-identity-json",
+        json.dumps(run_identity),
     ]
     if force:
         command.append("--force")
@@ -505,6 +591,22 @@ def main() -> int:
         model_path = ROOT / payload["model_path"]
         model = YOLO(str(model_path))
         sample = json.loads(args.single_sample_json)
+        identity = (
+            json.loads(args.run_identity_json)
+            if args.run_identity_json
+            else build_run_identity(
+                payload,
+                payload.get("selected_inputs", []),
+                model_path,
+                device=args.device,
+                conf=args.conf,
+                imgsz=args.imgsz,
+                software_versions={
+                    "ultralytics": str(ultralytics.__version__),
+                    "torch": str(torch.__version__),
+                },
+            )
+        )
         run_provenance = {
             "pilot_run_id": payload["pilot_run_id"],
             "model_id": payload["model_id"],
@@ -515,6 +617,8 @@ def main() -> int:
             "retina_masks": True,
             "ultralytics_version": str(ultralytics.__version__),
             "torch_version": str(torch.__version__),
+            "run_identity_sha256": identity["run_identity_sha256"],
+            "run_identity_descriptor": identity["descriptor"],
         }
         run_single_prediction(
             model,
@@ -539,6 +643,18 @@ def main() -> int:
     model_path = ROOT / payload["model_path"]
     if not model_path.exists():
         raise FileNotFoundError(f"Model path does not exist: {payload['model_path']}")
+    run_identity = build_run_identity(
+        payload,
+        all_inputs,
+        model_path,
+        device=args.device,
+        conf=args.conf,
+        imgsz=args.imgsz,
+        software_versions={
+            "ultralytics": str(ultralytics.__version__),
+            "torch": str(torch.__version__),
+        },
+    )
 
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "raw").mkdir(parents=True, exist_ok=True)
@@ -557,9 +673,10 @@ def main() -> int:
                 args.conf,
                 args.imgsz,
                 force=args.force,
+                run_identity=run_identity,
             )
         except Exception as exc:  # noqa: BLE001
-            result_payload = build_error_result(sample, output_dir, exc)
+            result_payload = build_error_result(sample, output_dir, exc, run_identity)
         refreshed_results[sample["sample_id"]] = result_payload
         if args.verbose:
             labels = ", ".join(result_payload["detected_labels"]) if result_payload["detected_labels"] else "none"
@@ -590,6 +707,9 @@ def main() -> int:
         "dataset_id": payload.get("dataset_id", "initial_sample_dataset_v0_1"),
         "model_id": payload["model_id"],
         "model_path": payload["model_path"],
+        "model_sha256": run_identity["descriptor"]["model_sha256"],
+        "run_identity_sha256": run_identity["run_identity_sha256"],
+        "run_identity_descriptor": run_identity["descriptor"],
         "inference_run": True,
         "segmentation_run": True,
         "rerun_scope": args.sample_kind,

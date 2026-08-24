@@ -1,0 +1,578 @@
+generated_at: '2026-08-24T09:33:27.830169+00:00'
+pilot_run_id: ecodices_training_source_validation_v0_1_emanuskript_segmentation
+dataset_id: ecodices_training_source_validation_v0_1
+model_id: best_emanuskript_segmentation
+model_path: model weights/best_emanuskript_segmentation.pt
+model_sha256: 9f0b03cc64c830d337a01ddac6a04616a385d573e3b923a86fc4c74c16416511
+run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+run_identity_descriptor:
+  identity_version: emanuskript_corpus_run_identity_v0_1
+  dataset_id: ecodices_training_source_validation_v0_1
+  prepared_run_id: ecodices_training_source_validation_v0_1_emanuskript_segmentation
+  model_id: best_emanuskript_segmentation
+  model_path: model weights/best_emanuskript_segmentation.pt
+  model_sha256: 9f0b03cc64c830d337a01ddac6a04616a385d573e3b923a86fc4c74c16416511
+  configuration:
+    device: cpu
+    confidence_threshold: 0.25
+    imgsz: 320
+    retina_masks: true
+    preprocessing_max_side: 2048
+    mask_restoration: nearest_neighbor_binary_to_original_source_dimensions
+  software_versions:
+    ultralytics: 8.4.51
+    torch: 2.7.1
+  source_assets:
+  - sample_id: 425d05fd9a5871117c02
+    db_image_asset_id: 011db90b-e953-4987-9b32-68f144705227
+    db_canvas_id: b208cc95-3ea5-4105-bb37-110daf91cf68
+    manuscript_id: ubb-F-IX-0068
+    dataset_split: validation
+    local_path: data/raw/ecodices_training_source_validation_v0_1/ubb-F-IX-0068/0032_ubb-F-IX-0068_0013r.jpg
+    source_sha256: 27016334b6ce626c107d3fac3d8365235ed1f27d8b190fef257e4b6fc436a64c
+  - sample_id: 425e3785668f4b45417a
+    db_image_asset_id: 4dfa5942-b131-4f30-b60c-8790cf70e939
+    db_canvas_id: cb67910a-8677-461a-96cc-2d2035fbf0cd
+    manuscript_id: csg-0300
+    dataset_split: train
+    local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0300/0035_csg-0300_0032.jpg
+    source_sha256: d124fd3a3019065582749e03ee1d738859b45f5042c98eb333185b48dc79aaf8
+  - sample_id: 6e83952ab08276d44838
+    db_image_asset_id: 6ff4563b-15ac-46c7-8d75-9c7e5d0bf322
+    db_canvas_id: 0b7fc39e-b432-4f5f-80f5-8ae65e76cede
+    manuscript_id: csg-0059
+    dataset_split: train
+    local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0059/0066_csg-0059_0065.jpg
+    source_sha256: 61c332cd9cb8fb2b07d5cf87448559e777d90e4949301bcd17e56214462ae73f
+  - sample_id: 7ad34a03a62820c15611
+    db_image_asset_id: 41170d88-685a-4057-bf7a-c442998b3506
+    db_canvas_id: d9516253-b0ac-4acd-9baf-48e7cd37f81b
+    manuscript_id: csg-0059
+    dataset_split: train
+    local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0059/0077_csg-0059_0069-s007.jpg
+    source_sha256: 87afee8884a9639ac793eb2246d428cf5cb263ee7ed8b51c9a4c97c999a6d19a
+  - sample_id: 82974a64d5efd6f43eb8
+    db_image_asset_id: 299d188b-1cf7-4e01-b16f-41b0456cd95c
+    db_canvas_id: 08611046-b304-4f64-bb93-644fca054697
+    manuscript_id: csg-0314
+    dataset_split: test
+    local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0314/0166_csg-0314_0165.jpg
+    source_sha256: eb6701b2246d8b5d6ff5570c6676c5b29f87207314f9fa8c3e210ef7ca8dfef5
+  - sample_id: 86236cd76a738eebc657
+    db_image_asset_id: c85109fb-b416-41b6-a215-6e0e908c349c
+    db_canvas_id: c27063c5-5396-412c-a18b-70531fd62b32
+    manuscript_id: ubb-F-IX-0068
+    dataset_split: validation
+    local_path: data/raw/ecodices_training_source_validation_v0_1/ubb-F-IX-0068/0085_ubb-F-IX-0068_0039v.jpg
+    source_sha256: e9d512573964676f94eba5734fa064db684bc2f9aba79c45ad65bb30ec3073b2
+  - sample_id: a4f4e588f0055430b22f
+    db_image_asset_id: 28e935d7-8051-49d3-adc3-1894953d047c
+    db_canvas_id: 6e7e8b3d-d911-45bb-9224-f6f06c0da5fb
+    manuscript_id: kba-Wett0004
+    dataset_split: train
+    local_path: data/raw/ecodices_training_source_validation_v0_1/kba-Wett0004/0022_kba-Wett0004_009v.jpg
+    source_sha256: 560364955b2919b842ef7904732015ec20178154d8d76794eb3ac5703133a081
+  - sample_id: a57947d883c928bdeae4
+    db_image_asset_id: 0a763fa3-e1c5-4ce9-8779-0749f83167c8
+    db_canvas_id: c7536e8a-e6b5-40ef-94b7-542a5256c763
+    manuscript_id: ubb-F-IX-0068
+    dataset_split: validation
+    local_path: data/raw/ecodices_training_source_validation_v0_1/ubb-F-IX-0068/0005_ubb-F-IX-0068_0000_0002v.jpg
+    source_sha256: c264007d2c25aded4a6ef5ad16a9f2284be9365e29667e5f4f19b4d37dde0c62
+  - sample_id: a8207890d102ac4ed03a
+    db_image_asset_id: b3637f25-e618-4fa0-92d3-4451af849f16
+    db_canvas_id: f897632b-a5af-4646-9d34-425b2dcfa1b8
+    manuscript_id: csg-0300
+    dataset_split: train
+    local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0300/0128_csg-0300_0125.jpg
+    source_sha256: 584a259b0fe9d9d1720dbf7da477098ef7adee3d64790d28483245c9b30eb5d1
+  - sample_id: b1a39922209cbe0e3288
+    db_image_asset_id: 377fbbc2-2a8e-43b3-b35c-c6a57af0f850
+    db_canvas_id: ad0f7592-4c68-496f-9598-424b0b2cc500
+    manuscript_id: kba-Wett0004
+    dataset_split: train
+    local_path: data/raw/ecodices_training_source_validation_v0_1/kba-Wett0004/0220_kba-Wett0004_108v.jpg
+    source_sha256: ce1bc0d2ac8e3ac9fb89f10fe1232a7a78c93ddb3e615ab2be9877cb69031d4f
+  - sample_id: babb20f169bd9da8a0b1
+    db_image_asset_id: 096529ba-72fd-41ec-b6bb-34fe39a5475b
+    db_canvas_id: 6a0f2e0a-b444-4596-88c9-4eca464d1266
+    manuscript_id: csg-0300
+    dataset_split: train
+    local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0300/0141_csg-0300_0138.jpg
+    source_sha256: e654a01540a8ca37f8ba5ac1968380a4e91a53f34625a56a25a6fb66b98837a0
+  - sample_id: c63d67ffbd8b307be771
+    db_image_asset_id: a29272aa-720b-44f0-a6d0-61214386650b
+    db_canvas_id: 14299833-1139-4068-88db-d82de1a9e008
+    manuscript_id: kba-Wett0004
+    dataset_split: train
+    local_path: data/raw/ecodices_training_source_validation_v0_1/kba-Wett0004/0177_kba-Wett0004_087r.jpg
+    source_sha256: 105f5c1e1ead9ac47f6581d1f59d096cdc7d03f660530529b30be4c381139513
+  - sample_id: c7b3da10f47f44182a27
+    db_image_asset_id: 56a0dc3e-943b-4d79-999e-b35613bac2c6
+    db_canvas_id: ccf2ae0d-bf79-4def-9a55-c40c5f2787f1
+    manuscript_id: csg-0314
+    dataset_split: test
+    local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0314/0081_csg-0314_0080.jpg
+    source_sha256: e7ccbfe5a56bdf8575196e172ea6d4c841544d3ec7e57a1bac4ac428309c9f67
+  - sample_id: cfd85f99336a8f5a35f9
+    db_image_asset_id: 3d6e2b8d-2ccb-4047-b462-74e231901301
+    db_canvas_id: 9d6afd63-1ab0-4057-a40a-b38c77b1c490
+    manuscript_id: csg-0314
+    dataset_split: test
+    local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0314/0270_csg-0314_0269.jpg
+    source_sha256: f18a568c7f8714b9946103bf629306cfc4e865c4e695643d168537c7370fe166
+  - sample_id: fec5711a3a0b88f1226f
+    db_image_asset_id: fc5123ea-2615-4a94-834e-dc5ae99d2d0f
+    db_canvas_id: c9f26eae-09d7-48ed-bfd1-605f7d69166d
+    manuscript_id: csg-0059
+    dataset_split: train
+    local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0059/0209_csg-0059_0200.jpg
+    source_sha256: 4d1af90e1699630ce35ac513a8e26e18abe48db940e756e8543380f5381a400f
+inference_run: true
+segmentation_run: true
+rerun_scope: all
+selected_run_count: 15
+mask_artifact_count: 872
+device: cpu
+confidence_threshold: 0.25
+imgsz: 320
+output_dir: outputs/training_corpus_segmentation
+environment:
+  python_version: 3.9.6
+  torch_version: 2.7.1
+  ultralytics_version: 8.4.51
+results:
+- sample_id: 425e3785668f4b45417a
+  sample_kind: full_page
+  category: training_corpus_source_page
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/loris/csg/csg-0300/csg-0300_0032.jp2/full/2000,/0/default.jpg
+  local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0300/0035_csg-0300_0032.jpg
+  db_image_asset_id: 4dfa5942-b131-4f30-b60c-8790cf70e939
+  db_fragment_id: null
+  db_canvas_id: cb67910a-8677-461a-96cc-2d2035fbf0cd
+  manuscript_id: csg-0300
+  dataset_split: train
+  run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+  status: success
+  raw_output_path: outputs/training_corpus_segmentation/raw/425e3785668f4b45417a.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/425e3785668f4b45417a_overlay.jpg
+  detected_region_count: 125
+  mask_region_count: 125
+  mask_geometry_available: true
+  detected_labels:
+  - Main script black
+  - Page Number
+  confidence_summary:
+    count: 125
+    min: 0.344859
+    max: 0.792097
+    mean: 0.627792
+  errors: []
+  warnings: []
+- sample_id: a8207890d102ac4ed03a
+  sample_kind: full_page
+  category: training_corpus_source_page
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/loris/csg/csg-0300/csg-0300_0125.jp2/full/2000,/0/default.jpg
+  local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0300/0128_csg-0300_0125.jpg
+  db_image_asset_id: b3637f25-e618-4fa0-92d3-4451af849f16
+  db_fragment_id: null
+  db_canvas_id: f897632b-a5af-4646-9d34-425b2dcfa1b8
+  manuscript_id: csg-0300
+  dataset_split: train
+  run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+  status: success
+  raw_output_path: outputs/training_corpus_segmentation/raw/a8207890d102ac4ed03a.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/a8207890d102ac4ed03a_overlay.jpg
+  detected_region_count: 107
+  mask_region_count: 107
+  mask_geometry_available: true
+  detected_labels:
+  - Gloss
+  - Main script black
+  - Page Number
+  - Plain initial- coloured
+  confidence_summary:
+    count: 107
+    min: 0.262606
+    max: 0.821493
+    mean: 0.63929
+  errors: []
+  warnings: []
+- sample_id: babb20f169bd9da8a0b1
+  sample_kind: full_page
+  category: training_corpus_source_page
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/loris/csg/csg-0300/csg-0300_0138.jp2/full/2000,/0/default.jpg
+  local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0300/0141_csg-0300_0138.jpg
+  db_image_asset_id: 096529ba-72fd-41ec-b6bb-34fe39a5475b
+  db_fragment_id: null
+  db_canvas_id: 6a0f2e0a-b444-4596-88c9-4eca464d1266
+  manuscript_id: csg-0300
+  dataset_split: train
+  run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+  status: success
+  raw_output_path: outputs/training_corpus_segmentation/raw/babb20f169bd9da8a0b1.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/babb20f169bd9da8a0b1_overlay.jpg
+  detected_region_count: 119
+  mask_region_count: 119
+  mask_geometry_available: true
+  detected_labels:
+  - Main script black
+  - Page Number
+  confidence_summary:
+    count: 119
+    min: 0.250677
+    max: 0.793567
+    mean: 0.631347
+  errors: []
+  warnings: []
+- sample_id: a4f4e588f0055430b22f
+  sample_kind: full_page
+  category: training_corpus_source_page
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/loris/kba/kba-Wett0004/kba-Wett0004_009v.jp2/full/2000,/0/default.jpg
+  local_path: data/raw/ecodices_training_source_validation_v0_1/kba-Wett0004/0022_kba-Wett0004_009v.jpg
+  db_image_asset_id: 28e935d7-8051-49d3-adc3-1894953d047c
+  db_fragment_id: null
+  db_canvas_id: 6e7e8b3d-d911-45bb-9224-f6f06c0da5fb
+  manuscript_id: kba-Wett0004
+  dataset_split: train
+  run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+  status: success
+  raw_output_path: outputs/training_corpus_segmentation/raw/a4f4e588f0055430b22f.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/a4f4e588f0055430b22f_overlay.jpg
+  detected_region_count: 34
+  mask_region_count: 34
+  mask_geometry_available: true
+  detected_labels:
+  - Main script black
+  confidence_summary:
+    count: 34
+    min: 0.256705
+    max: 0.870934
+    mean: 0.699488
+  errors: []
+  warnings: []
+- sample_id: c63d67ffbd8b307be771
+  sample_kind: full_page
+  category: training_corpus_source_page
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/loris/kba/kba-Wett0004/kba-Wett0004_087r.jp2/full/2000,/0/default.jpg
+  local_path: data/raw/ecodices_training_source_validation_v0_1/kba-Wett0004/0177_kba-Wett0004_087r.jpg
+  db_image_asset_id: a29272aa-720b-44f0-a6d0-61214386650b
+  db_fragment_id: null
+  db_canvas_id: 14299833-1139-4068-88db-d82de1a9e008
+  manuscript_id: kba-Wett0004
+  dataset_split: train
+  run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+  status: success
+  raw_output_path: outputs/training_corpus_segmentation/raw/c63d67ffbd8b307be771.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/c63d67ffbd8b307be771_overlay.jpg
+  detected_region_count: 32
+  mask_region_count: 32
+  mask_geometry_available: true
+  detected_labels:
+  - Main script black
+  - Plain initial - Highlighted
+  confidence_summary:
+    count: 32
+    min: 0.324168
+    max: 0.8802
+    mean: 0.743012
+  errors: []
+  warnings: []
+- sample_id: b1a39922209cbe0e3288
+  sample_kind: full_page
+  category: training_corpus_source_page
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/loris/kba/kba-Wett0004/kba-Wett0004_108v.jp2/full/2000,/0/default.jpg
+  local_path: data/raw/ecodices_training_source_validation_v0_1/kba-Wett0004/0220_kba-Wett0004_108v.jpg
+  db_image_asset_id: 377fbbc2-2a8e-43b3-b35c-c6a57af0f850
+  db_fragment_id: null
+  db_canvas_id: ad0f7592-4c68-496f-9598-424b0b2cc500
+  manuscript_id: kba-Wett0004
+  dataset_split: train
+  run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+  status: success
+  raw_output_path: outputs/training_corpus_segmentation/raw/b1a39922209cbe0e3288.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/b1a39922209cbe0e3288_overlay.jpg
+  detected_region_count: 38
+  mask_region_count: 38
+  mask_geometry_available: true
+  detected_labels:
+  - Gloss
+  - Main script black
+  - Plain initial - Black
+  confidence_summary:
+    count: 38
+    min: 0.33423
+    max: 0.849353
+    mean: 0.71056
+  errors: []
+  warnings: []
+- sample_id: 6e83952ab08276d44838
+  sample_kind: full_page
+  category: training_corpus_source_page
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/loris/csg/csg-0059/csg-0059_0065.jp2/full/2000,/0/default.jpg
+  local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0059/0066_csg-0059_0065.jpg
+  db_image_asset_id: 6ff4563b-15ac-46c7-8d75-9c7e5d0bf322
+  db_fragment_id: null
+  db_canvas_id: 0b7fc39e-b432-4f5f-80f5-8ae65e76cede
+  manuscript_id: csg-0059
+  dataset_split: train
+  run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+  status: success
+  raw_output_path: outputs/training_corpus_segmentation/raw/6e83952ab08276d44838.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/6e83952ab08276d44838_overlay.jpg
+  detected_region_count: 73
+  mask_region_count: 73
+  mask_geometry_available: true
+  detected_labels:
+  - Gloss
+  - Main script black
+  - Page Number
+  - Plain initial - Black
+  confidence_summary:
+    count: 73
+    min: 0.254874
+    max: 0.861544
+    mean: 0.558423
+  errors: []
+  warnings: []
+- sample_id: 7ad34a03a62820c15611
+  sample_kind: full_page
+  category: training_corpus_source_page
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/loris/csg/csg-0059/csg-0059_0069-s007.jp2/full/2000,/0/default.jpg
+  local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0059/0077_csg-0059_0069-s007.jpg
+  db_image_asset_id: 41170d88-685a-4057-bf7a-c442998b3506
+  db_fragment_id: null
+  db_canvas_id: d9516253-b0ac-4acd-9baf-48e7cd37f81b
+  manuscript_id: csg-0059
+  dataset_split: train
+  run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+  status: success
+  raw_output_path: outputs/training_corpus_segmentation/raw/7ad34a03a62820c15611.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/7ad34a03a62820c15611_overlay.jpg
+  detected_region_count: 60
+  mask_region_count: 60
+  mask_geometry_available: true
+  detected_labels:
+  - Main script black
+  - Page Number
+  - Plain initial - Black
+  confidence_summary:
+    count: 60
+    min: 0.250429
+    max: 0.881027
+    mean: 0.654026
+  errors: []
+  warnings: []
+- sample_id: fec5711a3a0b88f1226f
+  sample_kind: full_page
+  category: training_corpus_source_page
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/loris/csg/csg-0059/csg-0059_0200.jp2/full/2000,/0/default.jpg
+  local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0059/0209_csg-0059_0200.jpg
+  db_image_asset_id: fc5123ea-2615-4a94-834e-dc5ae99d2d0f
+  db_fragment_id: null
+  db_canvas_id: c9f26eae-09d7-48ed-bfd1-605f7d69166d
+  manuscript_id: csg-0059
+  dataset_split: train
+  run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+  status: success
+  raw_output_path: outputs/training_corpus_segmentation/raw/fec5711a3a0b88f1226f.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/fec5711a3a0b88f1226f_overlay.jpg
+  detected_region_count: 23
+  mask_region_count: 23
+  mask_geometry_available: true
+  detected_labels:
+  - Gloss
+  - Main script black
+  - Plain initial - Black
+  - Running header
+  confidence_summary:
+    count: 23
+    min: 0.275717
+    max: 0.763458
+    mean: 0.561694
+  errors: []
+  warnings: []
+- sample_id: a57947d883c928bdeae4
+  sample_kind: full_page
+  category: training_corpus_source_page
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/loris/ubb/ubb-F-IX-0068/ubb-F-IX-0068_0000_0002v.jp2/full/2000,/0/default.jpg
+  local_path: data/raw/ecodices_training_source_validation_v0_1/ubb-F-IX-0068/0005_ubb-F-IX-0068_0000_0002v.jpg
+  db_image_asset_id: 0a763fa3-e1c5-4ce9-8779-0749f83167c8
+  db_fragment_id: null
+  db_canvas_id: c7536e8a-e6b5-40ef-94b7-542a5256c763
+  manuscript_id: ubb-F-IX-0068
+  dataset_split: validation
+  run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+  status: success
+  raw_output_path: outputs/training_corpus_segmentation/raw/a57947d883c928bdeae4.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/a57947d883c928bdeae4_overlay.jpg
+  detected_region_count: 0
+  mask_region_count: 0
+  mask_geometry_available: false
+  detected_labels: []
+  confidence_summary:
+    count: 0
+    min: null
+    max: null
+    mean: null
+  errors: []
+  warnings:
+  - No regions detected above the configured confidence threshold.
+- sample_id: 425d05fd9a5871117c02
+  sample_kind: full_page
+  category: training_corpus_source_page
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/loris/ubb/ubb-F-IX-0068/ubb-F-IX-0068_0013r.jp2/full/2000,/0/default.jpg
+  local_path: data/raw/ecodices_training_source_validation_v0_1/ubb-F-IX-0068/0032_ubb-F-IX-0068_0013r.jpg
+  db_image_asset_id: 011db90b-e953-4987-9b32-68f144705227
+  db_fragment_id: null
+  db_canvas_id: b208cc95-3ea5-4105-bb37-110daf91cf68
+  manuscript_id: ubb-F-IX-0068
+  dataset_split: validation
+  run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+  status: success
+  raw_output_path: outputs/training_corpus_segmentation/raw/425d05fd9a5871117c02.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/425d05fd9a5871117c02_overlay.jpg
+  detected_region_count: 36
+  mask_region_count: 36
+  mask_geometry_available: true
+  detected_labels:
+  - Main script black
+  - Main script coloured
+  - Music
+  - Plain initial - Black
+  - Plain initial - Highlighted
+  confidence_summary:
+    count: 36
+    min: 0.261129
+    max: 0.839491
+    mean: 0.474214
+  errors: []
+  warnings: []
+- sample_id: 86236cd76a738eebc657
+  sample_kind: full_page
+  category: training_corpus_source_page
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/loris/ubb/ubb-F-IX-0068/ubb-F-IX-0068_0039v.jp2/full/2000,/0/default.jpg
+  local_path: data/raw/ecodices_training_source_validation_v0_1/ubb-F-IX-0068/0085_ubb-F-IX-0068_0039v.jpg
+  db_image_asset_id: c85109fb-b416-41b6-a215-6e0e908c349c
+  db_fragment_id: null
+  db_canvas_id: c27063c5-5396-412c-a18b-70531fd62b32
+  manuscript_id: ubb-F-IX-0068
+  dataset_split: validation
+  run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+  status: success
+  raw_output_path: outputs/training_corpus_segmentation/raw/86236cd76a738eebc657.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/86236cd76a738eebc657_overlay.jpg
+  detected_region_count: 28
+  mask_region_count: 28
+  mask_geometry_available: true
+  detected_labels:
+  - Gloss
+  - Main script black
+  - Music
+  - Plain initial - Highlighted
+  - Variant script coloured
+  confidence_summary:
+    count: 28
+    min: 0.26906
+    max: 0.842354
+    mean: 0.509579
+  errors: []
+  warnings: []
+- sample_id: c7b3da10f47f44182a27
+  sample_kind: full_page
+  category: training_corpus_source_page
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/loris/csg/csg-0314/csg-0314_0080.jp2/full/2000,/0/default.jpg
+  local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0314/0081_csg-0314_0080.jpg
+  db_image_asset_id: 56a0dc3e-943b-4d79-999e-b35613bac2c6
+  db_fragment_id: null
+  db_canvas_id: ccf2ae0d-bf79-4def-9a55-c40c5f2787f1
+  manuscript_id: csg-0314
+  dataset_split: test
+  run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+  status: success
+  raw_output_path: outputs/training_corpus_segmentation/raw/c7b3da10f47f44182a27.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/c7b3da10f47f44182a27_overlay.jpg
+  detected_region_count: 79
+  mask_region_count: 79
+  mask_geometry_available: true
+  detected_labels:
+  - Gloss
+  - Main script black
+  - Page Number
+  - Variant script coloured
+  confidence_summary:
+    count: 79
+    min: 0.25626
+    max: 0.872411
+    mean: 0.660749
+  errors: []
+  warnings: []
+- sample_id: 82974a64d5efd6f43eb8
+  sample_kind: full_page
+  category: training_corpus_source_page
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/loris/csg/csg-0314/csg-0314_0165.jp2/full/2000,/0/default.jpg
+  local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0314/0166_csg-0314_0165.jpg
+  db_image_asset_id: 299d188b-1cf7-4e01-b16f-41b0456cd95c
+  db_fragment_id: null
+  db_canvas_id: 08611046-b304-4f64-bb93-644fca054697
+  manuscript_id: csg-0314
+  dataset_split: test
+  run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+  status: success
+  raw_output_path: outputs/training_corpus_segmentation/raw/82974a64d5efd6f43eb8.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/82974a64d5efd6f43eb8_overlay.jpg
+  detected_region_count: 63
+  mask_region_count: 63
+  mask_geometry_available: true
+  detected_labels:
+  - Main script black
+  confidence_summary:
+    count: 63
+    min: 0.279517
+    max: 0.816944
+    mean: 0.637509
+  errors: []
+  warnings: []
+- sample_id: cfd85f99336a8f5a35f9
+  sample_kind: full_page
+  category: training_corpus_source_page
+  source: e-codices
+  source_url: https://www.e-codices.unifr.ch/loris/csg/csg-0314/csg-0314_0269.jp2/full/2000,/0/default.jpg
+  local_path: data/raw/ecodices_training_source_validation_v0_1/csg-0314/0270_csg-0314_0269.jpg
+  db_image_asset_id: 3d6e2b8d-2ccb-4047-b462-74e231901301
+  db_fragment_id: null
+  db_canvas_id: 9d6afd63-1ab0-4057-a40a-b38c77b1c490
+  manuscript_id: csg-0314
+  dataset_split: test
+  run_identity_sha256: 22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f
+  status: success
+  raw_output_path: outputs/training_corpus_segmentation/raw/cfd85f99336a8f5a35f9.json
+  overlay_path: outputs/training_corpus_segmentation/overlays/cfd85f99336a8f5a35f9_overlay.jpg
+  detected_region_count: 55
+  mask_region_count: 55
+  mask_geometry_available: true
+  detected_labels:
+  - Embellished
+  - Main script black
+  - Plain initial - Black
+  confidence_summary:
+    count: 55
+    min: 0.266856
+    max: 0.848662
+    mean: 0.74569
+  errors: []
+  warnings: []
