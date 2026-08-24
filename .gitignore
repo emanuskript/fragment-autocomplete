@@ -44,6 +44,7 @@ outputs/*
 !outputs/Fragment_Autocomplete_Architecture_Draft.pdf
 !outputs/Fragment_Autocomplete_Architecture_Draft.html
 outputs/cache/
+output/
 *.pt
 *.pth
 *.ckpt

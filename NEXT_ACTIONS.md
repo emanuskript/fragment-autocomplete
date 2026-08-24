@@ -1,5 +1,10 @@
 # NEXT_ACTIONS
 
+## Current study artifact
+
+- `output/pdf/Fragment_Autocomplete_Study_Report.pdf` is the verified three-page project briefing as of 2026-08-23.
+- Refresh it after the next material milestone while preserving evidence/inference separation and candidate-hypothesis language.
+
 ## Next recommended task
 
 Expand the training corpus from complete manuscript pages.
