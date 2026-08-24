@@ -9,7 +9,7 @@ It provides:
 - Initial repository lookup seed values.
 - Shell scripts for start, reset, migration, and validation.
 
-The database foundation is accompanied by local registration scripts for IIIF/sample metadata, eManuSkript segmentation outputs, and artificial-fragment task metadata. Generated image and mask binaries remain filesystem artifacts and are never stored in PostgreSQL. Reconstruction, retrieval, training, frontend/backend product work, and deployment remain outside this milestone.
+The database foundation is accompanied by local registration scripts for IIIF/sample metadata, training-corpus source pages, eManuSkript segmentation outputs, and artificial-fragment task metadata. Generated image and mask binaries remain filesystem artifacts and are never stored in PostgreSQL. Reconstruction, retrieval, training, frontend/backend product work, and deployment remain outside this milestone.
 
 ## Defaults
 
@@ -54,6 +54,15 @@ bash scripts/validate_artificial_fragment_task_registration.sh
 ```
 
 The registration command uses deterministic scientific task identities and is safe to rerun. It stores artifact paths, SHA-256 checksums, dimensions, source relationships, transforms, generation settings, and layout-survival JSON in the existing `artificial_fragment_task` table. It does not register generated images as `image_asset` rows and does not store binary payloads.
+
+Build and validate the five-manuscript source-corpus validation run:
+
+```bash
+python3 scripts/build_training_corpus.py --register --verbose
+PYTHON_BIN=python3 bash scripts/validate_training_corpus.sh
+```
+
+Migration `003_training_corpus_rights_review.sql` adds explicit `image_asset.rights_review_status`. Acquired source pages remain `pending_review` with `training_allowed = false`; their filesystem paths and SHA-256 checksums are stored in the existing `image_asset` model.
 
 Reset the local database volume:
 

@@ -14,6 +14,9 @@ class NormalizedImageAsset:
   media_type: str | None
   width_px: int | None
   height_px: int | None
+  local_path: str | None = None
+  checksum_sha256: str | None = None
+  rights_review_status: str = "pending_review"
   raw_metadata: dict[str, Any] = field(default_factory=dict)
 
 
@@ -41,3 +44,4 @@ class NormalizedManifest:
   attribution: str | None
   raw_metadata: dict[str, Any]
   canvases: list[NormalizedCanvas]
+  ingestion_metadata: dict[str, Any] = field(default_factory=dict)

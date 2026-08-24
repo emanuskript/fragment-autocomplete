@@ -7,15 +7,14 @@
 
 ## Next recommended task
 
-Expand the training corpus from complete manuscript pages.
+Review the 5-manuscript Training Corpus Builder validation and prepare the approximately 100-manuscript expansion specification.
 
 ## Acceptance criteria
 
-- Define a controlled expansion manifest for complete manuscript pages before downloading or processing bulk data.
-- Record repository, manuscript, canvas, image-service, rights/access, and source-checksum provenance for every candidate page.
-- Establish explicit inclusion/exclusion criteria for layout diversity, manuscript/source diversity, image quality, and permitted training use.
-- Reuse the eManuSkript segmentation-mask workflow and retain restored instance masks as model evidence rather than manual ground truth.
-- Keep complete pages, artificial-fragment evaluation tasks, and real damaged fragments as distinct dataset roles and splits.
-- Add bounded dry-run and pilot modes before any large acquisition or processing run.
-- Estimate storage and compute requirements before expansion and continue excluding downloaded pages, masks, and derived binaries from Git.
+- Manually sample the 45 explicit validation rejections and a cross-manuscript sample of retained candidates; keep uncertain pages as candidates unless a reviewed rule is justified.
+- Confirm institutional storage policy and estimate the full acquisition footprint from the 22 MB / 15-page validation representation before adding approximately 95 manifests.
+- Confirm a source-by-source rights-review workflow. Do not change `training_allowed` until approval is explicit and recorded.
+- Expand the committed corpus specification toward approximately 100 distinct manuscripts while retaining the seeded maximum of 5 pages/manuscript and manuscript-level 70/15/15 splits.
+- Rerun the builder in bounded batches and validate checksums, duplicate prevention, resume behavior, metadata completeness, and split isolation after each batch.
+- Invoke the existing eManuSkript segmentation workflow only as an optional later source-analysis step; do not begin model training.
 - Do not begin reconstruction, retrieval, LLM integration, or UI expansion as part of corpus preparation.

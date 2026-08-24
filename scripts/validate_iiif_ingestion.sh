@@ -7,6 +7,7 @@ COMPOSE_FILE="$ROOT_DIR/infra/db/docker-compose.yml"
 DB_NAME="${FRAGMENT_DB_NAME:-fragment}"
 DB_USER="${FRAGMENT_DB_USER:-fragment}"
 REPOSITORY_NAME="Fixture Repository"
+PYTHON_BIN="${PYTHON_BIN:-python3}"
 failures=0
 
 compose() {
@@ -51,9 +52,9 @@ cd "$ROOT_DIR"
 echo "Validating IIIF ingestion proof of concept..."
 echo
 
-if command -v pytest >/dev/null 2>&1; then
+if "$PYTHON_BIN" -m pytest --version >/dev/null 2>&1; then
   echo "Running IIIF normalizer tests..."
-  if pytest tests/ingestion/test_iiif_normalizer.py; then
+  if PYTHONPATH=. "$PYTHON_BIN" -m pytest tests/ingestion/test_iiif_normalizer.py; then
     pass "normalizer tests"
   else
     fail "normalizer tests"
@@ -72,13 +73,13 @@ fi
 
 echo
 echo "Running fixture ingestion..."
-if python3 scripts/ingest_iiif_manifest.py --file tests/ingestion/fixtures/iiif_v3_minimal_manifest.json --repository "$REPOSITORY_NAME"; then
+if "$PYTHON_BIN" scripts/ingest_iiif_manifest.py --file tests/ingestion/fixtures/iiif_v3_minimal_manifest.json --repository "$REPOSITORY_NAME"; then
   pass "IIIF v3 fixture ingestion"
 else
   fail "IIIF v3 fixture ingestion"
 fi
 
-if python3 scripts/ingest_iiif_manifest.py --file tests/ingestion/fixtures/iiif_v2_minimal_manifest.json --repository "$REPOSITORY_NAME"; then
+if "$PYTHON_BIN" scripts/ingest_iiif_manifest.py --file tests/ingestion/fixtures/iiif_v2_minimal_manifest.json --repository "$REPOSITORY_NAME"; then
   pass "IIIF v2 fixture ingestion"
 else
   fail "IIIF v2 fixture ingestion"
@@ -96,7 +97,7 @@ check_count_at_least \
   1
 check_count_at_least \
   "fixture manuscript rows" \
-  "SELECT count(*) FROM manuscript WHERE raw_metadata->>'source' = 'iiif_ingestion_poc' AND repository_id IN (SELECT id FROM repository WHERE name = '$REPOSITORY_NAME');" \
+  "SELECT count(*) FROM manuscript WHERE raw_metadata->>'source' IN ('iiif_ingestion', 'iiif_ingestion_poc') AND repository_id IN (SELECT id FROM repository WHERE name = '$REPOSITORY_NAME');" \
   2
 check_count_at_least \
   "fixture canvas rows" \

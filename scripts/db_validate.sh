@@ -140,6 +140,11 @@ for table in image_asset msi_asset fragment; do
   done
 done
 
+check_count_at_least \
+  "rights review column exists: image_asset.rights_review_status" \
+  "SELECT count(*) FROM information_schema.columns WHERE table_schema = 'public' AND table_name = 'image_asset' AND column_name = 'rights_review_status';" \
+  1
+
 echo
 echo "Checking important indexes..."
 required_indexes=(

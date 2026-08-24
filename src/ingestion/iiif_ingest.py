@@ -150,7 +150,7 @@ def upsert_repository(conn: Connection, repository_name: str, source_identifier:
     (
       repository_name,
       repository_name,
-      Jsonb({"source": "iiif_ingestion_poc", "source_identifier": source_identifier}),
+      Jsonb({"source": "iiif_ingestion", "source_identifier": source_identifier}),
     ),
   )
   if row["inserted"]:
@@ -174,7 +174,7 @@ def upsert_manuscript(conn: Connection, repository_id: str, manifest: Normalized
     (repository_id, manifest_key),
   )
   raw_metadata = {
-    "source": "iiif_ingestion_poc",
+    "source": "iiif_ingestion",
     "iiif_manifest_key": manifest_key,
     "manifest_id": manifest.manifest_id,
     "source_identifier": manifest.source_identifier,
@@ -183,11 +183,12 @@ def upsert_manuscript(conn: Connection, repository_id: str, manifest: Normalized
     "license": manifest.license,
     "attribution": manifest.attribution,
     "hsp_normalized": hsp_metadata,
+    "ingestion": manifest.ingestion_metadata,
   }
   params = (
     repository_id,
     metadata_lookup(manifest.metadata, ("shelfmark", "signatur", "call number")),
-    manifest.label,
+    _metadata_value(manifest, ("title",)) or manifest.label,
     metadata_lookup(manifest.metadata, ("place", "origin")),
     metadata_lookup(manifest.metadata, ("language",)),
     metadata_lookup(manifest.metadata, ("script",)),
@@ -344,7 +345,7 @@ def upsert_canvas(conn: Connection, manuscript_id: str, manifest_cache_id: str, 
     canvas.width_px,
     canvas.height_px,
     canvas.sequence_index,
-    Jsonb({"source": "iiif_ingestion_poc", "raw_canvas": canvas.raw_metadata}),
+    Jsonb({"source": "iiif_ingestion", "raw_canvas": canvas.raw_metadata, "ingestion": canvas.raw_metadata.get("training_corpus", {})}),
   )
   if existing:
     row = _execute_returning(
@@ -415,6 +416,8 @@ def upsert_image_asset(
     image.media_type,
     image.width_px,
     image.height_px,
+    image.local_path,
+    image.checksum_sha256,
     manifest.rights_statement,
     manifest.license,
     manifest.attribution,
@@ -423,7 +426,8 @@ def upsert_image_asset(
     rights["demo_allowed"],
     rights["access_level"],
     manifest.license or manifest.rights_statement,
-    Jsonb({"source": "iiif_ingestion_poc", "raw_image": image.raw_metadata}),
+    image.rights_review_status,
+    Jsonb({"source": "iiif_ingestion", "raw_image": image.raw_metadata, "ingestion": image.raw_metadata.get("training_corpus", {})}),
   )
   if existing:
     row = _execute_returning(
@@ -438,6 +442,8 @@ def upsert_image_asset(
           media_type = %s,
           width_px = %s,
           height_px = %s,
+          local_path = COALESCE(%s, local_path),
+          checksum_sha256 = COALESCE(%s, checksum_sha256),
           rights_statement = %s,
           license = %s,
           attribution = %s,
@@ -446,6 +452,7 @@ def upsert_image_asset(
           demo_allowed = %s,
           access_level = %s,
           rights_uri = %s,
+          rights_review_status = %s,
           metadata_review_status = 'machine_extracted',
           raw_metadata = %s,
           updated_at = now()
@@ -462,11 +469,11 @@ def upsert_image_asset(
     """
     INSERT INTO image_asset (
       canvas_id, repository_id, asset_type, source_url, iiif_image_service_url, media_type,
-      width_px, height_px, rights_statement, license, attribution,
+      width_px, height_px, local_path, checksum_sha256, rights_statement, license, attribution,
       training_allowed, publication_allowed, demo_allowed, access_level,
-      rights_uri, metadata_review_status, raw_metadata
+      rights_uri, rights_review_status, metadata_review_status, raw_metadata
     )
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'machine_extracted', %s)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'machine_extracted', %s)
     RETURNING id
     """,
     params,

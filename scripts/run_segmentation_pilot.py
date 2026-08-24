@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the full pilot segmentation batch and emit reproducible result metadata."""
+"""Run the existing eManuSkript segmentation batch and emit reproducible metadata."""
 
 from __future__ import annotations
 
@@ -35,9 +35,10 @@ DEFAULT_OUTPUT_DIR = ROOT / "outputs/segmentation_pilot"
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run the full 10-item pilot segmentation inference.")
+    parser = argparse.ArgumentParser(description="Run the existing eManuSkript segmentation workflow on prepared inputs.")
     parser.add_argument("--inputs", default=DEFAULT_INPUTS.as_posix())
     parser.add_argument("--output-dir", default=DEFAULT_OUTPUT_DIR.as_posix())
+    parser.add_argument("--results", default=DEFAULT_RESULTS.as_posix(), help="YAML result manifest path.")
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--conf", type=float, default=0.25)
     parser.add_argument("--imgsz", type=int, default=320)
@@ -63,7 +64,10 @@ def write_text(path: Path, text: str) -> None:
 
 
 def rel(path: Path) -> str:
-    return path.relative_to(ROOT).as_posix()
+    try:
+        return path.relative_to(ROOT).as_posix()
+    except ValueError:
+        return path.as_posix()
 
 
 def require_ultralytics():
@@ -485,8 +489,15 @@ def run_sample_subprocess(
 
 def main() -> int:
     args = parse_args()
-    inputs_path = ROOT / Path(args.inputs)
-    output_dir = ROOT / Path(args.output_dir)
+    inputs_path = Path(args.inputs)
+    output_dir = Path(args.output_dir)
+    results_path = Path(args.results)
+    if not inputs_path.is_absolute():
+        inputs_path = ROOT / inputs_path
+    if not output_dir.is_absolute():
+        output_dir = ROOT / output_dir
+    if not results_path.is_absolute():
+        results_path = ROOT / results_path
 
     if args.single_sample_json:
         YOLO, ultralytics, torch = require_ultralytics()
@@ -520,8 +531,8 @@ def main() -> int:
     YOLO, ultralytics, torch = require_ultralytics()
     payload = load_yaml(inputs_path)
     all_inputs = payload.get("selected_inputs", [])
-    if len(all_inputs) != 10:
-        raise RuntimeError(f"Expected exactly 10 pilot inputs, found {len(all_inputs)}")
+    if not all_inputs:
+        raise RuntimeError("Segmentation input manifest contains no selected inputs")
     selected_inputs = [
         sample for sample in all_inputs if args.sample_kind == "all" or sample.get("sample_kind") == args.sample_kind
     ]
@@ -560,8 +571,8 @@ def main() -> int:
                 print(f"  errors={'; '.join(result_payload['errors'])}")
 
     existing_results: dict[str, dict[str, Any]] = {}
-    if DEFAULT_RESULTS.exists() and args.sample_kind != "all":
-        previous_payload = load_yaml(DEFAULT_RESULTS)
+    if results_path.exists() and args.sample_kind != "all":
+        previous_payload = load_yaml(results_path)
         existing_results = {item["sample_id"]: item for item in previous_payload.get("results", [])}
     results: list[dict[str, Any]] = []
     for sample in all_inputs:
@@ -576,7 +587,7 @@ def main() -> int:
     run_payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "pilot_run_id": payload["pilot_run_id"],
-        "dataset_id": "initial_sample_dataset_v0_1",
+        "dataset_id": payload.get("dataset_id", "initial_sample_dataset_v0_1"),
         "model_id": payload["model_id"],
         "model_path": payload["model_path"],
         "inference_run": True,
@@ -595,7 +606,7 @@ def main() -> int:
         },
         "results": results,
     }
-    write_yaml(DEFAULT_RESULTS, run_payload)
+    write_yaml(results_path, run_payload)
     write_text(
         output_dir / "logs" / "segmentation_pilot.log",
         "\n".join(
@@ -619,7 +630,7 @@ def main() -> int:
         print(f"- {result['sample_id']}: {result['detected_region_count']} detections | labels={labels}")
         print(f"  raw={result['raw_output_path']}")
         print(f"  overlay={result['overlay_path']}")
-    print(f"Wrote {rel(DEFAULT_RESULTS)}")
+    print(f"Wrote {rel(results_path)}")
     return 0
 
 

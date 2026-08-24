@@ -1,0 +1,43 @@
+corpus_id: ecodices_training_source_validation_v0_1
+version: 0.1
+purpose: >-
+  Five-manuscript validation of reproducible complete-page source acquisition and
+  registration. This specification does not authorize model training.
+source_provider: e-codices
+selection_seed: 20260824
+split_seed: 20260824-manuscript-splits
+max_pages_per_manuscript: 3
+split_ratios:
+  train: 0.70
+  validation: 0.15
+  test: 0.15
+rights_review_status: pending_review
+training_allowed: false
+download_root: data/raw/ecodices_training_source_validation_v0_1
+image_request:
+  region: full
+  size: 2000,
+  rotation: 0
+  quality: default
+  format: jpg
+manuscripts:
+  - id: csg-0300
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/csg-0300/manifest.json
+    enabled: true
+    provenance_note: Existing registered pilot source family; manifest is the authoritative acquisition endpoint.
+  - id: kba-Wett0004
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/kba-Wett0004/manifest.json
+    enabled: true
+    provenance_note: Existing registered pilot source family; manifest is the authoritative acquisition endpoint.
+  - id: csg-0059
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/csg-0059/manifest.json
+    enabled: true
+    provenance_note: Existing registered pilot source family; manifest is the authoritative acquisition endpoint.
+  - id: ubb-F-IX-0068
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/manifest.json
+    enabled: true
+    provenance_note: Existing registered pilot source family; manifest is the authoritative acquisition endpoint.
+  - id: csg-0314
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/csg-0314/manifest.json
+    enabled: true
+    provenance_note: Existing registered pilot source family; manifest is the authoritative acquisition endpoint.

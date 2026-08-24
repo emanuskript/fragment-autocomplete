@@ -121,6 +121,8 @@ The schema centers on these entity groups:
 
 `image_asset` stores registered image file or IIIF image-service references, not image blobs.
 
+`image_asset.rights_review_status` records whether a source is still pending review, explicitly approved for later training use, not approved, or needs review. Training Corpus Builder v0.1 writes `pending_review` and never changes `training_allowed` from false automatically.
+
 `msi_asset` stores aligned MSI layer or stack references linked to an image asset.
 
 `fragment` stores surviving manuscript fragment records, including contour and bounding-box geometry.
@@ -155,7 +157,7 @@ The schema supports IIIF ingestion through:
 - `image_asset` for IIIF Image API service URLs and registered image references.
 - JSONB fields for raw source metadata while normalized fields remain queryable.
 
-The local IIIF parser and manifest-cache proof of concept are implemented. Corpus expansion should reuse those registration and provenance conventions rather than introduce a parallel source model.
+The local IIIF parser and manifest-cache path are implemented and reused by Training Corpus Builder v0.1. The builder filters the normalized manifest to selected canvases, then calls the existing ingestion transaction; it does not introduce a parallel source model. Raw IIIF manifests remain in `iiif_manifest_cache.manifest_json`, while `image_asset.local_path` and `checksum_sha256` identify the downloaded filesystem representation.
 
 ## 11. How the Schema Supports eManuSkript Outputs
 
@@ -270,4 +272,4 @@ Known limitations:
 
 Next step:
 
-Expand the training corpus from complete manuscript pages while retaining rights, provenance, checksums, and segmentation-mask evidence.
+Review the 5 × 3 source-corpus validation, then expand the specification toward approximately 100 manuscripts while retaining rights review, provenance, checksums, resume verification, and manuscript-isolated splits. Do not begin training yet.

@@ -1,0 +1,91 @@
+corpus_id: ecodices_training_source_validation_v0_1
+manuscript_count: 5
+selected_page_count: 15
+canvas_status_counts:
+  candidate: 1265
+  rejected: 45
+  selected: 15
+pages_per_manuscript:
+  minimum: 3
+  maximum: 3
+  mean: 3.0
+  values:
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+repository_distribution:
+  Aarau, Aargauer Kantonsbibliothek: 1
+  Basel, Universitätsbibliothek: 1
+  St. Gallen, Stiftsbibliothek: 3
+dimensions:
+  available: 15
+  missing: 0
+  minimum_width_px: 2000
+  maximum_width_px: 2000
+  minimum_height_px: 2666
+  maximum_height_px: 3166
+available_date_ranges:
+  parsed_count: 3
+  earliest_not_before: 1101
+  latest_not_after: 1300
+  source_displays:
+  - beginning of the 13th century
+  - second half of the 13th century
+  - around 1200
+  - ca. 1200
+  - end of the 12th century and 13th century
+metadata_completeness:
+  repository:
+    present: 5
+    missing: 0
+    fraction: 1.0
+  shelfmark:
+    present: 5
+    missing: 0
+    fraction: 1.0
+  title:
+    present: 5
+    missing: 0
+    fraction: 1.0
+  date:
+    present: 5
+    missing: 0
+    fraction: 1.0
+  language:
+    present: 5
+    missing: 0
+    fraction: 1.0
+  script:
+    present: 0
+    missing: 5
+    fraction: 0.0
+  material:
+    present: 5
+    missing: 0
+    fraction: 1.0
+  rights_statement:
+    present: 5
+    missing: 0
+    fraction: 1.0
+  license:
+    present: 5
+    missing: 0
+    fraction: 1.0
+  attribution:
+    present: 5
+    missing: 0
+    fraction: 1.0
+rights_review_status:
+  pending_review: 15
+training_allowed_true_count: 0
+split_counts:
+  manuscripts:
+    train: 3
+    validation: 1
+    test: 1
+  pages:
+    train: 9
+    validation: 3
+    test: 3

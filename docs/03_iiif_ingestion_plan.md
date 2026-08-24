@@ -2,7 +2,7 @@
 
 ## 1. Purpose
 
-This document describes the IIIF ingestion proof of concept for Fragment Autocomplete. The implementation reads IIIF Presentation manifests, normalizes key manifest/canvas/image fields, caches the raw manifest JSON, and registers repository, manuscript, canvas/page, and image asset records in PostgreSQL.
+This document describes the IIIF ingestion foundation for Fragment Autocomplete. The implementation reads IIIF Presentation manifests, normalizes key manifest/canvas/image fields, caches the raw manifest JSON, and registers repository, manuscript, canvas/page, and image asset records in PostgreSQL. Training Corpus Builder v0.1 reuses this path for bounded e-codices source acquisition rather than introducing a parallel registrar.
 
 ## 2. Scope of the Proof of Concept
 
@@ -65,6 +65,7 @@ Defaults:
 - `publication_allowed = false`
 - `demo_allowed = false`
 - `access_level = internal`
+- `rights_review_status = pending_review`
 
 If the manifest contains clearly open rights such as CC0, Public Domain Mark, or CC BY, the ingestion code may set `publication_allowed` and `demo_allowed` to `true`. `training_allowed` remains `false` until project policy is reviewed.
 
@@ -79,6 +80,8 @@ The ingestion code avoids duplicate records through:
 - Image asset lookup by canvas, source URL, and IIIF image service URL.
 
 Running the same fixture twice should update or confirm existing rows rather than create duplicate normalized records.
+
+The corpus builder adds file-level resume protection: a selected local representation is reused only when its recorded SHA-256 still matches. Manifest and canvas duplicate checks run before registration, and all pages from a manuscript inherit one deterministic dataset split.
 
 ## 8. What Is Intentionally Not Implemented
 
@@ -153,6 +156,17 @@ The validation script runs normalizer tests, ingests the local v2 and v3 fixture
 - It does not perform rights-policy review beyond conservative defaults and simple open-license detection.
 - It does not create fragment records.
 
-## 14. Next Steps
+## 14. Corpus Builder Extension
 
-The next milestone is to register the initial sample dataset. That work should select a small number of complete manuscript pages and fragment candidates, record rights/access flags, preserve source links and attribution, and prepare inputs for the first eManuSkript segmentation test.
+The committed five-manuscript validation specification is `data/metadata/training_corpus_validation_spec.yaml`. `scripts/build_training_corpus.py` harvests the same normalized IIIF records, preserves raw manifests under ignored `data/raw/`, records candidate/selected/rejected canvases with reasons, downloads selected representations atomically, stores SHA-256 and rights-review state in `image_asset`, and emits the corpus manifest/statistics report.
+
+```bash
+python3 scripts/build_training_corpus.py --register
+PYTHON_BIN=python3 bash scripts/validate_training_corpus.sh
+```
+
+The validation run acquires source pages only. It does not approve them for training or run eManuSkript automatically.
+
+## 15. Next Steps
+
+Review the validation decisions and storage/rights policy, then expand the specification toward approximately 100 distinct e-codices manuscripts with at most five pages each. Model training remains out of scope.

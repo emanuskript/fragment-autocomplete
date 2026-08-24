@@ -58,6 +58,7 @@ def test_normalized_output_has_stable_keys():
     "attribution",
     "raw_metadata",
     "canvases",
+    "ingestion_metadata",
   }
   assert set(canvas.__dataclass_fields__) == {
     "canvas_identifier",
@@ -74,5 +75,8 @@ def test_normalized_output_has_stable_keys():
     "media_type",
     "width_px",
     "height_px",
+    "local_path",
+    "checksum_sha256",
+    "rights_review_status",
     "raw_metadata",
   }

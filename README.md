@@ -14,7 +14,7 @@ CoMMA is a text, transcription, and metadata resource. It can support text searc
 
 ## Current Status
 
-This repository currently contains project documentation, PostgreSQL/PostGIS migrations, IIIF ingestion proof-of-concept code, local dataset metadata registration, controlled segmentation runs, segmentation storage, a minimal local segmentation viewer, and deterministic artificial-fragment generation with source-space ground truth. It does not implement reconstruction, retrieval, model training, MSI workflows, CoMMA ingestion, production backend/frontend deployment, or a final scholarly interface.
+This repository currently contains project documentation, PostgreSQL/PostGIS migrations, IIIF ingestion code, provenance-preserving training-source corpus construction, local dataset metadata registration, controlled segmentation runs, segmentation storage, a minimal local segmentation viewer, and deterministic artificial-fragment generation with source-space ground truth. It does not implement reconstruction, retrieval, model training, MSI workflows, CoMMA ingestion, production backend/frontend deployment, or a final scholarly interface.
 
 ## Repository Structure
 
@@ -369,6 +369,32 @@ Current full-page layout survival values use the restored, source-sized eManuSkr
 
 This step creates controlled evaluation tasks only. It does not train a model, run reconstruction, infer missing manuscript content, or claim that generated fragments are historical evidence.
 
+## Training Corpus Builder v0.1
+
+The validation specification identifies five e-codices manuscripts by official IIIF manifest and selects at most three complete pages per manuscript from a recorded seed:
+
+```bash
+python3 scripts/build_training_corpus.py --dry-run --limit-manuscripts 1 --max-pages 1
+```
+
+Apply the additive rights-review migration, acquire/register the 5 × 3 validation corpus, and validate it:
+
+```bash
+bash scripts/db_migrate.sh
+python3 scripts/build_training_corpus.py --register --verbose
+PYTHON_BIN=python3 bash scripts/validate_training_corpus.sh
+```
+
+The unchanged rerun is resumable: a local asset is reused only when its recorded SHA-256 still matches. Raw manifests and downloaded page binaries remain ignored under `data/raw/`; the committed specification, corpus manifest, statistics, and validation report preserve provenance and every candidate/selected/rejected decision. `training_allowed` remains false and `rights_review_status` remains `pending_review` until a separate explicit review.
+
+Prepare the selected registered pages for the existing eManuSkript segmentation workflow without running inference:
+
+```bash
+python3 scripts/build_training_corpus.py --register --prepare-segmentation
+```
+
+Use `--run-segmentation` only for an explicitly intended later segmentation run. The corpus builder delegates to the existing runner and does not implement a second segmentation path.
+
 ## Next Task
 
-Expand the training corpus from complete manuscript pages while preserving rights, provenance, source checksums, and eManuSkript mask evidence.
+Review validation-corpus decisions and storage/rights policy, then expand the manifest specification toward approximately 100 distinct manuscripts without beginning model training.
