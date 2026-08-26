@@ -413,7 +413,7 @@ The committed validation records are:
 - `data/metadata/training_corpus_segmentation_validation.yaml`
 - `docs/15_training_corpus_segmentation_integration.md`
 
-The 872 source-sized mask PNGs, raw predictions, and overlays remain ignored under `outputs/training_corpus_segmentation/`. Segmentation does not change corpus selection, source metadata, manuscript splits, or rights fields; the 15 sources remain `training_allowed: false` and `rights_review_status: pending_review`.
+The 872 source-sized mask PNGs, raw predictions, and overlays remain ignored under `outputs/training_corpus_segmentation/`. One successfully processed page produced zero detections; it remains an attempted and stored corpus page rather than being silently replaced. Segmentation does not change corpus selection, source metadata, manuscript splits, or rights fields; the 15 sources remain `training_allowed: false` and `rights_review_status: pending_review`.
 
 ## Next Task
 
