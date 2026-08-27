@@ -1,0 +1,119 @@
+corpus_id: ecodices_training_source_expansion_batch_01_v0_1
+manuscript_count: 15
+selected_page_count: 75
+canvas_status_counts:
+  candidate: 4131
+  rejected: 181
+  selected: 75
+pages_per_manuscript:
+  minimum: 5
+  maximum: 5
+  mean: 5.0
+  values:
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+repository_distribution:
+  Aarau, Aargauer Kantonsbibliothek: 1
+  Basel, Universitätsbibliothek: 2
+  Bern, Burgerbibliothek: 1
+  Cologny, Fondation Martin Bodmer: 2
+  Engelberg, Stiftsbibliothek: 1
+  Lausanne, Bibliothèque cantonale et universitaire - Lausanne: 1
+  Porrentruy, Bibliothèque cantonale jurassienne: 1
+  Schaffhausen, Stadtbibliothek: 1
+  St. Gallen, Stiftsbibliothek: 2
+  Trogen, Kantonsbibliothek Appenzell Ausserrhoden: 1
+  Zürich, Braginsky Collection: 2
+dimensions:
+  available: 0
+  missing: 75
+  minimum_width_px: null
+  maximum_width_px: null
+  minimum_height_px: null
+  maximum_height_px: null
+available_date_ranges:
+  parsed_count: 14
+  earliest_not_before: 801
+  latest_not_after: 1891
+  source_displays:
+  - '1467'
+  - beginning of the 9th century
+  - '[before 1646]'
+  - 9th century
+  - '1891'
+  - end of 17th century, before 1715
+  - second quarter of the 15th century
+  - end of the 12th century
+  - 1260-1280
+  - '[around 1720]'
+  - 14th century
+  - 1413-1415
+  - end of the 14th century
+  - '1785'
+  - 12th century
+metadata_completeness:
+  repository:
+    present: 15
+    missing: 0
+    fraction: 1.0
+  shelfmark:
+    present: 15
+    missing: 0
+    fraction: 1.0
+  title:
+    present: 15
+    missing: 0
+    fraction: 1.0
+  date:
+    present: 15
+    missing: 0
+    fraction: 1.0
+  language:
+    present: 15
+    missing: 0
+    fraction: 1.0
+  script:
+    present: 0
+    missing: 15
+    fraction: 0.0
+  material:
+    present: 15
+    missing: 0
+    fraction: 1.0
+  rights_statement:
+    present: 15
+    missing: 0
+    fraction: 1.0
+  license:
+    present: 15
+    missing: 0
+    fraction: 1.0
+  attribution:
+    present: 15
+    missing: 0
+    fraction: 1.0
+rights_review_status:
+  '[missing]': 75
+training_allowed_true_count: 0
+split_counts:
+  manuscripts:
+    train: 11
+    validation: 2
+    test: 2
+  pages:
+    train: 55
+    validation: 10
+    test: 10

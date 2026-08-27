@@ -1,0 +1,71 @@
+review_version: training_corpus_expansion_readiness_review_v0_1
+reviewed_on: '2026-08-27'
+reviewer: Codex implementation agent
+review_type: non-scholarly engineering visual triage
+method: >-
+  Inspect contact sheets made from the registered validation images and 300-pixel
+  IIIF thumbnails for every dry-run batch selection. This review detects obvious
+  low-information or non-page cases only; it is not rights approval, scholarly
+  content assessment, or authorization for model training.
+corpora:
+  - corpus_id: ecodices_training_source_validation_v0_1
+    manifest_path: data/metadata/training_corpus_validation_manifest.yaml
+    reviewed_selected_page_count: 15
+    default_outcome: page_like_manuscript_content_at_review_scale
+    default_outcome_count: 14
+    exceptions:
+      - manuscript_id: ubb-F-IX-0068
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_0000_0002v.json
+        canvas_label: V2v
+        outcome: needs_manual_review
+        evidence: Blank-like damaged flyleaf with no visible manuscript text at review scale.
+  - corpus_id: ecodices_training_source_expansion_batch_01_v0_1
+    manifest_path: data/metadata/training_corpus_expansion_batch_01_manifest.yaml
+    reviewed_selected_page_count: 75
+    default_outcome: page_like_manuscript_content_at_review_scale
+    default_outcome_count: 68
+    exceptions:
+      - manuscript_id: bc-b-0103
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/bc-b-0103/canvas/bc-b-0103_125v.json
+        canvas_label: 125v
+        outcome: needs_manual_review
+        evidence: Text is heavily obscured or low-contrast at thumbnail scale.
+      - manuscript_id: cea-FaZellweger-90A-01-2
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/cea-FaZellweger-90A-01-2/canvas/cea-FaZellweger-90A-01-2_0007r.json
+        canvas_label: 7r
+        outcome: needs_manual_review
+        evidence: Photographic album content rather than an obvious manuscript text page.
+      - manuscript_id: cea-FaZellweger-90A-01-2
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/cea-FaZellweger-90A-01-2/canvas/cea-FaZellweger-90A-01-2_0010v.json
+        canvas_label: 10v
+        outcome: needs_manual_review
+        evidence: Visually blank album page at thumbnail scale.
+      - manuscript_id: cea-FaZellweger-90A-01-2
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/cea-FaZellweger-90A-01-2/canvas/cea-FaZellweger-90A-01-2_0015r.json
+        canvas_label: 15r
+        outcome: needs_manual_review
+        evidence: Photographic portrait content rather than an obvious manuscript text page.
+      - manuscript_id: cea-FaZellweger-90A-01-2
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/cea-FaZellweger-90A-01-2/canvas/cea-FaZellweger-90A-01-2_0019v.json
+        canvas_label: 19v
+        outcome: needs_manual_review
+        evidence: Visually blank album page at thumbnail scale.
+      - manuscript_id: bcul-Ms0403
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/bcul-Ms0403/canvas/bcul-Ms0403_9999_003r.json
+        canvas_label: N3r
+        outcome: needs_manual_review
+        evidence: Visually blank leaf at thumbnail scale.
+      - manuscript_id: bcj-A2437
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/bcj-A2437/canvas/bcj-A2437_9999_0001.json
+        canvas_label: N1
+        outcome: needs_manual_review
+        evidence: Visually blank leaf at thumbnail scale.
+acquisition_gate:
+  status: blocked_pending_manual_page_decisions
+  unresolved_exception_count: 8
+  policy: >-
+    Do not download or register batch 01 until each exception has an explicit
+    keep or reject decision. Rejections must retain their evidence and any
+    replacement must come from the unchanged seeded order.
+  rights_status_unchanged: pending_review
+  training_allowed_unchanged: false

@@ -12,6 +12,7 @@ from PIL import Image
 from src.ingestion.iiif_manifest import NormalizedCanvas, NormalizedImageAsset
 from src.ingestion.iiif_normalizer import normalize_manifest
 from src.ingestion.training_corpus import (
+  EXPANSION_SELECTION_RULES_VERSION,
   assign_manuscript_splits,
   build_corpus,
   download_resumable,
@@ -73,6 +74,67 @@ def test_deterministic_page_selection_records_all_states():
   assert sum(item["selection_status"] == "candidate" for item in first) == 4
   assert sum(item["selection_status"] == "rejected" for item in first) == 2
   assert all(item["selection_reasons"] for item in first)
+
+
+@pytest.mark.parametrize(
+  "label,reason_code",
+  [
+    ("Digital Colorchecker", "color_target"),
+    ("Color profile", "color_target"),
+    ("Ruler", "digitization_target"),
+    ("Ruler on page", "digitization_target"),
+    ("QP card on page", "digitization_target"),
+    ("Fore edge", "object_view"),
+    ("Head", "object_view"),
+    ("Tail", "object_view"),
+    ("Open view", "object_view"),
+    ("Open view a", "object_view"),
+  ],
+)
+def test_expansion_rules_reject_explicit_auxiliary_views(label: str, reason_code: str):
+  result = select_canvas_pages(
+    "fixture-ms",
+    [canvas(1, label), canvas(2, "fol. 1r")],
+    seed=99,
+    max_pages=1,
+    rules_version=EXPANSION_SELECTION_RULES_VERSION,
+  )
+  rejected = next(item for item in result if item["canvas_label"] == label)
+  assert rejected["selection_status"] == "rejected"
+  assert reason_code in {reason["code"] for reason in rejected["selection_reasons"]}
+  assert rejected["automatic_selection_eligible"] is False
+
+
+def test_uncertain_accompanying_material_stays_candidate_but_is_not_auto_selected():
+  result = select_canvas_pages(
+    "fixture-ms",
+    [canvas(1, "Accompanying materials 1"), canvas(2, "fol. 1r")],
+    seed=99,
+    max_pages=1,
+    rules_version=EXPANSION_SELECTION_RULES_VERSION,
+  )
+  uncertain = next(item for item in result if item["canvas_label"] == "Accompanying materials 1")
+  assert uncertain["selection_status"] == "candidate"
+  assert uncertain["selection_review_status"] == "needs_manual_review"
+  assert uncertain["automatic_selection_eligible"] is False
+  assert result[1]["selection_status"] == "selected"
+
+
+def test_uncertain_accompanying_material_recto_verso_stays_candidate():
+  result = select_canvas_pages(
+    "fixture-ms",
+    [canvas(1, "Accompanying materials 3v"), canvas(2, "fol. 1r")],
+    seed=99,
+    max_pages=1,
+    rules_version=EXPANSION_SELECTION_RULES_VERSION,
+  )
+  assert result[0]["selection_status"] == "candidate"
+  assert result[0]["selection_review_status"] == "needs_manual_review"
+
+
+def test_validation_rules_version_retains_historical_selection_semantics():
+  legacy = select_canvas_pages("fixture-ms", [canvas(1, "Open view")], seed=99, max_pages=1)
+  assert legacy[0]["selection_status"] == "selected"
 
 
 def test_manifest_parsing_preserves_raw_metadata_and_image_provenance():
@@ -203,4 +265,11 @@ def test_spec_rejects_automatic_training_permission():
   spec = basic_spec()
   spec["training_allowed"] = True
   with pytest.raises(ValueError, match="must not automatically"):
+    validate_specification(spec)
+
+
+def test_spec_rejects_unknown_selection_rules_version():
+  spec = basic_spec()
+  spec["selection_rules_version"] = "unknown"
+  with pytest.raises(ValueError, match="Unsupported selection_rules_version"):
     validate_specification(spec)

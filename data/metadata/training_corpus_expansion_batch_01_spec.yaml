@@ -1,0 +1,98 @@
+corpus_id: ecodices_training_source_expansion_batch_01_v0_1
+version: 0.1
+purpose: >-
+  First bounded expansion batch of fifteen new e-codices manuscripts, reaching
+  twenty manuscripts when combined with the frozen five-manuscript validation
+  corpus. This specification does not authorize downloads, registration, model
+  training, or segmentation until the dry-run decisions are reviewed.
+source_provider: e-codices
+selection_seed: 20260824
+selection_rules_version: obvious_non_training_canvas_rules_v0_2
+split_seed: 20260824-manuscript-splits
+max_pages_per_manuscript: 5
+split_ratios:
+  train: 0.70
+  validation: 0.15
+  test: 0.15
+rights_review_status: pending_review
+training_allowed: false
+download_root: data/raw/ecodices_training_source_expansion_batch_01_v0_1
+image_request:
+  region: full
+  size: 2000,
+  rotation: 0
+  quality: default
+  format: jpg
+discovery:
+  source: official e-codices manuscript catalogue
+  catalogue_url: >-
+    https://www.e-codices.unifr.ch/en/search/?aSelectedFacets%5Bdoc_type_facet%5D%5B0%5D=MANUSCRIPT&sQueryString=&sSearchField=fullText&iResultsPerPage=10000&sSortField=shelfmark_sort
+  accessed_on: '2026-08-27'
+  catalogue_manuscript_count: 2700
+  selection_seed: 20260827-expansion-batch-01-discovery
+  selection_method: >-
+    Exclude the five frozen validation manuscripts, rank official catalogue
+    identifiers by SHA-256 of discovery seed plus identifier, and take the first
+    fifteen while allowing at most two identifiers per e-codices collection prefix.
+  verification: Each listed manifest returned HTTP 200 and Document Type Manuscript on 2026-08-27.
+manuscripts:
+  - id: bbb-AA0091
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/bbb-AA0091/manifest.json
+    enabled: true
+    discovery_rank_sha256: 002b8cad9baadf1cda28a3dbbe102d7a46600c987abd8b81db9bed0bc1299330
+  - id: csg-0916
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/csg-0916/manifest.json
+    enabled: true
+    discovery_rank_sha256: 004b8399e56d5fbcd02cbacf21b286782c8c9bd2fa5c107e2d3ca2d09d90988a
+  - id: bc-b-0103
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/bc-b-0103/manifest.json
+    enabled: true
+    discovery_rank_sha256: 006507368d43e43dd2d1764361d481c21efb895d2177aba891bc9c2e51eefa45
+  - id: csg-0073
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/csg-0073/manifest.json
+    enabled: true
+    discovery_rank_sha256: 00bfa2a5b10c6331dfdef077a3f7909ed4624ade9e734d98e06f0ecbd5b82259
+  - id: cea-FaZellweger-90A-01-2
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/cea-FaZellweger-90A-01-2/manifest.json
+    enabled: true
+    discovery_rank_sha256: 01348cdc02a2cba2278914d74e98623a2cab18d0149dd086a1b42573c638965e
+  - id: fmb-cb-0902
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0902/manifest.json
+    enabled: true
+    discovery_rank_sha256: 0179dd77518f1334510a328960e1c1a0a684699e6ac7fa1b0b2b651b9cbd124c
+  - id: sbs-gen0020
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/sbs-gen0020/manifest.json
+    enabled: true
+    discovery_rank_sha256: 01e98848c37a90a7a5df6ff85b097cb95c20f914c4058fe3c8bc50fb4489c15d
+  - id: bcul-Ms0403
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/bcul-Ms0403/manifest.json
+    enabled: true
+    discovery_rank_sha256: 0217ebf2276d2dacc134dbce94dc4ce43c242ed76f29d2fd202e999468f47aca
+  - id: kba-WettF0001
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/kba-WettF0001/manifest.json
+    enabled: true
+    discovery_rank_sha256: 026de359962addaaaafc088499391c4195f9b6d83895485e4cd761846d0b93a0
+  - id: bc-b-0067
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/bc-b-0067/manifest.json
+    enabled: true
+    discovery_rank_sha256: 028eb44d4b1d073d1ce0156d51a6c21984f088d7e1158757a3ceef603a69a8d3
+  - id: ubb-F-I-0021
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-I-0021/manifest.json
+    enabled: true
+    discovery_rank_sha256: 02a67659e0498532a948fa0bc111b6b11b1ff21a5621e143d7b7a61ade9f2d45
+  - id: ubb-A-II-0013
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/ubb-A-II-0013/manifest.json
+    enabled: true
+    discovery_rank_sha256: 02e46c43bb8b06c2a76b3b5a762f10ace33eb7afacb20b461d8e96ce87369ecf
+  - id: fmb-cb-0056
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0056/manifest.json
+    enabled: true
+    discovery_rank_sha256: 02e9e5f3a7e4e1054a54856c06aea9451dd549df0121882a8c6cf4af7c25c885
+  - id: bcj-A2437
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/bcj-A2437/manifest.json
+    enabled: true
+    discovery_rank_sha256: 02f0fcb8808d18418e62f9af4a4d411b57e92f94fe827843c4a52a7ab7625a58
+  - id: bke-0056
+    manifest_url: https://www.e-codices.unifr.ch/metadata/iiif/bke-0056/manifest.json
+    enabled: true
+    discovery_rank_sha256: 02f1265e61fb856d7cac882f2790e38e9832e66b414c835720f927f041a4fd62

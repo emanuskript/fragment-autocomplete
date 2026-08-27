@@ -26,6 +26,7 @@ from .iiif_normalizer import metadata_lookup, normalize_manifest
 
 
 SELECTION_RULES_VERSION = "obvious_non_training_canvas_rules_v0_1"
+EXPANSION_SELECTION_RULES_VERSION = "obvious_non_training_canvas_rules_v0_2"
 BUILDER_VERSION = "training_corpus_builder_v0_1"
 CHUNK_SIZE = 1024 * 1024
 RIGHTS_REVIEW_STATUSES = {
@@ -34,7 +35,7 @@ RIGHTS_REVIEW_STATUSES = {
   "not_approved",
   "needs_review",
 }
-REJECTION_RULES: tuple[tuple[str, re.Pattern[str]], ...] = (
+REJECTION_RULES_V0_1: tuple[tuple[str, re.Pattern[str]], ...] = (
   ("cover", re.compile(r"\b(front|back|rear)?\s*cover\b", re.IGNORECASE)),
   ("paste_down", re.compile(r"\bpaste[ -]?down\b", re.IGNORECASE)),
   ("binding", re.compile(r"\bbinding\b|\bspine\b", re.IGNORECASE)),
@@ -44,6 +45,18 @@ REJECTION_RULES: tuple[tuple[str, re.Pattern[str]], ...] = (
   ("digitization_target", re.compile(r"\b(gray|grey)\s*scale\b|\bdigitization target\b", re.IGNORECASE)),
   ("administrative", re.compile(r"\b(administrative|copyright)\s*(image|page|notice)\b", re.IGNORECASE)),
 )
+REJECTION_RULES_V0_2: tuple[tuple[str, re.Pattern[str]], ...] = REJECTION_RULES_V0_1 + (
+  ("color_target", re.compile(r"\b(?:digital\s+)?colou?r(?:checker|\s+profile)\b", re.IGNORECASE)),
+  ("digitization_target", re.compile(r"^(?:ruler|qp\s*card)(?:\s+on\s+(?:page|binding))?$", re.IGNORECASE)),
+  ("object_view", re.compile(r"^(?:fore edge|head|tail|open view)(?:\s+[a-z])?$", re.IGNORECASE)),
+)
+MANUAL_REVIEW_RULES_V0_2: tuple[tuple[str, re.Pattern[str]], ...] = (
+  ("uncertain_accompanying_materials", re.compile(r"^accompanying materials(?:\s+\d+[rv]?)?$", re.IGNORECASE)),
+)
+SELECTION_RULES = {
+  SELECTION_RULES_VERSION: REJECTION_RULES_V0_1,
+  EXPANSION_SELECTION_RULES_VERSION: REJECTION_RULES_V0_2,
+}
 
 
 def sha256_file(path: Path) -> str:
@@ -119,6 +132,9 @@ def validate_specification(spec: dict[str, Any]) -> None:
     raise ValueError(f"Unsupported rights_review_status: {rights_status}")
   if spec.get("training_allowed", False) is not False:
     raise ValueError("Corpus acquisition must not automatically mark sources as training_allowed")
+  rules_version = spec.get("selection_rules_version", SELECTION_RULES_VERSION)
+  if rules_version not in SELECTION_RULES:
+    raise ValueError(f"Unsupported selection_rules_version: {rules_version}")
 
 
 def _largest_remainder_counts(total: int, ratios: dict[str, float]) -> dict[str, int]:
@@ -153,17 +169,40 @@ def assign_manuscript_splits(
   return assignments
 
 
-def rejection_reasons(canvas: NormalizedCanvas) -> list[dict[str, Any]]:
+def rejection_reasons(
+  canvas: NormalizedCanvas,
+  rules_version: str = SELECTION_RULES_VERSION,
+) -> list[dict[str, Any]]:
+  if rules_version not in SELECTION_RULES:
+    raise ValueError(f"Unsupported selection_rules_version: {rules_version}")
   reasons: list[dict[str, Any]] = []
   label = canvas.canvas_label or ""
   if not canvas.images:
     reasons.append({"code": "no_image_asset", "evidence": "normalized canvas has no image body"})
   elif not any(image.source_url or image.iiif_image_service_url for image in canvas.images):
     reasons.append({"code": "no_downloadable_image", "evidence": "image body has no source or IIIF service URL"})
-  for code, pattern in REJECTION_RULES:
+  for code, pattern in SELECTION_RULES[rules_version]:
     match = pattern.search(label)
     if match:
       reasons.append({"code": code, "evidence": f"canvas label matched explicit term: {match.group(0)!r}"})
+  return reasons
+
+
+def manual_review_reasons(
+  canvas: NormalizedCanvas,
+  rules_version: str = SELECTION_RULES_VERSION,
+) -> list[dict[str, Any]]:
+  """Return uncertain-candidate reasons without turning uncertainty into rejection."""
+  if rules_version not in SELECTION_RULES:
+    raise ValueError(f"Unsupported selection_rules_version: {rules_version}")
+  if rules_version != EXPANSION_SELECTION_RULES_VERSION:
+    return []
+  label = canvas.canvas_label or ""
+  reasons: list[dict[str, Any]] = []
+  for code, pattern in MANUAL_REVIEW_RULES_V0_2:
+    match = pattern.search(label)
+    if match:
+      reasons.append({"code": code, "evidence": f"canvas label requires manual review: {match.group(0)!r}"})
   return reasons
 
 
@@ -172,6 +211,7 @@ def select_canvas_pages(
   canvases: list[NormalizedCanvas],
   seed: Any,
   max_pages: int,
+  rules_version: str = SELECTION_RULES_VERSION,
 ) -> list[dict[str, Any]]:
   """Record all canvases and select eligible pages by stable seeded rank."""
   if max_pages < 1:
@@ -179,13 +219,16 @@ def select_canvas_pages(
   seen: set[str] = set()
   eligible: list[tuple[str, NormalizedCanvas]] = []
   rejection_by_id: dict[str, list[dict[str, Any]]] = {}
+  review_by_id: dict[str, list[dict[str, Any]]] = {}
   for canvas in canvases:
     if canvas.canvas_identifier in seen:
       raise ValueError(f"Duplicate page/canvas in manifest: {canvas.canvas_identifier}")
     seen.add(canvas.canvas_identifier)
-    reasons = rejection_reasons(canvas)
+    reasons = rejection_reasons(canvas, rules_version)
+    review_reasons = manual_review_reasons(canvas, rules_version)
     rejection_by_id[canvas.canvas_identifier] = reasons
-    if not reasons:
+    review_by_id[canvas.canvas_identifier] = review_reasons
+    if not reasons and not review_reasons:
       eligible.append((stable_digest(seed, manifest_key, canvas.canvas_identifier), canvas))
 
   ranked = sorted(eligible, key=lambda item: (item[0], item[1].sequence_index, item[1].canvas_identifier))
@@ -196,10 +239,19 @@ def select_canvas_pages(
   records: list[dict[str, Any]] = []
   for canvas in canvases:
     reasons = rejection_by_id[canvas.canvas_identifier]
+    review_reasons = review_by_id[canvas.canvas_identifier]
     if reasons:
       selection_status = "rejected"
       selection_reasons = reasons
       review_note = "Rejected only because an explicit obvious non-training rule matched."
+      review_status = "not_required"
+      automatic_selection_eligible = False
+    elif review_reasons:
+      selection_status = "candidate"
+      selection_reasons = review_reasons
+      review_note = "Uncertain auxiliary material remains a candidate but requires manual review before selection."
+      review_status = "needs_manual_review"
+      automatic_selection_eligible = False
     elif canvas.canvas_identifier in selected_rank:
       selection_status = "selected"
       selection_reasons = [{
@@ -208,10 +260,14 @@ def select_canvas_pages(
         "seed": seed,
       }]
       review_note = "No obvious exclusion was detected; selection is a reproducible candidate choice, not a quality judgment."
+      review_status = "post_download_review_required"
+      automatic_selection_eligible = True
     else:
       selection_status = "candidate"
       selection_reasons = [{"code": "eligible_not_selected_page_limit", "max_pages": max_pages}]
       review_note = "No obvious exclusion was detected; the page remains an unselected candidate."
+      review_status = "not_reviewed"
+      automatic_selection_eligible = True
     records.append({
       "canvas_identifier": canvas.canvas_identifier,
       "canvas_label": canvas.canvas_label,
@@ -219,6 +275,8 @@ def select_canvas_pages(
       "selection_status": selection_status,
       "selection_reasons": selection_reasons,
       "selection_review_note": review_note,
+      "selection_review_status": review_status,
+      "automatic_selection_eligible": automatic_selection_eligible,
       "width_px": canvas.width_px,
       "height_px": canvas.height_px,
     })
@@ -718,6 +776,7 @@ def build_corpus(
   if max_pages < 1:
     raise ValueError("max_pages must be at least 1")
   split_ratios = {name: float(value) for name, value in spec.get("split_ratios", {"train": 0.70, "validation": 0.15, "test": 0.15}).items()}
+  selection_rules_version = spec.get("selection_rules_version", SELECTION_RULES_VERSION)
   split_by_id = assign_manuscript_splits((entry["id"] for entry in entries), spec["split_seed"], split_ratios)
   download_root = root / spec.get("download_root", f"data/raw/{spec['corpus_id']}")
   previous = load_yaml(output_manifest_path) if output_manifest_path.exists() else None
@@ -729,7 +788,13 @@ def build_corpus(
     raw_manifest, source_identifier, fetch_headers = fetch_manifest_url(manifest_url, timeout_seconds=timeout_seconds)
     normalized = normalize_manifest(raw_manifest, source_identifier)
     metadata = manuscript_metadata(entry, normalized)
-    decisions = select_canvas_pages(entry["id"], normalized.canvases, spec["selection_seed"], max_pages)
+    decisions = select_canvas_pages(
+      entry["id"],
+      normalized.canvases,
+      spec["selection_seed"],
+      max_pages,
+      rules_version=selection_rules_version,
+    )
     canvas_by_id = {canvas.canvas_identifier: canvas for canvas in normalized.canvases}
     raw_artifact = None if dry_run else _raw_manifest_artifact(root, download_root, entry["id"], raw_manifest)
     pages: list[dict[str, Any]] = []
@@ -833,8 +898,8 @@ def build_corpus(
     "selection": {
       "seed": spec["selection_seed"],
       "max_pages_per_manuscript": max_pages,
-      "rules_version": SELECTION_RULES_VERSION,
-      "uncertainty_policy": "Only explicit obvious exclusions are rejected; all other unselected pages remain candidates.",
+      "rules_version": selection_rules_version,
+      "uncertainty_policy": "Only explicit obvious exclusions are rejected; uncertain auxiliary canvases remain candidates and require manual review before selection.",
     },
     "splits": {"seed": spec["split_seed"], "ratios": split_ratios, "unit": "manuscript"},
     "rights_policy": {

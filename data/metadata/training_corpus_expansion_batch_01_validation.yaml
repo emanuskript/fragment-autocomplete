@@ -1,0 +1,38 @@
+validation_version: training_corpus_expansion_batch_01_validation_v0_1
+status: passed_dry_run_blocked_pending_manual_page_decisions
+batch_corpus_id: ecodices_training_source_expansion_batch_01_v0_1
+batch_manifest_sha256: 07c16a7c705d4f9ca17b58a5ea338c48901eb2160f8856e006591cce92ad219a
+batch_statistics_sha256: afad420f207aa5b558491c2ae10c432a14e5e2b5d53788bbfbc19ae00369e4df
+new_manuscript_count: 15
+dry_run_selected_page_count: 75
+repository_count: 11
+batch_split_counts:
+  train: 11
+  validation: 2
+  test: 2
+aggregate_manuscript_count: 20
+aggregate_split_counts:
+  train: 14
+  validation: 3
+  test: 3
+cross_batch_manuscript_overlap_count: 0
+cross_batch_manifest_overlap_count: 0
+cross_batch_canvas_overlap_count: 0
+rights_review_status: pending_review
+training_allowed: false
+downloaded_page_count: 0
+registered_page_count: 0
+visual_reviewed_page_count: 75
+batch_visual_exception_count: 7
+total_unresolved_visual_exception_count: 8
+acquisition_gate: blocked_pending_manual_page_decisions
+storage_projection:
+  basis: mean bytes across the 15 checksum-verified validation JPEGs
+  baseline_source_bytes: 20984367
+  mean_source_bytes_per_page: 1398958
+  batch_75_page_source_bytes: 104921835
+  full_500_page_source_bytes: 699478900
+  excludes: raw manifests, safety margin, optional segmentation, and database overhead
+next_gate: Resolve all eight recorded page exceptions, then rerun the unchanged dry-run
+  validator before acquisition.
+validation_sha256: f2f7f6777b1060e897bf10f77970921634dd45f08f8cc9844556de4d61e32626

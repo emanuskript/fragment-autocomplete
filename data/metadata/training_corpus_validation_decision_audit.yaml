@@ -1,0 +1,319 @@
+audit_version: training_corpus_validation_decision_audit_v0_1
+status: passed_with_expansion_rule_corrections
+historical_corpus_id: ecodices_training_source_validation_v0_1
+historical_manifest_sha256: a4334ea81010cb4b6e40f57ebe47f9015335abb9512e950a72a3352e18511410
+historical_rules_version: obvious_non_training_canvas_rules_v0_1
+expansion_rules_version: obvious_non_training_canvas_rules_v0_2
+historical_rejection_count: 45
+historical_rejection_reasons:
+  binding: 15
+  cover: 20
+  paste_down: 10
+state_transitions_under_expansion_rules:
+  candidate_to_candidate: 1230
+  candidate_to_rejected: 35
+  rejected_to_rejected: 45
+  selected_to_selected: 15
+new_obvious_exclusion_count: 35
+new_obvious_exclusions:
+- manuscript_id: csg-0300
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0300/canvas/csg-0300_e004.json
+  canvas_label: Fore edge
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Fore edge'''
+- manuscript_id: csg-0300
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0300/canvas/csg-0300_e007.json
+  canvas_label: Head
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Head'''
+- manuscript_id: csg-0300
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0300/canvas/csg-0300_e008.json
+  canvas_label: Tail
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Tail'''
+- manuscript_id: csg-0300
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0300/canvas/csg-0300_e011.json
+  canvas_label: Open view
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Open view'''
+- manuscript_id: csg-0300
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0300/canvas/csg-0300_MassS.json
+  canvas_label: Ruler on page
+  reasons:
+  - code: digitization_target
+    evidence: 'canvas label matched explicit term: ''Ruler on page'''
+- manuscript_id: csg-0300
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0300/canvas/csg-0300_ProfilS.json
+  canvas_label: QP card on page
+  reasons:
+  - code: digitization_target
+    evidence: 'canvas label matched explicit term: ''QP card on page'''
+- manuscript_id: csg-0300
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0300/canvas/csg-0300_ProfilSG.json
+  canvas_label: Digital Colorchecker
+  reasons:
+  - code: color_target
+    evidence: 'canvas label matched explicit term: ''Digital Colorchecker'''
+- manuscript_id: kba-Wett0004
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/kba-Wett0004/canvas/kba-Wett0004_e004.json
+  canvas_label: Fore edge
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Fore edge'''
+- manuscript_id: kba-Wett0004
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/kba-Wett0004/canvas/kba-Wett0004_e007.json
+  canvas_label: Head
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Head'''
+- manuscript_id: kba-Wett0004
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/kba-Wett0004/canvas/kba-Wett0004_e008.json
+  canvas_label: Tail
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Tail'''
+- manuscript_id: kba-Wett0004
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/kba-Wett0004/canvas/kba-Wett0004_e011.json
+  canvas_label: Open view
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Open view'''
+- manuscript_id: kba-Wett0004
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/kba-Wett0004/canvas/kba-Wett0004_MassS.json
+  canvas_label: Ruler on page
+  reasons:
+  - code: digitization_target
+    evidence: 'canvas label matched explicit term: ''Ruler on page'''
+- manuscript_id: kba-Wett0004
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/kba-Wett0004/canvas/kba-Wett0004_ProfilS.json
+  canvas_label: QP card on page
+  reasons:
+  - code: digitization_target
+    evidence: 'canvas label matched explicit term: ''QP card on page'''
+- manuscript_id: kba-Wett0004
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/kba-Wett0004/canvas/kba-Wett0004_ProfilSG.json
+  canvas_label: Digital Colorchecker
+  reasons:
+  - code: color_target
+    evidence: 'canvas label matched explicit term: ''Digital Colorchecker'''
+- manuscript_id: csg-0059
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0059/canvas/csg-0059_e004.json
+  canvas_label: Fore edge
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Fore edge'''
+- manuscript_id: csg-0059
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0059/canvas/csg-0059_e007.json
+  canvas_label: Head
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Head'''
+- manuscript_id: csg-0059
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0059/canvas/csg-0059_e008.json
+  canvas_label: Tail
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Tail'''
+- manuscript_id: csg-0059
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0059/canvas/csg-0059_e011.json
+  canvas_label: Open view
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Open view'''
+- manuscript_id: csg-0059
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0059/canvas/csg-0059_MassS.json
+  canvas_label: Ruler on page
+  reasons:
+  - code: digitization_target
+    evidence: 'canvas label matched explicit term: ''Ruler on page'''
+- manuscript_id: csg-0059
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0059/canvas/csg-0059_ProfilS.json
+  canvas_label: QP card on page
+  reasons:
+  - code: digitization_target
+    evidence: 'canvas label matched explicit term: ''QP card on page'''
+- manuscript_id: csg-0059
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0059/canvas/csg-0059_ProfilSG.json
+  canvas_label: Digital Colorchecker
+  reasons:
+  - code: color_target
+    evidence: 'canvas label matched explicit term: ''Digital Colorchecker'''
+- manuscript_id: ubb-F-IX-0068
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_e004.json
+  canvas_label: Fore edge
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Fore edge'''
+- manuscript_id: ubb-F-IX-0068
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_e007.json
+  canvas_label: Head
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Head'''
+- manuscript_id: ubb-F-IX-0068
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_e008.json
+  canvas_label: Tail
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Tail'''
+- manuscript_id: ubb-F-IX-0068
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_e011.json
+  canvas_label: Open view
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Open view'''
+- manuscript_id: ubb-F-IX-0068
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_MassS.json
+  canvas_label: Ruler on page
+  reasons:
+  - code: digitization_target
+    evidence: 'canvas label matched explicit term: ''Ruler on page'''
+- manuscript_id: ubb-F-IX-0068
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_ProfilS.json
+  canvas_label: QP card on page
+  reasons:
+  - code: digitization_target
+    evidence: 'canvas label matched explicit term: ''QP card on page'''
+- manuscript_id: ubb-F-IX-0068
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_ProfilSG.json
+  canvas_label: Digital Colorchecker
+  reasons:
+  - code: color_target
+    evidence: 'canvas label matched explicit term: ''Digital Colorchecker'''
+- manuscript_id: csg-0314
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0314/canvas/csg-0314_e004.json
+  canvas_label: Fore edge
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Fore edge'''
+- manuscript_id: csg-0314
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0314/canvas/csg-0314_e007.json
+  canvas_label: Head
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Head'''
+- manuscript_id: csg-0314
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0314/canvas/csg-0314_e008.json
+  canvas_label: Tail
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Tail'''
+- manuscript_id: csg-0314
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0314/canvas/csg-0314_e011.json
+  canvas_label: Open view
+  reasons:
+  - code: object_view
+    evidence: 'canvas label matched explicit term: ''Open view'''
+- manuscript_id: csg-0314
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0314/canvas/csg-0314_MassS.json
+  canvas_label: Ruler on page
+  reasons:
+  - code: digitization_target
+    evidence: 'canvas label matched explicit term: ''Ruler on page'''
+- manuscript_id: csg-0314
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0314/canvas/csg-0314_ProfilS.json
+  canvas_label: QP card on page
+  reasons:
+  - code: digitization_target
+    evidence: 'canvas label matched explicit term: ''QP card on page'''
+- manuscript_id: csg-0314
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0314/canvas/csg-0314_ProfilSG.json
+  canvas_label: Digital Colorchecker
+  reasons:
+  - code: color_target
+    evidence: 'canvas label matched explicit term: ''Digital Colorchecker'''
+uncertain_manual_review_candidate_count: 12
+uncertain_manual_review_candidates:
+- manuscript_id: csg-0300
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0300/canvas/csg-0300_m001.json
+  canvas_label: Accompanying materials 1
+  reasons:
+  - code: uncertain_accompanying_materials
+    evidence: 'canvas label requires manual review: ''Accompanying materials 1'''
+- manuscript_id: csg-0300
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0300/canvas/csg-0300_m002.json
+  canvas_label: Accompanying materials 2
+  reasons:
+  - code: uncertain_accompanying_materials
+    evidence: 'canvas label requires manual review: ''Accompanying materials 2'''
+- manuscript_id: csg-0059
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0059/canvas/csg-0059_m001.json
+  canvas_label: Accompanying materials 1
+  reasons:
+  - code: uncertain_accompanying_materials
+    evidence: 'canvas label requires manual review: ''Accompanying materials 1'''
+- manuscript_id: csg-0059
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0059/canvas/csg-0059_m002.json
+  canvas_label: Accompanying materials 2
+  reasons:
+  - code: uncertain_accompanying_materials
+    evidence: 'canvas label requires manual review: ''Accompanying materials 2'''
+- manuscript_id: csg-0059
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0059/canvas/csg-0059_m003.json
+  canvas_label: Accompanying materials 3
+  reasons:
+  - code: uncertain_accompanying_materials
+    evidence: 'canvas label requires manual review: ''Accompanying materials 3'''
+- manuscript_id: csg-0059
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/csg-0059/canvas/csg-0059_m004.json
+  canvas_label: Accompanying materials 4
+  reasons:
+  - code: uncertain_accompanying_materials
+    evidence: 'canvas label requires manual review: ''Accompanying materials 4'''
+- manuscript_id: ubb-F-IX-0068
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_m001r.json
+  canvas_label: Accompanying materials 1r
+  reasons:
+  - code: uncertain_accompanying_materials
+    evidence: 'canvas label requires manual review: ''Accompanying materials 1r'''
+- manuscript_id: ubb-F-IX-0068
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_m001v.json
+  canvas_label: Accompanying materials 1v
+  reasons:
+  - code: uncertain_accompanying_materials
+    evidence: 'canvas label requires manual review: ''Accompanying materials 1v'''
+- manuscript_id: ubb-F-IX-0068
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_m002r.json
+  canvas_label: Accompanying materials 2r
+  reasons:
+  - code: uncertain_accompanying_materials
+    evidence: 'canvas label requires manual review: ''Accompanying materials 2r'''
+- manuscript_id: ubb-F-IX-0068
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_m002v.json
+  canvas_label: Accompanying materials 2v
+  reasons:
+  - code: uncertain_accompanying_materials
+    evidence: 'canvas label requires manual review: ''Accompanying materials 2v'''
+- manuscript_id: ubb-F-IX-0068
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_m003r.json
+  canvas_label: Accompanying materials 3r
+  reasons:
+  - code: uncertain_accompanying_materials
+    evidence: 'canvas label requires manual review: ''Accompanying materials 3r'''
+- manuscript_id: ubb-F-IX-0068
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_m003v.json
+  canvas_label: Accompanying materials 3v
+  reasons:
+  - code: uncertain_accompanying_materials
+    evidence: 'canvas label requires manual review: ''Accompanying materials 3v'''
+historical_selected_pages_unchanged_under_new_label_rules: true
+selected_page_visual_triage:
+  corpus_id: ecodices_training_source_validation_v0_1
+  manifest_path: data/metadata/training_corpus_validation_manifest.yaml
+  reviewed_selected_page_count: 15
+  default_outcome: page_like_manuscript_content_at_review_scale
+  default_outcome_count: 14
+  exceptions:
+  - manuscript_id: ubb-F-IX-0068
+    canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_0000_0002v.json
+    canvas_label: V2v
+    outcome: needs_manual_review
+    evidence: Blank-like damaged flyleaf with no visible manuscript text at review
+      scale.
+interpretation: The frozen validation evidence remains unchanged; corrected rules
+  apply only to new expansion batches.
+audit_sha256: 2fb91d695328bfcd66dee58ad92bd263f4e292b28af463a158d6e68d55e820f7

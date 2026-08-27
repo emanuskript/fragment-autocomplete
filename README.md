@@ -415,6 +415,18 @@ The committed validation records are:
 
 The 872 source-sized mask PNGs, raw predictions, and overlays remain ignored under `outputs/training_corpus_segmentation/`. One successfully processed page produced zero detections; it remains an attempted and stored corpus page rather than being silently replaced. Segmentation does not change corpus selection, source metadata, manuscript splits, or rights fields; the 15 sources remain `training_allowed: false` and `rights_review_status: pending_review`.
 
+## Training corpus expansion batch 01
+
+The first bounded expansion dry run adds 15 new official e-codices manuscript manifests without rewriting the frozen five-manuscript validation corpus. It selects five pages per new manuscript and produces an aggregate 20-manuscript split of 14 train / 3 validation / 3 test manuscripts:
+
+```bash
+PYTHON_BIN=/usr/bin/python3 bash scripts/validate_training_corpus_expansion_batch.sh
+```
+
+The validator builds the batch twice, requires byte-identical manifests and statistics, checks cross-batch manuscript/manifest/canvas isolation, and confirms conservative rights. Corrected selection rules now reject additional explicit color-profile, ruler/QP-card, fore-edge/head/tail, and open-view labels. Uncertain accompanying materials remain candidates marked for manual review and are excluded from automatic selection.
+
+All 75 dry-run selections were visually triaged at thumbnail scale. Seven batch pages and one historical validation page are explicitly flagged for manual decisions. Therefore batch acquisition is intentionally blocked: no new page has been downloaded, registered, segmented, or marked training-allowed. See `docs/16_training_corpus_validation_decision_audit.md` and `docs/17_training_corpus_expansion_batch_01.md`.
+
 ## Next Task
 
-Expand the source corpus toward approximately 100 manuscripts / 500 selected pages while preserving manuscript-level splits, checksum-resumable assets, and pending rights review. Do not begin model training during acquisition.
+Resolve the eight recorded page-review exceptions, then rerun the unchanged batch-01 dry-run validator before any acquisition. Preserve `pending_review` rights and do not begin model training.
