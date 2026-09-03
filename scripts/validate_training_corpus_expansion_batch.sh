@@ -8,6 +8,7 @@ PYTHON_BIN="${PYTHON_BIN:-python3}"
 SPEC="data/metadata/training_corpus_expansion_batch_01_spec.yaml"
 MANIFEST="data/metadata/training_corpus_expansion_batch_01_manifest.yaml"
 STATISTICS="data/metadata/training_corpus_expansion_batch_01_statistics.yaml"
+REVIEW="data/metadata/training_corpus_expansion_readiness_review.yaml"
 REPORT="/tmp/training_corpus_expansion_batch_01_builder_report.md"
 
 run_dry_build() {
@@ -16,6 +17,7 @@ run_dry_build() {
     --manifest "$MANIFEST" \
     --statistics "$STATISTICS" \
     --report "$REPORT" \
+    --manual-review "$REVIEW" \
     --dry-run
 }
 

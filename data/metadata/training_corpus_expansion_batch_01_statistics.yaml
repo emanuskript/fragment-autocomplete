@@ -1,20 +1,20 @@
 corpus_id: ecodices_training_source_expansion_batch_01_v0_1
 manuscript_count: 15
-selected_page_count: 75
+selected_page_count: 70
 canvas_status_counts:
-  candidate: 4131
-  rejected: 181
-  selected: 75
+  candidate: 4129
+  rejected: 188
+  selected: 70
 pages_per_manuscript:
-  minimum: 5
+  minimum: 0
   maximum: 5
-  mean: 5.0
+  mean: 4.667
   values:
   - 5
   - 5
   - 5
   - 5
-  - 5
+  - 0
   - 5
   - 5
   - 5
@@ -38,12 +38,12 @@ repository_distribution:
   Trogen, Kantonsbibliothek Appenzell Ausserrhoden: 1
   Zürich, Braginsky Collection: 2
 dimensions:
-  available: 0
-  missing: 75
-  minimum_width_px: null
-  maximum_width_px: null
-  minimum_height_px: null
-  maximum_height_px: null
+  available: 70
+  missing: 0
+  minimum_width_px: 2000
+  maximum_width_px: 2000
+  minimum_height_px: 2471
+  maximum_height_px: 3626
 available_date_ranges:
   parsed_count: 14
   earliest_not_before: 801
@@ -106,14 +106,35 @@ metadata_completeness:
     missing: 0
     fraction: 1.0
 rights_review_status:
-  '[missing]': 75
+  pending_review: 70
 training_allowed_true_count: 0
+acquisition:
+  selected_pages: 70
+  acquired_pages: 70
+  downloaded_pages: 0
+  reused_pages: 70
+  failures: 0
+  download_status_counts:
+    verified_existing: 70
+  total_bytes: 96587059
+manual_rejected_page_count: 7
+deterministic_replacement_page_count: 3
+unresolved_manual_review_count: 0
+manuscript_page_selection_status_counts:
+  complete: 14
+  manuscript_unsuitable_for_training_corpus: 1
+manuscript_selection_shortfalls:
+- manuscript_id: cea-FaZellweger-90A-01-2
+  status: manuscript_unsuitable_for_training_corpus
+  requested_page_count: 5
+  selected_page_count: 0
+  shortfall_count: 5
 split_counts:
   manuscripts:
     train: 11
     validation: 2
     test: 2
   pages:
-    train: 55
+    train: 50
     validation: 10
     test: 10

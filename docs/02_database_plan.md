@@ -46,15 +46,18 @@ The database stores paths, URIs, checksums, rights, metadata, and provenance for
 
 ## 5. Object/File Storage Strategy
 
-The schema assumes external object/file storage with stable path or URI references. The final GWDG or institutional storage policy still needs confirmation.
+The schema assumes external object/file storage with stable path or URI references. The validated local prototype uses these concrete paths:
 
-Recommended path categories:
+- `data/raw/<corpus>/<manuscript>/`: acquired source JPEGs.
+- `data/raw/<corpus>/_manifests/`: raw IIIF manifest snapshots.
+- `outputs/training_corpus_segmentation/`: eManuSkript segmentation masks, raw predictions, and overlays.
+- `outputs/`: other generated binary artifacts and reports.
+- `data/metadata/`: compact committed specifications, manifests, provenance, statistics, and validation records.
+- `models/`: model artifacts kept outside git.
 
-- `raw/`: source images and raw external assets.
-- `processed/`: normalized images, masks, overlays, and derivatives.
-- `metadata/`: manifest snapshots, normalized metadata exports, and provenance bundles.
-- `models/`: model artifacts outside git.
-- `outputs/`: generated exports and reports.
+`data/processed/` remains available for other normalized derivatives, but it is not the destination of the validated segmentation-mask workflow. Existing files do not need to be moved to conform to an older planned layout. Source and generated binaries remain git-ignored.
+
+Batch 01 contains 15 assigned manifests, of which 14 are active in the final selection. Its 70 acquired source JPEGs occupy 96,587,059 bytes. This local acquisition is not blocked by the still-unresolved institutional choices for GWDG or other object storage, backup, retention, and quota.
 
 Every stored file reference should include checksum, media type, source provenance, rights, and version metadata when available.
 
@@ -95,6 +98,10 @@ Rights fields are included on asset and output tables where publication or train
 
 Default permissions are conservative. Training, publication, and demo flags default to `false`; access defaults to `private`.
 
+Acquisition and training authorization are separate operations. Ordinary ingestion may refresh harvested source fields such as license, rights statement, attribution, and repository-supplied access information. It must not overwrite human-reviewed `rights_review_status` or `training_allowed`, and it must preserve the associated reviewer, authority/source, reason, timestamp, and version provenance. New acquisitions remain `pending_review` and `training_allowed = false`; no source license automatically approves model training.
+
+The existing columns already represent the reviewed status and authorization flag, while versioned review provenance is stored in `image_asset.raw_metadata.rights_review`. The rights-persistence fix therefore requires no schema migration.
+
 ## 8. Core Entity Overview
 
 The schema centers on these entity groups:
@@ -121,7 +128,7 @@ The schema centers on these entity groups:
 
 `image_asset` stores registered image file or IIIF image-service references, not image blobs.
 
-`image_asset.rights_review_status` records whether a source is still pending review, explicitly approved for later training use, not approved, or needs review. Training Corpus Builder v0.1 writes `pending_review` and never changes `training_allowed` from false automatically.
+`image_asset.rights_review_status` records whether a source is still pending review, explicitly approved for later training use, not approved, or needs review. Training Corpus Builder v0.1 creates assets conservatively as `pending_review` with `training_allowed = false`. On later ingestion reruns, reviewed training authorization and its versioned `raw_metadata.rights_review` provenance take precedence over harvested defaults.
 
 `msi_asset` stores aligned MSI layer or stack references linked to an image asset.
 
@@ -157,7 +164,7 @@ The schema supports IIIF ingestion through:
 - `image_asset` for IIIF Image API service URLs and registered image references.
 - JSONB fields for raw source metadata while normalized fields remain queryable.
 
-The local IIIF parser and manifest-cache path are implemented and reused by Training Corpus Builder v0.1. The builder filters the normalized manifest to selected canvases, then calls the existing ingestion transaction; it does not introduce a parallel source model. Raw IIIF manifests remain in `iiif_manifest_cache.manifest_json`, while `image_asset.local_path` and `checksum_sha256` identify the downloaded filesystem representation.
+The local IIIF parser and manifest-cache path are implemented and reused by Training Corpus Builder v0.1. The builder filters the normalized manifest to selected canvases, then calls the existing ingestion transaction; it does not introduce a parallel source model. Raw IIIF manifests remain in `iiif_manifest_cache.manifest_json` and as checksummed snapshots under the corpus `_manifests/` directory, while `image_asset.local_path` and `checksum_sha256` identify the downloaded filesystem representation. Batch 01 registers 15 assigned manuscript manifests and 70 selected pages from 14 active manuscripts through this same path.
 
 ## 11. How the Schema Supports eManuSkript Outputs
 
@@ -264,7 +271,7 @@ bash scripts/check_workspace.sh
 
 Known limitations:
 
-- Storage path policy needs confirmation with GWDG or the selected institutional storage environment.
+- The local storage convention is fixed for the current prototype, but the GWDG or other institutional object-storage target, backup policy, retention policy, and quota still need confirmation. This does not block validated local acquisition.
 - `pgvector` is not enabled yet; retrieval vectors are stored as `FLOAT8[]` and descriptor JSON for now.
 - Polymorphic references such as `annotation.target_id` and `evaluation_run.target_id` are not enforced by foreign keys.
 - The schema supports IIIF, eManuSkript outputs, artificial fragments, reconstruction candidates, evaluation, and export. IIIF ingestion, pilot segmentation, segmentation-mask storage, the local viewer, artificial-fragment generation, and idempotent task registration exist as local proof-of-concept workflows; reconstruction, retrieval, training, MSI, CoMMA ingestion, and deployment remain unimplemented.
@@ -272,4 +279,4 @@ Known limitations:
 
 Next step:
 
-Review the 5 × 3 source-corpus validation, then expand the specification toward approximately 100 manuscripts while retaining rights review, provenance, checksums, resume verification, and manuscript-isolated splits. Do not begin training yet.
+Run the existing eManuSkript segmentation, source-sized mask, provenance, and database-storage pipeline over the 70 acquired Batch 01 pages. Preserve source checksums, manuscript-isolated splits, and pending rights review, and do not begin model training.

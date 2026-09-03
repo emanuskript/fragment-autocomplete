@@ -417,16 +417,26 @@ The 872 source-sized mask PNGs, raw predictions, and overlays remain ignored und
 
 ## Training corpus expansion batch 01
 
-The first bounded expansion dry run adds 15 new official e-codices manuscript manifests without rewriting the frozen five-manuscript validation corpus. It selects five pages per new manuscript and produces an aggregate 20-manuscript split of 14 train / 3 validation / 3 test manuscripts:
+The first bounded expansion began as a 15-manuscript, 75-page dry run over new official e-codices manifests, without rewriting the frozen five-manuscript validation corpus. Manual review is now explicit and machine-readable: eight pages were rejected, comprising seven Batch 01 decisions and one audit-only training-suitability decision for a page whose frozen validation-corpus membership and artifacts remain unchanged. Three of the seven batch rejections received deterministic same-manuscript replacements. `cea-FaZellweger-90A-01-2` was recorded as unsuitable after repeated photographic or blank candidates and contributes zero selected pages instead of being forced to five.
+
+The resolved corpus retains all 15 deterministic manuscript split assignments (11 train / 2 validation / 2 test), with 14 page-bearing manuscripts and 70 selected pages (50 train / 10 validation / 10 test). Rerun the deterministic selection gate with:
 
 ```bash
 PYTHON_BIN=/usr/bin/python3 bash scripts/validate_training_corpus_expansion_batch.sh
 ```
 
-The validator builds the batch twice, requires byte-identical manifests and statistics, checks cross-batch manuscript/manifest/canvas isolation, and confirms conservative rights. Corrected selection rules now reject additional explicit color-profile, ruler/QP-card, fore-edge/head/tail, and open-view labels. Uncertain accompanying materials remain candidates marked for manual review and are excluded from automatic selection.
+The acquisition and registration milestone has passed. The first acquisition downloaded all 70 final selected pages (96,587,059 bytes); registration and the subsequent unchanged rerun each checksum-verified and reused all 70 assets, with no failures or duplicates. PostgreSQL contains 15 manifest caches and manuscript records, including the unsuitable zero-page manuscript, plus 70 canvases and 70 image assets for the 14 active manuscripts. All 70 assets remain `rights_review_status: pending_review`, `training_allowed` remains false for all of them, and no bulk rights approval was introduced.
 
-All 75 dry-run selections were visually triaged at thumbnail scale. Seven batch pages and one historical validation page are explicitly flagged for manual decisions. Therefore batch acquisition is intentionally blocked: no new page has been downloaded, registered, segmented, or marked training-allowed. See `docs/16_training_corpus_validation_decision_audit.md` and `docs/17_training_corpus_expansion_batch_01.md`.
+No database migration was required for rights safety. Ordinary IIIF refreshes update harvested source-rights metadata while preserving any reviewed `rights_review_status`, `training_allowed`, and versioned reviewer provenance already stored on an image asset. New assets still default conservatively to pending review and not training-allowed.
+
+Reproduce the complete download/register/idempotency validation with:
+
+```bash
+PYTHON_BIN=/usr/bin/python3 bash scripts/validate_training_corpus_expansion_batch_01_acquisition.sh
+```
+
+The committed validation artifact is `data/metadata/training_corpus_expansion_batch_01_acquisition_validation.yaml`. Downloaded images and raw manifests remain ignored under `data/raw/`; no binary source assets are committed. See `docs/16_training_corpus_validation_decision_audit.md` and `docs/17_training_corpus_expansion_batch_01.md` for the decision and acquisition audit.
 
 ## Next Task
 
-Resolve the eight recorded page-review exceptions, then rerun the unchanged batch-01 dry-run validator before any acquisition. Preserve `pending_review` rights and do not begin model training.
+Run the existing eManuSkript segmentation pipeline over the 70 acquired Batch 01 pages and validate source-sized masks and provenance at the expanded scale. Do not begin model training.

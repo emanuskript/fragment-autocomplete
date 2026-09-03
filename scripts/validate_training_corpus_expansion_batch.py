@@ -20,6 +20,7 @@ if str(ROOT) not in sys.path:
 from src.ingestion.iiif_manifest import NormalizedCanvas, NormalizedImageAsset  # noqa: E402
 from src.ingestion.training_corpus import (  # noqa: E402
   EXPANSION_SELECTION_RULES_VERSION,
+  assign_manuscript_splits,
   select_canvas_pages,
   sha256_file,
 )
@@ -34,6 +35,12 @@ AUDIT_OUTPUT = ROOT / "data/metadata/training_corpus_validation_decision_audit.y
 VALIDATION_OUTPUT = ROOT / "data/metadata/training_corpus_expansion_batch_01_validation.yaml"
 AUDIT_REPORT = ROOT / "docs/16_training_corpus_validation_decision_audit.md"
 BATCH_REPORT = ROOT / "docs/17_training_corpus_expansion_batch_01.md"
+UNSUITABLE_MANUSCRIPT_ID = "cea-FaZellweger-90A-01-2"
+EXPECTED_REPLACEMENTS = {
+  "https://www.e-codices.unifr.ch/metadata/iiif/bc-b-0103/canvas/bc-b-0103_040r.json",
+  "https://www.e-codices.unifr.ch/metadata/iiif/bcul-Ms0403/canvas/bcul-Ms0403_086r.json",
+  "https://www.e-codices.unifr.ch/metadata/iiif/bcj-A2437/canvas/bcj-A2437_0102.json",
+}
 
 
 def load_yaml(path: Path) -> dict[str, Any]:
@@ -148,9 +155,13 @@ def audit_baseline(baseline: dict[str, Any], review: dict[str, Any]) -> dict[str
   review_record = corpus_review(review, baseline["corpus_id"])
   if review_record["reviewed_selected_page_count"] != 15 or len(review_record["exceptions"]) != 1:
     raise ValueError("Baseline visual review must cover 15 selections and record its one exception")
+  frozen_decision = review_record["exceptions"][0]
+  validate_decision_metadata(frozen_decision, application="audit_only_frozen_corpus")
+  if frozen_decision["canvas_identifier"] not in original_selected:
+    raise ValueError("The audit-only frozen rejection changed or lost historical corpus membership")
   payload = {
-    "audit_version": "training_corpus_validation_decision_audit_v0_1",
-    "status": "passed_with_expansion_rule_corrections",
+    "audit_version": "training_corpus_validation_decision_audit_v0_2",
+    "status": "passed_with_expansion_rule_corrections_and_frozen_audit_disposition",
     "historical_corpus_id": baseline["corpus_id"],
     "historical_manifest_sha256": sha256_file(BASELINE_MANIFEST),
     "historical_rules_version": baseline["selection"]["rules_version"],
@@ -163,6 +174,9 @@ def audit_baseline(baseline: dict[str, Any], review: dict[str, Any]) -> dict[str
     "uncertain_manual_review_candidate_count": len(manual_review_candidates),
     "uncertain_manual_review_candidates": manual_review_candidates,
     "historical_selected_pages_unchanged_under_new_label_rules": True,
+    "frozen_audit_only_rejection": frozen_decision,
+    "frozen_rejected_page_remains_selected": True,
+    "frozen_source_database_segmentation_evidence_unchanged": True,
     "selected_page_visual_triage": review_record,
     "interpretation": "The frozen validation evidence remains unchanged; corrected rules apply only to new expansion batches.",
   }
@@ -170,24 +184,57 @@ def audit_baseline(baseline: dict[str, Any], review: dict[str, Any]) -> dict[str
   return payload
 
 
-def validate_visual_review(
-  review_record: dict[str, Any],
-  selected: dict[str, tuple[dict[str, Any], dict[str, Any]]],
-) -> None:
-  exceptions = review_record.get("exceptions", [])
-  if review_record.get("reviewed_selected_page_count") != len(selected):
-    raise ValueError("Visual review count differs from selected page count")
-  if review_record.get("default_outcome_count") + len(exceptions) != len(selected):
-    raise ValueError("Visual review default/exception counts do not cover every selected page")
-  exception_ids = [item["canvas_identifier"] for item in exceptions]
-  if len(exception_ids) != len(set(exception_ids)):
-    raise ValueError("Visual review contains duplicate exceptions")
-  for item in exceptions:
-    if item["canvas_identifier"] not in selected:
-      raise ValueError(f"Visual review exception is not selected: {item['canvas_identifier']}")
-    manuscript, page = selected[item["canvas_identifier"]]
-    if manuscript["id"] != item["manuscript_id"] or page.get("canvas_label") != item.get("canvas_label"):
-      raise ValueError(f"Visual review provenance differs from manifest: {item['canvas_identifier']}")
+def validate_decision_metadata(item: dict[str, Any], *, application: str) -> None:
+  required = (
+    "manuscript_id",
+    "canvas_identifier",
+    "sequence_index",
+    "split",
+    "decision",
+    "decision_scope",
+    "reason_code",
+    "decision_reason",
+    "reviewer",
+    "decision_version",
+    "recorded_at",
+    "decision_provenance",
+    "selection_application",
+  )
+  missing = [
+    name
+    for name in required
+    if name not in item
+    or item[name] is None
+    or (isinstance(item[name], str) and not item[name].strip())
+  ]
+  if missing:
+    raise ValueError(f"Manual decision lacks required metadata {missing}: {item.get('canvas_identifier')}")
+  if item["decision"] != "reject" or item["reviewer"] != "Mo":
+    raise ValueError(f"Manual decision is not the supplied Mo rejection: {item['canvas_identifier']}")
+  if item["decision_scope"] != "training_corpus_selection" or item["selection_application"] != application:
+    raise ValueError(f"Manual decision scope/application differs: {item['canvas_identifier']}")
+
+
+def decision_matches_page(item: dict[str, Any], manuscript: dict[str, Any], page: dict[str, Any]) -> bool:
+  recorded = page.get("manual_decision") or {}
+  fields = (
+    "manuscript_id",
+    "canvas_identifier",
+    "sequence_index",
+    "split",
+    "decision",
+    "decision_scope",
+    "reason_code",
+    "decision_reason",
+    "reviewer",
+    "decision_version",
+    "recorded_at",
+    "decision_provenance",
+    "selection_application",
+  )
+  return manuscript.get("id") == item.get("manuscript_id") and all(
+    recorded.get(name) == item.get(name) for name in fields
+  )
 
 
 def validate_batch(
@@ -198,7 +245,7 @@ def validate_batch(
   review: dict[str, Any],
 ) -> dict[str, Any]:
   if batch.get("status") != "dry_run":
-    raise ValueError("Batch 01 must remain a dry run until manual exceptions are resolved")
+    raise ValueError("The deterministic Batch 01 gate must validate a dry-run manifest")
   if batch.get("selection", {}).get("rules_version") != EXPANSION_SELECTION_RULES_VERSION:
     raise ValueError("Batch 01 does not use the corrected expansion rule set")
   if batch.get("specification", {}).get("sha256") != sha256_file(BATCH_SPEC):
@@ -242,10 +289,25 @@ def validate_batch(
   if split_counts != Counter({"train": 11, "validation": 2, "test": 2}):
     raise ValueError(f"Unexpected batch manuscript splits: {dict(split_counts)}")
   selected = selected_pages(batch)
-  if len(selected) != 75:
-    raise ValueError(f"Expected 75 selected dry-run pages, found {len(selected)}")
-  if any(sum(page["selection_status"] == "selected" for page in item["pages"]) != 5 for item in manuscripts):
-    raise ValueError("Every batch manuscript must have exactly five dry-run selections")
+  if len(selected) != 70:
+    raise ValueError(f"Expected 70 final selected pages, found {len(selected)}")
+  selected_per_manuscript = {
+    item["id"]: sum(page["selection_status"] == "selected" for page in item["pages"])
+    for item in manuscripts
+  }
+  if selected_per_manuscript.get(UNSUITABLE_MANUSCRIPT_ID) != 0:
+    raise ValueError("The explicitly unsuitable album manuscript still contributes selected pages")
+  if any(
+    count != 5
+    for manuscript_id, count in selected_per_manuscript.items()
+    if manuscript_id != UNSUITABLE_MANUSCRIPT_ID
+  ):
+    raise ValueError("Every suitable Batch manuscript must contribute exactly five pages")
+  page_split_counts = Counter(manuscript["split"] for manuscript, _ in selected.values())
+  if page_split_counts != Counter({"train": 50, "validation": 10, "test": 10}):
+    raise ValueError(f"Unexpected final selected-page splits: {dict(page_split_counts)}")
+  if batch.get("selection", {}).get("status") != "ready":
+    raise ValueError("Decision-aware selection did not clear the deterministic gate")
   for manuscript in manuscripts:
     if manuscript.get("rights_review_status") != "pending_review" or manuscript.get("training_allowed") is not False:
       raise ValueError(f"Conservative manuscript rights changed: {manuscript['id']}")
@@ -271,16 +333,103 @@ def validate_batch(
         key in image for key in ("local_path", "checksum_sha256", "download_status", "registration")
       ):
         raise ValueError(f"Dry run unexpectedly downloaded or registered a page: {page['canvas_identifier']}")
-  if statistics.get("manuscript_count") != 15 or statistics.get("selected_page_count") != 75:
-    raise ValueError("Committed statistics do not describe the batch manifest")
+  if statistics.get("manuscript_count") != 15 or statistics.get("selected_page_count") != 70:
+    raise ValueError("Committed statistics do not describe the final decision-aware manifest")
   if statistics.get("split_counts", {}).get("manuscripts") != {"train": 11, "validation": 2, "test": 2}:
     raise ValueError("Committed statistics contain unexpected manuscript splits")
+  if statistics.get("split_counts", {}).get("pages") != {"train": 50, "validation": 10, "test": 10}:
+    raise ValueError("Committed statistics contain unexpected selected-page splits")
+
+  recomputed_splits = assign_manuscript_splits(
+    spec_entries,
+    spec["split_seed"],
+    {name: float(value) for name, value in spec["split_ratios"].items()},
+  )
+  if any(manuscript["split"] != recomputed_splits[manuscript["id"]] for manuscript in manuscripts):
+    raise ValueError("A manuscript split differs from the frozen deterministic assignment")
+
   review_record = corpus_review(review, batch["corpus_id"])
-  validate_visual_review(review_record, selected)
+  if review_record.get("reviewed_selected_page_count") != 75 or len(review_record.get("exceptions", [])) != 7:
+    raise ValueError("Batch review must retain the original 75-page review and seven Batch exceptions")
+  all_batch_pages = {
+    page["canvas_identifier"]: (manuscript, page)
+    for manuscript in manuscripts
+    for page in manuscript["pages"]
+  }
+  rejected_ids: set[str] = set()
+  for item in review_record["exceptions"]:
+    validate_decision_metadata(item, application="batch_selection")
+    owner = all_batch_pages.get(item["canvas_identifier"])
+    if owner is None or not decision_matches_page(item, *owner):
+      raise ValueError(f"Batch rejection is not preserved on its page record: {item['canvas_identifier']}")
+    _, page = owner
+    if page.get("selection_status") != "rejected" or page.get("automatic_selection_eligible") is not False:
+      raise ValueError(f"Explicit rejection re-entered selection: {item['canvas_identifier']}")
+    rejected_ids.add(item["canvas_identifier"])
+
+  replacement_reviews = review_record.get("replacement_reviews", [])
+  if len(replacement_reviews) != 8:
+    raise ValueError("Expected eight annotation-only replacement reviews")
+  replacement_review_ids: set[str] = set()
+  for item in replacement_reviews:
+    required = (
+      "manuscript_id", "canvas_identifier", "sequence_index", "split", "decision",
+      "decision_reason", "reason_code", "reviewer", "decision_scope",
+      "selection_application", "decision_version", "recorded_at", "decision_provenance",
+    )
+    if any(name not in item or item[name] in (None, "") for name in required):
+      raise ValueError(f"Replacement review lacks provenance: {item.get('canvas_identifier')}")
+    if item["decision_scope"] != "replacement_suitability_review" or item["selection_application"] != "review_evidence_only":
+      raise ValueError(f"Replacement review is not annotation-only: {item['canvas_identifier']}")
+    owner = all_batch_pages.get(item["canvas_identifier"])
+    if owner is None or owner[0]["id"] != item["manuscript_id"] or owner[1].get("replacement_review", {}).get("reason_code") != item["reason_code"]:
+      raise ValueError(f"Replacement review is not traceable in the final manifest: {item['canvas_identifier']}")
+    replacement_review_ids.add(item["canvas_identifier"])
+  if len(replacement_review_ids) != 8:
+    raise ValueError("Replacement review contains duplicate canvases")
+
+  replacements: dict[str, dict[str, Any]] = {}
+  for manuscript, page in selected.values():
+    for reason in page.get("selection_reasons", []):
+      if reason.get("code") != "deterministic_same_manuscript_replacement":
+        continue
+      references = set(reason.get("manual_rejected_canvas_identifiers", []))
+      if not references or not references <= rejected_ids:
+        raise ValueError(f"Replacement lacks explicit rejected-page provenance: {page['canvas_identifier']}")
+      if any(all_batch_pages[canvas_id][0]["id"] != manuscript["id"] for canvas_id in references):
+        raise ValueError(f"Replacement crosses manuscript boundaries: {page['canvas_identifier']}")
+      if reason.get("seeded_rank_before_manual_decisions", 0) <= 5:
+        raise ValueError(f"Replacement was not promoted from the unchanged seeded order: {page['canvas_identifier']}")
+      replacements[page["canvas_identifier"]] = reason
+  if set(replacements) != EXPECTED_REPLACEMENTS:
+    raise ValueError(f"Unexpected deterministic replacements: {sorted(replacements)}")
+
+  unsuitable = next(item for item in manuscripts if item["id"] == UNSUITABLE_MANUSCRIPT_ID)
+  suitability = unsuitable.get("manuscript_suitability_decision", {})
+  evidence = suitability.get("evidence", {})
+  if (
+    suitability.get("decision") != "unsuitable_for_training_corpus"
+    or suitability.get("decision_scope") != "manuscript_training_corpus_suitability"
+    or evidence.get("reviewed_seeded_candidate_count") != 9
+    or evidence.get("suitable_seeded_candidate_count") != 2
+    or evidence.get("unsuitable_seeded_candidate_count") != 7
+    or unsuitable.get("page_selection", {}).get("status") != "manuscript_unsuitable_for_training_corpus"
+    or unsuitable.get("page_selection", {}).get("shortfall_count") != 5
+  ):
+    raise ValueError("The manuscript-level unsuitable decision or its 2/7 review evidence differs")
+
+  review_artifact = batch.get("manual_review_artifact") or {}
+  if (
+    review_artifact.get("path") != REVIEW.relative_to(ROOT).as_posix()
+    or review_artifact.get("sha256") != sha256_file(REVIEW)
+    or review_artifact.get("review_version") != review.get("review_version")
+  ):
+    raise ValueError("Final manifest does not checksum its manual-review input")
   gate = review.get("acquisition_gate", {})
-  unresolved = len(corpus_review(review, baseline["corpus_id"])["exceptions"]) + len(review_record["exceptions"])
-  if gate.get("unresolved_exception_count") != unresolved or gate.get("status") != "blocked_pending_manual_page_decisions":
-    raise ValueError("Acquisition gate does not match unresolved visual-review exceptions")
+  if gate.get("unresolved_exception_count") != 0 or gate.get("resolved_exception_count") != 8:
+    raise ValueError("Acquisition gate does not record all eight resolved decisions")
+  if gate.get("status") != "ready_for_batch_01_acquisition":
+    raise ValueError(f"Acquisition gate is not explicitly ready: {gate.get('status')}")
   baseline_split_counts = Counter(item["split"] for item in baseline["manuscripts"])
   aggregate_splits = {
     name: baseline_split_counts.get(name, 0) + split_counts.get(name, 0)
@@ -296,15 +445,19 @@ def validate_batch(
   )
   mean_source_bytes = baseline_source_bytes / 15
   payload = {
-    "validation_version": "training_corpus_expansion_batch_01_validation_v0_1",
-    "status": "passed_dry_run_blocked_pending_manual_page_decisions",
+    "validation_version": "training_corpus_expansion_batch_01_validation_v0_2",
+    "status": "passed_deterministic_decision_aware_gate",
     "batch_corpus_id": batch["corpus_id"],
     "batch_manifest_sha256": sha256_file(BATCH_MANIFEST),
     "batch_statistics_sha256": sha256_file(BATCH_STATISTICS),
-    "new_manuscript_count": 15,
-    "dry_run_selected_page_count": 75,
+    "assigned_manuscript_count": 15,
+    "active_selected_manuscript_count": 14,
+    "original_dry_run_selected_page_count": 75,
+    "final_selected_page_count": 70,
     "repository_count": len({item["repository"] for item in manuscripts}),
     "batch_split_counts": {name: split_counts[name] for name in ("train", "validation", "test")},
+    "active_manuscript_split_counts": {"train": 10, "validation": 2, "test": 2},
+    "selected_page_split_counts": {name: page_split_counts[name] for name in ("train", "validation", "test")},
     "aggregate_manuscript_count": 20,
     "aggregate_split_counts": aggregate_splits,
     "cross_batch_manuscript_overlap_count": 0,
@@ -314,19 +467,24 @@ def validate_batch(
     "training_allowed": False,
     "downloaded_page_count": 0,
     "registered_page_count": 0,
-    "visual_reviewed_page_count": 75,
-    "batch_visual_exception_count": len(review_record["exceptions"]),
-    "total_unresolved_visual_exception_count": unresolved,
+    "original_visual_reviewed_page_count": 75,
+    "manual_decision_count": 8,
+    "batch_manual_rejection_count": 7,
+    "frozen_audit_only_rejection_count": 1,
+    "deterministic_replacement_count": len(replacements),
+    "deterministic_replacements": sorted(replacements),
+    "unsuitable_manuscripts": [UNSUITABLE_MANUSCRIPT_ID],
+    "unresolved_manual_decision_count": 0,
     "acquisition_gate": gate["status"],
     "storage_projection": {
       "basis": "mean bytes across the 15 checksum-verified validation JPEGs",
       "baseline_source_bytes": baseline_source_bytes,
       "mean_source_bytes_per_page": round(mean_source_bytes),
-      "batch_75_page_source_bytes": round(mean_source_bytes * 75),
+      "batch_70_page_source_bytes": round(mean_source_bytes * 70),
       "full_500_page_source_bytes": round(mean_source_bytes * 500),
       "excludes": "raw manifests, safety margin, optional segmentation, and database overhead",
     },
-    "next_gate": "Resolve all eight recorded page exceptions, then rerun the unchanged dry-run validator before acquisition.",
+    "next_gate": "Acquire and register only the 70 final selected pages with the existing resumable builder.",
   }
   payload["validation_sha256"] = canonical_sha256(payload)
   return payload
@@ -347,7 +505,7 @@ def write_audit_report(audit: dict[str, Any]) -> None:
     "",
     "## Visual engineering triage",
     "",
-    f"All {review['reviewed_selected_page_count']} downloaded validation selections were inspected at review scale. Fourteen are page-like manuscript content. One (`ubb-F-IX-0068`, `V2v`) is a blank-like damaged flyleaf and is explicitly flagged for manual review. This is engineering triage, not scholarly or rights approval.",
+    f"All {review['reviewed_selected_page_count']} downloaded validation selections were inspected at review scale. Fourteen are page-like manuscript content. Mo explicitly rejected `ubb-F-IX-0068/V2v` for future training-corpus selection (`blank_or_nontextual_flyleaf`). The decision is audit-only: frozen corpus membership, source image, database registration, segmentation run, masks, and metadata remain unchanged. The page may remain useful as an edge/failure case. This is engineering triage, not scholarly or rights approval.",
     "",
     "## Rule correction",
     "",
@@ -361,35 +519,37 @@ def write_audit_report(audit: dict[str, Any]) -> None:
 
 def write_batch_report(validation: dict[str, Any], statistics: dict[str, Any], review: dict[str, Any]) -> None:
   projection = validation["storage_projection"]
-  batch_review = corpus_review(review, validation["batch_corpus_id"])
   lines = [
-    "# Training Corpus Expansion — Batch 01 Dry-Run Readiness",
+    "# Training Corpus Expansion — Batch 01 Deterministic Gate",
     "",
     "## Outcome",
     "",
-    "A separate immutable dry-run batch now contains 15 newly verified official e-codices manuscript manifests. It does not overlap or rewrite the frozen five-manuscript validation corpus. Together they represent 20 manuscripts with aggregate 14/3/3 train/validation/test manuscript splits.",
+    "The decision-aware deterministic gate passes for all 15 assigned official e-codices manifests without overlapping or rewriting the frozen five-manuscript validation corpus. Assigned Batch splits remain 11/2/2 train/validation/test; aggregate assigned splits remain 14/3/3.",
     "",
-    f"The dry run selected {validation['dry_run_selected_page_count']} pages (five per new manuscript) across {validation['repository_count']} repositories. No page was downloaded, registered, segmented, or marked training-allowed.",
+    f"The original dry run selected {validation['original_dry_run_selected_page_count']} pages. After explicit decisions, the final dry-run manifest selects {validation['final_selected_page_count']} pages from {validation['active_selected_manuscript_count']} active manuscripts. No Batch page has yet been downloaded, registered, segmented, or marked training-allowed.",
     "",
     "## Review gate",
     "",
-    f"All {batch_review['reviewed_selected_page_count']} selected IIIF thumbnails were visually triaged. {batch_review['default_outcome_count']} appear page-like at review scale; {len(batch_review['exceptions'])} are explicitly flagged as blank-like, photographic/non-text, or low-contrast and need a manual keep/reject decision.",
+    "All eight review decisions are explicit Mo rejections: one audit-only disposition in the frozen validation corpus and seven Batch selection rejections. Every rejected page remains in the audit trail with its reason and provenance.",
     "",
-    "Acquisition is intentionally blocked. No uncertain page has been silently discarded or replaced. Any rejection must preserve its evidence and a replacement must come from the unchanged seeded order.",
+    "The unchanged seeded order promoted three same-manuscript replacements: `bc-b-0103/40r`, `bcul-Ms0403/86r`, and `bcj-A2437/102`. The CEA album manuscript is explicitly unsuitable after only two suitable pages and seven unsuitable pages among its first nine reviewed seeded candidates; it contributes zero pages rather than forcing five.",
     "",
-    "## Dry-run statistics",
+    "## Final gate statistics",
     "",
-    f"- New manuscripts: {validation['new_manuscript_count']}",
-    f"- Selected pages: {validation['dry_run_selected_page_count']}",
+    f"- Assigned manuscripts: {validation['assigned_manuscript_count']}",
+    f"- Active selected-page manuscripts: {validation['active_selected_manuscript_count']}",
+    f"- Final selected pages: {validation['final_selected_page_count']}",
     f"- Candidate canvases: {statistics['canvas_status_counts'].get('candidate', 0)}",
     f"- Explicitly rejected canvases: {statistics['canvas_status_counts'].get('rejected', 0)}",
     f"- Batch splits: {validation['batch_split_counts']['train']} train / {validation['batch_split_counts']['validation']} validation / {validation['batch_split_counts']['test']} test manuscripts",
+    f"- Selected-page splits: {validation['selected_page_split_counts']['train']} train / {validation['selected_page_split_counts']['validation']} validation / {validation['selected_page_split_counts']['test']} test pages",
+    f"- Manual Batch rejects: {validation['batch_manual_rejection_count']}; deterministic replacements: {validation['deterministic_replacement_count']}; unresolved decisions: {validation['unresolved_manual_decision_count']}",
     f"- Cross-batch overlaps: {validation['cross_batch_manuscript_overlap_count']} manuscripts, {validation['cross_batch_manifest_overlap_count']} manifests, {validation['cross_batch_canvas_overlap_count']} canvases",
     "- Rights: `pending_review`; `training_allowed: false`",
     "",
     "## Storage planning estimate",
     "",
-    f"The 15-page validation set contains {projection['baseline_source_bytes']} source-image bytes, or approximately {projection['mean_source_bytes_per_page']} bytes/page. At that observed mean, this 75-page batch would use about {projection['batch_75_page_source_bytes']} bytes and 500 pages about {projection['full_500_page_source_bytes']} bytes before raw manifests, safety margin, optional segmentation, and database overhead.",
+    f"The 15-page validation set contains {projection['baseline_source_bytes']} source-image bytes, or approximately {projection['mean_source_bytes_per_page']} bytes/page. At that observed mean, this 70-page selection would use about {projection['batch_70_page_source_bytes']} bytes and 500 pages about {projection['full_500_page_source_bytes']} bytes before raw manifests, safety margin, optional segmentation, and database overhead.",
     "",
     "## Reproduce",
     "",
@@ -420,8 +580,8 @@ def main() -> int:
   write_audit_report(audit)
   write_batch_report(validation, statistics, review)
   print(
-    "PASS: batch 01 dry run has 15 new manuscripts/75 selections and no baseline overlap; "
-    "acquisition remains blocked on 8 explicit visual-review decisions"
+    "PASS: Batch 01 deterministic gate has 15 assigned manuscripts, 14 active manuscripts, "
+    "70 final selections, 3 same-manuscript replacements, 0 unresolved decisions, and no baseline overlap"
   )
   return 0
 

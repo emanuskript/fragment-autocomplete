@@ -35,6 +35,14 @@ RIGHTS_REVIEW_STATUSES = {
   "not_approved",
   "needs_review",
 }
+MANUAL_PAGE_DECISIONS = {"keep", "reject"}
+MANUAL_PAGE_DECISION_SCOPES = {
+  "training_corpus_selection",
+  "replacement_suitability_review",
+}
+SELECTION_APPLICATIONS = {"batch_selection", "audit_only_frozen_corpus", "review_evidence_only"}
+MANUSCRIPT_SUITABILITY_DECISIONS = {"suitable_for_training_corpus", "unsuitable_for_training_corpus"}
+MANUSCRIPT_SUITABILITY_DECISION_SCOPE = "manuscript_training_corpus_suitability"
 REJECTION_RULES_V0_1: tuple[tuple[str, re.Pattern[str]], ...] = (
   ("cover", re.compile(r"\b(front|back|rear)?\s*cover\b", re.IGNORECASE)),
   ("paste_down", re.compile(r"\bpaste[ -]?down\b", re.IGNORECASE)),
@@ -74,6 +82,186 @@ def sha256_bytes(payload: bytes) -> str:
 def stable_digest(*parts: Any) -> str:
   rendered = "\0".join(str(part) for part in parts)
   return hashlib.sha256(rendered.encode("utf-8")).hexdigest()
+
+
+def validate_manual_page_decision(
+  decision: dict[str, Any],
+  *,
+  expected_corpus_id: str | None = None,
+  expected_manuscript_id: str | None = None,
+  require_batch_selection_scope: bool = False,
+) -> dict[str, Any]:
+  """Validate and normalize one explicit keep/reject page decision."""
+  if not isinstance(decision, dict):
+    raise ValueError("Every manual page decision must be a mapping")
+  required = (
+    "manuscript_id",
+    "canvas_identifier",
+    "sequence_index",
+    "split",
+    "decision",
+    "decision_reason",
+    "reason_code",
+    "reviewer",
+    "decision_version",
+    "recorded_at",
+    "decision_provenance",
+    "decision_scope",
+    "selection_application",
+  )
+  missing = [
+    name
+    for name in required
+    if name not in decision
+    or decision[name] is None
+    or (isinstance(decision[name], str) and not decision[name].strip())
+  ]
+  if missing:
+    raise ValueError(f"Manual page decision is missing required fields: {', '.join(missing)}")
+  normalized = dict(decision)
+  normalized["decision"] = str(decision["decision"]).strip().lower()
+  if normalized["decision"] not in MANUAL_PAGE_DECISIONS:
+    raise ValueError(f"Unsupported manual page decision: {decision['decision']!r}")
+  if normalized["decision_scope"] not in MANUAL_PAGE_DECISION_SCOPES:
+    raise ValueError(f"Unsupported manual page decision scope: {normalized['decision_scope']!r}")
+  if normalized["selection_application"] not in SELECTION_APPLICATIONS:
+    raise ValueError(f"Unsupported page-decision selection application: {normalized['selection_application']!r}")
+  if not isinstance(normalized["sequence_index"], int) or normalized["sequence_index"] < 0:
+    raise ValueError("Manual page decision sequence_index must be a non-negative integer")
+  if normalized["split"] not in {"train", "validation", "test"}:
+    raise ValueError(f"Unsupported manual page decision split: {normalized['split']!r}")
+  if require_batch_selection_scope and normalized["selection_application"] != "batch_selection":
+    raise ValueError("Only batch_selection decisions may affect corpus page selection")
+  if require_batch_selection_scope and normalized["decision_scope"] != "training_corpus_selection":
+    raise ValueError("Batch page-selection decisions must use training_corpus_selection scope")
+  if expected_corpus_id is not None and normalized.get("corpus_id") != expected_corpus_id:
+    raise ValueError(
+      f"Manual page decision corpus differs from the build: {normalized.get('corpus_id')!r} != {expected_corpus_id!r}"
+    )
+  if expected_manuscript_id is not None and normalized["manuscript_id"] != expected_manuscript_id:
+    raise ValueError(
+      "Manual page decision manuscript differs from the selection target: "
+      f"{normalized['manuscript_id']!r} != {expected_manuscript_id!r}"
+    )
+  return normalized
+
+
+def manual_page_decisions_for_corpus(
+  review: dict[str, Any],
+  corpus_id: str,
+) -> list[dict[str, Any]]:
+  """Extract the resolved decisions for exactly one corpus from a review artifact."""
+  matches = [item for item in review.get("corpora", []) if item.get("corpus_id") == corpus_id]
+  if len(matches) != 1:
+    raise ValueError(f"Expected exactly one manual page review record for corpus {corpus_id}")
+  decisions: list[dict[str, Any]] = []
+  for exception in matches[0].get("exceptions", []):
+    enriched = {
+      **exception,
+      "corpus_id": corpus_id,
+      "review_evidence": exception.get("evidence"),
+    }
+    decisions.append(validate_manual_page_decision(enriched, expected_corpus_id=corpus_id))
+  canvas_ids = [item["canvas_identifier"] for item in decisions]
+  if len(canvas_ids) != len(set(canvas_ids)):
+    raise ValueError(f"Manual page review contains duplicate decisions for corpus {corpus_id}")
+  return decisions
+
+
+def replacement_page_reviews_for_corpus(
+  review: dict[str, Any],
+  corpus_id: str,
+) -> list[dict[str, Any]]:
+  """Extract annotation-only replacement reviews without changing selection."""
+  matches = [item for item in review.get("corpora", []) if item.get("corpus_id") == corpus_id]
+  if len(matches) != 1:
+    raise ValueError(f"Expected exactly one replacement review record for corpus {corpus_id}")
+  reviews: list[dict[str, Any]] = []
+  for item in matches[0].get("replacement_reviews", []):
+    normalized = validate_manual_page_decision(
+      {**item, "corpus_id": corpus_id},
+      expected_corpus_id=corpus_id,
+    )
+    if normalized["decision_scope"] != "replacement_suitability_review":
+      raise ValueError("Replacement reviews must use replacement_suitability_review scope")
+    if normalized["selection_application"] != "review_evidence_only":
+      raise ValueError("Replacement reviews must remain annotation-only review evidence")
+    reviews.append(normalized)
+  canvas_ids = [item["canvas_identifier"] for item in reviews]
+  if len(canvas_ids) != len(set(canvas_ids)):
+    raise ValueError(f"Replacement review contains duplicate canvases for corpus {corpus_id}")
+  return reviews
+
+
+def validate_manuscript_suitability_decision(
+  decision: dict[str, Any],
+  *,
+  expected_corpus_id: str | None = None,
+  expected_manuscript_id: str | None = None,
+) -> dict[str, Any]:
+  """Validate one explicit corpus-suitability decision at manuscript scope."""
+  if not isinstance(decision, dict):
+    raise ValueError("Every manuscript suitability decision must be a mapping")
+  required = (
+    "manuscript_id",
+    "decision",
+    "decision_reason",
+    "reason_code",
+    "reviewer",
+    "decision_version",
+    "recorded_at",
+    "decision_provenance",
+    "decision_scope",
+    "selection_application",
+  )
+  missing = [
+    name
+    for name in required
+    if name not in decision
+    or decision[name] is None
+    or (isinstance(decision[name], str) and not decision[name].strip())
+  ]
+  if missing:
+    raise ValueError(f"Manuscript suitability decision is missing required fields: {', '.join(missing)}")
+  normalized = dict(decision)
+  normalized["decision"] = str(decision["decision"]).strip().lower()
+  if normalized["decision"] not in MANUSCRIPT_SUITABILITY_DECISIONS:
+    raise ValueError(f"Unsupported manuscript suitability decision: {decision['decision']!r}")
+  if normalized["decision_scope"] != MANUSCRIPT_SUITABILITY_DECISION_SCOPE:
+    raise ValueError(f"Unsupported manuscript suitability decision scope: {normalized['decision_scope']!r}")
+  if normalized["selection_application"] != "batch_selection":
+    raise ValueError("Manuscript suitability decisions must use batch_selection scope")
+  if expected_corpus_id is not None and normalized.get("corpus_id") != expected_corpus_id:
+    raise ValueError(
+      f"Manuscript suitability decision corpus differs from the build: {normalized.get('corpus_id')!r} != {expected_corpus_id!r}"
+    )
+  if expected_manuscript_id is not None and normalized["manuscript_id"] != expected_manuscript_id:
+    raise ValueError(
+      "Manuscript suitability decision differs from the selection target: "
+      f"{normalized['manuscript_id']!r} != {expected_manuscript_id!r}"
+    )
+  return normalized
+
+
+def manuscript_suitability_decisions_for_corpus(
+  review: dict[str, Any],
+  corpus_id: str,
+) -> list[dict[str, Any]]:
+  """Extract manuscript-scope suitability decisions for exactly one corpus."""
+  matches = [item for item in review.get("corpora", []) if item.get("corpus_id") == corpus_id]
+  if len(matches) != 1:
+    raise ValueError(f"Expected exactly one manuscript review record for corpus {corpus_id}")
+  decisions = [
+    validate_manuscript_suitability_decision(
+      {**item, "corpus_id": corpus_id},
+      expected_corpus_id=corpus_id,
+    )
+    for item in matches[0].get("manuscript_suitability_decisions", [])
+  ]
+  manuscript_ids = [item["manuscript_id"] for item in decisions]
+  if len(manuscript_ids) != len(set(manuscript_ids)):
+    raise ValueError(f"Manual review contains duplicate manuscript suitability decisions for corpus {corpus_id}")
+  return decisions
 
 
 def relative_path(path: Path, root: Path) -> str:
@@ -212,39 +400,131 @@ def select_canvas_pages(
   seed: Any,
   max_pages: int,
   rules_version: str = SELECTION_RULES_VERSION,
+  manual_page_decisions: Iterable[dict[str, Any]] | None = None,
+  manuscript_suitability_decision: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
-  """Record all canvases and select eligible pages by stable seeded rank."""
+  """Record all canvases and select acceptable pages by an unchanged seeded rank."""
   if max_pages < 1:
     raise ValueError("max_pages must be at least 1")
+  decision_by_id: dict[str, dict[str, Any]] = {}
+  for raw_decision in manual_page_decisions or []:
+    decision = validate_manual_page_decision(
+      raw_decision,
+      expected_manuscript_id=manifest_key,
+      require_batch_selection_scope=True,
+    )
+    canvas_id = decision["canvas_identifier"]
+    if canvas_id in decision_by_id:
+      raise ValueError(f"Duplicate manual page decision: {canvas_id}")
+    decision_by_id[canvas_id] = decision
+  suitability = None
+  if manuscript_suitability_decision is not None:
+    suitability = validate_manuscript_suitability_decision(
+      manuscript_suitability_decision,
+      expected_manuscript_id=manifest_key,
+    )
+  manuscript_unsuitable = bool(
+    suitability and suitability["decision"] == "unsuitable_for_training_corpus"
+  )
+
   seen: set[str] = set()
-  eligible: list[tuple[str, NormalizedCanvas]] = []
+  originally_eligible: list[tuple[str, NormalizedCanvas]] = []
+  acceptable: list[tuple[str, NormalizedCanvas]] = []
   rejection_by_id: dict[str, list[dict[str, Any]]] = {}
   review_by_id: dict[str, list[dict[str, Any]]] = {}
   for canvas in canvases:
     if canvas.canvas_identifier in seen:
       raise ValueError(f"Duplicate page/canvas in manifest: {canvas.canvas_identifier}")
     seen.add(canvas.canvas_identifier)
+    decision = decision_by_id.get(canvas.canvas_identifier)
+    if decision and decision["sequence_index"] != canvas.sequence_index:
+      raise ValueError(f"Manual page decision sequence differs from its canvas: {canvas.canvas_identifier}")
     reasons = rejection_reasons(canvas, rules_version)
     review_reasons = manual_review_reasons(canvas, rules_version)
     rejection_by_id[canvas.canvas_identifier] = reasons
     review_by_id[canvas.canvas_identifier] = review_reasons
     if not reasons and not review_reasons:
-      eligible.append((stable_digest(seed, manifest_key, canvas.canvas_identifier), canvas))
+      originally_eligible.append((stable_digest(seed, manifest_key, canvas.canvas_identifier), canvas))
+    if decision and decision["decision"] == "keep" and reasons:
+      raise ValueError(
+        f"Manual keep decision cannot override an explicit deterministic rejection: {canvas.canvas_identifier}"
+      )
+    if (
+      not manuscript_unsuitable
+      and not reasons
+      and (not review_reasons or (decision and decision["decision"] == "keep"))
+      and not (decision and decision["decision"] == "reject")
+    ):
+      acceptable.append((stable_digest(seed, manifest_key, canvas.canvas_identifier), canvas))
 
-  ranked = sorted(eligible, key=lambda item: (item[0], item[1].sequence_index, item[1].canvas_identifier))
+  unknown_decisions = set(decision_by_id) - seen
+  if unknown_decisions:
+    raise ValueError(f"Manual page decision references an unknown canvas: {sorted(unknown_decisions)[0]}")
+  original_ranked = sorted(
+    originally_eligible,
+    key=lambda item: (item[0], item[1].sequence_index, item[1].canvas_identifier),
+  )
+  original_rank = {
+    canvas.canvas_identifier: rank
+    for rank, (_, canvas) in enumerate(original_ranked, start=1)
+  }
+  ranked = sorted(
+    acceptable,
+    key=lambda item: (item[0], item[1].sequence_index, item[1].canvas_identifier),
+  )
   selected_rank = {
     canvas.canvas_identifier: rank
     for rank, (_, canvas) in enumerate(ranked[:max_pages], start=1)
   }
+  selected_manual_rejections = sorted(
+    (
+      canvas_id for canvas_id, decision in decision_by_id.items()
+      if decision["decision"] == "reject" and original_rank.get(canvas_id, max_pages + 1) <= max_pages
+    ),
+    key=lambda canvas_id: (original_rank.get(canvas_id, max_pages + 1), canvas_id),
+  )
   records: list[dict[str, Any]] = []
   for canvas in canvases:
     reasons = rejection_by_id[canvas.canvas_identifier]
     review_reasons = review_by_id[canvas.canvas_identifier]
-    if reasons:
+    decision = decision_by_id.get(canvas.canvas_identifier)
+    if decision and decision["decision"] == "reject":
+      selection_status = "rejected"
+      manual_reason = {
+        "code": "explicit_manual_review_reject",
+        "evidence": decision.get("review_evidence"),
+        "reason_code": decision["reason_code"],
+        "decision_reason": decision["decision_reason"],
+        "reviewer": decision["reviewer"],
+        "decision_version": decision["decision_version"],
+        "recorded_at": decision["recorded_at"],
+        "decision_provenance": decision["decision_provenance"],
+      }
+      if canvas.canvas_identifier in original_rank:
+        manual_reason["seeded_rank_before_manual_decisions"] = original_rank[canvas.canvas_identifier]
+      selection_reasons = [manual_reason, *reasons]
+      review_note = "Rejected by an explicit manual review decision; deterministic label heuristics were unchanged."
+      review_status = "resolved_reject"
+      automatic_selection_eligible = False
+    elif reasons:
       selection_status = "rejected"
       selection_reasons = reasons
       review_note = "Rejected only because an explicit obvious non-training rule matched."
       review_status = "not_required"
+      automatic_selection_eligible = False
+    elif manuscript_unsuitable:
+      selection_status = "candidate"
+      selection_reasons = [{
+        "code": "manuscript_unsuitable_for_training_corpus",
+        "reason_code": suitability["reason_code"],
+        "decision_reason": suitability["decision_reason"],
+        "reviewer": suitability["reviewer"],
+        "decision_version": suitability["decision_version"],
+        "recorded_at": suitability["recorded_at"],
+        "decision_provenance": suitability["decision_provenance"],
+      }, *review_reasons]
+      review_note = "The canvas remains recorded, but its manuscript is explicitly unsuitable for this training corpus."
+      review_status = "manuscript_excluded"
       automatic_selection_eligible = False
     elif review_reasons:
       selection_status = "candidate"
@@ -254,21 +534,35 @@ def select_canvas_pages(
       automatic_selection_eligible = False
     elif canvas.canvas_identifier in selected_rank:
       selection_status = "selected"
-      selection_reasons = [{
+      seeded_reason = {
         "code": "deterministic_seeded_selection",
         "rank": selected_rank[canvas.canvas_identifier],
         "seed": seed,
-      }]
-      review_note = "No obvious exclusion was detected; selection is a reproducible candidate choice, not a quality judgment."
-      review_status = "post_download_review_required"
+      }
+      if decision_by_id and canvas.canvas_identifier in original_rank:
+        seeded_reason["seeded_rank_before_manual_decisions"] = original_rank[canvas.canvas_identifier]
+      selection_reasons = [seeded_reason]
+      if original_rank.get(canvas.canvas_identifier, 0) > max_pages and selected_manual_rejections:
+        selection_reasons.append({
+          "code": "deterministic_same_manuscript_replacement",
+          "seeded_rank_before_manual_decisions": original_rank[canvas.canvas_identifier],
+          "manual_rejected_canvas_identifiers": selected_manual_rejections,
+          "seed": seed,
+        })
+      if decision and decision["decision"] == "keep":
+        review_note = "An explicit keep decision makes this page eligible; its selection still follows the unchanged seeded order."
+        review_status = "resolved_keep"
+      else:
+        review_note = "No obvious exclusion was detected; selection is a reproducible candidate choice, not a quality judgment."
+        review_status = "post_download_review_required"
       automatic_selection_eligible = True
     else:
       selection_status = "candidate"
       selection_reasons = [{"code": "eligible_not_selected_page_limit", "max_pages": max_pages}]
       review_note = "No obvious exclusion was detected; the page remains an unselected candidate."
-      review_status = "not_reviewed"
+      review_status = "resolved_keep" if decision and decision["decision"] == "keep" else "not_reviewed"
       automatic_selection_eligible = True
-    records.append({
+    record = {
       "canvas_identifier": canvas.canvas_identifier,
       "canvas_label": canvas.canvas_label,
       "sequence_index": canvas.sequence_index,
@@ -279,7 +573,10 @@ def select_canvas_pages(
       "automatic_selection_eligible": automatic_selection_eligible,
       "width_px": canvas.width_px,
       "height_px": canvas.height_px,
-    })
+    }
+    if decision:
+      record["manual_decision"] = decision
+    records.append(record)
   return records
 
 
@@ -509,6 +806,7 @@ def register_selected_manuscript(
   manuscript_record: dict[str, Any],
   *,
   corpus_id: str,
+  selection_rules_version: str,
   rights_review_status: str,
   fetch_headers: dict[str, str | None],
 ) -> None:
@@ -532,6 +830,9 @@ def register_selected_manuscript(
       "canvas_identifier": canvas.canvas_identifier,
       "selection_status": "selected",
       "selection_reasons": page["selection_reasons"],
+      "selection_review_status": page["selection_review_status"],
+      "manual_decision": page.get("manual_decision"),
+      "selection_rules_version": selection_rules_version,
       "manuscript_split": manuscript_record["split"],
       "rights_review_status": rights_review_status,
       "training_allowed": False,
@@ -558,7 +859,7 @@ def register_selected_manuscript(
       "corpus_id": corpus_id,
       "manuscript_spec_id": manuscript_record["id"],
       "manuscript_split": manuscript_record["split"],
-      "selection_rules_version": SELECTION_RULES_VERSION,
+      "selection_rules_version": selection_rules_version,
       "candidate_hypothesis_policy": "source acquisition only; no reconstruction claim",
     },
   )
@@ -596,8 +897,39 @@ def build_statistics(corpus_manifest: dict[str, Any]) -> dict[str, Any]:
     page.get("image", {}).get("rights_review_status", "[missing]")
     for _, page in selected_pages
   )
+  download_statuses = Counter(
+    page.get("image", {}).get("download_status")
+    for _, page in selected_pages
+    if page.get("image", {}).get("download_status")
+  )
+  acquired_page_count = sum(download_statuses.values())
+  downloaded_page_count = sum(
+    download_statuses.get(status, 0)
+    for status in ("downloaded", "redownloaded_after_verification_failure")
+  )
+  reused_page_count = download_statuses.get("verified_existing", 0)
+  failed_page_count = acquired_page_count - downloaded_page_count - reused_page_count
+  total_local_bytes = sum(int(page.get("image", {}).get("size_bytes") or 0) for _, page in selected_pages)
+  manual_rejected_page_count = sum(
+    page.get("selection_status") == "rejected" and bool(page.get("manual_decision"))
+    for manuscript in manuscripts
+    for page in manuscript.get("pages", [])
+  )
+  replacement_page_count = sum(
+    any(reason.get("code") == "deterministic_same_manuscript_replacement" for reason in page.get("selection_reasons", []))
+    for _, page in selected_pages
+  )
+  unresolved_manual_review_count = sum(
+    page.get("selection_review_status") == "needs_manual_review"
+    for manuscript in manuscripts
+    for page in manuscript.get("pages", [])
+  )
   manuscript_splits = Counter(manuscript.get("split") for manuscript in manuscripts)
   page_splits = Counter(manuscript.get("split") for manuscript, _ in selected_pages)
+  page_selection_statuses = Counter(
+    manuscript.get("page_selection", {}).get("status", "[missing]")
+    for manuscript in manuscripts
+  )
   dimensions = [
     (page.get("image", {}).get("download_width_px"), page.get("image", {}).get("download_height_px"))
     for _, page in selected_pages
@@ -652,6 +984,27 @@ def build_statistics(corpus_manifest: dict[str, Any]) -> dict[str, Any]:
     "metadata_completeness": metadata_completeness,
     "rights_review_status": dict(sorted(rights_distribution.items())),
     "training_allowed_true_count": sum(bool(page.get("image", {}).get("training_allowed")) for _, page in selected_pages),
+    "acquisition": {
+      "selected_pages": len(selected_pages),
+      "acquired_pages": acquired_page_count,
+      "downloaded_pages": downloaded_page_count,
+      "reused_pages": reused_page_count,
+      "failures": failed_page_count,
+      "download_status_counts": dict(sorted(download_statuses.items())),
+      "total_bytes": total_local_bytes,
+    },
+    "manual_rejected_page_count": manual_rejected_page_count,
+    "deterministic_replacement_page_count": replacement_page_count,
+    "unresolved_manual_review_count": unresolved_manual_review_count,
+    "manuscript_page_selection_status_counts": dict(sorted(page_selection_statuses.items())),
+    "manuscript_selection_shortfalls": [
+      {
+        "manuscript_id": manuscript.get("id"),
+        **manuscript.get("page_selection", {}),
+      }
+      for manuscript in manuscripts
+      if manuscript.get("page_selection", {}).get("shortfall_count", 0) > 0
+    ],
     "split_counts": {
       "manuscripts": {name: manuscript_splits.get(name, 0) for name in ("train", "validation", "test")},
       "pages": {name: page_splits.get(name, 0) for name in ("train", "validation", "test")},
@@ -763,6 +1116,10 @@ def build_corpus(
   dry_run: bool = False,
   register: bool = False,
   timeout_seconds: int = 120,
+  manual_page_decisions: Iterable[dict[str, Any]] | None = None,
+  manuscript_suitability_decisions: Iterable[dict[str, Any]] | None = None,
+  replacement_page_reviews: Iterable[dict[str, Any]] | None = None,
+  manual_review_artifact: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
   validate_specification(spec)
   if dry_run and register:
@@ -775,9 +1132,62 @@ def build_corpus(
   max_pages = max_pages_override or int(spec.get("max_pages_per_manuscript", 5))
   if max_pages < 1:
     raise ValueError("max_pages must be at least 1")
+  entry_ids = {entry["id"] for entry in entries}
+  decisions_by_manuscript: dict[str, list[dict[str, Any]]] = defaultdict(list)
+  decision_canvas_ids: set[str] = set()
+  for raw_decision in manual_page_decisions or []:
+    decision = validate_manual_page_decision(
+      raw_decision,
+      expected_corpus_id=spec["corpus_id"],
+      require_batch_selection_scope=True,
+    )
+    if decision["manuscript_id"] not in entry_ids:
+      raise ValueError(f"Manual page decision references a manuscript outside the active build: {decision['manuscript_id']}")
+    if decision["canvas_identifier"] in decision_canvas_ids:
+      raise ValueError(f"Duplicate manual page decision: {decision['canvas_identifier']}")
+    decision_canvas_ids.add(decision["canvas_identifier"])
+    decisions_by_manuscript[decision["manuscript_id"]].append(decision)
+  suitability_by_manuscript: dict[str, dict[str, Any]] = {}
+  for raw_decision in manuscript_suitability_decisions or []:
+    decision = validate_manuscript_suitability_decision(
+      raw_decision,
+      expected_corpus_id=spec["corpus_id"],
+    )
+    manuscript_id = decision["manuscript_id"]
+    if manuscript_id not in entry_ids:
+      raise ValueError(f"Suitability decision references a manuscript outside the active build: {manuscript_id}")
+    if manuscript_id in suitability_by_manuscript:
+      raise ValueError(f"Duplicate manuscript suitability decision: {manuscript_id}")
+    suitability_by_manuscript[manuscript_id] = decision
+  replacement_reviews_by_manuscript: dict[str, dict[str, dict[str, Any]]] = defaultdict(dict)
+  replacement_review_canvas_ids: set[str] = set()
+  for raw_review in replacement_page_reviews or []:
+    review = validate_manual_page_decision(raw_review, expected_corpus_id=spec["corpus_id"])
+    if review["decision_scope"] != "replacement_suitability_review":
+      raise ValueError("Replacement reviews must use replacement_suitability_review scope")
+    if review["selection_application"] != "review_evidence_only":
+      raise ValueError("Replacement reviews must not alter deterministic selection")
+    manuscript_id = review["manuscript_id"]
+    if manuscript_id not in entry_ids:
+      raise ValueError(f"Replacement review references a manuscript outside the active build: {manuscript_id}")
+    canvas_id = review["canvas_identifier"]
+    if canvas_id in replacement_review_canvas_ids:
+      raise ValueError(f"Duplicate replacement review: {canvas_id}")
+    replacement_review_canvas_ids.add(canvas_id)
+    replacement_reviews_by_manuscript[manuscript_id][canvas_id] = review
   split_ratios = {name: float(value) for name, value in spec.get("split_ratios", {"train": 0.70, "validation": 0.15, "test": 0.15}).items()}
   selection_rules_version = spec.get("selection_rules_version", SELECTION_RULES_VERSION)
   split_by_id = assign_manuscript_splits((entry["id"] for entry in entries), spec["split_seed"], split_ratios)
+  for manuscript_id, decisions in decisions_by_manuscript.items():
+    for decision in decisions:
+      if decision["split"] != split_by_id[manuscript_id]:
+        raise ValueError(
+          f"Manual page decision split differs from its manuscript: {decision['canvas_identifier']}"
+        )
+  for manuscript_id, reviews in replacement_reviews_by_manuscript.items():
+    for review in reviews.values():
+      if review["split"] != split_by_id[manuscript_id]:
+        raise ValueError(f"Replacement review split differs from its manuscript: {review['canvas_identifier']}")
   download_root = root / spec.get("download_root", f"data/raw/{spec['corpus_id']}")
   previous = load_yaml(output_manifest_path) if output_manifest_path.exists() else None
   previous_pages = _previous_selected_pages(previous)
@@ -794,6 +1204,8 @@ def build_corpus(
       spec["selection_seed"],
       max_pages,
       rules_version=selection_rules_version,
+      manual_page_decisions=decisions_by_manuscript.get(entry["id"]),
+      manuscript_suitability_decision=suitability_by_manuscript.get(entry["id"]),
     )
     canvas_by_id = {canvas.canvas_identifier: canvas for canvas in normalized.canvases}
     raw_artifact = None if dry_run else _raw_manifest_artifact(root, download_root, entry["id"], raw_manifest)
@@ -801,7 +1213,27 @@ def build_corpus(
     for decision in decisions:
       canvas = canvas_by_id[decision["canvas_identifier"]]
       page = {**decision, "image": _page_image_record(canvas)}
+      replacement_review = replacement_reviews_by_manuscript.get(entry["id"], {}).get(
+        decision["canvas_identifier"]
+      )
+      if replacement_review:
+        page["replacement_review"] = replacement_review
+        if page["selection_status"] == "selected" and replacement_review["decision"] == "reject":
+          raise ValueError(f"A replacement-review rejection became selected: {decision['canvas_identifier']}")
+        if page["selection_status"] == "selected" and replacement_review["decision"] == "keep":
+          page["selection_review_status"] = "resolved_keep"
       pages.append(page)
+    missing_replacement_reviews = set(replacement_reviews_by_manuscript.get(entry["id"], {})) - set(canvas_by_id)
+    if missing_replacement_reviews:
+      raise ValueError(f"Replacement review references an unknown canvas: {sorted(missing_replacement_reviews)[0]}")
+    selected_page_count = sum(page["selection_status"] == "selected" for page in pages)
+    suitability = suitability_by_manuscript.get(entry["id"])
+    if suitability and suitability["decision"] == "unsuitable_for_training_corpus":
+      page_selection_status = "manuscript_unsuitable_for_training_corpus"
+    elif selected_page_count < max_pages:
+      page_selection_status = "insufficient_acceptable_pages"
+    else:
+      page_selection_status = "complete"
     record = {
       "id": entry["id"],
       "repository": metadata["repository"],
@@ -819,6 +1251,12 @@ def build_corpus(
       "rights_review_status": spec.get("rights_review_status", "pending_review"),
       "training_allowed": False,
       "split": split_by_id[entry["id"]],
+      "page_selection": {
+        "status": page_selection_status,
+        "requested_page_count": max_pages,
+        "selected_page_count": selected_page_count,
+        "shortfall_count": max_pages - selected_page_count,
+      },
       "raw_source_metadata": {
         "normalized_metadata": normalized.metadata,
         "raw_manifest_artifact": raw_artifact,
@@ -827,12 +1265,28 @@ def build_corpus(
       },
       "pages": pages,
     }
+    if suitability:
+      record["manuscript_suitability_decision"] = suitability
     harvested.append((record, normalized, raw_manifest, fetch_headers))
 
   manuscript_records = [item[0] for item in harvested]
   ensure_unique_pages(manuscript_records)
+  insufficient_manuscripts = [
+    {
+      "manuscript_id": item["id"],
+      "selected_page_count": item["page_selection"]["selected_page_count"],
+      "requested_page_count": item["page_selection"]["requested_page_count"],
+      "shortfall_count": item["page_selection"]["shortfall_count"],
+    }
+    for item in manuscript_records
+    if item["page_selection"]["status"] == "insufficient_acceptable_pages"
+  ]
 
   if not dry_run:
+    if insufficient_manuscripts:
+      raise ValueError(
+        "Corpus acquisition is blocked because one or more manuscripts have insufficient acceptable pages"
+      )
     image_request = spec.get("image_request", {})
     rights_status = spec.get("rights_review_status", "pending_review")
     for manuscript_record, normalized, _, _ in harvested:
@@ -882,6 +1336,7 @@ def build_corpus(
           normalized,
           manuscript_record,
           corpus_id=spec["corpus_id"],
+          selection_rules_version=selection_rules_version,
           rights_review_status=spec.get("rights_review_status", "pending_review"),
           fetch_headers=fetch_headers,
         )
@@ -900,6 +1355,11 @@ def build_corpus(
       "max_pages_per_manuscript": max_pages,
       "rules_version": selection_rules_version,
       "uncertainty_policy": "Only explicit obvious exclusions are rejected; uncertain auxiliary canvases remain candidates and require manual review before selection.",
+      "status": "blocked_insufficient_acceptable_pages" if insufficient_manuscripts else "ready",
+      "insufficient_manuscripts": insufficient_manuscripts,
+      "manual_page_decision_count": len(decision_canvas_ids),
+      "manuscript_suitability_decision_count": len(suitability_by_manuscript),
+      "replacement_review_count": len(replacement_review_canvas_ids),
     },
     "splits": {"seed": spec["split_seed"], "ratios": split_ratios, "unit": "manuscript"},
     "rights_policy": {
@@ -909,6 +1369,8 @@ def build_corpus(
     },
     "manuscripts": manuscript_records,
   }
+  if manual_review_artifact is not None:
+    payload["manual_review_artifact"] = manual_review_artifact
   statistics = build_statistics(payload)
   payload["statistics"] = statistics
   write_yaml(output_manifest_path, payload)

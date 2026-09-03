@@ -1,5 +1,5 @@
-audit_version: training_corpus_validation_decision_audit_v0_1
-status: passed_with_expansion_rule_corrections
+audit_version: training_corpus_validation_decision_audit_v0_2
+status: passed_with_expansion_rule_corrections_and_frozen_audit_disposition
 historical_corpus_id: ecodices_training_source_validation_v0_1
 historical_manifest_sha256: a4334ea81010cb4b6e40f57ebe47f9015335abb9512e950a72a3352e18511410
 historical_rules_version: obvious_non_training_canvas_rules_v0_1
@@ -301,6 +301,28 @@ uncertain_manual_review_candidates:
   - code: uncertain_accompanying_materials
     evidence: 'canvas label requires manual review: ''Accompanying materials 3v'''
 historical_selected_pages_unchanged_under_new_label_rules: true
+frozen_audit_only_rejection: &id001
+  manuscript_id: ubb-F-IX-0068
+  split: validation
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_0000_0002v.json
+  canvas_label: V2v
+  sequence_index: 5
+  outcome: needs_manual_review
+  evidence: Blank-like damaged flyleaf with no visible manuscript text at review scale.
+  decision: reject
+  decision_reason: Reject from future training-corpus selection because the leaf is
+    blank-like and has no visible manuscript text at review scale; preserve the frozen
+    corpus record and existing derived evidence unchanged.
+  reason_code: blank_or_nontextual_flyleaf
+  reviewer: Mo
+  decision_scope: training_corpus_selection
+  selection_application: audit_only_frozen_corpus
+  decision_version: training_corpus_page_review_v1
+  recorded_at: '2026-09-02T11:35:46+02:00'
+  decision_provenance: Explicit project-owner decision supplied in the Batch 01 milestone
+    task.
+frozen_rejected_page_remains_selected: true
+frozen_source_database_segmentation_evidence_unchanged: true
 selected_page_visual_triage:
   corpus_id: ecodices_training_source_validation_v0_1
   manifest_path: data/metadata/training_corpus_validation_manifest.yaml
@@ -308,12 +330,7 @@ selected_page_visual_triage:
   default_outcome: page_like_manuscript_content_at_review_scale
   default_outcome_count: 14
   exceptions:
-  - manuscript_id: ubb-F-IX-0068
-    canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_0000_0002v.json
-    canvas_label: V2v
-    outcome: needs_manual_review
-    evidence: Blank-like damaged flyleaf with no visible manuscript text at review
-      scale.
+  - *id001
 interpretation: The frozen validation evidence remains unchanged; corrected rules
   apply only to new expansion batches.
-audit_sha256: 2fb91d695328bfcd66dee58ad92bd263f4e292b28af463a158d6e68d55e820f7
+audit_sha256: 69f0239e8abf956527cdef1e8485b24ffb5a59fc3d69d144242f62327822c5c6

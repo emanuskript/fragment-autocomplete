@@ -1,5 +1,6 @@
-review_version: training_corpus_expansion_readiness_review_v0_1
+review_version: training_corpus_expansion_readiness_review_v0_2
 reviewed_on: '2026-08-27'
+decisions_recorded_on: '2026-09-02'
 reviewer: Codex implementation agent
 review_type: non-scholarly engineering visual triage
 method: >-
@@ -15,10 +16,21 @@ corpora:
     default_outcome_count: 14
     exceptions:
       - manuscript_id: ubb-F-IX-0068
+        split: validation
         canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/ubb-F-IX-0068/canvas/ubb-F-IX-0068_0000_0002v.json
         canvas_label: V2v
+        sequence_index: 5
         outcome: needs_manual_review
         evidence: Blank-like damaged flyleaf with no visible manuscript text at review scale.
+        decision: reject
+        decision_reason: Reject from future training-corpus selection because the leaf is blank-like and has no visible manuscript text at review scale; preserve the frozen corpus record and existing derived evidence unchanged.
+        reason_code: blank_or_nontextual_flyleaf
+        reviewer: Mo
+        decision_scope: training_corpus_selection
+        selection_application: audit_only_frozen_corpus
+        decision_version: training_corpus_page_review_v1
+        recorded_at: '2026-09-02T11:35:46+02:00'
+        decision_provenance: Explicit project-owner decision supplied in the Batch 01 milestone task.
   - corpus_id: ecodices_training_source_expansion_batch_01_v0_1
     manifest_path: data/metadata/training_corpus_expansion_batch_01_manifest.yaml
     reviewed_selected_page_count: 75
@@ -26,43 +38,270 @@ corpora:
     default_outcome_count: 68
     exceptions:
       - manuscript_id: bc-b-0103
+        split: train
         canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/bc-b-0103/canvas/bc-b-0103_125v.json
         canvas_label: 125v
+        sequence_index: 261
         outcome: needs_manual_review
         evidence: Text is heavily obscured or low-contrast at thumbnail scale.
+        decision: reject
+        decision_reason: Reject from Batch 01 selection because the manuscript text is heavily obscured or too low-contrast at review scale.
+        reason_code: low_quality_or_obscured
+        reviewer: Mo
+        decision_scope: training_corpus_selection
+        selection_application: batch_selection
+        decision_version: training_corpus_page_review_v1
+        recorded_at: '2026-09-02T11:35:46+02:00'
+        decision_provenance: Explicit project-owner decision supplied in the Batch 01 milestone task.
       - manuscript_id: cea-FaZellweger-90A-01-2
+        split: train
         canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/cea-FaZellweger-90A-01-2/canvas/cea-FaZellweger-90A-01-2_0007r.json
         canvas_label: 7r
+        sequence_index: 18
         outcome: needs_manual_review
         evidence: Photographic album content rather than an obvious manuscript text page.
+        decision: reject
+        decision_reason: Reject from Batch 01 selection because the canvas contains photographic album content rather than a manuscript text page.
+        reason_code: photographic_content
+        reviewer: Mo
+        decision_scope: training_corpus_selection
+        selection_application: batch_selection
+        decision_version: training_corpus_page_review_v1
+        recorded_at: '2026-09-02T11:35:46+02:00'
+        decision_provenance: Explicit project-owner decision supplied in the Batch 01 milestone task.
       - manuscript_id: cea-FaZellweger-90A-01-2
+        split: train
         canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/cea-FaZellweger-90A-01-2/canvas/cea-FaZellweger-90A-01-2_0010v.json
         canvas_label: 10v
+        sequence_index: 25
         outcome: needs_manual_review
         evidence: Visually blank album page at thumbnail scale.
+        decision: reject
+        decision_reason: Reject from Batch 01 selection because the canvas is a visually blank album page at review scale.
+        reason_code: blank_page
+        reviewer: Mo
+        decision_scope: training_corpus_selection
+        selection_application: batch_selection
+        decision_version: training_corpus_page_review_v1
+        recorded_at: '2026-09-02T11:35:46+02:00'
+        decision_provenance: Explicit project-owner decision supplied in the Batch 01 milestone task.
       - manuscript_id: cea-FaZellweger-90A-01-2
+        split: train
         canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/cea-FaZellweger-90A-01-2/canvas/cea-FaZellweger-90A-01-2_0015r.json
         canvas_label: 15r
+        sequence_index: 34
         outcome: needs_manual_review
         evidence: Photographic portrait content rather than an obvious manuscript text page.
+        decision: reject
+        decision_reason: Reject from Batch 01 selection because the canvas contains a photographic portrait rather than a manuscript text page.
+        reason_code: photographic_content
+        reviewer: Mo
+        decision_scope: training_corpus_selection
+        selection_application: batch_selection
+        decision_version: training_corpus_page_review_v1
+        recorded_at: '2026-09-02T11:35:46+02:00'
+        decision_provenance: Explicit project-owner decision supplied in the Batch 01 milestone task.
       - manuscript_id: cea-FaZellweger-90A-01-2
+        split: train
         canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/cea-FaZellweger-90A-01-2/canvas/cea-FaZellweger-90A-01-2_0019v.json
         canvas_label: 19v
+        sequence_index: 43
         outcome: needs_manual_review
         evidence: Visually blank album page at thumbnail scale.
+        decision: reject
+        decision_reason: Reject from Batch 01 selection because the canvas is a visually blank album page at review scale.
+        reason_code: blank_page
+        reviewer: Mo
+        decision_scope: training_corpus_selection
+        selection_application: batch_selection
+        decision_version: training_corpus_page_review_v1
+        recorded_at: '2026-09-02T11:35:46+02:00'
+        decision_provenance: Explicit project-owner decision supplied in the Batch 01 milestone task.
       - manuscript_id: bcul-Ms0403
+        split: train
         canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/bcul-Ms0403/canvas/bcul-Ms0403_9999_003r.json
         canvas_label: N3r
+        sequence_index: 240
         outcome: needs_manual_review
         evidence: Visually blank leaf at thumbnail scale.
+        decision: reject
+        decision_reason: Reject from Batch 01 selection because the canvas is a visually blank leaf at review scale.
+        reason_code: blank_page
+        reviewer: Mo
+        decision_scope: training_corpus_selection
+        selection_application: batch_selection
+        decision_version: training_corpus_page_review_v1
+        recorded_at: '2026-09-02T11:35:46+02:00'
+        decision_provenance: Explicit project-owner decision supplied in the Batch 01 milestone task.
       - manuscript_id: bcj-A2437
+        split: train
         canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/bcj-A2437/canvas/bcj-A2437_9999_0001.json
         canvas_label: N1
+        sequence_index: 188
         outcome: needs_manual_review
         evidence: Visually blank leaf at thumbnail scale.
+        decision: reject
+        decision_reason: Reject from Batch 01 selection because the canvas is a visually blank leaf at review scale.
+        reason_code: blank_page
+        reviewer: Mo
+        decision_scope: training_corpus_selection
+        selection_application: batch_selection
+        decision_version: training_corpus_page_review_v1
+        recorded_at: '2026-09-02T11:35:46+02:00'
+        decision_provenance: Explicit project-owner decision supplied in the Batch 01 milestone task.
+    replacement_reviews:
+      - manuscript_id: bc-b-0103
+        split: train
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/bc-b-0103/canvas/bc-b-0103_040r.json
+        canvas_label: 40r
+        sequence_index: 84
+        evidence: Clear manuscript text at review scale.
+        decision: keep
+        decision_reason: Keep as the deterministic same-manuscript replacement because it is a clear manuscript text page at review scale.
+        reason_code: clear_manuscript_text
+        reviewer: Codex implementation agent
+        decision_scope: replacement_suitability_review
+        selection_application: review_evidence_only
+        decision_version: training_corpus_replacement_review_v1
+        recorded_at: '2026-09-02'
+        decision_provenance: Engineering review of the unchanged seeded replacement order after the explicit page rejections.
+      - manuscript_id: bcul-Ms0403
+        split: train
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/bcul-Ms0403/canvas/bcul-Ms0403_086r.json
+        canvas_label: 86r
+        sequence_index: 180
+        evidence: Manuscript text page at review scale.
+        decision: keep
+        decision_reason: Keep as the deterministic same-manuscript replacement because it is a manuscript text page at review scale.
+        reason_code: manuscript_text_page
+        reviewer: Codex implementation agent
+        decision_scope: replacement_suitability_review
+        selection_application: review_evidence_only
+        decision_version: training_corpus_replacement_review_v1
+        recorded_at: '2026-09-02'
+        decision_provenance: Engineering review of the unchanged seeded replacement order after the explicit page rejections.
+      - manuscript_id: bcj-A2437
+        split: train
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/bcj-A2437/canvas/bcj-A2437_0102.json
+        canvas_label: '102'
+        sequence_index: 109
+        evidence: Manuscript text at review scale.
+        decision: keep
+        decision_reason: Keep as the deterministic same-manuscript replacement because it contains manuscript text at review scale.
+        reason_code: manuscript_text_page
+        reviewer: Codex implementation agent
+        decision_scope: replacement_suitability_review
+        selection_application: review_evidence_only
+        decision_version: training_corpus_replacement_review_v1
+        recorded_at: '2026-09-02'
+        decision_provenance: Engineering review of the unchanged seeded replacement order after the explicit page rejections.
+      - manuscript_id: cea-FaZellweger-90A-01-2
+        split: train
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/cea-FaZellweger-90A-01-2/canvas/cea-FaZellweger-90A-01-2_0021v.json
+        canvas_label: 21v
+        sequence_index: 47
+        evidence: Handwritten text at review scale.
+        decision: keep
+        decision_reason: The page contains handwritten text, but the later manuscript-level suitability decision supersedes selecting it for Batch 01.
+        reason_code: handwritten_text_page
+        reviewer: Codex implementation agent
+        decision_scope: replacement_suitability_review
+        selection_application: review_evidence_only
+        decision_version: training_corpus_replacement_review_v1
+        recorded_at: '2026-09-02'
+        decision_provenance: Engineering review of the unchanged seeded replacement order after the explicit page rejections.
+      - manuscript_id: cea-FaZellweger-90A-01-2
+        split: train
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/cea-FaZellweger-90A-01-2/canvas/cea-FaZellweger-90A-01-2_0019r.json
+        canvas_label: 19r
+        sequence_index: 42
+        evidence: Photographic portrait at review scale.
+        decision: reject
+        decision_reason: Reject as a replacement candidate because the canvas is a photographic portrait rather than a manuscript text page.
+        reason_code: photographic_portrait_non_text
+        reviewer: Codex implementation agent
+        decision_scope: replacement_suitability_review
+        selection_application: review_evidence_only
+        decision_version: training_corpus_replacement_review_v1
+        recorded_at: '2026-09-02'
+        decision_provenance: Engineering review of the unchanged seeded replacement order after the explicit page rejections.
+      - manuscript_id: cea-FaZellweger-90A-01-2
+        split: train
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/cea-FaZellweger-90A-01-2/canvas/cea-FaZellweger-90A-01-2_0008v.json
+        canvas_label: 8v
+        sequence_index: 21
+        evidence: Blank page at review scale.
+        decision: reject
+        decision_reason: Reject as a replacement candidate because the canvas is blank at review scale.
+        reason_code: blank_page
+        reviewer: Codex implementation agent
+        decision_scope: replacement_suitability_review
+        selection_application: review_evidence_only
+        decision_version: training_corpus_replacement_review_v1
+        recorded_at: '2026-09-02'
+        decision_provenance: Engineering review of the unchanged seeded replacement order after the explicit page rejections.
+      - manuscript_id: cea-FaZellweger-90A-01-2
+        split: train
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/cea-FaZellweger-90A-01-2/canvas/cea-FaZellweger-90A-01-2_0003v.json
+        canvas_label: 3v
+        sequence_index: 11
+        evidence: Handwritten text at review scale.
+        decision: keep
+        decision_reason: The page contains handwritten text, but the later manuscript-level suitability decision supersedes selecting it for Batch 01.
+        reason_code: handwritten_text_page
+        reviewer: Codex implementation agent
+        decision_scope: replacement_suitability_review
+        selection_application: review_evidence_only
+        decision_version: training_corpus_replacement_review_v1
+        recorded_at: '2026-09-02'
+        decision_provenance: Engineering review of the unchanged seeded replacement order after the explicit page rejections.
+      - manuscript_id: cea-FaZellweger-90A-01-2
+        split: train
+        canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/cea-FaZellweger-90A-01-2/canvas/cea-FaZellweger-90A-01-2_0013v.json
+        canvas_label: 13v
+        sequence_index: 31
+        evidence: Blank page at review scale.
+        decision: reject
+        decision_reason: Reject as a replacement candidate because the canvas is blank at review scale.
+        reason_code: blank_page
+        reviewer: Codex implementation agent
+        decision_scope: replacement_suitability_review
+        selection_application: review_evidence_only
+        decision_version: training_corpus_replacement_review_v1
+        recorded_at: '2026-09-02'
+        decision_provenance: Engineering review of the unchanged seeded replacement order after the explicit page rejections.
+    manuscript_suitability_decisions:
+      - manuscript_id: cea-FaZellweger-90A-01-2
+        decision: unsuitable_for_training_corpus
+        decision_reason: Post-replacement review found only two suitable handwritten-text pages among the first nine seeded candidates; seven are photographic, blank, or otherwise unsuitable, so do not continue promoting pages from this manuscript.
+        reason_code: insufficient_suitable_seeded_pages_after_review
+        reviewer: Codex implementation agent
+        decision_scope: manuscript_training_corpus_suitability
+        selection_application: batch_selection
+        decision_version: training_corpus_manuscript_suitability_decision_v1
+        recorded_at: '2026-09-02'
+        decision_provenance: Post-replacement engineering review of the unchanged seeded candidate order.
+        evidence:
+          reviewed_seeded_candidate_count: 9
+          suitable_seeded_candidate_count: 2
+          unsuitable_seeded_candidate_count: 7
+          suitable_canvas_labels:
+            - 21v
+            - 3v
+          unsuitable_canvas_labels:
+            - 15r
+            - 10v
+            - 7r
+            - 19v
+            - 19r
+            - 8v
+            - 13v
+          final_selected_page_count: 0
+          selection_shortfall_count: 5
 acquisition_gate:
-  status: blocked_pending_manual_page_decisions
-  unresolved_exception_count: 8
+  status: ready_for_batch_01_acquisition
+  unresolved_exception_count: 0
+  resolved_exception_count: 8
   policy: >-
     Do not download or register batch 01 until each exception has an explicit
     keep or reject decision. Rejections must retain their evidence and any

@@ -1,0 +1,135 @@
+validation_version: training_corpus_expansion_batch_01_acquisition_validation_v0_1
+status: passed_acquired_registered_and_idempotent
+batch_corpus_id: ecodices_training_source_expansion_batch_01_v0_1
+manifest_path: data/metadata/training_corpus_expansion_batch_01_manifest.yaml
+manifest_sha256: 3295f1f77c0335376156b6a3e31716a98dd277ebf6fc90689667dd1a37ad23af
+statistics_path: data/metadata/training_corpus_expansion_batch_01_statistics.yaml
+statistics_sha256: 841ceb2a8bebeb87a690a782fc8ce29b9896738c3c99f99c7c51abb439385c9f
+selection_and_provenance:
+  manuscript_count: 15
+  selected_page_count: 70
+  rejected_page_count: 188
+  canvas_status_counts:
+    candidate: 4129
+    rejected: 188
+    selected: 70
+  repository_distribution:
+    Aarau, Aargauer Kantonsbibliothek: 1
+    Basel, Universitätsbibliothek: 2
+    Bern, Burgerbibliothek: 1
+    Cologny, Fondation Martin Bodmer: 2
+    Engelberg, Stiftsbibliothek: 1
+    Lausanne, Bibliothèque cantonale et universitaire - Lausanne: 1
+    Porrentruy, Bibliothèque cantonale jurassienne: 1
+    Schaffhausen, Stadtbibliothek: 1
+    St. Gallen, Stiftsbibliothek: 2
+    Trogen, Kantonsbibliothek Appenzell Ausserrhoden: 1
+    Zürich, Braginsky Collection: 2
+  split_counts:
+    manuscripts:
+      train: 11
+      validation: 2
+      test: 2
+    pages:
+      train: 50
+      validation: 10
+      test: 10
+  cross_batch_overlap:
+    manuscripts: 0
+    manifest_urls: 0
+    canvases: 0
+  decisions:
+    decision_count: 8
+    decision_counts:
+      batch_reject: 7
+      historical_reject: 1
+    unresolved_decision_count: 0
+    batch_manual_rejected_count: 7
+    replacement_page_count: 3
+    replacement_records:
+    - manuscript_id: bc-b-0103
+      canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/bc-b-0103/canvas/bc-b-0103_040r.json
+      promoted_original_seeded_rank: 6
+      rejected_canvas_identifiers:
+      - https://www.e-codices.unifr.ch/metadata/iiif/bc-b-0103/canvas/bc-b-0103_125v.json
+    - manuscript_id: bcul-Ms0403
+      canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/bcul-Ms0403/canvas/bcul-Ms0403_086r.json
+      promoted_original_seeded_rank: 6
+      rejected_canvas_identifiers:
+      - https://www.e-codices.unifr.ch/metadata/iiif/bcul-Ms0403/canvas/bcul-Ms0403_9999_003r.json
+    - manuscript_id: bcj-A2437
+      canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/bcj-A2437/canvas/bcj-A2437_0102.json
+      promoted_original_seeded_rank: 6
+      rejected_canvas_identifiers:
+      - https://www.e-codices.unifr.ch/metadata/iiif/bcj-A2437/canvas/bcj-A2437_9999_0001.json
+    insufficient_or_unsuitable_manuscript_count: 1
+    insufficient_or_unsuitable_manuscripts:
+    - cea-FaZellweger-90A-01-2
+acquisition_runs:
+  initial_acquisition:
+    download_status_counts:
+      downloaded: 70
+    downloaded_pages: 70
+    failures: 0
+    reused_pages: 0
+    rights_status_counts:
+      pending_review: 70
+    selected_pages: 70
+    total_bytes: 96587059
+    training_allowed_count: 0
+  registration_run:
+    download_status_counts:
+      verified_existing: 70
+    downloaded_pages: 0
+    failures: 0
+    reused_pages: 70
+    rights_status_counts:
+      pending_review: 70
+    selected_pages: 70
+    total_bytes: 96587059
+    training_allowed_count: 0
+  unchanged_registered_rerun:
+    selected_pages: 70
+    downloaded_pages: 0
+    reused_pages: 70
+    failures: 0
+    download_status_counts:
+      verified_existing: 70
+    total_bytes: 96587059
+    rights_status_counts: &id001
+      pending_review: 70
+    training_allowed_count: 0
+file_integrity:
+  source_file_count: 85
+  selected_asset_count: 70
+  source_tree_sha256: 3b944c524d8ea9edc503c62d6a722a0f69b180eb198038f4dc0f3dedd544a4ed
+  checksums_dimensions_sizes_match: true
+  paths_hashes_sizes_dimensions_and_mtimes_unchanged_on_rerun: true
+database_integrity:
+  assigned_manuscript_count: 15
+  assigned_manifest_cache_count: 15
+  selected_page_bearing_manuscript_count: 14
+  selected_page_bearing_manifest_cache_count: 14
+  canvas_count: 70
+  image_asset_count: 70
+  duplicate_canvas_identity_groups: 0
+  duplicate_image_identity_groups: 0
+  training_allowed_count: 0
+  rights_status_counts: &id002
+    pending_review: 70
+database_identity_sha256: a330ff55cfad2f4338d1df238f99e3ef3f99c206ce1f7de7e03061cad0315ad0
+rights:
+  manifest_rights_status_counts: *id001
+  database_rights_status_counts: *id002
+  training_allowed_count: 0
+  automatic_rights_approval_introduced: false
+  preexisting_reviewed_rights_records_preserved: true
+  preexisting_batch_image_asset_count: 70
+git_safety:
+  download_root: data/raw/ecodices_training_source_expansion_batch_01_v0_1
+  tracked_batch_artifact_count: 0
+  ignored_batch_artifact_count: 85
+  binary_commit_safety: passed
+next_milestone: Run the existing eManuSkript segmentation pipeline over the acquired
+  Batch 01 pages and validate source-sized masks and provenance at expanded scale.
+validation_sha256: d835a8cf8b7fc7dba0de209a036f8ea5e96c22980e3f113d718ced54e0a8122a

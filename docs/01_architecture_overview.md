@@ -165,6 +165,10 @@ PostgreSQL should be the primary relational database. PostGIS should be enabled 
 
 Large images, MSI layers, generated masks, model artifacts, embeddings, and export bundles should live outside the relational database in object storage or a managed filesystem. The database should store URI/path, checksum, media type, dimensions, rights metadata, access controls, processing provenance, and version identifiers.
 
+For the validated local prototype, source JPEGs live under `data/raw/<corpus>/<manuscript>/`, raw IIIF manifests under `data/raw/<corpus>/_manifests/`, eManuSkript segmentation artifacts under `outputs/training_corpus_segmentation/`, other generated binaries under `outputs/`, and compact committed provenance/statistics under `data/metadata/`. The validated segmentation workflow is not moved into `data/processed/`. Batch 01 demonstrates this convention with 70 source JPEGs from 14 active manuscripts, totaling 96,587,059 bytes; the specification retains 15 assigned manifests.
+
+The eventual GWDG or other institutional object-storage target, backup, retention, and quota remain open operational decisions. They do not block the current local acquisition workflow.
+
 JSONB is appropriate for raw source metadata, raw IIIF manifest snapshots, model-output payloads during early experimentation, and compatibility fields. Core project entities should still use normalized tables to support filtering, joins, auditability, and long-term maintainability.
 
 ## 12. eManuSkript-Centered Layout Analysis Pipeline
@@ -333,6 +337,8 @@ Reproducibility requirements include experiment tracking, data and model version
 
 The data model should include item-level rights metadata and explicit flags such as `training_allowed`, `publication_allowed`, `demo_allowed`, and access level. Private and public datasets must be separated. Restricted assets must not be published in demos, exported without permission, or used for training unless permitted.
 
+Source acquisition does not confer training authorization. Ingestion may refresh repository-supplied license, rights, attribution, and access metadata, but a human-reviewed `rights_review_status`, `training_allowed` value, and its versioned review provenance must survive ordinary reruns. New assets remain unapproved for training unless a separate human review explicitly changes them. The existing fields plus `image_asset.raw_metadata.rights_review` provide this separation without a schema migration.
+
 Model and data provenance must be retained so generated outputs can be traced back to allowed sources. External IIIF assets should preserve source attribution and rights statements.
 
 ## 26. Data Lifecycle
@@ -381,25 +387,23 @@ The implementation sequence should proceed in phases:
 
 The main unresolved architecture decisions are:
 
-- Final GWDG/object-storage path policy.
+- Final GWDG or other institutional object-storage target, backup policy, retention policy, and quota. The current local path convention is already fixed and is not blocked by this decision.
 - IIIF viewer choice.
 - Exact eManuSkript output format and conversion path.
 - PAGE-XML vs internal JSON for segmentation storage.
-- Initial data-source licensing workflow.
+- Ownership and operating procedure for source-by-source human training-rights review.
 - Evaluation rubric ownership and review process.
 - Timing of CoMMA ingestion.
 
 ## 30. Next Engineering Milestone
 
-The next engineering milestone is to create the concrete PostgreSQL/PostGIS database schema and migrations.
+The next engineering milestone is **Batch 01 → eManuSkript Segmentation at Expanded Scale**. It reuses the validated eManuSkript inference, source-dimension mask restoration, provenance, and PostgreSQL storage workflow over the 70 acquired Batch 01 pages; it does not introduce a second segmentation implementation.
 
 Acceptance criteria for that milestone:
 
-- PostgreSQL is selected as the primary database and the PostGIS extension is enabled.
-- SQL migrations define the first project schema.
-- Core tables cover repositories, manuscripts, witnesses, IIIF manifest caches, canvases/pages, image assets, MSI assets, fragments, annotations, segmentation runs, layout regions, artificial-fragment tasks, reconstruction jobs, reconstruction candidates, retrieval embeddings, text witness links, evaluation runs, and export bundles.
-- Geometry and polygon representation is defined for fragments, layout regions, page coordinates, and placement estimates.
-- Rights and access fields include `training_allowed`, `publication_allowed`, `demo_allowed`, and `access_level`.
-- External storage references include path or URI, checksum, media type, source provenance, and version metadata.
-- A schema validation command is available for repeatable local checks.
-- Large images, MSI files, generated datasets, and model artifacts remain outside git.
+- Every acquired Batch 01 page is attempted, and each failure remains explicit rather than being silently dropped or replaced.
+- Successful instance masks match their source-image dimensions and retain model, run, configuration, checksum, canvas, manuscript, and repository provenance.
+- Deterministic corpus/model/config identity and idempotent `segmentation_run`/`layout_region` storage remain valid at the expanded scale.
+- Source files, checksums, manuscript-level splits, harvested rights, `rights_review_status`, and `training_allowed` remain unchanged by segmentation.
+- Mask binaries, raw predictions, and overlays remain ignored local artifacts under `outputs/training_corpus_segmentation/`.
+- Model training, artificial-fragment generation, reconstruction, retrieval, and UI expansion remain out of scope.

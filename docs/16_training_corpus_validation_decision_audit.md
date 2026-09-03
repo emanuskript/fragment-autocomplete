@@ -8,7 +8,7 @@ Applying the versioned expansion rules in audit mode identifies 35 additional ob
 
 ## Visual engineering triage
 
-All 15 downloaded validation selections were inspected at review scale. Fourteen are page-like manuscript content. One (`ubb-F-IX-0068`, `V2v`) is a blank-like damaged flyleaf and is explicitly flagged for manual review. This is engineering triage, not scholarly or rights approval.
+All 15 downloaded validation selections were inspected at review scale. Fourteen are page-like manuscript content. Mo explicitly rejected `ubb-F-IX-0068/V2v` for future training-corpus selection (`blank_or_nontextual_flyleaf`). The decision is audit-only: frozen corpus membership, source image, database registration, segmentation run, masks, and metadata remain unchanged. The page may remain useful as an edge/failure case. This is engineering triage, not scholarly or rights approval.
 
 ## Rule correction
 

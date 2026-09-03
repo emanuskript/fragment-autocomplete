@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Batch 01 acquisition/idempotency validator covering exact file membership, checksums, dimensions, IIIF/database relationships, split isolation, manual decisions, rights state, and Git ignore safety.
+- Machine-readable Batch 01 acquisition validation for 15 assigned manifests, 14 page-bearing manuscripts, and 70 registered source pages.
+- Explicit versioned page decisions, annotation-only replacement reviews, and a manuscript-suitability disposition for Training Corpus Expansion Batch 01.
 - Artificial fragment generator for the five registered full-page samples, with rectangular and irregular mask families, ground-truth placement metadata, validation, tests, and a generation report.
 - HSP/German metadata standards alignment migration, controlled vocabulary import, validation script, generated normdata YAML, field-mapping YAML, and alignment report.
 - Full pilot segmentation input preparation, runner, storage script, validators, and report.
@@ -39,6 +42,9 @@ All notable changes to this project will be documented in this file.
 
 ### Updated
 
+- Training Corpus Builder selection now consumes explicit review decisions, records deterministic same-manuscript replacements without changing heuristics, and preserves review-artifact provenance.
+- IIIF image-asset upserts now refresh harvested source rights while preserving human-reviewed training authorization and its versioned provenance without a schema migration.
+- Storage, corpus, roadmap, and next-action documentation for the completed Batch 01 acquisition and the next expanded-scale eManuSkript segmentation milestone.
 - Documented Python ingestion/scripts/tests modules with module-level docstrings, added core ingestion API docstrings, and removed dead imports plus generated `__pycache__` artifacts.
 - Removed boilerplate source-directory README files and kept empty source boundaries with `.gitkeep` files.
 - Cleaned stale duplicate status files and clarified the full-pilot segmentation runner/viewer handling for large-image retries and failed-run visibility.

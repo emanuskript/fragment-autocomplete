@@ -1,15 +1,25 @@
-validation_version: training_corpus_expansion_batch_01_validation_v0_1
-status: passed_dry_run_blocked_pending_manual_page_decisions
+validation_version: training_corpus_expansion_batch_01_validation_v0_2
+status: passed_deterministic_decision_aware_gate
 batch_corpus_id: ecodices_training_source_expansion_batch_01_v0_1
-batch_manifest_sha256: 07c16a7c705d4f9ca17b58a5ea338c48901eb2160f8856e006591cce92ad219a
-batch_statistics_sha256: afad420f207aa5b558491c2ae10c432a14e5e2b5d53788bbfbc19ae00369e4df
-new_manuscript_count: 15
-dry_run_selected_page_count: 75
+batch_manifest_sha256: 4983db243d5e27edd4681c34c6b0124b79652d6547fd839068e110b9711c437e
+batch_statistics_sha256: d49dbb75a58cdf0c9e9bd0ac5773577c215fd12e0727f4cb4a59e8c64911f795
+assigned_manuscript_count: 15
+active_selected_manuscript_count: 14
+original_dry_run_selected_page_count: 75
+final_selected_page_count: 70
 repository_count: 11
 batch_split_counts:
   train: 11
   validation: 2
   test: 2
+active_manuscript_split_counts:
+  train: 10
+  validation: 2
+  test: 2
+selected_page_split_counts:
+  train: 50
+  validation: 10
+  test: 10
 aggregate_manuscript_count: 20
 aggregate_split_counts:
   train: 14
@@ -22,17 +32,26 @@ rights_review_status: pending_review
 training_allowed: false
 downloaded_page_count: 0
 registered_page_count: 0
-visual_reviewed_page_count: 75
-batch_visual_exception_count: 7
-total_unresolved_visual_exception_count: 8
-acquisition_gate: blocked_pending_manual_page_decisions
+original_visual_reviewed_page_count: 75
+manual_decision_count: 8
+batch_manual_rejection_count: 7
+frozen_audit_only_rejection_count: 1
+deterministic_replacement_count: 3
+deterministic_replacements:
+- https://www.e-codices.unifr.ch/metadata/iiif/bc-b-0103/canvas/bc-b-0103_040r.json
+- https://www.e-codices.unifr.ch/metadata/iiif/bcj-A2437/canvas/bcj-A2437_0102.json
+- https://www.e-codices.unifr.ch/metadata/iiif/bcul-Ms0403/canvas/bcul-Ms0403_086r.json
+unsuitable_manuscripts:
+- cea-FaZellweger-90A-01-2
+unresolved_manual_decision_count: 0
+acquisition_gate: ready_for_batch_01_acquisition
 storage_projection:
   basis: mean bytes across the 15 checksum-verified validation JPEGs
   baseline_source_bytes: 20984367
   mean_source_bytes_per_page: 1398958
-  batch_75_page_source_bytes: 104921835
+  batch_70_page_source_bytes: 97927046
   full_500_page_source_bytes: 699478900
   excludes: raw manifests, safety margin, optional segmentation, and database overhead
-next_gate: Resolve all eight recorded page exceptions, then rerun the unchanged dry-run
-  validator before acquisition.
-validation_sha256: f2f7f6777b1060e897bf10f77970921634dd45f08f8cc9844556de4d61e32626
+next_gate: Acquire and register only the 70 final selected pages with the existing
+  resumable builder.
+validation_sha256: 17d5afc07889382378b715d3927db887cb445983ef9e56d89df04b82d894aac0

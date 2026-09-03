@@ -14,6 +14,16 @@ from .iiif_manifest import NormalizedCanvas, NormalizedImageAsset, NormalizedMan
 from .iiif_normalizer import metadata_lookup
 
 
+RIGHTS_REVIEW_STATUSES = frozenset({
+  "pending_review",
+  "approved_for_training",
+  "not_approved",
+  "needs_review",
+})
+HUMAN_RIGHTS_DECISION_STATUSES = frozenset({"approved_for_training", "not_approved"})
+RIGHTS_REVIEW_PROVENANCE_KEY = "rights_review"
+
+
 @dataclass
 class IngestStats:
   """Track insert/update counts and soft warnings emitted during ingestion."""
@@ -41,6 +51,99 @@ def open_rights_policy(license_or_rights: str | None) -> dict[str, bool | str]:
     "demo_allowed": is_open_for_publication,
     "access_level": "public" if is_open_for_publication else "internal",
   }
+
+
+def validate_rights_review_provenance(
+  provenance: dict[str, Any],
+  rights_review_status: str,
+  training_allowed: bool,
+) -> None:
+  """Validate a versioned human rights decision stored in image metadata."""
+  required = (
+    "review_version",
+    "reviewer",
+    "reviewed_at",
+    "decision_reason",
+    "rights_review_status",
+    "training_allowed",
+  )
+  missing = [
+    name
+    for name in required
+    if name not in provenance or provenance[name] is None or provenance[name] == ""
+  ]
+  if missing:
+    raise ValueError(f"Rights-review provenance is missing required fields: {', '.join(missing)}")
+  if not isinstance(provenance["review_version"], str) or not provenance["review_version"].strip():
+    raise ValueError("Rights-review provenance review_version must be a non-empty string")
+  reviewer = provenance["reviewer"]
+  if (
+    not isinstance(reviewer, (str, dict))
+    or not reviewer
+    or (isinstance(reviewer, str) and not reviewer.strip())
+  ):
+    raise ValueError("Rights-review provenance reviewer must be a non-empty string or mapping")
+  if not isinstance(provenance["decision_reason"], str) or not provenance["decision_reason"].strip():
+    raise ValueError("Rights-review provenance decision_reason must be a non-empty string")
+  reviewed_at = provenance["reviewed_at"]
+  if not isinstance(reviewed_at, str):
+    raise ValueError("Rights-review provenance reviewed_at must be an RFC 3339 string")
+  try:
+    parsed = datetime.fromisoformat(reviewed_at.replace("Z", "+00:00"))
+  except ValueError as exc:
+    raise ValueError("Rights-review provenance reviewed_at must be an RFC 3339 string") from exc
+  if parsed.tzinfo is None:
+    raise ValueError("Rights-review provenance reviewed_at must include a timezone")
+
+  recorded_status = provenance["rights_review_status"]
+  if recorded_status != rights_review_status:
+    raise ValueError("Rights-review provenance status differs from image_asset.rights_review_status")
+  recorded_allowed = provenance["training_allowed"]
+  if recorded_allowed is not training_allowed:
+    raise ValueError("Rights-review provenance training flag differs from image_asset.training_allowed")
+
+
+def validate_training_rights_state(
+  rights_review_status: str,
+  training_allowed: bool,
+  raw_metadata: dict[str, Any] | None,
+) -> None:
+  """Require coherent training authorization and provenance for human decisions."""
+  if rights_review_status not in RIGHTS_REVIEW_STATUSES:
+    raise ValueError(f"Unsupported rights_review_status: {rights_review_status}")
+  if not isinstance(training_allowed, bool):
+    raise ValueError("training_allowed must be a boolean")
+  expected_training_allowed = rights_review_status == "approved_for_training"
+  if training_allowed is not expected_training_allowed:
+    raise ValueError(
+      "training_allowed must be true only for approved_for_training and false for every other rights-review status"
+    )
+
+  metadata = {} if raw_metadata is None else raw_metadata
+  if not isinstance(metadata, dict):
+    raise ValueError("image_asset.raw_metadata must be a mapping")
+  provenance = metadata.get(RIGHTS_REVIEW_PROVENANCE_KEY)
+  if rights_review_status in HUMAN_RIGHTS_DECISION_STATUSES and not isinstance(provenance, dict):
+    raise ValueError(f"{rights_review_status} requires versioned rights_review provenance")
+  if provenance is not None:
+    if not isinstance(provenance, dict):
+      raise ValueError("rights_review provenance must be a mapping")
+    validate_rights_review_provenance(provenance, rights_review_status, training_allowed)
+
+
+def merge_image_asset_raw_metadata(
+  existing: dict[str, Any] | None,
+  harvested: dict[str, Any],
+) -> dict[str, Any]:
+  """Refresh harvested metadata without allowing ingestion to replace a rights decision."""
+  if existing is not None and not isinstance(existing, dict):
+    raise ValueError("Existing image_asset.raw_metadata must be a mapping")
+  if not isinstance(harvested, dict):
+    raise ValueError("Harvested image_asset.raw_metadata must be a mapping")
+  existing_metadata = dict(existing or {})
+  if RIGHTS_REVIEW_PROVENANCE_KEY in harvested:
+    raise ValueError("Ordinary IIIF ingestion must not introduce or replace rights_review provenance")
+  return {**existing_metadata, **harvested}
 
 
 def _metadata_value(manifest: NormalizedManifest, names: tuple[str, ...]) -> str | None:
@@ -396,10 +499,16 @@ def upsert_image_asset(
 ) -> str:
   """Insert or update one normalized image asset row for a canvas."""
   rights = open_rights_policy(manifest.license or manifest.rights_statement)
+  harvested_raw_metadata = {
+    "source": "iiif_ingestion",
+    "raw_image": image.raw_metadata,
+    "ingestion": image.raw_metadata.get("training_corpus", {}),
+  }
   existing = _fetch_one(
     conn,
     """
-    SELECT id FROM image_asset
+    SELECT id, rights_review_status, training_allowed, raw_metadata
+    FROM image_asset
     WHERE canvas_id = %s
       AND source_url IS NOT DISTINCT FROM %s
       AND iiif_image_service_url IS NOT DISTINCT FROM %s
@@ -407,7 +516,7 @@ def upsert_image_asset(
     """,
     (canvas_id, image.source_url, image.iiif_image_service_url),
   )
-  params = (
+  source_params = (
     canvas_id,
     repository_id,
     "iiif_image",
@@ -421,15 +530,22 @@ def upsert_image_asset(
     manifest.rights_statement,
     manifest.license,
     manifest.attribution,
-    rights["training_allowed"],
-    rights["publication_allowed"],
-    rights["demo_allowed"],
-    rights["access_level"],
-    manifest.license or manifest.rights_statement,
-    image.rights_review_status,
-    Jsonb({"source": "iiif_ingestion", "raw_image": image.raw_metadata, "ingestion": image.raw_metadata.get("training_corpus", {})}),
   )
   if existing:
+    validate_training_rights_state(
+      existing["rights_review_status"],
+      existing["training_allowed"],
+      existing.get("raw_metadata"),
+    )
+    merged_raw_metadata = merge_image_asset_raw_metadata(existing.get("raw_metadata"), harvested_raw_metadata)
+    update_params = source_params + (
+      rights["publication_allowed"],
+      rights["demo_allowed"],
+      rights["access_level"],
+      manifest.license or manifest.rights_statement,
+      Jsonb(merged_raw_metadata),
+      existing["id"],
+    )
     row = _execute_returning(
       conn,
       """
@@ -447,23 +563,32 @@ def upsert_image_asset(
           rights_statement = %s,
           license = %s,
           attribution = %s,
-          training_allowed = %s,
           publication_allowed = %s,
           demo_allowed = %s,
           access_level = %s,
           rights_uri = %s,
-          rights_review_status = %s,
           metadata_review_status = 'machine_extracted',
           raw_metadata = %s,
           updated_at = now()
       WHERE id = %s
       RETURNING id
       """,
-      params + (existing["id"],),
+      update_params,
     )
     stats.image_assets_updated += 1
     return str(row["id"])
 
+  new_raw_metadata = merge_image_asset_raw_metadata(None, harvested_raw_metadata)
+  validate_training_rights_state("pending_review", False, new_raw_metadata)
+  insert_params = source_params + (
+    False,
+    rights["publication_allowed"],
+    rights["demo_allowed"],
+    rights["access_level"],
+    manifest.license or manifest.rights_statement,
+    "pending_review",
+    Jsonb(new_raw_metadata),
+  )
   row = _execute_returning(
     conn,
     """
@@ -476,7 +601,7 @@ def upsert_image_asset(
     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'machine_extracted', %s)
     RETURNING id
     """,
-    params,
+    insert_params,
   )
   stats.image_assets_inserted += 1
   return str(row["id"])

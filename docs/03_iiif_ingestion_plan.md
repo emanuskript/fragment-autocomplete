@@ -69,6 +69,10 @@ Defaults:
 
 If the manifest contains clearly open rights such as CC0, Public Domain Mark, or CC BY, the ingestion code may set `publication_allowed` and `demo_allowed` to `true`. `training_allowed` remains `false` until project policy is reviewed.
 
+Acquisition is allowed independently from training approval. Harvested source fields such as license, rights statement, attribution, and repository-supplied access information may be refreshed on ingestion. Human-reviewed training fields have precedence: ordinary ingestion must preserve `rights_review_status`, `training_allowed`, and the versioned reviewer, authority/source, reason, timestamp, and decision provenance stored in `image_asset.raw_metadata.rights_review`. A CC0 or CC BY-NC source is therefore not automatically training-approved.
+
+The existing `image_asset` columns and JSONB `raw_metadata` can represent this separation, so the persistence fix requires no schema migration.
+
 ## 7. Idempotency Strategy
 
 The ingestion code avoids duplicate records through:
@@ -82,6 +86,8 @@ The ingestion code avoids duplicate records through:
 Running the same fixture twice should update or confirm existing rows rather than create duplicate normalized records.
 
 The corpus builder adds file-level resume protection: a selected local representation is reused only when its recorded SHA-256 still matches. Manifest and canvas duplicate checks run before registration, and all pages from a manuscript inherit one deterministic dataset split.
+
+An ingestion rerun may refresh harvested rights metadata, but it does not reset or promote reviewed training authorization. A checksum mismatch is reported rather than accepted as an unchanged local asset.
 
 ## 8. What Is Intentionally Not Implemented
 
@@ -167,6 +173,17 @@ PYTHON_BIN=python3 bash scripts/validate_training_corpus.sh
 
 The validation run acquires source pages only. It does not approve them for training or run eManuSkript automatically.
 
+Batch 01 uses the same builder, downloader, and registration path with explicit manual-review decisions:
+
+```bash
+PYTHON_BIN=/usr/bin/python3 bash scripts/validate_training_corpus_expansion_batch.sh
+PYTHON_BIN=/usr/bin/python3 bash scripts/validate_training_corpus_expansion_batch_01_acquisition.sh
+```
+
+The final batch retains 15 assigned manifests and their 11/2/2 manuscript split. One train-split manuscript is explicitly unsuitable for the training corpus, leaving 14 active manuscripts, 70 acquired pages, and active manuscript/page splits of 10/2/2 and 50/10/10. The 70 checksum-verified JPEGs occupy 96,587,059 bytes. The acquisition rerun reuses unchanged local assets and reconciles existing database relationships rather than creating duplicate files or rows.
+
+The implemented local layout is `data/raw/<corpus>/<manuscript>/` for source JPEGs, `data/raw/<corpus>/_manifests/` for raw manifests, `outputs/training_corpus_segmentation/` for later segmentation artifacts, `outputs/` for other generated binaries, and `data/metadata/` for compact committed records. GWDG or other institutional object storage, backup, retention, and quota remain unresolved operational questions, but they do not block local acquisition.
+
 ## 15. Next Steps
 
-Review the validation decisions and storage/rights policy, then expand the specification toward approximately 100 distinct e-codices manuscripts with at most five pages each. Model training remains out of scope.
+Run the already validated eManuSkript segmentation and source-sized mask/storage workflow over the 70 acquired Batch 01 pages. Do not introduce a parallel segmentation implementation or begin model training.
