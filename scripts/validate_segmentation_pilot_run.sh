@@ -45,7 +45,7 @@ for result in results:
         raise SystemExit(f"FAIL: raw output missing for {sample_id}: {result['raw_output_path']}")
     if not overlay_path.exists():
         raise SystemExit(f"FAIL: overlay missing for {sample_id}: {result['overlay_path']}")
-    if result.get("status") not in {"success", "warning", "error"}:
+    if result.get("status") not in {"success", "warning", "error", "failure"}:
         raise SystemExit(f"FAIL: invalid status for {sample_id}: {result.get('status')}")
     if result.get("sample_kind") == "full_page" and result.get("status") == "success":
         raw = json.loads(raw_path.read_text(encoding="utf-8"))

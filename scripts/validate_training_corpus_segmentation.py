@@ -41,6 +41,7 @@ VALIDATION = ROOT / "data/metadata/training_corpus_segmentation_validation.yaml"
 REPORT = ROOT / "docs/15_training_corpus_segmentation_integration.md"
 STORAGE_REPORT = ROOT / "outputs/training_corpus_segmentation/storage_report.md"
 EXPECTED_SPLITS = {"train": 9, "validation": 3, "test": 3}
+FAILURE_STATUSES = {"error", "failure"}
 
 
 def parse_args() -> argparse.Namespace:
@@ -277,8 +278,8 @@ def build_statistics(
   masks: list[dict[str, Any]],
 ) -> dict[str, Any]:
   input_by_sample = {item["sample_id"]: item for item in inputs["selected_inputs"]}
-  successful = [item for item in results["results"] if item.get("status") != "error"]
-  failed = [item for item in results["results"] if item.get("status") == "error"]
+  successful = [item for item in results["results"] if item.get("status") not in FAILURE_STATUSES]
+  failed = [item for item in results["results"] if item.get("status") in FAILURE_STATUSES]
   region_counts = [len(raw_by_sample[item["sample_id"]].get("detections", [])) for item in results["results"]]
   labels: Counter[str] = Counter()
   confidences: list[float] = []
@@ -292,7 +293,7 @@ def build_statistics(
     detections = raw_by_sample[sample_id].get("detections", [])
     split_stats[split_name]["attempted_pages"] += 1
     split_stats[split_name]["detected_regions"] += len(detections)
-    status_key = "failed_pages" if result.get("status") == "error" else "successful_pages"
+    status_key = "failed_pages" if result.get("status") in FAILURE_STATUSES else "successful_pages"
     split_stats[split_name][status_key] += 1
     for detection in detections:
       labels[detection.get("label", "unknown")] += 1
@@ -468,7 +469,7 @@ def validate_integration(skip_storage_rerun: bool = False) -> dict[str, Any]:
     raw_by_sample[sample_id] = raw
     if raw.get("segmentation_provenance", {}).get("run_identity_sha256") != run_identity:
       raise ValueError(f"Raw prediction provenance differs: {sample_id}")
-    if result.get("status") == "error":
+    if result.get("status") in FAILURE_STATUSES:
       if not result.get("errors") or raw.get("detections"):
         raise ValueError(f"Failed page is not explicitly recorded: {sample_id}")
       continue
@@ -527,7 +528,7 @@ def validate_integration(skip_storage_rerun: bool = False) -> dict[str, Any]:
       raise ValueError(f"Stored source checksum provenance differs: {sample_id}")
     if params.get("dataset_split") != input_by_sample[sample_id]["dataset_split"]:
       raise ValueError(f"Stored manuscript split differs: {sample_id}")
-    expected_status = "failed" if result_by_sample[sample_id].get("status") == "error" else "completed"
+    expected_status = "failed" if result_by_sample[sample_id].get("status") in FAILURE_STATUSES else "completed"
     if after[sample_id]["status"] != expected_status:
       raise ValueError(f"Stored run status differs: {sample_id}")
     if after[sample_id]["region_count"] != len(raw_by_sample[sample_id].get("detections", [])):

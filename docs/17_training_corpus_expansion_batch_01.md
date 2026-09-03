@@ -4,7 +4,7 @@
 
 The decision-aware deterministic gate passes for all 15 assigned official e-codices manifests without overlapping or rewriting the frozen five-manuscript validation corpus. Assigned Batch splits remain 11/2/2 train/validation/test; aggregate assigned splits remain 14/3/3.
 
-The original dry run selected 75 pages. After explicit decisions, the final dry-run manifest selects 70 pages from 14 active manuscripts. No Batch page has yet been downloaded, registered, segmented, or marked training-allowed.
+The original dry run selected 75 pages. After explicit decisions, the final manifest selects 70 pages from 14 active manuscripts. All 70 pages are now downloaded, checksum-verified, registered, and segmented through the existing eManuSkript workflow. None is marked training-allowed.
 
 ## Review gate
 
@@ -37,6 +37,6 @@ PYTHON_BIN=/usr/bin/python3 bash scripts/validate_training_corpus_expansion_batc
 
 This command runs the dry build twice and requires byte-identical manifests/statistics before executing the structural, provenance, split, rights, overlap, and review-gate validator.
 
-## Next gate
+## Acquisition and segmentation follow-through
 
-Acquire and register only the 70 final selected pages with the existing resumable builder.
+Acquisition and registration passed with 70/70 assets and an unchanged 70-asset reuse run. The expanded eManuSkript segmentation milestone subsequently passed with 70/70 successful page outcomes, 3,358 source-sized binary instance masks, idempotent local artifacts, 70 stable database runs, and unchanged rights/split/source invariants. See `data/metadata/training_corpus_expansion_batch_01_acquisition_validation.yaml` and `docs/18_training_corpus_expansion_batch_01_segmentation.md`.

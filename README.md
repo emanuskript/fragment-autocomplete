@@ -437,6 +437,18 @@ PYTHON_BIN=/usr/bin/python3 bash scripts/validate_training_corpus_expansion_batc
 
 The committed validation artifact is `data/metadata/training_corpus_expansion_batch_01_acquisition_validation.yaml`. Downloaded images and raw manifests remain ignored under `data/raw/`; no binary source assets are committed. See `docs/16_training_corpus_validation_decision_audit.md` and `docs/17_training_corpus_expansion_batch_01.md` for the decision and acquisition audit.
 
+## Batch 01 eManuSkript segmentation
+
+All 70 acquired Batch 01 pages have now passed through the same eManuSkript inference, source-sized mask restoration, and `segmentation_run`/`layout_region` storage path validated on the original 15-page corpus:
+
+```bash
+PYTHON_BIN=/usr/bin/python3 bash scripts/run_training_corpus_expansion_batch_01_segmentation.sh
+```
+
+The run used `best_emanuskript_segmentation` at confidence 0.25 and image size 320 on CPU. It completed 70/70 pages without inference failure, produced 3,358 detected regions and 3,358 binary source-sized masks, and preserved all 70 source files, split assignments, database relationships, and rights records. Three pages from `fmb-cb-0902` produced no above-threshold detections and remain explicit successful outcomes for later review; no corpus page was removed or replaced.
+
+An unchanged inference rerun reused all 70 page outputs without rewriting the 3,498 raw/overlay/mask artifacts or the results manifest. The unchanged storage rerun preserved the same 70 logical run rows and 3,358 region rows without duplicate or timestamp churn. Generated binaries remain ignored under `outputs/training_corpus_segmentation/batch_01/`; compact specification, inputs, results, storage, statistics, snapshots, and validation records are committed under `data/metadata/`. See `docs/18_training_corpus_expansion_batch_01_segmentation.md`.
+
 ## Next Task
 
-Run the existing eManuSkript segmentation pipeline over the 70 acquired Batch 01 pages and validate source-sized masks and provenance at the expanded scale. Do not begin model training.
+Review the Batch 01 segmentation outputs and make the next explicit milestone decision: either continue complete-page corpus expansion toward roughly 300–500 pages, or review/approve the artificial-damage model and begin controlled artificial-fragment generation plus a training-pipeline smoke test. Actual training remains blocked until a source subset is explicitly rights-approved; all 70 Batch 01 pages remain `training_allowed: false`.

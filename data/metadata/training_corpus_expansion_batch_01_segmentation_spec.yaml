@@ -1,0 +1,84 @@
+specification_version: training_corpus_expansion_batch_01_segmentation_v0_1
+status: ready
+corpus_id: ecodices_training_source_expansion_batch_01_v0_1
+purpose: Run the existing validated eManuSkript segmentation, source-coordinate mask
+  restoration, and PostgreSQL storage workflow over exactly the acquired Batch 01 pages.
+source:
+  corpus_manifest: data/metadata/training_corpus_expansion_batch_01_manifest.yaml
+  acquisition_validation: data/metadata/training_corpus_expansion_batch_01_acquisition_validation.yaml
+  frozen_validation_corpus_manifest: data/metadata/training_corpus_validation_manifest.yaml
+  source_image_bytes: 96587059
+artifacts:
+  inputs: data/metadata/training_corpus_expansion_batch_01_segmentation_inputs.yaml
+  results: data/metadata/training_corpus_expansion_batch_01_segmentation_results.yaml
+  storage_results: data/metadata/training_corpus_expansion_batch_01_segmentation_storage_results.yaml
+  source_snapshot: data/metadata/training_corpus_expansion_batch_01_segmentation_source_snapshot.yaml
+  mask_snapshot: data/metadata/training_corpus_expansion_batch_01_segmentation_mask_snapshot.yaml
+  statistics: data/metadata/training_corpus_expansion_batch_01_segmentation_statistics.yaml
+  validation: data/metadata/training_corpus_expansion_batch_01_segmentation_validation.yaml
+  report: docs/18_training_corpus_expansion_batch_01_segmentation.md
+  output_dir: outputs/training_corpus_segmentation/batch_01
+model:
+  id: best_emanuskript_segmentation
+  path: model weights/best_emanuskript_segmentation.pt
+  sha256: 9f0b03cc64c830d337a01ddac6a04616a385d573e3b923a86fc4c74c16416511
+  training_or_fine_tuning_allowed: false
+inference:
+  implementation: scripts/run_segmentation_pilot.py
+  device: cpu
+  confidence_threshold: 0.25
+  imgsz: 320
+  retina_masks: true
+  preprocessing_max_side: 2048
+  mask_restoration: nearest_neighbor_binary_to_original_source_dimensions
+storage:
+  implementation: scripts/store_segmentation_pilot_outputs.py
+  tables:
+  - segmentation_run
+  - layout_region
+  mask_binary_location: ignored_local_filesystem
+  region_reconciliation: reuse unchanged logical runs and region rows; replace a run's
+    region set only when its stored content differs
+expected:
+  assigned_manuscripts: 15
+  page_bearing_manuscripts: 14
+  total_pages: 70
+  page_split_counts:
+    train: 50
+    validation: 10
+    test: 10
+  assigned_manuscript_split_counts:
+    train: 11
+    validation: 2
+    test: 2
+  page_bearing_manuscript_split_counts:
+    train: 10
+    validation: 2
+    test: 2
+  source_image_bytes: 96587059
+  rights_review_status: pending_review
+  training_allowed: false
+validation_policy:
+  every_page_has_explicit_outcome: true
+  allowed_page_outcomes:
+  - success
+  - failure
+  authoritative_geometry: source_sized_binary_instance_mask
+  bbox_role: secondary_metadata
+  unchanged_inference_rerun_required: true
+  unchanged_storage_rerun_required: true
+  frozen_validation_pages_excluded: true
+  preserve_source_and_rights_state: true
+  compact_mask_snapshot: true
+prohibited_scope:
+- corpus_selection_changes
+- rights_approval
+- training_or_fine_tuning
+- artificial_fragment_generation
+- reconstruction
+- retrieval
+- llm_agents
+- hisfrag20_ingestion
+- e_rara_mining
+- new_ui
+- database_redesign

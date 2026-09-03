@@ -8,12 +8,15 @@ import hashlib
 import json
 import os
 import platform
+import resource
 import subprocess
 import sys
 import tempfile
+import time
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
-from statistics import mean
+from statistics import mean, median
 from typing import Any
 
 import yaml
@@ -33,6 +36,18 @@ from src.evaluation.segmentation_masks import (  # noqa: E402
 DEFAULT_INPUTS = ROOT / "data/metadata/segmentation_pilot_inputs.yaml"
 DEFAULT_RESULTS = ROOT / "data/metadata/segmentation_pilot_results.yaml"
 DEFAULT_OUTPUT_DIR = ROOT / "outputs/segmentation_pilot"
+
+
+FAILURE_STATUSES = {"error", "failure"}
+
+
+class PageSegmentationError(RuntimeError):
+    """Carry the original page failure type and preprocessing state across handlers."""
+
+    def __init__(self, error: Exception, preprocessing: dict[str, Any]):
+        super().__init__(str(error))
+        self.error_type = type(error).__name__
+        self.preprocessing = dict(preprocessing)
 
 
 def parse_args() -> argparse.Namespace:
@@ -100,10 +115,18 @@ def build_run_identity(
                 "sample_id": sample["sample_id"],
                 "db_image_asset_id": sample.get("db_image_asset_id"),
                 "db_canvas_id": sample.get("db_canvas_id"),
+                "db_manuscript_id": sample.get("db_manuscript_id"),
+                "db_repository_id": sample.get("db_repository_id"),
                 "manuscript_id": sample.get("manuscript_id"),
+                "repository": sample.get("repository"),
+                "canvas_identifier": sample.get("canvas_identifier"),
+                "canvas_label": sample.get("canvas_label"),
+                "sequence_index": sample.get("sequence_index"),
                 "dataset_split": sample.get("dataset_split"),
+                "source_url": sample.get("source_url"),
                 "local_path": sample["local_path"],
                 "source_sha256": file_sha256(local_path),
+                "source_dimensions_px": sample.get("source_dimensions_px"),
             }
         )
     descriptor = {
@@ -146,12 +169,13 @@ def require_ultralytics():
 
 def confidence_summary(confidences: list[float]) -> dict[str, Any]:
     if not confidences:
-        return {"count": 0, "min": None, "max": None, "mean": None}
+        return {"count": 0, "min": None, "max": None, "mean": None, "median": None}
     return {
         "count": len(confidences),
         "min": round(min(confidences), 6),
         "max": round(max(confidences), 6),
         "mean": round(mean(confidences), 6),
+        "median": round(median(confidences), 6),
     }
 
 
@@ -214,6 +238,12 @@ def attach_instance_masks(
             f"result={result_size}, preprocessing={inference_size}"
         )
 
+    region_run_provenance = {
+        key: value
+        for key, value in run_provenance.items()
+        if key != "run_identity_descriptor"
+    }
+    region_run_provenance["run_identity_descriptor_location"] = "results_manifest.run_identity_descriptor"
     enriched: list[dict[str, Any]] = []
     for detection, tensor in zip(detections, mask_tensors):
         array = tensor.detach().cpu().ge(0.5).to(dtype=tensor.dtype).mul(255).byte().numpy()
@@ -237,7 +267,7 @@ def attach_instance_masks(
                 "mask_value_semantics": "255=region pixel; 0=outside region",
                 "mask_threshold": 0.5,
                 "segmentation_provenance": {
-                    **run_provenance,
+                    **region_run_provenance,
                     "preprocessing": preprocessing,
                     "model_mask_dimensions_px": [model_mask.width, model_mask.height],
                     "inference_image_dimensions_px": list(inference_size),
@@ -268,26 +298,47 @@ def cached_mask_artifacts_complete(raw_payload: dict[str, Any], expected_run_ide
         if not detection.get("mask_sha256") or file_sha256(resolved_mask) != detection["mask_sha256"]:
             return False
         with Image.open(resolved_mask) as mask:
-            if [mask.width, mask.height] != expected_dimensions:
+            if mask.mode != "L" or [mask.width, mask.height] != expected_dimensions:
                 return False
-    return raw_payload.get("status") != "error"
+    return raw_payload.get("status") not in FAILURE_STATUSES
 
 
-def scale_detections(detections: list[dict[str, Any]], *, scale_x: float, scale_y: float) -> list[dict[str, Any]]:
-    """Convert YOLO boxes from inference-image coordinates back to original-image coordinates."""
+def scale_detections(
+    detections: list[dict[str, Any]],
+    *,
+    scale_x: float,
+    scale_y: float,
+    source_size: tuple[int, int] | None = None,
+) -> list[dict[str, Any]]:
+    """Convert YOLO boxes to source coordinates and clip them to the source raster."""
     scaled: list[dict[str, Any]] = []
     for detection in detections:
         item = dict(detection)
         bbox_xyxy = detection.get("bbox_xyxy") or []
         bbox_xywh = detection.get("bbox_xywh") or []
         if len(bbox_xyxy) == 4:
-            item["bbox_xyxy"] = [
-                round(float(bbox_xyxy[0]) * scale_x, 3),
-                round(float(bbox_xyxy[1]) * scale_y, 3),
-                round(float(bbox_xyxy[2]) * scale_x, 3),
-                round(float(bbox_xyxy[3]) * scale_y, 3),
+            x1 = float(bbox_xyxy[0]) * scale_x
+            y1 = float(bbox_xyxy[1]) * scale_y
+            x2 = float(bbox_xyxy[2]) * scale_x
+            y2 = float(bbox_xyxy[3]) * scale_y
+            if source_size is not None:
+                width, height = source_size
+                x1 = max(0.0, min(float(width), x1))
+                y1 = max(0.0, min(float(height), y1))
+                x2 = max(0.0, min(float(width), x2))
+                y2 = max(0.0, min(float(height), y2))
+            if x2 <= x1 or y2 <= y1:
+                raise ValueError(
+                    f"Detection {detection.get('index')} has an empty bbox after source-coordinate clipping"
+                )
+            item["bbox_xyxy"] = [round(x1, 3), round(y1, 3), round(x2, 3), round(y2, 3)]
+            item["bbox_xywh"] = [
+                round((x1 + x2) / 2.0, 3),
+                round((y1 + y2) / 2.0, 3),
+                round(x2 - x1, 3),
+                round(y2 - y1, 3),
             ]
-        if len(bbox_xywh) == 4:
+        elif len(bbox_xywh) == 4:
             item["bbox_xywh"] = [
                 round(float(bbox_xywh[0]) * scale_x, 3),
                 round(float(bbox_xywh[1]) * scale_y, 3),
@@ -372,7 +423,15 @@ def prepare_inference_source(image_path: Path, max_side: int = 2048) -> tuple[Pa
     }, temp_path
 
 
-def result_from_raw(sample: dict[str, Any], raw_payload: dict[str, Any], raw_path: Path, overlay_path: Path) -> dict[str, Any]:
+def result_from_raw(
+    sample: dict[str, Any],
+    raw_payload: dict[str, Any],
+    raw_path: Path,
+    overlay_path: Path,
+    *,
+    artifact_disposition: str | None = None,
+    execution_duration_seconds: float | None = None,
+) -> dict[str, Any]:
     detections = raw_payload.get("detections", [])
     detected_labels = sorted({item.get("label", "unknown") for item in detections})
     confidences = [float(item.get("confidence")) for item in detections if item.get("confidence") is not None]
@@ -385,15 +444,27 @@ def result_from_raw(sample: dict[str, Any], raw_payload: dict[str, Any], raw_pat
         "sample_kind": sample["sample_kind"],
         "category": sample.get("category"),
         "source": sample.get("source"),
+        "repository": sample.get("repository"),
         "source_url": sample.get("source_url"),
         "local_path": sample["local_path"],
+        "source_sha256": sample.get("source_sha256"),
+        "source_dimensions_px": sample.get("source_dimensions_px"),
         "db_image_asset_id": sample.get("db_image_asset_id"),
         "db_fragment_id": sample.get("db_fragment_id"),
         "db_canvas_id": sample.get("db_canvas_id"),
+        "db_manuscript_id": sample.get("db_manuscript_id"),
+        "db_repository_id": sample.get("db_repository_id"),
         "manuscript_id": sample.get("manuscript_id"),
+        "canvas_identifier": sample.get("canvas_identifier"),
+        "canvas_label": sample.get("canvas_label"),
+        "sequence_index": sample.get("sequence_index"),
         "dataset_split": sample.get("dataset_split"),
         "run_identity_sha256": provenance.get("run_identity_sha256"),
         "status": status,
+        "artifact_disposition": artifact_disposition,
+        "execution_duration_seconds": (
+            round(execution_duration_seconds, 6) if execution_duration_seconds is not None else None
+        ),
         "raw_output_path": rel(raw_path),
         "overlay_path": rel(overlay_path),
         "detected_region_count": len(detections),
@@ -401,6 +472,9 @@ def result_from_raw(sample: dict[str, Any], raw_payload: dict[str, Any], raw_pat
         "mask_geometry_available": bool(detections) and all(bool(item.get("mask_path")) for item in detections),
         "detected_labels": detected_labels,
         "confidence_summary": confidence_summary(confidences),
+        "preprocessing": raw_payload.get("preprocessing"),
+        "timing": raw_payload.get("timing"),
+        "failure": raw_payload.get("failure"),
         "errors": errors,
         "warnings": warnings,
     }
@@ -431,10 +505,21 @@ def run_single_prediction(
     if not force and raw_path.exists() and overlay_path.exists():
         raw_payload = json.loads(raw_path.read_text(encoding="utf-8"))
         if cached_mask_artifacts_complete(raw_payload, run_provenance["run_identity_sha256"]):
-            return result_from_raw(sample, raw_payload, raw_path, overlay_path)
+            return result_from_raw(
+                sample,
+                raw_payload,
+                raw_path,
+                overlay_path,
+                artifact_disposition="reused_checksum_verified",
+                execution_duration_seconds=0.0,
+            )
 
-    inference_source, preprocessing, temp_path = prepare_inference_source(image_path)
+    preprocessing: dict[str, Any] = {"status": "not_started"}
+    temp_path: Path | None = None
+    page_started_at = datetime.now(timezone.utc).isoformat()
+    page_wall_started = time.perf_counter()
     try:
+        inference_source, preprocessing, temp_path = prepare_inference_source(image_path)
         results = model.predict(
             source=str(inference_source),
             device=device,
@@ -461,11 +546,21 @@ def run_single_prediction(
             detections,
             scale_x=preprocessing["scale_x"],
             scale_y=preprocessing["scale_y"],
+            source_size=tuple(preprocessing["original_size"]),
         )
+        wall_duration = time.perf_counter() - page_wall_started
         raw_payload = {
             "sample_id": sample["sample_id"],
             "sample_kind": sample["sample_kind"],
             "image_path": sample["local_path"],
+            "source_url": sample.get("source_url"),
+            "source_sha256": sample.get("source_sha256") or file_sha256(image_path),
+            "repository": sample.get("repository"),
+            "manuscript_id": sample.get("manuscript_id"),
+            "canvas_identifier": sample.get("canvas_identifier"),
+            "db_image_asset_id": sample.get("db_image_asset_id"),
+            "db_canvas_id": sample.get("db_canvas_id"),
+            "dataset_split": sample.get("dataset_split"),
             "orig_shape": [
                 int(preprocessing["original_size"][1]),
                 int(preprocessing["original_size"][0]),
@@ -477,6 +572,12 @@ def run_single_prediction(
             "mask_artifact_directory": rel(mask_dir / sample["sample_id"]),
             "mask_coordinate_space": "original_source_image",
             "segmentation_provenance": run_provenance,
+            "timing": {
+                "started_at": page_started_at,
+                "completed_at": datetime.now(timezone.utc).isoformat(),
+                "wall_duration_seconds": round(wall_duration, 6),
+                "model_speed_ms": result.speed,
+            },
             "status": "success",
             "errors": [],
             "warnings": [],
@@ -491,7 +592,18 @@ def run_single_prediction(
             raw_payload["warnings"] = warnings
             raw_path.write_text(json.dumps(raw_payload, indent=2), encoding="utf-8")
 
-        return result_from_raw(sample, raw_payload, raw_path, overlay_path)
+        return result_from_raw(
+            sample,
+            raw_payload,
+            raw_path,
+            overlay_path,
+            artifact_disposition="generated",
+            execution_duration_seconds=wall_duration,
+        )
+    except Exception as exc:  # noqa: BLE001
+        if isinstance(exc, PageSegmentationError):
+            raise
+        raise PageSegmentationError(exc, preprocessing) from exc
     finally:
         if temp_path and temp_path.exists():
             temp_path.unlink(missing_ok=True)
@@ -506,12 +618,34 @@ def build_error_result(
     image_path = ROOT / sample["local_path"]
     raw_path = output_dir / "raw" / f"{sample['sample_id']}.json"
     overlay_path = output_dir / "overlays" / f"{sample['sample_id']}_overlay.jpg"
-    error_message = f"{type(error).__name__}: {error}"
+    error_type = getattr(error, "error_type", type(error).__name__)
+    error_message_text = str(error)
+    error_message = f"{error_type}: {error_message_text}"
+    preprocessing = getattr(error, "preprocessing", {"status": "not_available"})
+    retry_appropriate = error_type not in {"FileNotFoundError", "UnidentifiedImageError"}
     raw_payload = {
         "sample_id": sample["sample_id"],
         "sample_kind": sample["sample_kind"],
         "image_path": sample["local_path"],
-        "status": "error",
+        "source_url": sample.get("source_url"),
+        "source_sha256": sample.get("source_sha256"),
+        "repository": sample.get("repository"),
+        "manuscript_id": sample.get("manuscript_id"),
+        "canvas_identifier": sample.get("canvas_identifier"),
+        "db_image_asset_id": sample.get("db_image_asset_id"),
+        "db_canvas_id": sample.get("db_canvas_id"),
+        "dataset_split": sample.get("dataset_split"),
+        "preprocessing": preprocessing,
+        "status": "failure",
+        "failure": {
+            "sample_id": sample["sample_id"],
+            "manuscript_id": sample.get("manuscript_id"),
+            "source_asset_id": sample.get("db_image_asset_id"),
+            "error_type": error_type,
+            "error_message": error_message_text,
+            "preprocessing_state": preprocessing,
+            "retry_appropriate": retry_appropriate,
+        },
         "errors": [error_message],
         "warnings": ["Segmentation inference failed for this sample."],
         "segmentation_provenance": {
@@ -522,8 +656,21 @@ def build_error_result(
     }
     raw_path.parent.mkdir(parents=True, exist_ok=True)
     raw_path.write_text(json.dumps(raw_payload, indent=2), encoding="utf-8")
-    render_failure_overlay(image_path, overlay_path, "Segmentation failed")
-    return result_from_raw(sample, raw_payload, raw_path, overlay_path)
+    if image_path.is_file():
+        try:
+            render_failure_overlay(image_path, overlay_path, "Segmentation failed")
+        except Exception as overlay_error:  # noqa: BLE001
+            raw_payload["warnings"].append(
+                f"Failure overlay could not be rendered: {type(overlay_error).__name__}: {overlay_error}"
+            )
+            raw_path.write_text(json.dumps(raw_payload, indent=2), encoding="utf-8")
+    return result_from_raw(
+        sample,
+        raw_payload,
+        raw_path,
+        overlay_path,
+        artifact_disposition="failed",
+    )
 
 
 def run_sample_subprocess(
@@ -537,6 +684,21 @@ def run_sample_subprocess(
     force: bool,
     run_identity: dict[str, Any],
 ) -> dict[str, Any]:
+    execution_started = time.perf_counter()
+    raw_path = output_dir / "raw" / f"{sample['sample_id']}.json"
+    overlay_path = output_dir / "overlays" / f"{sample['sample_id']}_overlay.jpg"
+    if not force and raw_path.exists() and overlay_path.exists():
+        raw_payload = json.loads(raw_path.read_text(encoding="utf-8"))
+        if cached_mask_artifacts_complete(raw_payload, run_identity["run_identity_sha256"]):
+            return result_from_raw(
+                sample,
+                raw_payload,
+                raw_path,
+                overlay_path,
+                artifact_disposition="reused_checksum_verified",
+                execution_duration_seconds=time.perf_counter() - execution_started,
+            )
+
     env = os.environ.copy()
     env.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
     command = [
@@ -560,8 +722,6 @@ def run_sample_subprocess(
     if force:
         command.append("--force")
     completed = subprocess.run(command, cwd=ROOT, env=env, capture_output=True, text=True)
-    raw_path = output_dir / "raw" / f"{sample['sample_id']}.json"
-    overlay_path = output_dir / "overlays" / f"{sample['sample_id']}_overlay.jpg"
     if completed.returncode != 0:
         stderr = completed.stderr.strip()
         stdout = completed.stdout.strip()
@@ -570,7 +730,15 @@ def run_sample_subprocess(
     if not raw_path.exists() or not overlay_path.exists():
         raise RuntimeError(f"subprocess completed but outputs are missing for {sample['sample_id']}")
     raw_payload = json.loads(raw_path.read_text(encoding="utf-8"))
-    return result_from_raw(sample, raw_payload, raw_path, overlay_path)
+    disposition = "failed" if raw_payload.get("status") in FAILURE_STATUSES else "generated"
+    return result_from_raw(
+        sample,
+        raw_payload,
+        raw_path,
+        overlay_path,
+        artifact_disposition=disposition,
+        execution_duration_seconds=time.perf_counter() - execution_started,
+    )
 
 
 def main() -> int:
@@ -620,16 +788,19 @@ def main() -> int:
             "run_identity_sha256": identity["run_identity_sha256"],
             "run_identity_descriptor": identity["descriptor"],
         }
-        run_single_prediction(
-            model,
-            sample,
-            output_dir,
-            args.device,
-            args.conf,
-            args.imgsz,
-            force=args.force,
-            run_provenance=run_provenance,
-        )
+        try:
+            run_single_prediction(
+                model,
+                sample,
+                output_dir,
+                args.device,
+                args.conf,
+                args.imgsz,
+                force=args.force,
+                run_provenance=run_provenance,
+            )
+        except Exception as exc:  # noqa: BLE001
+            build_error_result(sample, output_dir, exc, identity)
         return 0
 
     YOLO, ultralytics, torch = require_ultralytics()
@@ -662,6 +833,8 @@ def main() -> int:
     (output_dir / "masks").mkdir(parents=True, exist_ok=True)
     (output_dir / "logs").mkdir(parents=True, exist_ok=True)
 
+    execution_started_at = datetime.now(timezone.utc).isoformat()
+    execution_wall_started = time.perf_counter()
     refreshed_results: dict[str, dict[str, Any]] = {}
     for sample in selected_inputs:
         try:
@@ -701,6 +874,14 @@ def main() -> int:
         else:
             raise RuntimeError(f"No refreshed or existing pilot result available for {sample_id}")
 
+    execution_wall_duration = time.perf_counter() - execution_wall_started
+    preprocessing_counts = Counter(
+        str((result.get("preprocessing") or {}).get("strategy", "unavailable"))
+        for result in results
+    )
+    disposition_counts = Counter(str(result.get("artifact_disposition") or "unknown") for result in results)
+    child_usage = resource.getrusage(resource.RUSAGE_CHILDREN)
+    rss_multiplier = 1 if sys.platform == "darwin" else 1024
     run_payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "pilot_run_id": payload["pilot_run_id"],
@@ -724,24 +905,58 @@ def main() -> int:
             "torch_version": str(torch.__version__),
             "ultralytics_version": str(ultralytics.__version__),
         },
+        "performance": {
+            "execution_started_at": execution_started_at,
+            "execution_completed_at": datetime.now(timezone.utc).isoformat(),
+            "total_wall_duration_seconds": round(execution_wall_duration, 6),
+            "mean_wall_time_per_selected_page_seconds": round(
+                execution_wall_duration / len(selected_inputs), 6
+            ),
+            "requested_device": args.device,
+            "host_machine": platform.machine(),
+            "processor": platform.processor() or None,
+            "torch_cuda_available": bool(torch.cuda.is_available()),
+            "torch_mps_available": bool(
+                hasattr(torch.backends, "mps") and torch.backends.mps.is_available()
+            ),
+            "artifact_disposition_counts": dict(sorted(disposition_counts.items())),
+            "inference_executed_page_count": disposition_counts.get("generated", 0),
+            "artifact_reused_page_count": disposition_counts.get("reused_checksum_verified", 0),
+            "failed_page_count": disposition_counts.get("failed", 0),
+            "preprocessing_strategy_counts": dict(sorted(preprocessing_counts.items())),
+            "downscaled_page_count": preprocessing_counts.get("downscaled_temp_copy", 0),
+            "observed_child_process_max_rss_bytes": int(child_usage.ru_maxrss * rss_multiplier),
+            "memory_observation_method": "getrusage_RUSAGE_CHILDREN_ru_maxrss",
+        },
         "results": results,
     }
-    write_yaml(results_path, run_payload)
-    write_text(
-        output_dir / "logs" / "segmentation_pilot.log",
-        "\n".join(
-            [
-                f"generated_at={run_payload['generated_at']}",
-                f"pilot_run_id={run_payload['pilot_run_id']}",
-                f"model_id={run_payload['model_id']}",
-                f"device={run_payload['device']}",
-                f"confidence_threshold={run_payload['confidence_threshold']}",
-                f"imgsz={run_payload['imgsz']}",
-                f"ultralytics_version={run_payload['environment']['ultralytics_version']}",
-                f"torch_version={run_payload['environment']['torch_version']}",
-            ]
-        ),
-    )
+    preserve_existing_manifest = False
+    if results_path.is_file() and not args.force and disposition_counts == {"reused_checksum_verified": len(results)}:
+        existing_payload = load_yaml(results_path)
+        existing_ids = [item.get("sample_id") for item in existing_payload.get("results", [])]
+        current_ids = [item.get("sample_id") for item in results]
+        preserve_existing_manifest = (
+            existing_payload.get("run_identity_sha256") == run_identity["run_identity_sha256"]
+            and existing_ids == current_ids
+        )
+    if not preserve_existing_manifest:
+        write_yaml(results_path, run_payload)
+        write_text(
+            output_dir / "logs" / "segmentation_pilot.log",
+            "\n".join(
+                [
+                    f"generated_at={run_payload['generated_at']}",
+                    f"pilot_run_id={run_payload['pilot_run_id']}",
+                    f"model_id={run_payload['model_id']}",
+                    f"device={run_payload['device']}",
+                    f"confidence_threshold={run_payload['confidence_threshold']}",
+                    f"imgsz={run_payload['imgsz']}",
+                    f"total_wall_duration_seconds={run_payload['performance']['total_wall_duration_seconds']}",
+                    f"ultralytics_version={run_payload['environment']['ultralytics_version']}",
+                    f"torch_version={run_payload['environment']['torch_version']}",
+                ]
+            ),
+        )
     print(f"Pilot segmentation completed for {len(results)} inputs.")
     print(f"Model: {run_payload['model_id']} ({run_payload['model_path']})")
     print(f"Device: {run_payload['device']} | conf={args.conf} | imgsz={args.imgsz}")
@@ -751,6 +966,8 @@ def main() -> int:
         print(f"  raw={result['raw_output_path']}")
         print(f"  overlay={result['overlay_path']}")
     print(f"Wrote {rel(results_path)}")
+    if preserve_existing_manifest:
+        print("Unchanged checksum-verified rerun reused every page and preserved the results manifest bytes.")
     return 0
 
 

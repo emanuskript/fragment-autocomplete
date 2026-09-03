@@ -7,17 +7,16 @@
 
 ## Next recommended task
 
-Batch 01 → eManuSkript Segmentation at Expanded Scale.
+Batch 01 segmentation quality review and explicit scale-path decision.
 
-Training Corpus Expansion Batch 01 acquisition and registration has passed. The immutable Batch 01 assignment contains 15 manuscripts, with 14 active manuscripts and 70 selected pages after eight explicit manual decisions, seven Batch 01 page rejects, three deterministic same-manuscript replacements, and the suitability exclusion of `cea-FaZellweger-90A-01-2`. The selected pages remain isolated as 50/10/10 train/validation/test pages. Acquisition registered 15 manifest records and 70 image assets totaling 96,587,059 bytes; an unchanged rerun reused all 70 assets. Every Batch 01 asset remains `pending_review`, and `training_allowed` remains false for all 70.
+Training Corpus Expansion Batch 01 now passes acquisition, registration, and expanded-scale eManuSkript segmentation. Exactly 70 pages remain isolated as 50/10/10 train/validation/test and produced 70 successful page outcomes, 3,358 detected regions, and 3,358 binary source-sized masks. The unchanged inference rerun reused all 70 page outputs without artifact churn; unchanged database storage preserved 70 run rows and 3,358 region rows without duplicates or timestamp churn. Three `fmb-cb-0902` pages produced zero above-threshold detections, and one additional page from that manuscript has very low mean confidence; these are retained review signals, not corpus-selection changes. Every Batch 01 source remains `pending_review` and `training_allowed: false`.
 
 ## Acceptance criteria
 
-- Run the existing eManuSkript segmentation implementation over exactly the 70 acquired Batch 01 pages; do not introduce another ingestion or segmentation path.
-- Verify that every successful page produces source-sized masks and retains complete source-image, IIIF, model, configuration, and run provenance.
-- Record explicit failures and deterministic corpus/model/config identities, then rerun unchanged to prove output and database-storage idempotency.
-- Preserve the 11/2/2 manuscript assignment and 50/10/10 active page isolation throughout segmentation.
-- Preserve source checksums, source relationships, repository/manuscript/canvas metadata, `rights_review_status`, and `training_allowed` unchanged.
-- Keep source images and raw IIIF manifests under ignored `data/raw/`, masks and generated artifacts under ignored `outputs/`, and commit only compact provenance/statistics/validation metadata under `data/metadata/`.
-- Treat institutional GWDG/object-storage backup, retention, and quota details as an open, non-blocking operations item; do not move the validated local assets unnecessarily.
-- Do not train a model, generate Batch 01 artificial fragments, implement reconstruction or retrieval, introduce LLM agents, ingest HisFrag20, mine e-rara, or build new UI in this milestone.
+- Review overlays/masks for the three zero-detection `fmb-cb-0902` pages and the low-confidence `fmb-cb-0902` page recorded in `data/metadata/training_corpus_expansion_batch_01_segmentation_statistics.yaml`; preserve them unless an explicit later scholarly/corpus decision says otherwise.
+- Assess whether 70 newly segmented pages provide enough script/layout/repository/date diversity to begin controlled artificial-fragment work, or whether another immutable complete-page acquisition batch should move the corpus toward roughly 300–500 pages first.
+- Before any artificial-fragment milestone, obtain expert review of the damage model and keep generated ground truth separate from source evidence and model-derived segmentation evidence.
+- Before any training run, establish an explicitly reviewed source subset with `rights_review_status: approved_for_training` and `training_allowed: true`; do not infer approval from source licenses or segmentation success.
+- Continue to keep raw sources under ignored `data/raw/`, segmentation artifacts under ignored `outputs/`, and only compact provenance/statistics/validation metadata under `data/metadata/`.
+- Treat institutional GWDG/object-storage backup, retention, and quota details as an open operations item.
+- Do not automatically begin either expansion or artificial-fragment generation/model training until this decision is made.

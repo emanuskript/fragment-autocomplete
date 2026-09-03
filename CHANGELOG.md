@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Batch 01 eManuSkript segmentation specification, prepared 70-page input manifest, compact results/storage/statistics/snapshots/validation artifacts, expanded-scale report, orchestration, and validation tests.
+- Expanded segmentation validation for exact corpus/frozen-set coverage, source and rights snapshots, binary source-sized mask integrity, bbox clipping, database relationships, artifact/storage idempotency, performance, distributions, and review outliers.
 - Batch 01 acquisition/idempotency validator covering exact file membership, checksums, dimensions, IIIF/database relationships, split isolation, manual decisions, rights state, and Git ignore safety.
 - Machine-readable Batch 01 acquisition validation for 15 assigned manifests, 14 page-bearing manuscripts, and 70 registered source pages.
 - Explicit versioned page decisions, annotation-only replacement reviews, and a manuscript-suitability disposition for Training Corpus Expansion Batch 01.
@@ -42,6 +44,8 @@ All notable changes to this project will be documented in this file.
 
 ### Updated
 
+- Existing eManuSkript runner now resolves unchanged checksum-verified page artifacts before model loading, records richer source/performance/failure provenance, clips source-coordinate boxes, and preserves unchanged result manifests.
+- Existing segmentation storage now preserves matching run/region rows and timestamps, while retaining deterministic replacement only when stored logical content differs.
 - Training Corpus Builder selection now consumes explicit review decisions, records deterministic same-manuscript replacements without changing heuristics, and preserves review-artifact provenance.
 - IIIF image-asset upserts now refresh harvested source rights while preserving human-reviewed training authorization and its versioned provenance without a schema migration.
 - Storage, corpus, roadmap, and next-action documentation for the completed Batch 01 acquisition and the next expanded-scale eManuSkript segmentation milestone.

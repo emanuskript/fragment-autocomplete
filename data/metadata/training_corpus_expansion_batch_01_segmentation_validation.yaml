@@ -1,0 +1,66 @@
+validation_version: training_corpus_expansion_batch_01_segmentation_validation_v0_1
+validated_at: '2026-09-03T12:11:48+00:00'
+status: passed
+corpus_id: ecodices_training_source_expansion_batch_01_v0_1
+run_identity_sha256: 1750add1dbeab7becbf42cb40f7dde6745260b7c159eaf8d09b1a55364a9908e
+source_snapshot_sha256: 76c05be438606f4f58aeb4837fb912f7557f865d200aecf09b81405c3ed55bb7
+mask_snapshot_sha256: 10612612f91d4fb3e713b521a1dc43af281dee1b114091e2988f72b282110f6d
+coverage:
+  expected_pages: 70
+  attempted_pages: 70
+  successful_pages: 70
+  failed_pages: 0
+  extra_pages: 0
+  frozen_validation_pages_included: 0
+source_integrity:
+  source_count: 70
+  checksums_dimensions_sizes_and_mtimes_unchanged: true
+  total_source_bytes: 96587059
+mask_integrity:
+  mask_count: 3358
+  all_binary: true
+  all_source_sized: true
+  all_hashes_match: true
+  all_areas_match: true
+  all_bboxes_valid_and_clipped: true
+database_integrity:
+  segmentation_run_count: 70
+  layout_region_count: 3358
+  duplicate_logical_run_count: 0
+  orphan_layout_region_count: 0
+  relationships_resolve: true
+  mask_paths_resolve_locally: true
+split_integrity:
+  page_split_counts:
+    train: 50
+    validation: 10
+    test: 10
+  assigned_manuscript_split_counts:
+    train: 11
+    validation: 2
+    test: 2
+  page_bearing_manuscript_split_counts:
+    train: 10
+    validation: 2
+    test: 2
+  manuscript_isolation_preserved: true
+rights_integrity:
+  rights_review_status_counts:
+    pending_review: 70
+  training_allowed_true_count: 0
+  publication_demo_access_and_human_review_metadata_unchanged: true
+idempotency:
+  unchanged_inference_rerun_verified: true
+  stable_artifact_count: 3498
+  unchanged_storage_rerun_performed: true
+  stable_run_count: 70
+  stable_region_count: 3358
+  run_or_region_timestamp_churn_count: 0
+  duplicate_run_count: 0
+git_safety:
+  tracked_generated_output_count: 0
+  generated_outputs_remain_ignored: true
+statistics_path: data/metadata/training_corpus_expansion_batch_01_segmentation_statistics.yaml
+report_path: docs/18_training_corpus_expansion_batch_01_segmentation.md
+next_decision: Review results before choosing further complete-page expansion or controlled
+  artificial-fragment generation; training remains rights-blocked.

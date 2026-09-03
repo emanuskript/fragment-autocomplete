@@ -1,0 +1,157 @@
+statistics_version: training_corpus_expansion_batch_01_segmentation_statistics_v0_1
+corpus_id: ecodices_training_source_expansion_batch_01_v0_1
+run_identity_sha256: 1750add1dbeab7becbf42cb40f7dde6745260b7c159eaf8d09b1a55364a9908e
+model_id: best_emanuskript_segmentation
+model_sha256: 9f0b03cc64c830d337a01ddac6a04616a385d573e3b923a86fc4c74c16416511
+total_pages: 70
+attempted_pages: 70
+successful_pages: 70
+failed_pages: 0
+segmentation_success_rate: 1.0
+failures: []
+total_detected_regions: 3358
+mean_regions_per_page: 47.971429
+median_regions_per_page: 42.0
+minimum_regions_per_page: 0
+maximum_regions_per_page: 114
+detected_label_distribution:
+  Border: 1
+  Embellished: 9
+  Gloss: 23
+  Illustrations: 6
+  Main script black: 3096
+  Main script coloured: 7
+  Music: 56
+  Page Number: 12
+  Plain initial - Black: 39
+  Plain initial - Highlighted: 44
+  Plain initial- coloured: 36
+  Running header: 4
+  Table: 1
+  Variant script coloured: 24
+class_distribution:
+  '0': 1
+  '1': 1
+  '3': 56
+  '4': 3096
+  '5': 7
+  '7': 24
+  '11': 9
+  '12': 36
+  '13': 44
+  '14': 39
+  '15': 12
+  '17': 4
+  '19': 23
+  '20': 6
+confidence:
+  count: 3358
+  minimum: 0.250027
+  maximum: 0.983595
+  mean: 0.587399
+  median: 0.611494
+region_counts_by_manuscript:
+  bbb-AA0091: 485
+  bc-b-0067: 24
+  bc-b-0103: 100
+  bcj-A2437: 213
+  bcul-Ms0403: 282
+  bke-0056: 215
+  csg-0073: 450
+  csg-0916: 159
+  fmb-cb-0056: 198
+  fmb-cb-0902: 5
+  kba-WettF0001: 330
+  sbs-gen0020: 133
+  ubb-A-II-0013: 318
+  ubb-F-I-0021: 446
+region_counts_by_repository:
+  Aarau, Aargauer Kantonsbibliothek: 330
+  Basel, Universitätsbibliothek: 764
+  Bern, Burgerbibliothek: 485
+  Cologny, Fondation Martin Bodmer: 203
+  Engelberg, Stiftsbibliothek: 215
+  Lausanne, Bibliothèque cantonale et universitaire - Lausanne: 282
+  Porrentruy, Bibliothèque cantonale jurassienne: 213
+  Schaffhausen, Stadtbibliothek: 133
+  St. Gallen, Stiftsbibliothek: 609
+  Zürich, Braginsky Collection: 124
+region_counts_by_split:
+  test: 528
+  train: 2692
+  validation: 138
+page_coverage_by_split:
+  train:
+    attempted_pages: 50
+    successful_pages: 50
+    failed_pages: 0
+    detected_regions: 2692
+  validation:
+    attempted_pages: 10
+    successful_pages: 10
+    failed_pages: 0
+    detected_regions: 138
+  test:
+    attempted_pages: 10
+    successful_pages: 10
+    failed_pages: 0
+    detected_regions: 528
+pages_with_no_detections:
+- sample_id: 6c1543ed764a6265f96a
+  manuscript_id: fmb-cb-0902
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0902/canvas/fmb-cb-0902_008r.json
+- sample_id: 95c524bbf6593575149b
+  manuscript_id: fmb-cb-0902
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0902/canvas/fmb-cb-0902_011v.json
+- sample_id: 6538cbcb609973816c5a
+  manuscript_id: fmb-cb-0902
+  canvas_identifier: https://www.e-codices.unifr.ch/metadata/iiif/fmb-cb-0902/canvas/fmb-cb-0902_014r.json
+total_mask_count: 3358
+total_mask_artifact_bytes: 20646297
+source_image_bytes: 96587059
+segmentation_artifact_disk_usage_bytes: 122385911
+performance:
+  execution_started_at: '2026-09-03T11:52:29.070573+00:00'
+  execution_completed_at: '2026-09-03T11:57:11.466601+00:00'
+  total_wall_duration_seconds: 282.38517
+  mean_wall_time_per_selected_page_seconds: 4.034074
+  requested_device: cpu
+  host_machine: arm64
+  processor: arm
+  torch_cuda_available: false
+  torch_mps_available: false
+  artifact_disposition_counts:
+    generated: 70
+  inference_executed_page_count: 70
+  artifact_reused_page_count: 0
+  failed_page_count: 0
+  preprocessing_strategy_counts:
+    downscaled_temp_copy: 70
+  downscaled_page_count: 70
+  observed_child_process_max_rss_bytes: 3768991744
+  memory_observation_method: getrusage_RUSAGE_CHILDREN_ru_maxrss
+outliers_for_review:
+  unusually_high_region_counts: []
+  unusually_low_region_counts:
+  - sample_id: 6538cbcb609973816c5a
+    manuscript_id: fmb-cb-0902
+    region_count: 0
+  - sample_id: 6c1543ed764a6265f96a
+    manuscript_id: fmb-cb-0902
+    region_count: 0
+  - sample_id: 95c524bbf6593575149b
+    manuscript_id: fmb-cb-0902
+    region_count: 0
+  very_low_mean_confidence:
+  - sample_id: 5e6ff8c7c454a2c27b94
+    manuscript_id: fmb-cb-0902
+    region_count: 2
+    mean_confidence: 0.384884
+  unexpected_class_pages: []
+unchanged_rerun:
+  reused_pages: 70
+  regenerated_pages: 0
+  stable_artifact_count: 3498
+  stable_segmentation_run_count: 70
+  stable_layout_region_count: 3358
+  timestamp_churn_count: 0

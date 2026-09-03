@@ -41,9 +41,18 @@ class SampleContext:
     db_fragment_id: str | None
     category: str | None
     source: str | None
+    repository: str | None
     rights_review_status: str | None
+    training_allowed: bool | None
     access_level: str | None
     manuscript_id: str | None
+    db_manuscript_id: str | None
+    db_repository_id: str | None
+    canvas_identifier: str | None
+    canvas_label: str | None
+    sequence_index: int | None
+    source_sha256: str | None
+    source_dimensions_px: list[int] | None
     dataset_split: str | None
 
 
@@ -107,9 +116,18 @@ def normalize_inputs(inputs_yaml: dict[str, Any]) -> dict[str, SampleContext]:
             db_fragment_id=item.get("db_fragment_id"),
             category=item.get("category"),
             source=item.get("source"),
+            repository=item.get("repository"),
             rights_review_status=item.get("rights_review_status"),
+            training_allowed=item.get("training_allowed"),
             access_level=item.get("access_level"),
             manuscript_id=item.get("manuscript_id"),
+            db_manuscript_id=item.get("db_manuscript_id"),
+            db_repository_id=item.get("db_repository_id"),
+            canvas_identifier=item.get("canvas_identifier"),
+            canvas_label=item.get("canvas_label"),
+            sequence_index=item.get("sequence_index"),
+            source_sha256=item.get("source_sha256"),
+            source_dimensions_px=item.get("source_dimensions_px"),
             dataset_split=item.get("dataset_split"),
         )
     return contexts
@@ -123,6 +141,22 @@ def find_existing_run(
     run_identity_sha256: str | None,
 ) -> str | None:
     if run_identity_sha256:
+        # Serialize identical logical writes without a schema migration. The lock is scoped
+        # to this transaction and prevents concurrent reruns from both observing "missing".
+        lock_identity = ":".join(
+            (
+                "emanuskript-segmentation-run",
+                str(context.db_image_asset_id),
+                str(context.db_fragment_id or ""),
+                model_name,
+                run_identity_sha256,
+                context.sample_id,
+            )
+        )
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(hashtextextended(%s, 0))",
+            (lock_identity,),
+        )
         cur.execute(
             """
             SELECT id
@@ -169,6 +203,61 @@ def find_existing_run(
     return row[0] if row else None
 
 
+def existing_run_content_matches(cur: Any, run_id: str, desired: dict[str, Any]) -> bool:
+    """Compare logical run content while deliberately ignoring bookkeeping timestamps."""
+    cur.execute(
+        """
+        SELECT image_asset_id::text,
+               fragment_id::text,
+               model_name,
+               model_version,
+               model_source,
+               parameters,
+               status,
+               output_path,
+               output_format,
+               confidence_summary,
+               raw_output
+        FROM segmentation_run
+        WHERE id = %s
+        """,
+        (run_id,),
+    )
+    row = cur.fetchone()
+    if row is None:
+        return False
+    keys = (
+        "image_asset_id",
+        "fragment_id",
+        "model_name",
+        "model_version",
+        "model_source",
+        "parameters",
+        "status",
+        "output_path",
+        "output_format",
+        "confidence_summary",
+        "raw_output",
+    )
+    current = dict(zip(keys, row))
+    return to_plain_data(current) == to_plain_data(desired)
+
+
+def existing_layout_regions_match(cur: Any, segmentation_run_id: str, detections: list[dict[str, Any]]) -> bool:
+    """Return true when the persisted region set already equals the raw detections."""
+    cur.execute(
+        """
+        SELECT raw_region
+        FROM layout_region
+        WHERE segmentation_run_id = %s
+        ORDER BY reading_order_index, id
+        """,
+        (segmentation_run_id,),
+    )
+    current = [row[0] for row in cur.fetchall()]
+    return to_plain_data(current) == to_plain_data(detections)
+
+
 def upsert_segmentation_run(
     cur: Any,
     *,
@@ -179,7 +268,7 @@ def upsert_segmentation_run(
     sample_result: dict[str, Any],
     raw_prediction: dict[str, Any],
     generated_at: str,
-) -> str:
+) -> tuple[str, bool]:
     sample_status = sample_result.get("status", "success")
     # A failed sample should stay visible as failed in the database; otherwise the viewer suggests
     # the run completed normally even when no layout regions were produced.
@@ -187,6 +276,7 @@ def upsert_segmentation_run(
         "success": "completed",
         "warning": "completed",
         "error": "failed",
+        "failure": "failed",
     }.get(sample_status, "completed")
     identity_descriptor = pilot_results.get("run_identity_descriptor") or {}
     source_identity = next(
@@ -216,13 +306,24 @@ def upsert_segmentation_run(
         "db_image_asset_id": context.db_image_asset_id,
         "category": context.category,
         "source": context.source,
+        "repository": context.repository,
         "rights_review_status": context.rights_review_status,
+        "training_allowed": context.training_allowed,
         "access_level": context.access_level,
         "dataset_id": pilot_results.get("dataset_id"),
         "manuscript_id": context.manuscript_id,
+        "db_manuscript_id": context.db_manuscript_id,
+        "db_repository_id": context.db_repository_id,
+        "canvas_identifier": context.canvas_identifier,
+        "canvas_label": context.canvas_label,
+        "sequence_index": context.sequence_index,
         "dataset_split": context.dataset_split,
-        "source_sha256": source_identity.get("source_sha256"),
+        "source_sha256": source_identity.get("source_sha256") or context.source_sha256,
+        "source_dimensions_px": context.source_dimensions_px,
         "model_sha256": pilot_results.get("model_sha256"),
+        "preprocessing": sample_result.get("preprocessing"),
+        "timing": sample_result.get("timing"),
+        "failure": sample_result.get("failure"),
         "mask_geometry_available": sample_result.get("mask_geometry_available", False),
     }
     raw_output = {
@@ -238,7 +339,11 @@ def upsert_segmentation_run(
     output_format = (
         "ultralytics_segmentation_json_with_binary_masks"
         if sample_result.get("mask_geometry_available")
-        else "ultralytics_segmentation_json_legacy_bbox"
+        else (
+            "ultralytics_segmentation_failure_json"
+            if sample_status in {"error", "failure"}
+            else "ultralytics_segmentation_json_no_detections"
+        )
     )
     values = (
         context.db_image_asset_id,
@@ -255,7 +360,22 @@ def upsert_segmentation_run(
         json.dumps(sample_result.get("confidence_summary", {})),
         json.dumps(raw_output),
     )
+    desired = {
+        "image_asset_id": context.db_image_asset_id,
+        "fragment_id": context.db_fragment_id,
+        "model_name": pilot_results.get("model_id"),
+        "model_version": pilot_results.get("environment", {}).get("ultralytics_version"),
+        "model_source": pilot_results.get("model_path"),
+        "parameters": parameters,
+        "status": db_status,
+        "output_path": sample_result.get("raw_output_path"),
+        "output_format": output_format,
+        "confidence_summary": sample_result.get("confidence_summary", {}),
+        "raw_output": raw_output,
+    }
     if existing_run_id:
+        if existing_run_content_matches(cur, existing_run_id, desired):
+            return existing_run_id, False
         cur.execute(
             """
             UPDATE segmentation_run
@@ -277,7 +397,7 @@ def upsert_segmentation_run(
             """,
             values + (existing_run_id,),
         )
-        return existing_run_id
+        return existing_run_id, True
     cur.execute(
         """
         INSERT INTO segmentation_run (
@@ -301,7 +421,7 @@ def upsert_segmentation_run(
         """,
         values,
     )
-    return cur.fetchone()[0]
+    return cur.fetchone()[0], True
 
 
 def replace_layout_regions(cur: Any, segmentation_run_id: str, detections: list[dict[str, Any]]) -> int:
@@ -549,7 +669,7 @@ def main() -> int:
                     pilot_results.get("model_id"),
                     pilot_results.get("run_identity_sha256"),
                 )
-                run_id = upsert_segmentation_run(
+                run_id, run_changed = upsert_segmentation_run(
                     cur,
                     existing_run_id=existing_run_id,
                     context=context,
@@ -559,7 +679,17 @@ def main() -> int:
                     raw_prediction=raw_prediction,
                     generated_at=generated_at,
                 )
-                layout_count = replace_layout_regions(cur, run_id, detections)
+                regions_match = bool(existing_run_id) and existing_layout_regions_match(cur, run_id, detections)
+                if regions_match:
+                    layout_count = len(detections)
+                else:
+                    layout_count = replace_layout_regions(cur, run_id, detections)
+                if existing_run_id and not run_changed and regions_match:
+                    storage_action = "matched_and_reused"
+                elif existing_run_id:
+                    storage_action = "matched_and_refreshed"
+                else:
+                    storage_action = "created"
                 samples_out.append(
                     {
                         "sample_id": context.sample_id,
@@ -576,13 +706,17 @@ def main() -> int:
                         "detected_labels": sample_result.get("detected_labels", []),
                         "raw_output_path": sample_result.get("raw_output_path"),
                         "overlay_path": sample_result.get("overlay_path"),
-                        "status": "matched_and_refreshed" if existing_run_id else "created",
+                        "status": storage_action,
+                        "segmentation_run_row_changed": run_changed,
+                        "layout_region_rows_changed": not regions_match,
                         "warnings": sample_result.get("warnings", []),
                     }
                 )
                 if args.verbose:
-                    action = "updated" if existing_run_id else "created"
-                    print(f"{context.sample_id}: {action} segmentation_run {run_id} with {layout_count} layout_region rows")
+                    print(
+                        f"{context.sample_id}: {storage_action} segmentation_run {run_id} "
+                        f"with {layout_count} layout_region rows"
+                    )
             conn.commit()
 
     payload = {
