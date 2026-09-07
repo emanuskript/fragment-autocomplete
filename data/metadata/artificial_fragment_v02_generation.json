@@ -1,0 +1,2470 @@
+{
+  "specification_sha256": "5c8e936a4119eb85ba746fa2018024599bc08701812cd169dcb64441de90ddd3",
+  "task_count": 44,
+  "tasks": [
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1555,
+            2801
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_71372d61f0f6ae3177c6603b/fragment.png",
+          "sha256": "b72d96bb6b9afcc3845e0037b8ebaf6324706032ab1ed34c9174a87b90faf234"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_71372d61f0f6ae3177c6603b/metadata.json",
+          "sha256": "1734a02405165feaf6618c75d56b700de688ffcd857e10f9283f701ddca0435f"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1555,
+            2801
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_71372d61f0f6ae3177c6603b/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "303e27d8009c510a5c6c85f6d8af581ac847ae35e557f3485c4420cc9466880d"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3111
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_71372d61f0f6ae3177c6603b/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "21f254042551a175aa0bb264af19055e8ab9dd6910193f96fb91b0e29a3757a9"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3111
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_71372d61f0f6ae3177c6603b/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "a14ccb987aeca5231c248a8c80bf546ff9ea3dd777b7624f7640b14ddfb2e15b"
+        }
+      },
+      "database_id": "ef86efc3-6d36-5199-b857-69d40480cf31",
+      "identity_sha256": "7a6cec62c5db62b48c19bab8422940589897dfc48909828a07a13abf5fbe4133",
+      "manuscript_id": "ubb-F-IX-0068",
+      "mask_family": "rectangular",
+      "page_id": "425d05fd9a5871117c02",
+      "region_measurement_count": 36,
+      "severity": 0.3,
+      "task_id": "afv02_71372d61f0f6ae3177c6603b"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1163,
+            2140
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_e64cffc95f7c51adcadd835b/fragment.png",
+          "sha256": "f13413d74c0c2a20487ad5e5838baab1f5a08a4378b7727c0fe3e2e1533b7389"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_e64cffc95f7c51adcadd835b/metadata.json",
+          "sha256": "713f86035a840f331c05115b35c5741a9ee48a17c64dead07479412802a158df"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1163,
+            2140
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_e64cffc95f7c51adcadd835b/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "575e4a06366ddc35478987f6a5447a5642c48d0dd07620167cf2e3ea3720f2d4"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3111
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_e64cffc95f7c51adcadd835b/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "0e94694833a3efde1652d6f0e3f70fa9794450e57c0a2dbceb9faad569442988"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3111
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_e64cffc95f7c51adcadd835b/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "910e0308c2816d3839d4783137ce4000007c0e26f349c92b68c688e854df3c84"
+        }
+      },
+      "database_id": "106df946-a291-5bb6-a2ff-5fc339400a61",
+      "identity_sha256": "66288b53e172a9ebc2789536ded57e8ddf690e1148785fbbb19aef9563b02dee",
+      "manuscript_id": "ubb-F-IX-0068",
+      "mask_family": "rectangular",
+      "page_id": "425d05fd9a5871117c02",
+      "region_measurement_count": 36,
+      "severity": 0.6,
+      "task_id": "afv02_e64cffc95f7c51adcadd835b"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1782,
+            2770
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_03be245892c6a5942a401edb/fragment.png",
+          "sha256": "e0417ab2d5057e7c5296c8b8c9ffb0189eeca8939671084363e56051b6d2258b"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_03be245892c6a5942a401edb/metadata.json",
+          "sha256": "529e692d924ec479c9641c15fbe0b790f7aa4f5987ab2d9051b8fac17c71b979"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1782,
+            2770
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_03be245892c6a5942a401edb/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "47faa4ae5dbb086e1cd067b1559b8c4ba2e8d6565ac3fb0d63cef4210ffee80f"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3111
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_03be245892c6a5942a401edb/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "04a3916ea4df6c4f3c3ba6796436439a53294028f90e1354961ce0f3a0f77c01"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3111
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_03be245892c6a5942a401edb/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "fe3a6d9859cc12b742c3c1fb85d0a876b427d9872f8a8820d193b0a7c8d1cf9d"
+        }
+      },
+      "database_id": "c6dd57ad-3b35-5799-b7a4-289d5f55729b",
+      "identity_sha256": "8c98623817a63d0a536f1beced347832c575250400f538f7382020f144f62be3",
+      "manuscript_id": "ubb-F-IX-0068",
+      "mask_family": "irregular",
+      "page_id": "425d05fd9a5871117c02",
+      "region_measurement_count": 36,
+      "severity": 0.3,
+      "task_id": "afv02_03be245892c6a5942a401edb"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1337,
+            2067
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_16ccdd458894bb2664a8bfcc/fragment.png",
+          "sha256": "0bb35202c00a144ac2725a1f41a15808162ce686555d7070ebf0965e137536fa"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_16ccdd458894bb2664a8bfcc/metadata.json",
+          "sha256": "04be158777b2c4b8f903e24c3cbb37e869765d6061f11ae67712ae439240514f"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1337,
+            2067
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_16ccdd458894bb2664a8bfcc/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "3589f5624fcfcbb7fd64e7cef5bedd93c12c86464f5559f64ae9d69d2e1cac40"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3111
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_16ccdd458894bb2664a8bfcc/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "238c67bad000f1a6d67d19a928eb62bf539147ef9223884bfcca7087b7286e6b"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3111
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_16ccdd458894bb2664a8bfcc/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "48f5d46ada045eb63aa064ef5c431937286354340c7b81aa41ff6a72f08cc8f7"
+        }
+      },
+      "database_id": "2f7a1540-4be8-5542-9daf-3c8d85ca2c8d",
+      "identity_sha256": "30bd402a74b12a07e448d6419373a32cb99a5a0f4212534397cacfb8c54d2a72",
+      "manuscript_id": "ubb-F-IX-0068",
+      "mask_family": "irregular",
+      "page_id": "425d05fd9a5871117c02",
+      "region_measurement_count": 36,
+      "severity": 0.6,
+      "task_id": "afv02_16ccdd458894bb2664a8bfcc"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1707,
+            2187
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_417c2e04cfc822dc5b1a555e/fragment.png",
+          "sha256": "09c2c8b2c1e26c3f1ea6949d6912feeada775cda7d808e77470a12725b19ba93"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_417c2e04cfc822dc5b1a555e/metadata.json",
+          "sha256": "c9fdf157d019680241574c05ed3d941c1819a7643916d1eb9df9f11a89a14f42"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1707,
+            2187
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_417c2e04cfc822dc5b1a555e/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "0177bcecf11ac737ae08cc3eab22320c04b2ad1833934cd53f81a36896a7722b"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_417c2e04cfc822dc5b1a555e/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "04090e802dcbb65f6b1b5d4002ae4b6e5df3cad51dc00e7440047e61804a2f2d"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_417c2e04cfc822dc5b1a555e/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "d4c300a4b39a9871352e81f6bacabd5203587bd7e6d447d438107824dd41c5a0"
+        }
+      },
+      "database_id": "c4b8ab28-9519-5f34-b454-034dc3c46ba8",
+      "identity_sha256": "898ec721e41adcfc6dda2851eb7a705a6845f714faa1ad6a67bde7484a2d552a",
+      "manuscript_id": "sbs-gen0020",
+      "mask_family": "rectangular",
+      "page_id": "44b0f45256bf210d6896",
+      "region_measurement_count": 32,
+      "severity": 0.3,
+      "task_id": "afv02_417c2e04cfc822dc5b1a555e"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1329,
+            1605
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8c632e409dca77a40f80f721/fragment.png",
+          "sha256": "38118fa2f049e7b28865118c2865b9e925be27ed9aa128130a30a82cd566e03f"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8c632e409dca77a40f80f721/metadata.json",
+          "sha256": "e0782b4c0637174816c3cfdbbd1a85f5ab7ed58a7723152e438ab1b46b43d79c"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1329,
+            1605
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8c632e409dca77a40f80f721/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "45cec855466d14c201affaf4415715c84e34b7dd05ec8de705fda38dcc6cc2cd"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8c632e409dca77a40f80f721/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "5c667799ca526005cb98eb8f95a26bdcc17dc342b5048aa730b227d59c55ed7d"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8c632e409dca77a40f80f721/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "9a15ff719babf3832760fa16f0f92408eae0ed239bc2c745e72c1ef0e3688175"
+        }
+      },
+      "database_id": "8eb1433a-ef7b-52e5-9e95-a08f56a1903b",
+      "identity_sha256": "b8c302a82f35db127222698e577da97f2faabf70ef945602992967d0d6ef6297",
+      "manuscript_id": "sbs-gen0020",
+      "mask_family": "rectangular",
+      "page_id": "44b0f45256bf210d6896",
+      "region_measurement_count": 32,
+      "severity": 0.6,
+      "task_id": "afv02_8c632e409dca77a40f80f721"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1758,
+            2341
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_25819d720257329a4a93fc91/fragment.png",
+          "sha256": "c75c932e011e0e6c5a576a623e433a5aefd9ede03211c82f32ce3f946f1d2603"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_25819d720257329a4a93fc91/metadata.json",
+          "sha256": "e12ac2e50e9907cd4ec720c79a101f3b6dc101eb2fe17e628fac16a2c027be8f"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1758,
+            2341
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_25819d720257329a4a93fc91/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "1f37426c917ad2ff4fdcffc8bc382c508d1257bb198b401825dbdf5025185d4a"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_25819d720257329a4a93fc91/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "37ec02ea2a22971c2019cb738b40102b95887a7810037c961e207998e855223b"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_25819d720257329a4a93fc91/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "90a474f6b96d99c3885d11cb14d1d7606cf185ed58091490fb3fcec97223753f"
+        }
+      },
+      "database_id": "37af5376-dc01-505f-826d-05932b22cafd",
+      "identity_sha256": "507a59a639a6be4d63af8086c20896a199cacc7158294b0d19254ff9a3ae8336",
+      "manuscript_id": "sbs-gen0020",
+      "mask_family": "irregular",
+      "page_id": "44b0f45256bf210d6896",
+      "region_measurement_count": 32,
+      "severity": 0.3,
+      "task_id": "afv02_25819d720257329a4a93fc91"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1339,
+            1768
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_cb302d9c856bcd8a0fe7ff37/fragment.png",
+          "sha256": "ee57618452ec1b56ed90e91662879a9aa804d6948c81b8fa463794bd36500c9f"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_cb302d9c856bcd8a0fe7ff37/metadata.json",
+          "sha256": "87cfbd84611853160fdab4433a3b73682429620aa4541f206e32e7ecba898983"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1339,
+            1768
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_cb302d9c856bcd8a0fe7ff37/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "1aec779cb6ca426838b4c5051ad27f89a9b846b6658a2169adedcf9daf113d81"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_cb302d9c856bcd8a0fe7ff37/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "d71afc6cb00ca6747861e5bb2c5672b0e915a87b01a937e526a20703d26b5945"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_cb302d9c856bcd8a0fe7ff37/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "59385ed92ac4730c62e6f604c55cc434a43aa534bc8f3c237f243a50e6bdf7c8"
+        }
+      },
+      "database_id": "6708a5b0-8c95-5c89-9860-c59296eabb40",
+      "identity_sha256": "db8f2f16f88181eb2ef94704bbd91664ca142913d3987ecf2e6181b1fbb027aa",
+      "manuscript_id": "sbs-gen0020",
+      "mask_family": "irregular",
+      "page_id": "44b0f45256bf210d6896",
+      "region_measurement_count": 32,
+      "severity": 0.6,
+      "task_id": "afv02_cb302d9c856bcd8a0fe7ff37"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1588,
+            2351
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8bae66387a4b35399452e442/fragment.png",
+          "sha256": "df8c380415013bf9e79a2459244e2194ccce9d6c40ac783c429f6276f8bfdbcd"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8bae66387a4b35399452e442/metadata.json",
+          "sha256": "0a43bc26319b6a9b13e8c1cbe249bfe6dfc038ec5dc1c16af12498ad6acf52ed"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1588,
+            2351
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8bae66387a4b35399452e442/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "60d8e5536a584f48121ea168289545f47d08726c166a409c5ac3ff6b8b43dffe"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8bae66387a4b35399452e442/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "7e457c130c50ad38ba2e19c2c4b47d6ae9ff85fee5eaff8cce3b650ae9a1b8d8"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8bae66387a4b35399452e442/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "60a4975bd95640799dda0695b699387e757faabd3c3c8c2bee9786371b317ad6"
+        }
+      },
+      "database_id": "9c3724b5-2c4e-5ae1-a0ae-3f3dc1637d44",
+      "identity_sha256": "8ceafad125eaede64326452650e7b04718c6565f17eff9033691f6b5da6f162c",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "rectangular",
+      "page_id": "5e6ff8c7c454a2c27b94",
+      "region_measurement_count": 2,
+      "severity": 0.3,
+      "task_id": "afv02_8bae66387a4b35399452e442"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1209,
+            1765
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_be0d50393b185474bf4bd764/fragment.png",
+          "sha256": "7781c377fd8b252664bdea0596ac381b46b1e1c4fb29912d9afa63a640f3ac93"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_be0d50393b185474bf4bd764/metadata.json",
+          "sha256": "225683d9d9679052ad800ef9ee65900b7394942fee2c1f4a1ac3374573824308"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1209,
+            1765
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_be0d50393b185474bf4bd764/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "0683ed747b4b7413116d163854db85cab61b23cf755f4864fb4b55e86b123bdc"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_be0d50393b185474bf4bd764/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "de52dffaaafe18369197b56591e2a61b526971d2a0146f7cc7309685c738378c"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_be0d50393b185474bf4bd764/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "db62bd1f539fd48321706abcf73a15653366070abf03f9c410c7d128f8ef4dbb"
+        }
+      },
+      "database_id": "40bf1ce3-b748-5681-8dfa-b34200449a52",
+      "identity_sha256": "2e5afb1838be5d068196ac2ea83284a52d3cb009c3540c760c6ab4dbf08efeba",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "rectangular",
+      "page_id": "5e6ff8c7c454a2c27b94",
+      "region_measurement_count": 2,
+      "severity": 0.6,
+      "task_id": "afv02_be0d50393b185474bf4bd764"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1740,
+            2318
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_314827b1962f1eeb6f405670/fragment.png",
+          "sha256": "32deb34655e2bda7ab9682d11751c3164bc78d742e2483b69df2ad82b87bbb5a"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_314827b1962f1eeb6f405670/metadata.json",
+          "sha256": "1d74aa841cde42ded0df5c6256a0d83e6aec0fb8d0152ad1da00721f10fef014"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1740,
+            2318
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_314827b1962f1eeb6f405670/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "b96c26a9526b1109834aa082833ec5ca3ad84f22ac6bc9dfe04aadc8a0ba933a"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_314827b1962f1eeb6f405670/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "62a3c73d0777408095736627a04fecc5993be46a24ef23ad9189e31690735e1e"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_314827b1962f1eeb6f405670/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "9d2902897c9874dc8f6b59ed9d9805085d6d997d3ffaab6b20761685e1e38c36"
+        }
+      },
+      "database_id": "5436d5ba-097c-5406-a3d4-e598c6852231",
+      "identity_sha256": "30e9d60c9a0a06eb6816d6725eb4c248967dd9057eaa59a1f92a2fc9cc6aadf0",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "irregular",
+      "page_id": "5e6ff8c7c454a2c27b94",
+      "region_measurement_count": 2,
+      "severity": 0.3,
+      "task_id": "afv02_314827b1962f1eeb6f405670"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1325,
+            1725
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_c411e7380a607f4d0fc6560c/fragment.png",
+          "sha256": "355bda2f929d50f1d797f4317df9b1525de1e49da7a3385aa8c3dcfebbbf7e5b"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_c411e7380a607f4d0fc6560c/metadata.json",
+          "sha256": "129e41e343cd592472014fbad75c659b245fd8033e7712dacb0bf3b1c2824a82"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1325,
+            1725
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_c411e7380a607f4d0fc6560c/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "1d457e9c08bbe530ccba4deaf0f8ec720fa4f339a386176dc656cd24ef995828"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_c411e7380a607f4d0fc6560c/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "4cc5226f5ce68c11455dc12236c58786ea7ef40944921700a775c8242061ef06"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_c411e7380a607f4d0fc6560c/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "04b77c600c554e5c56e4745e62a8ef52e3759d8cf05c5b98551106986c1fca47"
+        }
+      },
+      "database_id": "e95af05c-d8e4-5869-aa3a-22599b6f2d11",
+      "identity_sha256": "1324ac7d7ab7a7852545ea4e7030e91ce32b3cc2526b9c31a7ef77562ede368a",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "irregular",
+      "page_id": "5e6ff8c7c454a2c27b94",
+      "region_measurement_count": 2,
+      "severity": 0.6,
+      "task_id": "afv02_c411e7380a607f4d0fc6560c"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1705,
+            2190
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_38b263aebe35d95c600b4169/fragment.png",
+          "sha256": "2f648952bde3eb64facc431f67ad9661b75fabcde2ad97b21ad95056f00a269c"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_38b263aebe35d95c600b4169/metadata.json",
+          "sha256": "988447173cff82d7f0c6ad3677007c37b45bcdf860bfc2044fd255e3cfda4f62"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1705,
+            2190
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_38b263aebe35d95c600b4169/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "102b5f8426cf4d6fc31cc2432ef1411e27e9d8f496643db36fcc569390efef04"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_38b263aebe35d95c600b4169/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "5ad128bbe79bee80f8d910b30a8b93773a48db46701042b877929dacf9bb595b"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_38b263aebe35d95c600b4169/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "b5b9a3234559f16ad163941eade5f222423e97738352823b4a1630ed5d16f571"
+        }
+      },
+      "database_id": "cd4f628b-dc83-550c-b379-2f25bcb1fddb",
+      "identity_sha256": "9cb8df598d2b59a9955f0d638401aa26a210bd41ae7704921981db22b7f1a06e",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "rectangular",
+      "page_id": "6538cbcb609973816c5a",
+      "region_measurement_count": 0,
+      "severity": 0.3,
+      "task_id": "afv02_38b263aebe35d95c600b4169"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1224,
+            1743
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_2fbfd6e37123f9461cc1d525/fragment.png",
+          "sha256": "af04f07af8dea2c9cc0e50175390fb00fef67277957ea5d707c5994e0a9235cb"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_2fbfd6e37123f9461cc1d525/metadata.json",
+          "sha256": "e23c1ed0681b74eacacdd0cb0992f804beb09a9992c1cafd4cd4e63136a156c5"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1224,
+            1743
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_2fbfd6e37123f9461cc1d525/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "cfe6503c5f3d5d20b22380cf43da60581b4b376e42b3c9f364b024d5348bde30"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_2fbfd6e37123f9461cc1d525/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "714c602701c1f04b858f6bcd2d1d9ed114cf33bf93a78be015bb53a93ededbe7"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_2fbfd6e37123f9461cc1d525/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "6f0cc48dea76e6a6c5bd9c73322f9b2818129f2f43d3195c68be8fe4ebfac639"
+        }
+      },
+      "database_id": "c34e5c57-9de7-5016-b8b5-02296bed83b2",
+      "identity_sha256": "ee979ea21cc28f27c3ca1541ee7a6283a7d10a5204d8e657539e23cd522147d7",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "rectangular",
+      "page_id": "6538cbcb609973816c5a",
+      "region_measurement_count": 0,
+      "severity": 0.6,
+      "task_id": "afv02_2fbfd6e37123f9461cc1d525"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1766,
+            2330
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_6c11af7a686f73304e170c56/fragment.png",
+          "sha256": "3d6a5accc5b47e2f841cb307edcd954f2be0eeb83efd8b7da4343a5d81d97399"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_6c11af7a686f73304e170c56/metadata.json",
+          "sha256": "6bfddbdbc8f86ba44119175564d3aa89782a086d6739dc33dc723613b19dd3fd"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1766,
+            2330
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_6c11af7a686f73304e170c56/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "0dfa81c2a14a2478e5ea94ac123164658e9fb44d14853e5a102e08085bd47eff"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_6c11af7a686f73304e170c56/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "125825604a594acda5c795751596c58fe909aeb13b79d74a553cdef82fe31d11"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_6c11af7a686f73304e170c56/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "f9b5bf13d4bbe99bcdb9ca9294a3a176b34fbb5f1a1a6863cb6f73cbb9592985"
+        }
+      },
+      "database_id": "6e7c2104-179d-5a96-b703-8157391825b4",
+      "identity_sha256": "d183c057e479a9774f497149de78a81842b9b2f8774d6ef809c8f885fe647ade",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "irregular",
+      "page_id": "6538cbcb609973816c5a",
+      "region_measurement_count": 0,
+      "severity": 0.3,
+      "task_id": "afv02_6c11af7a686f73304e170c56"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1343,
+            1780
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8851d08a8d5b971f13fb33c5/fragment.png",
+          "sha256": "5207966be6be44b0e6d3ec1564ff7a15df816aef91ff79602d9959b29e7b86fa"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8851d08a8d5b971f13fb33c5/metadata.json",
+          "sha256": "c8dafacd0a36f20bbf9263bff52e20aa0eb7c17cd1c351ed22720c3629cdd0f2"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1343,
+            1780
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8851d08a8d5b971f13fb33c5/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "0e5894e6e93c38699ff72cb69c0f346b8ffce4d1a37f685bc42888d33bd394f2"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8851d08a8d5b971f13fb33c5/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "5bae0b8857ed7620a10cc1ce5a7c34a4593481dd8b886d1818790f884f893443"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8851d08a8d5b971f13fb33c5/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "23cf3f6e9f17fa7802af1dbe1f971771726fcc98d40d06ae0a43bab0b36ab172"
+        }
+      },
+      "database_id": "49e8fb00-3378-54bb-a777-22490cf9ebf0",
+      "identity_sha256": "580bcc6bc45cd6be7b6b2786fd57209fd8fac7ba4e6400782e78b7fa280c8ef9",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "irregular",
+      "page_id": "6538cbcb609973816c5a",
+      "region_measurement_count": 0,
+      "severity": 0.6,
+      "task_id": "afv02_8851d08a8d5b971f13fb33c5"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1596,
+            2339
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_723a37800217c460f884d542/fragment.png",
+          "sha256": "a4d1767358fd38570b7cbe95fc403f41851b614c9202e862a707b81b61d3e0c8"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_723a37800217c460f884d542/metadata.json",
+          "sha256": "c70e8733ee78fb39e0050a358f0ff88acf457014d11a5ed69874025ae9c99616"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1596,
+            2339
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_723a37800217c460f884d542/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "143e6399316d79f1f50e8cdbc28487960ec78fb622485732a50e286d80d85dcd"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_723a37800217c460f884d542/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "124a6e9a6413dd09422d31bc97d57edd2c9f1096d06bd0ab38270edbe2dbb3b4"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_723a37800217c460f884d542/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "d9245382edcc2b55d80ceaab8205be776269ee48d7700b2e351561f684b15cb4"
+        }
+      },
+      "database_id": "2f68dbbd-07a3-5a78-a734-f8becf1a36d2",
+      "identity_sha256": "a767101d93f0da4c45e80322d24b54324ea1377879bc853134031144d8bea6e2",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "rectangular",
+      "page_id": "6c1543ed764a6265f96a",
+      "region_measurement_count": 0,
+      "severity": 0.3,
+      "task_id": "afv02_723a37800217c460f884d542"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1188,
+            1796
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_d35437ad4e76ed299b251c0a/fragment.png",
+          "sha256": "6133b3f2e192f130d92c5d4970bf4f7f7d95b933155180b58e7ce920610ea509"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_d35437ad4e76ed299b251c0a/metadata.json",
+          "sha256": "2b3ca5a727d3e0ff60d56603aac1a41b4de3bf6357fc514cfce7f1f6145cd34d"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1188,
+            1796
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_d35437ad4e76ed299b251c0a/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "fc13c73e2afdbc8d3bac8a1afef085509a4e911b7c479e25bc61bbc098b60fb2"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_d35437ad4e76ed299b251c0a/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "66227b4e9727d29717ad7e2a3daaea2e911459c83b2b260de64b710c89a55fb3"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_d35437ad4e76ed299b251c0a/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "1352c390b14a04372bb010964673b8b4bf515e2e277283dd86afc11fe1e80092"
+        }
+      },
+      "database_id": "84c3e178-5d39-50dc-8b85-b643c81adad6",
+      "identity_sha256": "6e23207494b8e35bf14b01d28ca1115ef29556b050f6a1e869fc81d44c38f4c1",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "rectangular",
+      "page_id": "6c1543ed764a6265f96a",
+      "region_measurement_count": 0,
+      "severity": 0.6,
+      "task_id": "afv02_d35437ad4e76ed299b251c0a"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1756,
+            2339
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_a814176bb5a20c594aab6a32/fragment.png",
+          "sha256": "205c2fa63209c14d5ed3dc540b6b990f829862846991009e16a83fc0fbf339be"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_a814176bb5a20c594aab6a32/metadata.json",
+          "sha256": "1eaa2bd80c364f4a32dee55ca66f5a84b147ac16d9e54b2f783b3a4b178d1ab3"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1756,
+            2339
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_a814176bb5a20c594aab6a32/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "e1b81d19781b04c5032db704743aeaaa7d915c256392a2b5c33a012e99c4cfa8"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_a814176bb5a20c594aab6a32/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "697c398f1b3c1cf559220e156f12d51205f7b9aa63cf0d0baab74831749f665b"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_a814176bb5a20c594aab6a32/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "16633767000f0ffcee081f196f4245072dfa79facc26d4066e77b55badf19bb4"
+        }
+      },
+      "database_id": "fb1ee092-4080-513f-89b2-0283f82b92b0",
+      "identity_sha256": "9492a7c249c875f839e0fe58d4ed1be0e83be1a6aef8fd86bedcbf449f19a4ea",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "irregular",
+      "page_id": "6c1543ed764a6265f96a",
+      "region_measurement_count": 0,
+      "severity": 0.3,
+      "task_id": "afv02_a814176bb5a20c594aab6a32"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1339,
+            1784
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_d9a440894055a35394640fd8/fragment.png",
+          "sha256": "4df2c8c9afd95104147ddd2375d27a0d09643d62136483d0eda68d4811004cd3"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_d9a440894055a35394640fd8/metadata.json",
+          "sha256": "0fbab97d51ef71f9b96a75b19a7ad0814e6be5f9a745fa9e63c22cc34af4ad78"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1339,
+            1784
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_d9a440894055a35394640fd8/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "30b7f928504024057d3b509da3165c7acc03fc401261bc140f02febbc68a0430"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_d9a440894055a35394640fd8/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "f83e8cce67ca7fd8470e4e536d813ed617aac21b3d13dbacbee37f62e5a9bf67"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_d9a440894055a35394640fd8/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "6c18b1da70f6f58ca3c9d6a3227bfb5591bc1deb4231b77ec7e57c210bc4b754"
+        }
+      },
+      "database_id": "f575216a-2976-5411-8436-3ea7875feb45",
+      "identity_sha256": "18dd31b61b81a4de768823a7784a39e22fed14ccff2f698dea273a416b52609d",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "irregular",
+      "page_id": "6c1543ed764a6265f96a",
+      "region_measurement_count": 0,
+      "severity": 0.6,
+      "task_id": "afv02_d9a440894055a35394640fd8"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1538,
+            2831
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_69f96a70ea5061945a5e07aa/fragment.png",
+          "sha256": "5c45bb42bf73826102ecc3eadf075eff0f8115ed37579382a81f81e92f99cf0f"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_69f96a70ea5061945a5e07aa/metadata.json",
+          "sha256": "a170481497b278ab81c9dbf0e37db783037f411f78fca4ec69538da0dc257bd9"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1538,
+            2831
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_69f96a70ea5061945a5e07aa/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "def6e5e47be7d00a79fca9266abdf332066de5d3888778e9d072e3bfd3003207"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3110
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_69f96a70ea5061945a5e07aa/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "93f7af517326d94d2e0e816f6022dd3c40dc36b67b3d9e5d19834e2cd204c67c"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3110
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_69f96a70ea5061945a5e07aa/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "10f2e80cd02aa851410634cc73eacfc086c0e80a2bc9ed1da0712d12e8877f99"
+        }
+      },
+      "database_id": "16ab50a4-5903-5595-8456-79c930b65bed",
+      "identity_sha256": "3878c363666f0e8878848160c259033641c99e709735be2a022097fbf16864ec",
+      "manuscript_id": "ubb-F-IX-0068",
+      "mask_family": "rectangular",
+      "page_id": "86236cd76a738eebc657",
+      "region_measurement_count": 28,
+      "severity": 0.3,
+      "task_id": "afv02_69f96a70ea5061945a5e07aa"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1358,
+            1833
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_89350f48c36adeeaefdcff7c/fragment.png",
+          "sha256": "c22322cc56cf1f2d677cea565b44b0ce896ec23e5ed75984dd16c848f9e8fd9f"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_89350f48c36adeeaefdcff7c/metadata.json",
+          "sha256": "2950cf206905b76a545371d2444203b1f46fae68446d45fe59020f5c30bd9ade"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1358,
+            1833
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_89350f48c36adeeaefdcff7c/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "29a0b2723c71aed94cbd4e43bc7da7b342ef5593326b8dcf605f422251c48ab8"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3110
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_89350f48c36adeeaefdcff7c/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "05b9a05e68eb306071655a90f592cbceb652e7837d9f923a0245833580948ceb"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3110
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_89350f48c36adeeaefdcff7c/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "2b5a4b15ee8c342a9eeb62b0fdac094e0971cf2ed61a3719ad10a9530ba9baaa"
+        }
+      },
+      "database_id": "85cefc15-3293-5f31-9845-0d806114c338",
+      "identity_sha256": "712195ee62be6ab506a4452cfd1efaf2ed88f6ed31a9c583c06c5d6ada0692c5",
+      "manuscript_id": "ubb-F-IX-0068",
+      "mask_family": "rectangular",
+      "page_id": "86236cd76a738eebc657",
+      "region_measurement_count": 28,
+      "severity": 0.6,
+      "task_id": "afv02_89350f48c36adeeaefdcff7c"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1762,
+            2727
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_bc61a36ca4e2f9831a52e96b/fragment.png",
+          "sha256": "3196880ba0ae4ae61efc0cc60f808e7ac6341a48fc9681d3f1d120c955e08529"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_bc61a36ca4e2f9831a52e96b/metadata.json",
+          "sha256": "d14af79d8149f3740c941d67ac774689c3c3d9126bf887358f6cabbe0bdf2ba2"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1762,
+            2727
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_bc61a36ca4e2f9831a52e96b/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "81820b5d251b7a928b06ab3dd28fa443c7fc7c403ac871c38f6231c45621e9a3"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3110
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_bc61a36ca4e2f9831a52e96b/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "2f3ebc416bc052fdf16d869bc3a9de25f344d5f838515db39c0771ea0a4f095b"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3110
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_bc61a36ca4e2f9831a52e96b/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "f944b6a221716397dd79b597c0fb512083e90b525e3bf97bc5ffb257c72c3ff9"
+        }
+      },
+      "database_id": "7138518f-e85d-532c-8652-f8efd9dfbb24",
+      "identity_sha256": "be6077dcc45cd5b9dfdd753f68af0769a9c45c01d7c7593db35121e8479a1a86",
+      "manuscript_id": "ubb-F-IX-0068",
+      "mask_family": "irregular",
+      "page_id": "86236cd76a738eebc657",
+      "region_measurement_count": 28,
+      "severity": 0.3,
+      "task_id": "afv02_bc61a36ca4e2f9831a52e96b"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1322,
+            2024
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_ae2f31cbf6b9d45e12352e5f/fragment.png",
+          "sha256": "5f2492d9645bdb2d5008ffff436f6dfa8444647e3c273f2d345a39d9b763cb52"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_ae2f31cbf6b9d45e12352e5f/metadata.json",
+          "sha256": "c7881adfab99276196f503c902f84663c52f9bb8a531e6259dfe4bce6edd10b1"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1322,
+            2024
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_ae2f31cbf6b9d45e12352e5f/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "a83963760bb410bd75d2c12e1e1b448fc6930f8cd2b8d775334b7601e9546197"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3110
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_ae2f31cbf6b9d45e12352e5f/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "52b77f191f5f5e7634c13fcea64f6c284d1083df2a46759409d4310695fb6edb"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3110
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_ae2f31cbf6b9d45e12352e5f/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "fc25e7c77e5dc668e76a2ddff336f49b1f299c9871ed8a98163ac948a146a1bf"
+        }
+      },
+      "database_id": "2d21bbf9-1816-5cf7-8867-05d8e7a8b5a1",
+      "identity_sha256": "9ea90fc6c3143022c4b8effc8f0ad904531dcfba49a8388b3ef4f44805df917c",
+      "manuscript_id": "ubb-F-IX-0068",
+      "mask_family": "irregular",
+      "page_id": "86236cd76a738eebc657",
+      "region_measurement_count": 28,
+      "severity": 0.6,
+      "task_id": "afv02_ae2f31cbf6b9d45e12352e5f"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1722,
+            2168
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_294052912eaab849fd1e56ed/fragment.png",
+          "sha256": "94939e8b829d6aedc2e165a5ba09356444296c1dad5ee280c025ce051d112a3d"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_294052912eaab849fd1e56ed/metadata.json",
+          "sha256": "1aec312e2ed1949693e1784ed09ac37fb23ddfdd88427c56497de9f7fb491a89"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1722,
+            2168
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_294052912eaab849fd1e56ed/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "326baaf35b543d63fafd1388f90785b3789064db1eb68686786d080eb26cd55f"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_294052912eaab849fd1e56ed/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "50f1e29ba729b4b25f63336a4ea0e2a1fa568140021887fb7e89d503ed5ef132"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_294052912eaab849fd1e56ed/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "d4c6ee58d95bc9f3d03d51166a8a2e55f7ef31a0bd388f4c22a99fa228a7f9bb"
+        }
+      },
+      "database_id": "f6fe47a0-77ea-5260-849b-82c9e87287f1",
+      "identity_sha256": "425c5dd3b0055c3bc721e471ea6c27ee4a7fd949608bffb2058854a862111486",
+      "manuscript_id": "sbs-gen0020",
+      "mask_family": "rectangular",
+      "page_id": "95a6f2c3d5cf0d195a1b",
+      "region_measurement_count": 30,
+      "severity": 0.3,
+      "task_id": "afv02_294052912eaab849fd1e56ed"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1319,
+            1617
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_af1f24aacd6a925e3de9cb58/fragment.png",
+          "sha256": "074a15d143528107499ddd60438e647b278537211d554cb78ed9825454644348"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_af1f24aacd6a925e3de9cb58/metadata.json",
+          "sha256": "7fcbef01bc3788a93b7a54c21851d5cafb078d8edda177bc45f4b22a6324645e"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1319,
+            1617
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_af1f24aacd6a925e3de9cb58/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "aacfa0574a200b43389759637a00f06f4568c2c9a41cefc7e96e7ed5c1a56e90"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_af1f24aacd6a925e3de9cb58/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "0cee64c3d00ebcb6e5c743c9edf2612d857a5e646d156f776dbd5695bd6c6c10"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_af1f24aacd6a925e3de9cb58/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "2f42cfa60b5513aa64dae2cb9d399de8887dd02ec907d1705e0357a43b7a1ff2"
+        }
+      },
+      "database_id": "41566d93-99ba-5f84-a7d5-812ce5e7b0d5",
+      "identity_sha256": "c6fa03bcb68a306ee9db46ab73e8387a64c2ae452d4449c9904d86a9ea2df3f0",
+      "manuscript_id": "sbs-gen0020",
+      "mask_family": "rectangular",
+      "page_id": "95a6f2c3d5cf0d195a1b",
+      "region_measurement_count": 30,
+      "severity": 0.6,
+      "task_id": "afv02_af1f24aacd6a925e3de9cb58"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1774,
+            2348
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_c54ed1523fec6afea6db74d8/fragment.png",
+          "sha256": "d09c4cd84d21ecb1a7917a2cd51654dccd33c769019a9d1bba6f32befaaa72f4"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_c54ed1523fec6afea6db74d8/metadata.json",
+          "sha256": "153c9bc5e0822ee89ce420a0f66b2f924e62cf490ec6e50687cf33038238d7fc"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1774,
+            2348
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_c54ed1523fec6afea6db74d8/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "d1a962a6b1983f044a91db9d0f471d42f7099aa4ba36b63e941d4495154e1594"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_c54ed1523fec6afea6db74d8/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "09d61bee7fdf209c17d9660a1cbb8650d670fd31af6e6e1007c41f69c9956517"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_c54ed1523fec6afea6db74d8/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "b7f7ec1d9243c091967632650d23e398d3a3682557a95fcc350c796780248ad1"
+        }
+      },
+      "database_id": "a9b80502-b4e2-5605-a442-161ec02ffed9",
+      "identity_sha256": "b87cf552e38ca146f1d5efb3527d304e921f189b554645e18a7ecf703860b21d",
+      "manuscript_id": "sbs-gen0020",
+      "mask_family": "irregular",
+      "page_id": "95a6f2c3d5cf0d195a1b",
+      "region_measurement_count": 30,
+      "severity": 0.3,
+      "task_id": "afv02_c54ed1523fec6afea6db74d8"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1316,
+            1753
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_5ccbad80c1776ab3876f04f1/fragment.png",
+          "sha256": "1960ab9bc968cb819329da382cf085cc2052f4db5460606ef0a7313f085232e3"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_5ccbad80c1776ab3876f04f1/metadata.json",
+          "sha256": "b96135a850c61947a22f19cee09269c59cc4055a71c83fef1dc79158c2c12e6f"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1316,
+            1753
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_5ccbad80c1776ab3876f04f1/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "e7b8a27418f5cd1d3f5258e588b6cd796b7f7b86307f452577e05edd15dab58c"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_5ccbad80c1776ab3876f04f1/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "f7c1791fc8f2297a21638c8f6bdc13cd6c8ac77fc73361c197cc62532a673808"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_5ccbad80c1776ab3876f04f1/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "4617592071d473689b640af24d9a40cacd40591399ea3b5b5c13161555326f75"
+        }
+      },
+      "database_id": "1a3a76e1-8086-5218-a0ff-9b2cf8193798",
+      "identity_sha256": "1ce8071176f6c61365e3fe026b9ac967ab005be620dce5f264e29f6df1a4421b",
+      "manuscript_id": "sbs-gen0020",
+      "mask_family": "irregular",
+      "page_id": "95a6f2c3d5cf0d195a1b",
+      "region_measurement_count": 30,
+      "severity": 0.6,
+      "task_id": "afv02_5ccbad80c1776ab3876f04f1"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1552,
+            2405
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_85d9766fd1decc0844d0b3d3/fragment.png",
+          "sha256": "2be8e8511883405d88f5b15f81b03c2726b1a6b750f18a4599cec4458a27da42"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_85d9766fd1decc0844d0b3d3/metadata.json",
+          "sha256": "c40d4fb98994d305517beb28c391a4b87f581d183a850515a6d9acdd81e1fc9f"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1552,
+            2405
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_85d9766fd1decc0844d0b3d3/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "dcb86ccf9ac4e22a6e9570e087b3b1d85ea5084c7de43b9ba4d9bf63abb3baa9"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_85d9766fd1decc0844d0b3d3/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "f2815b085fabf31cb070028bcf5cd95929f536f74b7a2f692d1cdfc6d3dacb16"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_85d9766fd1decc0844d0b3d3/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "c2f9e28f0a76abfbdb43f9cfd61f2fe7f507b998362aded9812701eea005574c"
+        }
+      },
+      "database_id": "7df81234-cf17-5d6e-ab70-702fe81c2c54",
+      "identity_sha256": "1f7fa6df5962dbd08181b242e96602dac270c62d114dc609058379a42d01eab4",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "rectangular",
+      "page_id": "95c524bbf6593575149b",
+      "region_measurement_count": 0,
+      "severity": 0.3,
+      "task_id": "afv02_85d9766fd1decc0844d0b3d3"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1213,
+            1759
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_141b38f55fa32f168e6062dd/fragment.png",
+          "sha256": "9f8fe30f57d90f4077ec1da18a5253c194d64473a07de87e190da0d61b4da555"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_141b38f55fa32f168e6062dd/metadata.json",
+          "sha256": "3a807c643b2340716ab0ad46d764defc61827f328d844817787e805cdd8b7e65"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1213,
+            1759
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_141b38f55fa32f168e6062dd/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "ede29d918b4ade817c228839cbede46ca25e5dbe4b326a258cfb92e24a427a3f"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_141b38f55fa32f168e6062dd/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "3e8f07672328b6b393fb855c81cc40c3a1d6135e76d456e76c02eca28632272c"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_141b38f55fa32f168e6062dd/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "b68aaf9e7d17d44359b991ed8588577796af298fbb62389ef93648282a5501dd"
+        }
+      },
+      "database_id": "94113f67-87d9-5c71-a4fc-d24693c7787f",
+      "identity_sha256": "1add243ac99a57860ef83e288197439b98c14890c39a36cd080ea42f0b24dc4f",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "rectangular",
+      "page_id": "95c524bbf6593575149b",
+      "region_measurement_count": 0,
+      "severity": 0.6,
+      "task_id": "afv02_141b38f55fa32f168e6062dd"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1762,
+            2342
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_f8925c9aa6860fdc7797e4f7/fragment.png",
+          "sha256": "bead0c6ab00dd77c08abea4e8a566b544297404094e3fe442ed9c972c7fab035"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_f8925c9aa6860fdc7797e4f7/metadata.json",
+          "sha256": "9e46ecfa3b2cc6f6cac549ab0654201b37cb070a7f496970367c6e2668f9e634"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1762,
+            2342
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_f8925c9aa6860fdc7797e4f7/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "dcf61af24542b836861b69f608a77972fe1e2caa694fa624d130471656a0c282"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_f8925c9aa6860fdc7797e4f7/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "c1fde1a4a096c887a6dd312ad9ffe928dfe05a7aecde1e0d0c0a25f6003e3dc9"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_f8925c9aa6860fdc7797e4f7/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "fff9c842598b23950be11849160a9ebd70ec0d710c64f8fa719b25299dbd4079"
+        }
+      },
+      "database_id": "696df88a-c10f-50b2-9085-928ff19ccaf2",
+      "identity_sha256": "2acb73a1aab8b1edb3959952ed2e911c0a3fa7f01ccbaa8abb313d7b9554e29d",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "irregular",
+      "page_id": "95c524bbf6593575149b",
+      "region_measurement_count": 0,
+      "severity": 0.3,
+      "task_id": "afv02_f8925c9aa6860fdc7797e4f7"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1323,
+            1749
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_1f35919a3f3352bab912223f/fragment.png",
+          "sha256": "3089899cefa84dff13fee5c0fd17cb74fce1a6280ec7e6e30c4e69026294892f"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_1f35919a3f3352bab912223f/metadata.json",
+          "sha256": "44bb71c22ffdf410d9f1aad17e3b6fc8381b030ef280f42fa7ffb6e3e90a0473"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1323,
+            1749
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_1f35919a3f3352bab912223f/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "aca8b01d7c622357876759a186e5d56462a0e5316ec88ed815919b8bce6a4c61"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_1f35919a3f3352bab912223f/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "a07957f2246384958b5f2296a74a33e1c41f489e1f1374f67035a317ced42405"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_1f35919a3f3352bab912223f/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "80ab643fe46602f7575b073f8d6a182acd8542a13b4e7d2012b62d6ac938f827"
+        }
+      },
+      "database_id": "f3ffe47f-1e61-5660-9b60-785c69f4482b",
+      "identity_sha256": "4ddc1c351193efc2d99dd5bd9375bb22e40143439a28c26129bd2f72cec528e5",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "irregular",
+      "page_id": "95c524bbf6593575149b",
+      "region_measurement_count": 0,
+      "severity": 0.6,
+      "task_id": "afv02_1f35919a3f3352bab912223f"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1796,
+            2468
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_a2807b8b2e2d748be9ecea72/fragment.png",
+          "sha256": "43b49d391f9e78cf2a2c3ae4c202dce91705753ea2560ff13ac202ddaa6bfec5"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_a2807b8b2e2d748be9ecea72/metadata.json",
+          "sha256": "29136837cb3570be6b50b28ca31fba3a3b3c602c00d749e245760b6b3a7aa6c7"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1796,
+            2468
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_a2807b8b2e2d748be9ecea72/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "203358f059dcb1b57ba349d123b1fe90452992e5e2667f03e28a812b84fd3975"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3166
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_a2807b8b2e2d748be9ecea72/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "b83ebefa1f54172d4a8d5c76695222f4a4f13972cdbada9b63432d1728904cb4"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3166
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_a2807b8b2e2d748be9ecea72/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "ec73781933178b9f9fa96ca0cc813e57c30abff93db40dd8109d2cb3c003bedc"
+        }
+      },
+      "database_id": "8960a65e-d5e2-578f-820e-a1231dfeb52a",
+      "identity_sha256": "d7bb8cfc252086f9fa59c672555ef3fe5fecca8f128f6fba48727ee0a0460800",
+      "manuscript_id": "ubb-F-IX-0068",
+      "mask_family": "rectangular",
+      "page_id": "a57947d883c928bdeae4",
+      "region_measurement_count": 0,
+      "severity": 0.3,
+      "task_id": "afv02_a2807b8b2e2d748be9ecea72"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1350,
+            1877
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8f290b2604dd7ca20c7bbd27/fragment.png",
+          "sha256": "4d3d47fe4f4422ef5c998e68278684f62c1b3c131b412188baa25d37198eb449"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8f290b2604dd7ca20c7bbd27/metadata.json",
+          "sha256": "b84656cad7dabd7ee914f05574f05fc5eda61a20334d5ef6075886f83a346896"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1350,
+            1877
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8f290b2604dd7ca20c7bbd27/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "4ace2248715225c8f13c5246f13d5f08564c678e70e0fb0b541cd0bdfa1abfe2"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3166
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8f290b2604dd7ca20c7bbd27/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "5254e539b64404389afbe711bd324a901324eebfa66994f9769c60f61658fe9f"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3166
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_8f290b2604dd7ca20c7bbd27/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "86b7043672788a46dffc4a98c78b4c97ec2d43b8a8ef23ad1a2bb6f817188cbe"
+        }
+      },
+      "database_id": "e9cf199d-bfa4-58a6-b502-f340321b2358",
+      "identity_sha256": "80a48ac7a43179994e02f41d914ce288d4f9a0675712919d86533e000330ede7",
+      "manuscript_id": "ubb-F-IX-0068",
+      "mask_family": "rectangular",
+      "page_id": "a57947d883c928bdeae4",
+      "region_measurement_count": 0,
+      "severity": 0.6,
+      "task_id": "afv02_8f290b2604dd7ca20c7bbd27"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1761,
+            2787
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_6f242bffc52ba74e888789d8/fragment.png",
+          "sha256": "ac790e4ece7cf6a0d7a86a5326e0c70d78e6b802c1d70bffd088677cb7b7e0c0"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_6f242bffc52ba74e888789d8/metadata.json",
+          "sha256": "84c335e747c136899e25c35fbb667826e24d285210ce15aebc4bfa3bf18cd784"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1761,
+            2787
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_6f242bffc52ba74e888789d8/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "e41dd4d932e0dcf94210040c3ff459c820fef7144ff439f61711872841f17bfb"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3166
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_6f242bffc52ba74e888789d8/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "2e598e16c2aeb6e4197661bca08887ac6a69d5f87a528c5cc9152f8e02c9573a"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3166
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_6f242bffc52ba74e888789d8/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "419428a53088393b9b13f04ba05d924c4eec5bec33d42d2554ac7b831a207753"
+        }
+      },
+      "database_id": "cb70c194-c1bd-5cd0-961c-d530305073b1",
+      "identity_sha256": "de9aacf3dd667921457d35a2c9ad86abbdde917eaf85dc2a2a866aedfb1603ab",
+      "manuscript_id": "ubb-F-IX-0068",
+      "mask_family": "irregular",
+      "page_id": "a57947d883c928bdeae4",
+      "region_measurement_count": 0,
+      "severity": 0.3,
+      "task_id": "afv02_6f242bffc52ba74e888789d8"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1323,
+            2093
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_21cc9d01998cec236b9ba237/fragment.png",
+          "sha256": "c4bd44cac90008b030747cc1799ea3cb791a15fb6c2780d19d00d868b72b4088"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_21cc9d01998cec236b9ba237/metadata.json",
+          "sha256": "b7cf951a31e4e33b44974c5c98cdc0a7961a69cf227357ba3dffd9b870107c5a"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1323,
+            2093
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_21cc9d01998cec236b9ba237/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "1f442b33a449847184f4709c8fcea71ca21a54f0a18013c60cffb3d6dc33b19b"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3166
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_21cc9d01998cec236b9ba237/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "e7aef6d5f1d4d97c69222467eedd2ba5e219c830bc8f1409b1d85d4d020c977d"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            3166
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_21cc9d01998cec236b9ba237/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "2dcde36a1b80d058780f5b7da705895fb5ae18696f9bf95a4ab936dac086a273"
+        }
+      },
+      "database_id": "ec9d322f-e07c-52b1-b74f-7fae27cbe227",
+      "identity_sha256": "3188fe5753f3591757e020df49ef2defa0d47ca25f435957bf4620f305f13ae6",
+      "manuscript_id": "ubb-F-IX-0068",
+      "mask_family": "irregular",
+      "page_id": "a57947d883c928bdeae4",
+      "region_measurement_count": 0,
+      "severity": 0.6,
+      "task_id": "afv02_21cc9d01998cec236b9ba237"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1776,
+            2102
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_17ac971cc4e1fda85555cfb7/fragment.png",
+          "sha256": "e3dbb05bbc89c447b6b3348ddb3b1b7bca0ef533261d5ab91e41f3fc318dbec7"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_17ac971cc4e1fda85555cfb7/metadata.json",
+          "sha256": "cd80cea5aae97cf3e239001823e04f2f263d2d04b3a9b8308defd3c6efcc7cf5"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1776,
+            2102
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_17ac971cc4e1fda85555cfb7/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "44348afd9974636e5b9a5dc63ff9c3d3b7e2b78417806bcdf8d64fcf61c2c387"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_17ac971cc4e1fda85555cfb7/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "9d4f6851785d853529cb42f0d794236fb89da17b630b27cb396d35175a059498"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_17ac971cc4e1fda85555cfb7/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "0f8a5cc532cf805c2e771a6c99551ecf4513dde8d301870c8d76d9da8c3623ba"
+        }
+      },
+      "database_id": "f06e4080-d592-5f09-b02e-3d3332529abe",
+      "identity_sha256": "3fb56394585e54484e0264f538dbc32a25b83ef385d9a8aedc9089844e31cf5f",
+      "manuscript_id": "sbs-gen0020",
+      "mask_family": "rectangular",
+      "page_id": "d704f482fd5fd52f0df9",
+      "region_measurement_count": 20,
+      "severity": 0.3,
+      "task_id": "afv02_17ac971cc4e1fda85555cfb7"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1374,
+            1553
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_bf8e9ed6217a3ad144590561/fragment.png",
+          "sha256": "7fcf7d6a4bcbe9941d5eb85ea4258a999506b594291188da353c57f1ae6545a3"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_bf8e9ed6217a3ad144590561/metadata.json",
+          "sha256": "dbb71c3e2dec75c852c2e6ca3c785763b7309b19da29b5395e90278b32aed525"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1374,
+            1553
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_bf8e9ed6217a3ad144590561/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "0248cf5741d245932704fc896d84517a6b248cd8a52992dd71f30660726f2d35"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_bf8e9ed6217a3ad144590561/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "aca7af9c900978ecbceb30bb6449143bad3e3907355048827998b4df3c1f8242"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_bf8e9ed6217a3ad144590561/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "1782227099ee7e27c227f4c0e74da881ebf7a2f7a3c609d5f0083492ef76d5b7"
+        }
+      },
+      "database_id": "3b242547-3c67-56c4-be0b-700d550714c9",
+      "identity_sha256": "1eb0e940a13601f3d189087ff7b2d85508452c0f2026be77577e54d7e2a2e94c",
+      "manuscript_id": "sbs-gen0020",
+      "mask_family": "rectangular",
+      "page_id": "d704f482fd5fd52f0df9",
+      "region_measurement_count": 20,
+      "severity": 0.6,
+      "task_id": "afv02_bf8e9ed6217a3ad144590561"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1761,
+            2322
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_e348d53084bd2bf9b3e68393/fragment.png",
+          "sha256": "53e649f59c554eff8633897444208fb49fafd5f84832d49a6cb55237539d1354"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_e348d53084bd2bf9b3e68393/metadata.json",
+          "sha256": "6be9e691e80a51abca434be8be0065197fca5bc4b5f44558ffb813a5f86d1c82"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1761,
+            2322
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_e348d53084bd2bf9b3e68393/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "328fd35847269bc448282ee9a08c4c9b02c0e8cbabb54c857f66243b25203ab4"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_e348d53084bd2bf9b3e68393/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "436e0cd418a6c458da163135ac51b5db54329095549de82cf4c678654c8ce727"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_e348d53084bd2bf9b3e68393/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "7501abb6aba96bda7c29f64a2bb06812f7357fd81974381c0202524fb0e06e2c"
+        }
+      },
+      "database_id": "150ee10c-a773-5ee0-9fd9-c5c1ac7c38cf",
+      "identity_sha256": "a065f97ef480ff16cbeb7232a2aa94d0bd2317e9edb362bc16cd1c7fee158769",
+      "manuscript_id": "sbs-gen0020",
+      "mask_family": "irregular",
+      "page_id": "d704f482fd5fd52f0df9",
+      "region_measurement_count": 20,
+      "severity": 0.3,
+      "task_id": "afv02_e348d53084bd2bf9b3e68393"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1317,
+            1755
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_27b8ff7892413e171a36edde/fragment.png",
+          "sha256": "28dc030899586840e0ff63979c6c00e362dd537d71eeb199c55d3204eaa7c2f4"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_27b8ff7892413e171a36edde/metadata.json",
+          "sha256": "897034dbc35e0e70d933ca4c939eb9e2d2997aaa83bb5e24663515a842f9d37d"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1317,
+            1755
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_27b8ff7892413e171a36edde/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "9fa190f3fff1e00f7f96b2221358c77b685370c259b74c1e270d35e739b8e69a"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_27b8ff7892413e171a36edde/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "89846a682da6e63d40b5fff2a60adf3c98f4c1ae095d20177180ff86a4133325"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_27b8ff7892413e171a36edde/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "b68ee7645870014c6cd2276a18599910af533d011708319fab6a544cacd56200"
+        }
+      },
+      "database_id": "94b58655-0c19-5f9d-9131-dcd3b67639bc",
+      "identity_sha256": "02805091396d43d0d0c91020357e8a3371b6371921d83b51897c14636fd87c46",
+      "manuscript_id": "sbs-gen0020",
+      "mask_family": "irregular",
+      "page_id": "d704f482fd5fd52f0df9",
+      "region_measurement_count": 20,
+      "severity": 0.6,
+      "task_id": "afv02_27b8ff7892413e171a36edde"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1653,
+            2258
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_891564a07c0b5f12826ef76e/fragment.png",
+          "sha256": "ae40ea5d095c6d1f8db0c5654d2bceac1161c327f60a1f2e07dcbb49f4c37bba"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_891564a07c0b5f12826ef76e/metadata.json",
+          "sha256": "0b13795170edc89159792dc879cb934ca695c83363d3269a079fdcd11d5de972"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1653,
+            2258
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_891564a07c0b5f12826ef76e/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "dc6d622c71f3a28200aab80590572636e1a55bc8bff0a2614e62c5480ee9f199"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_891564a07c0b5f12826ef76e/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "86f9518859bfa73c8918818fed7ab99b3b7c1848e25bcf57ad5e25483843e519"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_891564a07c0b5f12826ef76e/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "f1f3748819a0b12232002ea15022add236959e1428b0f3b01da5648a7bbd91a1"
+        }
+      },
+      "database_id": "8f7bf9f9-c396-58b1-9d91-eb2194bc6a60",
+      "identity_sha256": "6297d581e3e9f010c1b8d86ffa2803157868158b9fd10cf2b3c2282bcc5c4a91",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "rectangular",
+      "page_id": "d861c556a5079b0f562b",
+      "region_measurement_count": 3,
+      "severity": 0.3,
+      "task_id": "afv02_891564a07c0b5f12826ef76e"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1320,
+            1616
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_c4c00cc4936bdc18add64c43/fragment.png",
+          "sha256": "04031183808530652eb92c8a7abb7dcddb0f5e714c87f6d92b00d0cdd262e5cd"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_c4c00cc4936bdc18add64c43/metadata.json",
+          "sha256": "1c3a24456eb52f0a71c55eb35a9ebc993ffa78e862f0d0fb4dfcc5e4d90dac7e"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1320,
+            1616
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_c4c00cc4936bdc18add64c43/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "fed0cb4abb252e0428278a2c60adb73d45d2fb69c9ebe4104116253171693c7f"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_c4c00cc4936bdc18add64c43/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "89f8bc834c3961e869c5c46c842dc9374f995d4ff2418e3ae03617d974b59775"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_c4c00cc4936bdc18add64c43/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "9aa80bb7cce741498cc6221543ee32e6e6320da2c5784ac2d302a1198b12141d"
+        }
+      },
+      "database_id": "2443a780-a0d3-521c-a9c7-f9b3f12776bd",
+      "identity_sha256": "9cfb6eb76d88aaa15684cdf1b1fef63927274c6befb0e7a60c0d18583e26792d",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "rectangular",
+      "page_id": "d861c556a5079b0f562b",
+      "region_measurement_count": 3,
+      "severity": 0.6,
+      "task_id": "afv02_c4c00cc4936bdc18add64c43"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1773,
+            2328
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_69323e0aa37bd79051832ef8/fragment.png",
+          "sha256": "ed2d501b9b6536fdccfc3b65828e62118bdf770307403089ee3aeba18940caf8"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_69323e0aa37bd79051832ef8/metadata.json",
+          "sha256": "46d00e8c128c09f8f1d800f83315469d26b7524b2d13a4aa77ee6a2cd389dfed"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1773,
+            2328
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_69323e0aa37bd79051832ef8/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "1e2fbe7ee696de437e1168c6b419917cb142cbc3552ab9f4afe75aedf261b752"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_69323e0aa37bd79051832ef8/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "ba0c2638d0b5a7f8053572ebd712b6db3a4b2f04ab314ab6d02dab8203f37ae9"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_69323e0aa37bd79051832ef8/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "b480b8dbbe0d166ccfbeb116a025986ff74839b37f1b54a706df2c2bb70e16d3"
+        }
+      },
+      "database_id": "367c0e43-2a00-5cb5-a314-723d5ef84db2",
+      "identity_sha256": "141021f5c965ef0a2e798fde2baeb5eb664d893d3b5a5d83ea49db062524c16c",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "irregular",
+      "page_id": "d861c556a5079b0f562b",
+      "region_measurement_count": 3,
+      "severity": 0.3,
+      "task_id": "afv02_69323e0aa37bd79051832ef8"
+    },
+    {
+      "artifacts": {
+        "fragment_image": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1339,
+            1772
+          ],
+          "mode": "RGBA",
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_29649b461de8ece8168597df/fragment.png",
+          "sha256": "96f791a415c4f9ca1d34cd149a37a52dcf7ea68ea95b49ce3991f94b28e6477a"
+        },
+        "metadata": {
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_29649b461de8ece8168597df/metadata.json",
+          "sha256": "b88b7318fa514425bf0f6527dd6ec53be659c50bb7534dbb23661bd533b111fd"
+        },
+        "observed_fragment_survival_mask": {
+          "coordinate_space": "observed_fragment",
+          "dimensions_px": [
+            1339,
+            1772
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_29649b461de8ece8168597df/observed_mask.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "05ef47d41748bf964bcd535609a6fb4c69b9d68e77d8e200d1f14ca4597ef7e5"
+        },
+        "source_damage_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_29649b461de8ece8168597df/damage.png",
+          "semantics": "255=source pixel removed; 0=survives",
+          "sha256": "8fa609633e1aec75382b169bdf69f19fa406292957a052629ed4db825dc76459"
+        },
+        "source_survival_mask": {
+          "coordinate_space": "source_page",
+          "dimensions_px": [
+            2000,
+            2666
+          ],
+          "path": "outputs/artificial_fragments/v0_2/tasks/afv02_29649b461de8ece8168597df/survival.png",
+          "semantics": "255=observed source pixel survives; 0=missing",
+          "sha256": "6eb089d41c2f85afe610cca0bfc2cd1d087a839bc81b0bb5466b70656c149546"
+        }
+      },
+      "database_id": "d62cf8c0-1fe2-5866-9942-bbf1b5d6fdef",
+      "identity_sha256": "f608126062d988076f6764a3c96db0ee7eede1fbaf8b1cff050e4d75c06cf88c",
+      "manuscript_id": "fmb-cb-0902",
+      "mask_family": "irregular",
+      "page_id": "d861c556a5079b0f562b",
+      "region_measurement_count": 3,
+      "severity": 0.6,
+      "task_id": "afv02_29649b461de8ece8168597df"
+    }
+  ]
+}

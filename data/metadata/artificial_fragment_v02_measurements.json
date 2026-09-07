@@ -1,0 +1,1200 @@
+{
+  "experiment_version": "artificial_fragment_experiment_v0_2",
+  "groups": {
+    "layout_class": {
+      "Embellished": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.7001852963,
+          "mean": 0.5500744561,
+          "median": 0.55012237435,
+          "minimum": 0.3998677794,
+          "population_standard_deviation": 0.1500388778
+        },
+        "region_measurement_count": 4,
+        "region_surviving_fraction": {
+          "count": 4,
+          "maximum": 1.0,
+          "mean": 0.6421046746,
+          "median": 0.7095146499664504,
+          "minimum": 0.1493893983448893,
+          "population_standard_deviation": 0.3703745044
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 2,
+            "fraction": 0.5
+          },
+          "fully_removed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "partial": {
+            "count": 2,
+            "fraction": 0.5
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 4
+      },
+      "Gloss": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.7000125402,
+          "mean": 0.5500206993,
+          "median": 0.55003239545,
+          "minimum": 0.4000054662,
+          "population_standard_deviation": 0.1499204013
+        },
+        "region_measurement_count": 4,
+        "region_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.11515317286652078,
+          "mean": 0.0287882932,
+          "median": 0.0,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.0498627865
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "fully_removed": {
+            "count": 3,
+            "fraction": 0.75
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "partial": {
+            "count": 1,
+            "fraction": 0.25
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 4
+      },
+      "Main script black": {
+        "page_surviving_fraction": {
+          "count": 28,
+          "maximum": 0.7003317704,
+          "mean": 0.5500655363,
+          "median": 0.5500365512500001,
+          "minimum": 0.3998677794,
+          "population_standard_deviation": 0.1500254679
+        },
+        "region_measurement_count": 292,
+        "region_surviving_fraction": {
+          "count": 292,
+          "maximum": 1.0,
+          "mean": 0.8180897895,
+          "median": 0.9293160703074037,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.2717261036
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 133,
+            "fraction": 0.4554794520547945
+          },
+          "fully_removed": {
+            "count": 20,
+            "fraction": 0.0684931506849315
+          },
+          "mostly_destroyed": {
+            "count": 1,
+            "fraction": 0.003424657534246575
+          },
+          "partial": {
+            "count": 138,
+            "fraction": 0.4726027397260274
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 28
+      },
+      "Main script coloured": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.7001198971,
+          "mean": 0.5500379701,
+          "median": 0.5500143844500001,
+          "minimum": 0.4000032144,
+          "population_standard_deviation": 0.150034438
+        },
+        "region_measurement_count": 16,
+        "region_surviving_fraction": {
+          "count": 16,
+          "maximum": 1.0,
+          "mean": 0.6250985222,
+          "median": 0.8189819486489517,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.4164694112
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 8,
+            "fraction": 0.5
+          },
+          "fully_removed": {
+            "count": 4,
+            "fraction": 0.25
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "partial": {
+            "count": 4,
+            "fraction": 0.25
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 4
+      },
+      "Music": {
+        "page_surviving_fraction": {
+          "count": 12,
+          "maximum": 0.7003317704,
+          "mean": 0.5500809312,
+          "median": 0.55003239545,
+          "minimum": 0.4000032144,
+          "population_standard_deviation": 0.150002409
+        },
+        "region_measurement_count": 148,
+        "region_surviving_fraction": {
+          "count": 148,
+          "maximum": 1.0,
+          "mean": 0.8006969207,
+          "median": 0.914291120425119,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.2895705563
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 53,
+            "fraction": 0.3581081081081081
+          },
+          "fully_removed": {
+            "count": 11,
+            "fraction": 0.07432432432432433
+          },
+          "mostly_destroyed": {
+            "count": 1,
+            "fraction": 0.006756756756756757
+          },
+          "partial": {
+            "count": 83,
+            "fraction": 0.5608108108108109
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 12
+      },
+      "Page Number": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.7001517254,
+          "mean": 0.5500745499,
+          "median": 0.55005570145,
+          "minimum": 0.4000350713,
+          "population_standard_deviation": 0.1500340429
+        },
+        "region_measurement_count": 4,
+        "region_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.0
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "fully_removed": {
+            "count": 4,
+            "fraction": 1.0
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "partial": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 4
+      },
+      "Plain initial - Black": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.7001198971,
+          "mean": 0.5500379701,
+          "median": 0.5500143844500001,
+          "minimum": 0.4000032144,
+          "population_standard_deviation": 0.150034438
+        },
+        "region_measurement_count": 4,
+        "region_surviving_fraction": {
+          "count": 4,
+          "maximum": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "minimum": 1.0,
+          "population_standard_deviation": 0.0
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 4,
+            "fraction": 1.0
+          },
+          "fully_removed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "partial": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 4
+      },
+      "Plain initial - Highlighted": {
+        "page_surviving_fraction": {
+          "count": 16,
+          "maximum": 0.700168042,
+          "mean": 0.5500420375,
+          "median": 0.55003239545,
+          "minimum": 0.3999052888,
+          "population_standard_deviation": 0.150017268
+        },
+        "region_measurement_count": 124,
+        "region_surviving_fraction": {
+          "count": 124,
+          "maximum": 1.0,
+          "mean": 0.8847586669,
+          "median": 1.0,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.3103923059
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 108,
+            "fraction": 0.8709677419354839
+          },
+          "fully_removed": {
+            "count": 11,
+            "fraction": 0.08870967741935484
+          },
+          "mostly_destroyed": {
+            "count": 1,
+            "fraction": 0.008064516129032258
+          },
+          "partial": {
+            "count": 4,
+            "fraction": 0.03225806451612903
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 16
+      },
+      "Plain initial- coloured": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.700168042,
+          "mean": 0.5500349306,
+          "median": 0.5500331958,
+          "minimum": 0.3999052888,
+          "population_standard_deviation": 0.1500801382
+        },
+        "region_measurement_count": 4,
+        "region_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.8017561634582911,
+          "mean": 0.3039724755,
+          "median": 0.20706686930091187,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.3334376387
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "fully_removed": {
+            "count": 2,
+            "fraction": 0.5
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "partial": {
+            "count": 2,
+            "fraction": 0.5
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 4
+      },
+      "Variant script coloured": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.7000125402,
+          "mean": 0.5500206993,
+          "median": 0.55003239545,
+          "minimum": 0.4000054662,
+          "population_standard_deviation": 0.1499204013
+        },
+        "region_measurement_count": 4,
+        "region_surviving_fraction": {
+          "count": 4,
+          "maximum": 1.0,
+          "mean": 0.5204257768,
+          "median": 0.5408515535097813,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.4804433997
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 2,
+            "fraction": 0.5
+          },
+          "fully_removed": {
+            "count": 1,
+            "fraction": 0.25
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "partial": {
+            "count": 1,
+            "fraction": 0.25
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 4
+      }
+    },
+    "manuscript": {
+      "fmb-cb-0902": {
+        "page_surviving_fraction": {
+          "count": 20,
+          "maximum": 0.7002906977,
+          "mean": 0.5500474681,
+          "median": 0.5500003751,
+          "minimum": 0.3998677794,
+          "population_standard_deviation": 0.1500028219
+        },
+        "region_measurement_count": 20,
+        "region_surviving_fraction": {
+          "count": 20,
+          "maximum": 1.0,
+          "mean": 0.7807444691,
+          "median": 0.81648603570184,
+          "minimum": 0.1493893983448893,
+          "population_standard_deviation": 0.2262359289
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 7,
+            "fraction": 0.35
+          },
+          "fully_removed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "partial": {
+            "count": 13,
+            "fraction": 0.65
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 20
+      },
+      "sbs-gen0020": {
+        "page_surviving_fraction": {
+          "count": 12,
+          "maximum": 0.7003317704,
+          "mean": 0.5500978682,
+          "median": 0.5501268754499999,
+          "minimum": 0.3999052888,
+          "population_standard_deviation": 0.1500555081
+        },
+        "region_measurement_count": 328,
+        "region_surviving_fraction": {
+          "count": 328,
+          "maximum": 1.0,
+          "mean": 0.8436887959,
+          "median": 0.9972458751558431,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.2846263497
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 200,
+            "fraction": 0.6097560975609756
+          },
+          "fully_removed": {
+            "count": 24,
+            "fraction": 0.07317073170731707
+          },
+          "mostly_destroyed": {
+            "count": 2,
+            "fraction": 0.006097560975609756
+          },
+          "partial": {
+            "count": 102,
+            "fraction": 0.31097560975609756
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 12
+      },
+      "ubb-F-IX-0068": {
+        "page_surviving_fraction": {
+          "count": 12,
+          "maximum": 0.7001198971,
+          "mean": 0.5500450092,
+          "median": 0.55003239545,
+          "minimum": 0.4000032144,
+          "population_standard_deviation": 0.1499749833
+        },
+        "region_measurement_count": 256,
+        "region_surviving_fraction": {
+          "count": 256,
+          "maximum": 1.0,
+          "mean": 0.7606772043,
+          "median": 0.9177536933680697,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.3421254767
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 103,
+            "fraction": 0.40234375
+          },
+          "fully_removed": {
+            "count": 32,
+            "fraction": 0.125
+          },
+          "mostly_destroyed": {
+            "count": 1,
+            "fraction": 0.00390625
+          },
+          "partial": {
+            "count": 120,
+            "fraction": 0.46875
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 12
+      }
+    },
+    "mask_family": {
+      "irregular": {
+        "page_surviving_fraction": {
+          "count": 22,
+          "maximum": 0.7003317704,
+          "mean": 0.5500081428,
+          "median": 0.5499346399,
+          "minimum": 0.3998677794,
+          "population_standard_deviation": 0.1500267321
+        },
+        "region_measurement_count": 302,
+        "region_surviving_fraction": {
+          "count": 302,
+          "maximum": 1.0,
+          "mean": 0.7913219031,
+          "median": 0.9398372699852721,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.3244154493
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 144,
+            "fraction": 0.4768211920529801
+          },
+          "fully_removed": {
+            "count": 32,
+            "fraction": 0.10596026490066225
+          },
+          "mostly_destroyed": {
+            "count": 3,
+            "fraction": 0.009933774834437087
+          },
+          "partial": {
+            "count": 123,
+            "fraction": 0.40728476821192056
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 22
+      },
+      "rectangular": {
+        "page_surviving_fraction": {
+          "count": 22,
+          "maximum": 0.7002906977,
+          "mean": 0.5501129432,
+          "median": 0.5501080143,
+          "minimum": 0.4000032144,
+          "population_standard_deviation": 0.1499924543
+        },
+        "region_measurement_count": 302,
+        "region_surviving_fraction": {
+          "count": 302,
+          "maximum": 1.0,
+          "mean": 0.8215197483,
+          "median": 0.9815034408719815,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.2970217348
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 166,
+            "fraction": 0.5496688741721855
+          },
+          "fully_removed": {
+            "count": 24,
+            "fraction": 0.07947019867549669
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "partial": {
+            "count": 112,
+            "fraction": 0.3708609271523179
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 22
+      }
+    },
+    "page": {
+      "425d05fd9a5871117c02": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.7001198971,
+          "mean": 0.5500379701,
+          "median": 0.5500143844500001,
+          "minimum": 0.4000032144,
+          "population_standard_deviation": 0.150034438
+        },
+        "region_measurement_count": 144,
+        "region_surviving_fraction": {
+          "count": 144,
+          "maximum": 1.0,
+          "mean": 0.71864491,
+          "median": 0.8360272168255537,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.3304144563
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 41,
+            "fraction": 0.2847222222222222
+          },
+          "fully_removed": {
+            "count": 19,
+            "fraction": 0.13194444444444445
+          },
+          "mostly_destroyed": {
+            "count": 1,
+            "fraction": 0.006944444444444444
+          },
+          "partial": {
+            "count": 83,
+            "fraction": 0.5763888888888888
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 4
+      },
+      "44b0f45256bf210d6896": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.7001517254,
+          "mean": 0.5500745499,
+          "median": 0.55005570145,
+          "minimum": 0.4000350713,
+          "population_standard_deviation": 0.1500340429
+        },
+        "region_measurement_count": 128,
+        "region_surviving_fraction": {
+          "count": 128,
+          "maximum": 1.0,
+          "mean": 0.8580511642,
+          "median": 1.0,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.3016821164
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 95,
+            "fraction": 0.7421875
+          },
+          "fully_removed": {
+            "count": 10,
+            "fraction": 0.078125
+          },
+          "mostly_destroyed": {
+            "count": 2,
+            "fraction": 0.015625
+          },
+          "partial": {
+            "count": 21,
+            "fraction": 0.1640625
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 4
+      },
+      "5e6ff8c7c454a2c27b94": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.7001852963,
+          "mean": 0.5500744561,
+          "median": 0.55012237435,
+          "minimum": 0.3998677794,
+          "population_standard_deviation": 0.1500388778
+        },
+        "region_measurement_count": 8,
+        "region_surviving_fraction": {
+          "count": 8,
+          "maximum": 1.0,
+          "mean": 0.7432919878,
+          "median": 0.8802626949689223,
+          "minimum": 0.1493893983448893,
+          "population_standard_deviation": 0.3036466768
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 4,
+            "fraction": 0.5
+          },
+          "fully_removed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "partial": {
+            "count": 4,
+            "fraction": 0.5
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 4
+      },
+      "6538cbcb609973816c5a": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.7002906977,
+          "mean": 0.5500904445,
+          "median": 0.5500610465,
+          "minimum": 0.3999489872,
+          "population_standard_deviation": 0.1500567324
+        },
+        "region_measurement_count": 0,
+        "region_surviving_fraction": {
+          "count": 0,
+          "maximum": null,
+          "mean": null,
+          "median": null,
+          "minimum": null,
+          "population_standard_deviation": null
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 0,
+            "fraction": null
+          },
+          "fully_removed": {
+            "count": 0,
+            "fraction": null
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": null
+          },
+          "partial": {
+            "count": 0,
+            "fraction": null
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": null
+          }
+        },
+        "task_count": 4
+      },
+      "6c1543ed764a6265f96a": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.7001207802,
+          "mean": 0.5500526538,
+          "median": 0.5500463241,
+          "minimum": 0.3999971868,
+          "population_standard_deviation": 0.149974566
+        },
+        "region_measurement_count": 0,
+        "region_surviving_fraction": {
+          "count": 0,
+          "maximum": null,
+          "mean": null,
+          "median": null,
+          "minimum": null,
+          "population_standard_deviation": null
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 0,
+            "fraction": null
+          },
+          "fully_removed": {
+            "count": 0,
+            "fraction": null
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": null
+          },
+          "partial": {
+            "count": 0,
+            "fraction": null
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": null
+          }
+        },
+        "task_count": 4
+      },
+      "86236cd76a738eebc657": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.7000125402,
+          "mean": 0.5500206993,
+          "median": 0.55003239545,
+          "minimum": 0.4000054662,
+          "population_standard_deviation": 0.1499204013
+        },
+        "region_measurement_count": 112,
+        "region_surviving_fraction": {
+          "count": 112,
+          "maximum": 1.0,
+          "mean": 0.8147187255,
+          "median": 1.0,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.3492625346
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 62,
+            "fraction": 0.5535714285714286
+          },
+          "fully_removed": {
+            "count": 13,
+            "fraction": 0.11607142857142858
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "partial": {
+            "count": 37,
+            "fraction": 0.33035714285714285
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 4
+      },
+      "95a6f2c3d5cf0d195a1b": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.700168042,
+          "mean": 0.5500349306,
+          "median": 0.5500331958,
+          "minimum": 0.3999052888,
+          "population_standard_deviation": 0.1500801382
+        },
+        "region_measurement_count": 120,
+        "region_surviving_fraction": {
+          "count": 120,
+          "maximum": 1.0,
+          "mean": 0.8259128487,
+          "median": 1.0,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.283662084
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 75,
+            "fraction": 0.625
+          },
+          "fully_removed": {
+            "count": 8,
+            "fraction": 0.06666666666666667
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "partial": {
+            "count": 37,
+            "fraction": 0.30833333333333335
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 4
+      },
+      "95c524bbf6593575149b": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.7000300075,
+          "mean": 0.5499877626,
+          "median": 0.5499799325,
+          "minimum": 0.3999611778,
+          "population_standard_deviation": 0.1499259116
+        },
+        "region_measurement_count": 0,
+        "region_surviving_fraction": {
+          "count": 0,
+          "maximum": null,
+          "mean": null,
+          "median": null,
+          "minimum": null,
+          "population_standard_deviation": null
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 0,
+            "fraction": null
+          },
+          "fully_removed": {
+            "count": 0,
+            "fraction": null
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": null
+          },
+          "partial": {
+            "count": 0,
+            "fraction": null
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": null
+          }
+        },
+        "task_count": 4
+      },
+      "a57947d883c928bdeae4": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.7000726469,
+          "mean": 0.5500763582,
+          "median": 0.550100916,
+          "minimum": 0.4000309539,
+          "population_standard_deviation": 0.1499700833
+        },
+        "region_measurement_count": 0,
+        "region_surviving_fraction": {
+          "count": 0,
+          "maximum": null,
+          "mean": null,
+          "median": null,
+          "minimum": null,
+          "population_standard_deviation": null
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 0,
+            "fraction": null
+          },
+          "fully_removed": {
+            "count": 0,
+            "fraction": null
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": null
+          },
+          "partial": {
+            "count": 0,
+            "fraction": null
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": null
+          }
+        },
+        "task_count": 4
+      },
+      "d704f482fd5fd52f0df9": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.7003317704,
+          "mean": 0.5501841242,
+          "median": 0.5501663541,
+          "minimum": 0.400072018,
+          "population_standard_deviation": 0.1500522998
+        },
+        "region_measurement_count": 80,
+        "region_surviving_fraction": {
+          "count": 80,
+          "maximum": 1.0,
+          "mean": 0.8473729274,
+          "median": 0.9154136633928693,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.2549835925
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 30,
+            "fraction": 0.375
+          },
+          "fully_removed": {
+            "count": 6,
+            "fraction": 0.075
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "partial": {
+            "count": 44,
+            "fraction": 0.55
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 4
+      },
+      "d861c556a5079b0f562b": {
+        "page_surviving_fraction": {
+          "count": 4,
+          "maximum": 0.700086084,
+          "mean": 0.5500320236,
+          "median": 0.5500369467499999,
+          "minimum": 0.399968117,
+          "population_standard_deviation": 0.1500179633
+        },
+        "region_measurement_count": 12,
+        "region_surviving_fraction": {
+          "count": 12,
+          "maximum": 1.0,
+          "mean": 0.8057127899,
+          "median": 0.81648603570184,
+          "minimum": 0.569985580822494,
+          "population_standard_deviation": 0.1492595514
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 3,
+            "fraction": 0.25
+          },
+          "fully_removed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "partial": {
+            "count": 9,
+            "fraction": 0.75
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 4
+      }
+    },
+    "requested_severity": {
+      "0.3": {
+        "page_surviving_fraction": {
+          "count": 22,
+          "maximum": 0.7003317704,
+          "mean": 0.7000701076,
+          "median": 0.70006376595,
+          "minimum": 0.6997972618,
+          "population_standard_deviation": 0.0001183647
+        },
+        "region_measurement_count": 302,
+        "region_surviving_fraction": {
+          "count": 302,
+          "maximum": 1.0,
+          "mean": 0.9412201989,
+          "median": 1.0,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.1668937265
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 233,
+            "fraction": 0.7715231788079471
+          },
+          "fully_removed": {
+            "count": 5,
+            "fraction": 0.016556291390728478
+          },
+          "mostly_destroyed": {
+            "count": 0,
+            "fraction": 0.0
+          },
+          "partial": {
+            "count": 64,
+            "fraction": 0.2119205298013245
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 22
+      },
+      "0.6": {
+        "page_surviving_fraction": {
+          "count": 22,
+          "maximum": 0.4002034884,
+          "mean": 0.4000509783,
+          "median": 0.4000330126,
+          "minimum": 0.3998677794,
+          "population_standard_deviation": 9.59598e-05
+        },
+        "region_measurement_count": 302,
+        "region_surviving_fraction": {
+          "count": 302,
+          "maximum": 1.0,
+          "mean": 0.6716214525,
+          "median": 0.7981157238519664,
+          "minimum": 0.0,
+          "population_standard_deviation": 0.3601777223
+        },
+        "survival_categories": {
+          "almost_complete": {
+            "count": 77,
+            "fraction": 0.25496688741721857
+          },
+          "fully_removed": {
+            "count": 51,
+            "fraction": 0.16887417218543047
+          },
+          "mostly_destroyed": {
+            "count": 3,
+            "fraction": 0.009933774834437087
+          },
+          "partial": {
+            "count": 171,
+            "fraction": 0.5662251655629139
+          },
+          "undefined": {
+            "count": 0,
+            "fraction": 0.0
+          }
+        },
+        "task_count": 22
+      }
+    }
+  },
+  "region_measurement_count": 604,
+  "statistics_note": "Population SD; null for fewer than two observations. Region statistics weight instances equally; class task counts count only tasks containing that class. Repeated tasks are controlled transformations, not independent manuscript observations.",
+  "survival_thresholds": {
+    "almost_complete_min": 0.95,
+    "fully_removed": 0.0,
+    "mostly_destroyed_max": 0.05
+  },
+  "task_count": 44,
+  "tasks_without_detected_regions": 16
+}

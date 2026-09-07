@@ -1,0 +1,18 @@
+{
+  "binary_data_stored_in_postgresql": false,
+  "experiment_database": {
+    "artificial_fragment_task": {
+      "count": 44,
+      "rows_sha256": "e2d4d49891ad616193dae31613f4f1ce0abd2c4edb0fa5e77984094fce08c44c"
+    }
+  },
+  "frozen_database_unchanged": true,
+  "registered_task_count": 44,
+  "rerun": {
+    "inserted": 0,
+    "matched": 44,
+    "updated": 0,
+    "validated": 44
+  },
+  "split": "validation"
+}

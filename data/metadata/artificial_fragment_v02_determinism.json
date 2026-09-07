@@ -1,0 +1,12 @@
+{
+  "byte_identical_artifacts": true,
+  "compared_artifact_count": 229,
+  "database_rows_and_timestamps_unchanged": true,
+  "generated_binary_count": 176,
+  "identical_task_identities_and_checksums": true,
+  "method": "full_regeneration_and_registration",
+  "scientific_artifact_snapshot_sha256": "9fbf54b416f611dc7d489e5eadd33e75fa500dbbd67d825c3d173a6fa7f0df6f",
+  "source_of_truth": "Existing metadata/artifact checksums compared before and after actual recomputation; no cache-only determinism claim.",
+  "status": "passed",
+  "task_count": 44
+}

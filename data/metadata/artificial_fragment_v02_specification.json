@@ -1,0 +1,1612 @@
+{
+  "base_seed": 20260907,
+  "experiment_version": "artificial_fragment_experiment_v0_2",
+  "generator_version": "artificial_fragment_generator_v0_1_1",
+  "mask_families": [
+    "rectangular",
+    "irregular"
+  ],
+  "matrix_task_count": 44,
+  "rejected_pages": [
+    {
+      "page_id": "219352470825ee97ee12",
+      "reasons": [
+        "unavailable_local_artifact_icloud_dataless:data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0113_sbs-gen0020_0055v.jpg"
+      ]
+    },
+    {
+      "page_id": "62eacd9afde4dc6a4efe",
+      "reasons": [
+        "unavailable_local_artifact_icloud_dataless:data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0067_sbs-gen0020_0032v.jpg"
+      ]
+    }
+  ],
+  "rotation_degrees": 0.0,
+  "scale": 1.0,
+  "selected_page_count": 11,
+  "selected_pages": [
+    {
+      "evidence": {
+        "artifacts": [
+          {
+            "path": "data/raw/ecodices_training_source_validation_v0_1/ubb-F-IX-0068/0032_ubb-F-IX-0068_0013r.jpg",
+            "sha256": "27016334b6ce626c107d3fac3d8365235ed1f27d8b190fef257e4b6fc436a64c",
+            "size_bytes": 1539105
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0000.png",
+            "sha256": "ae04afd0c9d8660e76ad7ca4d8434d66ba3abbacaedb0c7bd61f93981c95ed8d",
+            "size_bytes": 6603
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0001.png",
+            "sha256": "a3826c9154ffb8faa486c60a7221a5c8c45b9b01e21d186a17567c37b9f4e02b",
+            "size_bytes": 6599
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0002.png",
+            "sha256": "41cf7b2d71f206306e808670bb5f5f4dd29bc1ed175ff609713f940e42e82d84",
+            "size_bytes": 6314
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0003.png",
+            "sha256": "309e0664373d18d0129c65eefdbef5ea16741364b79425000a2add2c0295b93a",
+            "size_bytes": 6775
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0004.png",
+            "sha256": "29fe0aeee31704a56ea2634043732763940fb68f18d9a23a9501490be28b2592",
+            "size_bytes": 6430
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0005.png",
+            "sha256": "732dd521ee05d1c309edeb8a51efde6070d5a665b94c37ea7c9b1e5192677a88",
+            "size_bytes": 6446
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0006.png",
+            "sha256": "abdb133662fd0d964e6dd30d642ab802044f94e1aa52202deab0c654eff5e65f",
+            "size_bytes": 7136
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0007.png",
+            "sha256": "c3ea37326e9df78eeaaeef6179e9c6f26d4aa5a457bfe944f19e687ddd7de1c2",
+            "size_bytes": 6285
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0008.png",
+            "sha256": "ba5e67668d1e8ff11c8bcc04479280ddb1477edf7d1520cf3ec16103f41dc492",
+            "size_bytes": 6818
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0009.png",
+            "sha256": "19fad13d2d98e293a1055c058198ebb74de08c984775e649aecc0fb908a5bf80",
+            "size_bytes": 7084
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0010.png",
+            "sha256": "226af2472623b741a0dbcaa92442476a49e678dd5ffc3f831ac34413812a5afe",
+            "size_bytes": 6630
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0011.png",
+            "sha256": "16d559611ac48acbec5f67853780223bb1e3f3cbe3b1040fe8bc00328171be2f",
+            "size_bytes": 6709
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0012.png",
+            "sha256": "05d95d4f39446edd6298f86969ddfe7e40338145e9c260692548158ef3ad2666",
+            "size_bytes": 7050
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0013.png",
+            "sha256": "74a7850d1a229f34e0fb0c5dd14097658bc2ae17cce85d6925eda031e8cf555a",
+            "size_bytes": 6337
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0014.png",
+            "sha256": "d0a8970fd661d66a882a4a362854299e996982d8ceb14a8df5fe64d4904c1b0a",
+            "size_bytes": 6751
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0015.png",
+            "sha256": "44eebc883497c6db2b8d780e8421faa159ce49d43fffb03d4a25286e23d55f8e",
+            "size_bytes": 7024
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0016.png",
+            "sha256": "589521c85e6bd42b169bca90e8453e32477e2bf6fb037b5a8de94ce7e2a16d55",
+            "size_bytes": 6558
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0017.png",
+            "sha256": "6808d2d7e9d70b1b02fd1e3b6f4d63e98e8f87391074d9e1cebca9dda207121c",
+            "size_bytes": 7085
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0018.png",
+            "sha256": "3df56193023ddcc3cad4d68b0fe44cd18c85a7092aa8f3c3d0f1fb48913968a9",
+            "size_bytes": 6971
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0019.png",
+            "sha256": "0a9a69c69b99c6fc37122387f18ac0d7abd03dc6fd0dbdd5f5340363e22dbffc",
+            "size_bytes": 6469
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0020.png",
+            "sha256": "68f87c12555de31b6d30d5a0ad83b5737abec3783ed60c20aa30fe965e8bbc89",
+            "size_bytes": 7070
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0021.png",
+            "sha256": "3c0a505b97590968e15947d0fc56d45a6bc72f68939269166a887c315984d6d2",
+            "size_bytes": 6386
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0022.png",
+            "sha256": "a1c835b65da7f1e8400f0fd6c8744440cd8a814af9fe16c2dbb88277eb61f91b",
+            "size_bytes": 7061
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0023.png",
+            "sha256": "15036e43618e276bcb221fc7e84eadd347824dc9ff214a0b989e30cba06f7194",
+            "size_bytes": 6546
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0024.png",
+            "sha256": "658783f3379aed43289ada3682db7376c5c164355f63bf56688e8cc0197328a3",
+            "size_bytes": 6913
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0025.png",
+            "sha256": "71b8a79012a0faef075ffa35974c5aa2252116d22be8e85712ecd3273a2c0a5c",
+            "size_bytes": 6361
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0026.png",
+            "sha256": "2b6d3cb33fa4ddc523dcb818b6c6a987724ef76d74285493a743b8ff0c80fa1f",
+            "size_bytes": 6302
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0027.png",
+            "sha256": "73a8b1c2a06581ab365d4ceb22f930c0ab0b319dae7b32c7274dc79f00da2ff6",
+            "size_bytes": 6511
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0028.png",
+            "sha256": "90794837ab31c1f40bb6ea823fb2016f9c7ce9d17ca2d318f0a88acd1005756d",
+            "size_bytes": 6567
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0029.png",
+            "sha256": "1d604a08612666b070d1f6867e8c444c9b8159d9f68c30cf2fbe650d28ecbf5e",
+            "size_bytes": 6792
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0030.png",
+            "sha256": "7762d53bf4743a1d9720e614b1af4f2d071b23f1a544b50e7bd563eb6fce0ce1",
+            "size_bytes": 6511
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0031.png",
+            "sha256": "235d163bf184dec2006ca53f476af477d3dbd70b58cac3c83d16600a68eb01b7",
+            "size_bytes": 6312
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0032.png",
+            "sha256": "caa41d2c70e205658cd80d87f5e630487b2902ce598e8f5e207b0fdcb57fda18",
+            "size_bytes": 7113
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0033.png",
+            "sha256": "385870544dc6007a2fb1ba3f3b187a62e8d0ce610458a86e812c5d887683f41f",
+            "size_bytes": 7557
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0034.png",
+            "sha256": "a705b1a4ccaf6d107f1061b2e91a54878f83f115f1e9d74698a6ee569a519ef3",
+            "size_bytes": 6379
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/425d05fd9a5871117c02/region_0035.png",
+            "sha256": "4fc58ba79ef504f1c20d3ca65f46b5fa7f14cf1331e59aec30cb0df70be5a5dc",
+            "size_bytes": 6397
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/overlays/425d05fd9a5871117c02_overlay.jpg",
+            "sha256": "3650735118a3c03dd691796cf9d07c5c5c81b49f8afd587e93a3ee98c4836221",
+            "size_bytes": 1376966
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/raw/425d05fd9a5871117c02.json",
+            "sha256": "7c667ee0f75345fc09a314eee8b1523493d55b5403cfc0f40b8fd74715e86abf",
+            "size_bytes": 398618
+          }
+        ],
+        "run_identity_sha256": "22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f",
+        "segmentation_run_id": "dd1636df-d8b4-4de5-bbaa-ef20532fad95",
+        "source_asset_id": "011db90b-e953-4987-9b32-68f144705227",
+        "source_sha256": "27016334b6ce626c107d3fac3d8365235ed1f27d8b190fef257e4b6fc436a64c"
+      },
+      "evidence_sha256": "69da7a582e9cceffc345fa451888db8b5794cdaa79d2c77214aa621fdc89290b",
+      "layout_status": "model_masks_available",
+      "manuscript_id": "ubb-F-IX-0068",
+      "page_id": "425d05fd9a5871117c02",
+      "split": "validation"
+    },
+    {
+      "evidence": {
+        "artifacts": [
+          {
+            "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0210_sbs-gen0020_0104r.jpg",
+            "sha256": "4dcf23be77f418d045d2012518a427cbae4cf1ec31bd4fa8eab8a4ffcda1a292",
+            "size_bytes": 1273368
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0000.png",
+            "sha256": "d047c112df572933e543f4fb8ccdcfe52d7bdd9a69d820e9edad9db3f698606c",
+            "size_bytes": 5671
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0001.png",
+            "sha256": "3b6dd28b3067688069df66a8919e03fbb12c9463c48952665ad57ec67d419600",
+            "size_bytes": 5431
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0002.png",
+            "sha256": "e7099a1bb9d49a5afb1904ed75575d6053beca52388f9621c2f07c59e7c26311",
+            "size_bytes": 6325
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0003.png",
+            "sha256": "717de092ea016534328ff738aca9bcd7bb056c90c6768145c6dbe5e91012083e",
+            "size_bytes": 6479
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0004.png",
+            "sha256": "5df46346a13d998ac807bdab8b06c9b07eb8760b7fb3d496eb6547471f11adea",
+            "size_bytes": 6141
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0005.png",
+            "sha256": "fd2803247be0b225e1ee808214f2f8a092bd4823d15e631118037c1893be6f30",
+            "size_bytes": 5453
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0006.png",
+            "sha256": "f348f7cf875fac863af9c08c943ddfb1189353909b4072c5b14d64d75817b52f",
+            "size_bytes": 6499
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0007.png",
+            "sha256": "164557e4661f2e95cbcb7107df6a7abcdbf656f6e4aa92d127e1d985d1bc4516",
+            "size_bytes": 6333
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0008.png",
+            "sha256": "5f8040b3752c1decdc737808d7f4824cca671532f678c26acc54d7f8e450504c",
+            "size_bytes": 6456
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0009.png",
+            "sha256": "5299f10965a4a84fe57b54a11ce469cf96f5993362fae42cc076802fcc416493",
+            "size_bytes": 6479
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0010.png",
+            "sha256": "8c41b4f234b65db3175d3366924d207a1a473a6eda6d8b542fbf53db50ab93b6",
+            "size_bytes": 6210
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0011.png",
+            "sha256": "81f7690c8525db40d0340436b70e8ac38fdd27f76ae6da594cafc2440a0f26e4",
+            "size_bytes": 6704
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0012.png",
+            "sha256": "8883f0638fb56b1dfef913c3d721878423929182aa4183584135cf2ba836f727",
+            "size_bytes": 6489
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0013.png",
+            "sha256": "d5496df78f00f1d3c451032e15723cbc1a8d9ed2f44d3e682faeafa44ea2c0b2",
+            "size_bytes": 6212
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0014.png",
+            "sha256": "97ea4c9595c18e8f9d188daa5e98b1e34d64a299d4bb2636636d427af73026e4",
+            "size_bytes": 6149
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0015.png",
+            "sha256": "3356dc63567889c2bb53e17914ebdd8e6e44ebbaebb41d666972940dd9155fb9",
+            "size_bytes": 6324
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0016.png",
+            "sha256": "8462d7b47738b920edc70a3ce86730498d8353c3463c42bd3b851c1741c4e330",
+            "size_bytes": 6264
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0017.png",
+            "sha256": "65dfef677904f0b862db7d28af12b341d8d9c5517d3537233baa34c18b39e416",
+            "size_bytes": 6225
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0018.png",
+            "sha256": "5e4f522b538619fc597cab0e53953b8c7eee7bb7d0926fb54444be1805429d10",
+            "size_bytes": 6382
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0019.png",
+            "sha256": "e90a7a80e40aa502ae084865a95aca04b99236d65bcdc853d2e76bd65b4ee044",
+            "size_bytes": 5422
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0020.png",
+            "sha256": "720f691cb6f6ad389077ae1c797b13d91aad055b61a9fafbcd48e503395e512b",
+            "size_bytes": 5486
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0021.png",
+            "sha256": "6a878cd5d4c1698e1f617e952e43a16c336304fba792e073bd3d885da294d8c7",
+            "size_bytes": 5428
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0022.png",
+            "sha256": "90de56b5a377930dc8c463fa15d1638acae8e192d2cf5daa27e4ba3462af4f5f",
+            "size_bytes": 6280
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0023.png",
+            "sha256": "69c558e688990020d3fc32e3f44a0a8e274488e5c05b2294aa319e92098ebe1e",
+            "size_bytes": 5408
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0024.png",
+            "sha256": "544975f1f1150936e15e2c60b19d632035998070bb694e0d46e5b1027673a327",
+            "size_bytes": 5440
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0025.png",
+            "sha256": "787432d1d9148ce8eb45425888b38d57f034c9d0802a4acb11923d105aad837a",
+            "size_bytes": 5451
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0026.png",
+            "sha256": "a9f583a2ee0e7e9ce024b2286af0d405fff22071afc998eefcc9cad1e1d67392",
+            "size_bytes": 5497
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0027.png",
+            "sha256": "efe87dbba5df8f27f30329373adb0cb67f71c292ff27d400d564a54d7c1a1b03",
+            "size_bytes": 5540
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0028.png",
+            "sha256": "421483232da6655b9f4f5cefdabd0de3f7208e686fbc20c152bd00dd299cba95",
+            "size_bytes": 5469
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0029.png",
+            "sha256": "194fdabc5a62f5cfb6906d9b25cfa17a172405ce571ba382aebbb99bdc1a2c98",
+            "size_bytes": 5455
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0030.png",
+            "sha256": "c2bd4025c62ce2639b45e8992be6ba495c66c497e26859720cbeac7f8ca17efe",
+            "size_bytes": 5450
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/44b0f45256bf210d6896/region_0031.png",
+            "sha256": "14c7cece9d37588babc1c1f1a5809b096b424f7b649a8652bf10a8f63a8d0c8c",
+            "size_bytes": 5810
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/overlays/44b0f45256bf210d6896_overlay.jpg",
+            "sha256": "82458df1116c3e8d3ae9883aa4759ca101859ae6e224be45c3f4feaff3fd65e3",
+            "size_bytes": 1197025
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/raw/44b0f45256bf210d6896.json",
+            "sha256": "c31d76684455144464d915aecdf2f1ae860ce939ee1d64b13b8262f4ab7a1038",
+            "size_bytes": 145766
+          }
+        ],
+        "run_identity_sha256": "1750add1dbeab7becbf42cb40f7dde6745260b7c159eaf8d09b1a55364a9908e",
+        "segmentation_run_id": "cec4ca22-2ed3-4056-8a71-bd0b7a580e43",
+        "source_asset_id": "20ef3480-231d-400a-9ac5-cdfb87594d76",
+        "source_sha256": "4dcf23be77f418d045d2012518a427cbae4cf1ec31bd4fa8eab8a4ffcda1a292"
+      },
+      "evidence_sha256": "2a6661ef65064d19e3cca833b7b73536f8f92d1713374cf51d603fd3bcd073cb",
+      "layout_status": "model_masks_available",
+      "manuscript_id": "sbs-gen0020",
+      "page_id": "44b0f45256bf210d6896",
+      "split": "validation"
+    },
+    {
+      "evidence": {
+        "artifacts": [
+          {
+            "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0033_fmb-cb-0902_016v.jpg",
+            "sha256": "5ece6ba0b79e1105f51af3d01356ca6d63792948db35913ed5bc89d53b2c51fc",
+            "size_bytes": 1238838
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/5e6ff8c7c454a2c27b94/region_0000.png",
+            "sha256": "74998ff7de532802e479cabbc62ab8ecc31b819beee273a69c6337ca7854bead",
+            "size_bytes": 6396
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/5e6ff8c7c454a2c27b94/region_0001.png",
+            "sha256": "eb24edd29003f2aa9b8a844582b39f3ae7c560420e0484e5b0e2ed40f0a07be7",
+            "size_bytes": 6620
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/overlays/5e6ff8c7c454a2c27b94_overlay.jpg",
+            "sha256": "417f37cde2e5c4642822a9247ce42dc7afd9dbe88a69488996c01e9cd4414359",
+            "size_bytes": 1107098
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/raw/5e6ff8c7c454a2c27b94.json",
+            "sha256": "8d236bee6f86f6975b7a1adb4d182a03df27460fa9e6879b845197957c25870a",
+            "size_bytes": 84380
+          }
+        ],
+        "run_identity_sha256": "1750add1dbeab7becbf42cb40f7dde6745260b7c159eaf8d09b1a55364a9908e",
+        "segmentation_run_id": "3b22e22a-c9b6-415e-b572-28bb7fc21291",
+        "source_asset_id": "cedcad45-767b-4def-8f7f-2d36ded0f187",
+        "source_sha256": "5ece6ba0b79e1105f51af3d01356ca6d63792948db35913ed5bc89d53b2c51fc"
+      },
+      "evidence_sha256": "5b2ee18bd66762dcc2f14835a58d83c82093cddd91a3438c9d985d1b33352d43",
+      "layout_status": "model_masks_available",
+      "manuscript_id": "fmb-cb-0902",
+      "page_id": "5e6ff8c7c454a2c27b94",
+      "split": "validation"
+    },
+    {
+      "evidence": {
+        "artifacts": [
+          {
+            "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0028_fmb-cb-0902_014r.jpg",
+            "sha256": "ee3a1bd6496eb48e79cc15f4ab0c90fd5c1c4a2ee17a95b7da2504efa88d392d",
+            "size_bytes": 1290299
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/overlays/6538cbcb609973816c5a_overlay.jpg",
+            "sha256": "f9b83f32f706f78175eb7ae60de4c5aeaf93f2438889dce03cc743c66351b6e0",
+            "size_bytes": 1154820
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/raw/6538cbcb609973816c5a.json",
+            "sha256": "1bab642dfa90471c52c026daca9ff1aa4b8433b76ee8fa2863932fcc5090b4ac",
+            "size_bytes": 80366
+          }
+        ],
+        "run_identity_sha256": "1750add1dbeab7becbf42cb40f7dde6745260b7c159eaf8d09b1a55364a9908e",
+        "segmentation_run_id": "1a5dd641-bed0-4b87-b5b4-97ad39fdc783",
+        "source_asset_id": "e70060b0-c048-4307-825b-4c9870ff8117",
+        "source_sha256": "ee3a1bd6496eb48e79cc15f4ab0c90fd5c1c4a2ee17a95b7da2504efa88d392d"
+      },
+      "evidence_sha256": "76862c1842fc4a87373bf3fd46c745514e40e1456f2ab65b9a60d8453458be63",
+      "layout_status": "no_detected_regions",
+      "manuscript_id": "fmb-cb-0902",
+      "page_id": "6538cbcb609973816c5a",
+      "split": "validation"
+    },
+    {
+      "evidence": {
+        "artifacts": [
+          {
+            "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0016_fmb-cb-0902_008r.jpg",
+            "sha256": "8eb675d9a30f14f099d73ddf1e00e612c2ffe41d6cdb044d9d3dd2729f752da6",
+            "size_bytes": 1385248
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/overlays/6c1543ed764a6265f96a_overlay.jpg",
+            "sha256": "18c47a9a0fd02e1b0d5c22df8501bd7d8b728d39f9209716eed07c99fdb356d4",
+            "size_bytes": 1237111
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/raw/6c1543ed764a6265f96a.json",
+            "sha256": "242fe0eb3d876cca21a13f4375a76bfa02f2bd4926839891d8be79d9370bdb9d",
+            "size_bytes": 80366
+          }
+        ],
+        "run_identity_sha256": "1750add1dbeab7becbf42cb40f7dde6745260b7c159eaf8d09b1a55364a9908e",
+        "segmentation_run_id": "d696e469-cd9a-46eb-87c0-7eadf69ee727",
+        "source_asset_id": "4818c595-2b41-426c-8c32-e99e13d839c8",
+        "source_sha256": "8eb675d9a30f14f099d73ddf1e00e612c2ffe41d6cdb044d9d3dd2729f752da6"
+      },
+      "evidence_sha256": "56c21d8486e11265c7c610e7744221343c4f9ccc44b2e90c0a750a19751562cd",
+      "layout_status": "no_detected_regions",
+      "manuscript_id": "fmb-cb-0902",
+      "page_id": "6c1543ed764a6265f96a",
+      "split": "validation"
+    },
+    {
+      "evidence": {
+        "artifacts": [
+          {
+            "path": "data/raw/ecodices_training_source_validation_v0_1/ubb-F-IX-0068/0085_ubb-F-IX-0068_0039v.jpg",
+            "sha256": "e9d512573964676f94eba5734fa064db684bc2f9aba79c45ad65bb30ec3073b2",
+            "size_bytes": 1439251
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0000.png",
+            "sha256": "861270e2050e352edce5e2b4a405a2e3cd655d8412401b33c7898ea2ea8da2a2",
+            "size_bytes": 6922
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0001.png",
+            "sha256": "0f9d3c4ea941edec024bcbee858017b60c84e146286539ff8d8a257724439cbe",
+            "size_bytes": 7029
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0002.png",
+            "sha256": "cf210e1b374e063b242aeee25f8e05d77ac606135687e66ab7c7d86871d80715",
+            "size_bytes": 6777
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0003.png",
+            "sha256": "2c117274ca5fa6962fe23a7e449f82389efdc6d6c129b316617963baec6c0569",
+            "size_bytes": 6721
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0004.png",
+            "sha256": "1138125ff2ed626bc79e04d68d19fd5a00c07f109456edd234658c0e6e426ea1",
+            "size_bytes": 6968
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0005.png",
+            "sha256": "fd10bf592c3af4b110859f5bfc67b17cf589c030d3a071a4d95ee163aad7dee6",
+            "size_bytes": 6487
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0006.png",
+            "sha256": "f686a42193153732ebaa513caa04bd988b5efaf38a70048fbbe8f945e76b77fe",
+            "size_bytes": 6580
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0007.png",
+            "sha256": "38b5286cbfd8db09d2746a29ecf2b101082ee39ae1953fa6fa0fcc0227132dd3",
+            "size_bytes": 6945
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0008.png",
+            "sha256": "46c700385fb96efe17698bf7f6f9b2b981ae57d726b381e774dac4387523dc12",
+            "size_bytes": 6787
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0009.png",
+            "sha256": "4af57fde4a3a554c116145e48239542d7f3b0b98e52e2cdb5bfeaedf4d47c2ef",
+            "size_bytes": 6456
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0010.png",
+            "sha256": "e90da0d1f411895ff52eeb4ab1d6e4344a40208a295499e76732fcb28aba221e",
+            "size_bytes": 6776
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0011.png",
+            "sha256": "892379b81903e6d37d76f7886b83cf55cc3a44b0eb57e42487027fc905db3c4a",
+            "size_bytes": 6811
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0012.png",
+            "sha256": "a08f6e8d26afc400d8c316863a0177a2174ad402fa56f9b508d1a4d727f27ffc",
+            "size_bytes": 6456
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0013.png",
+            "sha256": "f08e1cc33162ee445b5fcbbbef37f587d54e20c88a69db9563197b5c12af2752",
+            "size_bytes": 6468
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0014.png",
+            "sha256": "f44b335404b5f1fb75f23181f15008d3d7b55a3cf8f621d29e9bcafc6cd67384",
+            "size_bytes": 6329
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0015.png",
+            "sha256": "0acdfdd8cd304777bca9934c1c59558148dcde542a0fdeafaa9dc19f09a4f250",
+            "size_bytes": 6591
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0016.png",
+            "sha256": "51bdfaa8df5f370186060d5c02793a926270da32fcb98395b0811b0d3f15ba21",
+            "size_bytes": 6857
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0017.png",
+            "sha256": "85ad1a8ca5dbda99c7700a50ef6c93770739bc7674e667eae3865bf1e74cc2ec",
+            "size_bytes": 6558
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0018.png",
+            "sha256": "8da5cb5f1f41d6f37d0bc68da4f55a6a5030a76ae1184f0fd5bb39f3f5ca233e",
+            "size_bytes": 6762
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0019.png",
+            "sha256": "f3fa3e7ec9ebf138898f4de3e0127997c8f3de1a1ba3a8e1fa97c183ba2bc64e",
+            "size_bytes": 6552
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0020.png",
+            "sha256": "41470b17f5ff2ac5d5e6e1988cae5ad1c28ec6e5a9fa313513835dae52fda1fc",
+            "size_bytes": 6213
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0021.png",
+            "sha256": "47a604d3c9e06a7e024e23fa332bac5831d38969682d443460905c24bc4e6d20",
+            "size_bytes": 6391
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0022.png",
+            "sha256": "1b63199e289156c6571ec8f34c4d78ecaeb981364149c0647fb3ed8547cb70e7",
+            "size_bytes": 6312
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0023.png",
+            "sha256": "e1acde7068a15bfe5f079e625b71ea1bfc556d1aa0998ffc77f0637a0ef4a4d1",
+            "size_bytes": 6957
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0024.png",
+            "sha256": "c487243795bedae5254f84ccb5ff004e5baf2a9f7980314cddccdf8623c0b7a1",
+            "size_bytes": 6362
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0025.png",
+            "sha256": "7f1b0b9ab5e164c4ea73b851e2e67507b42b7b2b07bae7dc7ef920c559baf484",
+            "size_bytes": 6615
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0026.png",
+            "sha256": "9df4e8edfa628822661cba3435cf10203bd74712a4c407f5836dceda68863cb1",
+            "size_bytes": 6523
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/masks/86236cd76a738eebc657/region_0027.png",
+            "sha256": "46572c79ab0404cfd793e4c88371115a841ea04f834e4808a8f63d0ff7208706",
+            "size_bytes": 6420
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/overlays/86236cd76a738eebc657_overlay.jpg",
+            "sha256": "dd6f0e2f53d096c89f12cf15a6b3bf9b88a4b8c5ffd90c0344426cf64929f024",
+            "size_bytes": 1306525
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/raw/86236cd76a738eebc657.json",
+            "sha256": "bbb17293f7878eb35fb3a8df48752187cefe0de41048fdbc440f84b5be348529",
+            "size_bytes": 312258
+          }
+        ],
+        "run_identity_sha256": "22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f",
+        "segmentation_run_id": "674c9ffd-caa0-4026-88cc-f0ff938c85a6",
+        "source_asset_id": "c85109fb-b416-41b6-a215-6e0e908c349c",
+        "source_sha256": "e9d512573964676f94eba5734fa064db684bc2f9aba79c45ad65bb30ec3073b2"
+      },
+      "evidence_sha256": "0e2f828fdadca027830f54e6441333f40e3e11625166fcbd66be3f9b47f8c2fd",
+      "layout_status": "model_masks_available",
+      "manuscript_id": "ubb-F-IX-0068",
+      "page_id": "86236cd76a738eebc657",
+      "split": "validation"
+    },
+    {
+      "evidence": {
+        "artifacts": [
+          {
+            "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0159_sbs-gen0020_0078v.jpg",
+            "sha256": "a5ae2f58f89f8fc37c1f26f9b563695da1d08bd4a6a1044875520687a3524c87",
+            "size_bytes": 1275131
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0000.png",
+            "sha256": "eae68f281a91a8559fc16a9ac5f139ec7135ac16002531f7dbe48c08a43de3b2",
+            "size_bytes": 5971
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0001.png",
+            "sha256": "929877a29c9728fe00779798445f5a84f11399c4d6069a1d30b9cb4c25881504",
+            "size_bytes": 6731
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0002.png",
+            "sha256": "407dc6c2b19c016c54352b41a27ecbe0a547bfc5f8de6bf2b24319e1c6da374b",
+            "size_bytes": 6688
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0003.png",
+            "sha256": "bcd9085a6d5cdaef8f64d89b8f81d0366333734400b98eb5af152ede6420275d",
+            "size_bytes": 6414
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0004.png",
+            "sha256": "e1fda41db56f0e9fd4bffcbafac15ba89fb2e7e481da13bbdd8956ab5783a1c7",
+            "size_bytes": 5523
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0005.png",
+            "sha256": "64eb8d6066affe0432654095efeba3084b5a2ebca38ef4adea022dd53cbb0a03",
+            "size_bytes": 6431
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0006.png",
+            "sha256": "b886eff4315b654bd3b9438770c03bb8be15e1b3147abdedfbec3e43435005f8",
+            "size_bytes": 5512
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0007.png",
+            "sha256": "860b1ce2e6b23dba37a1d1e11b3d166cc1d31c4a01da926d4301daf2c863efcd",
+            "size_bytes": 6287
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0008.png",
+            "sha256": "d507793e5979f6a58b1859964a1b6bca55ff8d3eb6b3e5fefe55604634e08b68",
+            "size_bytes": 6678
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0009.png",
+            "sha256": "d69e9fed635af1fec3de0ddb5414f338311c6f3657404f207dd24bdf8f219b60",
+            "size_bytes": 6553
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0010.png",
+            "sha256": "ec11a3360421f6a28b9ae3174137a9d856c2a57dce246f064a456abfd6176554",
+            "size_bytes": 6523
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0011.png",
+            "sha256": "00bf751c595fa8604ebdeeb6c0d74c05c24b94e4447986ff52a0463f19d81265",
+            "size_bytes": 6663
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0012.png",
+            "sha256": "190fdf89656e138422a1772caa52cfbb9c1e88f58b18be9504bff185f3a9cc5c",
+            "size_bytes": 6669
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0013.png",
+            "sha256": "7786781cf8bad58dbe885cfdc185ba529c7f64e223e77bff3c0134a0f207dc25",
+            "size_bytes": 6635
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0014.png",
+            "sha256": "9a1c5ce7cde7984cdf35ea9ee975b83dd7bc1396e8872367f625132c9fa854b8",
+            "size_bytes": 5423
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0015.png",
+            "sha256": "3582d8a32ccfb5b2a6a45ef57b3e415785081124f39c68af62735f02f83a9fd1",
+            "size_bytes": 6651
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0016.png",
+            "sha256": "56cf7761648192946b8420e7747ccf13bb8f48f95c1aea4490cec111d77aeb94",
+            "size_bytes": 6350
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0017.png",
+            "sha256": "b857cacc9e800bd8429682d8113b52f3bd40eceb42fb2aaf1e295b4cea89d3be",
+            "size_bytes": 6767
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0018.png",
+            "sha256": "77ae41d9832b5ed1cd3ff7d98327173836199864fd01faa315e5315e20512d36",
+            "size_bytes": 5554
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0019.png",
+            "sha256": "59a8107991f231d22e337ca9364ebb89f72a4718a573d1131f9fe3fdf611ea3c",
+            "size_bytes": 5488
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0020.png",
+            "sha256": "a3dc5d0d11fd6f8553505e86778d5fcba8b5a6e349411f1f3080ee113c8a5183",
+            "size_bytes": 5474
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0021.png",
+            "sha256": "02a0e5ca8a9366d7aa107b83e152c31a8cb9230781ada34a931400a66e26983d",
+            "size_bytes": 6508
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0022.png",
+            "sha256": "3942315b8098d7cf7183d1190a314d75efbc65f71c4344df021768e0330ef8f0",
+            "size_bytes": 5683
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0023.png",
+            "sha256": "1bc5e76f2b3bdc76f41c6ef9f468625e0b9f9827b4d8aa9db6f7ad076b1f06f8",
+            "size_bytes": 5462
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0024.png",
+            "sha256": "31288d5e55b4f41e78dd295f77d604d8ac68757ddaa08334085b2a72f07ffe81",
+            "size_bytes": 5508
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0025.png",
+            "sha256": "5ee90229dc40804c4c87fb52b40d7685d434798f7d154917e76f535986055c68",
+            "size_bytes": 5528
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0026.png",
+            "sha256": "d7d5154caedf197170b280912b4d4a6262be797c2e036b991ef4f6366cab7c6c",
+            "size_bytes": 5579
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0027.png",
+            "sha256": "f779248820e5018cf413ce1c7eedfc3acfab5e56769e0ca53d01fd3fc69dab19",
+            "size_bytes": 6115
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0028.png",
+            "sha256": "48600a08e310fa4053b2c9becb6ad30be75a55b8c24e7a6532c8a73eab73c741",
+            "size_bytes": 5358
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/95a6f2c3d5cf0d195a1b/region_0029.png",
+            "sha256": "5ac88c7b43f2ec211af257bc22556fcac7b9431c20fb2790b22bd65a42bddd62",
+            "size_bytes": 5426
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/overlays/95a6f2c3d5cf0d195a1b_overlay.jpg",
+            "sha256": "cb5314b6458a4730c4afe95a9b8874d2eacb9b81d5e83ff8916a7f8583b05ddb",
+            "size_bytes": 1186052
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/raw/95a6f2c3d5cf0d195a1b.json",
+            "sha256": "2dd0947a72ae07c537a87e5e96d81401dca6bc36cce9c920401edfb8f4668079",
+            "size_bytes": 141713
+          }
+        ],
+        "run_identity_sha256": "1750add1dbeab7becbf42cb40f7dde6745260b7c159eaf8d09b1a55364a9908e",
+        "segmentation_run_id": "28a3121b-2cb5-4b96-964b-72d6dd6fe66b",
+        "source_asset_id": "2e9220e3-72d3-41a3-a9ff-8559a9fc28c4",
+        "source_sha256": "a5ae2f58f89f8fc37c1f26f9b563695da1d08bd4a6a1044875520687a3524c87"
+      },
+      "evidence_sha256": "a0ac281ddf3e6574835a70355b279257fe6228092231412a8bb5ae059b357afe",
+      "layout_status": "model_masks_available",
+      "manuscript_id": "sbs-gen0020",
+      "page_id": "95a6f2c3d5cf0d195a1b",
+      "split": "validation"
+    },
+    {
+      "evidence": {
+        "artifacts": [
+          {
+            "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0023_fmb-cb-0902_011v.jpg",
+            "sha256": "0d5479e338b89b9925958d8971a5058f190f44225f4a4c923468138efc0e456e",
+            "size_bytes": 1305697
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/overlays/95c524bbf6593575149b_overlay.jpg",
+            "sha256": "45bd974c3b6f06bb1c4b878786f3d08b68f80425dd7d6a7581ae8e04016bef05",
+            "size_bytes": 1166705
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/raw/95c524bbf6593575149b.json",
+            "sha256": "0ba86719f9bf7cea841fe83167b8636e0f7986380e9a8a7c95855d8528d50a25",
+            "size_bytes": 80350
+          }
+        ],
+        "run_identity_sha256": "1750add1dbeab7becbf42cb40f7dde6745260b7c159eaf8d09b1a55364a9908e",
+        "segmentation_run_id": "b3a52c19-c3dc-44f2-b6fc-95c1fe1956fc",
+        "source_asset_id": "668c6155-55c3-4fb0-8480-f45812a6392b",
+        "source_sha256": "0d5479e338b89b9925958d8971a5058f190f44225f4a4c923468138efc0e456e"
+      },
+      "evidence_sha256": "99e1b045ef5f5c5dc508efaf9c76ce6289dfa6c142a2860039bd63ea844ffee5",
+      "layout_status": "no_detected_regions",
+      "manuscript_id": "fmb-cb-0902",
+      "page_id": "95c524bbf6593575149b",
+      "split": "validation"
+    },
+    {
+      "evidence": {
+        "artifacts": [
+          {
+            "path": "data/raw/ecodices_training_source_validation_v0_1/ubb-F-IX-0068/0005_ubb-F-IX-0068_0000_0002v.jpg",
+            "sha256": "c264007d2c25aded4a6ef5ad16a9f2284be9365e29667e5f4f19b4d37dde0c62",
+            "size_bytes": 1575891
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/overlays/a57947d883c928bdeae4_overlay.jpg",
+            "sha256": "101b370694f156e010530b5613b7e08bd447b86ad377e9bec31ef2be62cf6a27",
+            "size_bytes": 1403900
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/raw/a57947d883c928bdeae4.json",
+            "sha256": "b2dd174e41699ce0ade22171df72e4d923e38a8ad78a04a46f1eee8d5cf2c3ef",
+            "size_bytes": 10279
+          }
+        ],
+        "run_identity_sha256": "22153377b95aef2aa9376873eb832449d9bce2af63a238445bc03fac4d7ce09f",
+        "segmentation_run_id": "261b7184-fdad-4981-8218-fe5e513a8fe2",
+        "source_asset_id": "0a763fa3-e1c5-4ce9-8779-0749f83167c8",
+        "source_sha256": "c264007d2c25aded4a6ef5ad16a9f2284be9365e29667e5f4f19b4d37dde0c62"
+      },
+      "evidence_sha256": "9389ede11b5c5c7dcddb5e358d2bf323d817540f8188da666555749a4c297d0f",
+      "layout_status": "no_detected_regions",
+      "manuscript_id": "ubb-F-IX-0068",
+      "page_id": "a57947d883c928bdeae4",
+      "split": "validation"
+    },
+    {
+      "evidence": {
+        "artifacts": [
+          {
+            "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0005_sbs-gen0020_0001v.jpg",
+            "sha256": "96e6cc22a43a6b1821693f8e3eb37ad566c7cacb35833014071c17d1a5a2a710",
+            "size_bytes": 1325010
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0000.png",
+            "sha256": "36487cf8711c0e072d4747f2ddd663d98a3755316949fb227b145645c81d7514",
+            "size_bytes": 6484
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0001.png",
+            "sha256": "bf7ec6945d9d4684e3b8b2038a9dd0750caf27aac44e101599a9f43dfd858cd8",
+            "size_bytes": 6894
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0002.png",
+            "sha256": "78bb4b64e9944cf1a327942a1c68b67a6a75df340fa85246444bc830ea83f5a5",
+            "size_bytes": 6722
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0003.png",
+            "sha256": "92565e0fb226608d505e8a9ba80c12c7c5625ffea92a354a3739f567e84b6cf1",
+            "size_bytes": 6662
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0004.png",
+            "sha256": "c2c6dc631e63f033dc6a35e4b16db9e95b800696c41393b470f99ef684a1ca7d",
+            "size_bytes": 6634
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0005.png",
+            "sha256": "7526490a4d2656030bb819b2f4e5def94e094994f6bbd4f69fd4c2e88be72956",
+            "size_bytes": 6737
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0006.png",
+            "sha256": "648a30c2c92fb20e712946feac2ef059839f8542ab47c09a297cee632211b341",
+            "size_bytes": 7378
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0007.png",
+            "sha256": "1990abea24e46328769f99003f8f893e5c8322b15d2f11dfca625ecbfcb61796",
+            "size_bytes": 7263
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0008.png",
+            "sha256": "cf12e0de737e7d767d58bc293fe57ec122ea332ce4fb7a6b1e1d39469c7d1de6",
+            "size_bytes": 6278
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0009.png",
+            "sha256": "b926e9ecc61fc410031b36f86c8918da3a9cd327d7d115e99cedff79a219b811",
+            "size_bytes": 6778
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0010.png",
+            "sha256": "67869b31cff339f43795539dcc8fa5b38a77b8e713f6a3b48ce6411f5b7d8d7c",
+            "size_bytes": 6793
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0011.png",
+            "sha256": "05d939a6d75261b49b36e6ac619f4acd1b23024ff5b03d06b827ecdaf2ac9112",
+            "size_bytes": 6327
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0012.png",
+            "sha256": "c2d455fcf6df3e26df2dd43d9c2fe939a7a85b9e9a2b6d8079bd720ce5fa6c0f",
+            "size_bytes": 6639
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0013.png",
+            "sha256": "63b4d1275f64d7362cc4bd725d8f0796f2ba89cef61034f1fdbc762ef3f88017",
+            "size_bytes": 6318
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0014.png",
+            "sha256": "7fa88812855da93a6b7870f430e9cf32f8234c8eb2972b0f6c0c4ae1cff4e963",
+            "size_bytes": 6719
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0015.png",
+            "sha256": "ee343b410e37a5d96893c54b715db77264e029c55e4e36bf552ce9eb5ad3ba91",
+            "size_bytes": 6598
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0016.png",
+            "sha256": "61cc75ef0e7940993cf00203b4a6a0f34208b9585cfacc90b68068361146dec9",
+            "size_bytes": 6536
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0017.png",
+            "sha256": "8657b0fdf1e8deb6e29d4e69e9b960c6ec7d8a6c3ce065b26a577405a501bc55",
+            "size_bytes": 6600
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0018.png",
+            "sha256": "7c06d6b7db9fa0d269bbc00c23004f63b21699c9e1dde053c3e5494ce2039992",
+            "size_bytes": 6924
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d704f482fd5fd52f0df9/region_0019.png",
+            "sha256": "b0c6f6328ded7aa99cf51271514dd0d42dc67c6d1b51bc16e774e9c274c4de2d",
+            "size_bytes": 6290
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/overlays/d704f482fd5fd52f0df9_overlay.jpg",
+            "sha256": "46ce63be0322c51b5b062debccddb055be52dcb9c1fc656daf42713f297163b5",
+            "size_bytes": 1226789
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/raw/d704f482fd5fd52f0df9.json",
+            "sha256": "1a835ed7c52fac5f556861f3acc5a4064291d3ee181af0463eea210c53b0b8ff",
+            "size_bytes": 121187
+          }
+        ],
+        "run_identity_sha256": "1750add1dbeab7becbf42cb40f7dde6745260b7c159eaf8d09b1a55364a9908e",
+        "segmentation_run_id": "f664b4b7-f5fa-4e2e-8cf1-c5a827ef7015",
+        "source_asset_id": "4853b41b-adda-4b7c-8621-b91573c3648b",
+        "source_sha256": "96e6cc22a43a6b1821693f8e3eb37ad566c7cacb35833014071c17d1a5a2a710"
+      },
+      "evidence_sha256": "3871e4ecd21ef673b6bf0c7175a0c459bcfe9c3230981090e334154a4190aa72",
+      "layout_status": "model_masks_available",
+      "manuscript_id": "sbs-gen0020",
+      "page_id": "d704f482fd5fd52f0df9",
+      "split": "validation"
+    },
+    {
+      "evidence": {
+        "artifacts": [
+          {
+            "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0020_fmb-cb-0902_010r.jpg",
+            "sha256": "8d1d91c7a943eb682dcc1a1f4eecf0059f26bba4e8fc0acc44abc4e85ab13450",
+            "size_bytes": 1351393
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d861c556a5079b0f562b/region_0000.png",
+            "sha256": "8370a8bc281c550548134c021f6517182aa3b3906969a3a6d16d6e192caf76bb",
+            "size_bytes": 6972
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d861c556a5079b0f562b/region_0001.png",
+            "sha256": "94498ac39e9ff0e45471f521791ff17a1aede0beb2be119d0dc45c9c4959d7e9",
+            "size_bytes": 6984
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/masks/d861c556a5079b0f562b/region_0002.png",
+            "sha256": "c0d4384c4c0e15a88395776664849f7c7d3b50a257b1d8ad42066d0cecbf37f8",
+            "size_bytes": 7143
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/overlays/d861c556a5079b0f562b_overlay.jpg",
+            "sha256": "819a44b1e1c760c6ae7b1bf64476c1ba985392151451c446fc430d6e7957396b",
+            "size_bytes": 1191141
+          },
+          {
+            "path": "outputs/training_corpus_segmentation/batch_01/raw/d861c556a5079b0f562b.json",
+            "sha256": "46724bf31635069f12f499e841995e5d9d0ac440da8dfc5a87b95fed8b516fa5",
+            "size_bytes": 86429
+          }
+        ],
+        "run_identity_sha256": "1750add1dbeab7becbf42cb40f7dde6745260b7c159eaf8d09b1a55364a9908e",
+        "segmentation_run_id": "2e145e62-64a8-4719-9438-ba39c850cdb0",
+        "source_asset_id": "041acb19-4aa6-4f83-a682-789557adc100",
+        "source_sha256": "8d1d91c7a943eb682dcc1a1f4eecf0059f26bba4e8fc0acc44abc4e85ab13450"
+      },
+      "evidence_sha256": "a3bd1290b8be320a409b0b1950428f8289b2a77a7c6774e3ff0b8cad47b339c6",
+      "layout_status": "model_masks_available",
+      "manuscript_id": "fmb-cb-0902",
+      "page_id": "d861c556a5079b0f562b",
+      "split": "validation"
+    }
+  ],
+  "severities": [
+    0.3,
+    0.6
+  ],
+  "survival_thresholds": {
+    "almost_complete_min": 0.95,
+    "fully_removed": 0.0,
+    "mostly_destroyed_max": 0.05
+  },
+  "tasks": [
+    {
+      "evidence_sha256": "69da7a582e9cceffc345fa451888db8b5794cdaa79d2c77214aa621fdc89290b",
+      "mask_family": "rectangular",
+      "page_id": "425d05fd9a5871117c02",
+      "random_seed": 1007402287119481274,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_71372d61f0f6ae3177c6603b"
+    },
+    {
+      "evidence_sha256": "69da7a582e9cceffc345fa451888db8b5794cdaa79d2c77214aa621fdc89290b",
+      "mask_family": "rectangular",
+      "page_id": "425d05fd9a5871117c02",
+      "random_seed": 358164864877576422,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_e64cffc95f7c51adcadd835b"
+    },
+    {
+      "evidence_sha256": "69da7a582e9cceffc345fa451888db8b5794cdaa79d2c77214aa621fdc89290b",
+      "mask_family": "irregular",
+      "page_id": "425d05fd9a5871117c02",
+      "random_seed": 813433434622656935,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_03be245892c6a5942a401edb"
+    },
+    {
+      "evidence_sha256": "69da7a582e9cceffc345fa451888db8b5794cdaa79d2c77214aa621fdc89290b",
+      "mask_family": "irregular",
+      "page_id": "425d05fd9a5871117c02",
+      "random_seed": 526195583875197156,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_16ccdd458894bb2664a8bfcc"
+    },
+    {
+      "evidence_sha256": "2a6661ef65064d19e3cca833b7b73536f8f92d1713374cf51d603fd3bcd073cb",
+      "mask_family": "rectangular",
+      "page_id": "44b0f45256bf210d6896",
+      "random_seed": 28600745839454600,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_417c2e04cfc822dc5b1a555e"
+    },
+    {
+      "evidence_sha256": "2a6661ef65064d19e3cca833b7b73536f8f92d1713374cf51d603fd3bcd073cb",
+      "mask_family": "rectangular",
+      "page_id": "44b0f45256bf210d6896",
+      "random_seed": 580757799977819974,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_8c632e409dca77a40f80f721"
+    },
+    {
+      "evidence_sha256": "2a6661ef65064d19e3cca833b7b73536f8f92d1713374cf51d603fd3bcd073cb",
+      "mask_family": "irregular",
+      "page_id": "44b0f45256bf210d6896",
+      "random_seed": 168668044683836606,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_25819d720257329a4a93fc91"
+    },
+    {
+      "evidence_sha256": "2a6661ef65064d19e3cca833b7b73536f8f92d1713374cf51d603fd3bcd073cb",
+      "mask_family": "irregular",
+      "page_id": "44b0f45256bf210d6896",
+      "random_seed": 342622957995607882,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_cb302d9c856bcd8a0fe7ff37"
+    },
+    {
+      "evidence_sha256": "5b2ee18bd66762dcc2f14835a58d83c82093cddd91a3438c9d985d1b33352d43",
+      "mask_family": "rectangular",
+      "page_id": "5e6ff8c7c454a2c27b94",
+      "random_seed": 620323201244132137,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_8bae66387a4b35399452e442"
+    },
+    {
+      "evidence_sha256": "5b2ee18bd66762dcc2f14835a58d83c82093cddd91a3438c9d985d1b33352d43",
+      "mask_family": "rectangular",
+      "page_id": "5e6ff8c7c454a2c27b94",
+      "random_seed": 993785525292866034,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_be0d50393b185474bf4bd764"
+    },
+    {
+      "evidence_sha256": "5b2ee18bd66762dcc2f14835a58d83c82093cddd91a3438c9d985d1b33352d43",
+      "mask_family": "irregular",
+      "page_id": "5e6ff8c7c454a2c27b94",
+      "random_seed": 257817528546705315,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_314827b1962f1eeb6f405670"
+    },
+    {
+      "evidence_sha256": "5b2ee18bd66762dcc2f14835a58d83c82093cddd91a3438c9d985d1b33352d43",
+      "mask_family": "irregular",
+      "page_id": "5e6ff8c7c454a2c27b94",
+      "random_seed": 832040038885393516,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_c411e7380a607f4d0fc6560c"
+    },
+    {
+      "evidence_sha256": "76862c1842fc4a87373bf3fd46c745514e40e1456f2ab65b9a60d8453458be63",
+      "mask_family": "rectangular",
+      "page_id": "6538cbcb609973816c5a",
+      "random_seed": 150592014350371126,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_38b263aebe35d95c600b4169"
+    },
+    {
+      "evidence_sha256": "76862c1842fc4a87373bf3fd46c745514e40e1456f2ab65b9a60d8453458be63",
+      "mask_family": "rectangular",
+      "page_id": "6538cbcb609973816c5a",
+      "random_seed": 243353013425902951,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_2fbfd6e37123f9461cc1d525"
+    },
+    {
+      "evidence_sha256": "76862c1842fc4a87373bf3fd46c745514e40e1456f2ab65b9a60d8453458be63",
+      "mask_family": "irregular",
+      "page_id": "6538cbcb609973816c5a",
+      "random_seed": 937757810908149219,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_6c11af7a686f73304e170c56"
+    },
+    {
+      "evidence_sha256": "76862c1842fc4a87373bf3fd46c745514e40e1456f2ab65b9a60d8453458be63",
+      "mask_family": "irregular",
+      "page_id": "6538cbcb609973816c5a",
+      "random_seed": 231842193300888706,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_8851d08a8d5b971f13fb33c5"
+    },
+    {
+      "evidence_sha256": "56c21d8486e11265c7c610e7744221343c4f9ccc44b2e90c0a750a19751562cd",
+      "mask_family": "rectangular",
+      "page_id": "6c1543ed764a6265f96a",
+      "random_seed": 267185163867292295,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_723a37800217c460f884d542"
+    },
+    {
+      "evidence_sha256": "56c21d8486e11265c7c610e7744221343c4f9ccc44b2e90c0a750a19751562cd",
+      "mask_family": "rectangular",
+      "page_id": "6c1543ed764a6265f96a",
+      "random_seed": 123616296692371285,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_d35437ad4e76ed299b251c0a"
+    },
+    {
+      "evidence_sha256": "56c21d8486e11265c7c610e7744221343c4f9ccc44b2e90c0a750a19751562cd",
+      "mask_family": "irregular",
+      "page_id": "6c1543ed764a6265f96a",
+      "random_seed": 551910934764246759,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_a814176bb5a20c594aab6a32"
+    },
+    {
+      "evidence_sha256": "56c21d8486e11265c7c610e7744221343c4f9ccc44b2e90c0a750a19751562cd",
+      "mask_family": "irregular",
+      "page_id": "6c1543ed764a6265f96a",
+      "random_seed": 931641317841864291,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_d9a440894055a35394640fd8"
+    },
+    {
+      "evidence_sha256": "0e2f828fdadca027830f54e6441333f40e3e11625166fcbd66be3f9b47f8c2fd",
+      "mask_family": "rectangular",
+      "page_id": "86236cd76a738eebc657",
+      "random_seed": 667566578159667155,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_69f96a70ea5061945a5e07aa"
+    },
+    {
+      "evidence_sha256": "0e2f828fdadca027830f54e6441333f40e3e11625166fcbd66be3f9b47f8c2fd",
+      "mask_family": "rectangular",
+      "page_id": "86236cd76a738eebc657",
+      "random_seed": 833089799339670399,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_89350f48c36adeeaefdcff7c"
+    },
+    {
+      "evidence_sha256": "0e2f828fdadca027830f54e6441333f40e3e11625166fcbd66be3f9b47f8c2fd",
+      "mask_family": "irregular",
+      "page_id": "86236cd76a738eebc657",
+      "random_seed": 509273383024699430,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_bc61a36ca4e2f9831a52e96b"
+    },
+    {
+      "evidence_sha256": "0e2f828fdadca027830f54e6441333f40e3e11625166fcbd66be3f9b47f8c2fd",
+      "mask_family": "irregular",
+      "page_id": "86236cd76a738eebc657",
+      "random_seed": 1137682129680656629,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_ae2f31cbf6b9d45e12352e5f"
+    },
+    {
+      "evidence_sha256": "a0ac281ddf3e6574835a70355b279257fe6228092231412a8bb5ae059b357afe",
+      "mask_family": "rectangular",
+      "page_id": "95a6f2c3d5cf0d195a1b",
+      "random_seed": 1043114760737791570,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_294052912eaab849fd1e56ed"
+    },
+    {
+      "evidence_sha256": "a0ac281ddf3e6574835a70355b279257fe6228092231412a8bb5ae059b357afe",
+      "mask_family": "rectangular",
+      "page_id": "95a6f2c3d5cf0d195a1b",
+      "random_seed": 812630427984853943,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_af1f24aacd6a925e3de9cb58"
+    },
+    {
+      "evidence_sha256": "a0ac281ddf3e6574835a70355b279257fe6228092231412a8bb5ae059b357afe",
+      "mask_family": "irregular",
+      "page_id": "95a6f2c3d5cf0d195a1b",
+      "random_seed": 406266277558883986,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_c54ed1523fec6afea6db74d8"
+    },
+    {
+      "evidence_sha256": "a0ac281ddf3e6574835a70355b279257fe6228092231412a8bb5ae059b357afe",
+      "mask_family": "irregular",
+      "page_id": "95a6f2c3d5cf0d195a1b",
+      "random_seed": 114002104577594377,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_5ccbad80c1776ab3876f04f1"
+    },
+    {
+      "evidence_sha256": "99e1b045ef5f5c5dc508efaf9c76ce6289dfa6c142a2860039bd63ea844ffee5",
+      "mask_family": "rectangular",
+      "page_id": "95c524bbf6593575149b",
+      "random_seed": 611449020367593292,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_85d9766fd1decc0844d0b3d3"
+    },
+    {
+      "evidence_sha256": "99e1b045ef5f5c5dc508efaf9c76ce6289dfa6c142a2860039bd63ea844ffee5",
+      "mask_family": "rectangular",
+      "page_id": "95c524bbf6593575149b",
+      "random_seed": 225658911436695696,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_141b38f55fa32f168e6062dd"
+    },
+    {
+      "evidence_sha256": "99e1b045ef5f5c5dc508efaf9c76ce6289dfa6c142a2860039bd63ea844ffee5",
+      "mask_family": "irregular",
+      "page_id": "95c524bbf6593575149b",
+      "random_seed": 90165855752167180,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_f8925c9aa6860fdc7797e4f7"
+    },
+    {
+      "evidence_sha256": "99e1b045ef5f5c5dc508efaf9c76ce6289dfa6c142a2860039bd63ea844ffee5",
+      "mask_family": "irregular",
+      "page_id": "95c524bbf6593575149b",
+      "random_seed": 716424062744704540,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_1f35919a3f3352bab912223f"
+    },
+    {
+      "evidence_sha256": "9389ede11b5c5c7dcddb5e358d2bf323d817540f8188da666555749a4c297d0f",
+      "mask_family": "rectangular",
+      "page_id": "a57947d883c928bdeae4",
+      "random_seed": 209312241859141775,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_a2807b8b2e2d748be9ecea72"
+    },
+    {
+      "evidence_sha256": "9389ede11b5c5c7dcddb5e358d2bf323d817540f8188da666555749a4c297d0f",
+      "mask_family": "rectangular",
+      "page_id": "a57947d883c928bdeae4",
+      "random_seed": 272919380876350580,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_8f290b2604dd7ca20c7bbd27"
+    },
+    {
+      "evidence_sha256": "9389ede11b5c5c7dcddb5e358d2bf323d817540f8188da666555749a4c297d0f",
+      "mask_family": "irregular",
+      "page_id": "a57947d883c928bdeae4",
+      "random_seed": 697256653599641020,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_6f242bffc52ba74e888789d8"
+    },
+    {
+      "evidence_sha256": "9389ede11b5c5c7dcddb5e358d2bf323d817540f8188da666555749a4c297d0f",
+      "mask_family": "irregular",
+      "page_id": "a57947d883c928bdeae4",
+      "random_seed": 398882909773036227,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_21cc9d01998cec236b9ba237"
+    },
+    {
+      "evidence_sha256": "3871e4ecd21ef673b6bf0c7175a0c459bcfe9c3230981090e334154a4190aa72",
+      "mask_family": "rectangular",
+      "page_id": "d704f482fd5fd52f0df9",
+      "random_seed": 440453506713802324,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_17ac971cc4e1fda85555cfb7"
+    },
+    {
+      "evidence_sha256": "3871e4ecd21ef673b6bf0c7175a0c459bcfe9c3230981090e334154a4190aa72",
+      "mask_family": "rectangular",
+      "page_id": "d704f482fd5fd52f0df9",
+      "random_seed": 775311828450599489,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_bf8e9ed6217a3ad144590561"
+    },
+    {
+      "evidence_sha256": "3871e4ecd21ef673b6bf0c7175a0c459bcfe9c3230981090e334154a4190aa72",
+      "mask_family": "irregular",
+      "page_id": "d704f482fd5fd52f0df9",
+      "random_seed": 372575379446477191,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_e348d53084bd2bf9b3e68393"
+    },
+    {
+      "evidence_sha256": "3871e4ecd21ef673b6bf0c7175a0c459bcfe9c3230981090e334154a4190aa72",
+      "mask_family": "irregular",
+      "page_id": "d704f482fd5fd52f0df9",
+      "random_seed": 74947494775025046,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_27b8ff7892413e171a36edde"
+    },
+    {
+      "evidence_sha256": "a3bd1290b8be320a409b0b1950428f8289b2a77a7c6774e3ff0b8cad47b339c6",
+      "mask_family": "rectangular",
+      "page_id": "d861c556a5079b0f562b",
+      "random_seed": 458550881747715407,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_891564a07c0b5f12826ef76e"
+    },
+    {
+      "evidence_sha256": "a3bd1290b8be320a409b0b1950428f8289b2a77a7c6774e3ff0b8cad47b339c6",
+      "mask_family": "rectangular",
+      "page_id": "d861c556a5079b0f562b",
+      "random_seed": 72106005326593505,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_c4c00cc4936bdc18add64c43"
+    },
+    {
+      "evidence_sha256": "a3bd1290b8be320a409b0b1950428f8289b2a77a7c6774e3ff0b8cad47b339c6",
+      "mask_family": "irregular",
+      "page_id": "d861c556a5079b0f562b",
+      "random_seed": 1070027056765255732,
+      "requested_severity": 0.3,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_69323e0aa37bd79051832ef8"
+    },
+    {
+      "evidence_sha256": "a3bd1290b8be320a409b0b1950428f8289b2a77a7c6774e3ff0b8cad47b339c6",
+      "mask_family": "irregular",
+      "page_id": "d861c556a5079b0f562b",
+      "random_seed": 914326370730788870,
+      "requested_severity": 0.6,
+      "rotation_degrees": 0.0,
+      "scale": 1.0,
+      "task_group": "artificial_fragment_experiment_v0_2",
+      "task_id": "afv02_29649b461de8ece8168597df"
+    }
+  ],
+  "test_policy": "frozen_and_excluded",
+  "validation_page_count": 13,
+  "zero_detection_policy": "include_page_metrics; region_survival_undefined; never infer zero content"
+}

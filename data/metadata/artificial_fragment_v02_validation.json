@@ -1,0 +1,68 @@
+{
+  "all_frozen_database_rows_and_timestamps_unchanged": true,
+  "audit_and_measurements_stable": true,
+  "available_source_files_checksums_sizes_and_mtimes_unchanged": true,
+  "frozen_artifact_count": 4608,
+  "frozen_database": {
+    "artificial_fragment_task": {
+      "count": 23,
+      "rows_sha256": "0e0c36a62ab7aa8f2a6f3063a1f052496d18d4679e85ed4c41b3ea6cf18a54de"
+    },
+    "canvas": {
+      "count": 92,
+      "rows_sha256": "257e47297ad4cb71e4f8b6083a0985967e1dc827d726c9082cefe1fccf889ad0"
+    },
+    "iiif_manifest_cache": {
+      "count": 22,
+      "rows_sha256": "7c5c31eb38275fccefccb19779d6801eb09ba6476e52d5d0be3fc476fd326a9c"
+    },
+    "image_asset": {
+      "count": 97,
+      "rows_sha256": "4a9c848c0539d5a7dafe3774a4b6edbada2ebcd7ad6e2650c3c7f122b1f95223"
+    },
+    "layout_region": {
+      "count": 5069,
+      "rows_sha256": "7bfd841c24d731fe3a1561724b30931197bad9e0ab819dfe490c25226178d4e6"
+    },
+    "manuscript": {
+      "count": 27,
+      "rows_sha256": "6766a8f86e6d0d212d0598de64812933ccc4c3499fc405b759d5c26d838cbf52"
+    },
+    "repository": {
+      "count": 19,
+      "rows_sha256": "0f180574805303aa8eb3a320cba13d828cde1e57d729906b8f55017f4b3830a5"
+    },
+    "segmentation_run": {
+      "count": 97,
+      "rows_sha256": "2390da9344cafc7e14fb699c91ecbd227477777749a26ffa5b27e7bc728732d5"
+    }
+  },
+  "frozen_file_snapshot_sha256": "51165575b64693f302421829f32794339376f8a328d926ba72fc30577108399c",
+  "legacy_pilot_unchanged": true,
+  "region_measurement_count": 604,
+  "registered_experiment": {
+    "artificial_fragment_task": {
+      "count": 44,
+      "rows_sha256": "e2d4d49891ad616193dae31613f4f1ce0abd2c4edb0fa5e77984094fce08c44c"
+    }
+  },
+  "rights_and_training_authorization_unchanged": true,
+  "status": "passed",
+  "task_count": 44,
+  "test_pages_used_for_generation": 0,
+  "unavailable_source_files": [
+    "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bbb-AA0091/0066_bbb-AA0091_031r.jpg",
+    "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0067/0082_bc-b-0067_042v.jpg",
+    "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcj-A2437/0168_bcj-A2437_0161.jpg",
+    "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bke-0056/0147_bke-0056_072v.jpg",
+    "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bke-0056/0186_bke-0056_092r.jpg",
+    "data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0067_sbs-gen0020_0032v.jpg",
+    "data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0113_sbs-gen0020_0055v.jpg",
+    "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-A-II-0013/0193_ubb-A-II-0013_0095v.jpg",
+    "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-A-II-0013/0202_ubb-A-II-0013_0100r.jpg",
+    "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-F-I-0021/0154_ubb-F-I-0021_0075r.jpg",
+    "data/raw/ecodices_training_source_validation_v0_1/kba-Wett0004/0022_kba-Wett0004_009v.jpg"
+  ],
+  "unavailable_source_note": "Only metadata/size/mtime can be verified for unavailable files; no byte-integrity claim is made for them.",
+  "validation_pages": 11
+}
