@@ -1,6 +1,6 @@
 # Artificial Fragment Experiment v0.3 — Codicologically Structured Damage
 
-Status: implementation and initial generation in progress; final validation results are recorded below only after successful execution.
+Status: complete. All 156 tasks are generated and registered; full recomputation, frozen-invariant checks and the 184-test repository suite passed. The completion evidence below records exact counts.
 
 ## Scientific purpose and boundaries
 
@@ -104,6 +104,28 @@ The corpus remains 85 pages in 19 page-bearing manuscripts, with 59/13/13 splits
 `docs/20a_artificial_fragment_v03_measurements.md` and `data/metadata/artificial_fragment_v03_measurements.json` contain the detailed aggregates; `artificial_fragment_v03_coverage.json` gives every split/class count and future Batch 02 selection criteria.
 
 The central comparison uses only the 11 page identities common to historical v0.2 and v0.3. All-13-page v0.3 results are reported separately so restoration does not confound the control comparison. Reports group by experiment version, family, severity, manuscript, page and layout class, and additionally family/severity/class. Statistics include count, mean, median, population SD, minimum and maximum, plus removal/survival category rates. Region instances receive equal weight; repeated tasks are controlled transformations, not independent manuscript observations. Class-specific task counts include only tasks containing that class.
+
+## Reproducibility and validation results
+
+The complete second run repeated source availability verification, all 85 corpus pages and 4,230 segmentation masks, the validation specification, four outlier review aids, all fragment images and overlaps, aggregate reports, and guarded database registration. Selection remained 13 eligible validation pages with zero rejected pages or configurations, 156 task IDs, the same structural parameters/orientations, and 2,424 region measurements.
+
+`artificial_fragment_v03_determinism.json` records **795 byte-identical artifacts with unchanged file mtimes**: 624 task PNGs, 156 per-task JSON files, nine experiment metadata reports, four review PNGs, the review HTML index, and the measurement Markdown report. Generated images were actually recomputed; this was not a cache-only check. The validation and determinism attestation files themselves are excluded from that comparison to avoid self-reference.
+
+The initial registration inserted 156 v0.3 rows. Its second pass, and both passes during the complete rerun, matched all 156 with zero inserts or updates. Complete database-row hashes, including timestamps, remained identical. The frozen baseline protected 4,873 source, mask, metadata and historical artifact files, plus all source/segmentation database rows and the 67 historical artificial-fragment rows (23 v0.1 and 44 v0.2). `artificial_fragment_v03_validation.json` records successful checks of those invariants, all 156 topology validations, zero test-page generation/registration, and unchanged rights, provenance, splits and training authorization. All 85 corpus sources retain `rights_review_status: pending_review` and `training_allowed: false`.
+
+The full repository suite passes **184 tests**, including all 133 previous tests and 51 new v0.3 tests. Synthetic fixtures cover selection/restoration, orientations and all family constraints, exact pixel calibration and deterministic rejection, repeated image/metadata bytes and mtimes, full-mask overlap and alignment, source provenance/rights, test exclusion and idempotent registration. The existing urllib3/LibreSSL compatibility warning remains; it is not a test failure. Runtime versions and reproducible commands are listed below.
+
+No source images, generated fragments, masks, overlays, models, caches or database binaries were added to Git. The milestone contains source code, tests, documentation and portable JSON references/statistics only. No training, reconstruction or schema migration occurred.
+
+## Storage resumption on 2026-09-10
+
+The completed implementation was already pushed as `17b317e`. A later resumption found a separate filesystem event: 63 frozen files were iCloud dataless placeholders (21 corpus sources and 42 historical task artifacts), and 188 available files had identical bytes but nanosecond mtime differences. No database row differed. All 780 v0.3 per-task artifacts remained locally available. The unchanged strict verifier correctly rejected the drift; the original successful validation and determinism reports were retained.
+
+macOS ubiquitous-item download requests hydrated 43 exact files, including all 42 historical artifacts. The existing staged acquisition helper restored the remaining 20 registered source files; every replacement matched its original checksum, byte size and image dimensions. No historical task was regenerated. After hydration, 216 files differed only in mtime, by at most 120 nanoseconds. The entire frozen artifact set and database were verified before any timestamp repair; observed differences were journaled, and only then were original recorded mtimes restored. No verifier tolerance or baseline was changed. The complete frozen snapshot subsequently matched its original value exactly.
+
+`data/metadata/artificial_fragment_v03_storage_resumption.json` preserves each restored path/checksum/method and every observed/restored timestamp. This later storage audit is separate from the original 795-artifact determinism comparison. It does not erase the intervening storage event or claim that files stayed continuously hydrated. All 85 sources are available again. Five test-source files were rehydrated or restored to their exact registered bytes as storage maintenance; test assignments, task selection, measurements and database records were unchanged, and no test fragment was generated.
+
+For future storage incidents, retain the original baseline, inspect availability without opening placeholders, request downloads at the same paths, and use checksum-verified staging for registered sources. Compare every frozen checksum/size and database row before considering restoration of known file metadata; record observed differences first and stop on changed bytes or unexplained timestamp differences. Then run the unchanged `v03 verify` command below. Pinning or backing up these assets on durable local storage remains an operational prerequisite for reliable future experiments.
 
 ## Reproducible commands
 
