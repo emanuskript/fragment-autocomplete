@@ -1,0 +1,2694 @@
+{
+  "audit_version": "artificial_fragment_experiment_v0_3",
+  "database": {
+    "corpus_asset_count": 85,
+    "total_layout_regions": 4230,
+    "total_segmentation_runs": 85,
+    "verified_source_rights_splits_and_relationships": true
+  },
+  "diversity": {
+    "classes_missing_from_test": [
+      "Border",
+      "Illustrations",
+      "Main script coloured",
+      "Plain initial - Highlighted",
+      "Plain initial- coloured",
+      "Table"
+    ],
+    "classes_missing_from_validation": [
+      "Border",
+      "Illustrations",
+      "Running header",
+      "Table"
+    ],
+    "largest_manuscript_page_fraction": 0.058823529411764705,
+    "outliers_by_manuscript": {
+      "fmb-cb-0902": 4,
+      "ubb-F-IX-0068": 1
+    },
+    "script_metadata_missing_manuscripts": 20
+  },
+  "images": {
+    "aspect_ratio": {
+      "count": 85,
+      "maximum": 0.8093889113719142,
+      "mean": 0.7044254244,
+      "median": 0.7112375533428165,
+      "minimum": 0.5515719801434087,
+      "population_standard_deviation": 0.0606781761
+    },
+    "database_vs_acquired_dimensions_differ_count": 85,
+    "dimension_note": "Image statistics use acquired rasters. Existing DB dimensions preserve advertised IIIF dimensions and are not rewritten.",
+    "file_size_bytes": {
+      "count": 85,
+      "maximum": 2188241,
+      "mean": 1383193.2470588235,
+      "median": 1362440,
+      "minimum": 847277,
+      "population_standard_deviation": 240368.2606995263
+    },
+    "height_px": {
+      "count": 85,
+      "maximum": 3626,
+      "mean": 2862.0352941176,
+      "median": 2812,
+      "minimum": 2471,
+      "population_standard_deviation": 267.1543042583
+    },
+    "source_checksum_recorded_count": 85,
+    "source_checksum_verified_count": 85,
+    "width_px": {
+      "count": 85,
+      "maximum": 2000,
+      "mean": 2000,
+      "median": 2000,
+      "minimum": 2000,
+      "population_standard_deviation": 0.0
+    }
+  },
+  "inputs": [
+    {
+      "path": "data/metadata/training_corpus_expansion_batch_01_manifest.yaml",
+      "sha256": "3295f1f77c0335376156b6a3e31716a98dd277ebf6fc90689667dd1a37ad23af",
+      "size_bytes": 4063508
+    },
+    {
+      "path": "data/metadata/training_corpus_expansion_batch_01_segmentation_results.yaml",
+      "sha256": "56b9e306f6266a0747cfe99ce88c590d865a26c51a58ab95bf63690eefa1ac7f",
+      "size_bytes": 212267
+    },
+    {
+      "path": "data/metadata/training_corpus_expansion_batch_01_segmentation_storage_results.yaml",
+      "sha256": "8e5494f1b73280bace293643ef35c541d92dbfef6b4c0321608ed75da5af8053",
+      "size_bytes": 55350
+    },
+    {
+      "path": "data/metadata/training_corpus_segmentation_results.yaml",
+      "sha256": "fb96b0eaf77d0300f8d99dc0cace36379afec7d39fe3646b358e6d469e86bec7",
+      "size_bytes": 23661
+    },
+    {
+      "path": "data/metadata/training_corpus_segmentation_storage_results.yaml",
+      "sha256": "37976974a0d02458e9205545972a5859e7e8449c55527e2cc9e07bcf2826f55b",
+      "size_bytes": 11216
+    },
+    {
+      "path": "data/metadata/training_corpus_validation_manifest.yaml",
+      "sha256": "a4334ea81010cb4b6e40f57ebe47f9015335abb9512e950a72a3352e18511410",
+      "size_bytes": 1089420
+    }
+  ],
+  "pages": [
+    {
+      "canvas_label": "123r",
+      "class_counts": {
+        "Main script black": 73
+      },
+      "confidence": {
+        "count": 73,
+        "maximum": 0.871823,
+        "mean": 0.6803023562,
+        "median": 0.761756,
+        "minimum": 0.251839,
+        "population_standard_deviation": 0.1762959778
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "kba-WettF0001",
+      "page_id": "06f5b20752e75711c243",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/kba-WettF0001/0248_kba-WettF0001_123r.jpg",
+      "source_sha256": "f1c8ceadd7df12de8db1669ea8131ba7e5063f8378bfddd83dab6285d7d5eec8",
+      "source_size_bytes": 1268635,
+      "split": "test",
+      "union_mask_area_px": 1805960,
+      "valid_mask_count": 73
+    },
+    {
+      "canvas_label": "57v",
+      "class_counts": {
+        "Main script black": 15,
+        "Music": 3,
+        "Page Number": 3
+      },
+      "confidence": {
+        "count": 21,
+        "maximum": 0.854246,
+        "mean": 0.6057456667,
+        "median": 0.597176,
+        "minimum": 0.316994,
+        "population_standard_deviation": 0.1477571789
+      },
+      "dimensions_px": [
+        2000,
+        2471
+      ],
+      "errors": [],
+      "manuscript_id": "bc-b-0103",
+      "page_id": "07b71712497e5e020af5",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0103/0119_bc-b-0103_057v.jpg",
+      "source_sha256": "34c0bcff7ebf0b6cc2a3ea6ba594eba2dedada5a81507f546f2dc54a14151dc9",
+      "source_size_bytes": 1467150,
+      "split": "train",
+      "union_mask_area_px": 1172488,
+      "valid_mask_count": 21
+    },
+    {
+      "canvas_label": "176",
+      "class_counts": {
+        "Gloss": 1,
+        "Main script black": 111,
+        "Plain initial - Black": 2
+      },
+      "confidence": {
+        "count": 114,
+        "maximum": 0.792953,
+        "mean": 0.5571295965,
+        "median": 0.5856855000000001,
+        "minimum": 0.252073,
+        "population_standard_deviation": 0.1456551184
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0073",
+      "page_id": "100211da8d4af3713a27",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0073/0177_csg-0073_176.jpg",
+      "source_sha256": "80e6ad81c81e8a76170d1bb387ab943a01ecaab612bd0b954c0f07bf9bc0c641",
+      "source_size_bytes": 1161777,
+      "split": "train",
+      "union_mask_area_px": 2225920,
+      "valid_mask_count": 114
+    },
+    {
+      "canvas_label": "93",
+      "class_counts": {
+        "Gloss": 1,
+        "Main script black": 29,
+        "Plain initial - Black": 4,
+        "Variant script coloured": 1
+      },
+      "confidence": {
+        "count": 35,
+        "maximum": 0.873077,
+        "mean": 0.6353074571,
+        "median": 0.725828,
+        "minimum": 0.25079,
+        "population_standard_deviation": 0.2082291823
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0916",
+      "page_id": "18537114696229503939",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0916/0098_csg-0916_093.jpg",
+      "source_sha256": "7ca6e09f7656f551c7c376140451f7b3ed998c2e4c637819594d02304ae9a00d",
+      "source_size_bytes": 1074081,
+      "split": "train",
+      "union_mask_area_px": 1847115,
+      "valid_mask_count": 35
+    },
+    {
+      "canvas_label": "8r",
+      "class_counts": {
+        "Illustrations": 1
+      },
+      "confidence": {
+        "count": 1,
+        "maximum": 0.968975,
+        "mean": 0.968975,
+        "median": 0.968975,
+        "minimum": 0.968975,
+        "population_standard_deviation": null
+      },
+      "dimensions_px": [
+        2000,
+        2812
+      ],
+      "errors": [],
+      "manuscript_id": "bc-b-0067",
+      "page_id": "1abc293888c03c456133",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0067/0015_bc-b-0067_008r.jpg",
+      "source_sha256": "5b42e6ba2efc200aa0faf7758b16e159f2a3e29030dbdac74ba7aa23a3ccdc7d",
+      "source_size_bytes": 1320020,
+      "split": "train",
+      "union_mask_area_px": 4773409,
+      "valid_mask_count": 1
+    },
+    {
+      "canvas_label": "55v",
+      "class_counts": {
+        "Main script black": 17,
+        "Main script coloured": 2,
+        "Plain initial - Highlighted": 8,
+        "Plain initial- coloured": 1
+      },
+      "confidence": {
+        "count": 28,
+        "maximum": 0.876901,
+        "mean": 0.6638646429,
+        "median": 0.778308,
+        "minimum": 0.295581,
+        "population_standard_deviation": 0.2007517564
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "sbs-gen0020",
+      "page_id": "219352470825ee97ee12",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0113_sbs-gen0020_0055v.jpg",
+      "source_sha256": "efc49bc6c81e00d59703a9f6abc8e23d032e3cfc22e087a9045d74807ffcb556",
+      "source_size_bytes": 1262372,
+      "split": "validation",
+      "union_mask_area_px": 1290092,
+      "valid_mask_count": 28
+    },
+    {
+      "canvas_label": "110",
+      "class_counts": {
+        "Main script black": 35,
+        "Plain initial - Black": 4
+      },
+      "confidence": {
+        "count": 39,
+        "maximum": 0.872884,
+        "mean": 0.6209370513,
+        "median": 0.665548,
+        "minimum": 0.250411,
+        "population_standard_deviation": 0.195282849
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0916",
+      "page_id": "23547dd56798c0bf8e77",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0916/0115_csg-0916_110.jpg",
+      "source_sha256": "a3b8fb27c20fadab5452e85a08e44d412cf43fa90ded51e710e2bcf6bf6255b7",
+      "source_size_bytes": 1286199,
+      "split": "train",
+      "union_mask_area_px": 2308413,
+      "valid_mask_count": 39
+    },
+    {
+      "canvas_label": "47r",
+      "class_counts": {
+        "Illustrations": 1
+      },
+      "confidence": {
+        "count": 1,
+        "maximum": 0.949455,
+        "mean": 0.949455,
+        "median": 0.949455,
+        "minimum": 0.949455,
+        "population_standard_deviation": null
+      },
+      "dimensions_px": [
+        2000,
+        2812
+      ],
+      "errors": [],
+      "manuscript_id": "bc-b-0067",
+      "page_id": "25ae639ab4bd642d96e4",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0067/0091_bc-b-0067_047r.jpg",
+      "source_sha256": "de78d4f0ea1ca06e3ba3f80dd14ed43b6e92fb5c55c69700a2bb2ae50412975f",
+      "source_size_bytes": 1383370,
+      "split": "train",
+      "union_mask_area_px": 5151468,
+      "valid_mask_count": 1
+    },
+    {
+      "canvas_label": "61r",
+      "class_counts": {
+        "Main script black": 41,
+        "Music": 2
+      },
+      "confidence": {
+        "count": 43,
+        "maximum": 0.763497,
+        "mean": 0.4751225116,
+        "median": 0.473812,
+        "minimum": 0.265932,
+        "population_standard_deviation": 0.1193606675
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "fmb-cb-0056",
+      "page_id": "2ea4649f8e8082d82650",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0056/0126_fmb-cb-0056_061r.jpg",
+      "source_sha256": "2bfec025281a17422ac484265d2555abc17c609b1ef82ff13299b61adcba8ac6",
+      "source_size_bytes": 869860,
+      "split": "test",
+      "union_mask_area_px": 793696,
+      "valid_mask_count": 43
+    },
+    {
+      "canvas_label": "190r",
+      "class_counts": {
+        "Main script black": 62,
+        "Page Number": 1
+      },
+      "confidence": {
+        "count": 63,
+        "maximum": 0.830812,
+        "mean": 0.4674690794,
+        "median": 0.447247,
+        "minimum": 0.250203,
+        "population_standard_deviation": 0.1358411589
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "ubb-A-II-0013",
+      "page_id": "30a1df6544277910a3ef",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-A-II-0013/0384_ubb-A-II-0013_0190r.jpg",
+      "source_sha256": "b4aeccb23f33ce1c734721851f55ec316db169769f96fd5dc92e14acee4ce4b7",
+      "source_size_bytes": 1450382,
+      "split": "train",
+      "union_mask_area_px": 1682302,
+      "valid_mask_count": 63
+    },
+    {
+      "canvas_label": "20r",
+      "class_counts": {
+        "Embellished": 1,
+        "Main script black": 34,
+        "Music": 5,
+        "Variant script coloured": 2
+      },
+      "confidence": {
+        "count": 42,
+        "maximum": 0.862875,
+        "mean": 0.479469619,
+        "median": 0.46170449999999996,
+        "minimum": 0.25975,
+        "population_standard_deviation": 0.1338104034
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "fmb-cb-0056",
+      "page_id": "32061117c242121f0f90",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0056/0044_fmb-cb-0056_020r.jpg",
+      "source_sha256": "2773287ce4643f1751362f9f48e9c129a240eee9ec0a23c5de16cb508065b527",
+      "source_size_bytes": 919927,
+      "split": "test",
+      "union_mask_area_px": 894998,
+      "valid_mask_count": 42
+    },
+    {
+      "canvas_label": "129r",
+      "class_counts": {
+        "Main script black": 85,
+        "Plain initial - Black": 1,
+        "Running header": 1
+      },
+      "confidence": {
+        "count": 87,
+        "maximum": 0.815268,
+        "mean": 0.5650927701,
+        "median": 0.595359,
+        "minimum": 0.264845,
+        "population_standard_deviation": 0.1174686437
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "ubb-F-I-0021",
+      "page_id": "326eaa4e7c33f62ebcf1",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-F-I-0021/0262_ubb-F-I-0021_0129r.jpg",
+      "source_sha256": "d4a70375df3fa6e61deea813ff2ce738b3951b7421657cb52e37ce5fd1c2a6ba",
+      "source_size_bytes": 1607255,
+      "split": "train",
+      "union_mask_area_px": 1584291,
+      "valid_mask_count": 87
+    },
+    {
+      "canvas_label": "48r",
+      "class_counts": {
+        "Main script black": 100,
+        "Plain initial- coloured": 3
+      },
+      "confidence": {
+        "count": 103,
+        "maximum": 0.883457,
+        "mean": 0.6078214272,
+        "median": 0.657144,
+        "minimum": 0.267186,
+        "population_standard_deviation": 0.1464334307
+      },
+      "dimensions_px": [
+        2000,
+        3040
+      ],
+      "errors": [],
+      "manuscript_id": "bbb-AA0091",
+      "page_id": "381e3421936e64e24d9d",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bbb-AA0091/0100_bbb-AA0091_048r.jpg",
+      "source_sha256": "a5b2ecff925fca3e8cae22b9dcab64168d83d04b5dc75a3e1fd3c8c3deb1ecd6",
+      "source_size_bytes": 1610455,
+      "split": "train",
+      "union_mask_area_px": 2187689,
+      "valid_mask_count": 103
+    },
+    {
+      "canvas_label": "40r",
+      "class_counts": {
+        "Main script black": 19,
+        "Page Number": 1
+      },
+      "confidence": {
+        "count": 20,
+        "maximum": 0.818475,
+        "mean": 0.63547555,
+        "median": 0.6834935,
+        "minimum": 0.278125,
+        "population_standard_deviation": 0.1575957504
+      },
+      "dimensions_px": [
+        2000,
+        2531
+      ],
+      "errors": [],
+      "manuscript_id": "bc-b-0103",
+      "page_id": "40c91262c3e6aa3dbe2c",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0103/0084_bc-b-0103_040r.jpg",
+      "source_sha256": "0671785c2477811d65f9466009a1b26b160c1bb61e29a1e87d9a327bbd91dcec",
+      "source_size_bytes": 1448948,
+      "split": "train",
+      "union_mask_area_px": 1268973,
+      "valid_mask_count": 20
+    },
+    {
+      "canvas_label": "13r",
+      "class_counts": {
+        "Main script black": 9,
+        "Main script coloured": 4,
+        "Music": 19,
+        "Plain initial - Black": 1,
+        "Plain initial - Highlighted": 3
+      },
+      "confidence": {
+        "count": 36,
+        "maximum": 0.839491,
+        "mean": 0.4742138611,
+        "median": 0.470726,
+        "minimum": 0.261129,
+        "population_standard_deviation": 0.1402492701
+      },
+      "dimensions_px": [
+        2000,
+        3111
+      ],
+      "errors": [],
+      "manuscript_id": "ubb-F-IX-0068",
+      "page_id": "425d05fd9a5871117c02",
+      "source_path": "data/raw/ecodices_training_source_validation_v0_1/ubb-F-IX-0068/0032_ubb-F-IX-0068_0013r.jpg",
+      "source_sha256": "27016334b6ce626c107d3fac3d8365235ed1f27d8b190fef257e4b6fc436a64c",
+      "source_size_bytes": 1539105,
+      "split": "validation",
+      "union_mask_area_px": 2688895,
+      "valid_mask_count": 36
+    },
+    {
+      "canvas_label": "32",
+      "class_counts": {
+        "Main script black": 124,
+        "Page Number": 1
+      },
+      "confidence": {
+        "count": 125,
+        "maximum": 0.792097,
+        "mean": 0.627791688,
+        "median": 0.651826,
+        "minimum": 0.344859,
+        "population_standard_deviation": 0.1018649354
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0300",
+      "page_id": "425e3785668f4b45417a",
+      "source_path": "data/raw/ecodices_training_source_validation_v0_1/csg-0300/0035_csg-0300_0032.jpg",
+      "source_sha256": "d124fd3a3019065582749e03ee1d738859b45f5042c98eb333185b48dc79aaf8",
+      "source_size_bytes": 1237529,
+      "split": "train",
+      "union_mask_area_px": 1729471,
+      "valid_mask_count": 125
+    },
+    {
+      "canvas_label": "104r",
+      "class_counts": {
+        "Main script black": 17,
+        "Page Number": 1,
+        "Plain initial - Highlighted": 14
+      },
+      "confidence": {
+        "count": 32,
+        "maximum": 0.894773,
+        "mean": 0.7284970312,
+        "median": 0.810897,
+        "minimum": 0.263748,
+        "population_standard_deviation": 0.1782528926
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "sbs-gen0020",
+      "page_id": "44b0f45256bf210d6896",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0210_sbs-gen0020_0104r.jpg",
+      "source_sha256": "4dcf23be77f418d045d2012518a427cbae4cf1ec31bd4fa8eab8a4ffcda1a292",
+      "source_size_bytes": 1273368,
+      "split": "validation",
+      "union_mask_area_px": 1220829,
+      "valid_mask_count": 32
+    },
+    {
+      "canvas_label": "161",
+      "class_counts": {
+        "Main script black": 43,
+        "Music": 3
+      },
+      "confidence": {
+        "count": 46,
+        "maximum": 0.764959,
+        "mean": 0.5364985,
+        "median": 0.5648195,
+        "minimum": 0.27101,
+        "population_standard_deviation": 0.1366104659
+      },
+      "dimensions_px": [
+        2000,
+        3085
+      ],
+      "errors": [],
+      "manuscript_id": "bcj-A2437",
+      "page_id": "460bd866fb80b903a9fb",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcj-A2437/0168_bcj-A2437_0161.jpg",
+      "source_sha256": "41db56af9c76330847d3a3b3e915c02e2bde403b88a51d23c7f3c24a5800e65b",
+      "source_size_bytes": 1635700,
+      "split": "train",
+      "union_mask_area_px": 2683542,
+      "valid_mask_count": 46
+    },
+    {
+      "canvas_label": "192",
+      "class_counts": {
+        "Main script black": 83,
+        "Music": 1,
+        "Plain initial - Highlighted": 1,
+        "Plain initial- coloured": 5
+      },
+      "confidence": {
+        "count": 90,
+        "maximum": 0.793343,
+        "mean": 0.5285273222,
+        "median": 0.538537,
+        "minimum": 0.254801,
+        "population_standard_deviation": 0.1373383162
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0073",
+      "page_id": "471409dc47337f2f85c5",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0073/0193_csg-0073_192.jpg",
+      "source_sha256": "6ec77274748cfa953f9050538de43bbde3977d4c24ff5d583f3d2d216c6daaa8",
+      "source_size_bytes": 1046341,
+      "split": "train",
+      "union_mask_area_px": 1901726,
+      "valid_mask_count": 90
+    },
+    {
+      "canvas_label": "31r",
+      "class_counts": {
+        "Border": 1,
+        "Main script black": 17
+      },
+      "confidence": {
+        "count": 18,
+        "maximum": 0.84026,
+        "mean": 0.7611720556,
+        "median": 0.7754335,
+        "minimum": 0.604661,
+        "population_standard_deviation": 0.0639463311
+      },
+      "dimensions_px": [
+        2000,
+        2812
+      ],
+      "errors": [],
+      "manuscript_id": "bc-b-0067",
+      "page_id": "4ae9211a762caf3bb955",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0067/0061_bc-b-0067_031r.jpg",
+      "source_sha256": "f3e2c3d583c6a4a8fdb269f314af9ba667b50796fb1519a3aabe36de9f2944dd",
+      "source_size_bytes": 1438297,
+      "split": "train",
+      "union_mask_area_px": 3575318,
+      "valid_mask_count": 18
+    },
+    {
+      "canvas_label": "72v",
+      "class_counts": {
+        "Gloss": 2,
+        "Main script black": 39,
+        "Plain initial - Black": 2,
+        "Plain initial- coloured": 13,
+        "Variant script coloured": 10
+      },
+      "confidence": {
+        "count": 66,
+        "maximum": 0.889286,
+        "mean": 0.5778283485,
+        "median": 0.6442175,
+        "minimum": 0.25283,
+        "population_standard_deviation": 0.1841584473
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "bke-0056",
+      "page_id": "4cf06d901eb0b1a54363",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bke-0056/0147_bke-0056_072v.jpg",
+      "source_sha256": "65a78af2326465bbe28657bd2bdec1fcf34433da2afb4ad1cef25236a2070234",
+      "source_size_bytes": 1255007,
+      "split": "train",
+      "union_mask_area_px": 2062387,
+      "valid_mask_count": 66
+    },
+    {
+      "canvas_label": "34r",
+      "class_counts": {
+        "Main script black": 72,
+        "Main script coloured": 2,
+        "Page Number": 1,
+        "Plain initial - Black": 4,
+        "Plain initial- coloured": 1
+      },
+      "confidence": {
+        "count": 80,
+        "maximum": 0.811487,
+        "mean": 0.5200156125,
+        "median": 0.5194695,
+        "minimum": 0.254564,
+        "population_standard_deviation": 0.1437650448
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "ubb-A-II-0013",
+      "page_id": "521b86b1e07b55afa387",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-A-II-0013/0070_ubb-A-II-0013_0034r.jpg",
+      "source_sha256": "e27b177e729efdea89fa7c3b3e36c12976925188013ea126eb3496ec0e240f90",
+      "source_size_bytes": 1431409,
+      "split": "train",
+      "union_mask_area_px": 1756957,
+      "valid_mask_count": 80
+    },
+    {
+      "canvas_label": "159r",
+      "class_counts": {
+        "Gloss": 2,
+        "Main script black": 91,
+        "Plain initial - Black": 1,
+        "Plain initial- coloured": 1
+      },
+      "confidence": {
+        "count": 95,
+        "maximum": 0.741154,
+        "mean": 0.5396986105,
+        "median": 0.542344,
+        "minimum": 0.271648,
+        "population_standard_deviation": 0.1108916596
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "ubb-F-I-0021",
+      "page_id": "5b9a3cfa84aeefb5f93f",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-F-I-0021/0322_ubb-F-I-0021_0159r.jpg",
+      "source_sha256": "c66619e061c1f8665c2210896fabb89c49695da57deebc5d5c09679e9caefc01",
+      "source_size_bytes": 1532542,
+      "split": "train",
+      "union_mask_area_px": 1728363,
+      "valid_mask_count": 95
+    },
+    {
+      "canvas_label": "75r",
+      "class_counts": {
+        "Gloss": 2,
+        "Main script black": 92
+      },
+      "confidence": {
+        "count": 94,
+        "maximum": 0.781237,
+        "mean": 0.5389822128,
+        "median": 0.554165,
+        "minimum": 0.260323,
+        "population_standard_deviation": 0.1227653808
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "ubb-F-I-0021",
+      "page_id": "5db204561d9b7d37a1c3",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-F-I-0021/0154_ubb-F-I-0021_0075r.jpg",
+      "source_sha256": "0e37b85a8a49612a5d102effb5cee76312d2eb9484e8e80a5fc8324556919bd7",
+      "source_size_bytes": 1747560,
+      "split": "train",
+      "union_mask_area_px": 1490271,
+      "valid_mask_count": 94
+    },
+    {
+      "canvas_label": "16v",
+      "class_counts": {
+        "Embellished": 1,
+        "Main script black": 1
+      },
+      "confidence": {
+        "count": 2,
+        "maximum": 0.477132,
+        "mean": 0.3848845,
+        "median": 0.38488449999999996,
+        "minimum": 0.292637,
+        "population_standard_deviation": 0.0922475
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "fmb-cb-0902",
+      "page_id": "5e6ff8c7c454a2c27b94",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0033_fmb-cb-0902_016v.jpg",
+      "source_sha256": "5ece6ba0b79e1105f51af3d01356ca6d63792948db35913ed5bc89d53b2c51fc",
+      "source_size_bytes": 1238838,
+      "split": "validation",
+      "union_mask_area_px": 231153,
+      "valid_mask_count": 2
+    },
+    {
+      "canvas_label": "3v",
+      "class_counts": {
+        "Gloss": 2,
+        "Main script black": 17
+      },
+      "confidence": {
+        "count": 19,
+        "maximum": 0.809604,
+        "mean": 0.6877982105,
+        "median": 0.703032,
+        "minimum": 0.531545,
+        "population_standard_deviation": 0.0819375476
+      },
+      "dimensions_px": [
+        2000,
+        2485
+      ],
+      "errors": [],
+      "manuscript_id": "bc-b-0103",
+      "page_id": "5eb986a02dfa92fa10dc",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0103/0011_bc-b-0103_003v.jpg",
+      "source_sha256": "ad5e14fd206db3082881e47ee38f56517cc3807b84f628871fad5a9d750bfaaf",
+      "source_size_bytes": 1424260,
+      "split": "train",
+      "union_mask_area_px": 1149614,
+      "valid_mask_count": 19
+    },
+    {
+      "canvas_label": "32v",
+      "class_counts": {
+        "Main script black": 16,
+        "Page Number": 1,
+        "Plain initial - Highlighted": 6
+      },
+      "confidence": {
+        "count": 23,
+        "maximum": 0.8691,
+        "mean": 0.7266007391,
+        "median": 0.796456,
+        "minimum": 0.317445,
+        "population_standard_deviation": 0.1603267607
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "sbs-gen0020",
+      "page_id": "62eacd9afde4dc6a4efe",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0067_sbs-gen0020_0032v.jpg",
+      "source_sha256": "1aff9e480eaf9bb418672cb995ed44906306037373974b9a6aaa9545a457a715",
+      "source_size_bytes": 1249184,
+      "split": "validation",
+      "union_mask_area_px": 1171521,
+      "valid_mask_count": 23
+    },
+    {
+      "canvas_label": "14r",
+      "class_counts": {},
+      "confidence": {
+        "count": 0,
+        "maximum": null,
+        "mean": null,
+        "median": null,
+        "minimum": null,
+        "population_standard_deviation": null
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "fmb-cb-0902",
+      "page_id": "6538cbcb609973816c5a",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0028_fmb-cb-0902_014r.jpg",
+      "source_sha256": "ee3a1bd6496eb48e79cc15f4ab0c90fd5c1c4a2ee17a95b7da2504efa88d392d",
+      "source_size_bytes": 1290299,
+      "split": "validation",
+      "union_mask_area_px": 0,
+      "valid_mask_count": 0
+    },
+    {
+      "canvas_label": "52v",
+      "class_counts": {
+        "Gloss": 1,
+        "Main script black": 58
+      },
+      "confidence": {
+        "count": 59,
+        "maximum": 0.785188,
+        "mean": 0.5541875085,
+        "median": 0.586976,
+        "minimum": 0.254693,
+        "population_standard_deviation": 0.1364486982
+      },
+      "dimensions_px": [
+        2000,
+        3626
+      ],
+      "errors": [],
+      "manuscript_id": "bcul-Ms0403",
+      "page_id": "68a6b8341cc62930ce1c",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcul-Ms0403/0113_bcul-Ms0403_052v.jpg",
+      "source_sha256": "3f601667bbf721d2e6dd93b61d9d3a0f47b14c7e650eccfb254e2f4c429604d9",
+      "source_size_bytes": 2188241,
+      "split": "train",
+      "union_mask_area_px": 1535380,
+      "valid_mask_count": 59
+    },
+    {
+      "canvas_label": "186v",
+      "class_counts": {
+        "Gloss": 1,
+        "Main script black": 57
+      },
+      "confidence": {
+        "count": 58,
+        "maximum": 0.882701,
+        "mean": 0.6956587241,
+        "median": 0.7345505,
+        "minimum": 0.270434,
+        "population_standard_deviation": 0.1306294041
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "kba-WettF0001",
+      "page_id": "6ae572fee87b71665c24",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/kba-WettF0001/0375_kba-WettF0001_186v.jpg",
+      "source_sha256": "7f9f964970012b0d1e3429b18ca0bbe954dbaf810b5de849f28371ca09373cfa",
+      "source_size_bytes": 1211903,
+      "split": "test",
+      "union_mask_area_px": 1693186,
+      "valid_mask_count": 58
+    },
+    {
+      "canvas_label": "8r",
+      "class_counts": {},
+      "confidence": {
+        "count": 0,
+        "maximum": null,
+        "mean": null,
+        "median": null,
+        "minimum": null,
+        "population_standard_deviation": null
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "fmb-cb-0902",
+      "page_id": "6c1543ed764a6265f96a",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0016_fmb-cb-0902_008r.jpg",
+      "source_sha256": "8eb675d9a30f14f099d73ddf1e00e612c2ffe41d6cdb044d9d3dd2729f752da6",
+      "source_size_bytes": 1385248,
+      "split": "validation",
+      "union_mask_area_px": 0,
+      "valid_mask_count": 0
+    },
+    {
+      "canvas_label": "166",
+      "class_counts": {
+        "Main script black": 33,
+        "Music": 8,
+        "Plain initial - Black": 1
+      },
+      "confidence": {
+        "count": 42,
+        "maximum": 0.838702,
+        "mean": 0.4832420952,
+        "median": 0.449552,
+        "minimum": 0.27128,
+        "population_standard_deviation": 0.1645519352
+      },
+      "dimensions_px": [
+        2000,
+        3085
+      ],
+      "errors": [],
+      "manuscript_id": "bcj-A2437",
+      "page_id": "6d994eb960ee08cf4218",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcj-A2437/0173_bcj-A2437_0166.jpg",
+      "source_sha256": "dddbd51d65578678729eac4de8b6d16accd21d964d2d1f8b2c7019bfa2996f20",
+      "source_size_bytes": 1595145,
+      "split": "train",
+      "union_mask_area_px": 2733243,
+      "valid_mask_count": 42
+    },
+    {
+      "canvas_label": "165",
+      "class_counts": {
+        "Main script black": 17,
+        "Plain initial - Black": 5
+      },
+      "confidence": {
+        "count": 22,
+        "maximum": 0.925936,
+        "mean": 0.8160961818,
+        "median": 0.86678,
+        "minimum": 0.333637,
+        "population_standard_deviation": 0.1393839207
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0916",
+      "page_id": "6e49d2944e129b226180",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0916/0170_csg-0916_165.jpg",
+      "source_sha256": "49bfab5214e6b4177de17f3a7005a52f2829f343de0e91a8d1a152ca2b9b0d58",
+      "source_size_bytes": 1176768,
+      "split": "train",
+      "union_mask_area_px": 1770425,
+      "valid_mask_count": 22
+    },
+    {
+      "canvas_label": "65",
+      "class_counts": {
+        "Gloss": 2,
+        "Main script black": 69,
+        "Page Number": 1,
+        "Plain initial - Black": 1
+      },
+      "confidence": {
+        "count": 73,
+        "maximum": 0.861544,
+        "mean": 0.5584227671,
+        "median": 0.585614,
+        "minimum": 0.254874,
+        "population_standard_deviation": 0.1455914764
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0059",
+      "page_id": "6e83952ab08276d44838",
+      "source_path": "data/raw/ecodices_training_source_validation_v0_1/csg-0059/0066_csg-0059_0065.jpg",
+      "source_sha256": "61c332cd9cb8fb2b07d5cf87448559e777d90e4949301bcd17e56214462ae73f",
+      "source_size_bytes": 1297271,
+      "split": "train",
+      "union_mask_area_px": 1199192,
+      "valid_mask_count": 73
+    },
+    {
+      "canvas_label": "84v",
+      "class_counts": {
+        "Main script black": 37,
+        "Plain initial- coloured": 1,
+        "Variant script coloured": 2
+      },
+      "confidence": {
+        "count": 40,
+        "maximum": 0.82192,
+        "mean": 0.619076525,
+        "median": 0.6878869999999999,
+        "minimum": 0.281355,
+        "population_standard_deviation": 0.1543284675
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "bke-0056",
+      "page_id": "7105dc0deb6e58c3a94e",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bke-0056/0171_bke-0056_084v.jpg",
+      "source_sha256": "604cf7a9147e4cceb12efda6ea9936d3c0b66f7556a46758cafa3f77656de04d",
+      "source_size_bytes": 1256103,
+      "split": "train",
+      "union_mask_area_px": 2121813,
+      "valid_mask_count": 40
+    },
+    {
+      "canvas_label": "6r",
+      "class_counts": {
+        "Main script black": 32
+      },
+      "confidence": {
+        "count": 32,
+        "maximum": 0.878419,
+        "mean": 0.7573491875,
+        "median": 0.7654535,
+        "minimum": 0.435308,
+        "population_standard_deviation": 0.0679798849
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "bke-0056",
+      "page_id": "758685dc9bc79224acd1",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bke-0056/0014_bke-0056_006r.jpg",
+      "source_sha256": "c6384e1a77ebc547ec5960567b8c27f6487a2319c89b8823c8cc116d1f4d7332",
+      "source_size_bytes": 1226960,
+      "split": "train",
+      "union_mask_area_px": 2302308,
+      "valid_mask_count": 32
+    },
+    {
+      "canvas_label": "25r",
+      "class_counts": {
+        "Gloss": 2,
+        "Main script black": 54
+      },
+      "confidence": {
+        "count": 56,
+        "maximum": 0.759896,
+        "mean": 0.5503996071,
+        "median": 0.5533945,
+        "minimum": 0.250027,
+        "population_standard_deviation": 0.1213562279
+      },
+      "dimensions_px": [
+        2000,
+        3626
+      ],
+      "errors": [],
+      "manuscript_id": "bcul-Ms0403",
+      "page_id": "761ad63ef6edc1d96541",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcul-Ms0403/0058_bcul-Ms0403_025r.jpg",
+      "source_sha256": "177668636e3f96927bf3394d38ddabed7a06a19795df4493c569dd9dde507a44",
+      "source_size_bytes": 2012318,
+      "split": "train",
+      "union_mask_area_px": 1444749,
+      "valid_mask_count": 56
+    },
+    {
+      "canvas_label": "92r",
+      "class_counts": {
+        "Embellished": 1,
+        "Main script black": 32,
+        "Page Number": 1,
+        "Plain initial - Highlighted": 1
+      },
+      "confidence": {
+        "count": 35,
+        "maximum": 0.861169,
+        "mean": 0.6835928571,
+        "median": 0.735235,
+        "minimum": 0.253125,
+        "population_standard_deviation": 0.1581836363
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "bke-0056",
+      "page_id": "78a173ee8c7c7e00814d",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bke-0056/0186_bke-0056_092r.jpg",
+      "source_sha256": "719bce23e2669e4bfd528a77b6d709fbc5bc7349804b59c0bbff245bd30796b8",
+      "source_size_bytes": 1258295,
+      "split": "train",
+      "union_mask_area_px": 2192312,
+      "valid_mask_count": 35
+    },
+    {
+      "canvas_label": "69-s7",
+      "class_counts": {
+        "Main script black": 57,
+        "Page Number": 1,
+        "Plain initial - Black": 2
+      },
+      "confidence": {
+        "count": 60,
+        "maximum": 0.881027,
+        "mean": 0.6540260167,
+        "median": 0.6960815,
+        "minimum": 0.250429,
+        "population_standard_deviation": 0.1495203989
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0059",
+      "page_id": "7ad34a03a62820c15611",
+      "source_path": "data/raw/ecodices_training_source_validation_v0_1/csg-0059/0077_csg-0059_0069-s007.jpg",
+      "source_sha256": "87afee8884a9639ac793eb2246d428cf5cb263ee7ed8b51c9a4c97c999a6d19a",
+      "source_size_bytes": 1213756,
+      "split": "train",
+      "union_mask_area_px": 1114113,
+      "valid_mask_count": 60
+    },
+    {
+      "canvas_label": "102",
+      "class_counts": {
+        "Main script black": 27,
+        "Music": 14,
+        "Plain initial - Black": 2
+      },
+      "confidence": {
+        "count": 43,
+        "maximum": 0.815808,
+        "mean": 0.4461719767,
+        "median": 0.394904,
+        "minimum": 0.259707,
+        "population_standard_deviation": 0.1389332261
+      },
+      "dimensions_px": [
+        2000,
+        3085
+      ],
+      "errors": [],
+      "manuscript_id": "bcj-A2437",
+      "page_id": "7b9295fe7c3fd339928d",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcj-A2437/0109_bcj-A2437_0102.jpg",
+      "source_sha256": "01fd4da80a965dda0df3acfce521c53c6ce8001e047fab80e00ebda50fef8fbf",
+      "source_size_bytes": 1491733,
+      "split": "train",
+      "union_mask_area_px": 2565772,
+      "valid_mask_count": 43
+    },
+    {
+      "canvas_label": "228r",
+      "class_counts": {
+        "Embellished": 1,
+        "Main script black": 64,
+        "Running header": 1
+      },
+      "confidence": {
+        "count": 66,
+        "maximum": 0.859795,
+        "mean": 0.7068264545,
+        "median": 0.754263,
+        "minimum": 0.302133,
+        "population_standard_deviation": 0.1383863844
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "kba-WettF0001",
+      "page_id": "7c48bbd8344c51060c44",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/kba-WettF0001/0458_kba-WettF0001_228r.jpg",
+      "source_sha256": "5eff1307da989959aef40fdc89d7ae6e682901939a04fae2e63efb70ac79838b",
+      "source_size_bytes": 1297090,
+      "split": "test",
+      "union_mask_area_px": 1848358,
+      "valid_mask_count": 66
+    },
+    {
+      "canvas_label": "84v",
+      "class_counts": {
+        "Gloss": 1,
+        "Main script black": 20
+      },
+      "confidence": {
+        "count": 21,
+        "maximum": 0.868481,
+        "mean": 0.772891,
+        "median": 0.806371,
+        "minimum": 0.491657,
+        "population_standard_deviation": 0.0937510361
+      },
+      "dimensions_px": [
+        2000,
+        2471
+      ],
+      "errors": [],
+      "manuscript_id": "bc-b-0103",
+      "page_id": "82194a8825733ce1982d",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0103/0173_bc-b-0103_084v.jpg",
+      "source_sha256": "e1bfd5213929328f183a2f25b8d1ad3e72149b64435900c9aa6f889ddf8a0b80",
+      "source_size_bytes": 1487685,
+      "split": "train",
+      "union_mask_area_px": 1277680,
+      "valid_mask_count": 21
+    },
+    {
+      "canvas_label": "165",
+      "class_counts": {
+        "Main script black": 63
+      },
+      "confidence": {
+        "count": 63,
+        "maximum": 0.816944,
+        "mean": 0.6375091905,
+        "median": 0.687428,
+        "minimum": 0.279517,
+        "population_standard_deviation": 0.1472480185
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0314",
+      "page_id": "82974a64d5efd6f43eb8",
+      "source_path": "data/raw/ecodices_training_source_validation_v0_1/csg-0314/0166_csg-0314_0165.jpg",
+      "source_sha256": "eb6701b2246d8b5d6ff5570c6676c5b29f87207314f9fa8c3e210ef7ca8dfef5",
+      "source_size_bytes": 1251616,
+      "split": "test",
+      "union_mask_area_px": 1091485,
+      "valid_mask_count": 63
+    },
+    {
+      "canvas_label": "42v",
+      "class_counts": {
+        "Illustrations": 1
+      },
+      "confidence": {
+        "count": 1,
+        "maximum": 0.983595,
+        "mean": 0.983595,
+        "median": 0.983595,
+        "minimum": 0.983595,
+        "population_standard_deviation": null
+      },
+      "dimensions_px": [
+        2000,
+        2812
+      ],
+      "errors": [],
+      "manuscript_id": "bc-b-0067",
+      "page_id": "83ac253c56dd15ea0ee6",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0067/0082_bc-b-0067_042v.jpg",
+      "source_sha256": "480ca1362d84d64d16b31fc66d9cb3acf0703125644d8160200b3da5a6ff9775",
+      "source_size_bytes": 1362440,
+      "split": "train",
+      "union_mask_area_px": 4090548,
+      "valid_mask_count": 1
+    },
+    {
+      "canvas_label": "39v",
+      "class_counts": {
+        "Gloss": 1,
+        "Main script black": 7,
+        "Music": 17,
+        "Plain initial - Highlighted": 2,
+        "Variant script coloured": 1
+      },
+      "confidence": {
+        "count": 28,
+        "maximum": 0.842354,
+        "mean": 0.5095789286,
+        "median": 0.5090045,
+        "minimum": 0.26906,
+        "population_standard_deviation": 0.1807374767
+      },
+      "dimensions_px": [
+        2000,
+        3110
+      ],
+      "errors": [],
+      "manuscript_id": "ubb-F-IX-0068",
+      "page_id": "86236cd76a738eebc657",
+      "source_path": "data/raw/ecodices_training_source_validation_v0_1/ubb-F-IX-0068/0085_ubb-F-IX-0068_0039v.jpg",
+      "source_sha256": "e9d512573964676f94eba5734fa064db684bc2f9aba79c45ad65bb30ec3073b2",
+      "source_size_bytes": 1439251,
+      "split": "validation",
+      "union_mask_area_px": 2584884,
+      "valid_mask_count": 28
+    },
+    {
+      "canvas_label": "225v",
+      "class_counts": {
+        "Embellished": 2,
+        "Main script black": 72
+      },
+      "confidence": {
+        "count": 74,
+        "maximum": 0.852246,
+        "mean": 0.6456892703,
+        "median": 0.6848015000000001,
+        "minimum": 0.256347,
+        "population_standard_deviation": 0.1480974462
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "kba-WettF0001",
+      "page_id": "872fbcf88fed1885630f",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/kba-WettF0001/0453_kba-WettF0001_225v.jpg",
+      "source_sha256": "5321601aaa5557436597b5076d07533baacc9df966004c9c785d45d4a7cee4e6",
+      "source_size_bytes": 1346525,
+      "split": "test",
+      "union_mask_area_px": 2014461,
+      "valid_mask_count": 74
+    },
+    {
+      "canvas_label": "153",
+      "class_counts": {
+        "Main script black": 39,
+        "Music": 4,
+        "Plain initial - Black": 1
+      },
+      "confidence": {
+        "count": 44,
+        "maximum": 0.824697,
+        "mean": 0.5652958409,
+        "median": 0.5751985,
+        "minimum": 0.264413,
+        "population_standard_deviation": 0.157262984
+      },
+      "dimensions_px": [
+        2000,
+        3085
+      ],
+      "errors": [],
+      "manuscript_id": "bcj-A2437",
+      "page_id": "8a53aa23135afabd7a68",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcj-A2437/0160_bcj-A2437_0153.jpg",
+      "source_sha256": "02eeda948ab951ec05e8c9442ed838586fef3d3fd6373b0f1b31b51b16252bf3",
+      "source_size_bytes": 1521818,
+      "split": "train",
+      "union_mask_area_px": 2839981,
+      "valid_mask_count": 44
+    },
+    {
+      "canvas_label": "95v",
+      "class_counts": {
+        "Gloss": 1,
+        "Main script black": 67
+      },
+      "confidence": {
+        "count": 68,
+        "maximum": 0.749053,
+        "mean": 0.4595093088,
+        "median": 0.450365,
+        "minimum": 0.25102,
+        "population_standard_deviation": 0.1363555392
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "ubb-A-II-0013",
+      "page_id": "95761b8d0ee5433b8c6f",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-A-II-0013/0193_ubb-A-II-0013_0095v.jpg",
+      "source_sha256": "1600e483cbef0894a214f86bb9e059de3fdcfd01ca95263dde068a261bbdec3e",
+      "source_size_bytes": 1379934,
+      "split": "train",
+      "union_mask_area_px": 1439543,
+      "valid_mask_count": 68
+    },
+    {
+      "canvas_label": "78v",
+      "class_counts": {
+        "Main script black": 17,
+        "Plain initial - Highlighted": 12,
+        "Plain initial- coloured": 1
+      },
+      "confidence": {
+        "count": 30,
+        "maximum": 0.872016,
+        "mean": 0.7153871333,
+        "median": 0.7710295,
+        "minimum": 0.275309,
+        "population_standard_deviation": 0.164744396
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "sbs-gen0020",
+      "page_id": "95a6f2c3d5cf0d195a1b",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0159_sbs-gen0020_0078v.jpg",
+      "source_sha256": "a5ae2f58f89f8fc37c1f26f9b563695da1d08bd4a6a1044875520687a3524c87",
+      "source_size_bytes": 1275131,
+      "split": "validation",
+      "union_mask_area_px": 1145851,
+      "valid_mask_count": 30
+    },
+    {
+      "canvas_label": "11v",
+      "class_counts": {},
+      "confidence": {
+        "count": 0,
+        "maximum": null,
+        "mean": null,
+        "median": null,
+        "minimum": null,
+        "population_standard_deviation": null
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "fmb-cb-0902",
+      "page_id": "95c524bbf6593575149b",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0023_fmb-cb-0902_011v.jpg",
+      "source_sha256": "0d5479e338b89b9925958d8971a5058f190f44225f4a4c923468138efc0e456e",
+      "source_size_bytes": 1305697,
+      "split": "validation",
+      "union_mask_area_px": 0,
+      "valid_mask_count": 0
+    },
+    {
+      "canvas_label": "82r",
+      "class_counts": {
+        "Main script black": 34,
+        "Page Number": 1,
+        "Plain initial- coloured": 1,
+        "Variant script coloured": 6
+      },
+      "confidence": {
+        "count": 42,
+        "maximum": 0.86086,
+        "mean": 0.6041525,
+        "median": 0.6830295,
+        "minimum": 0.276433,
+        "population_standard_deviation": 0.168217653
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "bke-0056",
+      "page_id": "980049998ec408b60ef3",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bke-0056/0166_bke-0056_082r.jpg",
+      "source_sha256": "73672c7827b06ea7968ed5e4c39ca4a0424ca8f24492d51eb46ac4d1e4f15639",
+      "source_size_bytes": 1161991,
+      "split": "train",
+      "union_mask_area_px": 2071220,
+      "valid_mask_count": 42
+    },
+    {
+      "canvas_label": "66v",
+      "class_counts": {
+        "Embellished": 1,
+        "Main script black": 93,
+        "Plain initial - Black": 1
+      },
+      "confidence": {
+        "count": 95,
+        "maximum": 0.821091,
+        "mean": 0.6085640421,
+        "median": 0.662335,
+        "minimum": 0.306166,
+        "population_standard_deviation": 0.1466347816
+      },
+      "dimensions_px": [
+        2000,
+        3040
+      ],
+      "errors": [],
+      "manuscript_id": "bbb-AA0091",
+      "page_id": "9994f2b699c45b5d24c9",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bbb-AA0091/0137_bbb-AA0091_066v.jpg",
+      "source_sha256": "2e052de384c8098dc557ea94dc5fc60670f6deb0e96b2a52735aae0dd6e9874a",
+      "source_size_bytes": 1693346,
+      "split": "train",
+      "union_mask_area_px": 2124192,
+      "valid_mask_count": 95
+    },
+    {
+      "canvas_label": "13av",
+      "class_counts": {
+        "Main script black": 86,
+        "Plain initial- coloured": 1
+      },
+      "confidence": {
+        "count": 87,
+        "maximum": 0.754331,
+        "mean": 0.5252097931,
+        "median": 0.529325,
+        "minimum": 0.256064,
+        "population_standard_deviation": 0.1384217571
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "ubb-F-I-0021",
+      "page_id": "9dfde732e28f0a9e76a2",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-F-I-0021/0029_ubb-F-I-0021_0013av.jpg",
+      "source_sha256": "986c665421f2f388c774eb6078fcb276688554143e876a1b3ea535fbd62e8ff6",
+      "source_size_bytes": 1692263,
+      "split": "train",
+      "union_mask_area_px": 1552581,
+      "valid_mask_count": 87
+    },
+    {
+      "canvas_label": "8v",
+      "class_counts": {
+        "Gloss": 5,
+        "Main script black": 49
+      },
+      "confidence": {
+        "count": 54,
+        "maximum": 0.729773,
+        "mean": 0.5775084259,
+        "median": 0.602984,
+        "minimum": 0.263478,
+        "population_standard_deviation": 0.112112801
+      },
+      "dimensions_px": [
+        2000,
+        3626
+      ],
+      "errors": [],
+      "manuscript_id": "bcul-Ms0403",
+      "page_id": "a43811d9ef4945128514",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcul-Ms0403/0025_bcul-Ms0403_008v.jpg",
+      "source_sha256": "7f223ebdb6626ecd9282fe7fa38d73b54f7ed11316b3521f23a932f5165ed1aa",
+      "source_size_bytes": 2008073,
+      "split": "train",
+      "union_mask_area_px": 1451491,
+      "valid_mask_count": 54
+    },
+    {
+      "canvas_label": "9v",
+      "class_counts": {
+        "Main script black": 34
+      },
+      "confidence": {
+        "count": 34,
+        "maximum": 0.870934,
+        "mean": 0.6994883529,
+        "median": 0.7552955,
+        "minimum": 0.256705,
+        "population_standard_deviation": 0.1681178146
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "kba-Wett0004",
+      "page_id": "a4f4e588f0055430b22f",
+      "source_path": "data/raw/ecodices_training_source_validation_v0_1/kba-Wett0004/0022_kba-Wett0004_009v.jpg",
+      "source_sha256": "560364955b2919b842ef7904732015ec20178154d8d76794eb3ac5703133a081",
+      "source_size_bytes": 1624046,
+      "split": "train",
+      "union_mask_area_px": 2108103,
+      "valid_mask_count": 34
+    },
+    {
+      "canvas_label": "V2v",
+      "class_counts": {},
+      "confidence": {
+        "count": 0,
+        "maximum": null,
+        "mean": null,
+        "median": null,
+        "minimum": null,
+        "population_standard_deviation": null
+      },
+      "dimensions_px": [
+        2000,
+        3166
+      ],
+      "errors": [],
+      "manuscript_id": "ubb-F-IX-0068",
+      "page_id": "a57947d883c928bdeae4",
+      "source_path": "data/raw/ecodices_training_source_validation_v0_1/ubb-F-IX-0068/0005_ubb-F-IX-0068_0000_0002v.jpg",
+      "source_sha256": "c264007d2c25aded4a6ef5ad16a9f2284be9365e29667e5f4f19b4d37dde0c62",
+      "source_size_bytes": 1575891,
+      "split": "validation",
+      "union_mask_area_px": 0,
+      "valid_mask_count": 0
+    },
+    {
+      "canvas_label": "125",
+      "class_counts": {
+        "Gloss": 1,
+        "Main script black": 104,
+        "Page Number": 1,
+        "Plain initial- coloured": 1
+      },
+      "confidence": {
+        "count": 107,
+        "maximum": 0.821493,
+        "mean": 0.6392902336,
+        "median": 0.673993,
+        "minimum": 0.262606,
+        "population_standard_deviation": 0.1161052624
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0300",
+      "page_id": "a8207890d102ac4ed03a",
+      "source_path": "data/raw/ecodices_training_source_validation_v0_1/csg-0300/0128_csg-0300_0125.jpg",
+      "source_sha256": "584a259b0fe9d9d1720dbf7da477098ef7adee3d64790d28483245c9b30eb5d1",
+      "source_size_bytes": 1350705,
+      "split": "train",
+      "union_mask_area_px": 1617779,
+      "valid_mask_count": 107
+    },
+    {
+      "canvas_label": "166",
+      "class_counts": {
+        "Gloss": 1,
+        "Main script black": 16,
+        "Main script coloured": 2,
+        "Page Number": 1,
+        "Variant script coloured": 2
+      },
+      "confidence": {
+        "count": 22,
+        "maximum": 0.896891,
+        "mean": 0.7346157273,
+        "median": 0.82479,
+        "minimum": 0.255928,
+        "population_standard_deviation": 0.202608128
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0916",
+      "page_id": "ad2c59510477ae591965",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0916/0171_csg-0916_166.jpg",
+      "source_sha256": "95d0904eaff3d79f74fd4f01516b4ccafc0642dde2659c8d78e6e265bb4d99c3",
+      "source_size_bytes": 1215781,
+      "split": "train",
+      "union_mask_area_px": 1966916,
+      "valid_mask_count": 22
+    },
+    {
+      "canvas_label": "127v",
+      "class_counts": {
+        "Embellished": 1,
+        "Main script black": 32,
+        "Music": 1,
+        "Variant script coloured": 1
+      },
+      "confidence": {
+        "count": 35,
+        "maximum": 0.858863,
+        "mean": 0.5173810571,
+        "median": 0.501236,
+        "minimum": 0.259164,
+        "population_standard_deviation": 0.1366742044
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "fmb-cb-0056",
+      "page_id": "ae7dcdf88d2820a1bfee",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0056/0259_fmb-cb-0056_127v.jpg",
+      "source_sha256": "bf30d3c94ed3a4d831db68f85c2c0c118ae4d93433f43d3af31c05a95d2d8886",
+      "source_size_bytes": 1007239,
+      "split": "test",
+      "union_mask_area_px": 763824,
+      "valid_mask_count": 35
+    },
+    {
+      "canvas_label": "207",
+      "class_counts": {
+        "Main script black": 73
+      },
+      "confidence": {
+        "count": 73,
+        "maximum": 0.824136,
+        "mean": 0.6567968493,
+        "median": 0.67423,
+        "minimum": 0.280617,
+        "population_standard_deviation": 0.1300163929
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0073",
+      "page_id": "af9d1eeebde53c9212b4",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0073/0208_csg-0073_207.jpg",
+      "source_sha256": "94519e8d19f714d3f17fd07e3b98a7fb37f7d7c87bb946e9a19a2f1563fc12c0",
+      "source_size_bytes": 1124041,
+      "split": "train",
+      "union_mask_area_px": 2046331,
+      "valid_mask_count": 73
+    },
+    {
+      "canvas_label": "59v",
+      "class_counts": {
+        "Main script black": 18,
+        "Music": 1
+      },
+      "confidence": {
+        "count": 19,
+        "maximum": 0.868416,
+        "mean": 0.753494,
+        "median": 0.810791,
+        "minimum": 0.293213,
+        "population_standard_deviation": 0.1597971226
+      },
+      "dimensions_px": [
+        2000,
+        2471
+      ],
+      "errors": [],
+      "manuscript_id": "bc-b-0103",
+      "page_id": "afbb16815e88415efc4c",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0103/0123_bc-b-0103_059v.jpg",
+      "source_sha256": "4a4d56577e2fb8b1a8f0a1c8e224d7ebfb92e0a5ca3a2f67e182e4604cc28daa",
+      "source_size_bytes": 1492426,
+      "split": "train",
+      "union_mask_area_px": 1316347,
+      "valid_mask_count": 19
+    },
+    {
+      "canvas_label": "63v",
+      "class_counts": {
+        "Main script black": 38,
+        "Music": 1
+      },
+      "confidence": {
+        "count": 39,
+        "maximum": 0.771313,
+        "mean": 0.5130517949,
+        "median": 0.533608,
+        "minimum": 0.250544,
+        "population_standard_deviation": 0.1150968039
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "fmb-cb-0056",
+      "page_id": "b0b9e4773745300a63e0",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0056/0131_fmb-cb-0056_063v.jpg",
+      "source_sha256": "bf2b8c9eb04d06f6301d821c42f8c979cc04e2aaa0a14a79b1922a8aea1280e4",
+      "source_size_bytes": 867629,
+      "split": "test",
+      "union_mask_area_px": 762060,
+      "valid_mask_count": 39
+    },
+    {
+      "canvas_label": "51",
+      "class_counts": {
+        "Main script black": 81,
+        "Plain initial - Highlighted": 1,
+        "Plain initial- coloured": 3
+      },
+      "confidence": {
+        "count": 85,
+        "maximum": 0.811216,
+        "mean": 0.5600671529,
+        "median": 0.605274,
+        "minimum": 0.256782,
+        "population_standard_deviation": 0.1484813669
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0073",
+      "page_id": "b0d6d0d900b72b8671b9",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0073/0052_csg-0073_051.jpg",
+      "source_sha256": "5d9d029b34494aecd57c487006b4b365813a9c22faf38361e09cc287ced81338",
+      "source_size_bytes": 1154737,
+      "split": "train",
+      "union_mask_area_px": 1954858,
+      "valid_mask_count": 85
+    },
+    {
+      "canvas_label": "108v",
+      "class_counts": {
+        "Gloss": 2,
+        "Main script black": 35,
+        "Plain initial - Black": 1
+      },
+      "confidence": {
+        "count": 38,
+        "maximum": 0.849353,
+        "mean": 0.7105599211,
+        "median": 0.763115,
+        "minimum": 0.33423,
+        "population_standard_deviation": 0.1247428856
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "kba-Wett0004",
+      "page_id": "b1a39922209cbe0e3288",
+      "source_path": "data/raw/ecodices_training_source_validation_v0_1/kba-Wett0004/0220_kba-Wett0004_108v.jpg",
+      "source_sha256": "ce1bc0d2ac8e3ac9fb89f10fe1232a7a78c93ddb3e615ab2be9877cb69031d4f",
+      "source_size_bytes": 1566759,
+      "split": "train",
+      "union_mask_area_px": 2009351,
+      "valid_mask_count": 38
+    },
+    {
+      "canvas_label": "129",
+      "class_counts": {
+        "Main script black": 88
+      },
+      "confidence": {
+        "count": 88,
+        "maximum": 0.816772,
+        "mean": 0.6488827273,
+        "median": 0.686746,
+        "minimum": 0.25168,
+        "population_standard_deviation": 0.136441545
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0073",
+      "page_id": "b7d65657516d626c831e",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0073/0130_csg-0073_129.jpg",
+      "source_sha256": "2764a80b27990318e2b944b0c422ad6c761ec2bf80625891c16ffbaa13bef2e7",
+      "source_size_bytes": 1239499,
+      "split": "train",
+      "union_mask_area_px": 2397340,
+      "valid_mask_count": 88
+    },
+    {
+      "canvas_label": "138",
+      "class_counts": {
+        "Main script black": 117,
+        "Page Number": 2
+      },
+      "confidence": {
+        "count": 119,
+        "maximum": 0.793567,
+        "mean": 0.6313466891,
+        "median": 0.661506,
+        "minimum": 0.250677,
+        "population_standard_deviation": 0.11512003
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0300",
+      "page_id": "babb20f169bd9da8a0b1",
+      "source_path": "data/raw/ecodices_training_source_validation_v0_1/csg-0300/0141_csg-0300_0138.jpg",
+      "source_sha256": "e654a01540a8ca37f8ba5ac1968380a4e91a53f34625a56a25a6fb66b98837a0",
+      "source_size_bytes": 1429252,
+      "split": "train",
+      "union_mask_area_px": 1682212,
+      "valid_mask_count": 119
+    },
+    {
+      "canvas_label": "86r",
+      "class_counts": {
+        "Main script black": 53
+      },
+      "confidence": {
+        "count": 53,
+        "maximum": 0.767798,
+        "mean": 0.5273466981,
+        "median": 0.551078,
+        "minimum": 0.270032,
+        "population_standard_deviation": 0.1201462209
+      },
+      "dimensions_px": [
+        2000,
+        3626
+      ],
+      "errors": [],
+      "manuscript_id": "bcul-Ms0403",
+      "page_id": "badb800cb3f429a0e089",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcul-Ms0403/0180_bcul-Ms0403_086r.jpg",
+      "source_sha256": "03efcdadf17f93ace2dcaf9fdaf6c6e978cd0fe27d43e245975fe31058b74492",
+      "source_size_bytes": 1312266,
+      "split": "train",
+      "union_mask_area_px": 1302163,
+      "valid_mask_count": 53
+    },
+    {
+      "canvas_label": "98v",
+      "class_counts": {
+        "Main script black": 28,
+        "Main script coloured": 1,
+        "Plain initial - Black": 2,
+        "Plain initial- coloured": 1,
+        "Table": 1
+      },
+      "confidence": {
+        "count": 33,
+        "maximum": 0.923469,
+        "mean": 0.4558743636,
+        "median": 0.438943,
+        "minimum": 0.260303,
+        "population_standard_deviation": 0.1478157014
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "ubb-A-II-0013",
+      "page_id": "bf62c67613c7922fb921",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-A-II-0013/0199_ubb-A-II-0013_0098v.jpg",
+      "source_sha256": "dda0333054b73165a62f47f4e293e9f7a4d4ac9e30c9549f0da0b9bd477c6e87",
+      "source_size_bytes": 1397664,
+      "split": "train",
+      "union_mask_area_px": 2086274,
+      "valid_mask_count": 33
+    },
+    {
+      "canvas_label": "100r",
+      "class_counts": {
+        "Main script black": 71,
+        "Page Number": 1,
+        "Plain initial - Black": 1,
+        "Plain initial - Highlighted": 1
+      },
+      "confidence": {
+        "count": 74,
+        "maximum": 0.748179,
+        "mean": 0.4856747297,
+        "median": 0.49902900000000006,
+        "minimum": 0.253136,
+        "population_standard_deviation": 0.1442791152
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "ubb-A-II-0013",
+      "page_id": "c4be43f3de7496413f1b",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-A-II-0013/0202_ubb-A-II-0013_0100r.jpg",
+      "source_sha256": "ad35b1a566d0c9edeb61367ef2333e61c0f7eb4ba5956242557cc9dc0d9cb961",
+      "source_size_bytes": 1421135,
+      "split": "train",
+      "union_mask_area_px": 1708805,
+      "valid_mask_count": 74
+    },
+    {
+      "canvas_label": "87r",
+      "class_counts": {
+        "Main script black": 31,
+        "Plain initial - Highlighted": 1
+      },
+      "confidence": {
+        "count": 32,
+        "maximum": 0.8802,
+        "mean": 0.7430125,
+        "median": 0.7939915,
+        "minimum": 0.324168,
+        "population_standard_deviation": 0.1370211317
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "kba-Wett0004",
+      "page_id": "c63d67ffbd8b307be771",
+      "source_path": "data/raw/ecodices_training_source_validation_v0_1/kba-Wett0004/0177_kba-Wett0004_087r.jpg",
+      "source_sha256": "105f5c1e1ead9ac47f6581d1f59d096cdc7d03f660530529b30be4c381139513",
+      "source_size_bytes": 1434344,
+      "split": "train",
+      "union_mask_area_px": 2067004,
+      "valid_mask_count": 32
+    },
+    {
+      "canvas_label": "80",
+      "class_counts": {
+        "Gloss": 2,
+        "Main script black": 71,
+        "Page Number": 1,
+        "Variant script coloured": 5
+      },
+      "confidence": {
+        "count": 79,
+        "maximum": 0.872411,
+        "mean": 0.6607492532,
+        "median": 0.72253,
+        "minimum": 0.25626,
+        "population_standard_deviation": 0.1679170092
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0314",
+      "page_id": "c7b3da10f47f44182a27",
+      "source_path": "data/raw/ecodices_training_source_validation_v0_1/csg-0314/0081_csg-0314_0080.jpg",
+      "source_sha256": "e7ccbfe5a56bdf8575196e172ea6d4c841544d3ec7e57a1bac4ac428309c9f67",
+      "source_size_bytes": 1370066,
+      "split": "test",
+      "union_mask_area_px": 1535007,
+      "valid_mask_count": 79
+    },
+    {
+      "canvas_label": "68v",
+      "class_counts": {
+        "Main script black": 82
+      },
+      "confidence": {
+        "count": 82,
+        "maximum": 0.820646,
+        "mean": 0.6464119878,
+        "median": 0.7133885,
+        "minimum": 0.289193,
+        "population_standard_deviation": 0.1486428788
+      },
+      "dimensions_px": [
+        2000,
+        3040
+      ],
+      "errors": [],
+      "manuscript_id": "bbb-AA0091",
+      "page_id": "cd75a077d2b53c71f33a",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bbb-AA0091/0141_bbb-AA0091_068v.jpg",
+      "source_sha256": "456d55a5748b222303850140422b35a83b2c4fd493b0c0a31fa7778eb55d5b7f",
+      "source_size_bytes": 1663809,
+      "split": "train",
+      "union_mask_area_px": 2024771,
+      "valid_mask_count": 82
+    },
+    {
+      "canvas_label": "269",
+      "class_counts": {
+        "Embellished": 1,
+        "Main script black": 53,
+        "Plain initial - Black": 1
+      },
+      "confidence": {
+        "count": 55,
+        "maximum": 0.848662,
+        "mean": 0.7456897636,
+        "median": 0.769262,
+        "minimum": 0.266856,
+        "population_standard_deviation": 0.1082531513
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0314",
+      "page_id": "cfd85f99336a8f5a35f9",
+      "source_path": "data/raw/ecodices_training_source_validation_v0_1/csg-0314/0270_csg-0314_0269.jpg",
+      "source_sha256": "f18a568c7f8714b9946103bf629306cfc4e865c4e695643d168537c7370fe166",
+      "source_size_bytes": 1382753,
+      "split": "test",
+      "union_mask_area_px": 1939458,
+      "valid_mask_count": 55
+    },
+    {
+      "canvas_label": "24v",
+      "class_counts": {
+        "Illustrations": 2,
+        "Main script black": 1
+      },
+      "confidence": {
+        "count": 3,
+        "maximum": 0.908406,
+        "mean": 0.6065263333,
+        "median": 0.590428,
+        "minimum": 0.320745,
+        "population_standard_deviation": 0.2401815008
+      },
+      "dimensions_px": [
+        2000,
+        2812
+      ],
+      "errors": [],
+      "manuscript_id": "bc-b-0067",
+      "page_id": "d0a0165548c2d382e945",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0067/0048_bc-b-0067_024v.jpg",
+      "source_sha256": "0580c570e584aed8704b7321c4aba4bc1b45ec403eecce828ec7d233706d94e1",
+      "source_size_bytes": 1271872,
+      "split": "train",
+      "union_mask_area_px": 5082645,
+      "valid_mask_count": 3
+    },
+    {
+      "canvas_label": "31r",
+      "class_counts": {
+        "Embellished": 1,
+        "Main script black": 107,
+        "Plain initial - Black": 1,
+        "Plain initial- coloured": 3
+      },
+      "confidence": {
+        "count": 112,
+        "maximum": 0.846316,
+        "mean": 0.5900249196,
+        "median": 0.618498,
+        "minimum": 0.251167,
+        "population_standard_deviation": 0.1539012569
+      },
+      "dimensions_px": [
+        2000,
+        3040
+      ],
+      "errors": [],
+      "manuscript_id": "bbb-AA0091",
+      "page_id": "d2fdc913de8f7f2a98fe",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bbb-AA0091/0066_bbb-AA0091_031r.jpg",
+      "source_sha256": "e4851b03275f6ee1ddc97836d3aac921f53ab5a2d68782251b487c6c4dda240a",
+      "source_size_bytes": 1570905,
+      "split": "train",
+      "union_mask_area_px": 2020262,
+      "valid_mask_count": 112
+    },
+    {
+      "canvas_label": "1v",
+      "class_counts": {
+        "Main script black": 19,
+        "Music": 1
+      },
+      "confidence": {
+        "count": 20,
+        "maximum": 0.862461,
+        "mean": 0.70357055,
+        "median": 0.7381854999999999,
+        "minimum": 0.335046,
+        "population_standard_deviation": 0.1480692522
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "sbs-gen0020",
+      "page_id": "d704f482fd5fd52f0df9",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0005_sbs-gen0020_0001v.jpg",
+      "source_sha256": "96e6cc22a43a6b1821693f8e3eb37ad566c7cacb35833014071c17d1a5a2a710",
+      "source_size_bytes": 1325010,
+      "split": "validation",
+      "union_mask_area_px": 1723370,
+      "valid_mask_count": 20
+    },
+    {
+      "canvas_label": "10r",
+      "class_counts": {
+        "Main script black": 3
+      },
+      "confidence": {
+        "count": 3,
+        "maximum": 0.735237,
+        "mean": 0.6105863333,
+        "median": 0.637343,
+        "minimum": 0.459179,
+        "population_standard_deviation": 0.1142772776
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "fmb-cb-0902",
+      "page_id": "d861c556a5079b0f562b",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0020_fmb-cb-0902_010r.jpg",
+      "source_sha256": "8d1d91c7a943eb682dcc1a1f4eecf0059f26bba4e8fc0acc44abc4e85ab13450",
+      "source_size_bytes": 1351393,
+      "split": "validation",
+      "union_mask_area_px": 423156,
+      "valid_mask_count": 3
+    },
+    {
+      "canvas_label": "152v",
+      "class_counts": {
+        "Main script black": 37,
+        "Music": 1,
+        "Plain initial - Black": 1
+      },
+      "confidence": {
+        "count": 39,
+        "maximum": 0.664853,
+        "mean": 0.4643590513,
+        "median": 0.444237,
+        "minimum": 0.279518,
+        "population_standard_deviation": 0.1189903804
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "fmb-cb-0056",
+      "page_id": "d99a4342fea8a232d040",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0056/0309_fmb-cb-0056_152v.jpg",
+      "source_sha256": "46cc3305ed68f97a37fa0e492f799368277dc7a8fcd923c714ee2cb148b2729d",
+      "source_size_bytes": 847277,
+      "split": "test",
+      "union_mask_area_px": 773225,
+      "valid_mask_count": 39
+    },
+    {
+      "canvas_label": "45v",
+      "class_counts": {
+        "Main script black": 60
+      },
+      "confidence": {
+        "count": 60,
+        "maximum": 0.792098,
+        "mean": 0.5278823,
+        "median": 0.5783039999999999,
+        "minimum": 0.261789,
+        "population_standard_deviation": 0.1370659514
+      },
+      "dimensions_px": [
+        2000,
+        3626
+      ],
+      "errors": [],
+      "manuscript_id": "bcul-Ms0403",
+      "page_id": "db294b6d76c3ff21a4aa",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcul-Ms0403/0099_bcul-Ms0403_045v.jpg",
+      "source_sha256": "fd5fee2eb40881419fa1a56ae1cffaea64236f93f418417f3a6eb1f301394e26",
+      "source_size_bytes": 2048200,
+      "split": "train",
+      "union_mask_area_px": 1424386,
+      "valid_mask_count": 60
+    },
+    {
+      "canvas_label": "16",
+      "class_counts": {
+        "Main script black": 26,
+        "Music": 11,
+        "Plain initial - Black": 1
+      },
+      "confidence": {
+        "count": 38,
+        "maximum": 0.721589,
+        "mean": 0.4673313421,
+        "median": 0.469376,
+        "minimum": 0.268592,
+        "population_standard_deviation": 0.1252837942
+      },
+      "dimensions_px": [
+        2000,
+        3085
+      ],
+      "errors": [],
+      "manuscript_id": "bcj-A2437",
+      "page_id": "e1f0a5ee65f280cae9f4",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcj-A2437/0023_bcj-A2437_0016.jpg",
+      "source_sha256": "589c7724f6ed6fbe8c411cf13d641e34bb4c8a394edd76cb8a63c76d1f263863",
+      "source_size_bytes": 1391233,
+      "split": "train",
+      "union_mask_area_px": 2276609,
+      "valid_mask_count": 38
+    },
+    {
+      "canvas_label": "38",
+      "class_counts": {
+        "Gloss": 1,
+        "Main script black": 36,
+        "Plain initial - Black": 4
+      },
+      "confidence": {
+        "count": 41,
+        "maximum": 0.877241,
+        "mean": 0.6188657561,
+        "median": 0.653893,
+        "minimum": 0.266544,
+        "population_standard_deviation": 0.1666686125
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0916",
+      "page_id": "e6ed1fe5156975a504b6",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0916/0043_csg-0916_038.jpg",
+      "source_sha256": "d8403d89171e9cf70eaf1d652f80c76dab3b52c60ca39323e0302431d6f05ed4",
+      "source_size_bytes": 1471603,
+      "split": "train",
+      "union_mask_area_px": 2716556,
+      "valid_mask_count": 41
+    },
+    {
+      "canvas_label": "91v",
+      "class_counts": {
+        "Illustrations": 1,
+        "Main script black": 90,
+        "Plain initial - Black": 1,
+        "Plain initial- coloured": 1
+      },
+      "confidence": {
+        "count": 93,
+        "maximum": 0.91367,
+        "mean": 0.6173751935,
+        "median": 0.669092,
+        "minimum": 0.250637,
+        "population_standard_deviation": 0.1551453652
+      },
+      "dimensions_px": [
+        2000,
+        3040
+      ],
+      "errors": [],
+      "manuscript_id": "bbb-AA0091",
+      "page_id": "f46df413fa069045fc5b",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bbb-AA0091/0187_bbb-AA0091_091v.jpg",
+      "source_sha256": "f46fff7cb270e3af230b94439ea89f8e02b6be0a922e4e0f9357193f9dc88ee7",
+      "source_size_bytes": 1541346,
+      "split": "train",
+      "union_mask_area_px": 2380160,
+      "valid_mask_count": 93
+    },
+    {
+      "canvas_label": "128v",
+      "class_counts": {
+        "Main script black": 81,
+        "Running header": 2
+      },
+      "confidence": {
+        "count": 83,
+        "maximum": 0.803198,
+        "mean": 0.5769887831,
+        "median": 0.6094,
+        "minimum": 0.260815,
+        "population_standard_deviation": 0.115950749
+      },
+      "dimensions_px": [
+        2000,
+        3000
+      ],
+      "errors": [],
+      "manuscript_id": "ubb-F-I-0021",
+      "page_id": "f7ba7bde1a2e33bbf254",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-F-I-0021/0261_ubb-F-I-0021_0128v.jpg",
+      "source_sha256": "017114dbef72aee1a01dfcc18bdbdfb00a9e2f5475a2109a4eb57ae9c470cb82",
+      "source_size_bytes": 1592622,
+      "split": "train",
+      "union_mask_area_px": 1595570,
+      "valid_mask_count": 83
+    },
+    {
+      "canvas_label": "230v",
+      "class_counts": {
+        "Main script black": 59
+      },
+      "confidence": {
+        "count": 59,
+        "maximum": 0.871208,
+        "mean": 0.7612942542,
+        "median": 0.783334,
+        "minimum": 0.26972,
+        "population_standard_deviation": 0.0859981981
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "kba-WettF0001",
+      "page_id": "fd0e198bce8a9433f5d5",
+      "source_path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/kba-WettF0001/0463_kba-WettF0001_230v.jpg",
+      "source_sha256": "a4ed1ee816623de26b5386382a1964bc3a65714112de4d2f0afbd973832f18ac",
+      "source_size_bytes": 1251429,
+      "split": "test",
+      "union_mask_area_px": 1731786,
+      "valid_mask_count": 59
+    },
+    {
+      "canvas_label": "200",
+      "class_counts": {
+        "Gloss": 2,
+        "Main script black": 19,
+        "Plain initial - Black": 1,
+        "Running header": 1
+      },
+      "confidence": {
+        "count": 23,
+        "maximum": 0.763458,
+        "mean": 0.561694087,
+        "median": 0.588401,
+        "minimum": 0.275717,
+        "population_standard_deviation": 0.1350120165
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "errors": [],
+      "manuscript_id": "csg-0059",
+      "page_id": "fec5711a3a0b88f1226f",
+      "source_path": "data/raw/ecodices_training_source_validation_v0_1/csg-0059/0209_csg-0059_0200.jpg",
+      "source_sha256": "4d1af90e1699630ce35ac513a8e26e18abe48db940e756e8543380f5381a400f",
+      "source_size_bytes": 1272023,
+      "split": "train",
+      "union_mask_area_px": 1365213,
+      "valid_mask_count": 23
+    }
+  ],
+  "scientific_note": "Segmentation is model-derived evidence. Counts and coverage do not measure manuscript content completeness or recovery.",
+  "segmentation": {
+    "declared_run_count": 85,
+    "low_confidence_mean_threshold": 0.4,
+    "low_confidence_pages": [
+      "5e6ff8c7c454a2c27b94"
+    ],
+    "mask_area_px": {
+      "count": 4230,
+      "maximum": 5151468,
+      "mean": 44542.3387706856,
+      "median": 29838.0,
+      "minimum": 10,
+      "population_standard_deviation": 154113.5475658647
+    },
+    "pages_missing_or_invalid_artifacts": [],
+    "region_counts_by_class_and_split": {
+      "Border": {
+        "test": 0,
+        "train": 1,
+        "validation": 0
+      },
+      "Embellished": {
+        "test": 6,
+        "train": 3,
+        "validation": 1
+      },
+      "Gloss": {
+        "test": 3,
+        "train": 29,
+        "validation": 1
+      },
+      "Illustrations": {
+        "test": 0,
+        "train": 6,
+        "validation": 0
+      },
+      "Main script black": {
+        "test": 694,
+        "train": 3089,
+        "validation": 106
+      },
+      "Main script coloured": {
+        "test": 0,
+        "train": 5,
+        "validation": 6
+      },
+      "Music": {
+        "test": 10,
+        "train": 45,
+        "validation": 37
+      },
+      "Page Number": {
+        "test": 1,
+        "train": 16,
+        "validation": 2
+      },
+      "Plain initial - Black": {
+        "test": 2,
+        "train": 43,
+        "validation": 1
+      },
+      "Plain initial - Highlighted": {
+        "test": 0,
+        "train": 5,
+        "validation": 45
+      },
+      "Plain initial- coloured": {
+        "test": 0,
+        "train": 35,
+        "validation": 2
+      },
+      "Running header": {
+        "test": 1,
+        "train": 4,
+        "validation": 0
+      },
+      "Table": {
+        "test": 0,
+        "train": 1,
+        "validation": 0
+      },
+      "Variant script coloured": {
+        "test": 8,
+        "train": 21,
+        "validation": 1
+      }
+    },
+    "regions_per_page": {
+      "count": 85,
+      "maximum": 125,
+      "mean": 49.7647058824,
+      "median": 42,
+      "minimum": 0,
+      "population_standard_deviation": 31.77296189
+    },
+    "total_layout_regions": 4230,
+    "union_mask_fraction_of_source_raster": {
+      "count": 85,
+      "maximum": 0.9159793741109531,
+      "mean": 0.3160131144,
+      "median": 0.31755176294073517,
+      "minimum": 0.0,
+      "population_standard_deviation": 0.1658264479
+    },
+    "valid_mask_count": 4230,
+    "zero_region_pages": [
+      "6538cbcb609973816c5a",
+      "6c1543ed764a6265f96a",
+      "95c524bbf6593575149b",
+      "a57947d883c928bdeae4"
+    ]
+  },
+  "structure": {
+    "assigned_manuscripts": 20,
+    "assigned_manuscripts_per_split": {
+      "test": 3,
+      "train": 14,
+      "validation": 3
+    },
+    "page_bearing_manuscripts": 19,
+    "page_bearing_manuscripts_per_split": {
+      "test": 3,
+      "train": 13,
+      "validation": 3
+    },
+    "pages_by_provider": {
+      "www.e-codices.unifr.ch": 85
+    },
+    "pages_by_repository": {
+      "Aarau, Aargauer Kantonsbibliothek": 8,
+      "Basel, Universit\u00e4tsbibliothek": 13,
+      "Bern, Burgerbibliothek": 5,
+      "Cologny, Fondation Martin Bodmer": 10,
+      "Engelberg, Stiftsbibliothek": 5,
+      "Lausanne, Biblioth\u00e8que cantonale et universitaire - Lausanne": 5,
+      "Porrentruy, Biblioth\u00e8que cantonale jurassienne": 5,
+      "Schaffhausen, Stadtbibliothek": 5,
+      "St. Gallen, Stiftsbibliothek": 19,
+      "Z\u00fcrich, Braginsky Collection": 10
+    },
+    "pages_per_manuscript": {
+      "bbb-AA0091": 5,
+      "bc-b-0067": 5,
+      "bc-b-0103": 5,
+      "bcj-A2437": 5,
+      "bcul-Ms0403": 5,
+      "bke-0056": 5,
+      "cea-FaZellweger-90A-01-2": 0,
+      "csg-0059": 3,
+      "csg-0073": 5,
+      "csg-0300": 3,
+      "csg-0314": 3,
+      "csg-0916": 5,
+      "fmb-cb-0056": 5,
+      "fmb-cb-0902": 5,
+      "kba-Wett0004": 3,
+      "kba-WettF0001": 5,
+      "sbs-gen0020": 5,
+      "ubb-A-II-0013": 5,
+      "ubb-F-I-0021": 5,
+      "ubb-F-IX-0068": 3
+    },
+    "pages_per_split": {
+      "test": 13,
+      "train": 59,
+      "validation": 13
+    },
+    "total_pages": 85
+  }
+}

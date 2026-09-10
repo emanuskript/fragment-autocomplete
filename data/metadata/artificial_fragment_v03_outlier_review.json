@@ -1,0 +1,206 @@
+{
+  "human_review_required": true,
+  "outliers": [
+    {
+      "class_counts": {
+        "Embellished": 1,
+        "Main script black": 1
+      },
+      "classification": "requires_human_review",
+      "classification_overridden": false,
+      "confidence": {
+        "count": 2,
+        "maximum": 0.477132,
+        "mean": 0.3848845,
+        "median": 0.38488449999999996,
+        "minimum": 0.292637,
+        "population_standard_deviation": 0.0922475
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "historical_review": {
+        "classification": "requires_human_review",
+        "evidence_sha256": "bd144a30b42b9628af1a9bc10b7159652129af3d8d6909d65ef021317d19473b",
+        "review_method": "assistant visual inspection of local source/overlay/mask evidence; not human scholarly adjudication",
+        "scholarly_review_required": true,
+        "selection_action": "none",
+        "visual_observation": "The source, overlay and both binary masks were inspected. One mask covers part of a text line; the Embellished mask covers a drawn head. Other visible drawings and writing are outside these two detections. The masks permit geometric measurement, but class correctness and layout completeness require expert review; low confidence does not establish usability."
+      },
+      "manuscript_id": "fmb-cb-0902",
+      "overlay": {
+        "path": "outputs/training_corpus_segmentation/batch_01/overlays/5e6ff8c7c454a2c27b94_overlay.jpg",
+        "sha256": "417f37cde2e5c4642822a9247ce42dc7afd9dbe88a69488996c01e9cd4414359",
+        "size_bytes": 1107098
+      },
+      "page": "16v",
+      "page_id": "5e6ff8c7c454a2c27b94",
+      "region_count": 2,
+      "review_image": {
+        "path": "outputs/artificial_fragments/v0_3/review/5e6ff8c7c454a2c27b94.png",
+        "sha256": "a92ffecf6a0b53a80a4e6d21397fd989b6a0069fcad54408cdb11adfe29dcb4a",
+        "size_bytes": 577281
+      },
+      "scholarly_review_required": true,
+      "source": {
+        "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0033_fmb-cb-0902_016v.jpg",
+        "sha256": "5ece6ba0b79e1105f51af3d01356ca6d63792948db35913ed5bc89d53b2c51fc",
+        "size_bytes": 1238838
+      },
+      "split": "validation",
+      "union_mask_area_px": 231153,
+      "union_mask_page_fraction": 0.043352025506376596
+    },
+    {
+      "class_counts": {},
+      "classification": "probable_segmentation_failure",
+      "classification_overridden": false,
+      "confidence": {
+        "count": 0,
+        "maximum": null,
+        "mean": null,
+        "median": null,
+        "minimum": null,
+        "population_standard_deviation": null
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "historical_review": {
+        "classification": "probable_segmentation_failure",
+        "evidence_sha256": "d1f80cfe909c2898a7389dc06573b1d47b341dc55e64e56697d8ae1034f9c84d",
+        "review_method": "assistant visual inspection of local source/overlay/mask evidence; not human scholarly adjudication",
+        "scholarly_review_required": true,
+        "selection_action": "none",
+        "visual_observation": "The source and empty overlay show a coloured drawing, a cross-like shape and writing below. Zero detections omit visible layout content."
+      },
+      "manuscript_id": "fmb-cb-0902",
+      "overlay": {
+        "path": "outputs/training_corpus_segmentation/batch_01/overlays/6538cbcb609973816c5a_overlay.jpg",
+        "sha256": "f9b83f32f706f78175eb7ae60de4c5aeaf93f2438889dce03cc743c66351b6e0",
+        "size_bytes": 1154820
+      },
+      "page": "14r",
+      "page_id": "6538cbcb609973816c5a",
+      "region_count": 0,
+      "review_image": {
+        "path": "outputs/artificial_fragments/v0_3/review/6538cbcb609973816c5a.png",
+        "sha256": "d8203e964c100bbf2e569fb8e0911f4ef44349a041453646d4a477666408b13e",
+        "size_bytes": 548683
+      },
+      "scholarly_review_required": true,
+      "source": {
+        "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0028_fmb-cb-0902_014r.jpg",
+        "sha256": "ee3a1bd6496eb48e79cc15f4ab0c90fd5c1c4a2ee17a95b7da2504efa88d392d",
+        "size_bytes": 1290299
+      },
+      "split": "validation",
+      "union_mask_area_px": 0,
+      "union_mask_page_fraction": 0.0
+    },
+    {
+      "class_counts": {},
+      "classification": "probable_segmentation_failure",
+      "classification_overridden": false,
+      "confidence": {
+        "count": 0,
+        "maximum": null,
+        "mean": null,
+        "median": null,
+        "minimum": null,
+        "population_standard_deviation": null
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "historical_review": {
+        "classification": "probable_segmentation_failure",
+        "evidence_sha256": "cb3bd933b6c3d0bc15b76a2527d0dff572d9de20c13e7a0d4179caa699747b6c",
+        "review_method": "assistant visual inspection of local source/overlay/mask evidence; not human scholarly adjudication",
+        "scholarly_review_required": true,
+        "selection_action": "none",
+        "visual_observation": "The source and empty overlay show repeated branching drawings and faint writing near the bottom. Zero detections cannot represent the visibly nonempty layout."
+      },
+      "manuscript_id": "fmb-cb-0902",
+      "overlay": {
+        "path": "outputs/training_corpus_segmentation/batch_01/overlays/6c1543ed764a6265f96a_overlay.jpg",
+        "sha256": "18c47a9a0fd02e1b0d5c22df8501bd7d8b728d39f9209716eed07c99fdb356d4",
+        "size_bytes": 1237111
+      },
+      "page": "8r",
+      "page_id": "6c1543ed764a6265f96a",
+      "region_count": 0,
+      "review_image": {
+        "path": "outputs/artificial_fragments/v0_3/review/6c1543ed764a6265f96a.png",
+        "sha256": "2def0f47fb7bc36a7d8043952ed749050e6980dbe6b632b4627838227ab3a1e3",
+        "size_bytes": 583543
+      },
+      "scholarly_review_required": true,
+      "source": {
+        "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0016_fmb-cb-0902_008r.jpg",
+        "sha256": "8eb675d9a30f14f099d73ddf1e00e612c2ffe41d6cdb044d9d3dd2729f752da6",
+        "size_bytes": 1385248
+      },
+      "split": "validation",
+      "union_mask_area_px": 0,
+      "union_mask_page_fraction": 0.0
+    },
+    {
+      "class_counts": {},
+      "classification": "probable_segmentation_failure",
+      "classification_overridden": false,
+      "confidence": {
+        "count": 0,
+        "maximum": null,
+        "mean": null,
+        "median": null,
+        "minimum": null,
+        "population_standard_deviation": null
+      },
+      "dimensions_px": [
+        2000,
+        2666
+      ],
+      "historical_review": {
+        "classification": "probable_segmentation_failure",
+        "evidence_sha256": "cdf6054302b178ccd5c0955c2e88db85e84e56f9c368ff69018e3769a656a7bb",
+        "review_method": "assistant visual inspection of local source/overlay/mask evidence; not human scholarly adjudication",
+        "scholarly_review_required": true,
+        "selection_action": "none",
+        "visual_observation": "The source and empty overlay show branching drawings and diagonal writing. Visible content remains unsegmented; no attribution, transcription or material identification is inferred."
+      },
+      "manuscript_id": "fmb-cb-0902",
+      "overlay": {
+        "path": "outputs/training_corpus_segmentation/batch_01/overlays/95c524bbf6593575149b_overlay.jpg",
+        "sha256": "45bd974c3b6f06bb1c4b878786f3d08b68f80425dd7d6a7581ae8e04016bef05",
+        "size_bytes": 1166705
+      },
+      "page": "11v",
+      "page_id": "95c524bbf6593575149b",
+      "region_count": 0,
+      "review_image": {
+        "path": "outputs/artificial_fragments/v0_3/review/95c524bbf6593575149b.png",
+        "sha256": "fc8c59d002e3ce7bbcef138ef7531d1ed2b687e1808195c5ebeb46b838844d7f",
+        "size_bytes": 574049
+      },
+      "scholarly_review_required": true,
+      "source": {
+        "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0023_fmb-cb-0902_011v.jpg",
+        "sha256": "0d5479e338b89b9925958d8971a5058f190f44225f4a4c923468138efc0e456e",
+        "size_bytes": 1305697
+      },
+      "split": "validation",
+      "union_mask_area_px": 0,
+      "union_mask_page_fraction": 0.0
+    }
+  ],
+  "review_index": {
+    "path": "outputs/artificial_fragments/v0_3/review/index.html",
+    "sha256": "3ee2bd44d70268c4abd3ec404dcf2f2dad76f8c8edd1ca0ae36edda0802e009c",
+    "size_bytes": 11157
+  },
+  "version": "artificial_fragment_experiment_v0_3"
+}

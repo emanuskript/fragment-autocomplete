@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit, generate, register, measure and verify Artificial Fragment Experiment v0.2."""
+"""Audit, generate, register, measure and verify artificial-fragment experiments."""
 from __future__ import annotations
 
 import argparse
@@ -268,7 +268,26 @@ def main():
   sub.add_parser("report", help="Validate generated task artifacts and emit deterministic aggregates and Markdown.", description="Read checksummed per-task measurements and produce deterministic summaries by family, severity, manuscript, page and region class.")
   sub.add_parser("verify", help="Compare source/legacy DB and file invariants with the initial audit snapshot.", description="Check all frozen DB rows, available source/mask/legacy file checksums and mtimes, stable audit/review/measurement artifacts and registered v0.2 rows.")
   sub.add_parser("check-determinism", help="Fully recompute binaries and compare scientific artifacts, IDs, checksums and registered rows.", description="Requires an already generated and registered experiment. Performs real recomputation and registration, verifies unchanged bytes and row timestamps, and saves determinism.json.")
+  v03 = sub.add_parser("v03", help="Structured synthetic damage experiment (historical commands retain v0.2 behavior).")
+  vsub = v03.add_subparsers(dest="action", required=True)
+  av = vsub.add_parser("availability", help="Check exact registered sources; optionally restore checksum-identical bytes.")
+  av.add_argument("--restore", action="store_true", help="Restore unavailable files via existing acquisition; stage and verify before replacement.")
+  av.add_argument("--dry-run", action="store_true", help="Read-only inspection: no restoration or report writes.")
+  for name, help_text in (
+    ("review", "Prepare human review aids; preserve all existing outlier classifications."),
+    ("spec", "Audit corpus and live DB; select validation sources and calibrate the structured matrix."),
+    ("generate", "Generate source-sized synthetic fragments and measure full segmentation-mask overlap."),
+    ("register", "Validate the matrix and store JSONB idempotently in the existing schema."),
+    ("report", "Measure and aggregate v0.3 and frozen v0.2 controls on matched page sets."),
+    ("verify", "Check all frozen source, segmentation, historical, rights and split invariants."),
+    ("check-determinism", "Recompute the full v0.3 run and compare artifacts and DB timestamps.")):
+    command = vsub.add_parser(name, help=help_text, description=help_text)
+    if name == "register":
+      command.add_argument("--dry-run", action="store_true", help="Validate registration without writes.")
   args = parser.parse_args()
+  if args.command == "v03":
+    from scripts.structured_fragment_workflow import dispatch
+    return dispatch(args)
   if args.command == "generate":
     generate(args.regenerate)
   else:

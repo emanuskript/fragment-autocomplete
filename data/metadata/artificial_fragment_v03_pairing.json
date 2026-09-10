@@ -1,0 +1,184 @@
+{
+  "cached_manifest_count": 20,
+  "cached_manifest_metadata_labels": [
+    "Century",
+    "Collection Name",
+    "DOI",
+    "Date of Origin (English)",
+    "Dated",
+    "Digitized by",
+    "Dimensions",
+    "Document Type",
+    "Liturgica christiana",
+    "Location",
+    "Material",
+    "Number of Pages",
+    "Online Since",
+    "Persons",
+    "Place of Origin (English)",
+    "Shelfmark",
+    "Sponsored by",
+    "Summary (English)",
+    "Tags",
+    "Text Language",
+    "Title (English)"
+  ],
+  "cached_manifest_object_keys": [
+    "@context",
+    "@format",
+    "@id",
+    "@language",
+    "@type",
+    "@value",
+    "attribution",
+    "canvases",
+    "description",
+    "format",
+    "height",
+    "images",
+    "label",
+    "license",
+    "logo",
+    "metadata",
+    "motivation",
+    "on",
+    "profile",
+    "related",
+    "resource",
+    "seeAlso",
+    "sequences",
+    "service",
+    "structures",
+    "value",
+    "width",
+    "within"
+  ],
+  "cached_manifests": [
+    {
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/_manifests/bbb-AA0091.json",
+      "sha256": "198d96a6c8f313b4f83a3f585043219b3f25b07662ee81d4dc259f2f71681e34",
+      "size_bytes": 448606
+    },
+    {
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/_manifests/bc-b-0067.json",
+      "sha256": "9bfd8956f2d66ef36f92c5929e255ce6bf580ae66001c2a791b5d2b1fbd7d678",
+      "size_bytes": 153479
+    },
+    {
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/_manifests/bc-b-0103.json",
+      "sha256": "cc91b15109a738d28fb4248ffafdc6aa4ff0ba9b02eb24680a1758c6799661dc",
+      "size_bytes": 321471
+    },
+    {
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/_manifests/bcj-A2437.json",
+      "sha256": "e0464dd71f8aecc3f832e8347961c58ab375da51b6c2318200c74a4804f1b6ea",
+      "size_bytes": 251747
+    },
+    {
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/_manifests/bcul-Ms0403.json",
+      "sha256": "009695dc5482f24d95048053a0526fef24af36abdc3b01bf2d24191e2622d910",
+      "size_bytes": 371769
+    },
+    {
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/_manifests/bke-0056.json",
+      "sha256": "8e264d5c02d19abbd23ad8643c203893abbdf77a4cba778f4bf6d9c729eef790",
+      "size_bytes": 271994
+    },
+    {
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/_manifests/cea-FaZellweger-90A-01-2.json",
+      "sha256": "3dd8824c97ad1751731a98273af44ac44c9aa9e00e57ce380163bf27dc1b28e3",
+      "size_bytes": 98642
+    },
+    {
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/_manifests/csg-0073.json",
+      "sha256": "e19ef8eec1ec76613179824fd14dd5d5c22760ca66eec7547a29c52993ec2fb7",
+      "size_bytes": 322944
+    },
+    {
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/_manifests/csg-0916.json",
+      "sha256": "1edf4541faa367c2b322831cb131249b903b634dd941c8aa109eb4f83c6a40a8",
+      "size_bytes": 220629
+    },
+    {
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/_manifests/fmb-cb-0056.json",
+      "sha256": "0644c1d90cdefc5bf974e8af5579a63739f9bd6e75b76a52b8d3e51f95ddb2d2",
+      "size_bytes": 552559
+    },
+    {
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/_manifests/fmb-cb-0902.json",
+      "sha256": "c05262d9cfb0e215841a562b9b19a64062191bbb23b580eb6b837c3851fd7583",
+      "size_bytes": 73445
+    },
+    {
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/_manifests/kba-WettF0001.json",
+      "sha256": "374e142ce15f6334d532ffde93fabec81a463a62f7feffac512a8b56be4478b0",
+      "size_bytes": 840974
+    },
+    {
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/_manifests/sbs-gen0020.json",
+      "sha256": "1da34bc1ad448d1b49e964bc07843a7a508b959f3a5956110d620e40ba70e567",
+      "size_bytes": 389597
+    },
+    {
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/_manifests/ubb-A-II-0013.json",
+      "sha256": "c53a364f2dd75f420158305369f58390cbc7cf860cdf01a804236a664fab0837",
+      "size_bytes": 562481
+    },
+    {
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/_manifests/ubb-F-I-0021.json",
+      "sha256": "565ccd07c7b393cc400dd2bcf5561e63d8c3d8b4c98d73b0c29a3dfd55093403",
+      "size_bytes": 496502
+    },
+    {
+      "path": "data/raw/ecodices_training_source_validation_v0_1/_manifests/csg-0059.json",
+      "sha256": "913773ab4a1e23d70f29e9f84860228d8fd71f68f2a2af01c401b4e98f3dc7ae",
+      "size_bytes": 301797
+    },
+    {
+      "path": "data/raw/ecodices_training_source_validation_v0_1/_manifests/csg-0300.json",
+      "sha256": "0804fb87240134b4dfa7e8192cfefb85925059c9fbb94ced3e6c4a4f2435f92d",
+      "size_bytes": 327679
+    },
+    {
+      "path": "data/raw/ecodices_training_source_validation_v0_1/_manifests/csg-0314.json",
+      "sha256": "b6c59bbaae9010cc2f8a5cc550d40855fc7add0bae8458641ab902da4c469d74",
+      "size_bytes": 388516
+    },
+    {
+      "path": "data/raw/ecodices_training_source_validation_v0_1/_manifests/kba-Wett0004.json",
+      "sha256": "fdc92399a925e52638343951aacfae546b28f4667a20ea8aa06c8cf13eb1136a",
+      "size_bytes": 300451
+    },
+    {
+      "path": "data/raw/ecodices_training_source_validation_v0_1/_manifests/ubb-F-IX-0068.json",
+      "sha256": "fc44b9d55e2b898fb763d2c06023d2f708af047544a82a4e7c50da68c860d2a8",
+      "size_bytes": 291142
+    }
+  ],
+  "canvases_inspected": 85,
+  "coordinate_requirement": "Future explicit pairs require physical leaf identity, sides and documented mirror convention; separate source checksums/masks remain mandatory.",
+  "explicit_relationship_candidates": [],
+  "inspected_sources": [
+    "registered source records",
+    "canvas raw_metadata and folio/page fields",
+    "manuscript raw_metadata",
+    "current schema",
+    "20 cached source IIIF manifests (all object keys and metadata labels)"
+  ],
+  "metadata_snapshot_sha256": "d6c99e688f5dcc27fe053f5fe9e738216b4dd90fa7c8fea09977e293c807d67e",
+  "nonnull_folio_number_count": 0,
+  "paired_leaf_support_implemented": false,
+  "recognized_relationship_fields": [
+    "leaf_id",
+    "leaf_relationship",
+    "opposite_side",
+    "paired_canvas_id",
+    "physical_leaf_id",
+    "recto_canvas_id",
+    "recto_verso_pair",
+    "verso_canvas_id"
+  ],
+  "reliable_pairs": 0,
+  "restriction": "No pairing from filenames, page labels or adjacency; no bifolium inference.",
+  "status": "blocked_by_absent_explicit_physical_leaf_relationships"
+}

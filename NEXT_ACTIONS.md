@@ -1,11 +1,15 @@
 # NEXT_ACTIONS
 
+Artificial Fragment Experiment v0.3 is complete: all eleven previously unavailable sources were restored with exact checksums; 156 tasks were generated from 13 validation pages, producing 2,424 full-mask observations with zero severity error and zero topology failures. Registration inserted 156 rows and matched them unchanged on a second pass. Full recomputation passed byte, file-mtime, database-row, timestamp, and frozen-invariant checks, and all 184 tests pass. Source-availability scanning reuses filesystem state and size reads without changing its provenance or restoration policy.
+
 ## Current study artifact
 
 - `output/pdf/Fragment_Autocomplete_Study_Report.pdf` is the verified three-page project briefing as of 2026-08-23.
 - Refresh it after the next material milestone while preserving evidence/inference separation and candidate-hypothesis language.
 
 ## Completed milestone
+
+Artificial Fragment Experiment v0.3 — structured synthetic material-loss validation is complete for all 13 validation pages. Six distinct calibrated mask families produced 156 tasks and 2,424 full-mask region observations. The saved determinism audit confirms byte-identical artifacts, unchanged file mtimes, and unchanged database rows and timestamps after a full recomputation. These controlled transformations are technical comparators and candidate experimental conditions, not inferred historical damage or recovered manuscript content. See `docs/20_artificial_fragment_experiment_v03.md`.
 
 Artificial Fragment Experiment v0.2 — segmentation-aware controlled validation is complete for every locally eligible validation page. The corpus audit derives 85 pages, 19 page-bearing manuscripts, 59/13/13 page splits, 85 segmentation runs and 4,230 masks. Eleven of the 13 validation pages generated 44 tasks and 604 full-mask region survival measurements. Two validation sources are unavailable iCloud placeholders and have explicit rejections; no pages were substituted. All four Batch 01 outliers are retained: three probable segmentation failures and one requiring human review. Model-derived labels have not been changed.
 
@@ -17,7 +21,7 @@ Design a new immutable complete-page expansion batch targeting the measured layo
 
 ## Acceptance criteria for the next decision
 
-- Restore reliable local availability and backup for eleven existing iCloud placeholder sources, including the two rejected `sbs-gen0020` validation pages. Verify original checksums before any future use. Do not silently extend or overwrite the saved v0.2 experiment.
+- Preserve reliable local availability and establish backup for the eleven checksum-restored sources, including the two `sbs-gen0020` validation pages. Reverify registered checksums before future use, and do not silently extend or overwrite the saved v0.2 experiment.
 - Obtain human review of the four flagged `fmb-cb-0902` pages, and inspect the additional existing zero-detection `ubb-F-IX-0068` page reported by the combined audit.
 - Record which measured coverage gaps each proposed expansion candidate addresses. Missing script metadata must remain missing until supported by source evidence.
 - Review rectangular/irregular damage assumptions with manuscript specialists. Do not interpret mask survival as semantic recoverability or historical reconstruction.

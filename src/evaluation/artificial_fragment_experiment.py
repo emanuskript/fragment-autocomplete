@@ -161,7 +161,7 @@ def load_task(root, ref):
   return task
 
 
-def registration_records(root, specification, tasks):
+def registration_records(root, specification, tasks, *, experiment_version=EXPERIMENT_VERSION):
   selected = {p["page_id"]: p for p in specification["selected_pages"]}
   expected = {t["task_id"]: t for t in specification["tasks"]}
   if len(tasks) != len(expected) or {t["task_id"] for t in tasks} != set(expected):
@@ -169,7 +169,7 @@ def registration_records(root, specification, tasks):
   records = []
   for task in sorted(tasks, key=lambda t: t["task_id"]):
     entry = expected[task["task_id"]]
-    if task["experiment_version"] != EXPERIMENT_VERSION or task["split_name"] != "validation":
+    if task["experiment_version"] != experiment_version or task["split_name"] != "validation":
       raise ValueError("v02_registration_requires_validation_split")
     if task["source_sample_id"] != entry["page_id"]:
       raise ValueError("experiment_source_mismatch")

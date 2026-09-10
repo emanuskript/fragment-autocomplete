@@ -1,0 +1,119 @@
+{
+  "batch_02_selection_criteria": [
+    "New manuscripts with verified Border, Illustrations, Running header or Table examples for future validation coverage.",
+    "Layouts with underrepresented classes and lower Main script black dominance; inspect density and segmentation quality with humans.",
+    "Additional source providers/repositories and explicit physical leaf relationships with coordinate conventions.",
+    "Separate human rights review; availability never implies training authorization; preserve existing test assignments."
+  ],
+  "counts": {
+    "complete_corpus": {
+      "Border": 1,
+      "Embellished": 10,
+      "Gloss": 33,
+      "Illustrations": 6,
+      "Main script black": 3889,
+      "Main script coloured": 11,
+      "Music": 92,
+      "Page Number": 19,
+      "Plain initial - Black": 46,
+      "Plain initial - Highlighted": 50,
+      "Plain initial- coloured": 37,
+      "Running header": 5,
+      "Table": 1,
+      "Variant script coloured": 30
+    },
+    "test": {
+      "Embellished": 6,
+      "Gloss": 3,
+      "Main script black": 694,
+      "Music": 10,
+      "Page Number": 1,
+      "Plain initial - Black": 2,
+      "Running header": 1,
+      "Variant script coloured": 8
+    },
+    "train": {
+      "Border": 1,
+      "Embellished": 3,
+      "Gloss": 29,
+      "Illustrations": 6,
+      "Main script black": 3089,
+      "Main script coloured": 5,
+      "Music": 45,
+      "Page Number": 16,
+      "Plain initial - Black": 43,
+      "Plain initial - Highlighted": 5,
+      "Plain initial- coloured": 35,
+      "Running header": 4,
+      "Table": 1,
+      "Variant script coloured": 21
+    },
+    "v03_eligible_pages": {
+      "Embellished": 1,
+      "Gloss": 1,
+      "Main script black": 106,
+      "Main script coloured": 6,
+      "Music": 37,
+      "Page Number": 2,
+      "Plain initial - Black": 1,
+      "Plain initial - Highlighted": 45,
+      "Plain initial- coloured": 2,
+      "Variant script coloured": 1
+    },
+    "v03_generated_tasks": {
+      "Embellished": 12,
+      "Gloss": 12,
+      "Main script black": 1272,
+      "Main script coloured": 72,
+      "Music": 444,
+      "Page Number": 24,
+      "Plain initial - Black": 12,
+      "Plain initial - Highlighted": 540,
+      "Plain initial- coloured": 24,
+      "Variant script coloured": 12
+    },
+    "validation": {
+      "Embellished": 1,
+      "Gloss": 1,
+      "Main script black": 106,
+      "Main script coloured": 6,
+      "Music": 37,
+      "Page Number": 2,
+      "Plain initial - Black": 1,
+      "Plain initial - Highlighted": 45,
+      "Plain initial- coloured": 2,
+      "Variant script coloured": 1
+    }
+  },
+  "interpretation": "Model-detected regions, not scholarly class ground truth. Generated-task counts repeat source regions under each synthetic transformation; splits unchanged.",
+  "missing_observed_classes": {
+    "complete_corpus": [],
+    "test": [
+      "Border",
+      "Illustrations",
+      "Main script coloured",
+      "Plain initial - Highlighted",
+      "Plain initial- coloured",
+      "Table"
+    ],
+    "train": [],
+    "v03_eligible_pages": [
+      "Border",
+      "Illustrations",
+      "Running header",
+      "Table"
+    ],
+    "v03_generated_tasks": [
+      "Border",
+      "Illustrations",
+      "Running header",
+      "Table"
+    ],
+    "validation": [
+      "Border",
+      "Illustrations",
+      "Running header",
+      "Table"
+    ]
+  }
+}

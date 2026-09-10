@@ -1,0 +1,1852 @@
+{
+  "available_now": 85,
+  "counts": {
+    "available": 74,
+    "requires_manual_action": 0,
+    "restoration_failed": 0,
+    "restored_checksum_verified": 11,
+    "unavailable_local": 0
+  },
+  "input_binding_sha256": "c449af35ed96332fd5d782ceb51da901ec9a5b1d37e0f36c201694700a8844ba",
+  "pages": [
+    {
+      "asset_id": "5ac58e17-e69b-4ea4-b489-d67ce65d1668",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/kba/kba-WettF0001/kba-WettF0001_123r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "f1c8ceadd7df12de8db1669ea8131ba7e5063f8378bfddd83dab6285d7d5eec8",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "kba-WettF0001",
+      "page": "123r",
+      "page_id": "06f5b20752e75711c243",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/kba-WettF0001/0248_kba-WettF0001_123r.jpg",
+      "split": "test",
+      "status": "available"
+    },
+    {
+      "asset_id": "d81d728d-1887-4221-aa4c-625432ab4cba",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bc/bc-b-0103/bc-b-0103_057v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "34c0bcff7ebf0b6cc2a3ea6ba594eba2dedada5a81507f546f2dc54a14151dc9",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bc-b-0103",
+      "page": "57v",
+      "page_id": "07b71712497e5e020af5",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0103/0119_bc-b-0103_057v.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "68c77a2c-d699-4834-ae99-451abb6f344d",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0073/csg-0073_176.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "80e6ad81c81e8a76170d1bb387ab943a01ecaab612bd0b954c0f07bf9bc0c641",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0073",
+      "page": "176",
+      "page_id": "100211da8d4af3713a27",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0073/0177_csg-0073_176.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "fa63c35f-7f79-498d-8b79-a98a35adddd9",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0916/csg-0916_093.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "7ca6e09f7656f551c7c376140451f7b3ed998c2e4c637819594d02304ae9a00d",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0916",
+      "page": "93",
+      "page_id": "18537114696229503939",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0916/0098_csg-0916_093.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "a1e1845e-df8e-4452-b621-1a735e1117cf",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bc/bc-b-0067/bc-b-0067_008r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "5b42e6ba2efc200aa0faf7758b16e159f2a3e29030dbdac74ba7aa23a3ccdc7d",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bc-b-0067",
+      "page": "8r",
+      "page_id": "1abc293888c03c456133",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0067/0015_bc-b-0067_008r.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "b73e2aeb-1385-43d4-9dc9-e59587da4637",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/sbs/sbs-gen0020/sbs-gen0020_0055v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "efc49bc6c81e00d59703a9f6abc8e23d032e3cfc22e087a9045d74807ffcb556",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": true,
+        "exists": true
+      },
+      "manuscript_id": "sbs-gen0020",
+      "page": "55v",
+      "page_id": "219352470825ee97ee12",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0113_sbs-gen0020_0055v.jpg",
+      "restoration": {
+        "expected_checksum_verified_before_atomic_replacement": true,
+        "mechanism": "training_corpus.download_resumable"
+      },
+      "split": "validation",
+      "status": "restored_checksum_verified"
+    },
+    {
+      "asset_id": "59f6f5c1-2245-4877-9229-3b9587d5cb8a",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0916/csg-0916_110.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "a3b8fb27c20fadab5452e85a08e44d412cf43fa90ded51e710e2bcf6bf6255b7",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0916",
+      "page": "110",
+      "page_id": "23547dd56798c0bf8e77",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0916/0115_csg-0916_110.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "cc5da0bb-eff6-46e0-b56f-2a6419fcbf7f",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bc/bc-b-0067/bc-b-0067_047r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "de78d4f0ea1ca06e3ba3f80dd14ed43b6e92fb5c55c69700a2bb2ae50412975f",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bc-b-0067",
+      "page": "47r",
+      "page_id": "25ae639ab4bd642d96e4",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0067/0091_bc-b-0067_047r.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "1d789e17-de09-4ec1-be90-b978990e0144",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/fmb/fmb-cb-0056/fmb-cb-0056_061r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "2bfec025281a17422ac484265d2555abc17c609b1ef82ff13299b61adcba8ac6",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "fmb-cb-0056",
+      "page": "61r",
+      "page_id": "2ea4649f8e8082d82650",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0056/0126_fmb-cb-0056_061r.jpg",
+      "split": "test",
+      "status": "available"
+    },
+    {
+      "asset_id": "f7322365-8783-4393-8c5b-9bf25d879eaf",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/ubb/ubb-A-II-0013/ubb-A-II-0013_0190r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "b4aeccb23f33ce1c734721851f55ec316db169769f96fd5dc92e14acee4ce4b7",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "ubb-A-II-0013",
+      "page": "190r",
+      "page_id": "30a1df6544277910a3ef",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-A-II-0013/0384_ubb-A-II-0013_0190r.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "ab3bbe13-d216-46ec-bb79-0516c3709458",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/fmb/fmb-cb-0056/fmb-cb-0056_020r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "2773287ce4643f1751362f9f48e9c129a240eee9ec0a23c5de16cb508065b527",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "fmb-cb-0056",
+      "page": "20r",
+      "page_id": "32061117c242121f0f90",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0056/0044_fmb-cb-0056_020r.jpg",
+      "split": "test",
+      "status": "available"
+    },
+    {
+      "asset_id": "698422ad-e74b-4332-8c2b-fdeff13bf756",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/ubb/ubb-F-I-0021/ubb-F-I-0021_0129r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "d4a70375df3fa6e61deea813ff2ce738b3951b7421657cb52e37ce5fd1c2a6ba",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "ubb-F-I-0021",
+      "page": "129r",
+      "page_id": "326eaa4e7c33f62ebcf1",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-F-I-0021/0262_ubb-F-I-0021_0129r.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "5e43dda2-693d-4dd6-bbce-d9ab4e4ae9f7",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bbb/bbb-AA0091/bbb-AA0091_048r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "a5b2ecff925fca3e8cae22b9dcab64168d83d04b5dc75a3e1fd3c8c3deb1ecd6",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bbb-AA0091",
+      "page": "48r",
+      "page_id": "381e3421936e64e24d9d",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bbb-AA0091/0100_bbb-AA0091_048r.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "d701f5d3-4143-442b-b42c-8253bcc4d53f",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bc/bc-b-0103/bc-b-0103_040r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "0671785c2477811d65f9466009a1b26b160c1bb61e29a1e87d9a327bbd91dcec",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bc-b-0103",
+      "page": "40r",
+      "page_id": "40c91262c3e6aa3dbe2c",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0103/0084_bc-b-0103_040r.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "011db90b-e953-4987-9b32-68f144705227",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/ubb/ubb-F-IX-0068/ubb-F-IX-0068_0013r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "27016334b6ce626c107d3fac3d8365235ed1f27d8b190fef257e4b6fc436a64c",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "ubb-F-IX-0068",
+      "page": "13r",
+      "page_id": "425d05fd9a5871117c02",
+      "path": "data/raw/ecodices_training_source_validation_v0_1/ubb-F-IX-0068/0032_ubb-F-IX-0068_0013r.jpg",
+      "split": "validation",
+      "status": "available"
+    },
+    {
+      "asset_id": "4dfa5942-b131-4f30-b60c-8790cf70e939",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0300/csg-0300_0032.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "d124fd3a3019065582749e03ee1d738859b45f5042c98eb333185b48dc79aaf8",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0300",
+      "page": "32",
+      "page_id": "425e3785668f4b45417a",
+      "path": "data/raw/ecodices_training_source_validation_v0_1/csg-0300/0035_csg-0300_0032.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "20ef3480-231d-400a-9ac5-cdfb87594d76",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/sbs/sbs-gen0020/sbs-gen0020_0104r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "4dcf23be77f418d045d2012518a427cbae4cf1ec31bd4fa8eab8a4ffcda1a292",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "sbs-gen0020",
+      "page": "104r",
+      "page_id": "44b0f45256bf210d6896",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0210_sbs-gen0020_0104r.jpg",
+      "split": "validation",
+      "status": "available"
+    },
+    {
+      "asset_id": "e4d230aa-8a50-40ba-9d36-abcaffb851ec",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bcj/bcj-A2437/bcj-A2437_0161.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "41db56af9c76330847d3a3b3e915c02e2bde403b88a51d23c7f3c24a5800e65b",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": true,
+        "exists": true
+      },
+      "manuscript_id": "bcj-A2437",
+      "page": "161",
+      "page_id": "460bd866fb80b903a9fb",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcj-A2437/0168_bcj-A2437_0161.jpg",
+      "restoration": {
+        "expected_checksum_verified_before_atomic_replacement": true,
+        "mechanism": "training_corpus.download_resumable"
+      },
+      "split": "train",
+      "status": "restored_checksum_verified"
+    },
+    {
+      "asset_id": "94e2da35-a82e-44ce-8e00-0d45e7f00df8",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0073/csg-0073_192.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "6ec77274748cfa953f9050538de43bbde3977d4c24ff5d583f3d2d216c6daaa8",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0073",
+      "page": "192",
+      "page_id": "471409dc47337f2f85c5",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0073/0193_csg-0073_192.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "cfb864b4-9f8d-4f2f-a70c-299796cfec68",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bc/bc-b-0067/bc-b-0067_031r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "f3e2c3d583c6a4a8fdb269f314af9ba667b50796fb1519a3aabe36de9f2944dd",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bc-b-0067",
+      "page": "31r",
+      "page_id": "4ae9211a762caf3bb955",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0067/0061_bc-b-0067_031r.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "34f8d65b-0ec4-4be2-a8df-e23270a9c28a",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bke/bke-0056/bke-0056_072v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "65a78af2326465bbe28657bd2bdec1fcf34433da2afb4ad1cef25236a2070234",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": true,
+        "exists": true
+      },
+      "manuscript_id": "bke-0056",
+      "page": "72v",
+      "page_id": "4cf06d901eb0b1a54363",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bke-0056/0147_bke-0056_072v.jpg",
+      "restoration": {
+        "expected_checksum_verified_before_atomic_replacement": true,
+        "mechanism": "training_corpus.download_resumable"
+      },
+      "split": "train",
+      "status": "restored_checksum_verified"
+    },
+    {
+      "asset_id": "0ff9ca16-b939-49db-bfa5-2b7fe02d50cc",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/ubb/ubb-A-II-0013/ubb-A-II-0013_0034r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "e27b177e729efdea89fa7c3b3e36c12976925188013ea126eb3496ec0e240f90",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "ubb-A-II-0013",
+      "page": "34r",
+      "page_id": "521b86b1e07b55afa387",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-A-II-0013/0070_ubb-A-II-0013_0034r.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "53114d0c-2686-4e46-8ee9-53a38af9b8f5",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/ubb/ubb-F-I-0021/ubb-F-I-0021_0159r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "c66619e061c1f8665c2210896fabb89c49695da57deebc5d5c09679e9caefc01",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "ubb-F-I-0021",
+      "page": "159r",
+      "page_id": "5b9a3cfa84aeefb5f93f",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-F-I-0021/0322_ubb-F-I-0021_0159r.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "e253d126-34aa-4870-8bc9-096e30b54d6d",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/ubb/ubb-F-I-0021/ubb-F-I-0021_0075r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "0e37b85a8a49612a5d102effb5cee76312d2eb9484e8e80a5fc8324556919bd7",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": true,
+        "exists": true
+      },
+      "manuscript_id": "ubb-F-I-0021",
+      "page": "75r",
+      "page_id": "5db204561d9b7d37a1c3",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-F-I-0021/0154_ubb-F-I-0021_0075r.jpg",
+      "restoration": {
+        "expected_checksum_verified_before_atomic_replacement": true,
+        "mechanism": "training_corpus.download_resumable"
+      },
+      "split": "train",
+      "status": "restored_checksum_verified"
+    },
+    {
+      "asset_id": "cedcad45-767b-4def-8f7f-2d36ded0f187",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/fmb/fmb-cb-0902/fmb-cb-0902_016v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "5ece6ba0b79e1105f51af3d01356ca6d63792948db35913ed5bc89d53b2c51fc",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "fmb-cb-0902",
+      "page": "16v",
+      "page_id": "5e6ff8c7c454a2c27b94",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0033_fmb-cb-0902_016v.jpg",
+      "split": "validation",
+      "status": "available"
+    },
+    {
+      "asset_id": "61846251-6c99-4d50-877a-b40d4fcc3d82",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bc/bc-b-0103/bc-b-0103_003v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "ad5e14fd206db3082881e47ee38f56517cc3807b84f628871fad5a9d750bfaaf",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bc-b-0103",
+      "page": "3v",
+      "page_id": "5eb986a02dfa92fa10dc",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0103/0011_bc-b-0103_003v.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "67bce97b-be52-4607-ac4c-63abf6d197f2",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/sbs/sbs-gen0020/sbs-gen0020_0032v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "1aff9e480eaf9bb418672cb995ed44906306037373974b9a6aaa9545a457a715",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": true,
+        "exists": true
+      },
+      "manuscript_id": "sbs-gen0020",
+      "page": "32v",
+      "page_id": "62eacd9afde4dc6a4efe",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0067_sbs-gen0020_0032v.jpg",
+      "restoration": {
+        "expected_checksum_verified_before_atomic_replacement": true,
+        "mechanism": "training_corpus.download_resumable"
+      },
+      "split": "validation",
+      "status": "restored_checksum_verified"
+    },
+    {
+      "asset_id": "e70060b0-c048-4307-825b-4c9870ff8117",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/fmb/fmb-cb-0902/fmb-cb-0902_014r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "ee3a1bd6496eb48e79cc15f4ab0c90fd5c1c4a2ee17a95b7da2504efa88d392d",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "fmb-cb-0902",
+      "page": "14r",
+      "page_id": "6538cbcb609973816c5a",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0028_fmb-cb-0902_014r.jpg",
+      "split": "validation",
+      "status": "available"
+    },
+    {
+      "asset_id": "bfcf19f1-70cb-4b34-b4ee-d4276d21c137",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bcul/bcul-Ms0403/bcul-Ms0403_052v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "3f601667bbf721d2e6dd93b61d9d3a0f47b14c7e650eccfb254e2f4c429604d9",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bcul-Ms0403",
+      "page": "52v",
+      "page_id": "68a6b8341cc62930ce1c",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcul-Ms0403/0113_bcul-Ms0403_052v.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "542f5e0e-9743-4642-8f09-6f57440a9616",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/kba/kba-WettF0001/kba-WettF0001_186v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "7f9f964970012b0d1e3429b18ca0bbe954dbaf810b5de849f28371ca09373cfa",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "kba-WettF0001",
+      "page": "186v",
+      "page_id": "6ae572fee87b71665c24",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/kba-WettF0001/0375_kba-WettF0001_186v.jpg",
+      "split": "test",
+      "status": "available"
+    },
+    {
+      "asset_id": "4818c595-2b41-426c-8c32-e99e13d839c8",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/fmb/fmb-cb-0902/fmb-cb-0902_008r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "8eb675d9a30f14f099d73ddf1e00e612c2ffe41d6cdb044d9d3dd2729f752da6",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "fmb-cb-0902",
+      "page": "8r",
+      "page_id": "6c1543ed764a6265f96a",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0016_fmb-cb-0902_008r.jpg",
+      "split": "validation",
+      "status": "available"
+    },
+    {
+      "asset_id": "57f44e25-fb35-4ad8-835e-e1e580ad141c",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bcj/bcj-A2437/bcj-A2437_0166.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "dddbd51d65578678729eac4de8b6d16accd21d964d2d1f8b2c7019bfa2996f20",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bcj-A2437",
+      "page": "166",
+      "page_id": "6d994eb960ee08cf4218",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcj-A2437/0173_bcj-A2437_0166.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "9d187844-2635-4c8f-9e4c-aa38a263fc5b",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0916/csg-0916_165.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "49bfab5214e6b4177de17f3a7005a52f2829f343de0e91a8d1a152ca2b9b0d58",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0916",
+      "page": "165",
+      "page_id": "6e49d2944e129b226180",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0916/0170_csg-0916_165.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "6ff4563b-15ac-46c7-8d75-9c7e5d0bf322",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0059/csg-0059_0065.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "61c332cd9cb8fb2b07d5cf87448559e777d90e4949301bcd17e56214462ae73f",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0059",
+      "page": "65",
+      "page_id": "6e83952ab08276d44838",
+      "path": "data/raw/ecodices_training_source_validation_v0_1/csg-0059/0066_csg-0059_0065.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "951cb317-a5dd-4c5d-a940-fa3458d62310",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bke/bke-0056/bke-0056_084v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "604cf7a9147e4cceb12efda6ea9936d3c0b66f7556a46758cafa3f77656de04d",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bke-0056",
+      "page": "84v",
+      "page_id": "7105dc0deb6e58c3a94e",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bke-0056/0171_bke-0056_084v.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "c7d1b4b0-7149-4c30-8422-c7b00adc60e6",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bke/bke-0056/bke-0056_006r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "c6384e1a77ebc547ec5960567b8c27f6487a2319c89b8823c8cc116d1f4d7332",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bke-0056",
+      "page": "6r",
+      "page_id": "758685dc9bc79224acd1",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bke-0056/0014_bke-0056_006r.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "8492c33e-82dd-480b-b583-0acd680cd2a1",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bcul/bcul-Ms0403/bcul-Ms0403_025r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "177668636e3f96927bf3394d38ddabed7a06a19795df4493c569dd9dde507a44",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bcul-Ms0403",
+      "page": "25r",
+      "page_id": "761ad63ef6edc1d96541",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcul-Ms0403/0058_bcul-Ms0403_025r.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "458ad6d4-c8e8-4a26-bfc0-556213ec66a9",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bke/bke-0056/bke-0056_092r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "719bce23e2669e4bfd528a77b6d709fbc5bc7349804b59c0bbff245bd30796b8",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": true,
+        "exists": true
+      },
+      "manuscript_id": "bke-0056",
+      "page": "92r",
+      "page_id": "78a173ee8c7c7e00814d",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bke-0056/0186_bke-0056_092r.jpg",
+      "restoration": {
+        "expected_checksum_verified_before_atomic_replacement": true,
+        "mechanism": "training_corpus.download_resumable"
+      },
+      "split": "train",
+      "status": "restored_checksum_verified"
+    },
+    {
+      "asset_id": "41170d88-685a-4057-bf7a-c442998b3506",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0059/csg-0059_0069-s007.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "87afee8884a9639ac793eb2246d428cf5cb263ee7ed8b51c9a4c97c999a6d19a",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0059",
+      "page": "69-s7",
+      "page_id": "7ad34a03a62820c15611",
+      "path": "data/raw/ecodices_training_source_validation_v0_1/csg-0059/0077_csg-0059_0069-s007.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "7e779c9f-c64f-4133-be53-9dfbe86fcae0",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bcj/bcj-A2437/bcj-A2437_0102.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "01fd4da80a965dda0df3acfce521c53c6ce8001e047fab80e00ebda50fef8fbf",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bcj-A2437",
+      "page": "102",
+      "page_id": "7b9295fe7c3fd339928d",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcj-A2437/0109_bcj-A2437_0102.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "7a71943d-2d2a-4dc2-a487-74b722839511",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/kba/kba-WettF0001/kba-WettF0001_228r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "5eff1307da989959aef40fdc89d7ae6e682901939a04fae2e63efb70ac79838b",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "kba-WettF0001",
+      "page": "228r",
+      "page_id": "7c48bbd8344c51060c44",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/kba-WettF0001/0458_kba-WettF0001_228r.jpg",
+      "split": "test",
+      "status": "available"
+    },
+    {
+      "asset_id": "c455bed4-ce11-4bd0-b471-cda53eab9576",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bc/bc-b-0103/bc-b-0103_084v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "e1bfd5213929328f183a2f25b8d1ad3e72149b64435900c9aa6f889ddf8a0b80",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bc-b-0103",
+      "page": "84v",
+      "page_id": "82194a8825733ce1982d",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0103/0173_bc-b-0103_084v.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "299d188b-1cf7-4e01-b16f-41b0456cd95c",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0314/csg-0314_0165.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "eb6701b2246d8b5d6ff5570c6676c5b29f87207314f9fa8c3e210ef7ca8dfef5",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0314",
+      "page": "165",
+      "page_id": "82974a64d5efd6f43eb8",
+      "path": "data/raw/ecodices_training_source_validation_v0_1/csg-0314/0166_csg-0314_0165.jpg",
+      "split": "test",
+      "status": "available"
+    },
+    {
+      "asset_id": "72fc0ab3-e9e5-45e9-9ae4-a9c0b9ac038e",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bc/bc-b-0067/bc-b-0067_042v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "480ca1362d84d64d16b31fc66d9cb3acf0703125644d8160200b3da5a6ff9775",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": true,
+        "exists": true
+      },
+      "manuscript_id": "bc-b-0067",
+      "page": "42v",
+      "page_id": "83ac253c56dd15ea0ee6",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0067/0082_bc-b-0067_042v.jpg",
+      "restoration": {
+        "expected_checksum_verified_before_atomic_replacement": true,
+        "mechanism": "training_corpus.download_resumable"
+      },
+      "split": "train",
+      "status": "restored_checksum_verified"
+    },
+    {
+      "asset_id": "c85109fb-b416-41b6-a215-6e0e908c349c",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/ubb/ubb-F-IX-0068/ubb-F-IX-0068_0039v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "e9d512573964676f94eba5734fa064db684bc2f9aba79c45ad65bb30ec3073b2",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "ubb-F-IX-0068",
+      "page": "39v",
+      "page_id": "86236cd76a738eebc657",
+      "path": "data/raw/ecodices_training_source_validation_v0_1/ubb-F-IX-0068/0085_ubb-F-IX-0068_0039v.jpg",
+      "split": "validation",
+      "status": "available"
+    },
+    {
+      "asset_id": "823f982e-c7f8-4edb-aac8-f2b3d8f23d67",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/kba/kba-WettF0001/kba-WettF0001_225v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "5321601aaa5557436597b5076d07533baacc9df966004c9c785d45d4a7cee4e6",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "kba-WettF0001",
+      "page": "225v",
+      "page_id": "872fbcf88fed1885630f",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/kba-WettF0001/0453_kba-WettF0001_225v.jpg",
+      "split": "test",
+      "status": "available"
+    },
+    {
+      "asset_id": "a3647983-8f76-4087-975f-d32a696886b0",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bcj/bcj-A2437/bcj-A2437_0153.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "02eeda948ab951ec05e8c9442ed838586fef3d3fd6373b0f1b31b51b16252bf3",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bcj-A2437",
+      "page": "153",
+      "page_id": "8a53aa23135afabd7a68",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcj-A2437/0160_bcj-A2437_0153.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "baaf72af-9e06-4938-9bda-b54fb3008c2e",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/ubb/ubb-A-II-0013/ubb-A-II-0013_0095v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "1600e483cbef0894a214f86bb9e059de3fdcfd01ca95263dde068a261bbdec3e",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": true,
+        "exists": true
+      },
+      "manuscript_id": "ubb-A-II-0013",
+      "page": "95v",
+      "page_id": "95761b8d0ee5433b8c6f",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-A-II-0013/0193_ubb-A-II-0013_0095v.jpg",
+      "restoration": {
+        "expected_checksum_verified_before_atomic_replacement": true,
+        "mechanism": "training_corpus.download_resumable"
+      },
+      "split": "train",
+      "status": "restored_checksum_verified"
+    },
+    {
+      "asset_id": "2e9220e3-72d3-41a3-a9ff-8559a9fc28c4",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/sbs/sbs-gen0020/sbs-gen0020_0078v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "a5ae2f58f89f8fc37c1f26f9b563695da1d08bd4a6a1044875520687a3524c87",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "sbs-gen0020",
+      "page": "78v",
+      "page_id": "95a6f2c3d5cf0d195a1b",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0159_sbs-gen0020_0078v.jpg",
+      "split": "validation",
+      "status": "available"
+    },
+    {
+      "asset_id": "668c6155-55c3-4fb0-8480-f45812a6392b",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/fmb/fmb-cb-0902/fmb-cb-0902_011v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "0d5479e338b89b9925958d8971a5058f190f44225f4a4c923468138efc0e456e",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "fmb-cb-0902",
+      "page": "11v",
+      "page_id": "95c524bbf6593575149b",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0023_fmb-cb-0902_011v.jpg",
+      "split": "validation",
+      "status": "available"
+    },
+    {
+      "asset_id": "cfba5b10-21ca-426d-b671-f34311ae41f3",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bke/bke-0056/bke-0056_082r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "73672c7827b06ea7968ed5e4c39ca4a0424ca8f24492d51eb46ac4d1e4f15639",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bke-0056",
+      "page": "82r",
+      "page_id": "980049998ec408b60ef3",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bke-0056/0166_bke-0056_082r.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "74d56735-d04a-460f-9818-4f33ea00938a",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bbb/bbb-AA0091/bbb-AA0091_066v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "2e052de384c8098dc557ea94dc5fc60670f6deb0e96b2a52735aae0dd6e9874a",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bbb-AA0091",
+      "page": "66v",
+      "page_id": "9994f2b699c45b5d24c9",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bbb-AA0091/0137_bbb-AA0091_066v.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "03449ac8-88f6-4fc8-bb56-e6212fd2035d",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/ubb/ubb-F-I-0021/ubb-F-I-0021_0013av.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "986c665421f2f388c774eb6078fcb276688554143e876a1b3ea535fbd62e8ff6",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "ubb-F-I-0021",
+      "page": "13av",
+      "page_id": "9dfde732e28f0a9e76a2",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-F-I-0021/0029_ubb-F-I-0021_0013av.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "a7d75c6e-f964-4c56-b61e-64735167da40",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bcul/bcul-Ms0403/bcul-Ms0403_008v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "7f223ebdb6626ecd9282fe7fa38d73b54f7ed11316b3521f23a932f5165ed1aa",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bcul-Ms0403",
+      "page": "8v",
+      "page_id": "a43811d9ef4945128514",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcul-Ms0403/0025_bcul-Ms0403_008v.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "28e935d7-8051-49d3-adc3-1894953d047c",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/kba/kba-Wett0004/kba-Wett0004_009v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "560364955b2919b842ef7904732015ec20178154d8d76794eb3ac5703133a081",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": true,
+        "exists": true
+      },
+      "manuscript_id": "kba-Wett0004",
+      "page": "9v",
+      "page_id": "a4f4e588f0055430b22f",
+      "path": "data/raw/ecodices_training_source_validation_v0_1/kba-Wett0004/0022_kba-Wett0004_009v.jpg",
+      "restoration": {
+        "expected_checksum_verified_before_atomic_replacement": true,
+        "mechanism": "training_corpus.download_resumable"
+      },
+      "split": "train",
+      "status": "restored_checksum_verified"
+    },
+    {
+      "asset_id": "0a763fa3-e1c5-4ce9-8779-0749f83167c8",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/ubb/ubb-F-IX-0068/ubb-F-IX-0068_0000_0002v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "c264007d2c25aded4a6ef5ad16a9f2284be9365e29667e5f4f19b4d37dde0c62",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "ubb-F-IX-0068",
+      "page": "V2v",
+      "page_id": "a57947d883c928bdeae4",
+      "path": "data/raw/ecodices_training_source_validation_v0_1/ubb-F-IX-0068/0005_ubb-F-IX-0068_0000_0002v.jpg",
+      "split": "validation",
+      "status": "available"
+    },
+    {
+      "asset_id": "b3637f25-e618-4fa0-92d3-4451af849f16",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0300/csg-0300_0125.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "584a259b0fe9d9d1720dbf7da477098ef7adee3d64790d28483245c9b30eb5d1",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0300",
+      "page": "125",
+      "page_id": "a8207890d102ac4ed03a",
+      "path": "data/raw/ecodices_training_source_validation_v0_1/csg-0300/0128_csg-0300_0125.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "21c75d8e-586f-4085-abb6-3295bc97f5da",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0916/csg-0916_166.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "95d0904eaff3d79f74fd4f01516b4ccafc0642dde2659c8d78e6e265bb4d99c3",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0916",
+      "page": "166",
+      "page_id": "ad2c59510477ae591965",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0916/0171_csg-0916_166.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "4d629e42-6f35-4b6d-9952-7cff7679601f",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/fmb/fmb-cb-0056/fmb-cb-0056_127v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "bf30d3c94ed3a4d831db68f85c2c0c118ae4d93433f43d3af31c05a95d2d8886",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "fmb-cb-0056",
+      "page": "127v",
+      "page_id": "ae7dcdf88d2820a1bfee",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0056/0259_fmb-cb-0056_127v.jpg",
+      "split": "test",
+      "status": "available"
+    },
+    {
+      "asset_id": "5149ef1f-5967-41e6-8b25-136de1d6c3e3",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0073/csg-0073_207.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "94519e8d19f714d3f17fd07e3b98a7fb37f7d7c87bb946e9a19a2f1563fc12c0",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0073",
+      "page": "207",
+      "page_id": "af9d1eeebde53c9212b4",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0073/0208_csg-0073_207.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "30b42ab7-67fe-4488-bab6-f53b538229b9",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bc/bc-b-0103/bc-b-0103_059v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "4a4d56577e2fb8b1a8f0a1c8e224d7ebfb92e0a5ca3a2f67e182e4604cc28daa",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bc-b-0103",
+      "page": "59v",
+      "page_id": "afbb16815e88415efc4c",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0103/0123_bc-b-0103_059v.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "161d2745-0516-4ad6-b941-53a1ef4ef8be",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/fmb/fmb-cb-0056/fmb-cb-0056_063v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "bf2b8c9eb04d06f6301d821c42f8c979cc04e2aaa0a14a79b1922a8aea1280e4",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "fmb-cb-0056",
+      "page": "63v",
+      "page_id": "b0b9e4773745300a63e0",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0056/0131_fmb-cb-0056_063v.jpg",
+      "split": "test",
+      "status": "available"
+    },
+    {
+      "asset_id": "8194018d-57b5-4fca-9a9c-1e5ba2d116db",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0073/csg-0073_051.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "5d9d029b34494aecd57c487006b4b365813a9c22faf38361e09cc287ced81338",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0073",
+      "page": "51",
+      "page_id": "b0d6d0d900b72b8671b9",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0073/0052_csg-0073_051.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "377fbbc2-2a8e-43b3-b35c-c6a57af0f850",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/kba/kba-Wett0004/kba-Wett0004_108v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "ce1bc0d2ac8e3ac9fb89f10fe1232a7a78c93ddb3e615ab2be9877cb69031d4f",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "kba-Wett0004",
+      "page": "108v",
+      "page_id": "b1a39922209cbe0e3288",
+      "path": "data/raw/ecodices_training_source_validation_v0_1/kba-Wett0004/0220_kba-Wett0004_108v.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "bd7ac1dd-33af-45e3-8d45-ed395bcdd35e",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0073/csg-0073_129.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "2764a80b27990318e2b944b0c422ad6c761ec2bf80625891c16ffbaa13bef2e7",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0073",
+      "page": "129",
+      "page_id": "b7d65657516d626c831e",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0073/0130_csg-0073_129.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "096529ba-72fd-41ec-b6bb-34fe39a5475b",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0300/csg-0300_0138.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "e654a01540a8ca37f8ba5ac1968380a4e91a53f34625a56a25a6fb66b98837a0",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0300",
+      "page": "138",
+      "page_id": "babb20f169bd9da8a0b1",
+      "path": "data/raw/ecodices_training_source_validation_v0_1/csg-0300/0141_csg-0300_0138.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "123aa236-aa15-4915-9ca1-c83ca4856b0a",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bcul/bcul-Ms0403/bcul-Ms0403_086r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "03efcdadf17f93ace2dcaf9fdaf6c6e978cd0fe27d43e245975fe31058b74492",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bcul-Ms0403",
+      "page": "86r",
+      "page_id": "badb800cb3f429a0e089",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcul-Ms0403/0180_bcul-Ms0403_086r.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "6d591aad-9077-4c6e-98e5-3372d1eae29c",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/ubb/ubb-A-II-0013/ubb-A-II-0013_0098v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "dda0333054b73165a62f47f4e293e9f7a4d4ac9e30c9549f0da0b9bd477c6e87",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "ubb-A-II-0013",
+      "page": "98v",
+      "page_id": "bf62c67613c7922fb921",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-A-II-0013/0199_ubb-A-II-0013_0098v.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "23b693bc-d470-40a7-98bf-0fa7efd06e52",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/ubb/ubb-A-II-0013/ubb-A-II-0013_0100r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "ad35b1a566d0c9edeb61367ef2333e61c0f7eb4ba5956242557cc9dc0d9cb961",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": true,
+        "exists": true
+      },
+      "manuscript_id": "ubb-A-II-0013",
+      "page": "100r",
+      "page_id": "c4be43f3de7496413f1b",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-A-II-0013/0202_ubb-A-II-0013_0100r.jpg",
+      "restoration": {
+        "expected_checksum_verified_before_atomic_replacement": true,
+        "mechanism": "training_corpus.download_resumable"
+      },
+      "split": "train",
+      "status": "restored_checksum_verified"
+    },
+    {
+      "asset_id": "a29272aa-720b-44f0-a6d0-61214386650b",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/kba/kba-Wett0004/kba-Wett0004_087r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "105f5c1e1ead9ac47f6581d1f59d096cdc7d03f660530529b30be4c381139513",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "kba-Wett0004",
+      "page": "87r",
+      "page_id": "c63d67ffbd8b307be771",
+      "path": "data/raw/ecodices_training_source_validation_v0_1/kba-Wett0004/0177_kba-Wett0004_087r.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "56a0dc3e-943b-4d79-999e-b35613bac2c6",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0314/csg-0314_0080.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "e7ccbfe5a56bdf8575196e172ea6d4c841544d3ec7e57a1bac4ac428309c9f67",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0314",
+      "page": "80",
+      "page_id": "c7b3da10f47f44182a27",
+      "path": "data/raw/ecodices_training_source_validation_v0_1/csg-0314/0081_csg-0314_0080.jpg",
+      "split": "test",
+      "status": "available"
+    },
+    {
+      "asset_id": "81460c27-7861-4ad7-ab07-d59dfdde6425",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bbb/bbb-AA0091/bbb-AA0091_068v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "456d55a5748b222303850140422b35a83b2c4fd493b0c0a31fa7778eb55d5b7f",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bbb-AA0091",
+      "page": "68v",
+      "page_id": "cd75a077d2b53c71f33a",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bbb-AA0091/0141_bbb-AA0091_068v.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "3d6e2b8d-2ccb-4047-b462-74e231901301",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0314/csg-0314_0269.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "f18a568c7f8714b9946103bf629306cfc4e865c4e695643d168537c7370fe166",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0314",
+      "page": "269",
+      "page_id": "cfd85f99336a8f5a35f9",
+      "path": "data/raw/ecodices_training_source_validation_v0_1/csg-0314/0270_csg-0314_0269.jpg",
+      "split": "test",
+      "status": "available"
+    },
+    {
+      "asset_id": "6a6540e4-2e08-4f2b-a2bf-146097491637",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bc/bc-b-0067/bc-b-0067_024v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "0580c570e584aed8704b7321c4aba4bc1b45ec403eecce828ec7d233706d94e1",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bc-b-0067",
+      "page": "24v",
+      "page_id": "d0a0165548c2d382e945",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bc-b-0067/0048_bc-b-0067_024v.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "792bc435-05be-4366-82f8-b243a4321062",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bbb/bbb-AA0091/bbb-AA0091_031r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "e4851b03275f6ee1ddc97836d3aac921f53ab5a2d68782251b487c6c4dda240a",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": true,
+        "exists": true
+      },
+      "manuscript_id": "bbb-AA0091",
+      "page": "31r",
+      "page_id": "d2fdc913de8f7f2a98fe",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bbb-AA0091/0066_bbb-AA0091_031r.jpg",
+      "restoration": {
+        "expected_checksum_verified_before_atomic_replacement": true,
+        "mechanism": "training_corpus.download_resumable"
+      },
+      "split": "train",
+      "status": "restored_checksum_verified"
+    },
+    {
+      "asset_id": "4853b41b-adda-4b7c-8621-b91573c3648b",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/sbs/sbs-gen0020/sbs-gen0020_0001v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "96e6cc22a43a6b1821693f8e3eb37ad566c7cacb35833014071c17d1a5a2a710",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "sbs-gen0020",
+      "page": "1v",
+      "page_id": "d704f482fd5fd52f0df9",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/sbs-gen0020/0005_sbs-gen0020_0001v.jpg",
+      "split": "validation",
+      "status": "available"
+    },
+    {
+      "asset_id": "041acb19-4aa6-4f83-a682-789557adc100",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/fmb/fmb-cb-0902/fmb-cb-0902_010r.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "8d1d91c7a943eb682dcc1a1f4eecf0059f26bba4e8fc0acc44abc4e85ab13450",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "fmb-cb-0902",
+      "page": "10r",
+      "page_id": "d861c556a5079b0f562b",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0902/0020_fmb-cb-0902_010r.jpg",
+      "split": "validation",
+      "status": "available"
+    },
+    {
+      "asset_id": "8415a375-39b0-4642-9e29-729d07de3bf9",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/fmb/fmb-cb-0056/fmb-cb-0056_152v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "46cc3305ed68f97a37fa0e492f799368277dc7a8fcd923c714ee2cb148b2729d",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "fmb-cb-0056",
+      "page": "152v",
+      "page_id": "d99a4342fea8a232d040",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/fmb-cb-0056/0309_fmb-cb-0056_152v.jpg",
+      "split": "test",
+      "status": "available"
+    },
+    {
+      "asset_id": "adf350f8-ab11-4be4-890d-4441ef928584",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bcul/bcul-Ms0403/bcul-Ms0403_045v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "fd5fee2eb40881419fa1a56ae1cffaea64236f93f418417f3a6eb1f301394e26",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bcul-Ms0403",
+      "page": "45v",
+      "page_id": "db294b6d76c3ff21a4aa",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcul-Ms0403/0099_bcul-Ms0403_045v.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "d2cfcfb9-e360-4766-b7f6-03d8069e0965",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bcj/bcj-A2437/bcj-A2437_0016.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "589c7724f6ed6fbe8c411cf13d641e34bb4c8a394edd76cb8a63c76d1f263863",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bcj-A2437",
+      "page": "16",
+      "page_id": "e1f0a5ee65f280cae9f4",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bcj-A2437/0023_bcj-A2437_0016.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "9c5c2678-d3d7-419d-ab08-9c00e6a550b9",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0916/csg-0916_038.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "d8403d89171e9cf70eaf1d652f80c76dab3b52c60ca39323e0302431d6f05ed4",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0916",
+      "page": "38",
+      "page_id": "e6ed1fe5156975a504b6",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/csg-0916/0043_csg-0916_038.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "f67a4534-c769-4a2b-b333-21bfd9691300",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/bbb/bbb-AA0091/bbb-AA0091_091v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "f46fff7cb270e3af230b94439ea89f8e02b6be0a922e4e0f9357193f9dc88ee7",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "bbb-AA0091",
+      "page": "91v",
+      "page_id": "f46df413fa069045fc5b",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/bbb-AA0091/0187_bbb-AA0091_091v.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "fabef54d-2241-4c7d-90af-d5536dd6aeb2",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/ubb/ubb-F-I-0021/ubb-F-I-0021_0128v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "017114dbef72aee1a01dfcc18bdbdfb00a9e2f5475a2109a4eb57ae9c470cb82",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "ubb-F-I-0021",
+      "page": "128v",
+      "page_id": "f7ba7bde1a2e33bbf254",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/ubb-F-I-0021/0261_ubb-F-I-0021_0128v.jpg",
+      "split": "train",
+      "status": "available"
+    },
+    {
+      "asset_id": "6e924b78-3296-4287-86ff-2dcb069ca63b",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/kba/kba-WettF0001/kba-WettF0001_230v.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "a4ed1ee816623de26b5386382a1964bc3a65714112de4d2f0afbd973832f18ac",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "kba-WettF0001",
+      "page": "230v",
+      "page_id": "fd0e198bce8a9433f5d5",
+      "path": "data/raw/ecodices_training_source_expansion_batch_01_v0_1/kba-WettF0001/0463_kba-WettF0001_230v.jpg",
+      "split": "test",
+      "status": "available"
+    },
+    {
+      "asset_id": "fc5123ea-2615-4a94-834e-dc5ae99d2d0f",
+      "checksum_verified": true,
+      "current_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "download_url": "https://www.e-codices.unifr.ch/loris/csg/csg-0059/csg-0059_0200.jp2/full/2000,/0/default.jpg",
+      "expected_sha256": "4d1af90e1699630ce35ac513a8e26e18abe48db940e756e8543380f5381a400f",
+      "identical_local_copies": [],
+      "initial_state": {
+        "dataless": false,
+        "exists": true
+      },
+      "manuscript_id": "csg-0059",
+      "page": "200",
+      "page_id": "fec5711a3a0b88f1226f",
+      "path": "data/raw/ecodices_training_source_validation_v0_1/csg-0059/0209_csg-0059_0200.jpg",
+      "split": "train",
+      "status": "available"
+    }
+  ],
+  "provenance_policy": "Only exact registered bytes may replace unavailable sources; rights, splits and database records are never edited.",
+  "registered_page_count": 85,
+  "report_version": "source_availability_v0_3",
+  "statuses": [
+    "available",
+    "restored_checksum_verified",
+    "unavailable_local",
+    "restoration_failed",
+    "requires_manual_action"
+  ]
+}

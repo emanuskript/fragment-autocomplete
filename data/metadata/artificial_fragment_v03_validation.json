@@ -1,0 +1,51 @@
+{
+  "binary_data_stored_in_postgresql": false,
+  "frozen_database": {
+    "artificial_fragment_task": {
+      "count": 67,
+      "rows_sha256": "c1c01d6a828ceb0886796ea6a85c78803b8d85b55dfcde396e28c2e3cc489cd6"
+    },
+    "canvas": {
+      "count": 92,
+      "rows_sha256": "257e47297ad4cb71e4f8b6083a0985967e1dc827d726c9082cefe1fccf889ad0"
+    },
+    "iiif_manifest_cache": {
+      "count": 22,
+      "rows_sha256": "7c5c31eb38275fccefccb19779d6801eb09ba6476e52d5d0be3fc476fd326a9c"
+    },
+    "image_asset": {
+      "count": 97,
+      "rows_sha256": "4a9c848c0539d5a7dafe3774a4b6edbada2ebcd7ad6e2650c3c7f122b1f95223"
+    },
+    "layout_region": {
+      "count": 5069,
+      "rows_sha256": "7bfd841c24d731fe3a1561724b30931197bad9e0ab819dfe490c25226178d4e6"
+    },
+    "manuscript": {
+      "count": 27,
+      "rows_sha256": "6766a8f86e6d0d212d0598de64812933ccc4c3499fc405b759d5c26d838cbf52"
+    },
+    "repository": {
+      "count": 19,
+      "rows_sha256": "0f180574805303aa8eb3a320cba13d828cde1e57d729906b8f55017f4b3830a5"
+    },
+    "segmentation_run": {
+      "count": 97,
+      "rows_sha256": "2390da9344cafc7e14fb699c91ecbd227477777749a26ffa5b27e7bc728732d5"
+    }
+  },
+  "frozen_file_count": 4873,
+  "frozen_file_snapshot_sha256": "91710f0c8e83a74ee583cde4ee0522fd4b803ac0f29a2207b6e7df8c2959d4fb",
+  "historical_v01_v02_artifacts_and_rows_unchanged": true,
+  "model_training_or_reconstruction_performed": false,
+  "region_measurement_count": 2424,
+  "rejected_tasks": [],
+  "rejected_validation_pages": [],
+  "rights_provenance_splits_and_training_allowed_unchanged": true,
+  "selected_validation_pages": 13,
+  "sources_masks_and_mtimes_unchanged_after_authorized_restoration": true,
+  "status": "passed",
+  "task_count": 156,
+  "test_pages_used_for_generation_or_registration": 0,
+  "topology_passed_count": 156
+}

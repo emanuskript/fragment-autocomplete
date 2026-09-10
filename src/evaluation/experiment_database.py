@@ -79,7 +79,7 @@ def verify_database(cursor, pages):
           "verified_source_rights_splits_and_relationships": True}
 
 
-def database_snapshot(cursor, *, experiment=False):
+def database_snapshot(cursor, *, experiment=False, experiment_version=EXPERIMENT_VERSION):
   """Hash complete rows including timestamps; binaries are never read from/written to DB."""
   tables = ("image_asset", "canvas", "manuscript", "repository", "iiif_manifest_cache", "segmentation_run", "layout_region", "artificial_fragment_task")
   snapshots = {}
@@ -90,7 +90,7 @@ def database_snapshot(cursor, *, experiment=False):
     params = ()
     if table == "artificial_fragment_task":
       query += sql.SQL(" WHERE parameters->>'task_group' = %s" if experiment else " WHERE parameters->>'task_group' IS DISTINCT FROM %s")
-      params = (EXPERIMENT_VERSION,)
+      params = (experiment_version,)
     query += sql.SQL(" ORDER BY id")
     cursor.execute(query, params)
     h, count = sha256(), 0

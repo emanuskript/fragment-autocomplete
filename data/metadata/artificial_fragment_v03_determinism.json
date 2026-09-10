@@ -1,0 +1,12 @@
+{
+  "byte_identical_artifacts_and_unchanged_file_mtimes": true,
+  "compared_artifact_count": 795,
+  "database_rows_and_timestamps_unchanged": true,
+  "generated_task_binary_count": 624,
+  "identical_selection_ids_parameters_orientations_checksums_measurements": true,
+  "method": "full_source_check_audit_spec_review_generation_measurement_registration_verification_rerun",
+  "review_artifact_count": 5,
+  "scientific_artifact_snapshot_sha256": "656ccd91160c227997bf509de2aca2b396e8f5ed50bbb86519c36cecc2be289c",
+  "status": "passed",
+  "task_count": 156
+}
