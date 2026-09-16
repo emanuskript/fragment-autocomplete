@@ -19,7 +19,7 @@ Full recomputation produced byte-identical artifacts, registration matched 44 ro
 
 First keep the exact source and experiment artifacts available on durable storage. The 2026-09-10 resumption restored 63 iCloud placeholders and journaled/restored 216 sub-microsecond mtime differences after full byte/database verification. The original frozen baseline remains unchanged; see `data/metadata/artificial_fragment_v03_storage_resumption.json`.
 
-Design a new immutable complete-page expansion batch targeting the measured layout-class and provider/repository gaps. The corpus uses one provider; 91.94% of detected regions are Main script black, and validation contains no Border, Illustrations, Running header or Table detections. Establish explicit rights review and expert segmentation-quality review alongside candidate selection. Preserve all existing splits and the test set.
+Design Targeted Training Corpus Expansion Batch 02 as a new immutable complete-page batch addressing measured layout-class and provider/repository gaps. The corpus uses one provider; 91.94% of detected regions are Main script black, and validation contains no Border, Illustrations, Running header or Table detections. Establish explicit rights review and expert segmentation-quality review alongside candidate selection. Preserve all existing splits and the test set. The workspace checker now includes the v0.2/v0.3 milestone files; its presence check does not replace checksum, database-invariant, or scholarly review.
 
 ## Acceptance criteria for the next decision
 
