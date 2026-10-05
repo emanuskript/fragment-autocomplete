@@ -15,8 +15,18 @@ The database foundation is accompanied by local registration scripts for IIIF/sa
 
 - Database: `fragment`
 - User: `fragment`
-- Password: `fragment_dev_password`
+- Password: required through `FRAGMENT_DB_PASSWORD`; no password is committed.
 - Host port: `55432`
+
+Create local configuration before starting the service:
+
+```bash
+cp .env.example .env
+# Edit .env and replace the documented password placeholder.
+export FRAGMENT_DB_PASSWORD='your-local-value'
+```
+
+Docker Compose reads `.env`; Python commands read exported environment variables. Do not commit `.env`.
 
 If port `55432` is already in use, set `FRAGMENT_DB_PORT`:
 

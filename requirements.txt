@@ -1,11 +1,14 @@
-psycopg[binary]>=3.1
-PyYAML>=6.0
-requests>=2.31
-pytest>=8.0
-ultralytics>=8.3
-streamlit>=1.45
-pandas>=2.2
-openpyxl>=3.1
-Pillow>=10.0
-numpy>=1.24
-scipy>=1.10
+psycopg[binary]==3.2.13
+PyYAML==6.0.2
+requests==2.32.5
+# This is the inference stack recorded by the validated segmentation runs.
+ultralytics==8.4.51
+torch==2.7.1
+torchvision==0.22.1
+streamlit==1.50.0
+pandas==2.3.3
+openpyxl==3.1.5
+Pillow==11.3.0
+numpy==2.0.2
+scipy==1.13.1
+pypdf==6.19.0

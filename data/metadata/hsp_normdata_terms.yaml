@@ -1,5 +1,6 @@
 generated_at: '2026-06-09T09:00:40+00:00'
-source_workbook: /Users/mobasuony/Downloads/hsp_normdaten_thesauri (1).xlsx
+source_workbook: hsp_normdaten_thesauri (1).xlsx
+source_workbook_sha256: 0eb4c34cf03a738308732401db6a464a201dd27dca0410348a9ae48a857eaf9e
 vocabularies:
 - code: SCRP
   name: SCRP script types

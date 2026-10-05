@@ -6,11 +6,12 @@ cd "$ROOT_DIR"
 
 PYTHON_BIN="${PYTHON_BIN:-python3}"
 "$PYTHON_BIN" - <<'PY'
-import os
 from pathlib import Path
 
 import psycopg
 import yaml
+
+from src.ingestion.db import connection_info
 
 ROOT = Path.cwd()
 results_path = ROOT / "data/metadata/segmentation_pilot_storage_results.yaml"
@@ -21,13 +22,7 @@ samples = payload.get("samples", [])
 if len(samples) != 10:
     raise SystemExit(f"FAIL: expected 10 stored pilot samples, found {len(samples)}")
 
-conn = psycopg.connect(
-    host=os.environ.get("FRAGMENT_DB_HOST", "localhost"),
-    port=os.environ.get("FRAGMENT_DB_PORT", "55432"),
-    dbname=os.environ.get("FRAGMENT_DB_NAME", "fragment"),
-    user=os.environ.get("FRAGMENT_DB_USER", "fragment"),
-    password=os.environ.get("FRAGMENT_DB_PASSWORD", "fragment_dev_password"),
-)
+conn = psycopg.connect(**connection_info())
 with conn, conn.cursor() as cur:
     cur.execute(
         """

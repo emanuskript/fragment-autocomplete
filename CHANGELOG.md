@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- October 2026 implementation-status comparison between the historical May 2026 Architecture Draft v0.2 and the current repository.
+- Temporary external-review notice clarifying that no software licence has been selected and that reuse or redistribution permission must not be assumed.
+- External collaborator quickstart, current-state architecture, and integration-boundary documentation.
+- Environment-only database credential configuration, `.env.example`, correctness-focused Ruff configuration, and database configuration tests.
+- Reproducible PDF metadata normalization for future local architecture rebuilds.
+- Development dependency file with the validated test/lint tool versions and pinned validated ML inference stack.
 - Batch 01 eManuSkript segmentation specification, prepared 70-page input manifest, compact results/storage/statistics/snapshots/validation artifacts, expanded-scale report, orchestration, and validation tests.
 - Expanded segmentation validation for exact corpus/frozen-set coverage, source and rights snapshots, binary source-sized mask integrity, bbox clipping, database relationships, artifact/storage idempotency, performance, distributions, and review outliers.
 - Batch 01 acquisition/idempotency validator covering exact file membership, checksums, dimensions, IIIF/database relationships, split isolation, manual decisions, rights state, and Git ignore safety.
@@ -44,6 +50,11 @@ All notable changes to this project will be documented in this file.
 
 ### Updated
 
+- Preserved and relabeled the 2026-05-06 architecture PDF as historical Architecture Draft v0.2; local rebuilds no longer overwrite that artifact.
+- Rewrote the root README for external researchers, separating implemented capabilities from planned work, data from metadata, and software licensing from source-data rights.
+- Removed hard-coded local paths and the committed development database password; external HSP inputs now use configurable paths and portable checksum provenance.
+- Expanded ignore rules for credentials, private data, experiment trackers, checkpoints, virtual-environment metadata, and machine-specific files.
+- Removed unused imports identified by the new correctness lint gate; preserved the historical architecture PDF bytes and kept metadata normalization available only for future rebuilds.
 - Existing eManuSkript runner now resolves unchanged checksum-verified page artifacts before model loading, records richer source/performance/failure provenance, clips source-coordinate boxes, and preserves unchanged result manifests.
 - Existing segmentation storage now preserves matching run/region rows and timestamps, while retaining deterministic replacement only when stored logical content differs.
 - Training Corpus Builder selection now consumes explicit review decisions, records deterministic same-manuscript replacements without changing heuristics, and preserves review-artifact provenance.

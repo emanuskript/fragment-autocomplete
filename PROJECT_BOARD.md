@@ -3,9 +3,11 @@
 ## Backlog
 
 - Layout-first reconstruction MVP
+- Retrieval and candidate ranking
 - Detailed evaluation rubric
 - 20-30 use-case selection
-- Artificial fragment task database storage
+- Targeted Training Corpus Expansion Batch 02 decision
+- External proposal/review exchange contract
 
 ## Ready
 
@@ -36,3 +38,8 @@
 - Minimal UI viewer
 - Full pilot segmentation run
 - Artificial fragment generator
+- Artificial fragment task database storage
+- Training Corpus Builder validation corpus and Batch 01
+- Validation-corpus and Batch 01 eManuSkript segmentation
+- Artificial Fragment Experiments v0.2 and v0.3
+- External collaborator documentation and repository hygiene pass

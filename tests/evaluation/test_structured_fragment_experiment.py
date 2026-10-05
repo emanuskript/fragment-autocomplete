@@ -10,7 +10,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 # Reuse the existing fixture and in-memory store; do not duplicate an experiment framework.
-from test_artificial_fragment_experiment import page, MemoryStore
+from test_artificial_fragment_experiment import MemoryStore, page as page
 from src.evaluation.artificial_fragment_experiment import build_specification as v02_spec, measure_regions
 from src.evaluation.artificial_fragment_registration import register_records, task_identity
 from src.evaluation.corpus_audit import inspect_page, sha256_file

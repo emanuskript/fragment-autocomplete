@@ -1,8 +1,6 @@
 """Small synthetic validation fixtures; no model, network, or repository binaries."""
 from copy import deepcopy
-from dataclasses import replace
 from pathlib import Path
-import json
 import sys
 from uuid import NAMESPACE_URL, uuid5
 
@@ -13,12 +11,12 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 from src.evaluation.artificial_fragments import GENERATION_VERSION, sha256_file
 from src.evaluation.artificial_fragment_experiment import (
-  EXPERIMENT_VERSION, SURVIVAL_THRESHOLDS, aggregate, build_specification, generate_task,
-  mask_overlap, measure_regions, registration_records, survival_category, task_paths,
+  aggregate, build_specification, generate_task, mask_overlap, measure_regions,
+  registration_records, survival_category,
 )
 from src.evaluation.artificial_fragment_registration import SourceDatabaseContext, register_records
 from src.evaluation.corpus_audit import (
-  artifact, audit_corpus, digest, distribution, inspect_page, read_region_mask, review_outliers, write_stable,
+  audit_corpus, digest, inspect_page, read_region_mask, review_outliers, write_stable,
 )
 from src.evaluation.experiment_database import assert_registration_sources
 

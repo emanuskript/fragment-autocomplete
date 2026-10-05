@@ -4,8 +4,9 @@ set -euo pipefail
 
 doc="docs/01_architecture_overview.md"
 out_dir="outputs"
-pdf="$out_dir/Fragment_Autocomplete_Architecture_Draft.pdf"
-html="$out_dir/Fragment_Autocomplete_Architecture_Draft.html"
+# Rebuilds are intentionally separate from the preserved historical v0.2 PDF.
+pdf="$out_dir/Fragment_Autocomplete_Architecture_Rebuild.pdf"
+html="$out_dir/Fragment_Autocomplete_Architecture_Rebuild.html"
 
 mkdir -p "$out_dir"
 
@@ -240,11 +241,18 @@ NODE
   echo "HTML fallback generated: $html"
 }
 
+normalize_pdf_metadata() {
+  python3 scripts/normalize_pdf_metadata.py "$pdf" \
+    --title "Fragment Autocomplete - Technical Architecture Draft"
+}
+
 if build_pdf_with_pandoc; then
+  normalize_pdf_metadata
   exit 0
 fi
 
 if build_pdf_with_node; then
+  normalize_pdf_metadata
   exit 0
 fi
 

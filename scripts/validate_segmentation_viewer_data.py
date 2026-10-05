@@ -3,14 +3,17 @@
 
 from __future__ import annotations
 
-import os
 from pathlib import Path
+import sys
 
-import psycopg
 import yaml
 
-
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+from src.ingestion.db import connect
+
+
 EXPECTED_SMOKE = {
     "fp_01_clean_simple": {"regions_min": 100},
     "fr_02_text_block": {"regions_min": 95},
@@ -27,17 +30,6 @@ EXPECTED_PILOT = {
     "fr_04_decoration_initial": {"regions_min": 1},
     "fr_05_damaged_irregular": {"regions_min": 1},
 }
-
-
-def connect() -> psycopg.Connection:
-    """Open a direct database connection for viewer validation queries."""
-    return psycopg.connect(
-        host=os.environ.get("FRAGMENT_DB_HOST", "localhost"),
-        port=os.environ.get("FRAGMENT_DB_PORT", "55432"),
-        dbname=os.environ.get("FRAGMENT_DB_NAME", "fragment"),
-        user=os.environ.get("FRAGMENT_DB_USER", "fragment"),
-        password=os.environ.get("FRAGMENT_DB_PASSWORD", "fragment_dev_password"),
-    )
 
 
 def resolve_path(value: str | None) -> Path | None:

@@ -30,12 +30,20 @@ required_dirs=(
 
 required_files=(
   "README.md"
+  ".env.example"
+  "requirements.txt"
+  "requirements-dev.txt"
+  "pyproject.toml"
   "AGENTS.md"
   "ROADMAP_STATUS.md"
   "PROJECT_BOARD.md"
   "NEXT_ACTIONS.md"
   "CHANGELOG.md"
   "docs/01_architecture_overview.md"
+  "docs/ARCHITECTURE.md"
+  "docs/COLLABORATOR_QUICKSTART.md"
+  "docs/IMPLEMENTATION_STATUS_2026-10.md"
+  "docs/INTEGRATION_NOTES.md"
   "docs/02_database_plan.md"
   "docs/03_iiif_ingestion_plan.md"
   "docs/05_local_assets_inventory.md"
@@ -104,6 +112,7 @@ required_files=(
   "infra/db/seed/001_seed_lookup_values.sql"
   "scripts/render_architecture_figures.sh"
   "scripts/build_architecture_pdf.sh"
+  "scripts/normalize_pdf_metadata.py"
   "scripts/check_workspace.sh"
   "scripts/db_start.sh"
   "scripts/db_migrate.sh"
@@ -170,6 +179,7 @@ required_files=(
   "tests/ingestion/test_sample_dataset_config.py"
   "tests/ingestion/test_training_corpus.py"
   "tests/ingestion/test_iiif_ingest_rights.py"
+  "tests/ingestion/test_db_config.py"
   "tests/ingestion/test_training_corpus_expansion_batch_01_acquisition.py"
   "tests/metadata/test_hsp_normdata.py"
   "tests/evaluation/test_artificial_fragments.py"
@@ -240,12 +250,10 @@ done
 
 echo
 echo "Checking architecture document output..."
-if [ -f "outputs/Fragment_Autocomplete_Architecture_Draft.pdf" ]; then
-  echo "  [OK]   outputs/Fragment_Autocomplete_Architecture_Draft.pdf"
-elif [ -f "outputs/Fragment_Autocomplete_Architecture_Draft.html" ]; then
-  echo "  [OK]   outputs/Fragment_Autocomplete_Architecture_Draft.html"
+if [ -f "outputs/Fragment_Autocomplete_Architecture_Draft_v0.2_2026-05-06.pdf" ]; then
+  echo "  [OK]   outputs/Fragment_Autocomplete_Architecture_Draft_v0.2_2026-05-06.pdf"
 else
-  echo "  [MISS] outputs/Fragment_Autocomplete_Architecture_Draft.pdf or .html"
+  echo "  [MISS] outputs/Fragment_Autocomplete_Architecture_Draft_v0.2_2026-05-06.pdf"
   missing=$((missing + 1))
 fi
 

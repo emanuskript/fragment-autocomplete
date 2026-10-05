@@ -19,8 +19,10 @@ npx -y md-to-pdf
 If PDF generation still fails, the script generates an HTML fallback at:
 
 ```text
-outputs/Fragment_Autocomplete_Architecture_Draft.html
+outputs/Fragment_Autocomplete_Architecture_Rebuild.html
 ```
+
+The preserved `outputs/Fragment_Autocomplete_Architecture_Draft_v0.2_2026-05-06.pdf` is the historical Architecture Draft v0.2 dated 2026-05-06. The build script does not overwrite that record. Local rebuilds are untracked review artifacts and must not silently replace the historical PDF.
 
 ## Render Figures
 
@@ -39,13 +41,13 @@ bash scripts/build_architecture_pdf.sh
 The script always renders figures first, then builds:
 
 ```text
-outputs/Fragment_Autocomplete_Architecture_Draft.pdf
+outputs/Fragment_Autocomplete_Architecture_Rebuild.pdf
 ```
 
 If PDF generation is not possible, it creates:
 
 ```text
-outputs/Fragment_Autocomplete_Architecture_Draft.html
+outputs/Fragment_Autocomplete_Architecture_Rebuild.html
 ```
 
 ## Validate Workspace
@@ -54,7 +56,7 @@ outputs/Fragment_Autocomplete_Architecture_Draft.html
 bash scripts/check_workspace.sh
 ```
 
-The validation script checks required folders, documents, Mermaid sources, rendered SVGs, build scripts, and the final PDF or HTML fallback.
+The validation script checks required folders, documents, Mermaid sources, rendered SVGs, build scripts, and the preserved historical PDF.
 
 ## Troubleshooting
 

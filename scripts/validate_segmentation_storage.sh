@@ -9,12 +9,13 @@ python3 scripts/store_segmentation_outputs.py --verbose >/dev/null
 python3 - <<'PY'
 from __future__ import annotations
 
-import os
 import sys
 from pathlib import Path
 
 import psycopg
 import yaml
+
+from src.ingestion.db import connection_info
 
 ROOT = Path.cwd()
 results_path = ROOT / "data/metadata/segmentation_storage_results.yaml"
@@ -36,13 +37,7 @@ if len(samples) != 2:
     print(f"FAIL: expected 2 stored samples, found {len(samples)}")
     sys.exit(1)
 
-conn = psycopg.connect(
-    host=os.environ.get("FRAGMENT_DB_HOST", "localhost"),
-    port=os.environ.get("FRAGMENT_DB_PORT", "55432"),
-    dbname=os.environ.get("FRAGMENT_DB_NAME", "fragment"),
-    user=os.environ.get("FRAGMENT_DB_USER", "fragment"),
-    password=os.environ.get("FRAGMENT_DB_PASSWORD", "fragment_dev_password"),
-)
+conn = psycopg.connect(**connection_info())
 expected_min_counts = {
     "fp_01_clean_simple": 1,
     "fr_02_text_block": 1,

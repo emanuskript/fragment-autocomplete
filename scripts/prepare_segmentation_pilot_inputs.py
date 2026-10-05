@@ -4,15 +4,18 @@
 from __future__ import annotations
 
 import argparse
-import os
 from pathlib import Path
+import sys
 from typing import Any
 
-import psycopg
 import yaml
 
-
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+from src.ingestion.db import connect
+
+
 DEFAULT_RESOLVED = ROOT / "data/metadata/initial_sample_dataset_resolved.yaml"
 DEFAULT_OUTPUT = ROOT / "data/metadata/segmentation_pilot_inputs.yaml"
 MODEL_PATH = ROOT / "model weights/best_emanuskript_segmentation.pt"
@@ -52,16 +55,6 @@ def load_yaml(path: Path) -> dict[str, Any]:
 def write_yaml(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(yaml.safe_dump(payload, sort_keys=False, allow_unicode=True), encoding="utf-8")
-
-
-def connect() -> psycopg.Connection:
-    return psycopg.connect(
-        host=os.environ.get("FRAGMENT_DB_HOST", "localhost"),
-        port=os.environ.get("FRAGMENT_DB_PORT", "55432"),
-        dbname=os.environ.get("FRAGMENT_DB_NAME", "fragment"),
-        user=os.environ.get("FRAGMENT_DB_USER", "fragment"),
-        password=os.environ.get("FRAGMENT_DB_PASSWORD", "fragment_dev_password"),
-    )
 
 
 def db_exists(cur: Any, table: str, record_id: str | None) -> bool:

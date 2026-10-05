@@ -18,7 +18,6 @@ from src.ingestion.training_corpus import (
   download_resumable,
   ensure_unique_pages,
   manual_page_decisions_for_corpus,
-  manuscript_suitability_decisions_for_corpus,
   replacement_page_reviews_for_corpus,
   select_canvas_pages,
   validate_specification,

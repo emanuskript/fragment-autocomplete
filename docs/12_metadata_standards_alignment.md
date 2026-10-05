@@ -6,8 +6,8 @@ This report records the HSP/German cataloguing normdata alignment inputs used by
 
 ## Source Inputs
 
-- Workbook: `/Users/mobasuony/Downloads/hsp_normdaten_thesauri (1).xlsx`
-- Field mapping: `/Users/mobasuony/Downloads/Sources_and_Metadata_data_fields.md`
+- Workbook: `hsp_normdaten_thesauri (1).xlsx` (external input, not distributed; SHA-256 recorded in committed metadata)
+- Field mapping: `Sources_and_Metadata_data_fields.md` (external input, not distributed; SHA-256 recorded in committed metadata)
 
 ## Controlled Vocabularies
 
@@ -35,4 +35,4 @@ This report records the HSP/German cataloguing normdata alignment inputs used by
 
 ## Next Step
 
-Import these vocabularies into PostgreSQL/PostGIS and validate the metadata alignment layer before expanding dataset registration.
+Keep the extracted vocabularies and field mapping synchronized with checksum-identified external inputs; populate normalized fields only from supported source evidence or explicit review.

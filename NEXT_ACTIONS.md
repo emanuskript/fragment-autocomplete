@@ -1,6 +1,14 @@
 # NEXT_ACTIONS
 
-Artificial Fragment Experiment v0.3 is complete: all eleven previously unavailable sources were restored with exact checksums; 156 tasks were generated from 13 validation pages, producing 2,424 full-mask observations with zero severity error and zero topology failures. Registration inserted 156 rows and matched them unchanged on a second pass. Full recomputation passed byte, file-mtime, database-row, timestamp, and frozen-invariant checks, and all 184 tests pass. Source-availability scanning reuses filesystem state and size reads without changing its provenance or restoration policy.
+The repository has completed an external-sharing hygiene and documentation pass. The May 2026 Architecture Draft v0.2 is now clearly retained as historical planning, and `docs/IMPLEMENTATION_STATUS_2026-10.md` is the current plan-versus-code comparison. A clean Python 3.11 environment passes 186 tests, Ruff, bytecode compilation, workspace validation, internal-link and secret review, and the documented runnable examples. Docker Compose configuration passes, but the PostgreSQL/PostGIS runtime validators remain to be rerun on a host with a running Docker daemon; this is the only unverified infrastructure check. No committed scientific result or important generated artifact was removed or altered.
+
+## Before an external handoff
+
+- Choose and add an explicit software licence; repository access without a licence does not grant reuse rights.
+- Add approved citation/authorship and project contact information without inventing a DOI or publication record.
+- Share from a fresh Git clone or Git archive. Do not copy the current working directory, which contains ignored source images, model checkpoints, raw IIIF downloads, databases/outputs, and research artifacts with separate rights.
+- Decide whether collaborators need only the metadata/code repository or also checksum-matched external artifacts, then document a rights-approved transfer channel and access scope.
+- On a Docker-enabled host, run the PostgreSQL/PostGIS validators with a locally chosen `FRAGMENT_DB_PASSWORD` before the handoff.
 
 ## Current study artifact
 

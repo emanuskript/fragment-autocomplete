@@ -1,0 +1,11 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py39"
+line-length = 120
+
+[tool.ruff.lint]
+# Keep the initial repository lint gate focused on correctness: undefined names,
+# duplicate definitions, and unused imports. Broader style normalization is deferred.
+select = ["F"]

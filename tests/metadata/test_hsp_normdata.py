@@ -25,6 +25,8 @@ def load_yaml(path: Path):
 
 def test_normdata_term_counts_match_workbook():
   payload = load_yaml(TERMS_PATH)
+  assert not Path(payload["source_workbook"]).is_absolute()
+  assert len(payload["source_workbook_sha256"]) == 64
   actual = {item["code"]: item["actual_term_count"] for item in payload["vocabularies"]}
   assert actual == EXPECTED_COUNTS
 
@@ -50,6 +52,8 @@ def test_known_terms_are_present():
 
 def test_field_mapping_contains_core_tables():
   payload = load_yaml(MAPPING_PATH)
+  assert not Path(payload["source_markdown"]).is_absolute()
+  assert len(payload["source_markdown_sha256"]) == 64
   table_names = {table["table"] for table in payload["tables"]}
   assert "repository" in table_names
   assert "manuscript" in table_names

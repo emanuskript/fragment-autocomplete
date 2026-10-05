@@ -3,15 +3,15 @@ services:
     image: postgis/postgis:16-3.4
     container_name: fragment-postgis
     environment:
-      POSTGRES_DB: fragment
-      POSTGRES_USER: fragment
-      POSTGRES_PASSWORD: fragment_dev_password
+      POSTGRES_DB: "${FRAGMENT_DB_NAME:-fragment}"
+      POSTGRES_USER: "${FRAGMENT_DB_USER:-fragment}"
+      POSTGRES_PASSWORD: "${FRAGMENT_DB_PASSWORD:?Set FRAGMENT_DB_PASSWORD in the environment or .env}"
     ports:
       - "${FRAGMENT_DB_PORT:-55432}:5432"
     volumes:
       - fragment_postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U fragment -d fragment"]
+      test: ["CMD-SHELL", "pg_isready -U ${FRAGMENT_DB_USER:-fragment} -d ${FRAGMENT_DB_NAME:-fragment}"]
       interval: 5s
       timeout: 5s
       retries: 20

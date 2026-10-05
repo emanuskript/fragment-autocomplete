@@ -1,11 +1,10 @@
 """Read-only complete-page corpus audit; source evidence and review remain separate."""
 from __future__ import annotations
 
-from collections import Counter, defaultdict
+from collections import Counter
 from copy import deepcopy
 from hashlib import sha256
 import json
-from pathlib import Path
 import sys
 from statistics import mean, median, pstdev
 from urllib.parse import urlparse

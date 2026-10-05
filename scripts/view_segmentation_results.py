@@ -4,28 +4,21 @@
 from __future__ import annotations
 
 import json
-import os
 from pathlib import Path
+import sys
 from typing import Any
 
 import pandas as pd
-import psycopg
 import streamlit as st
 
-
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+from src.ingestion.db import connect as db_connect
+
+
 SMOKE_TEST_ID = "segmentation_smoke_test_v0_1"
 PILOT_RUN_ID = "segmentation_pilot_v0_1"
-
-
-def db_connect() -> psycopg.Connection:
-    return psycopg.connect(
-        host=os.environ.get("FRAGMENT_DB_HOST", "localhost"),
-        port=os.environ.get("FRAGMENT_DB_PORT", "55432"),
-        dbname=os.environ.get("FRAGMENT_DB_NAME", "fragment"),
-        user=os.environ.get("FRAGMENT_DB_USER", "fragment"),
-        password=os.environ.get("FRAGMENT_DB_PASSWORD", "fragment_dev_password"),
-    )
 
 
 @st.cache_data(ttl=5)

@@ -34,7 +34,7 @@ for attempt in $(seq 1 60); do
     echo "  port: $DB_PORT"
     echo "  database: $DB_NAME"
     echo "  user: $DB_USER"
-    echo "  password: fragment_dev_password"
+    echo "  password: supplied through FRAGMENT_DB_PASSWORD (value not displayed)"
     echo
     echo "Override the host port with FRAGMENT_DB_PORT=<port> if needed."
     exit 0

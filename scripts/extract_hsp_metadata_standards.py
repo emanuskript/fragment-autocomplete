@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
+import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path
@@ -14,8 +16,8 @@ from openpyxl import load_workbook
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_WORKBOOK = Path("/Users/mobasuony/Downloads/hsp_normdaten_thesauri (1).xlsx")
-DEFAULT_MAPPING_MD = Path("/Users/mobasuony/Downloads/Sources_and_Metadata_data_fields.md")
+DEFAULT_WORKBOOK = os.environ.get("HSP_NORMDATA_WORKBOOK")
+DEFAULT_MAPPING_MD = os.environ.get("HSP_METADATA_MAPPING")
 DEFAULT_TERMS = ROOT / "data/metadata/hsp_normdata_terms.yaml"
 DEFAULT_MAPPING = ROOT / "data/metadata/hsp_metadata_field_mapping.yaml"
 DEFAULT_REPORT = ROOT / "docs/12_metadata_standards_alignment.md"
@@ -51,8 +53,16 @@ VOCABULARIES = {
 
 def parse_args() -> argparse.Namespace:
   parser = argparse.ArgumentParser(description="Extract HSP/German normdata metadata references.")
-  parser.add_argument("--workbook", default=str(DEFAULT_WORKBOOK))
-  parser.add_argument("--mapping", default=str(DEFAULT_MAPPING_MD))
+  parser.add_argument(
+    "--workbook",
+    default=DEFAULT_WORKBOOK,
+    help="External HSP vocabulary workbook (or set HSP_NORMDATA_WORKBOOK).",
+  )
+  parser.add_argument(
+    "--mapping",
+    default=DEFAULT_MAPPING_MD,
+    help="External HSP field-mapping Markdown (or set HSP_METADATA_MAPPING).",
+  )
   parser.add_argument("--terms-output", default=str(DEFAULT_TERMS))
   parser.add_argument("--mapping-output", default=str(DEFAULT_MAPPING))
   parser.add_argument("--report", default=str(DEFAULT_REPORT))
@@ -62,6 +72,14 @@ def parse_args() -> argparse.Namespace:
 
 def now_iso() -> str:
   return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
+def sha256_file(path: Path) -> str:
+  digest = hashlib.sha256()
+  with path.open("rb") as handle:
+    for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+      digest.update(chunk)
+  return digest.hexdigest()
 
 
 def normalized_sheet_title(title: str) -> str:
@@ -165,7 +183,8 @@ def parse_workbook(path: Path) -> dict[str, Any]:
 
   return {
     "generated_at": now_iso(),
-    "source_workbook": str(path),
+    "source_workbook": path.name,
+    "source_workbook_sha256": sha256_file(path),
     "vocabularies": vocabularies,
   }
 
@@ -238,7 +257,8 @@ def parse_mapping_markdown(path: Path) -> dict[str, Any]:
 
   return {
     "generated_at": now_iso(),
-    "source_markdown": str(path),
+    "source_markdown": path.name,
+    "source_markdown_sha256": sha256_file(path),
     "table_count": len(tables),
     "field_count": len(fields),
     "tables": tables,
@@ -291,7 +311,7 @@ def write_report(path: Path, terms: dict[str, Any], mapping: dict[str, Any]) -> 
       "",
       "## Next Step",
       "",
-      "Import these vocabularies into PostgreSQL/PostGIS and validate the metadata alignment layer before expanding dataset registration.",
+      "Keep the extracted vocabularies and field mapping synchronized with checksum-identified external inputs; populate normalized fields only from supported source evidence or explicit review.",
       "",
     ]
   )
@@ -301,6 +321,10 @@ def write_report(path: Path, terms: dict[str, Any], mapping: dict[str, Any]) -> 
 
 def main() -> int:
   args = parse_args()
+  if not args.workbook or not args.mapping:
+    raise SystemExit(
+      "Provide --workbook and --mapping, or set HSP_NORMDATA_WORKBOOK and HSP_METADATA_MAPPING."
+    )
   workbook = Path(args.workbook)
   mapping_md = Path(args.mapping)
   terms_output = Path(args.terms_output)
