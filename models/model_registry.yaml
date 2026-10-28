@@ -1,7 +1,19 @@
+registry_version: mergen_model_registry_v1
+upstream:
+  component: Mergen
+  project: eManuSkript
+  repository_url: https://github.com/emanuskript/Mergen
+  weights_directory_url: https://owncloud.gwdg.de/index.php/apps/files/?dir=/Mergen%20Weights&fileid=4279218283
+  weights_distribution: external_not_committed
+  expected_filenames:
+  - best_emanuskript_segmentation.pt
+  - best_catmus.pt
+  - best_zone_detection.pt
 models:
 - id: best_catmus
-  name: 'Local model weight file: best_catmus.pt'
+  name: 'Mergen model weight: best_catmus.pt'
   local_path: model weights/best_catmus.pt
+  distribution_filename: best_catmus.pt
   status: compatibility_inspected
   checksum: 260297f0ef2f4acf007fdebc764cb1d23c7479799dc9cb9c283e156943400818
   size_bytes: 364789070
@@ -42,8 +54,9 @@ models:
   - Segmentation checkpoint detected, but the checkpoint appears CATMuS-oriented rather
     than the primary eManuSkript baseline.
 - id: best_emanuskript_segmentation
-  name: 'Local model weight file: best_emanuskript_segmentation.pt'
+  name: 'Mergen model weight: best_emanuskript_segmentation.pt'
   local_path: model weights/best_emanuskript_segmentation.pt
+  distribution_filename: best_emanuskript_segmentation.pt
   status: compatibility_inspected
   checksum: 9f0b03cc64c830d337a01ddac6a04616a385d573e3b923a86fc4c74c16416511
   size_bytes: 122217578
@@ -87,8 +100,9 @@ models:
   - Filename and embedded strings both point to the direct eManuSkript segmentation
     checkpoint.
 - id: best_zone_detection
-  name: 'Local model weight file: best_zone_detection.pt'
+  name: 'Mergen model weight: best_zone_detection.pt'
   local_path: model weights/best_zone_detection.pt
+  distribution_filename: best_zone_detection.pt
   status: compatibility_inspected
   checksum: 45afebac8a7dab15aed3c0716f4cf3c44705f63a81258c5dfa949f745c9330de
   size_bytes: 82592595

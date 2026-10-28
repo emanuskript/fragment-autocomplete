@@ -16,6 +16,11 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_WEIGHTS_DIR = Path("model weights")
+MERGEN_REPOSITORY_URL = "https://github.com/emanuskript/Mergen"
+MERGEN_WEIGHTS_URL = (
+  "https://owncloud.gwdg.de/index.php/apps/files/"
+  "?dir=/Mergen%20Weights&fileid=4279218283"
+)
 DEFAULT_MANIFEST = Path("data/metadata/local_assets_manifest.yaml")
 DEFAULT_OUTPUT = Path("data/metadata/model_weights_compatibility.yaml")
 DEFAULT_REPORT = Path("docs/06_model_weights_compatibility_report.md")
@@ -341,7 +346,7 @@ def recommend_model(entries: list[dict[str, Any]]) -> dict[str, str]:
   if preferred:
     return {
       "model_id": preferred["id"],
-      "reason": "It is a segmentation checkpoint, it appears directly tied to eManuSkript, and static inspection exposed embedded layout labels without requiring a trusted load.",
+      "reason": "It is Mergen's eManuSkript segmentation checkpoint, and static inspection exposed embedded layout labels without requiring a trusted load.",
     }
 
   fallback = next((entry for entry in entries if entry["detected_task"] == "segmentation"), None)
@@ -364,6 +369,8 @@ def build_report(payload: dict[str, Any]) -> str:
     "## Purpose",
     "",
     "This report documents a compatibility inspection of the local model weight files in `model weights/`.",
+    "",
+    "The checkpoints belong to [Mergen](https://github.com/emanuskript/Mergen), the eManuSkript layout-analysis application. Obtain the three expected files from the [GWDG OwnCloud Mergen Weights directory](https://owncloud.gwdg.de/index.php/apps/files/?dir=/Mergen%20Weights&fileid=4279218283), then verify their checksums against `models/model_registry.yaml`. The weights remain external and must not be committed.",
     "",
     "## Scope",
     "",
@@ -490,8 +497,9 @@ def update_model_registry(registry_path: Path, entries: list[dict[str, Any]]) ->
   for entry in entries:
     existing[entry["id"]] = {
       "id": entry["id"],
-      "name": f"Local model weight file: {Path(entry['path']).name}",
+      "name": f"Mergen model weight: {Path(entry['path']).name}",
       "local_path": entry["path"],
+      "distribution_filename": Path(entry["path"]).name,
       "status": "compatibility_inspected",
       "checksum": entry["sha256"],
       "size_bytes": entry["size_bytes"],
@@ -515,7 +523,21 @@ def update_model_registry(registry_path: Path, entries: list[dict[str, Any]]) ->
       ordered_models.append(existing.pop(model_id))
   ordered_models.extend(existing.values())
 
-  write_yaml(registry_path, {"models": ordered_models})
+  registry["registry_version"] = "mergen_model_registry_v1"
+  registry["upstream"] = {
+    "component": "Mergen",
+    "project": "eManuSkript",
+    "repository_url": MERGEN_REPOSITORY_URL,
+    "weights_directory_url": MERGEN_WEIGHTS_URL,
+    "weights_distribution": "external_not_committed",
+    "expected_filenames": [
+      "best_emanuskript_segmentation.pt",
+      "best_catmus.pt",
+      "best_zone_detection.pt",
+    ],
+  }
+  registry["models"] = ordered_models
+  write_yaml(registry_path, registry)
 
 
 def main() -> int:

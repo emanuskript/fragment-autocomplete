@@ -60,7 +60,7 @@ There is no running backend service, job queue, production frontend, reconstruct
 
 ### Layout inference and storage
 
-Model execution is isolated in `scripts/run_segmentation_smoke_test.py` and `scripts/run_segmentation_pilot.py`. The corpus orchestration reuses this runner rather than implementing a second inference path. The runner records model/checkpoint identity, inference parameters, source dimensions, detections, confidence values, and restored source-sized binary instance masks.
+Model execution is isolated in `scripts/run_segmentation_smoke_test.py` and `scripts/run_segmentation_pilot.py`. The corpus orchestration reuses this runner rather than implementing a second inference path. The registered checkpoints come from [Mergen](https://github.com/emanuskript/Mergen), the eManuSkript layout-analysis component; their external GWDG location and verified checksums are recorded in `models/model_registry.yaml`. The runner records model/checkpoint identity, inference parameters, source dimensions, detections, confidence values, and restored source-sized binary instance masks.
 
 `scripts/store_segmentation_outputs.py` and `scripts/store_segmentation_pilot_outputs.py` translate run artifacts into `segmentation_run` and `layout_region` records. Generated mask/image bytes stay on the filesystem; PostgreSQL stores paths, geometry, structured metadata, and provenance.
 
@@ -84,7 +84,7 @@ Model execution is isolated in `scripts/run_segmentation_smoke_test.py` and `scr
 2. Register repository, manuscript, manifest, canvas, and image-asset metadata with stable upstream identifiers.
 3. Select corpus pages from a versioned specification; retain selected, rejected, and replacement decisions.
 4. Acquire selected images to ignored storage, verify SHA-256 values, and register conservative rights state.
-5. Prepare an explicit input manifest for eManuSkript inference.
+5. Prepare an explicit input manifest for Mergen/eManuSkript inference.
 6. Run segmentation in the isolated runner; restore masks to source coordinates and record the complete run configuration.
 7. Store run/region metadata and geometry in PostgreSQL while keeping binaries outside the database.
 8. Audit corpus composition, source availability, rights, splits, masks, and database relationships.

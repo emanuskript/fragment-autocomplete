@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Canonical Mergen repository and GWDG OwnCloud weight-directory metadata, expected checkpoint filenames, and regression tests for the model registry.
 - October 2026 implementation-status comparison between the historical May 2026 Architecture Draft v0.2 and the current repository.
 - Temporary external-review notice clarifying that no software licence has been selected and that reuse or redistribution permission must not be assumed.
 - External collaborator quickstart, current-state architecture, and integration-boundary documentation.
@@ -50,6 +51,8 @@ All notable changes to this project will be documented in this file.
 
 ### Updated
 
+- Current README, architecture, collaborator, status, and model-compatibility guidance to name Mergen as the eManuSkript layout-analysis component while preserving historical checkpoint provenance.
+- Removed machine-specific eManuSkript release-staging instructions from the active Fragment Autocomplete next-actions and roadmap summaries.
 - Preserved and relabeled the 2026-05-06 architecture PDF as historical Architecture Draft v0.2; local rebuilds no longer overwrite that artifact.
 - Rewrote the root README for external researchers, separating implemented capabilities from planned work, data from metadata, and software licensing from source-data rights.
 - Removed hard-coded local paths and the committed development database password; external HSP inputs now use configurable paths and portable checksum provenance.

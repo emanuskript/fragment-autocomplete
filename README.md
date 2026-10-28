@@ -4,7 +4,7 @@
 
 ## Overview
 
-Fragment Autocomplete is a research codebase for testing how computer vision and machine-learning methods can support the study of damaged or fragmented manuscript pages. The current approach is layout- and morphology-first: surviving pixels are evidence, eManuSkript ("Manuskripte digital lesen lernen") provides the central layout-analysis backbone, and controlled synthetic damage makes evaluation possible when the undamaged source page is known.
+Fragment Autocomplete is a research codebase for testing how computer vision and machine-learning methods can support the study of damaged or fragmented manuscript pages. The current approach is layout- and morphology-first: surviving pixels are evidence, [Mergen](https://github.com/emanuskript/Mergen)—the layout-analysis component of eManuSkript ("Manuskripte digital lesen lernen")—provides the central model backbone, and controlled synthetic damage makes evaluation possible when the undamaged source page is known.
 
 The project does not treat generated content as recovered history. Any future reconstruction output must remain a candidate scholarly hypothesis with visible uncertainty, source provenance, and comparators. Observed pixels, model-derived evidence, synthetic ground truth, and inference are kept distinct.
 
@@ -17,7 +17,7 @@ Implemented and tested:
 - IIIF Presentation API v2/v3 manifest normalization and PostgreSQL/PostGIS registration;
 - conservative rights and provenance handling, including `rights_review_status` and `training_allowed`;
 - deterministic e-codices corpus selection, acquisition, resume checks, manuscript-level splits, and registration;
-- eManuSkript/Ultralytics segmentation runners, source-coordinate mask restoration, storage, and a local read-only Streamlit viewer;
+- Mergen/Ultralytics segmentation runners, source-coordinate mask restoration, storage, and a local read-only Streamlit viewer;
 - deterministic artificial-fragment generation with rectangular and irregular masks, known transforms, source-space survival/damage masks, and layout-survival measurements;
 - structured synthetic-damage families and versioned experiments (`v0.1.1`, `v0.2`, and `v0.3`);
 - idempotent artificial-fragment task registration;
@@ -81,7 +81,22 @@ System requirements by workflow:
 - Node.js/`npx` or Mermaid CLI: architecture figure rendering;
 - Pandoc plus a PDF engine, or Node.js: architecture PDF rebuilding.
 
-The model checkpoints are not distributed. Their expected filenames and checksums are documented in `models/model_registry.yaml`.
+The model checkpoints are not distributed in Git. Their canonical source, expected filenames, local paths, and verified checksums are documented in `models/model_registry.yaml`.
+
+### Mergen source and model weights
+
+- Source code: [emanuskript/Mergen](https://github.com/emanuskript/Mergen)
+- Model weights: [GWDG OwnCloud — Mergen Weights](https://owncloud.gwdg.de/index.php/apps/files/?dir=/Mergen%20Weights&fileid=4279218283)
+
+Obtain these three files and place them in the ignored local `model weights/` directory:
+
+```text
+model weights/best_emanuskript_segmentation.pt
+model weights/best_catmus.pt
+model weights/best_zone_detection.pt
+```
+
+Verify every file against `models/model_registry.yaml` before inference. Do not commit or redistribute the checkpoints merely because they are locally accessible.
 
 ## Running the project
 
@@ -141,7 +156,7 @@ The full acquisition and registration validators require PostgreSQL and network 
 
 ### Segmentation
 
-Segmentation is implemented but cannot run from a bare clone because the source images and eManuSkript checkpoint are intentionally excluded. With registered local inputs and the checksum-matched checkpoint in place:
+Segmentation is implemented but cannot run from a bare clone because the source images and Mergen checkpoints are intentionally excluded. With registered local inputs and the checksum-matched `best_emanuskript_segmentation.pt` checkpoint in place:
 
 ```bash
 python scripts/run_segmentation_pilot.py \
@@ -210,7 +225,7 @@ The repository includes metadata and tiny synthetic IIIF fixtures, not a redistr
 | --- | --- | --- | --- |
 | e-codices | IIIF source metadata and the complete-page validation/Batch 01 corpus specifications | URLs, metadata, checksums, decisions, and compact results only | downloaded images are ignored; all current corpus assets remain `pending_review` and `training_allowed: false` |
 | Fragmentarium | metadata references for the local five-fragment pilot | metadata only | local images are ignored; reuse/publication must follow source rights |
-| eManuSkript | layout-analysis checkpoint and label backbone | registry metadata and derived compact results only | checkpoints are not distributed; model-derived masks are evidence, not manual ground truth |
+| Mergen / eManuSkript | three-model manuscript layout-analysis application and label backbone | registry metadata and derived compact results only | [source](https://github.com/emanuskript/Mergen); [external weights](https://owncloud.gwdg.de/index.php/apps/files/?dir=/Mergen%20Weights&fileid=4279218283); checkpoints are not committed; model-derived masks are evidence, not manual ground truth |
 | HSP/German normdata inputs | controlled vocabulary and field-alignment extraction | extracted terms/mapping plus input filenames and SHA-256 values | source workbook/Markdown are external and not distributed |
 | CoMMA | possible future text/metadata support | no ingestion or dataset | not a visual training dataset |
 | MPO / Swedish National Archives | possible future collaboration source/integration boundary | no MPO data or private endpoints | no compatibility or rights claim is made |

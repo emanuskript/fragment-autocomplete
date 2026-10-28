@@ -2,13 +2,13 @@
 
 ## What this project does
 
-Fragment Autocomplete tests layout-first methods for supporting manuscript-fragment reconstruction research. Surviving image pixels are evidence. eManuSkript-derived layout regions supply model evidence, and artificial damage applied to known complete pages supplies controlled ground truth for evaluation. The repository does not currently reconstruct missing content.
+Fragment Autocomplete tests layout-first methods for supporting manuscript-fragment reconstruction research. Surviving image pixels are evidence. Mergen/eManuSkript-derived layout regions supply model evidence, and artificial damage applied to known complete pages supplies controlled ground truth for evaluation. The repository does not currently reconstruct missing content.
 
 ## What works today
 
 - IIIF Presentation API v2/v3 parsing and normalized registration.
 - Provenance- and rights-aware corpus selection/acquisition.
-- eManuSkript/Ultralytics segmentation with source-sized masks.
+- Mergen/Ultralytics segmentation with source-sized masks.
 - PostgreSQL/PostGIS storage for sources, geometry, segmentation runs, and artificial-fragment tasks.
 - A local read-only segmentation viewer.
 - Deterministic synthetic-fragment experiments, task registration, measurements, and audit checks.
@@ -38,7 +38,7 @@ python scripts/ingest_iiif_manifest.py \
   --dry-run
 ```
 
-Database, segmentation, and full experiment runs need additional local state. Copy `.env.example`, choose a local database password, and read the relevant numbered milestone document before running those workflows.
+Database, segmentation, and full experiment runs need additional local state. Copy `.env.example`, choose a local database password, and read the relevant numbered milestone document before running those workflows. Mergen source is at <https://github.com/emanuskript/Mergen>; obtain the three external checkpoints from the [GWDG Mergen Weights directory](https://owncloud.gwdg.de/index.php/apps/files/?dir=/Mergen%20Weights&fileid=4279218283) and verify them against `models/model_registry.yaml`.
 
 ## Main data flow
 
@@ -53,7 +53,7 @@ IIIF normalization + corpus selection
         +------> ignored data/raw/ source files + committed checksums/specs
         |
         v
-eManuSkript segmentation runner
+Mergen/eManuSkript segmentation runner
         |
         +------> ignored masks/predictions/overlays
         +------> segmentation_run + layout_region records

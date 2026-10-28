@@ -4,6 +4,8 @@
 
 This report documents a compatibility inspection of the local model weight files in `model weights/`.
 
+The checkpoints belong to [Mergen](https://github.com/emanuskript/Mergen), the eManuSkript layout-analysis application. Obtain the three expected files from the [GWDG OwnCloud Mergen Weights directory](https://owncloud.gwdg.de/index.php/apps/files/?dir=/Mergen%20Weights&fileid=4279218283), then verify their checksums against `models/model_registry.yaml`. The weights remain external and must not be committed.
+
 ## Scope
 
 This inspection is limited to static archive/pickle analysis and safe CPU-side checkpoint introspection. No inference was run, no segmentation was produced, no training was performed, and no model weights were committed.

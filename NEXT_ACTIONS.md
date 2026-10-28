@@ -1,6 +1,12 @@
 # NEXT_ACTIONS
 
-The repository has completed an external-sharing hygiene and documentation pass. The May 2026 Architecture Draft v0.2 is now clearly retained as historical planning, and `docs/IMPLEMENTATION_STATUS_2026-10.md` is the current plan-versus-code comparison. A clean Python 3.11 environment passes 186 tests, Ruff, bytecode compilation, workspace validation, internal-link and secret review, and the documented runnable examples. Docker Compose configuration passes, but the PostgreSQL/PostGIS runtime validators remain to be rerun on a host with a running Docker daemon; this is the only unverified infrastructure check. No committed scientific result or important generated artifact was removed or altered.
+The repository has completed an external-sharing hygiene and documentation pass. The active documentation now identifies Mergen as the eManuSkript layout-analysis component, records its canonical GitHub repository and GWDG OwnCloud weight directory in `models/model_registry.yaml`, and keeps the three checkpoints outside Git with verified checksums. Historical run manifests retain their original model IDs and paths as provenance. No committed scientific result or important generated artifact was removed or altered.
+
+## Mergen dependency maintenance
+
+- Treat `models/model_registry.yaml` as the canonical local record for the Mergen source repository, external weight directory, expected filenames, checksums, and ignored paths.
+- Before any new inference run, obtain the three files from the registered GWDG directory and verify all SHA-256 checksums. Do not silently substitute newer checkpoints under the existing model IDs.
+- If Mergen publishes changed weights, register them as new versioned model entries and keep historical run provenance unchanged.
 
 ## Before an external handoff
 

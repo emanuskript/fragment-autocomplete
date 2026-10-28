@@ -6,7 +6,7 @@ Status: current source summary; detailed evidence is in the committed metadata m
 | --- | --- | --- | --- |
 | e-codices | IIIF manifest ingestion and deterministic complete-page corpus acquisition | specifications, URLs, checksums, decisions, and compact results | downloaded images are ignored; training remains unapproved |
 | Fragmentarium | five local pilot-fragment references | metadata only | local images are ignored; source rights remain authoritative |
-| eManuSkript | primary layout-analysis checkpoint and label system | model registry plus compact derived metadata | checkpoint excluded; masks are model evidence, not manual ground truth |
+| Mergen / eManuSkript | primary layout-analysis checkpoints and label system | canonical repository/weight-directory references, model registry, and compact derived metadata | checkpoints excluded; masks are model evidence, not manual ground truth |
 | HSP/German normdata | controlled terms and field-alignment reference | extracted terms/mapping and source checksums | original workbook/Markdown are external |
 | CoMMA | possible future text/transcription/metadata support | no ingestion | not the visual training dataset |
 | MPO / Swedish National Archives | possible future interoperability source | no data or private endpoint | no compatibility, access, or rights claim |

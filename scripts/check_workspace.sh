@@ -182,6 +182,7 @@ required_files=(
   "tests/ingestion/test_db_config.py"
   "tests/ingestion/test_training_corpus_expansion_batch_01_acquisition.py"
   "tests/metadata/test_hsp_normdata.py"
+  "tests/metadata/test_model_registry.py"
   "tests/evaluation/test_artificial_fragments.py"
   "tests/evaluation/test_artificial_fragment_registration.py"
   "tests/evaluation/test_artificial_fragment_experiment.py"
