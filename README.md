@@ -19,13 +19,12 @@ runs a small schematic example without model weights or a database. All 17 damag
 types are registered; three material-loss operators generate samples today.
 Use the [documentation map](docs/README.md) to navigate current and historical material.
 
-**Whole-project UI:** run `bash scripts/run_project_dashboard.sh` to open the
-[Fragment Evidence Workbench](docs/PROJECT_STATUS_DASHBOARD.md). The modern
-Next.js application displays the actual locally available corpus pages and lets
-you follow one real page through recorded source selection, saved Mergen layout
-analysis, PostgreSQL storage, Jeremy's matrix decision, synthetic damage,
-fragment output, and measurement. A live database enriches the view; when it is
-unavailable, the application labels saved identifiers as an artifact snapshot.
+**Interactive demo:** run `bash scripts/run_project_dashboard.sh` to open the
+[Manuscript Fragment Demo](docs/PROJECT_STATUS_DASHBOARD.md). The public-facing
+Next.js application follows one real page through six explained steps: original
+image, detected regions, selected measurement area, controlled damage, complete
+fragment result, and side-by-side comparison. Technical storage and provenance
+remain available in optional disclosures rather than crowding the main demo.
 
 Implemented and tested:
 
@@ -39,9 +38,9 @@ Implemented and tested:
   corpus preparation and separate observed/target exports;
 - idempotent artificial-fragment task registration;
 - corpus, determinism, storage, rights, provenance, and experiment audit infrastructure;
-- a read-only React/Next.js evidence workbench showing actual local corpus
-  images, saved segmentation artifacts, matrix decisions, database records,
-  synthetic fragments, and measurements;
+- a read-only React/Next.js guided demo showing actual local corpus images,
+  saved segmentation artifacts, nine synthetic fragment variants, measurements,
+  optional database state, and a browsable source-page collection;
 - committed compact experiment specifications, provenance records, statistics, and validation results.
 
 Not implemented:
@@ -134,7 +133,7 @@ bash scripts/check_workspace.sh
 
 No project-wide static type checker or autoformatter is configured yet. `ruff` is intentionally limited to correctness-focused `F` rules so external-sharing cleanup does not reformat the scientific codebase.
 
-### Whole-project evidence workbench
+### Interactive manuscript demo
 
 ```bash
 bash scripts/run_project_dashboard.sh
@@ -142,8 +141,9 @@ bash scripts/run_project_dashboard.sh
 
 This read-only Next.js/React interface uses actual local corpus images, stored
 segmentation artifacts, synthetic experiment outputs, compact metadata, and—when
-available—a live PostgreSQL connection. It is designed for project meetings and
-evidence inspection; see
+available—a live PostgreSQL connection. Its main surface is a six-step public
+demonstration; technical evidence and the full local page collection are optional
+disclosures. See
 [docs/PROJECT_STATUS_DASHBOARD.md](docs/PROJECT_STATUS_DASHBOARD.md). The separate
 legacy segmentation-only viewer remains available through
 `bash scripts/run_segmentation_viewer.sh`.

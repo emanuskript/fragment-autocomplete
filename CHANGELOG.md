@@ -64,6 +64,10 @@ All notable changes to this project will be documented in this file.
 
 ### Updated
 
+- Reworked the evidence interface into a decluttered six-step public demo,
+  replaced the ineffective comparison slider with a side-by-side view, made all
+  nine variant selections open the complete fragment, renamed “content target”
+  to “selected area,” and moved technical data into optional disclosures.
 - Replaced the generic project-level Streamlit dashboard and launcher with the
   evidence-first workbench; retained the separate segmentation-only viewer.
 - Current README, architecture, collaborator, status, and model-compatibility guidance to name Mergen as the eManuSkript layout-analysis component while preserving historical checkpoint provenance.

@@ -1,22 +1,22 @@
-# Fragment evidence workbench
+# Manuscript Fragment Demo
 
 ## Purpose
 
-The Fragment Evidence Workbench is a read-only Next.js application for following
-one real manuscript page through the implemented project pipeline. It uses the
-locally available e-codices corpus images, saved Mergen/eManuSkript segmentation
-artifacts, Jeremy's matrix decisions, generated synthetic fragments, measurement
-records, and PostgreSQL rows. It is not a mock dashboard and it does not generate
-new research evidence in the browser.
+The Manuscript Fragment Demo is a read-only Next.js application for explaining
+how one real manuscript page becomes a controlled synthetic test fragment. It is
+designed for a general audience: the main surface shows one image, one short
+explanation, and one clear action at a time.
 
-The interface keeps four evidence classes distinct:
+The interface keeps the evidence classes separate:
 
-1. observed source pixels and IIIF provenance;
-2. model-derived layout regions and confidence values;
-3. synthetic damage masks, fragments, and measurements; and
-4. future candidate inference, which is not implemented.
+1. the observed complete page;
+2. model-detected visual regions;
+3. a selected writing area used only for measurement;
+4. a controlled synthetic damage mask; and
+5. the resulting test fragment and measured pixel loss.
 
-No displayed synthetic fragment is presented as recovered historical content.
+The demo does not reconstruct, generate, or claim to recover missing manuscript
+content.
 
 ## Run it
 
@@ -26,44 +26,55 @@ Node.js 20.9 or newer is recommended. From the repository root:
 bash scripts/run_project_dashboard.sh
 ```
 
-The launcher installs the local web dependencies when necessary and serves the
-application at `http://127.0.0.1:8503/`. Use `FRAGMENT_WORKBENCH_PORT` to select a
-different port.
+The launcher installs local web dependencies when necessary and serves the demo
+at `http://127.0.0.1:8503/`. Use `FRAGMENT_WORKBENCH_PORT` to choose a different
+port.
 
-For a live database view, start PostgreSQL/PostGIS and provide the same
-`FRAGMENT_DB_*` environment variables used by the Python workflows. If the
-database is unavailable, the application labels its stored run information as a
-validated artifact snapshot instead of implying a live connection.
+For the optional live storage status, start PostgreSQL/PostGIS and provide the
+same `FRAGMENT_DB_*` environment variables used by the Python workflows. If the
+database is unavailable, the disclosure labels its information as a validated
+saved record.
 
-## What the application shows
+## Public flow
 
-- **Corpus filmstrip:** 84 locally present page images from the 85-page audited
-  corpus, grouped by recorded train/validation/test split. The missing local
-  raster is reported explicitly.
-- **Source and layout:** the observed page, the saved Mergen overlay, individual
-  masks, model identifier, confidence values, and recorded run identity.
-- **Matrix decision:** the exact Jeremy matrix row, damage ID, severity, cohort,
-  note, and the fact that qualitative severity still needs expert validation.
-- **Synthetic experiment:** nine generated outputs for D2-01, D2-02, and D2-03
-  at S2-S4, with the source, target content mask, damage mask, fragment, and a
-  draggable source/fragment comparison.
-- **Database:** a read-only query of the selected `segmentation_run` and its 21
-  `layout_region` rows when PostgreSQL is live; otherwise an honest snapshot of
-  the saved identifiers.
-- **Measurements:** target-pixel loss, whole-page loss, topology checks, removed
-  component count, and touched edges from the generated record.
-- **Provenance:** source selection status, repository and canvas identifiers,
-  model hash, source hash, and explicit evidence boundaries.
+The six main steps are:
 
-The application deliberately reads ignored local images and experiment outputs;
-those binaries remain outside Git. The `/api/artifact` route only serves paths
-under the approved local artifact roots. The database route is read-only and
-does not expose database credentials to the browser.
+1. **Original page** — the unchanged complete digital photograph.
+2. **Find regions** — the saved layout overlay, described as visual detection
+   rather than transcription or reconstruction.
+3. **Select an area** — one detected block of writing chosen as the measurement
+   area. This replaces the specialist phrase “content target.”
+4. **Apply damage** — a controlled synthetic mask and the exact percentage of
+   the selected area it removes.
+5. **See the result** — the complete transparent fragment on a neutral matte, so
+   removed material is visually unambiguous.
+6. **Compare** — original and result shown side by side. The earlier draggable
+   split control was removed because transparency made its movement appear to do
+   nothing.
+
+Below the main viewer, nine generated variants are grouped by three plain-language
+damage patterns and light, medium, or heavy measured loss. Selecting a thumbnail
+opens that complete result in step five and scrolls the viewer into view.
+
+## Progressive disclosure
+
+The public surface omits internal names, experiment codes, database identifiers,
+hashes, and review terminology. Two collapsed disclosures retain useful depth
+without crowding the demonstration:
+
+- **Technical details** reports source, model-derived region counts, confidence,
+  live-or-saved storage state, and the selected result measurement.
+- **Source-page collection** displays all 84 manuscript images currently present
+  in the local 85-page audit.
+
+The application reads ignored local images and generated outputs; those binaries
+remain outside Git. The artifact route serves only approved local roots, and the
+database route is read-only and never sends credentials to the browser.
 
 ## Architecture
 
 ```text
-local JSON/YAML + ignored image artifacts
+local metadata + real image artifacts
                     |
                     v
         Next.js server evidence adapter
@@ -73,14 +84,13 @@ whitelisted artifact API     read-only PostgreSQL API
           |                         |
           +------------+------------+
                        v
-          React evidence workbench
+          six-step React public demo
 ```
 
 `src/frontend/project_status.py` remains the compact, tested status adapter used
-by the archival PDF exporter. The interactive browser application lives in
-`web/` and is the current project interface. The older project-level Streamlit
-dashboard was removed; the separate segmentation-only Streamlit viewer remains
-available for legacy technical inspection.
+by the archival PDF exporter. The interactive demo lives in `web/`. The separate
+segmentation-only Streamlit viewer remains available for legacy technical
+inspection; Streamlit is not used by the public demo.
 
 ## Validation
 
@@ -89,9 +99,9 @@ npm --prefix web run lint
 npm --prefix web run build
 python -m pytest -q tests/frontend/test_project_status.py
 bash scripts/check_workspace.sh
-python scripts/export_project_status_pdf.py
 ```
 
-The generated meeting snapshot is written to the ignored
-`output/pdf/Fragment_Autocomplete_Status_Dashboard_2026-11-09.pdf` path. It is an
-archival report, not a substitute for the evidence workbench.
+Responsive visual inspection covers 1440 px, 768 px, and 390 px. Interaction
+checks cover direct step selection, previous/next navigation, variant selection,
+full fragment rendering, the side-by-side comparison, and both optional
+disclosures.

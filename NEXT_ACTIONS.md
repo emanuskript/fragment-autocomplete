@@ -1,13 +1,14 @@
 # NEXT_ACTIONS
 
-## Evidence workbench now available
+## Public guided demo now available
 
-Run `bash scripts/run_project_dashboard.sh` for the Next.js/React Fragment
-Evidence Workbench documented in `docs/PROJECT_STATUS_DASHBOARD.md`. It displays
-the actual locally available corpus images and traces the selected page through
-source selection, saved Mergen segmentation, PostgreSQL storage, Jeremy's matrix
-decision, synthetic damage, the fragment output, and measurements. It is
-read-only and does not replace the next scholarly decision gate below.
+Run `bash scripts/run_project_dashboard.sh` for the Next.js/React Manuscript
+Fragment Demo documented in `docs/PROJECT_STATUS_DASHBOARD.md`. Its six-step
+public flow explains the original page, detected visual regions, selected
+measurement area, controlled damage, complete fragment result, and side-by-side
+comparison. Nine real generated variants open fully in the main viewer. Technical
+storage and the source-page collection remain available as optional disclosures.
+The demo is read-only and does not replace the next scholarly decision gate below.
 
 ## Active step — review the matrix-driven synthetic-data pilot
 
@@ -23,10 +24,11 @@ Semantic severity remains unvalidated. Then add one appearance operator with its
 own visibility semantics before scaling. General/edge cohorts remain separate;
 original manuscript splits, test files and frozen experiments stay unchanged.
 
-Use the workbench during that review. Record Jeremy's judgment as a new versioned
-decision artifact; do not edit the imported matrix or silently promote a visual
-impression to ground truth. Once the review is recorded, expose that evidence in
-the inspector and add only the newly approved experiment outputs.
+Conduct that review against the versioned source images, masks, fragments and
+measurements. Record the judgment as a new versioned decision artifact; do not
+edit the imported matrix or silently promote a visual impression to ground truth.
+Keep reviewer identities and internal decision language out of the public demo;
+add only approved experiment outputs and plain-language measurements there.
 
 The earlier corpus expansion/storage actions below remain follow-up work, not
 prerequisites for inspecting this bounded pilot.

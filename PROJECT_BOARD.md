@@ -36,7 +36,7 @@
 - Run first eManuSkript segmentation smoke test
 - Store segmentation outputs in DB
 - Minimal UI viewer
-- Whole-project Fragment Evidence Workbench
+- Six-step public manuscript-fragment demo
 - Full pilot segmentation run
 - Artificial fragment generator
 - Artificial fragment task database storage
