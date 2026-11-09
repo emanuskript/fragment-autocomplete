@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Responsive Next.js/React Fragment Evidence Workbench using the actual local
+  corpus images, saved Mergen artifacts, Jeremy matrix records, nine generated
+  fragments, measurements, and an optional read-only live PostgreSQL view.
+- Reproducible archival status-PDF exporter for meeting handoff.
 - Whole-project Fragment Autocomplete Evidence Observatory with seven focused
   views covering the pipeline, Jeremy's matrix, Mergen segmentation, storage and
   provenance, controlled experiments, the implementation ledger, and ordered
@@ -60,6 +64,8 @@ All notable changes to this project will be documented in this file.
 
 ### Updated
 
+- Replaced the generic project-level Streamlit dashboard and launcher with the
+  evidence-first workbench; retained the separate segmentation-only viewer.
 - Current README, architecture, collaborator, status, and model-compatibility guidance to name Mergen as the eManuSkript layout-analysis component while preserving historical checkpoint provenance.
 - Removed machine-specific eManuSkript release-staging instructions from the active Fragment Autocomplete next-actions and roadmap summaries.
 - Preserved and relabeled the 2026-05-06 architecture PDF as historical Architecture Draft v0.2; local rebuilds no longer overwrite that artifact.

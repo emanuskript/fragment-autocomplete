@@ -88,12 +88,14 @@ Model execution is isolated in `scripts/run_segmentation_smoke_test.py` and `scr
 
 `scripts/view_segmentation_results.py` is a read-only Streamlit view over stored local segmentation runs and filesystem images. It is not the planned scholarly reconstruction interface.
 
-`scripts/view_project_dashboard.py` is a separate metadata-first Evidence
-Observatory. It reads committed JSON/YAML records and SQL migrations through
-`src/frontend/project_status.py` to explain the full implementation state,
-Jeremy's matrix, segmentation, storage, experiments and next steps. It performs
-no database writes and does not imply that the future reconstruction/review UI
-exists. See `docs/PROJECT_STATUS_DASHBOARD.md`.
+`web/` contains the current Fragment Evidence Workbench: a read-only Next.js and
+React application that joins actual local corpus images, saved segmentation
+artifacts, Jeremy's matrix-driven outputs, and measurements. Its server routes
+serve only whitelisted local artifacts and perform a read-only PostgreSQL query
+for the selected segmentation run. When PostgreSQL is unavailable, the interface
+labels saved identifiers as an artifact snapshot. It does not imply that the
+future reconstruction/review UI exists. See
+`docs/PROJECT_STATUS_DASHBOARD.md`.
 
 ## Pipeline stages
 

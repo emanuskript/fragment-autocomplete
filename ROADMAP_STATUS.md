@@ -1,15 +1,21 @@
 # ROADMAP_STATUS
 
-Latest interface addition: 2026-11-09 — the read-only Fragment Autocomplete
-Evidence Observatory now derives the complete project state from committed
-metadata and SQL migrations. Its seven views cover the end-to-end pipeline,
-Jeremy's matrix, Mergen segmentation, storage/provenance, experiments, fourteen
-implemented capability groups, and the ordered next steps. Retrieval,
-reconstruction, expert review and Fragmentarium deployment remain explicitly not
-built. See [PROJECT_STATUS_DASHBOARD.md](docs/PROJECT_STATUS_DASHBOARD.md).
-Validation after the interface addition: 212 unit tests passed, correctness lint
-passed, the workspace check passed, and the responsive UI inspector reported no
-failures at 1440 px, 768 px, or 390 px.
+Latest interface addition: 2026-11-09 — the generic project-level Streamlit
+dashboard has been replaced by the Fragment Evidence Workbench, a responsive
+Next.js/React application grounded in the actual local artifacts. It displays 84
+locally present images from the 85-page audited e-codices corpus and follows one
+page through its recorded selection, saved Mergen segmentation, 21 stored layout
+regions, Jeremy's D2-01/D2-02/D2-03 matrix decisions, nine S2-S4 synthetic
+outputs, and recorded measurements. The database inspector reports live rows
+when PostgreSQL is connected and an explicitly labelled artifact snapshot
+otherwise. The archived whole-project status is available through a reproducible
+PDF exporter. Retrieval, reconstruction, expert review and Fragmentarium
+deployment remain explicitly not built. See
+[PROJECT_STATUS_DASHBOARD.md](docs/PROJECT_STATUS_DASHBOARD.md). Validation after
+the replacement: Next.js lint and production build passed, the production npm
+audit reported zero vulnerabilities, the responsive inspector reported no
+failures at 1440 px, 768 px, or 390 px, and the live database/API path returned
+the exact 21 stored regions for the selected run.
 
 Latest addition: 2026-11-09 — Jeremy's damage-matrix adapter and bounded synthetic-data
 workflow are implemented. All 17 named types/187 rows are preserved; three
@@ -31,7 +37,7 @@ Previous milestone (2026-09-07): Artificial Fragment Experiment v0.2 completed f
 
 | Area | Expected status after 1.5 months | Concrete definition of done | Current status | Evidence / files | Next action |
 | --- | --- | --- | --- | --- | --- |
-| Whole-project evidence dashboard | New interface milestone | Read committed evidence without requiring private binaries or a live database; distinguish implemented, partial, schema-only and not-built capabilities; expose matrix, segmentation, storage, experiments and roadmap. | Done | scripts/view_project_dashboard.py, scripts/run_project_dashboard.sh, src/frontend/project_status.py, src/frontend/dashboard.css, tests/frontend/test_project_status.py, docs/PROJECT_STATUS_DASHBOARD.md | Keep the adapter aligned with new versioned metadata after each meaningful milestone. |
+| Whole-project evidence workbench | New interface milestone | Show actual corpus images and let a reviewer trace source selection, Mergen segmentation, storage, matrix decision, synthetic damage, fragment output and measurement without blurring evidence classes. | Done for the current local corpus and nine-task matrix pilot | web/, scripts/run_project_dashboard.sh, scripts/export_project_status_pdf.py, src/frontend/project_status.py, tests/frontend/test_project_status.py, docs/PROJECT_STATUS_DASHBOARD.md | Extend the workbench only when a new versioned experiment produces validated artifacts; do not fabricate missing stages. |
 | Jeremy matrix-driven synthesis | New bounded milestone | Preserve matrix decisions, explicit operator coverage, content-mask calibration, reproducible paired exports and split checks. | Implemented for D2-01/02/03; remaining 14 operators pending | scripts/synthetic_data.py, src/evaluation/damage_matrix.py, src/evaluation/matrix_synthesis.py, data/metadata/jeremy_damage_matrix_v3.json, tests/evaluation/test_damage_matrix.py | Review real samples and severity semantics with Jeremy, then implement an appearance operator. |
 | Repository / workspace | Done | Git repo, understandable structure, reproducible setup, collaborator documentation, secret-safe configuration, ignore policy, lint/test commands. | Done — external-sharing hygiene pass complete; licence/contact decision remains | README.md, docs/COLLABORATOR_QUICKSTART.md, docs/ARCHITECTURE.md, docs/INTEGRATION_NOTES.md, .env.example, pyproject.toml, requirements*.txt | Choose a software licence and approved citation/contact; share from a clean Git clone rather than the artifact-rich working directory. |
 | Architecture draft | Done | Complete technical architecture document with figures and PDF/HTML export. | Done — preserved historical Architecture Draft v0.2 dated 2026-05-06; not current implementation status | docs/01_architecture_overview.md, docs/figures/architecture/, outputs/Fragment_Autocomplete_Architecture_Draft_v0.2_2026-05-06.pdf, docs/IMPLEMENTATION_STATUS_2026-10.md | Use the October status comparison and current architecture for implementation review; retain the draft unchanged as design history. |

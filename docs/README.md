@@ -4,7 +4,7 @@
 | --- | --- |
 | Run the project | [Repository README](../README.md) |
 | Generate synthetic fragments using Jeremy's matrix | [Synthetic-data workflow](SYNTHETIC_DATA_WORKFLOW.md) |
-| See the complete project in one UI | [Project status dashboard](PROJECT_STATUS_DASHBOARD.md) |
+| Inspect the real page-to-fragment evidence chain | [Fragment Evidence Workbench](PROJECT_STATUS_DASHBOARD.md) |
 | Understand implemented components | [Current architecture](ARCHITECTURE.md) |
 | Check milestone evidence | [Roadmap status](../ROADMAP_STATUS.md) |
 | Find the next engineering step | [Next actions](../NEXT_ACTIONS.md) |

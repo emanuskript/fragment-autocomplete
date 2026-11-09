@@ -20,10 +20,12 @@ types are registered; three material-loss operators generate samples today.
 Use the [documentation map](docs/README.md) to navigate current and historical material.
 
 **Whole-project UI:** run `bash scripts/run_project_dashboard.sh` to open the
-[Evidence Observatory](docs/PROJECT_STATUS_DASHBOARD.md). It summarizes Jeremy's
-matrix, Mergen segmentation, database/storage boundaries, experiments, every
-implemented capability group, and the ordered next steps from committed metadata.
-It does not require a running database, local manuscript images, or model weights.
+[Fragment Evidence Workbench](docs/PROJECT_STATUS_DASHBOARD.md). The modern
+Next.js application displays the actual locally available corpus pages and lets
+you follow one real page through recorded source selection, saved Mergen layout
+analysis, PostgreSQL storage, Jeremy's matrix decision, synthetic damage,
+fragment output, and measurement. A live database enriches the view; when it is
+unavailable, the application labels saved identifiers as an artifact snapshot.
 
 Implemented and tested:
 
@@ -37,8 +39,9 @@ Implemented and tested:
   corpus preparation and separate observed/target exports;
 - idempotent artificial-fragment task registration;
 - corpus, determinism, storage, rights, provenance, and experiment audit infrastructure;
-- a read-only whole-project evidence dashboard with a filterable damage matrix,
-  segmentation/storage summaries, implementation ledger, and roadmap;
+- a read-only React/Next.js evidence workbench showing actual local corpus
+  images, saved segmentation artifacts, matrix decisions, database records,
+  synthetic fragments, and measurements;
 - committed compact experiment specifications, provenance records, statistics, and validation results.
 
 Not implemented:
@@ -49,7 +52,7 @@ Not implemented:
 - model training or fine-tuning;
 - CoMMA, MPO, Swedish National Archives, CODICUM, or Manuscript Workbench integration;
 - MSI processing;
-- a production backend, frontend, deployment, or public scholarly interface.
+- a production backend, deployed public frontend, or public scholarly interface.
 
 Database tables exist for several planned concepts, including reconstruction candidates, retrieval embeddings, evaluations, and exports. Their presence is schema groundwork, not an implemented workflow. See [ROADMAP_STATUS.md](ROADMAP_STATUS.md) for milestone evidence and [NEXT_ACTIONS.md](NEXT_ACTIONS.md) for the next bounded engineering decision.
 
@@ -68,9 +71,10 @@ Database tables exist for several planned concepts, including reconstruction can
 ├── scripts/             # CLIs, validators, database helpers, and report builders
 ├── src/
 │   ├── evaluation/      # damage generation, masks, audits, and experiment logic
-│   ├── frontend/        # metadata adapters and visual system for read-only UIs
+│   ├── frontend/        # compact status adapter used by tests and PDF export
 │   └── ingestion/       # IIIF, database, and corpus logic
-└── tests/               # unit and integration-oriented tests with local fixtures
+├── tests/               # unit and integration-oriented tests with local fixtures
+└── web/                 # Next.js/React evidence workbench and read-only APIs
 ```
 
 The numbered documents in `docs/` are dated milestone records. Some describe the state and next action at the time they were generated; use this README, `docs/IMPLEMENTATION_STATUS_2026-10.md`, `docs/ARCHITECTURE.md`, `ROADMAP_STATUS.md`, and `NEXT_ACTIONS.md` for the current summary.
@@ -96,7 +100,7 @@ System requirements by workflow:
 
 - Docker with Compose: PostgreSQL/PostGIS workflows;
 - model checkpoints and source images: segmentation and full experiment reruns;
-- Node.js/`npx` or Mermaid CLI: architecture figure rendering;
+- Node.js 20.9 or newer: the evidence workbench and architecture figure rendering;
 - Pandoc plus a PDF engine, or Node.js: architecture PDF rebuilding.
 
 The model checkpoints are not distributed in Git. Their canonical source, expected filenames, local paths, and verified checksums are documented in `models/model_registry.yaml`.
@@ -130,16 +134,18 @@ bash scripts/check_workspace.sh
 
 No project-wide static type checker or autoformatter is configured yet. `ruff` is intentionally limited to correctness-focused `F` rules so external-sharing cleanup does not reformat the scientific codebase.
 
-### Whole-project evidence dashboard
+### Whole-project evidence workbench
 
 ```bash
 bash scripts/run_project_dashboard.sh
 ```
 
-This read-only Streamlit UI assembles its status from committed JSON/YAML records
-and SQL migrations. It is designed for project meetings and onboarding; see
+This read-only Next.js/React interface uses actual local corpus images, stored
+segmentation artifacts, synthetic experiment outputs, compact metadata, and—when
+available—a live PostgreSQL connection. It is designed for project meetings and
+evidence inspection; see
 [docs/PROJECT_STATUS_DASHBOARD.md](docs/PROJECT_STATUS_DASHBOARD.md). The separate
-database-backed segmentation viewer remains available through
+legacy segmentation-only viewer remains available through
 `bash scripts/run_segmentation_viewer.sh`.
 
 ### IIIF normalization

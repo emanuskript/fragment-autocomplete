@@ -43,6 +43,7 @@ secrets*.yml
 *.key
 .cache/
 cache/
+.taste-skill/
 wandb/
 mlruns/
 checkpoints/

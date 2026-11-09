@@ -1,113 +1,97 @@
-# Project status dashboard
+# Fragment evidence workbench
 
 ## Purpose
 
-The Fragment Autocomplete Evidence Observatory is a read-only Streamlit dashboard
-for understanding the repository as it exists now. It answers three questions:
+The Fragment Evidence Workbench is a read-only Next.js application for following
+one real manuscript page through the implemented project pipeline. It uses the
+locally available e-codices corpus images, saved Mergen/eManuSkript segmentation
+artifacts, Jeremy's matrix decisions, generated synthetic fragments, measurement
+records, and PostgreSQL rows. It is not a mock dashboard and it does not generate
+new research evidence in the browser.
 
-1. What is implemented and backed by committed evidence?
-2. What is partial or schema-only?
-3. What should happen next, and which scholarly or rights decision gates come first?
+The interface keeps four evidence classes distinct:
 
-The dashboard is metadata-first. It reads versioned JSON/YAML records and SQL
-migrations from the repository, so it can run without the ignored manuscript
-image corpus, generated artifacts, Mergen checkpoints, or a live database.
+1. observed source pixels and IIIF provenance;
+2. model-derived layout regions and confidence values;
+3. synthetic damage masks, fragments, and measurements; and
+4. future candidate inference, which is not implemented.
+
+No displayed synthetic fragment is presented as recovered historical content.
 
 ## Run it
 
-Install the normal project requirements, then run:
+Node.js 20.9 or newer is recommended. From the repository root:
 
 ```bash
 bash scripts/run_project_dashboard.sh
 ```
 
-Or invoke Streamlit directly:
+The launcher installs the local web dependencies when necessary and serves the
+application at `http://127.0.0.1:8503/`. Use `FRAGMENT_WORKBENCH_PORT` to select a
+different port.
 
-```bash
-python -m streamlit run scripts/view_project_dashboard.py
+For a live database view, start PostgreSQL/PostGIS and provide the same
+`FRAGMENT_DB_*` environment variables used by the Python workflows. If the
+database is unavailable, the application labels its stored run information as a
+validated artifact snapshot instead of implying a live connection.
+
+## What the application shows
+
+- **Corpus filmstrip:** 84 locally present page images from the 85-page audited
+  corpus, grouped by recorded train/validation/test split. The missing local
+  raster is reported explicitly.
+- **Source and layout:** the observed page, the saved Mergen overlay, individual
+  masks, model identifier, confidence values, and recorded run identity.
+- **Matrix decision:** the exact Jeremy matrix row, damage ID, severity, cohort,
+  note, and the fact that qualitative severity still needs expert validation.
+- **Synthetic experiment:** nine generated outputs for D2-01, D2-02, and D2-03
+  at S2-S4, with the source, target content mask, damage mask, fragment, and a
+  draggable source/fragment comparison.
+- **Database:** a read-only query of the selected `segmentation_run` and its 21
+  `layout_region` rows when PostgreSQL is live; otherwise an honest snapshot of
+  the saved identifiers.
+- **Measurements:** target-pixel loss, whole-page loss, topology checks, removed
+  component count, and touched edges from the generated record.
+- **Provenance:** source selection status, repository and canvas identifiers,
+  model hash, source hash, and explicit evidence boundaries.
+
+The application deliberately reads ignored local images and experiment outputs;
+those binaries remain outside Git. The `/api/artifact` route only serves paths
+under the approved local artifact roots. The database route is read-only and
+does not expose database credentials to the browser.
+
+## Architecture
+
+```text
+local JSON/YAML + ignored image artifacts
+                    |
+                    v
+        Next.js server evidence adapter
+          |                         |
+          v                         v
+whitelisted artifact API     read-only PostgreSQL API
+          |                         |
+          +------------+------------+
+                       v
+          React evidence workbench
 ```
 
-The dashboard is separate from `scripts/view_segmentation_results.py`. The older
-viewer queries PostgreSQL and inspects individual stored segmentation runs. This
-new dashboard explains the whole project from compact committed evidence.
+`src/frontend/project_status.py` remains the compact, tested status adapter used
+by the archival PDF exporter. The interactive browser application lives in
+`web/` and is the current project interface. The older project-level Streamlit
+dashboard was removed; the separate segmentation-only Streamlit viewer remains
+available for legacy technical inspection.
 
-## Views
-
-### Overview
-
-Shows the complete pipeline from source ingestion through the future
-Fragmentarium review/deployment boundary. Implemented, partial and not-built
-stages are labelled explicitly. The evidence chain separates source pixels,
-model-derived Mergen masks, synthetic experiment targets and future candidate
-inference.
-
-### Damage matrix
-
-Shows Jeremy's 187-row matrix, 17 damage types, 15 content types, decision totals,
-operator coverage and the two incomplete source rows. The matrix explorer exposes
-all 748 severity cells. It intentionally distinguishes a matrix decision from an
-implemented generator: only D2-01, D2-02 and D2-03 have working procedural
-operators.
-
-### Segmentation
-
-Summarizes the initial pilot, 15-page validation set and 70-page Batch 01 run. It
-shows the combined Mergen label distribution and explains the preparation,
-inference, source-coordinate restoration and storage path. Mergen predictions are
-labelled as model-derived layout evidence rather than expert ground truth.
-
-### Storage and provenance
-
-Explains the separation between PostgreSQL/PostGIS, tracked compact metadata,
-ignored large artifacts and external model weights. The schema ledger marks six
-future-facing tables as groundwork so their presence is not mistaken for working
-retrieval, reconstruction, export or review services.
-
-### Experiments
-
-Follows the controlled experiment line from v0.1.1 through v0.2, v0.3 and the
-matrix-driven pilot. The page explains what topology, calibration, pixel
-preservation, split isolation, idempotence and frozen-invariant checks prove—and
-what they do not prove.
-
-### Implementation ledger
-
-Explains fourteen capability groups with their repository evidence and claim
-boundary. It covers the workspace, database, IIIF, HSP metadata, sample
-registration, Mergen model registry, segmentation, storage/viewer, corpus,
-artificial-fragment experiments, matrix workflow and onboarding documentation.
-
-### Next steps
-
-Places Jeremy's expert review first, then one appearance operator, rights/quality
-approval, retrieval, candidate reconstruction with multiple hypotheses, expert
-review and Fragmentarium integration. It does not suggest training or deployment
-before those gates are met.
-
-## Data contract and validation
-
-`src/frontend/project_status.py` is the testable adapter between repository
-records and UI presentation. It derives corpus counts, matrix coverage, schema
-tables, label distributions and experiment summaries from committed files.
-`tests/frontend/test_project_status.py` locks the key totals and verifies that
-future schema is not reported as implemented functionality.
-
-Validate the dashboard data and the wider repository with:
+## Validation
 
 ```bash
+npm --prefix web run lint
+npm --prefix web run build
 python -m pytest -q tests/frontend/test_project_status.py
-python -m pytest -q
-python -m ruff check src scripts tests
 bash scripts/check_workspace.sh
+python scripts/export_project_status_pdf.py
 ```
 
-The interface does not write to the database or modify experiment records. Its
-JSON download is a compact status export; it omits only the 748-row matrix table.
-
-## Visual system
-
-The dashboard uses a light framed-sheet layout for long research sessions: a
-quiet blue-grey frame, a white working sheet, flat surfaces, one evidence hue,
-tabular figures and no decorative dashboard gradients. Colour is paired with
-text labels. Mobile layouts fold grids to one or two columns, and reduced-motion
-preferences disable non-essential transitions.
+The generated meeting snapshot is written to the ignored
+`output/pdf/Fragment_Autocomplete_Status_Dashboard_2026-11-09.pdf` path. It is an
+archival report, not a substitute for the evidence workbench.
