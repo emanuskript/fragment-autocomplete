@@ -1,5 +1,26 @@
 # ROADMAP_STATUS
 
+Latest interface addition: 2026-11-09 — the read-only Fragment Autocomplete
+Evidence Observatory now derives the complete project state from committed
+metadata and SQL migrations. Its seven views cover the end-to-end pipeline,
+Jeremy's matrix, Mergen segmentation, storage/provenance, experiments, fourteen
+implemented capability groups, and the ordered next steps. Retrieval,
+reconstruction, expert review and Fragmentarium deployment remain explicitly not
+built. See [PROJECT_STATUS_DASHBOARD.md](docs/PROJECT_STATUS_DASHBOARD.md).
+Validation after the interface addition: 212 unit tests passed, correctness lint
+passed, the workspace check passed, and the responsive UI inspector reported no
+failures at 1440 px, 768 px, or 390 px.
+
+Latest addition: 2026-11-09 — Jeremy's damage-matrix adapter and bounded synthetic-data
+workflow are implemented. All 17 named types/187 rows are preserved; three
+material-loss operators generate content-calibrated samples, 14 remain unimplemented,
+and two incomplete rows are explicitly quarantined. One existing training page
+produced nine samples with stored Mergen evidence. See
+[SYNTHETIC_DATA_WORKFLOW.md](docs/SYNTHETIC_DATA_WORKFLOW.md). Validation: 208 unit
+tests passed, including 20 new matrix/generation tests; correctness lint passed.
+The workspace check passed; real-pilot regeneration preserved all 47 files and timestamps.
+Qualitative severity and historical realism are not yet expert-validated.
+
 Last updated: 2026-10-28. Repository-facing model guidance now identifies [Mergen](https://github.com/emanuskript/Mergen) as the eManuSkript layout-analysis component and registers the supplied GWDG OwnCloud Mergen Weights directory, the three expected filenames, and their previously verified checksums in `models/model_registry.yaml`. The checkpoint binaries remain ignored and external. Historical run manifests retain the original `best_emanuskript_segmentation` identifier and local path as immutable provenance; the cleanup does not reinterpret or regenerate any scientific result. The May 2026 Architecture Draft v0.2 remains historical planning, while `docs/IMPLEMENTATION_STATUS_2026-10.md` and `docs/ARCHITECTURE.md` describe the current implementation boundary.
 
 Artificial Fragment Experiment v0.3 remains complete: all eleven previously unavailable sources were restored with exact checksums; 156 tasks were generated from 13 validation pages, producing 2,424 full-mask observations with zero severity error and zero topology failures. Registration inserted 156 rows and matched them unchanged on a second pass. Full recomputation verified 795 byte-identical artifacts with unchanged file mtimes and database timestamps; 4,873 frozen files and all 67 historical task rows passed invariant checks. The 184-test count in the v0.3 report is the historical milestone count; later tests cover external-sharing database configuration and the canonical Mergen model registry.
@@ -10,9 +31,12 @@ Previous milestone (2026-09-07): Artificial Fragment Experiment v0.2 completed f
 
 | Area | Expected status after 1.5 months | Concrete definition of done | Current status | Evidence / files | Next action |
 | --- | --- | --- | --- | --- | --- |
+| Whole-project evidence dashboard | New interface milestone | Read committed evidence without requiring private binaries or a live database; distinguish implemented, partial, schema-only and not-built capabilities; expose matrix, segmentation, storage, experiments and roadmap. | Done | scripts/view_project_dashboard.py, scripts/run_project_dashboard.sh, src/frontend/project_status.py, src/frontend/dashboard.css, tests/frontend/test_project_status.py, docs/PROJECT_STATUS_DASHBOARD.md | Keep the adapter aligned with new versioned metadata after each meaningful milestone. |
+| Jeremy matrix-driven synthesis | New bounded milestone | Preserve matrix decisions, explicit operator coverage, content-mask calibration, reproducible paired exports and split checks. | Implemented for D2-01/02/03; remaining 14 operators pending | scripts/synthetic_data.py, src/evaluation/damage_matrix.py, src/evaluation/matrix_synthesis.py, data/metadata/jeremy_damage_matrix_v3.json, tests/evaluation/test_damage_matrix.py | Review real samples and severity semantics with Jeremy, then implement an appearance operator. |
 | Repository / workspace | Done | Git repo, understandable structure, reproducible setup, collaborator documentation, secret-safe configuration, ignore policy, lint/test commands. | Done — external-sharing hygiene pass complete; licence/contact decision remains | README.md, docs/COLLABORATOR_QUICKSTART.md, docs/ARCHITECTURE.md, docs/INTEGRATION_NOTES.md, .env.example, pyproject.toml, requirements*.txt | Choose a software licence and approved citation/contact; share from a clean Git clone rather than the artifact-rich working directory. |
 | Architecture draft | Done | Complete technical architecture document with figures and PDF/HTML export. | Done — preserved historical Architecture Draft v0.2 dated 2026-05-06; not current implementation status | docs/01_architecture_overview.md, docs/figures/architecture/, outputs/Fragment_Autocomplete_Architecture_Draft_v0.2_2026-05-06.pdf, docs/IMPLEMENTATION_STATUS_2026-10.md | Use the October status comparison and current architecture for implementation review; retain the draft unchanged as design history. |
 | Three-page project study report | Done | Concise engineer-oriented PDF explains the safety contract, running pipeline, data/storage model, artificial-fragment evaluation loop, implementation status, roadmap, and teach-back narrative with verified figures. | Done | output/pdf/Fragment_Autocomplete_Study_Report.pdf | Refresh after the next material milestone or major status change. |
+| Notebook project study guide | Done | A notebook-friendly course explains Fragmentarium, the complete current/future pipeline, evidence boundaries, implementation state, key metrics, external-collaboration fit, decision gates, glossary, exercises and quiz. | Done | scripts/build_project_study_guide.py, output/pdf/Fragment_Autocomplete_Project_Study_Guide.pdf | Use for project onboarding and refresh after a material pipeline or roadmap decision. |
 | Database schema draft | Done | PostgreSQL/PostGIS Docker setup, SQL migration, seed values, validation script, and schema documentation. | Done | infra/db/docker-compose.yml, infra/db/migrations/001_init.sql, infra/db/seed/001_seed_lookup_values.sql, scripts/db_validate.sh, docs/02_database_plan.md | Maintain schema as ingestion needs mature. |
 | HSP metadata standards alignment | Done | HSP/German normdata vocabularies imported, selected normalized metadata fields added, and metadata validation documented. | Done | infra/db/migrations/002_hsp_normdata_metadata_alignment.sql, data/metadata/hsp_normdata_terms.yaml, data/metadata/hsp_metadata_field_mapping.yaml, scripts/import_hsp_normdata.py, docs/12_metadata_standards_alignment.md | Use normalized metadata in dataset expansion and artificial-fragment metadata. |
 | Storage decision | Done or In progress | DB vs object storage strategy described; final institutional path policy still needs confirmation. | In progress — local policy confirmed | docs/02_database_plan.md, docs/03_iiif_ingestion_plan.md, docs/17_training_corpus_expansion_batch_01.md | Local source images/raw manifests remain under `data/raw/`, masks and generated artifacts under ignored `outputs/`, and compact metadata under `data/metadata/`. Confirm institutional GWDG/object-storage backup, retention, and quota policy; this is non-blocking for the validated local milestone. |

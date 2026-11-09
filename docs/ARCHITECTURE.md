@@ -47,6 +47,12 @@ IIIF/local refs --->| src/ingestion            |
 
 There is no running backend service, job queue, production frontend, reconstruction engine, retrieval index, or external integration API.
 
+The 2026-11-09 addition is a local matrix-driven synthetic-data branch, described
+in [SYNTHETIC_DATA_WORKFLOW.md](SYNTHETIC_DATA_WORKFLOW.md). It joins Jeremy's
+content/damage decisions to explicitly mapped Mergen content masks, calibrates
+three material-loss operators on content area, and exports observed inputs
+separately from targets. It preserves the frozen v0.1.1/v0.2/v0.3 experiments.
+
 ## Major modules
 
 ### Ingestion
@@ -66,6 +72,10 @@ Model execution is isolated in `scripts/run_segmentation_smoke_test.py` and `scr
 
 ### Evaluation and synthetic experiments
 
+- `damage_matrix.py` imports Jeremy's matrix, retains incomplete rows and plans general/edge/excluded combinations.
+- `matrix_synthesis.py` prepares corpus sources, enforces split isolation, calibrates content loss and exports paired samples.
+- `scripts/synthetic_data.py` provides `import-matrix`, `plan`, `prepare-corpus`, `generate` and `demo`. No LLM or new segmentation run is required.
+
 - `artificial_fragments.py` implements deterministic pilot masks/transforms and artifact generation.
 - `structured_damage.py` implements the v0.3 structured damage families.
 - `segmentation_masks.py` validates and restores binary masks in source coordinates.
@@ -77,6 +87,13 @@ Model execution is isolated in `scripts/run_segmentation_smoke_test.py` and `scr
 ### Local inspection UI
 
 `scripts/view_segmentation_results.py` is a read-only Streamlit view over stored local segmentation runs and filesystem images. It is not the planned scholarly reconstruction interface.
+
+`scripts/view_project_dashboard.py` is a separate metadata-first Evidence
+Observatory. It reads committed JSON/YAML records and SQL migrations through
+`src/frontend/project_status.py` to explain the full implementation state,
+Jeremy's matrix, segmentation, storage, experiments and next steps. It performs
+no database writes and does not imply that the future reconstruction/review UI
+exists. See `docs/PROJECT_STATUS_DASHBOARD.md`.
 
 ## Pipeline stages
 

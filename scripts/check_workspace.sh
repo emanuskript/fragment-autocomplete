@@ -29,6 +29,21 @@ required_dirs=(
 )
 
 required_files=(
+  "requirements-synthetic.txt"
+  "docs/README.md"
+  "docs/SYNTHETIC_DATA_WORKFLOW.md"
+  "docs/PROJECT_STATUS_DASHBOARD.md"
+  "scripts/synthetic_data.py"
+  "scripts/view_project_dashboard.py"
+  "scripts/run_project_dashboard.sh"
+  "src/evaluation/damage_matrix.py"
+  "src/evaluation/matrix_synthesis.py"
+  "src/frontend/__init__.py"
+  "src/frontend/project_status.py"
+  "src/frontend/dashboard.css"
+  "data/metadata/jeremy_damage_matrix_v3.json"
+  "tests/evaluation/test_damage_matrix.py"
+  "tests/frontend/test_project_status.py"
   "README.md"
   ".env.example"
   "requirements.txt"

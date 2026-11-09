@@ -12,6 +12,19 @@ CoMMA is treated as a possible text and metadata resource, not as the visual tra
 
 ## Current status
 
+**Current synthetic-data entry point:** [Jeremy's matrix workflow](docs/SYNTHETIC_DATA_WORKFLOW.md).
+`python scripts/synthetic_data.py plan` shows matrix coverage;
+`python scripts/synthetic_data.py demo --output outputs/synthetic_data/my_demo`
+runs a small schematic example without model weights or a database. All 17 damage
+types are registered; three material-loss operators generate samples today.
+Use the [documentation map](docs/README.md) to navigate current and historical material.
+
+**Whole-project UI:** run `bash scripts/run_project_dashboard.sh` to open the
+[Evidence Observatory](docs/PROJECT_STATUS_DASHBOARD.md). It summarizes Jeremy's
+matrix, Mergen segmentation, database/storage boundaries, experiments, every
+implemented capability group, and the ordered next steps from committed metadata.
+It does not require a running database, local manuscript images, or model weights.
+
 Implemented and tested:
 
 - IIIF Presentation API v2/v3 manifest normalization and PostgreSQL/PostGIS registration;
@@ -20,8 +33,12 @@ Implemented and tested:
 - Mergen/Ultralytics segmentation runners, source-coordinate mask restoration, storage, and a local read-only Streamlit viewer;
 - deterministic artificial-fragment generation with rectangular and irregular masks, known transforms, source-space survival/damage masks, and layout-survival measurements;
 - structured synthetic-damage families and versioned experiments (`v0.1.1`, `v0.2`, and `v0.3`);
+- Jeremy's v3 matrix import, generation policy, content-mask-calibrated material loss,
+  corpus preparation and separate observed/target exports;
 - idempotent artificial-fragment task registration;
 - corpus, determinism, storage, rights, provenance, and experiment audit infrastructure;
+- a read-only whole-project evidence dashboard with a filterable damage matrix,
+  segmentation/storage summaries, implementation ledger, and roadmap;
 - committed compact experiment specifications, provenance records, statistics, and validation results.
 
 Not implemented:
@@ -51,6 +68,7 @@ Database tables exist for several planned concepts, including reconstruction can
 ├── scripts/             # CLIs, validators, database helpers, and report builders
 ├── src/
 │   ├── evaluation/      # damage generation, masks, audits, and experiment logic
+│   ├── frontend/        # metadata adapters and visual system for read-only UIs
 │   └── ingestion/       # IIIF, database, and corpus logic
 └── tests/               # unit and integration-oriented tests with local fixtures
 ```
@@ -112,6 +130,18 @@ bash scripts/check_workspace.sh
 
 No project-wide static type checker or autoformatter is configured yet. `ruff` is intentionally limited to correctness-focused `F` rules so external-sharing cleanup does not reformat the scientific codebase.
 
+### Whole-project evidence dashboard
+
+```bash
+bash scripts/run_project_dashboard.sh
+```
+
+This read-only Streamlit UI assembles its status from committed JSON/YAML records
+and SQL migrations. It is designed for project meetings and onboarding; see
+[docs/PROJECT_STATUS_DASHBOARD.md](docs/PROJECT_STATUS_DASHBOARD.md). The separate
+database-backed segmentation viewer remains available through
+`bash scripts/run_segmentation_viewer.sh`.
+
 ### IIIF normalization
 
 Parse the included IIIF v3 fixture without a database write:
@@ -169,6 +199,10 @@ python scripts/run_segmentation_pilot.py \
 Outputs are written below ignored `outputs/`; compact manifests are written below `data/metadata/`. See `docs/15_training_corpus_segmentation_integration.md` and `docs/18_training_corpus_expansion_batch_01_segmentation.md` for the larger validated runs.
 
 ### Artificial-fragment generation
+
+For new matrix-driven batches use [the synthetic-data workflow](docs/SYNTHETIC_DATA_WORKFLOW.md).
+It has a lightweight `requirements-synthetic.txt` installation and keeps the frozen
+experiments below separate. Fourteen additional damage operators remain unimplemented.
 
 With the five pilot pages, stored segmentation metadata, and mask artifacts present, generate one controlled task into ignored scratch paths:
 

@@ -1,5 +1,30 @@
 # NEXT_ACTIONS
 
+## Status interface now available
+
+Run `bash scripts/run_project_dashboard.sh` for the metadata-first Evidence
+Observatory documented in `docs/PROJECT_STATUS_DASHBOARD.md`. It provides the
+meeting-ready current state, Jeremy matrix coverage, segmentation/storage
+evidence, experiment progression, implementation ledger and ordered roadmap. It
+is read-only and does not replace the next scholarly decision gate below.
+
+## Active step — review the matrix-driven synthetic-data pilot
+
+Jeremy's v3 matrix is imported with 187 rows and 17 named damage types. Use
+`scripts/synthetic_data.py` and [the workflow guide](docs/SYNTHETIC_DATA_WORKFLOW.md).
+Interior loss, straight edge loss and irregular edge loss are active; the other
+14 operators are unimplemented. Rows 187/188 need missing IDs/fields resolved in
+a new matrix revision. Do not fill them by guesswork.
+
+Review the pilot with Jeremy: confirm the declared Mergen-label/content mapping,
+judge the shapes, and relate content-area presets to the qualitative S1–S4 notes.
+Semantic severity remains unvalidated. Then add one appearance operator with its
+own visibility semantics before scaling. General/edge cohorts remain separate;
+original manuscript splits, test files and frozen experiments stay unchanged.
+
+The earlier corpus expansion/storage actions below remain follow-up work, not
+prerequisites for inspecting this bounded pilot.
+
 The repository has completed an external-sharing hygiene and documentation pass. The active documentation now identifies Mergen as the eManuSkript layout-analysis component, records its canonical GitHub repository and GWDG OwnCloud weight directory in `models/model_registry.yaml`, and keeps the three checkpoints outside Git with verified checksums. Historical run manifests retain their original model IDs and paths as provenance. No committed scientific result or important generated artifact was removed or altered.
 
 ## Mergen dependency maintenance
@@ -19,6 +44,7 @@ The repository has completed an external-sharing hygiene and documentation pass.
 ## Current study artifact
 
 - `output/pdf/Fragment_Autocomplete_Study_Report.pdf` is the verified three-page project briefing as of 2026-08-23.
+- `output/pdf/Fragment_Autocomplete_Project_Study_Guide.pdf` is the notebook-friendly full-project course current to 2026-10-26; rebuild it with `python scripts/build_project_study_guide.py` after a material pipeline or roadmap decision.
 - Refresh it after the next material milestone while preserving evidence/inference separation and candidate-hypothesis language.
 
 ## Completed milestone
@@ -29,7 +55,7 @@ Artificial Fragment Experiment v0.2 — segmentation-aware controlled validation
 
 Full recomputation produced byte-identical artifacts, registration matched 44 rows without duplicates or timestamp churn, frozen source/segmentation/legacy/test invariants passed, and all 133 tests passed. Source rights remain `pending_review` and `training_allowed: false`. No training or reconstruction has begun. See `docs/19_artificial_fragment_experiment_v02.md`.
 
-## Next recommended engineering step
+## Corpus expansion and storage follow-up
 
 First keep the exact source and experiment artifacts available on durable storage. The 2026-09-10 resumption restored 63 iCloud placeholders and journaled/restored 216 sub-microsecond mtime differences after full byte/database verification. The original frozen baseline remains unchanged; see `data/metadata/artificial_fragment_v03_storage_resumption.json`.
 

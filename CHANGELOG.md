@@ -6,6 +6,15 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Whole-project Fragment Autocomplete Evidence Observatory with seven focused
+  views covering the pipeline, Jeremy's matrix, Mergen segmentation, storage and
+  provenance, controlled experiments, the implementation ledger, and ordered
+  next steps.
+- Metadata-first dashboard adapter and regression tests deriving the 85-page /
+  4,230-mask corpus state, matrix coverage, SQL schema status, experiment totals,
+  and implemented-versus-future boundaries from committed records.
+- Dashboard run script, responsive framed-sheet visual system, JSON status export,
+  and project-dashboard documentation.
 - Canonical Mergen repository and GWDG OwnCloud weight-directory metadata, expected checkpoint filenames, and regression tests for the model registry.
 - October 2026 implementation-status comparison between the historical May 2026 Architecture Draft v0.2 and the current repository.
 - Temporary external-review notice clarifying that no software licence has been selected and that reuse or redistribution permission must not be assumed.
