@@ -1,7 +1,8 @@
 # ROADMAP_STATUS
 
 Latest interface refinement: 2026-11-09 — the evidence workbench is now a
-public-facing six-step Manuscript Fragment Demo. The main surface contains one
+public-facing six-step Manuscript Fragment Demo with a neutral dark visual
+system restored after user review. The main surface contains one
 large visual, one plain-language explanation, and previous/next controls. The
 ambiguous draggable comparison was replaced by a side-by-side original/result
 view; selecting any of the nine damage variants opens its complete transparent

@@ -6,7 +6,7 @@ Run `bash scripts/run_project_dashboard.sh` for the Next.js/React Manuscript
 Fragment Demo documented in `docs/PROJECT_STATUS_DASHBOARD.md`. Its six-step
 public flow explains the original page, detected visual regions, selected
 measurement area, controlled damage, complete fragment result, and side-by-side
-comparison. Nine real generated variants open fully in the main viewer. Technical
+comparison in a neutral dark interface. Nine real generated variants open fully in the main viewer. Technical
 storage and the source-page collection remain available as optional disclosures.
 The demo is read-only and does not replace the next scholarly decision gate below.
 
