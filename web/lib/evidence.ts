@@ -1,20 +1,29 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { CorpusPage, EvidencePayload, Experiment } from "./types";
+import type { EvidencePayload, Experiment, ProcessedPage } from "./types";
 
 export const PROJECT_ROOT = path.resolve(process.cwd(), "..");
-const PILOT_ROOT = "outputs/synthetic_data/matrix_v1_pilot/dataset";
-const FOCUS_PAGE_ID = "07b71712497e5e020af5";
+const DATASET_CANDIDATES = [
+  "outputs/synthetic_data/paper_profile_public_demo_v2/dataset",
+  "outputs/synthetic_data/matrix_v2_public_demo/dataset",
+  "outputs/synthetic_data/matrix_v1_pilot/dataset",
+];
 
 function readJson<T>(relativePath: string): T {
   return JSON.parse(fs.readFileSync(path.join(PROJECT_ROOT, relativePath), "utf8")) as T;
 }
 
-function artifactUrl(relativePath: string): string {
-  const normalized = path.isAbsolute(relativePath)
-    ? path.relative(PROJECT_ROOT, relativePath)
-    : relativePath;
+function artifactUrl(filePath: string): string {
+  const normalized = path.isAbsolute(filePath) ? path.relative(PROJECT_ROOT, filePath) : filePath;
   return `/api/artifact?path=${encodeURIComponent(normalized)}`;
+}
+
+function selectedDatasetRoot(): string {
+  const root = DATASET_CANDIDATES.find((candidate) =>
+    fs.existsSync(path.join(PROJECT_ROOT, candidate, "dataset.json")),
+  );
+  if (!root) throw new Error("No generated demonstration dataset is available.");
+  return root;
 }
 
 type AuditPage = {
@@ -29,14 +38,37 @@ type AuditPage = {
   confidence: { mean?: number };
 };
 
-type PilotRecord = Record<string, unknown> & {
+type SourceRecord = {
+  canvas_identifier: string;
+  canvas_label: string;
+  selection_status: string;
+  selection_review_status: string;
+  selection_review_note: string;
+  image: {
+    attribution: string;
+    license?: string;
+    rights_statement?: string;
+    rights_review_status?: string;
+    training_allowed?: boolean;
+  };
+};
+
+type PilotRecord = {
   task_id: string;
+  page_id: string;
+  manuscript_id: string;
+  split: "train" | "validation" | "test";
   damage_id: string;
   severity: string;
   cohort: string;
   source_image: string;
+  source_sha256: string;
   content_mask: string;
-  segmentation_provenance: Record<string, unknown> & {
+  content_basis: string;
+  realism_profile?: string;
+  visual_realism_validated?: boolean;
+  historical_damage_claim?: boolean;
+  segmentation_provenance: {
     model_id: string;
     model_sha256: string;
     run_identity_sha256: string;
@@ -52,32 +84,31 @@ type PilotRecord = Record<string, unknown> & {
       raw_output_path: string;
       overlay_path: string;
       layout_region_count: number;
+      status: string;
     };
   };
-  content_basis: string;
   matrix_entry: {
     source_row: number;
     content_id: string;
     damage_id: string;
     damage_type: string;
+    visual_class?: string;
     severity: string;
     family: string;
     decision: string;
     cohort: string;
     note: string;
-    example_url: string;
+    status?: string;
+    target_area_fraction_proxy?: number;
     semantic_severity_validated: boolean;
   };
   statistics: {
     target_pixels: number;
     removed_target_pixels: number;
+    target_area_fraction_proxy: number;
     measured_target_loss: number;
     measured_page_loss: number;
-    topology: {
-      passed: boolean;
-      removed_components: number;
-      touched_edges: string[];
-    };
+    topology: { passed: boolean; removed_components: number; touched_edges: string[] };
   };
   artifacts: {
     fragment: { path: string };
@@ -85,15 +116,7 @@ type PilotRecord = Record<string, unknown> & {
     damage: { path: string };
     content: { path: string };
   };
-  source_provenance: {
-    source_record: {
-      canvas_identifier: string;
-      selection_status: string;
-      selection_review_status: string;
-      selection_review_note: string;
-      image: { attribution: string };
-    };
-  };
+  source_provenance: { source_record: SourceRecord };
 };
 
 type RawSegmentation = {
@@ -108,67 +131,35 @@ type RawSegmentation = {
   }>;
 };
 
-export function loadEvidence(): EvidencePayload {
-  const audit = readJson<{
-    pages: AuditPage[];
-    database: { corpus_asset_count: number; total_layout_regions: number; total_segmentation_runs: number };
-  }>("data/metadata/artificial_fragment_v03_corpus_audit.json");
-  const dataset = readJson<{ tasks: Array<{ task_id: string; target_record: string }> }>(
-    `${PILOT_ROOT}/dataset.json`,
-  );
-  const records = dataset.tasks.map((task) =>
-    readJson<PilotRecord>(`${PILOT_ROOT}/${task.target_record}`),
-  );
-  const first = records[0];
-  const raw = readJson<RawSegmentation>(first.segmentation_provenance.stored_run.raw_output_path);
-  const experimentIds = new Set(records.map((record) => record.task_id));
-  const manuscriptCount = new Set(audit.pages.map((page) => page.manuscript_id)).size;
-  const splitCounts = audit.pages.reduce<Record<string, number>>((counts, page) => {
-    counts[page.split] = (counts[page.split] ?? 0) + 1;
-    return counts;
-  }, {});
-
-  const pages: CorpusPage[] = audit.pages
-    .filter((page) => fs.existsSync(path.join(PROJECT_ROOT, page.source_path)))
-    .map((page) => ({
-      pageId: page.page_id,
-      manuscriptId: page.manuscript_id,
-      canvasLabel: page.canvas_label,
-      split: page.split,
-      sourcePath: page.source_path,
-      sourceUrl: artifactUrl(page.source_path),
-      overlayUrl: artifactUrl(
-        `outputs/training_corpus_segmentation/batch_01/overlays/${page.page_id}_overlay.jpg`,
-      ),
-      dimensions: page.dimensions_px,
-      regionCount: page.valid_mask_count,
-      classCounts: page.class_counts,
-      confidenceMean: page.confidence.mean ?? null,
-      hasExperiment: page.page_id === FOCUS_PAGE_ID && experimentIds.size > 0,
-    }))
-    .sort((a, b) => Number(b.hasExperiment) - Number(a.hasExperiment) || a.manuscriptId.localeCompare(b.manuscriptId));
-
-  const experiments: Experiment[] = records.map((record) => ({
+function makeExperiment(record: PilotRecord, datasetRoot: string): Experiment {
+  return {
     taskId: record.task_id,
+    pageId: record.page_id,
     damageId: record.damage_id,
     severity: record.severity,
     family: record.matrix_entry.family,
     cohort: record.cohort,
-    fragmentPath: artifactUrl(`${PILOT_ROOT}/${record.artifacts.fragment.path}`),
-    survivalPath: artifactUrl(`${PILOT_ROOT}/${record.artifacts.survival.path}`),
-    damagePath: artifactUrl(`${PILOT_ROOT}/${record.artifacts.damage.path}`),
-    contentPath: artifactUrl(`${PILOT_ROOT}/${record.artifacts.content.path}`),
+    fragmentPath: artifactUrl(`${datasetRoot}/${record.artifacts.fragment.path}`),
+    survivalPath: artifactUrl(`${datasetRoot}/${record.artifacts.survival.path}`),
+    damagePath: artifactUrl(`${datasetRoot}/${record.artifacts.damage.path}`),
+    contentPath: artifactUrl(`${datasetRoot}/${record.artifacts.content.path}`),
+    realismProfile: record.realism_profile ?? "geometric_v1",
+    visualRealismValidated: Boolean(record.visual_realism_validated),
+    historicalDamageClaim: Boolean(record.historical_damage_claim),
     matrix: {
       sourceRow: record.matrix_entry.source_row,
       contentId: record.matrix_entry.content_id,
       damageId: record.matrix_entry.damage_id,
       damageType: record.matrix_entry.damage_type,
+      visualClass: record.matrix_entry.visual_class ?? "Not recorded",
       severity: record.matrix_entry.severity,
       family: record.matrix_entry.family,
       decision: record.matrix_entry.decision,
       cohort: record.matrix_entry.cohort,
       note: record.matrix_entry.note,
-      exampleUrl: record.matrix_entry.example_url,
+      status: record.matrix_entry.status ?? "eligible",
+      targetAreaFractionProxy:
+        record.matrix_entry.target_area_fraction_proxy ?? record.statistics.target_area_fraction_proxy,
       semanticSeverityValidated: record.matrix_entry.semantic_severity_validated,
     },
     statistics: {
@@ -180,41 +171,67 @@ export function loadEvidence(): EvidencePayload {
       removedComponents: record.statistics.topology.removed_components,
       touchedEdges: record.statistics.topology.touched_edges,
     },
-  }));
+  };
+}
 
-  return {
-    generatedAt: new Date().toISOString(),
-    corpus: {
-      id: "ecodices_training_source_expansion_batch_01_v0_1",
-      source: "Selected IIIF pages from e-codices; not a random scrape and not CoMMA.",
-      attribution: first.source_provenance.source_record.image.attribution,
-      pageCount: audit.database.corpus_asset_count,
-      localPageCount: pages.length,
-      manuscriptCount,
-      layoutRegionCount: audit.database.total_layout_regions,
-      segmentationRunCount: audit.database.total_segmentation_runs,
-      pageSplitCounts: splitCounts,
-      pages,
-    },
-    focus: {
-      pageId: FOCUS_PAGE_ID,
-      sourcePath: artifactUrl(first.source_image),
-      overlayPath: artifactUrl(first.segmentation_provenance.stored_run.overlay_path),
-      contentMaskPath: artifactUrl(first.content_mask),
-      rawOutputPath: first.segmentation_provenance.stored_run.raw_output_path,
-      repository: raw.repository,
-      canvasIdentifier: first.source_provenance.source_record.canvas_identifier,
-      sourceSha256: String(first.source_sha256),
-      selectionStatus: first.source_provenance.source_record.selection_status,
-      selectionReviewStatus: first.source_provenance.source_record.selection_review_status,
-      selectionReviewNote: first.source_provenance.source_record.selection_review_note,
+export function loadEvidence(): EvidencePayload {
+  const datasetRoot = selectedDatasetRoot();
+  const audit = readJson<{
+    pages: AuditPage[];
+    database: { corpus_asset_count: number; total_layout_regions: number; total_segmentation_runs: number };
+  }>("data/metadata/artificial_fragment_v03_corpus_audit.json");
+  const dataset = readJson<{ tasks: Array<{ task_id: string; target_record: string }> }>(
+    `${datasetRoot}/dataset.json`,
+  );
+  const records = dataset.tasks.map((task) =>
+    readJson<PilotRecord>(`${datasetRoot}/${task.target_record}`),
+  );
+  const auditById = new Map(audit.pages.map((page) => [page.page_id, page]));
+  const grouped = records.reduce<Map<string, PilotRecord[]>>((pages, record) => {
+    const pageRecords = pages.get(record.page_id) ?? [];
+    pageRecords.push(record);
+    pages.set(record.page_id, pageRecords);
+    return pages;
+  }, new Map());
+
+  const pages: ProcessedPage[] = Array.from(grouped.values()).map((pageRecords) => {
+    const first = pageRecords[0];
+    const stored = first.segmentation_provenance.stored_run;
+    const raw = readJson<RawSegmentation>(stored.raw_output_path);
+    const auditPage = auditById.get(first.page_id);
+    const source = first.source_provenance.source_record;
+    const rights = source.image;
+    return {
+      pageId: first.page_id,
+      manuscriptId: first.manuscript_id,
+      canvasLabel: source.canvas_label ?? auditPage?.canvas_label ?? first.page_id.slice(0, 8),
+      split: first.split,
+      sourcePath: first.source_image,
+      sourceUrl: artifactUrl(first.source_image),
+      overlayUrl: artifactUrl(stored.overlay_path),
+      contentMaskUrl: artifactUrl(first.content_mask),
+      dimensions: auditPage?.dimensions_px ?? [2000, 2000],
+      regionCount: stored.layout_region_count,
+      classCounts: auditPage?.class_counts ?? {},
+      confidenceMean: auditPage?.confidence.mean ?? null,
+      repository: raw.repository || "e-codices",
+      canvasIdentifier: source.canvas_identifier,
+      sourceSha256: first.source_sha256,
+      selectionStatus: source.selection_status,
+      selectionReviewStatus: source.selection_review_status,
+      selectionReviewNote: source.selection_review_note,
+      attribution: rights.attribution,
+      license: rights.license ?? rights.rights_statement ?? "Not recorded",
+      rightsReviewStatus: rights.rights_review_status ?? "Not recorded",
+      trainingAllowedInSourceRecord: Boolean(rights.training_allowed),
       modelId: first.segmentation_provenance.model_id,
       modelSha256: first.segmentation_provenance.model_sha256,
       runIdentitySha256: first.segmentation_provenance.run_identity_sha256,
-      dbSegmentationRunId: first.segmentation_provenance.stored_run.db_segmentation_run_id,
-      dbImageAssetId: first.segmentation_provenance.stored_run.db_image_asset_id,
-      dbCanvasId: first.segmentation_provenance.stored_run.db_canvas_id,
-      detectedLabels: first.segmentation_provenance.stored_run.detected_labels,
+      dbSegmentationRunId: stored.db_segmentation_run_id,
+      dbImageAssetId: stored.db_image_asset_id,
+      dbCanvasId: stored.db_canvas_id,
+      storageStatus: stored.status,
+      detectedLabels: stored.detected_labels,
       detections: raw.detections.map((detection) => ({
         index: detection.index,
         label: detection.label,
@@ -228,12 +245,27 @@ export function loadEvidence(): EvidencePayload {
       selectedRegionIndex: first.segmentation_provenance.region_index,
       selectedRegionLabel: first.segmentation_provenance.label,
       selectedRegionConfidence: first.segmentation_provenance.confidence,
+      experiments: pageRecords.map((record) => makeExperiment(record, datasetRoot)),
+    };
+  });
+
+  return {
+    generatedAt: new Date().toISOString(),
+    corpus: {
+      id: "ecodices_training_source_expansion_batch_01_v0_1",
+      source: "Ten deterministically selected e-codices IIIF pages from the local segmented corpus.",
+      attribution: pages[0]?.attribution ?? "e-codices",
+      sourceCollectionPageCount: audit.database.corpus_asset_count,
+      processedPageCount: pages.length,
+      manuscriptCount: new Set(pages.map((page) => page.manuscriptId)).size,
+      layoutRegionCount: pages.reduce((total, page) => total + page.regionCount, 0),
+      segmentationRunCount: pages.length,
+      pages,
     },
-    experiments,
     boundaries: {
-      source: "Observed source image and IIIF metadata from e-codices.",
+      source: "Observed source images and IIIF metadata from e-codices.",
       model: "Layout regions are Mergen/eManuSkript model outputs, not expert annotations.",
-      synthetic: "Damage and resulting fragments are generated experimental artifacts.",
+      synthetic: "Damage and resulting fragments are controlled synthetic artifacts; their shapes await specialist review.",
       inference: "No missing historical content is recovered or claimed here.",
     },
   };

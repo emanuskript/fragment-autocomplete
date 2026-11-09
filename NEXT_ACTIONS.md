@@ -6,29 +6,33 @@ Run `bash scripts/run_project_dashboard.sh` for the Next.js/React Manuscript
 Fragment Demo documented in `docs/PROJECT_STATUS_DASHBOARD.md`. Its six-step
 public flow explains the original page, detected visual regions, selected
 measurement area, controlled damage, complete fragment result, and side-by-side
-comparison in a neutral dark interface. Nine real generated variants open fully in the main viewer. Technical
-storage and the source-page collection remain available as optional disclosures.
+comparison in a neutral dark interface. Ten independently processed pages are
+clickable; each has nine generated variants, its own layout evidence and a row in
+the metadata/database digestion table. Exact identifiers remain available in an
+optional provenance disclosure.
 The demo is read-only and does not replace the next scholarly decision gate below.
 
 ## Active step — review the matrix-driven synthetic-data pilot
 
-Jeremy's v3 matrix is imported with 187 rows and 17 named damage types. Use
+The supplied v3 matrix is imported with 187 rows and 17 named damage types. Use
 `scripts/synthetic_data.py` and [the workflow guide](docs/SYNTHETIC_DATA_WORKFLOW.md).
 Interior loss, straight edge loss and irregular edge loss are active; the other
 14 operators are unimplemented. Rows 187/188 need missing IDs/fields resolved in
 a new matrix revision. Do not fill them by guesswork.
 
-Review the pilot with Jeremy: confirm the declared Mergen-label/content mapping,
-judge the shapes, and relate content-area presets to the qualitative S1–S4 notes.
-Semantic severity remains unvalidated. Then add one appearance operator with its
-own visibility semantics before scaling. General/edge cohorts remain separate;
+Review the ten-page, 90-sample cohort with the matrix author or another manuscript
+specialist: confirm the declared Mergen-label/content mapping, judge the new
+multi-scale paper-edge shapes, and relate selected-region area presets to the
+qualitative S1–S4 notes. Shape realism and semantic severity remain unvalidated.
+Record the review as a new versioned decision artifact, then add one appearance
+operator with its own visibility semantics. General/edge cohorts remain separate;
 original manuscript splits, test files and frozen experiments stay unchanged.
 
 Conduct that review against the versioned source images, masks, fragments and
 measurements. Record the judgment as a new versioned decision artifact; do not
 edit the imported matrix or silently promote a visual impression to ground truth.
 Keep reviewer identities and internal decision language out of the public demo;
-add only approved experiment outputs and plain-language measurements there.
+add only versioned experiment outputs and plain-language measurements there.
 
 The earlier corpus expansion/storage actions below remain follow-up work, not
 prerequisites for inspecting this bounded pilot.

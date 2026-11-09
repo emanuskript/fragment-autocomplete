@@ -1,31 +1,33 @@
 # ROADMAP_STATUS
 
-Latest interface refinement: 2026-11-09 — the evidence workbench is now a
-public-facing six-step Manuscript Fragment Demo with a neutral dark visual
-system restored after user review. The main surface contains one
-large visual, one plain-language explanation, and previous/next controls. The
-ambiguous draggable comparison was replaced by a side-by-side original/result
-view; selecting any of the nine damage variants opens its complete transparent
-fragment in the main viewer. “Content target” was replaced by “selected area” and
-defined as the detected writing region used for measurement. Personal names,
-internal experiment codes, database IDs and project-review language were removed
-from the public surface; technical evidence and the 84-image local collection
-remain optional disclosures. Retrieval, reconstruction, expert review and
+Latest interface and experiment refinement: 2026-11-09 — the dark React/Next.js
+Manuscript Fragment Demo now presents ten independently processed manuscript
+pages. Every page is clickable and has its own source image, saved Mergen layout
+overlay, selected writing-region mask, nine synthetic damage trials and stored
+metadata. A visible ten-row digestion table reports image dimensions, detected
+classes, region-row counts, selected-region confidence, database storage and
+source terms. The public classification uses the supplied damage taxonomy
+without personal names, while exact database identifiers remain in an optional
+provenance disclosure. Retrieval, reconstruction, expert approval and
 Fragmentarium deployment remain explicitly not built. See
-[PROJECT_STATUS_DASHBOARD.md](docs/PROJECT_STATUS_DASHBOARD.md). Validation after
-the refinement: Next.js lint and production build passed; responsive inspection
-reported zero failures at 1440 px, 768 px and 390 px; direct interaction checks
-confirmed that variant selection, the full fragment view and all six steps work.
+[PROJECT_STATUS_DASHBOARD.md](docs/PROJECT_STATUS_DASHBOARD.md).
 
-Latest addition: 2026-11-09 — Jeremy's damage-matrix adapter and bounded synthetic-data
-workflow are implemented. All 17 named types/187 rows are preserved; three
-material-loss operators generate content-calibrated samples, 14 remain unimplemented,
-and two incomplete rows are explicitly quarantined. One existing training page
-produced nine samples with stored Mergen evidence. See
-[SYNTHETIC_DATA_WORKFLOW.md](docs/SYNTHETIC_DATA_WORKFLOW.md). Validation: 208 unit
-tests passed, including 20 new matrix/generation tests; correctness lint passed.
-The workspace check passed; real-pilot regeneration preserved all 47 files and timestamps.
-Qualitative severity and historical realism are not yet expert-validated.
+The bounded matrix workflow still preserves all 17 named types and 187 rows;
+three material-loss operators generate content-calibrated samples, 14 remain
+unimplemented and two incomplete rows remain quarantined. A new optional
+`paper_edge_v1` profile replaces repetitive geometric waves with deterministic
+multi-scale boundary variation. The ten-page public cohort generated 90 local,
+ignored artifacts with no skips. Pixel-loss calibration and topology are tested,
+but visual realism, qualitative severity and historical authenticity are not
+specialist-validated. The interface therefore labels these as synthetic
+comparators, never recovered historical content.
+
+Validation after this change: 223 Python tests passed; Ruff, Next.js lint,
+production build and the workspace validator passed. Automated responsive
+inspection at 1440 px, 768 px and 390 px reported no broken images, console
+errors, horizontal page overflow, tiny text or critical findings. Direct browser
+checks confirmed top-strip selection, table-row selection, page-specific variant
+replacement, full-fragment display and the live PostgreSQL provenance disclosure.
 
 Last updated: 2026-10-28. Repository-facing model guidance now identifies [Mergen](https://github.com/emanuskript/Mergen) as the eManuSkript layout-analysis component and registers the supplied GWDG OwnCloud Mergen Weights directory, the three expected filenames, and their previously verified checksums in `models/model_registry.yaml`. The checkpoint binaries remain ignored and external. Historical run manifests retain the original `best_emanuskript_segmentation` identifier and local path as immutable provenance; the cleanup does not reinterpret or regenerate any scientific result. The May 2026 Architecture Draft v0.2 remains historical planning, while `docs/IMPLEMENTATION_STATUS_2026-10.md` and `docs/ARCHITECTURE.md` describe the current implementation boundary.
 
@@ -37,8 +39,8 @@ Previous milestone (2026-09-07): Artificial Fragment Experiment v0.2 completed f
 
 | Area | Expected status after 1.5 months | Concrete definition of done | Current status | Evidence / files | Next action |
 | --- | --- | --- | --- | --- | --- |
-| Public manuscript-fragment demo | Interface milestone | Explain the real source-to-fragment flow in six plain-language steps; show each complete selected output; keep technical evidence optional and evidence classes separate. | Done for the current local corpus and nine generated variants | web/, scripts/run_project_dashboard.sh, scripts/export_project_status_pdf.py, src/frontend/project_status.py, tests/frontend/test_project_status.py, docs/PROJECT_STATUS_DASHBOARD.md | Extend the demo only when a new versioned experiment produces validated artifacts; do not fabricate missing stages. |
-| Jeremy matrix-driven synthesis | New bounded milestone | Preserve matrix decisions, explicit operator coverage, content-mask calibration, reproducible paired exports and split checks. | Implemented for D2-01/02/03; remaining 14 operators pending | scripts/synthetic_data.py, src/evaluation/damage_matrix.py, src/evaluation/matrix_synthesis.py, data/metadata/jeremy_damage_matrix_v3.json, tests/evaluation/test_damage_matrix.py | Review real samples and severity semantics with Jeremy, then implement an appearance operator. |
+| Public manuscript-fragment demo | Interface milestone | Explain the real source-to-fragment flow in six plain-language steps; make every processed page and complete output inspectable; show metadata digestion; keep exact provenance optional and evidence classes separate. | Done for ten processed pages and 90 generated variants | web/, scripts/run_project_dashboard.sh, scripts/export_project_status_pdf.py, src/frontend/project_status.py, tests/frontend/test_project_status.py, docs/PROJECT_STATUS_DASHBOARD.md | Conduct specialist review of the synthetic boundary shapes and matrix severity semantics before presenting them as validated realism. |
+| Supplied matrix-driven synthesis | New bounded milestone | Preserve matrix decisions, explicit operator coverage, selected-region calibration, reproducible paired exports and split checks. | Implemented for D2-01/02/03, including optional multi-scale paper-edge geometry; remaining 14 operators pending | scripts/synthetic_data.py, src/evaluation/damage_matrix.py, src/evaluation/matrix_synthesis.py, data/metadata/jeremy_damage_matrix_v3.json, tests/evaluation/test_damage_matrix.py | Record a versioned specialist review of the 90-sample cohort, then implement one distinct appearance operator. |
 | Repository / workspace | Done | Git repo, understandable structure, reproducible setup, collaborator documentation, secret-safe configuration, ignore policy, lint/test commands. | Done — external-sharing hygiene pass complete; licence/contact decision remains | README.md, docs/COLLABORATOR_QUICKSTART.md, docs/ARCHITECTURE.md, docs/INTEGRATION_NOTES.md, .env.example, pyproject.toml, requirements*.txt | Choose a software licence and approved citation/contact; share from a clean Git clone rather than the artifact-rich working directory. |
 | Architecture draft | Done | Complete technical architecture document with figures and PDF/HTML export. | Done — preserved historical Architecture Draft v0.2 dated 2026-05-06; not current implementation status | docs/01_architecture_overview.md, docs/figures/architecture/, outputs/Fragment_Autocomplete_Architecture_Draft_v0.2_2026-05-06.pdf, docs/IMPLEMENTATION_STATUS_2026-10.md | Use the October status comparison and current architecture for implementation review; retain the draft unchanged as design history. |
 | Three-page project study report | Done | Concise engineer-oriented PDF explains the safety contract, running pipeline, data/storage model, artificial-fragment evaluation loop, implementation status, roadmap, and teach-back narrative with verified figures. | Done | output/pdf/Fragment_Autocomplete_Study_Report.pdf | Refresh after the next material milestone or major status change. |

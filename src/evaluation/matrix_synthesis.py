@@ -8,18 +8,141 @@ from pathlib import Path
 
 import numpy as np
 from PIL import Image, ImageDraw
+from scipy import ndimage
 
 from .damage_matrix import AREA_PROXIES, OPERATORS, fingerprint, immutable_write, plan, write_json
 from .segmentation_masks import validate_binary_mask
 from .structured_damage import DamageRejected, MIN_DIMENSION, _shape_score, parameters, topology
 
 VERSION = "matrix_synthesis_v1"
+PAPER_PROFILE_VERSION = "matrix_synthesis_v2_paper_profile"
+REALISM_PROFILES = ("geometric_v1", "paper_edge_v1")
 
 
-def content_damage(size, target, family, fraction, identity):
+def _normalised_noise(generator, length, sigma, *, mode="reflect"):
+    """Return deterministic correlated noise without a repeating wave signature."""
+    values = ndimage.gaussian_filter1d(generator.normal(size=length), sigma=sigma, mode=mode)
+    values -= values.mean()
+    deviation = values.std()
+    return values / deviation if deviation else values
+
+
+def _paper_profile(length, seed, *, irregular):
+    """Deterministic multi-scale edge variation with connected cross-sections."""
+    generator = np.random.default_rng(int(seed[:16], 16) % (2**32))
+    if irregular:
+        profile = (
+            1
+            + .16 * _normalised_noise(generator, length, max(8, length / 13))
+            + .065 * _normalised_noise(generator, length, max(3, length / 52))
+            + .018 * _normalised_noise(generator, length, max(1, length / 210))
+        )
+        return np.clip(profile, .52, 1.52)
+    profile = (
+        1
+        + .024 * _normalised_noise(generator, length, max(8, length / 10))
+        + .007 * _normalised_noise(generator, length, max(2, length / 75))
+    )
+    return np.clip(profile, .91, 1.09)
+
+
+def _radial_paper_profile(angle, seed):
+    """Sample a seamless, non-periodic-looking radial boundary around a hole."""
+    bins = 2048
+    generator = np.random.default_rng(int(seed[16:32], 16) % (2**32))
+    profile = (
+        1
+        + .11 * _normalised_noise(generator, bins, bins / 18, mode="wrap")
+        + .045 * _normalised_noise(generator, bins, bins / 55, mode="wrap")
+        + .012 * _normalised_noise(generator, bins, bins / 180, mode="wrap")
+    )
+    profile = np.clip(profile, .66, 1.34)
+    position = ((angle + np.pi) / (2 * np.pi) * bins) % bins
+    low = np.floor(position).astype(int)
+    high = (low + 1) % bins
+    weight = position - low
+    return profile[low] * (1 - weight) + profile[high] * weight
+
+
+def _paper_shape_score(size, p, identity):
+    """Organic but topologically controlled masks; visual realism remains unvalidated."""
+    w, h = size
+    x = (np.arange(w, dtype=np.float64)[None, :] + .5) / w
+    y = (np.arange(h, dtype=np.float64)[:, None] + .5) / h
+    guard = np.zeros((h, w), dtype=bool)
+    family = p["family"]
+    if family in ("edge_loss", "edge_tear"):
+        edge = p["edge"]
+        depth = y if edge == "top" else 1-y if edge == "bottom" else x if edge == "left" else 1-x
+        transverse_length = w if edge in ("top", "bottom") else h
+        profile = _paper_profile(transverse_length, identity, irregular=family == "edge_tear")
+        profile = profile[None, :] if edge in ("top", "bottom") else profile[:, None]
+        score = np.broadcast_to(depth / profile, (h, w)).copy()
+        if edge in ("top", "bottom"):
+            guard[:, [0, -1]] = True
+            guard[-1 if edge == "top" else 0, :] = True
+        else:
+            guard[[0, -1], :] = True
+            guard[:, -1 if edge == "left" else 0] = True
+    elif family == "internal_hole":
+        cx, cy = p["center_normalized"]
+        ratio = p["ellipse_axis_ratio"]
+        dx, dy = (x-cx) / ratio, (y-cy) * ratio
+        angle = np.arctan2(dy, dx)
+        radial = np.sqrt(dx**2 + dy**2)
+        score = radial / _radial_paper_profile(angle, identity)
+        guard[[0, -1], :] = True
+        guard[:, [0, -1]] = True
+    else:
+        raise DamageRejected("paper_profile_unsupported_family")
+    score[guard] = np.inf
+    return score
+
+
+def _paper_topology(mask, p):
+    """Validate connected material loss while allowing fibre-scale boundary variation."""
+    removed = np.asarray(mask) > 0
+    structure = ndimage.generate_binary_structure(2, 1)
+    _, component_count = ndimage.label(removed, structure=structure)
+    touched = [
+        edge for edge, values in (
+            ("top", removed[0]), ("bottom", removed[-1]),
+            ("left", removed[:, 0]), ("right", removed[:, -1]),
+        ) if values.any()
+    ]
+    checks = {
+        "nonempty": bool(removed.any()),
+        "not_entire_page": not bool(removed.all()),
+        "one_removed_component": int(component_count) == 1,
+    }
+    details = {"connectivity": 4, "removed_components": int(component_count), "touched_edges": touched}
+    if p["family"] in ("edge_loss", "edge_tear"):
+        edge = p["edge"]
+        checks["exactly_intended_edge"] = set(touched) == {edge}
+        slices = removed.T if edge in ("top", "bottom") else removed
+        active_slices = slices[slices.any(axis=1)]
+        transitions = np.count_nonzero(
+            np.diff(np.pad(active_slices.astype(np.uint8), ((0, 0), (1, 1))), axis=1), axis=1,
+        ) if len(active_slices) else np.array([])
+        checks["contiguous_edge_cross_sections"] = bool(len(transitions) and np.all(transitions == 2))
+        depths = removed.sum(axis=0 if edge in ("top", "bottom") else 1)
+        positive = depths[depths > 0]
+        variation = float(np.std(positive) / np.mean(positive)) if len(positive) else 0.
+        levels = int(len(np.unique(positive)))
+        details.update(positive_depth_levels=levels, depth_variation_fraction=variation)
+        if p["family"] == "edge_loss":
+            checks["predominantly_straight_front"] = levels >= 3 and variation <= .12
+        else:
+            checks["irregular_inward_front"] = levels >= 8 and variation >= .08
+    else:
+        checks["strictly_interior"] = not touched
+    return {**details, "checks": checks, "passed": all(checks.values())}
+
+
+def content_damage(size, target, family, fraction, identity, *, realism_profile="geometric_v1"):
     """Calibrate against content pixels; maintain the existing page-level topology tests."""
     validate_binary_mask(target, size)
-    if min(size) < MIN_DIMENSION or not 0 < fraction < 1:
+    if min(size) < MIN_DIMENSION or not 0 < fraction < 1 or realism_profile not in REALISM_PROFILES:
         raise DamageRejected("unsupported_dimensions_or_fraction")
     content = np.asarray(target) == 255
     count = int(content.sum())
@@ -30,7 +153,11 @@ def content_damage(size, target, family, fraction, identity):
     if family == "internal_hole":
         yy, xx = np.nonzero(content)
         p["center_normalized"] = [float((xx.mean() + .5) / size[0]), float((yy.mean() + .5) / size[1])]
-    score = _shape_score(size, p)
+    if realism_profile == "paper_edge_v1":
+        p.update(realism_profile=realism_profile, realism_review_status="unvalidated_synthetic_approximation")
+        score = _paper_shape_score(size, p, identity)
+    else:
+        score = _shape_score(size, p)
     target_indices = np.flatnonzero(content.ravel() & np.isfinite(score.ravel()))
     if len(target_indices) < goal:
         raise DamageRejected("target_area_exceeds_topological_capacity")
@@ -40,18 +167,22 @@ def content_damage(size, target, family, fraction, identity):
     threshold = float(score.ravel()[last])
     removed = (score < threshold) | ((score == threshold) & (np.arange(score.size).reshape(score.shape) <= last))
     damage = Image.fromarray(removed.astype(np.uint8) * 255)
-    checks = topology(damage, p)
+    checks = _paper_topology(damage, p) if realism_profile == "paper_edge_v1" else topology(damage, p)
     if not checks["passed"]:
         raise DamageRejected("topology_failed:" + ",".join(k for k, v in checks["checks"].items() if not v))
     affected = int((removed & content).sum())
     if affected != goal:
         raise DamageRejected("content_calibration_failed")
-    return damage, {
+    result = {
         "parameters": p, "target_pixels": count, "removed_target_pixels": affected,
         "target_area_fraction_proxy": fraction, "measured_target_loss": affected / count,
         "measured_page_loss": float(removed.mean()), "rounding_tolerance": .5 / count,
         "topology": checks, "semantic_severity_validated": False,
     }
+    if realism_profile == "paper_edge_v1":
+        result.update(realism_profile=realism_profile, visual_realism_validated=False,
+                      historical_damage_claim=False)
+    return damage, result
 
 
 def png_bytes(image):
@@ -148,13 +279,19 @@ def generate_dataset(matrix, config, base, output, *, include_edge_cases=False):
         raise ValueError("unknown_or_empty_severity_selection")
     if len(set(damage_ids)) != len(damage_ids) or len(set(severities)) != len(severities):
         raise ValueError("duplicate_damage_or_severity_selection")
+    realism_profile = config.get("realism_profile", "geometric_v1")
+    if realism_profile not in REALISM_PROFILES:
+        raise ValueError("unknown_realism_profile")
     selection = {"seed": seed, "damage_ids": damage_ids, "severities": severities,
                  "include_edge_cases": include_edge_cases}
+    if realism_profile != "geometric_v1":
+        selection["realism_profile"] = realism_profile
     inputs = [{k: p[k] for k in ("page_id", "manuscript_id", "split", "content_id", "content_basis")}
               | ({"source_sha256": p["source_hash"], "mask_sha256": p["mask_hash"],
                   "segmentation_provenance": p.get("segmentation_provenance")} if not p.get("excluded_test") else {})
               for p in pages]
-    run = {"version": VERSION, "matrix_sha256": fingerprint(matrix), "selection": selection, "inputs": inputs,
+    run = {"version": PAPER_PROFILE_VERSION if realism_profile != "geometric_v1" else VERSION,
+           "matrix_sha256": fingerprint(matrix), "selection": selection, "inputs": inputs,
            "split_registry_sha256": fingerprint(config.get("split_registry", []))}
     # Prevent repurposing a populated output directory for a different run.
     write_json(output / "run.json", run)
@@ -177,11 +314,15 @@ def generate_dataset(matrix, config, base, output, *, include_edge_cases=False):
                               "manuscript_id": page["manuscript_id"], "split": page["split"],
                               "content_id": page["content_id"], "content_basis": page["content_basis"],
                               "segmentation_provenance": page.get("segmentation_provenance"), "seed": seed}
+                if realism_profile != "geometric_v1":
+                    descriptor.update(version=PAPER_PROFILE_VERSION, realism_profile=realism_profile,
+                                      visual_realism_validated=False)
                 identity = fingerprint(descriptor)
                 task_id = "matrix_" + identity[:24]
                 try:
                     damage, stats = content_damage(page["source"].size, page["target"], entry["family"],
-                                                   entry["target_area_fraction_proxy"], identity)
+                                                   entry["target_area_fraction_proxy"], identity,
+                                                   realism_profile=realism_profile)
                 except DamageRejected as exc:
                     skipped.append({**brief, "reason": str(exc)})
                     continue
@@ -211,6 +352,8 @@ def generate_dataset(matrix, config, base, output, *, include_edge_cases=False):
                           "coordinate_space": "source_page", "source_to_fragment": [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
                           "synthetic_damage": True, "historical_damage_claim": False,
                           "layout_labels": "supplied mask; no new Mergen inference", "source_integrity_verified": True}
+                if realism_profile != "geometric_v1":
+                    record["realism_review_status"] = "synthetic_shape_only; specialist_validation_pending"
                 write_json(output / task_id / "targets" / "record.json", record)
                 tasks.append({"task_id": task_id, "split": page["split"], "cohort": entry["cohort"],
                               "observed_image": artifacts["fragment"]["path"],

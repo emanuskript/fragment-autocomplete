@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Ten-page public demonstration cohort with 90 page-specific synthetic trials,
+  a compact processed-page browser, a supplied-taxonomy classification panel,
+  and a clickable metadata/database digestion table.
+- Optional deterministic multi-scale paper-edge profile for interior, straight
+  edge and irregular edge loss, with explicit unvalidated-realism and
+  no-historical-claim metadata.
 - Responsive Next.js/React Fragment Evidence Workbench using the actual local
   corpus images, saved Mergen artifacts, Jeremy matrix records, nine generated
   fragments, measurements, and an optional read-only live PostgreSQL view.
@@ -64,6 +70,9 @@ All notable changes to this project will be documented in this file.
 
 ### Updated
 
+- Replaced the one-page demo binding with ten independent source/overlay/mask/
+  experiment/provenance bundles; every page and metadata row now opens its own
+  complete six-step flow while preserving the neutral dark interface.
 - Reworked the evidence interface into a decluttered six-step public demo,
   replaced the ineffective comparison slider with a side-by-side view, made all
   nine variant selections open the complete fragment, renamed “content target”

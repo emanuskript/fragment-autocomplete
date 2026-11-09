@@ -31,8 +31,10 @@ def main():
             if name == "prepare-corpus":
                 action.add_argument("--split", choices=("train", "validation"), default="train")
                 action.add_argument("--label", required=True, help="Exact stored Mergen label")
-                action.add_argument("--content-id", required=True, help="Explicit mapping to Jeremy's content ID")
+                action.add_argument("--content-id", required=True, help="Explicit mapping to the supplied taxonomy content ID")
                 action.add_argument("--limit", type=int, default=1)
+                action.add_argument("--realism-profile", choices=("geometric_v1", "paper_edge_v1"),
+                                    default="geometric_v1")
             elif name == "generate":
                 action.add_argument("--sources", type=Path, required=True)
     args = parser.parse_args()
@@ -53,6 +55,8 @@ def main():
                 plan(matrix, content_id=args.content_id)
                 config = prepare_corpus_sources(ROOT, split=args.split, label=args.label,
                                                 content_id=args.content_id, limit=args.limit)
+                if args.realism_profile != "geometric_v1":
+                    config["realism_profile"] = args.realism_profile
                 write_json(args.output, config)
                 result = {"selected_pages": len(config["pages"]), "output": str(args.output)}
             else:

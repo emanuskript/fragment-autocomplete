@@ -12,7 +12,7 @@ CoMMA is treated as a possible text and metadata resource, not as the visual tra
 
 ## Current status
 
-**Current synthetic-data entry point:** [Jeremy's matrix workflow](docs/SYNTHETIC_DATA_WORKFLOW.md).
+**Current synthetic-data entry point:** [supplied damage-matrix workflow](docs/SYNTHETIC_DATA_WORKFLOW.md).
 `python scripts/synthetic_data.py plan` shows matrix coverage;
 `python scripts/synthetic_data.py demo --output outputs/synthetic_data/my_demo`
 runs a small schematic example without model weights or a database. All 17 damage
@@ -21,10 +21,11 @@ Use the [documentation map](docs/README.md) to navigate current and historical m
 
 **Interactive demo:** run `bash scripts/run_project_dashboard.sh` to open the
 [Manuscript Fragment Demo](docs/PROJECT_STATUS_DASHBOARD.md). The public-facing
-Next.js application follows one real page through six explained steps: original
-image, detected regions, selected measurement area, controlled damage, complete
-fragment result, and side-by-side comparison. Technical storage and provenance
-remain available in optional disclosures rather than crowding the main demo.
+Next.js application lets visitors select any of ten fully processed pages and
+follow it through six explained steps: original image, detected regions, selected
+writing region, controlled damage, complete fragment result and side-by-side
+comparison. A ten-row table shows digested metadata and storage for every page;
+exact identifiers remain available in an optional disclosure.
 
 Implemented and tested:
 
@@ -34,13 +35,13 @@ Implemented and tested:
 - Mergen/Ultralytics segmentation runners, source-coordinate mask restoration, storage, and a local read-only Streamlit viewer;
 - deterministic artificial-fragment generation with rectangular and irregular masks, known transforms, source-space survival/damage masks, and layout-survival measurements;
 - structured synthetic-damage families and versioned experiments (`v0.1.1`, `v0.2`, and `v0.3`);
-- Jeremy's v3 matrix import, generation policy, content-mask-calibrated material loss,
+- supplied v3 matrix import, generation policy, selected-region-calibrated material loss,
   corpus preparation and separate observed/target exports;
 - idempotent artificial-fragment task registration;
 - corpus, determinism, storage, rights, provenance, and experiment audit infrastructure;
-- a read-only React/Next.js guided demo showing actual local corpus images,
-  saved segmentation artifacts, nine synthetic fragment variants, measurements,
-  optional database state, and a browsable source-page collection;
+- a read-only React/Next.js guided demo showing ten actual local corpus images,
+  page-specific saved segmentation artifacts, 90 synthetic fragment variants,
+  a metadata/storage table and optional exact database provenance;
 - committed compact experiment specifications, provenance records, statistics, and validation results.
 
 Not implemented:
@@ -140,10 +141,10 @@ bash scripts/run_project_dashboard.sh
 ```
 
 This read-only Next.js/React interface uses actual local corpus images, stored
-segmentation artifacts, synthetic experiment outputs, compact metadata, and—when
-available—a live PostgreSQL connection. Its main surface is a six-step public
-demonstration; technical evidence and the full local page collection are optional
-disclosures. See
+segmentation artifacts, synthetic experiment outputs, compact metadata and—when
+available—a live PostgreSQL connection. Its main surface is a ten-page, six-step
+public demonstration with a visible database-digestion table; exact provenance
+is an optional disclosure. See
 [docs/PROJECT_STATUS_DASHBOARD.md](docs/PROJECT_STATUS_DASHBOARD.md). The separate
 legacy segmentation-only viewer remains available through
 `bash scripts/run_segmentation_viewer.sh`.

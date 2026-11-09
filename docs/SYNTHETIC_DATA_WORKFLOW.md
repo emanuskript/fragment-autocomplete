@@ -1,4 +1,4 @@
-# Synthetic data from Jeremy's damage matrix
+# Synthetic data from the supplied damage matrix
 
 ## What runs now
 
@@ -46,7 +46,7 @@ S1/S2/S3/S4 use explicit engineering area presets of 2.5%/12.5%/35%/65%. These
 are NOT exact translations of every qualitative severity note. Every task says
 `semantic_severity_validated: false`: removing 12.5% of a text region does not
 establish that isolated letters were removed or that meaning is recoverable.
-Jeremy's severity descriptions still require specialist review.
+The supplied severity descriptions still require specialist review.
 
 Mergen labels do not automatically map to all 15 content types. Preparing
 `Main script black` as CT-01 is a caller-declared, model-derived mapping, not an
@@ -72,7 +72,8 @@ For the existing local corpus and stored Mergen artifacts:
 
 ```bash
 python scripts/synthetic_data.py prepare-corpus \
-  --split train --label 'Main script black' --content-id CT-01 --limit 1 \
+  --split train --label 'Main script black' --content-id CT-01 --limit 10 \
+  --realism-profile paper_edge_v1 \
   --output outputs/synthetic_data/my_pilot/sources.json
 python scripts/synthetic_data.py generate \
   --sources outputs/synthetic_data/my_pilot/sources.json \
@@ -85,9 +86,16 @@ registry. No database writes or new Mergen inference occur. Invalid/unavailable
 pages have recorded skip reasons. `--limit` bounds the batch; test pages cannot
 be selected. The original sources, masks and frozen experiments are unchanged.
 
-Generation defaults to D2-01/02/03 and S2/S3/S4. Set `damage_ids`, `severities` and
-integer `seed` in the source JSON to change an experiment. Use a new output
-directory for changed settings. An identical rerun does not rewrite artifacts.
+Generation defaults to D2-01/02/03 and S2/S3/S4. The optional `paper_edge_v1`
+profile uses seeded multi-scale correlated variation for less repetitive hole
+and edge boundaries while preserving exact selected-region calibration and
+connected topology. It records `visual_realism_validated: false` and
+`historical_damage_claim: false`: it is an engineering approximation awaiting
+specialist review, not a claim of authentic historical material damage.
+
+Set `damage_ids`, `severities` and integer `seed` in the source JSON to change an
+experiment. Use a new output directory for changed settings. An identical rerun
+does not rewrite artifacts.
 `--include-edge-cases` opts into edge cases, which retain a separate cohort label.
 “Do not generate” has no override. Updated matrices require new versioned paths.
 
@@ -133,12 +141,12 @@ python -m ruff check src scripts tests
 bash scripts/check_workspace.sh
 ```
 
-The 2026-11-09 pilot generated nine samples from one existing training page using
-its stored Mergen mask. Full regeneration preserved all 47 pilot files byte-for-byte
-and kept their modification timestamps unchanged. The pilot is at
-`outputs/synthetic_data/matrix_v1_pilot/dataset/dataset.json` (ignored, local only).
-A separate schematic demo and the new unit tests verify
-reproducibility and policies. These are engineering checks, not realism approval.
-Review the content mapping, shapes and severity examples with Jeremy before
-scaling. Next implement one appearance operator, such as staining or fading,
-with a separate visibility-mask contract and validation.
+The 2026-11-09 public-demo cohort generated 90 samples from ten existing training
+pages using their stored Mergen masks. The dataset is local and ignored at
+`outputs/synthetic_data/paper_profile_public_demo_v2/dataset/dataset.json`.
+Generation reported no skips. Unit tests verify deterministic output, exact
+selected-region loss, connected topology, provenance and explicit realism limits.
+These are engineering checks, not realism approval. Review the content mapping,
+shapes and severity examples with the matrix author or another manuscript
+specialist before scaling. Next implement one appearance operator, such as
+staining or fading, with a separate visibility-mask contract and validation.

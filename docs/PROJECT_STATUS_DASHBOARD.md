@@ -3,15 +3,16 @@
 ## Purpose
 
 The Manuscript Fragment Demo is a read-only Next.js application for explaining
-how one real manuscript page becomes a controlled synthetic test fragment. It is
-designed for a general audience: the main surface shows one image, one short
-explanation, and one clear action at a time.
+how ten real manuscript page images become controlled synthetic test fragments.
+It is designed for a general audience: a compact page strip selects one fully
+processed page, then the main surface shows one image, one short explanation and
+one clear action at a time.
 
 The interface keeps the evidence classes separate:
 
 1. the observed complete page;
 2. model-detected visual regions;
-3. a selected writing area used only for measurement;
+3. a selected writing region used only for measurement;
 4. a controlled synthetic damage mask; and
 5. the resulting test fragment and measured pixel loss.
 
@@ -52,20 +53,32 @@ The six main steps are:
    split control was removed because transparency made its movement appear to do
    nothing.
 
-Below the main viewer, nine generated variants are grouped by three plain-language
-damage patterns and light, medium, or heavy measured loss. Selecting a thumbnail
-opens that complete result in step five and scrolls the viewer into view.
+All ten page cards are live. Changing the page replaces the source image, layout
+overlay, selected-region mask, nine damage trials, measurements and provenance;
+no page is a decorative or unprocessed thumbnail. Below the main viewer, nine
+page-specific variants are grouped by three plain-language damage patterns and
+light, medium, or heavy measured loss. Selecting a thumbnail opens that complete
+result in step five and scrolls the viewer into view.
+
+The selected trial also has a visible classification panel derived from the
+supplied taxonomy: damage code and type, matrix severity, visual class,
+generation decision and measured selected-region loss. The procedural profile
+is labeled synthetic and pending specialist review; it is not presented as
+historically authentic damage.
 
 ## Progressive disclosure
 
-The public surface omits internal names, experiment codes, database identifiers,
-hashes, and review terminology. Two collapsed disclosures retain useful depth
-without crowding the demonstration:
+The public surface omits personal names and keeps exact database identifiers and
+hashes out of the main flow. A visible ten-row metadata table reports each page's
+source identity, dimensions, detected classes, region count, selected-region
+confidence, stored image/canvas/run/region bundle and source terms. Selecting a
+table row opens that page in the viewer.
 
-- **Technical details** reports source, model-derived region counts, confidence,
-  live-or-saved storage state, and the selected result measurement.
-- **Source-page collection** displays all 84 manuscript images currently present
-  in the local 85-page audit.
+One collapsed disclosure retains exact depth without crowding the demonstration:
+
+- **Exact provenance and identifiers** reports source and database identifiers,
+  the Mergen/eManuSkript model identity, selected confidence and live-or-saved
+  storage state.
 
 The application reads ignored local images and generated outputs; those binaries
 remain outside Git. The artifact route serves only approved local roots, and the
@@ -84,7 +97,7 @@ whitelisted artifact API     read-only PostgreSQL API
           |                         |
           +------------+------------+
                        v
-          six-step React public demo
+       ten-page, six-step React public demo
 ```
 
 `src/frontend/project_status.py` remains the compact, tested status adapter used
@@ -102,6 +115,12 @@ bash scripts/check_workspace.sh
 ```
 
 Responsive visual inspection covers 1440 px, 768 px, and 390 px. Interaction
-checks cover direct step selection, previous/next navigation, variant selection,
-full fragment rendering, the side-by-side comparison, and both optional
-disclosures.
+checks cover page selection, direct step selection, previous/next navigation,
+variant selection, full fragment rendering, the side-by-side comparison, table
+row selection and the optional provenance disclosure.
+
+The 2026-11-09 validation pass completed 223 Python tests plus Ruff, Next.js
+lint, a production build and the workspace validator. Automated responsive
+inspection found no broken images, console errors, global horizontal overflow,
+tiny text or critical visual findings. The expected page and metadata strips
+scroll horizontally on narrow screens.

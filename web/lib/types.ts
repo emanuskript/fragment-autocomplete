@@ -1,18 +1,3 @@
-export type CorpusPage = {
-  pageId: string;
-  manuscriptId: string;
-  canvasLabel: string;
-  split: "train" | "validation" | "test";
-  sourcePath: string;
-  sourceUrl: string;
-  overlayUrl: string;
-  dimensions: [number, number];
-  regionCount: number;
-  classCounts: Record<string, number>;
-  confidenceMean: number | null;
-  hasExperiment: boolean;
-};
-
 export type Detection = {
   index: number;
   label: string;
@@ -27,17 +12,20 @@ export type MatrixEntry = {
   contentId: string;
   damageId: string;
   damageType: string;
+  visualClass: string;
   severity: string;
   family: string;
   decision: string;
   cohort: string;
   note: string;
-  exampleUrl: string;
+  status: string;
+  targetAreaFractionProxy: number;
   semanticSeverityValidated: boolean;
 };
 
 export type Experiment = {
   taskId: string;
+  pageId: string;
   damageId: string;
   severity: string;
   family: string;
@@ -46,6 +34,9 @@ export type Experiment = {
   survivalPath: string;
   damagePath: string;
   contentPath: string;
+  realismProfile: string;
+  visualRealismValidated: boolean;
+  historicalDamageClaim: boolean;
   matrix: MatrixEntry;
   statistics: {
     targetPixels: number;
@@ -58,47 +49,59 @@ export type Experiment = {
   };
 };
 
+export type ProcessedPage = {
+  pageId: string;
+  manuscriptId: string;
+  canvasLabel: string;
+  split: "train" | "validation" | "test";
+  sourcePath: string;
+  sourceUrl: string;
+  overlayUrl: string;
+  contentMaskUrl: string;
+  dimensions: [number, number];
+  regionCount: number;
+  classCounts: Record<string, number>;
+  confidenceMean: number | null;
+  repository: string;
+  canvasIdentifier: string;
+  sourceSha256: string;
+  selectionStatus: string;
+  selectionReviewStatus: string;
+  selectionReviewNote: string;
+  attribution: string;
+  license: string;
+  rightsReviewStatus: string;
+  trainingAllowedInSourceRecord: boolean;
+  modelId: string;
+  modelSha256: string;
+  runIdentitySha256: string;
+  dbSegmentationRunId: string;
+  dbImageAssetId: string;
+  dbCanvasId: string;
+  storageStatus: string;
+  detectedLabels: string[];
+  detections: Detection[];
+  mappingBasis: string;
+  contentBasis: string;
+  selectedRegionIndex: number;
+  selectedRegionLabel: string;
+  selectedRegionConfidence: number;
+  experiments: Experiment[];
+};
+
 export type EvidencePayload = {
   generatedAt: string;
   corpus: {
     id: string;
     source: string;
     attribution: string;
-    pageCount: number;
-    localPageCount: number;
+    sourceCollectionPageCount: number;
+    processedPageCount: number;
     manuscriptCount: number;
     layoutRegionCount: number;
     segmentationRunCount: number;
-    pageSplitCounts: Record<string, number>;
-    pages: CorpusPage[];
+    pages: ProcessedPage[];
   };
-  focus: {
-    pageId: string;
-    sourcePath: string;
-    overlayPath: string;
-    contentMaskPath: string;
-    rawOutputPath: string;
-    repository: string;
-    canvasIdentifier: string;
-    sourceSha256: string;
-    selectionStatus: string;
-    selectionReviewStatus: string;
-    selectionReviewNote: string;
-    modelId: string;
-    modelSha256: string;
-    runIdentitySha256: string;
-    dbSegmentationRunId: string;
-    dbImageAssetId: string;
-    dbCanvasId: string;
-    detectedLabels: string[];
-    detections: Detection[];
-    mappingBasis: string;
-    contentBasis: string;
-    selectedRegionIndex: number;
-    selectedRegionLabel: string;
-    selectedRegionConfidence: number;
-  };
-  experiments: Experiment[];
   boundaries: {
     source: string;
     model: string;

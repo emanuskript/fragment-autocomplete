@@ -68,6 +68,39 @@ def test_content_calibration_and_topology_are_deterministic(family, severity):
     assert not stats["semantic_severity_validated"]
 
 
+@pytest.mark.parametrize("family", ["internal_hole", "edge_loss", "edge_tear"])
+@pytest.mark.parametrize("severity", ["S2", "S3", "S4"])
+def test_paper_profile_is_deterministic_calibrated_and_explicitly_unvalidated(family, severity):
+    target = Image.new("L", (320, 384))
+    ImageDraw.Draw(target).rectangle((48, 54, 278, 338), fill=255)
+    damage, stats = content_damage(
+        target.size, target, family, AREA_PROXIES[severity], "c" * 64,
+        realism_profile="paper_edge_v1",
+    )
+    repeated, repeated_stats = content_damage(
+        target.size, target, family, AREA_PROXIES[severity], "c" * 64,
+        realism_profile="paper_edge_v1",
+    )
+    assert damage.tobytes() == repeated.tobytes() and stats == repeated_stats
+    assert stats["topology"]["passed"]
+    assert abs(stats["measured_target_loss"] - AREA_PROXIES[severity]) <= stats["rounding_tolerance"] + 1e-12
+    assert stats["realism_profile"] == "paper_edge_v1"
+    assert not stats["visual_realism_validated"] and not stats["historical_damage_claim"]
+
+
+def test_paper_profile_changes_geometry_without_changing_classification():
+    target = Image.new("L", (320, 384))
+    ImageDraw.Draw(target).rectangle((48, 54, 278, 338), fill=255)
+    geometric, _ = content_damage(target.size, target, "internal_hole", .35, "d" * 64)
+    paper, stats = content_damage(
+        target.size, target, "internal_hole", .35, "d" * 64,
+        realism_profile="paper_edge_v1",
+    )
+    assert geometric.tobytes() != paper.tobytes()
+    assert stats["parameters"]["family"] == "internal_hole"
+    assert stats["parameters"]["realism_review_status"] == "unvalidated_synthetic_approximation"
+
+
 def test_target_area_is_not_page_area():
     target = Image.new("L", (128, 128))
     ImageDraw.Draw(target).rectangle((64, 48, 112, 80), fill=255)
@@ -105,6 +138,20 @@ def test_generation_preserves_pixels_provenance_and_mtimes(tmp_path, matrix):
     changed["seed"] = 99
     with pytest.raises(ValueError, match="refusing_to_overwrite"):
         generate_dataset(matrix, changed, base, output)
+
+
+def test_generation_records_paper_profile_without_claiming_historical_realism(tmp_path, matrix):
+    base = tmp_path / "input"
+    config = make_demo(base)
+    config.update(realism_profile="paper_edge_v1", damage_ids=["D2-03"], severities=["S3"])
+    output = tmp_path / "dataset"
+    result = generate_dataset(matrix, config, base, output)
+    assert result["version"] == "matrix_synthesis_v2_paper_profile"
+    assert result["selection"]["realism_profile"] == "paper_edge_v1"
+    record = json.loads((output / result["tasks"][0]["target_record"]).read_text())
+    assert record["realism_profile"] == "paper_edge_v1"
+    assert record["realism_review_status"] == "synthetic_shape_only; specialist_validation_pending"
+    assert not record["historical_damage_claim"] and not record["visual_realism_validated"]
 
 
 def test_no_generation_for_excluded_unimplemented_or_missing_combinations(tmp_path, matrix):
