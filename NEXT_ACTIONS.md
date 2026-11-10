@@ -10,6 +10,11 @@ comparison in a neutral dark interface. Ten independently processed pages are
 clickable; each has nine generated variants, its own layout evidence and a row in
 the metadata/database digestion table. Exact identifiers remain available in an
 optional provenance disclosure.
+The demo also exposes the complete supplied damage taxonomy as a compact table.
+The source contains 17 named types, although its identifier sequence omits D2-05
+and D2-15. Three rows open real generated trials; the remaining fourteen are
+clearly marked as specified but not generated. Recto/verso rules are workflow
+requirements and remain separate from the source matrix decisions.
 The demo is read-only and does not replace the next scholarly decision gate below.
 
 ## Active step — review the matrix-driven synthetic-data pilot

@@ -1,14 +1,18 @@
 # ROADMAP_STATUS
 
-Latest interface and experiment refinement: 2026-11-09 — the dark React/Next.js
+Latest interface and experiment refinement: 2026-11-10 — the dark React/Next.js
 Manuscript Fragment Demo now presents ten independently processed manuscript
 pages. Every page is clickable and has its own source image, saved Mergen layout
 overlay, selected writing-region mask, nine synthetic damage trials and stored
 metadata. A visible ten-row digestion table reports image dimensions, detected
 classes, region-row counts, selected-region confidence, database storage and
-source terms. The public classification uses the supplied damage taxonomy
-without personal names, while exact database identifiers remain in an optional
-provenance disclosure. Retrieval, reconstruction, expert approval and
+source terms. The public interface now lists every one of the 17 named damage
+types in the supplied matrix, including exact CT-01 severity decisions and an
+explicit recto/verso modeling rule. It distinguishes the three working material-
+loss generators from fourteen specified-but-unimplemented operators instead of
+fabricating outputs. The source count is shown plainly because it is 17, not 16;
+D2-05 and D2-15 are absent from the supplied numbering. Exact database identifiers
+remain in an optional provenance disclosure. Retrieval, reconstruction, expert approval and
 Fragmentarium deployment remain explicitly not built. See
 [PROJECT_STATUS_DASHBOARD.md](docs/PROJECT_STATUS_DASHBOARD.md).
 

@@ -3,7 +3,13 @@
 import Image from "next/image";
 import { Check, ChevronLeft, ChevronRight, Database, Layers3 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import type { EvidencePayload, Experiment, ProcessedPage } from "../lib/types";
+import type {
+  DamageLevelDecision,
+  DamageTaxonomyItem,
+  EvidencePayload,
+  Experiment,
+  ProcessedPage,
+} from "../lib/types";
 
 type DemoStep = "source" | "layout" | "area" | "damage" | "result" | "compare";
 
@@ -167,6 +173,81 @@ function DamageClassification({ experiment }: { experiment: Experiment }) {
   );
 }
 
+const decisionLabel = (decision: string) => ({
+  "do not generate": "Exclude",
+  "generate for general training": "General",
+  "generate as edge case": "Edge case",
+}[decision] ?? "Review");
+
+function compactDecisions(decisions: DamageLevelDecision[]): string {
+  return decisions.map((item) => `${item.severity} ${decisionLabel(item.decision)}`).join(" · ");
+}
+
+function DamageTaxonomy({
+  taxonomy,
+  onChoose,
+}: {
+  taxonomy: EvidencePayload["damageTaxonomy"];
+  onChoose: (damageId: string) => void;
+}) {
+  return (
+    <section className="taxonomy-section" aria-labelledby="taxonomy-heading">
+      <div className="section-heading taxonomy-heading">
+        <div>
+          <h2 id="taxonomy-heading">Complete damage taxonomy</h2>
+          <p>
+            The supplied source contains {taxonomy.sourceNamedTypeCount} named types—not 16.
+            All {taxonomy.displayedTypeCount} are shown here; D2-05 and D2-15 are absent from its numbering.
+          </p>
+        </div>
+        <dl className="taxonomy-totals" aria-label="Damage taxonomy coverage">
+          <div><dt>Working generators</dt><dd>{taxonomy.activeOperatorCount}</dd></div>
+          <div><dt>Defined, pending</dt><dd>{taxonomy.displayedTypeCount - taxonomy.activeOperatorCount}</dd></div>
+        </dl>
+      </div>
+      <div className="taxonomy-table-wrap">
+        <table className="taxonomy-table">
+          <thead>
+            <tr>
+              <th>Damage type</th>
+              <th>{taxonomy.contentId} decisions</th>
+              <th>Recto / verso handling</th>
+              <th>Current output</th>
+            </tr>
+          </thead>
+          <tbody>
+            {taxonomy.items.map((item: DamageTaxonomyItem) => (
+              <tr key={item.damageId}>
+                <td>
+                  <strong>{item.damageId} · {item.name}</strong>
+                  <span>{item.visualClasses.join(" · ") || "No visual class recorded"}</span>
+                </td>
+                <td>{compactDecisions(item.decisions)}</td>
+                <td>
+                  <strong>{item.sideScope.replaceAll("-", " ")}</strong>
+                  <span>{item.sideRule}</span>
+                </td>
+                <td>
+                  {item.activeOperator ? (
+                    <button type="button" className="taxonomy-action" onClick={() => onChoose(item.damageId)}>
+                      Open {item.currentPageArtifactCount} trials
+                    </button>
+                  ) : (
+                    <span className="taxonomy-pending">Specified · generator pending</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="table-note">
+        Severity decisions shown here are for {taxonomy.contentLabel}. Recto/verso handling is an explicit workflow rule, not a field supplied by the matrix. Paired-side effects require registered scans of the same physical leaf.
+      </p>
+    </section>
+  );
+}
+
 function MetadataTable({ pages, selectedPageId, onSelect }: {
   pages: ProcessedPage[];
   selectedPageId: string;
@@ -281,6 +362,13 @@ export function EvidenceWorkbench({ evidence }: { evidence: EvidencePayload }) {
     scrollToViewer();
   };
 
+  const chooseDamageType = (damageId: string) => {
+    const experiment = page.experiments.find(
+      (item) => item.damageId === damageId && item.severity === "S3",
+    ) ?? page.experiments.find((item) => item.damageId === damageId);
+    if (experiment) chooseExperiment(experiment);
+  };
+
   return (
     <main className="public-demo">
       <header className="demo-intro">
@@ -335,6 +423,8 @@ export function EvidenceWorkbench({ evidence }: { evidence: EvidencePayload }) {
       </section>
 
       <DamageClassification experiment={selectedExperiment} />
+
+      <DamageTaxonomy taxonomy={evidence.damageTaxonomy} onChoose={chooseDamageType} />
 
       <section className="damage-chooser" aria-labelledby="damage-heading">
         <div className="section-heading">

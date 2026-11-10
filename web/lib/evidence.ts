@@ -1,6 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { EvidencePayload, Experiment, ProcessedPage } from "./types";
+import type {
+  DamageLevelDecision,
+  DamageTaxonomyItem,
+  EvidencePayload,
+  Experiment,
+  ProcessedPage,
+} from "./types";
 
 export const PROJECT_ROOT = path.resolve(process.cwd(), "..");
 const DATASET_CANDIDATES = [
@@ -131,6 +137,143 @@ type RawSegmentation = {
   }>;
 };
 
+type MatrixLevel = {
+  decision: string;
+  cohort: string;
+  note: string;
+};
+
+type MatrixRow = {
+  content_id: string;
+  content_type: string;
+  damage_id: string;
+  damage_type: string;
+  visual_class: string;
+  levels: Record<"S1" | "S2" | "S3" | "S4", MatrixLevel>;
+};
+
+const ACTIVE_DAMAGE_OPERATORS = new Set(["D2-01", "D2-02", "D2-03"]);
+
+const SIDE_RULES: Record<string, Pick<DamageTaxonomyItem, "sideScope" | "sideRule">> = {
+  "D2-01": {
+    sideScope: "shared-leaf",
+    sideRule: "Use one registered loss shape on both sides of the same leaf.",
+  },
+  "D2-02": {
+    sideScope: "shared-leaf",
+    sideRule: "Use one registered edge loss on recto and verso.",
+  },
+  "D2-03": {
+    sideScope: "shared-leaf",
+    sideRule: "Use one registered edge tear on recto and verso.",
+  },
+  "D2-04": {
+    sideScope: "surface-specific",
+    sideRule: "Model one side unless penetration through the support is documented.",
+  },
+  "D2-06": {
+    sideScope: "surface-specific",
+    sideRule: "Record and alter only the coated surface.",
+  },
+  "D2-07": {
+    sideScope: "surface-specific",
+    sideRule: "Record the side carrying the tape or adhesive residue.",
+  },
+  "D2-08": {
+    sideScope: "surface-specific",
+    sideRule: "Place deposits on one recorded surface.",
+  },
+  "D2-09": {
+    sideScope: "surface-specific",
+    sideRule: "Treat as one-sided unless paired scans show penetration.",
+  },
+  "D2-10": {
+    sideScope: "surface-specific",
+    sideRule: "Apply overwriting only to the recorded written surface.",
+  },
+  "D2-11": {
+    sideScope: "surface-specific",
+    sideRule: "Apply fading to the affected ink or pigment on one side.",
+  },
+  "D2-12": {
+    sideScope: "surface-specific",
+    sideRule: "Model surface abrasion on the recorded side only.",
+  },
+  "D2-13": {
+    sideScope: "surface-specific",
+    sideRule: "Model erasure on the altered writing surface only.",
+  },
+  "D2-14": {
+    sideScope: "paired-surfaces",
+    sideRule: "Link a donor and receiving surface; do not assume they are recto and verso.",
+  },
+  "D2-16": {
+    sideScope: "paired-surfaces",
+    sideRule: "Start from one side; add a registered reverse effect only with evidence of penetration.",
+  },
+  "D2-17": {
+    sideScope: "paired-surfaces",
+    sideRule: "Register recto and verso and model ink showing through the support.",
+  },
+  "D2-18": {
+    sideScope: "shared-leaf",
+    sideRule: "Share the same fold geometry across recto and verso.",
+  },
+  "D2-19": {
+    sideScope: "shared-leaf",
+    sideRule: "Share the same leaf deformation across recto and verso.",
+  },
+};
+
+function loadDamageTaxonomy(currentPageArtifactCount: Map<string, number>): EvidencePayload["damageTaxonomy"] {
+  const matrix = readJson<{
+    rows: MatrixRow[];
+    summary: { named_damage_types: number };
+  }>("data/metadata/jeremy_damage_matrix_v3.json");
+  const namedRows = matrix.rows.filter((row) => row.damage_id && row.damage_type);
+  const names = new Map<string, string>();
+  for (const row of namedRows) names.set(row.damage_id, row.damage_type);
+
+  const contentId = "CT-01";
+  const contentRows = namedRows.filter((row) => row.content_id === contentId);
+  const items = Array.from(names.entries())
+    .sort(([left], [right]) => left.localeCompare(right, undefined, { numeric: true }))
+    .map(([damageId, name]): DamageTaxonomyItem => {
+      const allRows = namedRows.filter((row) => row.damage_id === damageId);
+      const current = contentRows.find((row) => row.damage_id === damageId);
+      const side = SIDE_RULES[damageId];
+      if (!current || !side) {
+        throw new Error(`Damage taxonomy is incomplete for ${damageId}.`);
+      }
+      const severities: Array<DamageLevelDecision["severity"]> = ["S1", "S2", "S3", "S4"];
+      return {
+        damageId,
+        name,
+        visualClasses: Array.from(new Set(allRows.map((row) => row.visual_class).filter(Boolean))).sort(),
+        sourceRowCount: allRows.length,
+        activeOperator: ACTIVE_DAMAGE_OPERATORS.has(damageId),
+        currentPageArtifactCount: currentPageArtifactCount.get(damageId) ?? 0,
+        decisions: severities.map((severity) => ({ severity, ...current.levels[severity] })),
+        ...side,
+      };
+    });
+
+  if (items.length !== matrix.summary.named_damage_types) {
+    throw new Error(
+      `Damage taxonomy count mismatch: matrix reports ${matrix.summary.named_damage_types}, loaded ${items.length}.`,
+    );
+  }
+
+  return {
+    sourceNamedTypeCount: matrix.summary.named_damage_types,
+    displayedTypeCount: items.length,
+    activeOperatorCount: items.filter((item) => item.activeOperator).length,
+    contentId,
+    contentLabel: contentRows[0]?.content_type ?? "Main text",
+    items,
+  };
+}
+
 function makeExperiment(record: PilotRecord, datasetRoot: string): Experiment {
   return {
     taskId: record.task_id,
@@ -248,6 +391,13 @@ export function loadEvidence(): EvidencePayload {
       experiments: pageRecords.map((record) => makeExperiment(record, datasetRoot)),
     };
   });
+  const firstPageArtifactCount = new Map<string, number>();
+  for (const experiment of pages[0]?.experiments ?? []) {
+    firstPageArtifactCount.set(
+      experiment.damageId,
+      (firstPageArtifactCount.get(experiment.damageId) ?? 0) + 1,
+    );
+  }
 
   return {
     generatedAt: new Date().toISOString(),
@@ -268,5 +418,6 @@ export function loadEvidence(): EvidencePayload {
       synthetic: "Damage and resulting fragments are controlled synthetic artifacts; their shapes await specialist review.",
       inference: "No missing historical content is recovered or claimed here.",
     },
+    damageTaxonomy: loadDamageTaxonomy(firstPageArtifactCount),
   };
 }

@@ -49,6 +49,25 @@ export type Experiment = {
   };
 };
 
+export type DamageLevelDecision = {
+  severity: "S1" | "S2" | "S3" | "S4";
+  decision: string;
+  cohort: string;
+  note: string;
+};
+
+export type DamageTaxonomyItem = {
+  damageId: string;
+  name: string;
+  visualClasses: string[];
+  sourceRowCount: number;
+  activeOperator: boolean;
+  currentPageArtifactCount: number;
+  decisions: DamageLevelDecision[];
+  sideScope: "shared-leaf" | "surface-specific" | "paired-surfaces";
+  sideRule: string;
+};
+
 export type ProcessedPage = {
   pageId: string;
   manuscriptId: string;
@@ -107,5 +126,13 @@ export type EvidencePayload = {
     model: string;
     synthetic: string;
     inference: string;
+  };
+  damageTaxonomy: {
+    sourceNamedTypeCount: number;
+    displayedTypeCount: number;
+    activeOperatorCount: number;
+    contentId: string;
+    contentLabel: string;
+    items: DamageTaxonomyItem[];
   };
 };
