@@ -3,32 +3,35 @@
 Latest interface and experiment refinement: 2026-11-10 — the dark React/Next.js
 Manuscript Fragment Demo now presents ten independently processed manuscript
 pages. Every page is clickable and has its own source image, saved Mergen layout
-overlay, selected writing-region mask, nine synthetic damage trials and stored
+overlay, selected writing-region mask, 17 selectable damage examples and stored
 metadata. A visible ten-row digestion table now combines page side, repository,
 shelfmark, title, date/century, language, document type, material, script/hand/
 font availability, detected classes, region-row counts, database storage and
 source terms. A selected-record panel exposes the remaining normalized catalogue
 fields without inventing missing palaeographic data. The public interface now lists every one of the 17 named damage
 types in the supplied matrix, including exact CT-01 severity decisions and an
-explicit recto/verso modeling rule. It distinguishes the three working material-
-loss generators from fourteen specified-but-unimplemented operators instead of
-fabricating outputs. The source count is shown plainly because it is 17, not 16;
+explicit recto/verso modeling rule. Each type has a deterministic, selectable S3
+example on every page. Three are calibrated material-loss operators; fourteen
+are explicitly labeled visual review prototypes. The source count is shown
+plainly because it is 17, not 16;
 D2-05 and D2-15 are absent from the supplied numbering. Exact database identifiers
 remain in an optional provenance disclosure. Retrieval, reconstruction, expert approval and
 Fragmentarium deployment remain explicitly not built. See
 [PROJECT_STATUS_DASHBOARD.md](docs/PROJECT_STATUS_DASHBOARD.md).
 
 The bounded matrix workflow still preserves all 17 named types and 187 rows;
-three material-loss operators generate content-calibrated samples, 14 remain
-unimplemented and two incomplete rows remain quarantined. A new optional
+three material-loss operators generate content-calibrated samples and two
+incomplete rows remain quarantined. A separate review builder now produces 140
+deterministic interface previews for the other 14 types across ten pages. A new optional
 `paper_edge_v1` profile replaces repetitive geometric waves with deterministic
-multi-scale boundary variation. The ten-page public cohort generated 90 local,
-ignored artifacts with no skips. Pixel-loss calibration and topology are tested,
+multi-scale boundary variation. The ten-page public cohort retains 90 calibrated
+material-loss variants and adds 140 local review previews for the other types,
+all under ignored outputs. Pixel-loss calibration and topology are tested,
 but visual realism, qualitative severity and historical authenticity are not
 specialist-validated. The interface therefore labels these as synthetic
 comparators, never recovered historical content.
 
-Validation after this change: 223 Python tests passed; Ruff, Next.js lint,
+Validation after this change: 240 Python tests passed; Ruff, Next.js lint,
 production build and the workspace validator passed. Automated responsive
 inspection at 1440 px, 768 px and 390 px reported no broken images, console
 errors, horizontal page overflow, tiny text or critical findings. Direct browser
@@ -45,8 +48,8 @@ Previous milestone (2026-09-07): Artificial Fragment Experiment v0.2 completed f
 
 | Area | Expected status after 1.5 months | Concrete definition of done | Current status | Evidence / files | Next action |
 | --- | --- | --- | --- | --- | --- |
-| Public manuscript-fragment demo | Interface milestone | Explain the real source-to-fragment flow in six plain-language steps; make every processed page and complete output inspectable; show metadata digestion; keep exact provenance optional and evidence classes separate. | Done for ten processed pages and 90 generated variants | web/, scripts/run_project_dashboard.sh, scripts/export_project_status_pdf.py, src/frontend/project_status.py, tests/frontend/test_project_status.py, docs/PROJECT_STATUS_DASHBOARD.md | Conduct specialist review of the synthetic boundary shapes and matrix severity semantics before presenting them as validated realism. |
-| Supplied matrix-driven synthesis | New bounded milestone | Preserve matrix decisions, explicit operator coverage, selected-region calibration, reproducible paired exports and split checks. | Implemented for D2-01/02/03, including optional multi-scale paper-edge geometry; remaining 14 operators pending | scripts/synthetic_data.py, src/evaluation/damage_matrix.py, src/evaluation/matrix_synthesis.py, data/metadata/jeremy_damage_matrix_v3.json, tests/evaluation/test_damage_matrix.py | Record a versioned specialist review of the 90-sample cohort, then implement one distinct appearance operator. |
+| Public manuscript-fragment demo | Interface milestone | Explain the real source-to-fragment flow in six plain-language steps; make every processed page and complete output inspectable; show metadata digestion; keep exact provenance optional and evidence classes separate. | Done for ten processed pages, with all 17 damage types selectable on every page | web/, scripts/build_damage_review_prototype.py, scripts/run_project_dashboard.sh, tests/evaluation/test_damage_review_prototype.py, docs/PROJECT_STATUS_DASHBOARD.md | Conduct specialist review of the 14 appearance/deformation prototypes before any are promoted into the training-data generator. |
+| Supplied matrix-driven synthesis | New bounded milestone | Preserve matrix decisions, explicit operator coverage, selected-region calibration, reproducible paired exports and split checks. | Three training/evaluation operators are calibrated; all 14 remaining types have deterministic public-review prototypes | scripts/synthetic_data.py, scripts/build_damage_review_prototype.py, src/evaluation/damage_matrix.py, data/metadata/jeremy_damage_matrix_v3.json, tests/evaluation/test_damage_matrix.py, tests/evaluation/test_damage_review_prototype.py | Record a versioned specialist review, then promote approved optical/material operators individually with type-specific validation. |
 | Repository / workspace | Done | Git repo, understandable structure, reproducible setup, collaborator documentation, secret-safe configuration, ignore policy, lint/test commands. | Done — external-sharing hygiene pass complete; licence/contact decision remains | README.md, docs/COLLABORATOR_QUICKSTART.md, docs/ARCHITECTURE.md, docs/INTEGRATION_NOTES.md, .env.example, pyproject.toml, requirements*.txt | Choose a software licence and approved citation/contact; share from a clean Git clone rather than the artifact-rich working directory. |
 | Architecture draft | Done | Complete technical architecture document with figures and PDF/HTML export. | Done — preserved historical Architecture Draft v0.2 dated 2026-05-06; not current implementation status | docs/01_architecture_overview.md, docs/figures/architecture/, outputs/Fragment_Autocomplete_Architecture_Draft_v0.2_2026-05-06.pdf, docs/IMPLEMENTATION_STATUS_2026-10.md | Use the October status comparison and current architecture for implementation review; retain the draft unchanged as design history. |
 | Three-page project study report | Done | Concise engineer-oriented PDF explains the safety contract, running pipeline, data/storage model, artificial-fragment evaluation loop, implementation status, roadmap, and teach-back narrative with verified figures. | Done | output/pdf/Fragment_Autocomplete_Study_Report.pdf | Refresh after the next material milestone or major status change. |

@@ -37,12 +37,17 @@ export type Experiment = {
   realismProfile: string;
   visualRealismValidated: boolean;
   historicalDamageClaim: boolean;
+  effectKind: "material-loss" | "surface-appearance" | "paired-surface-proxy" | "leaf-deformation";
+  measurementLabel: string;
+  operatorLabel: string;
+  reviewPrototype: boolean;
   matrix: MatrixEntry;
   statistics: {
     targetPixels: number;
     removedTargetPixels: number;
     measuredTargetLoss: number;
     measuredPageLoss: number;
+    measuredEffectCoverage: number;
     topologyPassed: boolean;
     removedComponents: number;
     touchedEdges: string[];
@@ -62,6 +67,7 @@ export type DamageTaxonomyItem = {
   visualClasses: string[];
   sourceRowCount: number;
   activeOperator: boolean;
+  calibratedLossOperator: boolean;
   currentPageArtifactCount: number;
   decisions: DamageLevelDecision[];
   sideScope: "shared-leaf" | "surface-specific" | "paired-surfaces";

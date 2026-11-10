@@ -3,7 +3,7 @@
 ## Purpose
 
 The Manuscript Fragment Demo is a read-only Next.js application for explaining
-how ten real manuscript page images become controlled synthetic test fragments.
+how ten real manuscript page images become controlled synthetic review examples.
 It is designed for a general audience: a compact page strip selects one fully
 processed page, then the main surface shows one image, one short explanation and
 one clear action at a time.
@@ -13,8 +13,8 @@ The interface keeps the evidence classes separate:
 1. the observed complete page;
 2. model-detected visual regions;
 3. a selected writing region used only for measurement;
-4. a controlled synthetic damage mask; and
-5. the resulting test fragment and measured pixel loss.
+4. a controlled synthetic damage or appearance mask; and
+5. the resulting review image and measured affected region.
 
 The demo does not reconstruct, generate, or claim to recover missing manuscript
 content.
@@ -27,7 +27,8 @@ Node.js 20.9 or newer is recommended. From the repository root:
 bash scripts/run_project_dashboard.sh
 ```
 
-The launcher installs local web dependencies when necessary and serves the demo
+The launcher validates the 14-type review manifest, builds it when absent,
+installs local web dependencies when necessary, and serves the demo
 at `http://127.0.0.1:8503/`. Use `FRAGMENT_WORKBENCH_PORT` to choose a different
 port.
 
@@ -54,23 +55,23 @@ The six main steps are:
    nothing.
 
 All ten page cards are live. Changing the page replaces the source image, layout
-overlay, selected-region mask, nine damage trials, measurements and provenance;
-no page is a decorative or unprocessed thumbnail. Below the main viewer, nine
-page-specific variants are grouped by three plain-language damage patterns and
-light, medium, or heavy measured loss. Selecting a thumbnail opens that complete
-result in step five and scrolls the viewer into view.
+overlay, selected-region mask, 17 damage examples, measurements and provenance;
+no page is a decorative or unprocessed thumbnail. Below the main viewer, one S3
+example for every named type appears in a compact selectable list. Selecting an
+example opens its complete result in step five and scrolls the viewer into view.
 
 The selected trial also has a visible classification panel derived from the
 supplied taxonomy: damage code and type, matrix severity, visual class,
 generation decision and measured selected-region loss. The procedural profile
-is labeled synthetic and pending specialist review; it is not presented as
-historically authentic damage.
+is labeled synthetic and awaiting specialist realism review; it is not presented
+as historically authentic damage.
 
 A compact complete-taxonomy table shows all 17 named types in the supplied
 matrix, including CT-01 severity decisions and explicit recto/verso workflow
 rules. The source is reported as 17—not 16—because D2-05 and D2-15 are absent
-from its identifier sequence. Three rows link to generated trials; fourteen are
-clearly marked as specified but not generated.
+from its identifier sequence. Every row opens a generated example. The three
+material-loss operators are pixel-calibrated; the fourteen optical, surface,
+paired-side and deformation examples are deterministic review prototypes.
 
 ## Progressive disclosure
 
@@ -120,6 +121,8 @@ inspection; Streamlit is not used by the public demo.
 ```bash
 npm --prefix web run lint
 npm --prefix web run build
+python scripts/build_damage_review_prototype.py --validate-only
+python -m pytest -q tests/evaluation/test_damage_review_prototype.py
 python -m pytest -q tests/frontend/test_project_status.py
 bash scripts/check_workspace.sh
 ```
@@ -135,7 +138,7 @@ Rebuild the compact catalogue record after the source manifest changes:
 .venv/bin/python scripts/build_public_demo_metadata.py
 ```
 
-The 2026-11-09 validation pass completed 223 Python tests plus Ruff, Next.js
+The 2026-11-10 validation pass completed 240 Python tests plus Ruff, Next.js
 lint, a production build and the workspace validator. Automated responsive
 inspection found no broken images, console errors, global horizontal overflow,
 tiny text or critical visual findings. The expected page and metadata strips

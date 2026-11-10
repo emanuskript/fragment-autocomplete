@@ -15,6 +15,7 @@ const DATASET_CANDIDATES = [
   "outputs/synthetic_data/matrix_v2_public_demo/dataset",
   "outputs/synthetic_data/matrix_v1_pilot/dataset",
 ];
+const REVIEW_PROTOTYPE_ROOT = "outputs/synthetic_data/damage_review_prototype_v1";
 
 function readJson<T>(relativePath: string): T {
   return JSON.parse(fs.readFileSync(path.join(PROJECT_ROOT, relativePath), "utf8")) as T;
@@ -138,6 +139,40 @@ type RawSegmentation = {
   }>;
 };
 
+type PrototypeRecord = {
+  task_id: string;
+  page_id: string;
+  manuscript_id: string;
+  damage_id: string;
+  severity: "S3";
+  preview_path: string;
+  effect_mask_path: string;
+  content_mask: string;
+  content_basis: string;
+  matrix_entry: {
+    source_row: number;
+    content_id: string;
+    damage_id: string;
+    damage_type: string;
+    visual_class: string;
+    severity: string;
+    family: string;
+    decision: string;
+    cohort: string;
+    note: string;
+    status: string;
+    semantic_severity_validated: boolean;
+  };
+  statistics: {
+    target_pixels: number;
+    affected_target_pixels: number;
+    measured_effect_coverage: number;
+    measured_page_coverage: number;
+    effect_kind: Experiment["effectKind"];
+    operator_label: string;
+  };
+};
+
 type MatrixLevel = {
   decision: string;
   cohort: string;
@@ -153,7 +188,7 @@ type MatrixRow = {
   levels: Record<"S1" | "S2" | "S3" | "S4", MatrixLevel>;
 };
 
-const ACTIVE_DAMAGE_OPERATORS = new Set(["D2-01", "D2-02", "D2-03"]);
+const CALIBRATED_LOSS_OPERATORS = new Set(["D2-01", "D2-02", "D2-03"]);
 
 const SIDE_RULES: Record<string, Pick<DamageTaxonomyItem, "sideScope" | "sideRule">> = {
   "D2-01": {
@@ -252,7 +287,8 @@ function loadDamageTaxonomy(currentPageArtifactCount: Map<string, number>): Evid
         name,
         visualClasses: Array.from(new Set(allRows.map((row) => row.visual_class).filter(Boolean))).sort(),
         sourceRowCount: allRows.length,
-        activeOperator: ACTIVE_DAMAGE_OPERATORS.has(damageId),
+        activeOperator: (currentPageArtifactCount.get(damageId) ?? 0) > 0,
+        calibratedLossOperator: CALIBRATED_LOSS_OPERATORS.has(damageId),
         currentPageArtifactCount: currentPageArtifactCount.get(damageId) ?? 0,
         decisions: severities.map((severity) => ({ severity, ...current.levels[severity] })),
         ...side,
@@ -296,6 +332,10 @@ function makeExperiment(record: PilotRecord, datasetRoot: string): Experiment {
     realismProfile: record.realism_profile ?? "geometric_v1",
     visualRealismValidated: Boolean(record.visual_realism_validated),
     historicalDamageClaim: Boolean(record.historical_damage_claim),
+    effectKind: "material-loss",
+    measurementLabel: "Material removed",
+    operatorLabel: "Content-calibrated material-loss operator",
+    reviewPrototype: false,
     matrix: {
       sourceRow: record.matrix_entry.source_row,
       contentId: record.matrix_entry.content_id,
@@ -317,9 +357,57 @@ function makeExperiment(record: PilotRecord, datasetRoot: string): Experiment {
       removedTargetPixels: record.statistics.removed_target_pixels,
       measuredTargetLoss: record.statistics.measured_target_loss,
       measuredPageLoss: record.statistics.measured_page_loss,
+      measuredEffectCoverage: record.statistics.measured_target_loss,
       topologyPassed: record.statistics.topology.passed,
       removedComponents: record.statistics.topology.removed_components,
       touchedEdges: record.statistics.topology.touched_edges,
+    },
+  };
+}
+
+function makePrototypeExperiment(record: PrototypeRecord): Experiment {
+  return {
+    taskId: record.task_id,
+    pageId: record.page_id,
+    damageId: record.damage_id,
+    severity: record.severity,
+    family: record.matrix_entry.family,
+    cohort: record.matrix_entry.cohort,
+    fragmentPath: artifactUrl(`${REVIEW_PROTOTYPE_ROOT}/${record.preview_path}`),
+    survivalPath: artifactUrl(`${REVIEW_PROTOTYPE_ROOT}/${record.preview_path}`),
+    damagePath: artifactUrl(`${REVIEW_PROTOTYPE_ROOT}/${record.effect_mask_path}`),
+    contentPath: artifactUrl(record.content_mask),
+    realismProfile: "damage_review_prototype_v1",
+    visualRealismValidated: false,
+    historicalDamageClaim: false,
+    effectKind: record.statistics.effect_kind,
+    measurementLabel: "Affected region",
+    operatorLabel: record.statistics.operator_label,
+    reviewPrototype: true,
+    matrix: {
+      sourceRow: record.matrix_entry.source_row,
+      contentId: record.matrix_entry.content_id,
+      damageId: record.matrix_entry.damage_id,
+      damageType: record.matrix_entry.damage_type,
+      visualClass: record.matrix_entry.visual_class,
+      severity: record.matrix_entry.severity,
+      family: record.matrix_entry.family,
+      decision: record.matrix_entry.decision,
+      cohort: record.matrix_entry.cohort,
+      note: record.matrix_entry.note,
+      status: record.matrix_entry.status,
+      targetAreaFractionProxy: record.statistics.measured_effect_coverage,
+      semanticSeverityValidated: false,
+    },
+    statistics: {
+      targetPixels: record.statistics.target_pixels,
+      removedTargetPixels: record.statistics.affected_target_pixels,
+      measuredTargetLoss: record.statistics.measured_effect_coverage,
+      measuredPageLoss: record.statistics.measured_page_coverage,
+      measuredEffectCoverage: record.statistics.measured_effect_coverage,
+      topologyPassed: true,
+      removedComponents: 0,
+      touchedEdges: [],
     },
   };
 }
@@ -342,6 +430,15 @@ export function loadEvidence(): EvidencePayload {
   const records = dataset.tasks.map((task) =>
     readJson<PilotRecord>(`${datasetRoot}/${task.target_record}`),
   );
+  const prototype = readJson<{ records: PrototypeRecord[] }>(
+    `${REVIEW_PROTOTYPE_ROOT}/prototype.json`,
+  );
+  const prototypeByPage = prototype.records.reduce<Map<string, Experiment[]>>((pages, record) => {
+    const experiments = pages.get(record.page_id) ?? [];
+    experiments.push(makePrototypeExperiment(record));
+    pages.set(record.page_id, experiments);
+    return pages;
+  }, new Map());
   const auditById = new Map(audit.pages.map((page) => [page.page_id, page]));
   const grouped = records.reduce<Map<string, PilotRecord[]>>((pages, record) => {
     const pageRecords = pages.get(record.page_id) ?? [];
@@ -408,7 +505,10 @@ export function loadEvidence(): EvidencePayload {
       selectedRegionIndex: first.segmentation_provenance.region_index,
       selectedRegionLabel: first.segmentation_provenance.label,
       selectedRegionConfidence: first.segmentation_provenance.confidence,
-      experiments: pageRecords.map((record) => makeExperiment(record, datasetRoot)),
+      experiments: [
+        ...pageRecords.map((record) => makeExperiment(record, datasetRoot)),
+        ...(prototypeByPage.get(first.page_id) ?? []),
+      ],
     };
   });
   const firstPageArtifactCount = new Map<string, number>();

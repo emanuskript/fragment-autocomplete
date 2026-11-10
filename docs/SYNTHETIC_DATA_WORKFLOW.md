@@ -16,6 +16,7 @@ the other supplied export contains the same data with reordered rows and columns
 | Interior loss, D2-01 | Existing elliptical interior-hole geometry | None |
 | Straight edge loss, D2-02 | Existing boundary-slab geometry | None |
 | Irregular edge loss, D2-03 | Existing variable-depth boundary-tear geometry | None |
+| Public review previews, 14 additional types | `build_damage_review_prototype.py`; deterministic optical, surface, paired-side and deformation approximations | None |
 | Layout evidence | Explicitly selected, checksum-verified existing Mergen masks | Registered `best_emanuskript_segmentation.pt`; no new inference |
 | Validation/export | Pixel preservation, topology, checksums, deterministic reruns and split isolation | None |
 
@@ -25,12 +26,14 @@ recover missing content or deploy a Fragmentarium service.
 
 ## Coverage and limits
 
-All 17 damage types are registered, but only the three material-loss operators
-above generate images. Ink-following loss (D2-04), surface coating (06), tape (07),
-deposits (08), staining (09), overwriting (10), fading (11), surface loss (12),
-erasure (13), offset/transfer (14), corrosion haloes (16), ink bleed (17), folds
-(18) and cockling/shrinkage (19) report `operator_not_implemented`. They need
-distinct optical/material/deformation models, not a substituted hole generator.
+All 17 damage types now have selectable public-review examples. The three
+material-loss operators above remain the only pixel-calibrated training and
+evaluation generators. Ink-following loss (D2-04), surface coating (06), tape
+(07), deposits (08), staining (09), overwriting (10), fading (11), surface loss
+(12), erasure (13), offset/transfer (14), corrosion haloes (16), ink bleed (17),
+folds (18) and cockling/shrinkage (19) are deterministic interface prototypes.
+Their affected-region masks are measurements for visual inspection, not semantic
+severity calibration or validated physical simulation.
 
 The full plan has 60 eligible general cells, 47 implemented edge-case cells
 requiring opt-in, 283 cells waiting for operators, 350 exclusions and 8 cells on
@@ -67,6 +70,18 @@ python scripts/synthetic_data.py demo --output outputs/synthetic_data/my_demo
 
 The demo creates nine schematic samples, not a manuscript training corpus.
 Save a detailed plan with `--output outputs/synthetic_data/coverage.json`.
+
+Build or validate the complete ten-page public review set:
+
+```bash
+python scripts/build_damage_review_prototype.py
+python scripts/build_damage_review_prototype.py --validate-only
+```
+
+This writes 140 ignored previews and effect masks—14 additional types across ten
+pages—to `outputs/synthetic_data/damage_review_prototype_v1/`. The manifest marks
+`visual_realism_validated: false` and `historical_damage_claim: false`. The
+dashboard launcher builds the set when it is absent and validates it otherwise.
 
 For the existing local corpus and stored Mergen artifacts:
 
@@ -136,6 +151,7 @@ frame, with an identity transform. Surviving decoded pixels are byte-equal.
 
 ```bash
 python -m pytest -q tests/evaluation/test_damage_matrix.py
+python -m pytest -q tests/evaluation/test_damage_review_prototype.py
 python -m pytest -q
 python -m ruff check src scripts tests
 bash scripts/check_workspace.sh
@@ -147,6 +163,6 @@ pages using their stored Mergen masks. The dataset is local and ignored at
 Generation reported no skips. Unit tests verify deterministic output, exact
 selected-region loss, connected topology, provenance and explicit realism limits.
 These are engineering checks, not realism approval. Review the content mapping,
-shapes and severity examples with the matrix author or another manuscript
-specialist before scaling. Next implement one appearance operator, such as
-staining or fading, with a separate visibility-mask contract and validation.
+shapes and severity examples with a manuscript specialist before scaling. Promote
+each approved appearance/deformation prototype separately into the training-data
+workflow with its own visibility contract and validation.

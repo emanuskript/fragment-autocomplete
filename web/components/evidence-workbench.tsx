@@ -23,12 +23,6 @@ const steps: Array<{ id: DemoStep; label: string; title: string }> = [
 ];
 
 const severityLabels: Record<string, string> = { S2: "Light", S3: "Medium", S4: "Heavy" };
-const familyLabels: Record<string, string> = {
-  internal_hole: "Interior loss",
-  edge_loss: "Straight edge loss",
-  edge_tear: "Irregular edge loss",
-};
-
 const percentage = (value: number, digits = 0) => `${(value * 100).toFixed(digits)}%`;
 const shortLicense = (value: string) => {
   if (value.includes("by-nc/4.0")) return "CC BY-NC 4.0";
@@ -40,15 +34,20 @@ const plainMatrixNote = (value: string) => value
   .replaceAll("content object", "selected writing region");
 
 function stepDescription(step: DemoStep, experiment: Experiment): string {
-  const loss = percentage(experiment.statistics.measuredTargetLoss);
-  const family = familyLabels[experiment.family] ?? experiment.matrix.damageType;
+  const amount = percentage(experiment.statistics.measuredEffectCoverage);
+  const family = experiment.matrix.damageType;
+  const materialLoss = experiment.effectKind === "material-loss";
   return {
     source: "This unchanged digital photograph is the reference for every later step.",
     layout: "The layout model marks writing, page numbers, decoration, and other visual regions. It detects shapes; it does not read or reconstruct the text.",
     area: "One detected writing region is selected. All loss percentages are measured against this exact region, not against the whole page.",
-    damage: `A ${family.toLowerCase()} mask removes ${loss} of the selected writing region. The seeded shape and measured amount can be reproduced.`,
-    result: "The masked pixels become transparent. No text, decoration, or missing historical material is painted into the gap.",
-    compare: "The unchanged source and generated fragment are shown together so the synthetic intervention stays visible.",
+    damage: materialLoss
+      ? `A ${family.toLowerCase()} mask removes ${amount} of the selected writing region. The seeded shape and measured amount can be reproduced.`
+      : `A deterministic ${family.toLowerCase()} field affects ${amount} of the selected writing region. Its mask and settings can be reproduced.`,
+    result: materialLoss
+      ? "The masked pixels become transparent. No text, decoration, or missing historical material is painted into the gap."
+      : "The controlled visual transformation is applied to the observed page. It is a review prototype, not a claim about historical damage.",
+    compare: "The unchanged source and generated review image are shown together so the synthetic intervention stays visible.",
   }[step];
 }
 
@@ -93,7 +92,7 @@ function DemoVisual({ step, page, experiment }: { step: DemoStep; page: Processe
   if (step === "result") {
     return (
       <div className="fragment-matte">
-        <ManuscriptImage src={experiment.fragmentPath} alt="Generated fragment with transparent missing areas" />
+        <ManuscriptImage src={experiment.fragmentPath} alt="Generated synthetic damage review image" />
       </div>
     );
   }
@@ -107,9 +106,9 @@ function DemoVisual({ step, page, experiment }: { step: DemoStep; page: Processe
       </figure>
       <figure>
         <div className="comparison-image fragment-matte">
-          <ManuscriptImage src={experiment.fragmentPath} alt="Generated test fragment" />
+          <ManuscriptImage src={experiment.fragmentPath} alt="Generated synthetic damage review image" />
         </div>
-        <figcaption>Synthetic test fragment</figcaption>
+        <figcaption>Synthetic review image</figcaption>
       </figure>
     </div>
   );
@@ -125,7 +124,7 @@ function PageBrowser({ pages, selectedPageId, onSelect }: {
       <div className="compact-heading">
         <div>
           <h2 id="pages-heading">{pages.length} processed pages</h2>
-          <p>Every page has layout regions, a selected writing area, nine damage trials, and stored metadata.</p>
+          <p>Every page has layout regions, a selected writing area, all 17 damage types, and stored metadata.</p>
         </div>
         <span>Choose a page</span>
       </div>
@@ -159,16 +158,16 @@ function DamageClassification({ experiment }: { experiment: Experiment }) {
     <section className="classification" aria-labelledby="classification-heading">
       <div className="classification-title">
         <span>Defined damage classification</span>
-        <h2 id="classification-heading">{experiment.damageId} · {familyLabels[experiment.family]}</h2>
+        <h2 id="classification-heading">{experiment.damageId} · {experiment.matrix.damageType}</h2>
       </div>
       <dl>
         <div><dt>Matrix severity</dt><dd>{severityLabels[experiment.severity]} · {experiment.severity}</dd></div>
         <div><dt>Visual class</dt><dd>{experiment.matrix.visualClass}</dd></div>
-        <div><dt>Measured loss</dt><dd>{percentage(experiment.statistics.measuredTargetLoss, 1)} of selected region</dd></div>
+        <div><dt>{experiment.measurementLabel}</dt><dd>{percentage(experiment.statistics.measuredEffectCoverage, 1)} of selected region</dd></div>
         <div><dt>Generation decision</dt><dd>{experiment.matrix.decision}</dd></div>
       </dl>
       <p>{plainMatrixNote(experiment.matrix.note)}</p>
-      <small>Multi-scale synthetic paper-edge profile. Shape realism awaits specialist review; this is not evidence of historical damage.</small>
+      <small>{experiment.operatorLabel}. Visual realism awaits specialist review; this is not evidence of historical damage.</small>
     </section>
   );
 }
@@ -201,8 +200,8 @@ function DamageTaxonomy({
           </p>
         </div>
         <dl className="taxonomy-totals" aria-label="Damage taxonomy coverage">
-          <div><dt>Working generators</dt><dd>{taxonomy.activeOperatorCount}</dd></div>
-          <div><dt>Defined, pending</dt><dd>{taxonomy.displayedTypeCount - taxonomy.activeOperatorCount}</dd></div>
+          <div><dt>Ready to review</dt><dd>{taxonomy.activeOperatorCount}</dd></div>
+          <div><dt>Calibrated loss operators</dt><dd>{taxonomy.items.filter((item) => item.calibratedLossOperator).length}</dd></div>
         </dl>
       </div>
       <div className="taxonomy-table-wrap">
@@ -228,13 +227,9 @@ function DamageTaxonomy({
                   <span>{item.sideRule}</span>
                 </td>
                 <td>
-                  {item.activeOperator ? (
-                    <button type="button" className="taxonomy-action" onClick={() => onChoose(item.damageId)}>
-                      Open {item.currentPageArtifactCount} trials
-                    </button>
-                  ) : (
-                    <span className="taxonomy-pending">Specified · generator pending</span>
-                  )}
+                  <button type="button" className="taxonomy-action" onClick={() => onChoose(item.damageId)}>
+                    View generated example
+                  </button>
                 </td>
               </tr>
             ))}
@@ -242,7 +237,7 @@ function DamageTaxonomy({
         </table>
       </div>
       <p className="table-note">
-        Severity decisions shown here are for {taxonomy.contentLabel}. Recto/verso handling is an explicit workflow rule, not a field supplied by the matrix. Paired-side effects require registered scans of the same physical leaf.
+        Severity decisions shown here are for {taxonomy.contentLabel}. Every type has a deterministic S3 review image. The three material-loss operators are pixel-calibrated; the other visual operators are prototypes awaiting specialist realism review.
       </p>
     </section>
   );
@@ -466,37 +461,34 @@ export function EvidenceWorkbench({ evidence }: { evidence: EvidencePayload }) {
 
       <section className="damage-chooser" aria-labelledby="damage-heading">
         <div className="section-heading">
-          <h2 id="damage-heading">Choose a damage trial</h2>
-          <p>All nine trials below belong to {page.manuscriptId}, page {page.canvasLabel}.</p>
+          <h2 id="damage-heading">Review all damage types</h2>
+          <p>Select any type to show its generated example in the main viewer.</p>
         </div>
-        <div className="damage-groups">
-          {["D2-01", "D2-02", "D2-03"].map((damageId) => {
-            const experiments = page.experiments.filter((item) => item.damageId === damageId);
+        <div className="damage-review-list">
+          {evidence.damageTaxonomy.items.map((item) => {
+            const experiment = page.experiments.find(
+              (candidate) => candidate.damageId === item.damageId && candidate.severity === "S3",
+            ) ?? page.experiments.find((candidate) => candidate.damageId === item.damageId);
+            if (!experiment) return null;
+            const selected = experiment.taskId === selectedExperiment.taskId;
             return (
-              <article className="damage-group" key={damageId}>
-                <h3>{damageId} · {familyLabels[experiments[0]?.family] ?? experiments[0]?.matrix.damageType}</h3>
-                <div className="variant-row">
-                  {experiments.map((experiment) => {
-                    const selected = experiment.taskId === selectedExperiment.taskId;
-                    return (
-                      <button
-                        type="button"
-                        key={experiment.taskId}
-                        className={selected ? "variant selected" : "variant"}
-                        onClick={() => chooseExperiment(experiment)}
-                        aria-pressed={selected}
-                      >
-                        <span className="variant-image">
-                          <Image unoptimized src={experiment.fragmentPath} alt="" width={240} height={297} loading="lazy" />
-                        </span>
-                        <strong>{severityLabels[experiment.severity]} · {experiment.severity}</strong>
-                        <small>{percentage(experiment.statistics.measuredTargetLoss)} removed</small>
-                        {selected && <Check aria-hidden="true" />}
-                      </button>
-                    );
-                  })}
-                </div>
-              </article>
+              <button
+                type="button"
+                key={item.damageId}
+                className={selected ? "damage-review-item selected" : "damage-review-item"}
+                onClick={() => chooseExperiment(experiment)}
+                aria-pressed={selected}
+              >
+                <span className="damage-review-thumb">
+                  <Image unoptimized src={experiment.fragmentPath} alt="" width={160} height={198} loading="lazy" />
+                </span>
+                <span className="damage-review-copy">
+                  <strong>{item.damageId} · {item.name}</strong>
+                  <small>{experiment.reviewPrototype ? "S3 synthetic review prototype" : "S3 calibrated material loss"}</small>
+                  <i>{percentage(experiment.statistics.measuredEffectCoverage, 1)} of selected region affected</i>
+                </span>
+                {selected && <Check aria-hidden="true" />}
+              </button>
             );
           })}
         </div>
@@ -536,7 +528,7 @@ export function EvidenceWorkbench({ evidence }: { evidence: EvidencePayload }) {
       </details>
 
       <footer className="demo-footer">
-        <span>{evidence.corpus.processedPageCount} processed pages · {evidence.corpus.layoutRegionCount} stored layout regions · {evidence.corpus.pages.reduce((total, item) => total + item.experiments.length, 0)} damage trials</span>
+        <span>{evidence.corpus.processedPageCount} processed pages · {evidence.corpus.layoutRegionCount} stored layout regions · {evidence.damageTaxonomy.displayedTypeCount} damage types per page</span>
         <span>No generated replacement content</span>
       </footer>
     </main>
