@@ -16,7 +16,9 @@ The demo also exposes the complete supplied damage taxonomy as a compact table.
 The source contains 17 named types, although its identifier sequence omits D2-05
 and D2-15. Every row opens a generated S3 example for the selected page. Three
 are calibrated material-loss experiments; fourteen are deterministic visual
-review prototypes. Recto/verso rules are workflow requirements and remain
+review prototypes (v2, applied across the detected main-writing area and
+validated to be visible at display size). The compare step explains the
+classification used and the changes made. Recto/verso rules are workflow requirements and remain
 separate from the source matrix decisions.
 The demo is read-only and does not replace the next scholarly decision gate below.
 

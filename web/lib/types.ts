@@ -41,6 +41,14 @@ export type Experiment = {
   measurementLabel: string;
   operatorLabel: string;
   reviewPrototype: boolean;
+  /** Pixels the operator was allowed to change, shown in the "Select an area" step. */
+  areaMaskPath: string;
+  /** Plain-language name of the area all coverage percentages are measured against. */
+  measurementBasis: string;
+  areaRegionCount: number;
+  areaPageFraction: number;
+  /** Share of the page that differs visibly at on-screen size; null for calibrated loss records. */
+  visiblePageChange: number | null;
   matrix: MatrixEntry;
   statistics: {
     targetPixels: number;

@@ -5,7 +5,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 WEB_DIR="$ROOT_DIR/web"
 PORT="${FRAGMENT_WORKBENCH_PORT:-8503}"
 PYTHON_BIN="${FRAGMENT_WORKBENCH_PYTHON:-$ROOT_DIR/.venv/bin/python}"
-PROTOTYPE_MANIFEST="$ROOT_DIR/outputs/synthetic_data/damage_review_prototype_v1/prototype.json"
+PROTOTYPE_MANIFEST="$ROOT_DIR/outputs/synthetic_data/damage_review_prototype_v2/prototype.json"
 
 if [[ ! -x "$PYTHON_BIN" ]]; then
   PYTHON_BIN="python3"

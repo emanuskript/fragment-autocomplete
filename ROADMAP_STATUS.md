@@ -31,12 +31,22 @@ but visual realism, qualitative severity and historical authenticity are not
 specialist-validated. The interface therefore labels these as synthetic
 comparators, never recovered historical content.
 
-Validation after this change: 240 Python tests passed; Ruff, Next.js lint,
-production build and the workspace validator passed. Automated responsive
-inspection at 1440 px, 768 px and 390 px reported no broken images, console
-errors, horizontal page overflow, tiny text or critical findings. Direct browser
-checks confirmed top-strip selection, table-row selection, page-specific variant
-replacement, full-fragment display and the live PostgreSQL provenance disclosure.
+Review prototypes v2 (2026-11-10): v1 confined each of the 14 prototype effects
+to the single selected writing region (0.6–2.4% of the page), so most previews
+changed under 1.3% of page pixels and looked unchanged. v2 applies them across
+the union of all detected main-script regions (23–43% of the page; folds and
+cockling act on the whole leaf), uses page-relative ink detection for pale ink,
+and strengthens the faintest operators. Each record now stores its effect
+domain and a display-scale visible-change measure; validation fails if any
+image changes less than 2% of the page at on-screen size (current minimum
+3.2%). The compare step now states the classification used (matrix row,
+content type, visual class, decision, S3 note) and what the operator changed,
+with the area, coverage and page-change figures. Realism is still unvalidated.
+
+Validation after this change: 241 Python tests passed; Ruff, Next.js lint,
+typecheck, production build and the workspace validator passed. Browser checks
+on the running demo confirmed all 17 types render on the compare step with
+their classification and change text and no broken images.
 
 Last updated: 2026-10-28. Repository-facing model guidance now identifies [Mergen](https://github.com/emanuskript/Mergen) as the eManuSkript layout-analysis component and registers the supplied GWDG OwnCloud Mergen Weights directory, the three expected filenames, and their previously verified checksums in `models/model_registry.yaml`. The checkpoint binaries remain ignored and external. Historical run manifests retain the original `best_emanuskript_segmentation` identifier and local path as immutable provenance; the cleanup does not reinterpret or regenerate any scientific result. The May 2026 Architecture Draft v0.2 remains historical planning, while `docs/IMPLEMENTATION_STATUS_2026-10.md` and `docs/ARCHITECTURE.md` describe the current implementation boundary.
 

@@ -241,6 +241,24 @@ button:focus-visible, summary:focus-visible {
 .source-matte { background: #0e0f10; }
 .comparison-pair figcaption { padding-top: 8px; color: var(--muted); font-size: 14px; text-align: center; }
 
+.compare-notes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  border-top: 1px solid var(--line);
+  background: var(--line);
+}
+.compare-notes > section { display: grid; align-content: start; gap: 12px; padding: 20px 24px; background: var(--surface); }
+.compare-notes h3 { margin: 0; color: var(--accent-dark); font-size: 13px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; }
+.compare-notes p { margin: 0; color: var(--ink); font-size: 15px; line-height: 1.55; }
+.compare-notes .compare-notes-lead { font-size: 16px; }
+.compare-notes .compare-notes-quote { color: var(--muted); font-size: 14px; font-style: italic; }
+.compare-notes dl { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 0; border: 1px solid var(--line); background: var(--line); }
+.compare-notes dl > div { min-width: 0; padding: 9px 12px; background: var(--surface); }
+.compare-notes dt { color: var(--muted); font-size: 11px; text-transform: uppercase; }
+.compare-notes dd { margin: 3px 0 0; font-size: 13px; font-weight: 700; overflow-wrap: anywhere; }
+.compare-notes small { color: var(--quiet); font-size: 12px; line-height: 1.5; }
+
 .stage-controls {
   min-height: 66px;
   display: grid;
@@ -501,6 +519,8 @@ button:focus-visible, summary:focus-visible {
   .main-visual { min-height: 420px; }
   .main-visual > img, .layered-visual, .main-visual > .fragment-matte { height: min(58vh, 540px); }
   .comparison-pair { grid-template-columns: 1fr; }
+  .compare-notes { grid-template-columns: 1fr; }
+  .compare-notes > section { padding: 16px; }
   .comparison-image { height: 52vh; }
   .classification dl { grid-template-columns: 1fr; }
   .classification dl > div { border-right: 0; border-bottom: 1px solid var(--line) !important; }

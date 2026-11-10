@@ -15,7 +15,7 @@ const DATASET_CANDIDATES = [
   "outputs/synthetic_data/matrix_v2_public_demo/dataset",
   "outputs/synthetic_data/matrix_v1_pilot/dataset",
 ];
-const REVIEW_PROTOTYPE_ROOT = "outputs/synthetic_data/damage_review_prototype_v1";
+const REVIEW_PROTOTYPE_ROOT = "outputs/synthetic_data/damage_review_prototype_v2";
 
 function readJson<T>(relativePath: string): T {
   return JSON.parse(fs.readFileSync(path.join(PROJECT_ROOT, relativePath), "utf8")) as T;
@@ -149,6 +149,13 @@ type PrototypeRecord = {
   effect_mask_path: string;
   content_mask: string;
   content_basis: string;
+  effect_domain: {
+    basis: string;
+    region_indices: number[];
+    pixels: number;
+    page_fraction: number;
+    mask_path: string;
+  };
   matrix_entry: {
     source_row: number;
     content_id: string;
@@ -170,6 +177,7 @@ type PrototypeRecord = {
     measured_page_coverage: number;
     effect_kind: Experiment["effectKind"];
     operator_label: string;
+    visible_page_change: number;
   };
 };
 
@@ -317,7 +325,7 @@ function pageSide(canvasLabel: string): ProcessedPage["pageSide"] {
   return "not recorded";
 }
 
-function makeExperiment(record: PilotRecord, datasetRoot: string): Experiment {
+function makeExperiment(record: PilotRecord, datasetRoot: string, pagePixels: number): Experiment {
   return {
     taskId: record.task_id,
     pageId: record.page_id,
@@ -336,6 +344,11 @@ function makeExperiment(record: PilotRecord, datasetRoot: string): Experiment {
     measurementLabel: "Material removed",
     operatorLabel: "Content-calibrated material-loss operator",
     reviewPrototype: false,
+    areaMaskPath: artifactUrl(`${datasetRoot}/${record.artifacts.content.path}`),
+    measurementBasis: "selected writing region",
+    areaRegionCount: 1,
+    areaPageFraction: record.statistics.target_pixels / Math.max(pagePixels, 1),
+    visiblePageChange: null,
     matrix: {
       sourceRow: record.matrix_entry.source_row,
       contentId: record.matrix_entry.content_id,
@@ -377,13 +390,18 @@ function makePrototypeExperiment(record: PrototypeRecord): Experiment {
     survivalPath: artifactUrl(`${REVIEW_PROTOTYPE_ROOT}/${record.preview_path}`),
     damagePath: artifactUrl(`${REVIEW_PROTOTYPE_ROOT}/${record.effect_mask_path}`),
     contentPath: artifactUrl(record.content_mask),
-    realismProfile: "damage_review_prototype_v1",
+    realismProfile: "damage_review_prototype_v2",
     visualRealismValidated: false,
     historicalDamageClaim: false,
     effectKind: record.statistics.effect_kind,
-    measurementLabel: "Affected region",
+    measurementLabel: "Affected writing area",
     operatorLabel: record.statistics.operator_label,
     reviewPrototype: true,
+    areaMaskPath: artifactUrl(`${REVIEW_PROTOTYPE_ROOT}/${record.effect_domain.mask_path}`),
+    measurementBasis: "detected main-writing area",
+    areaRegionCount: record.effect_domain.region_indices.length,
+    areaPageFraction: record.effect_domain.page_fraction,
+    visiblePageChange: record.statistics.visible_page_change,
     matrix: {
       sourceRow: record.matrix_entry.source_row,
       contentId: record.matrix_entry.content_id,
@@ -506,7 +524,11 @@ export function loadEvidence(): EvidencePayload {
       selectedRegionLabel: first.segmentation_provenance.label,
       selectedRegionConfidence: first.segmentation_provenance.confidence,
       experiments: [
-        ...pageRecords.map((record) => makeExperiment(record, datasetRoot)),
+        ...pageRecords.map((record) => makeExperiment(
+          record,
+          datasetRoot,
+          (auditPage?.dimensions_px ?? [2000, 2000]).reduce((product, side) => product * side, 1),
+        )),
         ...(prototypeByPage.get(first.page_id) ?? []),
       ],
     };

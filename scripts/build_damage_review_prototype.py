@@ -22,7 +22,7 @@ from PIL import Image, ImageDraw, ImageFilter
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DATASET = ROOT / "outputs/synthetic_data/paper_profile_public_demo_v2/dataset"
 MATRIX = ROOT / "data/metadata/jeremy_damage_matrix_v3.json"
-OUTPUT = ROOT / "outputs/synthetic_data/damage_review_prototype_v1"
+OUTPUT = ROOT / "outputs/synthetic_data/damage_review_prototype_v2"
 MANIFEST = OUTPUT / "prototype.json"
 PROTOTYPE_DAMAGE_IDS = {
     "D2-04",
@@ -104,6 +104,15 @@ def _blend(source: np.ndarray, colour: tuple[float, float, float], alpha: np.nda
     return np.clip(mixed, 0, 255).astype(np.uint8)
 
 
+def _ink_signal(gray: np.ndarray, content: np.ndarray) -> np.ndarray:
+    """Page-relative ink darkness (0 = paper, 1 = darkest ink) so pale ink still registers."""
+    values = gray[content] if content.any() else gray.ravel()
+    paper = float(np.quantile(values, 0.8))
+    ink = float(np.quantile(values, 0.03))
+    span = max(18.0, paper - ink)
+    return np.clip((paper - gray.astype(np.float32)) / span, 0, 1)
+
+
 def _mask_image(alpha: np.ndarray) -> Image.Image:
     return Image.fromarray(np.clip(alpha * 255, 0, 255).astype(np.uint8))
 
@@ -134,6 +143,7 @@ def apply_prototype_effect(
     height, width = content.shape
     rng = np.random.default_rng(seed)
     region = _organic_region(content, rng)
+    ink_signal = _ink_signal(gray, content)
     effect_kind, operator_label = OPERATOR_INFO[damage_id]
 
     if damage_id == "D2-04":
@@ -145,13 +155,13 @@ def apply_prototype_effect(
         alpha = affected.astype(np.float32)
     elif damage_id == "D2-06":
         texture = rng.normal(0, 0.06, size=(height, width)).astype(np.float32)
-        alpha = np.clip(region.astype(np.float32) * (0.36 + texture), 0, 0.54)
+        alpha = np.clip(region.astype(np.float32) * (0.5 + texture), 0, 0.66)
         out = _blend(arr, (218, 211, 185), alpha)
     elif damage_id == "D2-07":
         x0, y0, x1, y1 = _content_bbox(content)
         tape = Image.new("L", source.size, 0)
         draw = ImageDraw.Draw(tape)
-        tape_width = max(22, int((x1 - x0) * 0.16))
+        tape_width = max(22, int((x1 - x0) * 0.1))
         centre = int(x0 + (x1 - x0) * rng.uniform(0.35, 0.7))
         lean = int((y1 - y0) * rng.uniform(-0.08, 0.08))
         draw.polygon(
@@ -160,22 +170,22 @@ def apply_prototype_effect(
             fill=220,
         )
         tape_array = np.asarray(tape.filter(ImageFilter.GaussianBlur(2)), dtype=np.float32) / 255
-        alpha = tape_array * 0.34
-        out = _blend(arr, (188, 137, 58), alpha)
-        edge = np.asarray(tape.filter(ImageFilter.FIND_EDGES), dtype=np.float32) / 255
-        out = _blend(out, (112, 72, 28), np.clip(edge * 0.32, 0, 0.32))
+        alpha = tape_array * 0.52
+        out = _blend(arr, (196, 140, 52), alpha)
+        edge = np.asarray(tape.filter(ImageFilter.FIND_EDGES).filter(ImageFilter.MaxFilter(5)), dtype=np.float32) / 255
+        out = _blend(out, (104, 66, 24), np.clip(edge * 0.6, 0, 0.6))
     elif damage_id == "D2-08":
         x0, y0, x1, y1 = _content_bbox(content)
         deposits = Image.new("L", source.size, 0)
         draw = ImageDraw.Draw(deposits)
-        scale = max(2, min(width, height) // 500)
-        for _ in range(95):
+        scale = max(3, min(width, height) // 260)
+        for _ in range(240):
             x = int(rng.integers(x0, x1 + 1))
             y = int(rng.integers(y0, y1 + 1))
             radius = int(rng.integers(scale, scale * 6 + 1))
             draw.ellipse((x - radius, y - radius, x + radius, y + radius), fill=int(rng.integers(100, 230)))
-        alpha = np.asarray(deposits.filter(ImageFilter.GaussianBlur(0.8)), dtype=np.float32) / 255 * 0.78
-        out = _blend(arr, (70, 52, 35), alpha)
+        alpha = np.asarray(deposits.filter(ImageFilter.GaussianBlur(0.8)), dtype=np.float32) / 255 * 0.88
+        out = _blend(arr, (58, 42, 28), alpha)
     elif damage_id == "D2-09":
         base = region.astype(np.float32)
         soft = np.asarray(_mask_image(base).filter(ImageFilter.GaussianBlur(34)), dtype=np.float32) / 255
@@ -188,53 +198,61 @@ def apply_prototype_effect(
         x0, y0, x1, y1 = _content_bbox(content)
         strokes = Image.new("L", source.size, 0)
         draw = ImageDraw.Draw(strokes)
-        line_width = max(2, min(width, height) // 520)
-        for _ in range(13):
+        line_width = max(3, min(width, height) // 330)
+        for _ in range(24):
             y = int(rng.integers(y0, y1 + 1))
             points = []
             for step in range(9):
                 x = int(x0 + (x1 - x0) * step / 8)
                 points.append((x, y + int(np.sin(step * 1.7 + rng.random()) * line_width * 4)))
             draw.line(points, fill=int(rng.integers(130, 220)), width=int(rng.integers(line_width, line_width * 3 + 1)))
-        alpha = np.asarray(strokes.filter(ImageFilter.GaussianBlur(0.5)), dtype=np.float32) / 255 * 0.84
-        out = _blend(arr, (40, 31, 22), alpha)
+        alpha = np.asarray(strokes.filter(ImageFilter.GaussianBlur(0.5)), dtype=np.float32) / 255 * 0.92
+        out = _blend(arr, (32, 24, 18), alpha)
     elif damage_id == "D2-11":
-        dark = np.clip((185 - gray.astype(np.float32)) / 185, 0, 1)
-        alpha = region.astype(np.float32) * dark * 0.72
-        out = _blend(arr, (229, 221, 194), alpha)
+        paper = tuple(float(np.quantile(arr[..., channel][content], 0.85)) for channel in range(3))
+        fade_region = _organic_region(content, rng, fraction=0.6)
+        alpha = fade_region.astype(np.float32) * np.clip(ink_signal * 1.25, 0, 1) * 0.92
+        out = _blend(arr, paper, alpha)
     elif damage_id == "D2-12":
         noise = rng.random((height, width)).astype(np.float32)
-        alpha = region.astype(np.float32) * np.clip(0.35 + noise * 0.35, 0, 0.7)
+        alpha = region.astype(np.float32) * np.clip(0.45 + noise * 0.4, 0, 0.85)
         neutral = np.repeat(gray[..., None], 3, axis=2).astype(np.float32)
-        abraded = neutral * 0.55 + np.array([225, 218, 196], dtype=np.float32) * 0.45
-        out = np.clip(arr * (1 - alpha[..., None]) + abraded * alpha[..., None], 0, 255).astype(np.uint8)
+        grime = rng.normal(0, 1, size=(max(4, height // 6), max(4, width // 6))).astype(np.float32)
+        grime = np.asarray(Image.fromarray(np.clip(128 + grime * 40, 0, 255).astype(np.uint8)).resize((width, height), Image.Resampling.BICUBIC), dtype=np.float32)
+        abraded = neutral * 0.35 + np.array([206, 194, 168], dtype=np.float32) * 0.65
+        abraded += ((grime - 128) * 0.35)[..., None]
+        lift = np.clip(alpha + ink_signal * region * 0.5, 0, 0.92)
+        out = np.clip(arr * (1 - lift[..., None]) + abraded * lift[..., None], 0, 255).astype(np.uint8)
+        alpha = lift
     elif damage_id == "D2-13":
         x0, y0, x1, y1 = _content_bbox(content)
         erase = Image.new("L", source.size, 0)
         draw = ImageDraw.Draw(erase)
-        cx = int(rng.uniform(x0 + (x1 - x0) * 0.25, x0 + (x1 - x0) * 0.75))
-        cy = int(rng.uniform(y0 + (y1 - y0) * 0.25, y0 + (y1 - y0) * 0.75))
-        rx, ry = int((x1 - x0) * 0.25), int((y1 - y0) * 0.11)
-        draw.ellipse((cx - rx, cy - ry, cx + rx, cy + ry), fill=225)
-        alpha = np.asarray(erase.filter(ImageFilter.GaussianBlur(max(4, ry / 4))), dtype=np.float32) / 255 * 0.72
+        rx, ry = int((x1 - x0) * 0.22), int((y1 - y0) * 0.06)
+        for _ in range(4):
+            cx = int(rng.uniform(x0 + (x1 - x0) * 0.2, x0 + (x1 - x0) * 0.8))
+            cy = int(rng.uniform(y0 + (y1 - y0) * 0.1, y0 + (y1 - y0) * 0.9))
+            draw.ellipse((cx - rx, cy - ry, cx + rx, cy + ry), fill=240)
+        alpha = np.asarray(erase.filter(ImageFilter.GaussianBlur(max(4, ry / 4))), dtype=np.float32) / 255 * 0.85
         out = _blend(arr, (226, 216, 188), alpha)
     elif damage_id == "D2-14":
         mirrored = np.asarray(source.transpose(Image.Transpose.FLIP_LEFT_RIGHT), dtype=np.uint8)
-        signal = np.clip((185 - np.asarray(Image.fromarray(mirrored).convert("L"), dtype=np.float32)) / 185, 0, 1)
-        alpha = region.astype(np.float32) * signal * 0.42
+        mirrored_gray = np.asarray(Image.fromarray(mirrored).convert("L"), dtype=np.uint8)
+        signal = _ink_signal(mirrored_gray, content[:, ::-1])
+        alpha = region.astype(np.float32) * np.clip(signal * 1.3, 0, 1) * 0.72
         out = _blend(arr, (55, 43, 32), alpha)
     elif damage_id == "D2-16":
-        dark = (gray < min(165, int(np.quantile(gray[content], 0.46)))).astype(np.uint8) * 255
+        dark = (ink_signal > 0.45).astype(np.uint8) * 255
         ink = Image.fromarray(dark)
-        outer = np.asarray(ink.filter(ImageFilter.GaussianBlur(7)), dtype=np.float32) / 255
+        outer = np.asarray(ink.filter(ImageFilter.GaussianBlur(9)), dtype=np.float32) / 255
         inner = np.asarray(ink.filter(ImageFilter.GaussianBlur(2)), dtype=np.float32) / 255
         halo = np.clip(outer - inner * 0.55, 0, 1) * region.astype(np.float32)
-        alpha = np.clip(halo * 0.68, 0, 0.68)
-        out = _blend(arr, (118, 62, 29), alpha)
+        alpha = np.clip(halo * 1.4, 0, 0.8)
+        out = _blend(arr, (110, 56, 24), alpha)
     elif damage_id == "D2-17":
-        reverse = source.transpose(Image.Transpose.FLIP_LEFT_RIGHT).convert("L").filter(ImageFilter.GaussianBlur(2.5))
-        signal = np.clip((178 - np.asarray(reverse, dtype=np.float32)) / 178, 0, 1)
-        alpha = region.astype(np.float32) * signal * 0.50
+        reverse = source.transpose(Image.Transpose.FLIP_LEFT_RIGHT).convert("L").filter(ImageFilter.GaussianBlur(3.5))
+        signal = _ink_signal(np.asarray(reverse, dtype=np.uint8), content[:, ::-1])
+        alpha = region.astype(np.float32) * np.clip(signal * 1.3, 0, 1) * 0.66
         out = _blend(arr, (78, 52, 36), alpha)
     elif damage_id == "D2-18":
         yy, xx = np.mgrid[0:height, 0:width]
@@ -246,9 +264,9 @@ def apply_prototype_effect(
         for slope, offset in ((0.22, -0.08), (-0.16, 0.12)):
             line = centre_y + (y1 - y0) * offset + slope * (xx - centre_x)
             distance = yy - line
-            band = np.exp(-((distance / max(5, height * 0.012)) ** 2))
+            band = np.exp(-((distance / max(8, height * 0.022)) ** 2))
             alpha = np.maximum(alpha, band.astype(np.float32))
-            shading += np.tanh(distance / max(3, height * 0.005)) * band * 28
+            shading += np.tanh(distance / max(3, height * 0.006)) * band * 46
         out = np.clip(arr.astype(np.float32) + shading[..., None], 0, 255).astype(np.uint8)
         alpha *= 0.76
     else:  # D2-19
@@ -263,6 +281,10 @@ def apply_prototype_effect(
         out = np.clip(out.astype(np.float32) + shading[..., None], 0, 255).astype(np.uint8)
         alpha = np.clip(np.abs(waves) * 0.52, 0, 0.52).astype(np.float32)
 
+    display = (DISPLAY_WIDTH, max(1, round(height * DISPLAY_WIDTH / width)))
+    before = np.asarray(source.resize(display, Image.Resampling.BOX), dtype=np.int16)
+    after = np.asarray(Image.fromarray(out).resize(display, Image.Resampling.BOX), dtype=np.int16)
+    visible_change = np.abs(after - before).mean(axis=2) > VISIBLE_DIFF_THRESHOLD
     effect_mask = _mask_image(alpha)
     affected = np.asarray(effect_mask) > 12
     target_pixels = int(content.sum())
@@ -272,6 +294,7 @@ def apply_prototype_effect(
         "affected_target_pixels": affected_target,
         "measured_effect_coverage": affected_target / target_pixels if target_pixels else 0,
         "measured_page_coverage": float(affected.mean()),
+        "visible_page_change": float(visible_change.mean()),
         "effect_kind": effect_kind,
         "operator_label": operator_label,
         "visual_realism_validated": False,
@@ -290,6 +313,36 @@ def _base_pages() -> list[dict[str, Any]]:
     if len(pages) != 10:
         raise ValueError(f"expected_10_demo_pages:found_{len(pages)}")
     return list(pages.values())
+
+
+MIN_VISIBLE_PAGE_CHANGE = 0.02
+VISIBLE_DIFF_THRESHOLD = 12
+DISPLAY_WIDTH = 500  # approximate on-screen width of the compare view
+
+
+def _writing_area(page: dict[str, Any], selected: Image.Image) -> tuple[Image.Image, dict[str, Any]]:
+    """Union every detected main-script region; the selected region alone is too small to see."""
+    raw_path = ROOT / page["segmentation_provenance"]["stored_run"]["raw_output_path"]
+    raw = json.loads(raw_path.read_text(encoding="utf-8"))
+    union = np.asarray(selected.convert("L")) > 0
+    indices: list[int] = []
+    for region in raw["detections"]:
+        if not str(region.get("label", "")).startswith("Main script"):
+            continue
+        with Image.open(ROOT / region["mask_path"]) as opened:
+            mask = np.asarray(opened.convert("L")) > 0
+        if mask.shape != union.shape:
+            raise ValueError(f"region_mask_dimension_mismatch:{page['page_id']}:{region['index']}")
+        union |= mask
+        indices.append(int(region["index"]))
+    info = {
+        "basis": "union_of_detected_main_script_regions",
+        "region_indices": sorted(indices),
+        "pixels": int(union.sum()),
+        "page_fraction": float(union.mean()),
+        "label_mapping": "model-detected layout labels; not expert-verified",
+    }
+    return Image.fromarray(union.astype(np.uint8) * 255), info
 
 
 def _matrix_rows() -> dict[str, dict[str, Any]]:
@@ -311,7 +364,16 @@ def build() -> dict[str, Any]:
         with Image.open(page["source_image"]) as opened:
             source = opened.convert("RGB")
         with Image.open(page["content_mask"]) as opened:
-            content_mask = opened.convert("L")
+            selected_mask = opened.convert("L")
+        content_mask, effect_domain = _writing_area(page, selected_mask)
+        relative_domain = Path(page["page_id"]) / "writing_area.png"
+        domain_bytes = _image_bytes(content_mask, png=True)
+        _write_if_changed(OUTPUT / relative_domain, domain_bytes)
+        effect_domain = {
+            **effect_domain,
+            "mask_path": relative_domain.as_posix(),
+            "mask_sha256": sha256(domain_bytes).hexdigest(),
+        }
         for damage_id in sorted(PROTOTYPE_DAMAGE_IDS, key=lambda value: int(value.split("-")[1])):
             preview, effect_mask, stats = apply_prototype_effect(
                 source,
@@ -346,6 +408,7 @@ def build() -> dict[str, Any]:
                     "source_sha256": page["source_sha256"],
                     "content_mask": page["content_mask"],
                     "content_basis": page["content_basis"],
+                    "effect_domain": effect_domain,
                     "matrix_entry": {
                         "source_row": row["source_row"],
                         "content_id": row["content_id"],
@@ -367,7 +430,7 @@ def build() -> dict[str, Any]:
                 }
             )
     payload = {
-        "version": "damage_review_prototype_v1",
+        "version": "damage_review_prototype_v2",
         "purpose": "public interface review; not training data or historical damage evidence",
         "source_dataset": str(SOURCE_DATASET.relative_to(ROOT)),
         "record_count": len(records),
@@ -398,6 +461,12 @@ def validate() -> dict[str, Any]:
             path = OUTPUT / record[path_key]
             if not path.is_file() or sha256(path.read_bytes()).hexdigest() != record[hash_key]:
                 problems.append(f"artifact_mismatch:{record['task_id']}:{path_key}")
+        domain = record.get("effect_domain", {})
+        domain_path = OUTPUT / domain.get("mask_path", "missing")
+        if not domain_path.is_file() or sha256(domain_path.read_bytes()).hexdigest() != domain.get("mask_sha256"):
+            problems.append(f"effect_domain_mismatch:{record['task_id']}")
+        if record["statistics"].get("visible_page_change", 0) < MIN_VISIBLE_PAGE_CHANGE:
+            problems.append(f"effect_not_visible:{record['task_id']}:{record['damage_id']}")
         if record["visual_realism_validated"] or record["historical_damage_claim"]:
             problems.append(f"invalid_claim:{record['task_id']}")
     if problems:

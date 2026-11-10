@@ -10,13 +10,14 @@ import type {
   Experiment,
   ProcessedPage,
 } from "../lib/types";
+import { DAMAGE_CHANGES } from "../lib/damage-changes";
 
 type DemoStep = "source" | "layout" | "area" | "damage" | "result" | "compare";
 
 const steps: Array<{ id: DemoStep; label: string; title: string }> = [
   { id: "source", label: "Original page", title: "Start with the complete page" },
   { id: "layout", label: "Find regions", title: "Find the page’s visual regions" },
-  { id: "area", label: "Select an area", title: "Choose one writing region to measure" },
+  { id: "area", label: "Select an area", title: "Choose the writing area to measure" },
   { id: "damage", label: "Apply damage", title: "Apply a controlled damage shape" },
   { id: "result", label: "See the result", title: "Create the test fragment" },
   { id: "compare", label: "Compare", title: "Compare before and after" },
@@ -29,9 +30,10 @@ const shortLicense = (value: string) => {
   if (value.includes("publicdomain/zero/1.0")) return "CC0 1.0";
   return value;
 };
-const plainMatrixNote = (value: string) => value
-  .replaceAll("content target", "selected writing region")
-  .replaceAll("content object", "selected writing region");
+const plainMatrixNote = (value: string, basis = "selected writing region") => value
+  .replaceAll("content target", basis)
+  .replaceAll("content object", basis)
+  .replaceAll("selected writing region", basis);
 
 function stepDescription(step: DemoStep, experiment: Experiment): string {
   const amount = percentage(experiment.statistics.measuredEffectCoverage);
@@ -40,10 +42,14 @@ function stepDescription(step: DemoStep, experiment: Experiment): string {
   return {
     source: "This unchanged digital photograph is the reference for every later step.",
     layout: "The layout model marks writing, page numbers, decoration, and other visual regions. It detects shapes; it does not read or reconstruct the text.",
-    area: "One detected writing region is selected. All loss percentages are measured against this exact region, not against the whole page.",
+    area: materialLoss
+      ? "One detected writing region is selected. All loss percentages are measured against this exact region, not against the whole page."
+      : experiment.effectKind === "leaf-deformation"
+        ? `All ${experiment.areaRegionCount} detected main-script regions are combined (${percentage(experiment.areaPageFraction)} of the page). The deformation acts on the whole leaf; its coverage is measured inside this area.`
+        : `All ${experiment.areaRegionCount} detected main-script regions are combined (${percentage(experiment.areaPageFraction)} of the page). The effect is applied and measured inside this area.`,
     damage: materialLoss
       ? `A ${family.toLowerCase()} mask removes ${amount} of the selected writing region. The seeded shape and measured amount can be reproduced.`
-      : `A deterministic ${family.toLowerCase()} field affects ${amount} of the selected writing region. Its mask and settings can be reproduced.`,
+      : `A deterministic ${family.toLowerCase()} field affects ${amount} of the ${experiment.measurementBasis}. Its mask and settings can be reproduced.`,
     result: materialLoss
       ? "The masked pixels become transparent. No text, decoration, or missing historical material is painted into the gap."
       : "The controlled visual transformation is applied to the observed page. It is a review prototype, not a claim about historical damage.",
@@ -77,7 +83,7 @@ function DemoVisual({ step, page, experiment }: { step: DemoStep; page: Processe
     return (
       <div className="layered-visual">
         <ManuscriptImage src={page.sourceUrl} alt="Complete manuscript page" />
-        <ManuscriptImage src={page.contentMaskUrl} alt="Selected writing region" className="area-overlay" />
+        <ManuscriptImage src={experiment.areaMaskPath} alt={`Highlighted ${experiment.measurementBasis}`} className="area-overlay" />
       </div>
     );
   }
@@ -110,6 +116,54 @@ function DemoVisual({ step, page, experiment }: { step: DemoStep; page: Processe
         </div>
         <figcaption>Synthetic review image</figcaption>
       </figure>
+    </div>
+  );
+}
+
+function CompareNotes({ experiment, contentLabel }: { experiment: Experiment; contentLabel: string }) {
+  const materialLoss = experiment.effectKind === "material-loss";
+  const wholeLeaf = experiment.effectKind === "leaf-deformation";
+  const change = DAMAGE_CHANGES[experiment.damageId] ?? experiment.operatorLabel;
+  const appliedWithin = materialLoss
+    ? `Selected writing region · ${percentage(experiment.areaPageFraction, 1)} of page`
+    : wholeLeaf
+      ? "Whole leaf (deformation is shared by the page)"
+      : `${experiment.areaRegionCount} main-script regions · ${percentage(experiment.areaPageFraction, 1)} of page`;
+  return (
+    <div className="compare-notes" aria-label="Classification and changes for this comparison">
+      <section>
+        <h3>Classification used</h3>
+        <p className="compare-notes-lead">
+          <strong>{experiment.damageId} · {experiment.matrix.damageType}</strong>
+          {" "}at matrix severity <strong>{experiment.severity} ({severityLabels[experiment.severity] ?? experiment.severity})</strong>
+        </p>
+        <dl>
+          <div><dt>Source</dt><dd>Supplied damage matrix v3, row {experiment.matrix.sourceRow}</dd></div>
+          <div><dt>Content type</dt><dd>{experiment.matrix.contentId} · {contentLabel}</dd></div>
+          <div><dt>Visual class</dt><dd>{experiment.matrix.visualClass}</dd></div>
+          <div><dt>Matrix decision</dt><dd>{experiment.matrix.decision}</dd></div>
+        </dl>
+        <p className="compare-notes-quote">Matrix description at {experiment.severity}: “{plainMatrixNote(experiment.matrix.note, experiment.measurementBasis)}”</p>
+      </section>
+      <section>
+        <h3>Changes made to the synthetic image</h3>
+        <p>{change}</p>
+        <dl>
+          <div><dt>Applied within</dt><dd>{appliedWithin}</dd></div>
+          <div><dt>{experiment.measurementLabel}</dt><dd>{percentage(experiment.statistics.measuredEffectCoverage, 1)} of {experiment.measurementBasis}</dd></div>
+          <div>
+            <dt>{materialLoss ? "Page removed" : "Page visibly changed"}</dt>
+            <dd>{percentage(materialLoss ? experiment.statistics.measuredPageLoss : experiment.visiblePageChange ?? 0, 1)} of all page pixels</dd>
+          </div>
+          <div><dt>Operator</dt><dd>{materialLoss ? "Pixel-calibrated material loss" : "Synthetic review prototype"}</dd></div>
+        </dl>
+        <small>
+          Nothing outside this operation was altered: no text, decoration, or historical material was added or reconstructed.
+          {materialLoss
+            ? " The loss amount is calibrated and tested; the shape’s realism still awaits specialist review."
+            : " Visual realism and severity are not specialist-validated; this is not evidence of historical damage."}
+        </small>
+      </section>
     </div>
   );
 }
@@ -163,10 +217,10 @@ function DamageClassification({ experiment }: { experiment: Experiment }) {
       <dl>
         <div><dt>Matrix severity</dt><dd>{severityLabels[experiment.severity]} · {experiment.severity}</dd></div>
         <div><dt>Visual class</dt><dd>{experiment.matrix.visualClass}</dd></div>
-        <div><dt>{experiment.measurementLabel}</dt><dd>{percentage(experiment.statistics.measuredEffectCoverage, 1)} of selected region</dd></div>
+        <div><dt>{experiment.measurementLabel}</dt><dd>{percentage(experiment.statistics.measuredEffectCoverage, 1)} of {experiment.measurementBasis}</dd></div>
         <div><dt>Generation decision</dt><dd>{experiment.matrix.decision}</dd></div>
       </dl>
-      <p>{plainMatrixNote(experiment.matrix.note)}</p>
+      <p>{plainMatrixNote(experiment.matrix.note, experiment.measurementBasis)}</p>
       <small>{experiment.operatorLabel}. Visual realism awaits specialist review; this is not evidence of historical damage.</small>
     </section>
   );
@@ -442,6 +496,9 @@ export function EvidenceWorkbench({ evidence }: { evidence: EvidencePayload }) {
         <div className={step === "result" ? "main-visual result-view" : "main-visual"}>
           <DemoVisual step={step} page={page} experiment={selectedExperiment} />
         </div>
+        {step === "compare" && (
+          <CompareNotes experiment={selectedExperiment} contentLabel={evidence.damageTaxonomy.contentLabel} />
+        )}
         <div className="stage-controls">
           <button type="button" className="secondary-action" onClick={() => changeStep(steps[Math.max(0, activeStepIndex - 1)].id)} disabled={activeStepIndex === 0}>
             <ChevronLeft aria-hidden="true" /> Previous
@@ -485,7 +542,7 @@ export function EvidenceWorkbench({ evidence }: { evidence: EvidencePayload }) {
                 <span className="damage-review-copy">
                   <strong>{item.damageId} · {item.name}</strong>
                   <small>{experiment.reviewPrototype ? "S3 synthetic review prototype" : "S3 calibrated material loss"}</small>
-                  <i>{percentage(experiment.statistics.measuredEffectCoverage, 1)} of selected region affected</i>
+                  <i>{percentage(experiment.statistics.measuredEffectCoverage, 1)} of {experiment.measurementBasis} affected</i>
                 </span>
                 {selected && <Check aria-hidden="true" />}
               </button>

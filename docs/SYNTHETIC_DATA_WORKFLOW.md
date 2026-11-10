@@ -79,9 +79,15 @@ python scripts/build_damage_review_prototype.py --validate-only
 ```
 
 This writes 140 ignored previews and effect masks—14 additional types across ten
-pages—to `outputs/synthetic_data/damage_review_prototype_v1/`. The manifest marks
+pages—to `outputs/synthetic_data/damage_review_prototype_v2/`. The manifest marks
 `visual_realism_validated: false` and `historical_damage_claim: false`. The
 dashboard launcher builds the set when it is absent and validates it otherwise.
+
+Effects are applied across the union of all detected `Main script*` regions
+(stored per page as `writing_area.png` and in each record's `effect_domain`),
+not only the single selected region used by the calibrated loss operators;
+fold and cockling operators act on the whole leaf. Validation rejects any
+preview whose display-scale (500 px wide) visible change is below 2% of the page.
 
 For the existing local corpus and stored Mergen artifacts:
 
