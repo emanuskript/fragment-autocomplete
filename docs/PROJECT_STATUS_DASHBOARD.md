@@ -66,13 +66,23 @@ generation decision and measured selected-region loss. The procedural profile
 is labeled synthetic and pending specialist review; it is not presented as
 historically authentic damage.
 
+A compact complete-taxonomy table shows all 17 named types in the supplied
+matrix, including CT-01 severity decisions and explicit recto/verso workflow
+rules. The source is reported as 17—not 16—because D2-05 and D2-15 are absent
+from its identifier sequence. Three rows link to generated trials; fourteen are
+clearly marked as specified but not generated.
+
 ## Progressive disclosure
 
-The public surface omits personal names and keeps exact database identifiers and
-hashes out of the main flow. A visible ten-row metadata table reports each page's
-source identity, dimensions, detected classes, region count, selected-region
-confidence, stored image/canvas/run/region bundle and source terms. Selecting a
-table row opens that page in the viewer.
+The public surface omits reviewer names and keeps exact database identifiers and
+hashes out of the main flow. A visible ten-row metadata table combines the page
+and recto/verso label, repository, shelfmark, title, source date and century,
+language, document type, material, catalogue script/hand/font availability,
+detected classes, stored image/canvas/run/region bundle and source terms.
+Selecting a table row opens that page in the viewer and updates a complete
+catalogue record with physical dimensions, page count, origin, DOI, digitizer,
+named people and source summary. Missing script/hand/font fields remain missing;
+the Mergen layout class is not presented as palaeographic metadata.
 
 One collapsed disclosure retains exact depth without crowding the demonstration:
 
@@ -118,6 +128,12 @@ Responsive visual inspection covers 1440 px, 768 px, and 390 px. Interaction
 checks cover page selection, direct step selection, previous/next navigation,
 variant selection, full fragment rendering, the side-by-side comparison, table
 row selection and the optional provenance disclosure.
+
+Rebuild the compact catalogue record after the source manifest changes:
+
+```bash
+.venv/bin/python scripts/build_public_demo_metadata.py
+```
 
 The 2026-11-09 validation pass completed 223 Python tests plus Ruff, Next.js
 lint, a production build and the workspace validator. Automated responsive

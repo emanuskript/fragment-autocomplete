@@ -144,7 +144,7 @@ function PageBrowser({ pages, selectedPageId, onSelect }: {
                 <Image unoptimized src={page.sourceUrl} alt="" width={150} height={185} loading={index < 5 ? "eager" : "lazy"} />
               </span>
               <strong>Page {page.canvasLabel}</strong>
-              <small>{page.manuscriptId}</small>
+              <small>{page.catalogue.shelfmark ?? page.manuscriptId}</small>
               <i>{page.regionCount} regions</i>
             </button>
           );
@@ -253,20 +253,25 @@ function MetadataTable({ pages, selectedPageId, onSelect }: {
   selectedPageId: string;
   onSelect: (page: ProcessedPage) => void;
 }) {
+  const selected = pages.find((page) => page.pageId === selectedPageId) ?? pages[0];
+  const record = selected.catalogue;
+  const value = (item: string | number | null) => item ?? "Not supplied by source";
   return (
     <section className="metadata-section" aria-labelledby="metadata-heading">
       <div className="section-heading">
         <h2 id="metadata-heading">Digested page metadata</h2>
-        <p>One row per processed page: source identity, model output, and the records saved after segmentation.</p>
+        <p>One row per processed page, combining catalogue identity with layout analysis and storage results.</p>
       </div>
       <div className="metadata-table-wrap">
         <table className="metadata-table">
           <thead>
             <tr>
-              <th>Page</th>
-              <th>Image</th>
+              <th>Page and side</th>
+              <th>Repository and shelfmark</th>
+              <th>Date</th>
+              <th>Work and language</th>
+              <th>Material and writing</th>
               <th>Layout digestion</th>
-              <th>Selected writing region</th>
               <th>Database storage</th>
               <th>Source terms</th>
             </tr>
@@ -277,12 +282,17 @@ function MetadataTable({ pages, selectedPageId, onSelect }: {
                 <td>
                   <button type="button" className="table-page-link" onClick={() => onSelect(page)}>
                     <strong>{page.manuscriptId}</strong>
-                    <span>page {page.canvasLabel}</span>
+                    <span>page {page.canvasLabel} · {page.pageSide}</span>
                   </button>
                 </td>
-                <td>{page.dimensions[0]} × {page.dimensions[1]} px<span>{page.split} split</span></td>
+                <td><strong>{page.catalogue.shelfmark ?? "Shelfmark not supplied"}</strong><span>{page.catalogue.repository ?? "Repository not supplied"}</span></td>
+                <td>
+                  {page.catalogue.dateDisplay ?? "Not supplied"}
+                  <span>{page.catalogue.century === page.catalogue.dateDisplay ? "Century supplied as catalogue date" : page.catalogue.century ?? "Century not supplied"}</span>
+                </td>
+                <td><strong>{page.catalogue.title ?? "Title not supplied"}</strong><span>{page.catalogue.languages.join(" · ") || "Language not supplied"} · {page.catalogue.documentType ?? "type not supplied"}</span></td>
+                <td>{page.catalogue.material ?? "Not supplied"}<span>Script / hand: {page.catalogue.scriptOrHand ?? "not supplied"} · Font: {page.catalogue.typefaceOrFont ?? "not catalogued"}</span></td>
                 <td><strong>{page.regionCount} region rows</strong><span>{page.detectedLabels.join(" · ")}</span></td>
-                <td>{page.selectedRegionLabel}<span>{percentage(page.selectedRegionConfidence, 1)} model confidence</span></td>
                 <td><strong>Stored</strong><span>image + canvas + run + {page.regionCount} regions</span></td>
                 <td>{shortLicense(page.license)}<span>{page.rightsReviewStatus.replaceAll("_", " ")}</span></td>
               </tr>
@@ -290,7 +300,35 @@ function MetadataTable({ pages, selectedPageId, onSelect }: {
           </tbody>
         </table>
       </div>
-      <p className="table-note">Selecting a row opens that page in the viewer. “Stored” reflects the saved ingestion record; the interface checks the live local database when available.</p>
+      <p className="table-note">Selecting a row opens that page in the viewer and updates the complete catalogue record below. “Stored” reflects the saved ingestion record; the interface checks the live local database when available.</p>
+      <article className="catalogue-record" aria-labelledby="catalogue-record-heading">
+        <div className="catalogue-record-title">
+          <h3 id="catalogue-record-heading">Selected manuscript record</h3>
+          <span>{record.metadataSource}</span>
+        </div>
+        <dl className="catalogue-grid">
+          <div><dt>Repository</dt><dd>{value(record.repository)}</dd></div>
+          <div><dt>Shelfmark</dt><dd>{value(record.shelfmark)}</dd></div>
+          <div><dt>Page / side</dt><dd>{selected.canvasLabel} · {selected.pageSide}</dd></div>
+          <div><dt>Title</dt><dd>{value(record.title)}</dd></div>
+          <div><dt>Date</dt><dd>{value(record.dateDisplay)}</dd></div>
+          <div><dt>Century</dt><dd>{value(record.century)}</dd></div>
+          <div><dt>Language</dt><dd>{record.languages.join(" · ") || "Not supplied by source"}</dd></div>
+          <div><dt>Document type</dt><dd>{value(record.documentType)}</dd></div>
+          <div><dt>Material</dt><dd>{value(record.material)}</dd></div>
+          <div><dt>Script / hand</dt><dd>{value(record.scriptOrHand)}</dd></div>
+          <div><dt>Typeface / font</dt><dd>{record.typefaceOrFont ?? "Not catalogued for this manuscript"}</dd></div>
+          <div><dt>Physical dimensions</dt><dd>{value(record.dimensions)}</dd></div>
+          <div><dt>Catalogue page count</dt><dd>{value(record.pageCount)}</dd></div>
+          <div><dt>Place of origin</dt><dd>{value(record.placeOfOrigin)}</dd></div>
+          <div><dt>DOI</dt><dd>{value(record.doi)}</dd></div>
+          <div><dt>Online since</dt><dd>{value(record.onlineSince)}</dd></div>
+          <div><dt>Digitized by</dt><dd>{value(record.digitizedBy)}</dd></div>
+          <div><dt>People named</dt><dd>{value(record.persons)}</dd></div>
+          <div className="catalogue-summary"><dt>Catalogue summary</dt><dd>{value(record.summary)}</dd></div>
+        </dl>
+        <p className="catalogue-caveat">“Main script black” is a layout class produced by Mergen; it is not a palaeographic identification of script, hand, or font. Missing catalogue fields remain explicitly missing.</p>
+      </article>
     </section>
   );
 }
@@ -402,7 +440,7 @@ export function EvidenceWorkbench({ evidence }: { evidence: EvidencePayload }) {
           <h2>{steps[activeStepIndex].title}</h2>
           <p>{stepDescription(step, selectedExperiment)}</p>
           <div className="page-context">
-            <span>{page.manuscriptId} · page {page.canvasLabel}</span>
+            <span>{page.catalogue.shelfmark ?? page.manuscriptId} · page {page.canvasLabel} · {page.pageSide}</span>
             <span>{page.dimensions[0]} × {page.dimensions[1]} pixels</span>
           </div>
         </div>

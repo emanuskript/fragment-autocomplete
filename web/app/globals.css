@@ -357,8 +357,8 @@ button:focus-visible, summary:focus-visible {
 
 .metadata-section { padding: 36px 0 0; }
 .metadata-table-wrap { border: 1px solid var(--line); overflow-x: auto; }
-.metadata-table { width: 100%; min-width: 1120px; border-collapse: collapse; background: var(--surface); text-align: left; }
-.metadata-table th { padding: 11px 12px; border-bottom: 1px solid var(--line-strong); color: var(--quiet); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
+.metadata-table { width: 100%; min-width: 1680px; border-collapse: collapse; background: var(--surface); text-align: left; }
+.metadata-table th { padding: 11px 12px; border-bottom: 1px solid var(--line-strong); color: var(--quiet); font-size: 12px; font-weight: 500; }
 .metadata-table td { max-width: 260px; padding: 11px 12px; border-bottom: 1px solid var(--line); color: var(--ink); font-size: 13px; vertical-align: top; }
 .metadata-table tbody tr:last-child td { border-bottom: 0; }
 .metadata-table tbody tr.active td { background: var(--accent-pale); }
@@ -366,6 +366,19 @@ button:focus-visible, summary:focus-visible {
 .table-page-link { padding: 0; border: 0; background: transparent; color: var(--ink); cursor: pointer; text-align: left; }
 .table-page-link:hover strong { color: var(--accent-dark); text-decoration: underline; text-underline-offset: 3px; }
 .table-note { margin: 0; padding: 10px 12px; border: 1px solid var(--line); border-top: 0; color: var(--quiet); font-size: 12px; }
+
+.catalogue-record { margin-top: 14px; border: 1px solid var(--line); background: var(--surface); }
+.catalogue-record-title { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+.catalogue-record-title h3 { margin: 0; font-size: 18px; }
+.catalogue-record-title span { color: var(--quiet); font-size: 12px; }
+.catalogue-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; }
+.catalogue-grid > div { min-width: 0; min-height: 76px; padding: 13px 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.catalogue-grid > div:nth-child(4n) { border-right: 0; }
+.catalogue-grid dt { color: var(--muted); font-size: 12px; }
+.catalogue-grid dd { margin: 3px 0 0; overflow-wrap: anywhere; font-size: 13px; font-weight: 650; }
+.catalogue-grid .catalogue-summary { grid-column: 1 / -1; min-height: 0; border-right: 0; }
+.catalogue-summary dd { max-width: 1120px; color: var(--muted); font-weight: 400; }
+.catalogue-caveat { margin: 0; padding: 12px 16px; color: var(--quiet); font-size: 12px; }
 
 .optional-panel {
   margin-top: 14px;
@@ -465,6 +478,17 @@ button:focus-visible, summary:focus-visible {
   .technical-grid section { border-right: 0; border-top: 1px solid var(--line); }
   .technical-grid section:first-child { border-top: 0; }
   .technical-grid p { min-height: 0; }
+  .catalogue-record-title { align-items: flex-start; flex-direction: column; gap: 3px; }
+  .catalogue-grid { grid-template-columns: 1fr 1fr; }
+  .catalogue-grid > div:nth-child(4n) { border-right: 1px solid var(--line); }
+  .catalogue-grid > div:nth-child(2n) { border-right: 0; }
+  .catalogue-grid .catalogue-summary { grid-column: 1 / -1; border-right: 0; }
+  .metadata-table th:first-child, .metadata-table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--surface);
+  }
   .collection-grid { grid-template-columns: repeat(3, 1fr); }
   .collection-grid img { height: 140px; }
   .demo-footer { flex-direction: column; gap: 2px; }
@@ -482,6 +506,9 @@ button:focus-visible, summary:focus-visible {
   .classification dl { grid-template-columns: 1fr; }
   .classification dl > div { border-right: 0; border-bottom: 1px solid var(--line) !important; }
   .classification dl > div:last-child { border-bottom: 0 !important; }
+  .catalogue-grid { grid-template-columns: 1fr; }
+  .catalogue-grid > div { border-right: 0 !important; }
+  .catalogue-grid .catalogue-summary { grid-column: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {

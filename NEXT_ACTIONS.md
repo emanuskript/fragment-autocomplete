@@ -8,8 +8,10 @@ public flow explains the original page, detected visual regions, selected
 measurement area, controlled damage, complete fragment result, and side-by-side
 comparison in a neutral dark interface. Ten independently processed pages are
 clickable; each has nine generated variants, its own layout evidence and a row in
-the metadata/database digestion table. Exact identifiers remain available in an
-optional provenance disclosure.
+the metadata/database digestion table. That table now includes repository,
+shelfmark, date/century, title, language, document type, material and explicit
+script/hand/font availability; the selected record exposes the remaining source
+fields. Exact identifiers remain available in an optional provenance disclosure.
 The demo also exposes the complete supplied damage taxonomy as a compact table.
 The source contains 17 named types, although its identifier sequence omits D2-05
 and D2-15. Three rows open real generated trials; the remaining fourteen are

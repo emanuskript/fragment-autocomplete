@@ -4,9 +4,11 @@ Latest interface and experiment refinement: 2026-11-10 — the dark React/Next.j
 Manuscript Fragment Demo now presents ten independently processed manuscript
 pages. Every page is clickable and has its own source image, saved Mergen layout
 overlay, selected writing-region mask, nine synthetic damage trials and stored
-metadata. A visible ten-row digestion table reports image dimensions, detected
-classes, region-row counts, selected-region confidence, database storage and
-source terms. The public interface now lists every one of the 17 named damage
+metadata. A visible ten-row digestion table now combines page side, repository,
+shelfmark, title, date/century, language, document type, material, script/hand/
+font availability, detected classes, region-row counts, database storage and
+source terms. A selected-record panel exposes the remaining normalized catalogue
+fields without inventing missing palaeographic data. The public interface now lists every one of the 17 named damage
 types in the supplied matrix, including exact CT-01 severity decisions and an
 explicit recto/verso modeling rule. It distinguishes the three working material-
 loss generators from fourteen specified-but-unimplemented operators instead of

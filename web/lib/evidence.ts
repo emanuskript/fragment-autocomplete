@@ -5,6 +5,7 @@ import type {
   DamageTaxonomyItem,
   EvidencePayload,
   Experiment,
+  ManuscriptMetadata,
   ProcessedPage,
 } from "./types";
 
@@ -274,6 +275,12 @@ function loadDamageTaxonomy(currentPageArtifactCount: Map<string, number>): Evid
   };
 }
 
+function pageSide(canvasLabel: string): ProcessedPage["pageSide"] {
+  if (/r$/i.test(canvasLabel)) return "recto";
+  if (/v$/i.test(canvasLabel)) return "verso";
+  return "not recorded";
+}
+
 function makeExperiment(record: PilotRecord, datasetRoot: string): Experiment {
   return {
     taskId: record.task_id,
@@ -323,6 +330,12 @@ export function loadEvidence(): EvidencePayload {
     pages: AuditPage[];
     database: { corpus_asset_count: number; total_layout_regions: number; total_segmentation_runs: number };
   }>("data/metadata/artificial_fragment_v03_corpus_audit.json");
+  const catalogue = readJson<{ records: ManuscriptMetadata[] }>(
+    "data/metadata/public_demo_manuscript_metadata_v1.json",
+  );
+  const catalogueById = new Map(
+    catalogue.records.map((record) => [record.manuscriptId, record]),
+  );
   const dataset = readJson<{ tasks: Array<{ task_id: string; target_record: string }> }>(
     `${datasetRoot}/dataset.json`,
   );
@@ -344,10 +357,17 @@ export function loadEvidence(): EvidencePayload {
     const auditPage = auditById.get(first.page_id);
     const source = first.source_provenance.source_record;
     const rights = source.image;
+    const manuscript = catalogueById.get(first.manuscript_id);
+    if (!manuscript) {
+      throw new Error(`No catalogue metadata is available for ${first.manuscript_id}.`);
+    }
+    const canvasLabel = source.canvas_label ?? auditPage?.canvas_label ?? first.page_id.slice(0, 8);
     return {
       pageId: first.page_id,
       manuscriptId: first.manuscript_id,
-      canvasLabel: source.canvas_label ?? auditPage?.canvas_label ?? first.page_id.slice(0, 8),
+      canvasLabel,
+      pageSide: pageSide(canvasLabel),
+      catalogue: manuscript,
       split: first.split,
       sourcePath: first.source_image,
       sourceUrl: artifactUrl(first.source_image),

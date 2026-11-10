@@ -68,10 +68,39 @@ export type DamageTaxonomyItem = {
   sideRule: string;
 };
 
+export type ManuscriptMetadata = {
+  manuscriptId: string;
+  repository: string | null;
+  shelfmark: string | null;
+  title: string | null;
+  dateDisplay: string | null;
+  dateNotBefore: number | null;
+  dateNotAfter: number | null;
+  dateMethod: string | null;
+  century: string | null;
+  languages: string[];
+  scriptOrHand: string | null;
+  typefaceOrFont: string | null;
+  material: string | null;
+  documentType: string | null;
+  doi: string | null;
+  dimensions: string | null;
+  pageCount: string | null;
+  placeOfOrigin: string | null;
+  onlineSince: string | null;
+  digitizedBy: string | null;
+  persons: string | null;
+  summary: string | null;
+  manifestUrl: string;
+  metadataSource: string;
+};
+
 export type ProcessedPage = {
   pageId: string;
   manuscriptId: string;
   canvasLabel: string;
+  pageSide: "recto" | "verso" | "not recorded";
+  catalogue: ManuscriptMetadata;
   split: "train" | "validation" | "test";
   sourcePath: string;
   sourceUrl: string;
