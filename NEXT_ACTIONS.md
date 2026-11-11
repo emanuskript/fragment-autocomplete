@@ -1,5 +1,11 @@
 # NEXT_ACTIONS
 
+## New: page cutter
+
+`scripts/cut_fragments.py` cuts pages into three torn pieces (36 pieces from the 12 Seshat
+samples). Ask Jeremy to review the pieces' edges and whether a decoration-only piece (B3 p1)
+should stay. Group D's Hengwrt file is named "Scribe D" but is normally attributed to Scribe B.
+
 ## Public guided demo now available
 
 Run `bash scripts/run_project_dashboard.sh` for the Next.js/React Manuscript

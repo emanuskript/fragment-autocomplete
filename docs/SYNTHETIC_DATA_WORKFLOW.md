@@ -120,6 +120,29 @@ does not rewrite artifacts.
 `--include-edge-cases` opts into edge cases, which retain a separate cohort label.
 “Do not generate” has no override. Updated matrices require new versioned paths.
 
+## Cut a page into pieces
+
+`scripts/cut_fragments.py` splits each complete page into three non-overlapping torn
+pieces (`src/evaluation/cut_pieces.py`, `cut_pieces_v1`), as a binder or dealer cutting up a
+book would. It is for fragment-matching experiments, where several pieces of one page (and
+pages of the same scribe) must be found among look-alikes.
+
+```bash
+python scripts/cut_fragments.py --sources data/raw/seshat_samples \
+  --output outputs/cut_fragments/seshat_v1 --seed seshat-v1
+```
+
+- The leaf is isolated by colour (parchment and paper are warm; photographic surrounds,
+  mounts, colour cards and library caption bands are neutral or saturated), so no piece
+  carries anything that identifies the photograph.
+- Every leaf is normalised to 2000 px on the long side, so resolution does not either.
+- Two torn lines (the `paper_edge_v1` noise) split the leaf into three pieces; a cut is
+  accepted only when each piece holds at least 18% of the leaf and 4% dark ink.
+- Each piece is photographed on one neutral background with a rotation within ±6°, saved as
+  JPEG with a PNG survival mask; `manifest.json` records checksums, layouts and bounding boxes.
+
+Records state `visual_realism_validated: false` and `historical_damage_claim: false`.
+
 ## Input and output contracts
 
 For another dataset, supply a JSON object with a `pages` array. Each page needs
