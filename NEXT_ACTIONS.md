@@ -1,6 +1,13 @@
 # NEXT_ACTIONS
 
-## New: page cutter
+## New: realistic piece profile
+
+`scripts/cut_fragments.py --profile realistic` (src/evaluation/aged_pieces.py) made the 60 pieces
+of FragmentJoin pilot v3. Next: tune the ageing tone towards the real fragments (more yellow)
+and soften edge soiling (measured in FragmentJoin `scripts/compare_realism.py`), then ask a
+specialist to review the combined damage.
+
+## Earlier: page cutter
 
 `scripts/cut_fragments.py` cuts pages into three torn pieces (36 pieces from the 12 Seshat
 samples). Ask Jeremy to review the pieces' edges and whether a decoration-only piece (B3 p1)

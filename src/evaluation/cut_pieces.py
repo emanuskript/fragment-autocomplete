@@ -49,6 +49,7 @@ class Piece:
     rotation_deg: float
     photo: Image.Image = field(repr=False)        # RGB on neutral background
     survival: Image.Image = field(repr=False)     # L, 255 = piece material, photo frame
+    damage: dict[str, Any] = field(default_factory=dict)   # realistic profile: what was applied
 
     def record(self) -> dict[str, Any]:
         d = asdict(self)
@@ -163,14 +164,26 @@ def _photograph(leaf_img: Image.Image, mask: np.ndarray, rotation: float) -> tup
     return canvas, survival, (x0, y0, x1, y1)
 
 
-def cut_page(image: Image.Image, seed: str, *, n_pieces: int = 3, tries: int = 40) -> tuple[list[Piece], dict[str, Any]]:
+def cut_page(image: Image.Image, seed: str, *, n_pieces: int = 3, tries: int = 40,
+             profile: str = "clean") -> tuple[list[Piece], dict[str, Any]]:
+    """Cut one page. ``profile="clean"`` is cut_pieces_v1 unchanged; ``"realistic"`` adds ageing,
+    worn and trimmed edges, combined damage and archive photography (see ``aged_pieces``)."""
     if n_pieces != 3:
         raise ValueError("cut_pieces_v1 cuts exactly three pieces")
+    if profile not in ("clean", "realistic"):
+        raise ValueError("profile must be 'clean' or 'realistic'")
     image = image.convert("RGB")
     leaf = leaf_mask(image)
     leaf_img, leaf_n, scale = normalise(image, leaf)
-    ink = ink_map(leaf_img, leaf_n)
+    ink = ink_map(leaf_img, leaf_n)   # measured on the undamaged leaf: the cut must hold writing
+    page_damage = None
+    if profile == "realistic":
+        from . import aged_pieces
+        leaf_img, page_damage = aged_pieces.age_leaf(leaf_img, leaf_n, _rng(seed, "age"))
     leaf_area = leaf_n.sum()
+    # Sparse pages (wide margins, short lines) cannot give every piece 4 % ink; the realistic
+    # profile asks for half the page's own ink density instead. The clean profile is unchanged.
+    min_ink = MIN_INK if profile == "clean" else min(MIN_INK, 0.5 * float(ink.sum() / max(leaf_n.sum(), 1)))
     rng = _rng(seed, "layout")
     first = LAYOUTS[int(rng.integers(len(LAYOUTS)))]
     found = None
@@ -180,7 +193,7 @@ def cut_page(image: Image.Image, seed: str, *, n_pieces: int = 3, tries: int = 4
         for attempt in range(tries):
             parts = [p & leaf_n for p in partition(leaf_n.shape, layout, _rng(seed, f"{layout}:cut{attempt}"))]
             stats = [(p.sum() / leaf_area, ink[p].sum() / max(p.sum(), 1)) for p in parts]
-            if all(a >= MIN_PIECE_AREA and i >= MIN_INK for a, i in stats):
+            if all(a >= MIN_PIECE_AREA and i >= min_ink for a, i in stats):
                 found = (layout, attempt, parts, stats)
                 break
         if found:
@@ -196,9 +209,21 @@ def cut_page(image: Image.Image, seed: str, *, n_pieces: int = 3, tries: int = 4
         if n > 1:
             p = lab == (int(np.argmax(ndimage.sum(p, lab, range(1, n + 1)))) + 1)
         rotation = round(float(rot_rng.uniform(-MAX_ROTATION_DEG, MAX_ROTATION_DEG)), 2)
-        photo, survival, bbox = _photograph(leaf_img, p, rotation)
-        pieces.append(Piece(k + 1, p, bbox, round(float(area), 4), round(float(inkf), 4), rotation, photo, survival))
-    meta = {"version": VERSION, "layout": layout, "attempts": attempt + 1, "leaf_size": list(leaf_img.size),
+        if profile == "realistic":
+            prng = _rng(seed, f"piece{k + 1}")
+            piece_img, p, damage = aged_pieces.damage_piece(leaf_img, p, prng, int(prng.integers(2**31)))
+            photo, survival, bbox, shot = aged_pieces.photograph(piece_img, p, rotation, prng, MARGIN)
+            area = p.sum() / leaf_area
+            piece = Piece(k + 1, p, bbox, round(float(area), 4), round(float(inkf), 4), rotation, photo, survival)
+            piece.damage = {**damage, "photograph": shot}
+        else:
+            photo, survival, bbox = _photograph(leaf_img, p, rotation)
+            piece = Piece(k + 1, p, bbox, round(float(area), 4), round(float(inkf), 4), rotation, photo, survival)
+        pieces.append(piece)
+    meta = {"version": VERSION, "profile": profile if profile == "clean" else aged_pieces.PROFILE, "layout": layout,
+            "attempts": attempt + 1, "leaf_size": list(leaf_img.size),
             "scale_from_source": round(scale, 5), "long_side": LONG_SIDE, "background": list(BACKGROUND),
             "visual_realism_validated": False, "historical_damage_claim": False}
+    if page_damage is not None:
+        meta["page_damage"] = page_damage
     return pieces, meta

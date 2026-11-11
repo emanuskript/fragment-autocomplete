@@ -58,3 +58,20 @@ def test_cutting_is_deterministic_per_seed() -> None:
     c, _ = cut_page(fake_page(), "other")
     assert all((x.mask == y.mask).all() and x.rotation_deg == y.rotation_deg for x, y in zip(a, b))
     assert any(not (x.mask == y.mask).all() for x, y in zip(a, c))
+
+
+def test_realistic_profile_combines_damage_and_is_reproducible():
+
+
+    img = fake_page()
+    a, meta = cut_page(img, "real-1", profile="realistic")
+    b, _ = cut_page(img, "real-1", profile="realistic")
+    assert meta["profile"] == "realistic_v1" and "page_damage" in meta
+    assert meta["visual_realism_validated"] is False
+    for p, q in zip(a, b):
+        assert np.array_equal(np.asarray(p.photo), np.asarray(q.photo))
+        surface = p.damage["surface"]
+        assert 2 <= len(surface) <= 3 and len({d["damage_id"] for d in surface}) == len(surface)
+        assert p.damage["photograph"]["ground"] in ("black", "grey", "blue_grey", "light_grey")
+    clean, cmeta = cut_page(img, "real-1")
+    assert cmeta["profile"] == "clean" and all(not p.damage for p in clean)

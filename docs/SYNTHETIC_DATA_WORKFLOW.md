@@ -195,3 +195,19 @@ These are engineering checks, not realism approval. Review the content mapping,
 shapes and severity examples with a manuscript specialist before scaling. Promote
 each approved appearance/deformation prototype separately into the training-data
 workflow with its own visibility contract and validation.
+
+
+### Realistic profile (`--profile realistic`)
+
+    python scripts/cut_fragments.py --sources data/raw/fragment_join_v3_sources \
+        --output outputs/cut_fragments/join_v3 --seed join-v3 --profile realistic
+
+Adds, in `src/evaluation/aged_pieces.py` (`realistic_v1`): leaf ageing (tone, grime, edge
+soiling, an old fold on some leaves); per piece worn edges, a knife trim on some, two or three
+surface damages from the damage matrix (D2-09, D2-11, D2-12, D2-16, D2-17, reusing the review
+operators in `scripts/build_damage_review_prototype.py`, blended at partial strength and
+feathered), worm or sewing holes on some, dirt along the piece's edges; photographed on one of
+four archive grounds with a soft shadow and sometimes a grey-scale bar. Every piece's manifest
+entry lists what was applied. Built after comparing clean pieces with the real fragments of the
+FragmentJoin pilot (see FragmentJoin docs/PILOT_SET_V3.md for the measured comparison). Not
+validated as a model of historical damage. The clean profile is unchanged.

@@ -41,19 +41,21 @@ def main() -> int:
     parser.add_argument("--sources", required=True)
     parser.add_argument("--output", required=True)
     parser.add_argument("--seed", default="cut-v1")
+    parser.add_argument("--profile", choices=("clean", "realistic"), default="clean",
+                        help="realistic: aged leaf, worn and trimmed edges, 2-3 combined damages, archive photography")
     args = parser.parse_args()
     src, out = Path(args.sources), Path(args.output)
     files = sorted(p for p in src.iterdir() if p.suffix.lower() in IMAGE_SUFFIXES)
     if not files:
         raise SystemExit(f"no images in {src}")
     out.mkdir(parents=True, exist_ok=True)
-    manifest = {"version": VERSION, "seed": args.seed, "pages": [],
+    manifest = {"version": VERSION, "profile": args.profile, "seed": args.seed, "pages": [],
                 "note": "Synthetic pieces cut from complete pages; not historical fragments."}
     for f in files:
         pid = page_id(f)
         digest = hashlib.sha256(f.read_bytes()).hexdigest()
         with Image.open(f) as im:
-            pieces, meta = cut_page(im, f"{args.seed}:{pid}:{digest[:12]}")
+            pieces, meta = cut_page(im, f"{args.seed}:{pid}:{digest[:12]}", profile=args.profile)
         folder = out / pid
         folder.mkdir(exist_ok=True)
         entries = []
