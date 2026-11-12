@@ -37,6 +37,8 @@ MAX_ROTATION_DEG = 6.0
 MIN_PIECE_AREA = 0.18      # of the leaf
 MIN_INK = 0.04             # dark-ink fraction inside a piece (rejects blank margin strips)
 LAYOUTS = ("top_then_split_bottom", "left_then_split_right")
+# Cutter profile -> ageing profile in aged_pieces ("realistic" keeps its pilot v3 meaning).
+PROFILES = {"clean": None, "realistic": "realistic_v1", "realistic_v2": "realistic_v2"}
 
 
 @dataclass
@@ -131,18 +133,36 @@ def _tear(length: int, position: float, amplitude: float, rng: np.random.Generat
     return position + line
 
 
-def partition(shape: tuple[int, int], layout: str, rng: np.random.Generator) -> list[np.ndarray]:
+def _knife(length: int, position: float, rng: np.random.Generator) -> np.ndarray:
+    """A knife cut: a straight line at a small angle, with a sub-pixel waver of the blade."""
+    slope = float(rng.uniform(-.035, .035))
+    t = np.arange(length, dtype=np.float32) - length / 2
+    return position + slope * t + 0.6 * _normalised_noise(rng, length, max(4, length / 40))
+
+
+def partition(shape: tuple[int, int], layout: str, rng: np.random.Generator,
+              knife_p: float | None = None) -> list[np.ndarray]:
+    """Three pieces. ``knife_p=None`` is cut_pieces_v1 (two torn lines); otherwise each line is a
+    straight knife cut with probability ``knife_p`` and a gentler tear otherwise."""
     h, w = shape
     yy, xx = np.mgrid[0:h, 0:w]
+
+    def cut(length: int, position: float, amplitude: float) -> np.ndarray:
+        if knife_p is None:
+            return _tear(length, position, amplitude, rng)
+        if rng.random() < knife_p:
+            return _knife(length, position, rng)
+        return _tear(length, position, amplitude * .45, rng)
+
     if layout == "top_then_split_bottom":
-        cut1 = _tear(w, h * rng.uniform(.36, .58), h * .035, rng)        # y as a function of x
-        cut2 = _tear(h, w * rng.uniform(.38, .62), w * .045, rng)        # x as a function of y
+        cut1 = cut(w, h * rng.uniform(.36, .58), h * .035)        # y as a function of x
+        cut2 = cut(h, w * rng.uniform(.38, .62), w * .045)        # x as a function of y
         first = yy < cut1[None, :]
         rest = ~first
         a = rest & (xx < cut2[:, None])
         return [first, a, rest & ~a]
-    cut1 = _tear(h, w * rng.uniform(.34, .56), w * .04, rng)            # x as a function of y
-    cut2 = _tear(w, h * rng.uniform(.38, .62), h * .035, rng)           # y as a function of x
+    cut1 = cut(h, w * rng.uniform(.34, .56), w * .04)            # x as a function of y
+    cut2 = cut(w, h * rng.uniform(.38, .62), h * .035)           # y as a function of x
     first = xx < cut1[:, None]
     rest = ~first
     a = rest & (yy < cut2[None, :])
@@ -170,31 +190,41 @@ def cut_page(image: Image.Image, seed: str, *, n_pieces: int = 3, tries: int = 4
     worn and trimmed edges, combined damage and archive photography (see ``aged_pieces``)."""
     if n_pieces != 3:
         raise ValueError("cut_pieces_v1 cuts exactly three pieces")
-    if profile not in ("clean", "realistic"):
-        raise ValueError("profile must be 'clean' or 'realistic'")
+    if profile not in PROFILES:
+        raise ValueError(f"profile must be one of {', '.join(PROFILES)}")
+    aged = None if profile == "clean" else PROFILES[profile]
     image = image.convert("RGB")
     leaf = leaf_mask(image)
     leaf_img, leaf_n, scale = normalise(image, leaf)
     ink = ink_map(leaf_img, leaf_n)   # measured on the undamaged leaf: the cut must hold writing
     page_damage = None
-    if profile == "realistic":
+    if aged:
         from . import aged_pieces
-        leaf_img, page_damage = aged_pieces.age_leaf(leaf_img, leaf_n, _rng(seed, "age"))
+        prm = aged_pieces.PROFILES[aged]
+        leaf_img, page_damage = aged_pieces.age_leaf(leaf_img, leaf_n, _rng(seed, "age"), prm)
     leaf_area = leaf_n.sum()
     # Sparse pages (wide margins, short lines) cannot give every piece 4 % ink; the realistic
     # profile asks for half the page's own ink density instead. The clean profile is unchanged.
-    min_ink = MIN_INK if profile == "clean" else min(MIN_INK, 0.5 * float(ink.sum() / max(leaf_n.sum(), 1)))
+    # realistic_v2 first asks every piece for most of the page's ink density (a piece that is
+    # mostly blank margin identifies nothing) and relaxes step by step if no cut qualifies.
+    density = float(ink.sum() / max(leaf_n.sum(), 1))
+    shares = (prm.get("ink_share") or (.5,)) if aged else (None,)
     rng = _rng(seed, "layout")
     first = LAYOUTS[int(rng.integers(len(LAYOUTS)))]
     found = None
-    # Try the drawn layout first; a page whose writing sits to one side (a wide decorated
-    # border, say) may only cut validly the other way.
-    for layout in (first, *[x for x in LAYOUTS if x != first]):
-        for attempt in range(tries):
-            parts = [p & leaf_n for p in partition(leaf_n.shape, layout, _rng(seed, f"{layout}:cut{attempt}"))]
-            stats = [(p.sum() / leaf_area, ink[p].sum() / max(p.sum(), 1)) for p in parts]
-            if all(a >= MIN_PIECE_AREA and i >= min_ink for a, i in stats):
-                found = (layout, attempt, parts, stats)
+    for share in shares:
+        min_ink = MIN_INK if share is None else min(MIN_INK, share * density)
+        # Try the drawn layout first; a page whose writing sits to one side (a wide decorated
+        # border, say) may only cut validly the other way.
+        for layout in (first, *[x for x in LAYOUTS if x != first]):
+            for attempt in range(tries):
+                knife = prm.get("knife_p") if aged else None
+                parts = [p & leaf_n for p in partition(leaf_n.shape, layout, _rng(seed, f"{layout}:cut{attempt}"), knife)]
+                stats = [(p.sum() / leaf_area, ink[p].sum() / max(p.sum(), 1)) for p in parts]
+                if all(a >= MIN_PIECE_AREA and i >= min_ink for a, i in stats):
+                    found = (layout, attempt, parts, stats)
+                    break
+            if found:
                 break
         if found:
             break
@@ -209,9 +239,9 @@ def cut_page(image: Image.Image, seed: str, *, n_pieces: int = 3, tries: int = 4
         if n > 1:
             p = lab == (int(np.argmax(ndimage.sum(p, lab, range(1, n + 1)))) + 1)
         rotation = round(float(rot_rng.uniform(-MAX_ROTATION_DEG, MAX_ROTATION_DEG)), 2)
-        if profile == "realistic":
+        if aged:
             prng = _rng(seed, f"piece{k + 1}")
-            piece_img, p, damage = aged_pieces.damage_piece(leaf_img, p, prng, int(prng.integers(2**31)))
+            piece_img, p, damage = aged_pieces.damage_piece(leaf_img, p, prng, int(prng.integers(2**31)), prm)
             photo, survival, bbox, shot = aged_pieces.photograph(piece_img, p, rotation, prng, MARGIN)
             area = p.sum() / leaf_area
             piece = Piece(k + 1, p, bbox, round(float(area), 4), round(float(inkf), 4), rotation, photo, survival)
@@ -220,7 +250,7 @@ def cut_page(image: Image.Image, seed: str, *, n_pieces: int = 3, tries: int = 4
             photo, survival, bbox = _photograph(leaf_img, p, rotation)
             piece = Piece(k + 1, p, bbox, round(float(area), 4), round(float(inkf), 4), rotation, photo, survival)
         pieces.append(piece)
-    meta = {"version": VERSION, "profile": profile if profile == "clean" else aged_pieces.PROFILE, "layout": layout,
+    meta = {"version": VERSION, "profile": aged or "clean", "layout": layout,
             "attempts": attempt + 1, "leaf_size": list(leaf_img.size),
             "scale_from_source": round(scale, 5), "long_side": LONG_SIDE, "background": list(BACKGROUND),
             "visual_realism_validated": False, "historical_damage_claim": False}

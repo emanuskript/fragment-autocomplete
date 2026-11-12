@@ -75,3 +75,30 @@ def test_realistic_profile_combines_damage_and_is_reproducible():
         assert p.damage["photograph"]["ground"] in ("black", "grey", "blue_grey", "light_grey")
     clean, cmeta = cut_page(img, "real-1")
     assert cmeta["profile"] == "clean" and all(not p.damage for p in clean)
+
+
+def test_realistic_v2_cuts_mostly_straight_and_records_its_profile():
+    from scipy.spatial import ConvexHull
+
+    img = fake_page()
+    a, meta = cut_page(img, "real-2", profile="realistic_v2")
+    b, _ = cut_page(img, "real-2", profile="realistic_v2")
+    assert meta["profile"] == "realistic_v2" and meta["visual_realism_validated"] is False
+    for p, q in zip(a, b):
+        assert np.array_equal(np.asarray(p.photo), np.asarray(q.photo))
+        assert 1 <= len(p.damage["surface"]) <= 2
+        assert "edge_bites" in p.damage
+    # Knife cuts and light wear keep the outline close to its convex hull.
+    losses = []
+    for p in a:
+        ys, xs = np.nonzero(p.mask)
+        hull = ConvexHull(np.column_stack([xs, ys]))
+        losses.append(1 - p.mask.sum() / hull.volume)
+    assert np.median(losses) < 0.06
+
+
+def test_unknown_profile_is_refused():
+    import pytest
+
+    with pytest.raises(ValueError):
+        cut_page(fake_page(), "x", profile="glossy")

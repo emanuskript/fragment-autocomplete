@@ -1,11 +1,15 @@
 # NEXT_ACTIONS
 
-## New: realistic piece profile
+## New: realistic profile v2
 
-`scripts/cut_fragments.py --profile realistic` (src/evaluation/aged_pieces.py) made the 60 pieces
-of FragmentJoin pilot v3. Next: tune the ageing tone towards the real fragments (more yellow)
-and soften edge soiling (measured in FragmentJoin `scripts/compare_realism.py`), then ask a
-specialist to review the combined damage.
+`scripts/cut_fragments.py --profile realistic_v2` made the 60 pieces of FragmentJoin pilot v4;
+its material measures now sit inside the real fragments' ranges. Next: ask a specialist to
+review the pieces against real binding fragments, and consider a profile that keeps larger
+pieces (half leaves), since the real fragments carry about three times more text lines.
+
+## Earlier: realistic piece profile v1
+
+`--profile realistic` made the 60 pieces of FragmentJoin pilot v3 (unchanged, reproducible).
 
 ## Earlier: page cutter
 

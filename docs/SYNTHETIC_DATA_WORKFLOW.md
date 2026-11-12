@@ -211,3 +211,28 @@ four archive grounds with a soft shadow and sometimes a grey-scale bar. Every pi
 entry lists what was applied. Built after comparing clean pieces with the real fragments of the
 FragmentJoin pilot (see FragmentJoin docs/PILOT_SET_V3.md for the measured comparison). Not
 validated as a model of historical damage. The clean profile is unchanged.
+
+### Realistic profile v2 (`--profile realistic_v2`)
+
+    python scripts/cut_fragments.py --sources data/raw/fragment_join_v3_sources \
+        --output outputs/cut_fragments/join_v4 --seed join-v4 --profile realistic_v2
+
+Tuned on 2026-11-12 against the 18 real fragments of the FragmentJoin pilot (FragmentJoin
+`scripts/compare_realism.py`; see its docs/PILOT_SET_V4.md). Same order of work as v1, with
+these changes (parameters in `aged_pieces.PROFILES["realistic_v2"]`):
+
+- cuts: each cut line is a straight knife cut (slight angle, sub-pixel waver) on 80 %, else a
+  gentler tear; every piece is first asked for 85 % of the page's ink density, relaxed to 70 %
+  and 50 % only if no cut qualifies;
+- edges: light wear (2-6 px instead of up to 18), one to three small chips bitten out;
+- leaf: warmer tone, grime that lightens as much as it darkens, a fine two-scale mottle, much
+  lighter soiling towards the edge;
+- surface: one or two matrix damages (D2-09, D2-11, D2-12, D2-17) at 60 % strength;
+- holes: on 90 % of pieces, larger worm holes.
+
+Medians on the 60 pieces against the real fragments (lightness L*, yellowness b*, edge
+darkening, outline loss, holes, blotchiness): 67.6 / 18.6 / 0.973 / 0.0118 / 0.0037 / 7.63
+against 66.2 / 19.1 / 0.959 / 0.0146 / 0.0066 / 7.25 (v1: 65.3 / 14.0 / 0.875 / 0.0741 /
+0.0023 / 8.19). Pieces are still thirds of a page, so they carry fewer text lines than the
+mostly near-complete real leaves. Not validated as a model of historical damage; v1 output is
+unchanged (tested to the pixel against pilot v3).

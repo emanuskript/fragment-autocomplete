@@ -41,7 +41,7 @@ def main() -> int:
     parser.add_argument("--sources", required=True)
     parser.add_argument("--output", required=True)
     parser.add_argument("--seed", default="cut-v1")
-    parser.add_argument("--profile", choices=("clean", "realistic"), default="clean",
+    parser.add_argument("--profile", choices=("clean", "realistic", "realistic_v2"), default="clean",
                         help="realistic: aged leaf, worn and trimmed edges, 2-3 combined damages, archive photography")
     args = parser.parse_args()
     src, out = Path(args.sources), Path(args.output)
