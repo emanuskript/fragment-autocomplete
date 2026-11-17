@@ -1,5 +1,11 @@
 # ROADMAP_STATUS
 
+Complete example access (2026-11-17): the public demo now exposes every generated
+artifact for the selected page, not only one representative per damage type.
+Each of the ten pages has 23 selectable examples: S2/S3/S4 calibrated variants
+for D2-01, D2-02 and D2-03, plus one S3 review prototype for each of the other
+14 named types. Selecting any example opens the full result in the main viewer.
+
 Realistic profile v2 (2026-11-12): `--profile realistic_v2`, tuned against the real fragments of
 the FragmentJoin pilot: knife-trimmed edges with small chips, warmer and evenly mottled leaf,
 lighter staining and edge soiling, more worm holes, ink-dense cuts. Its tone, edge darkening,
@@ -16,7 +22,7 @@ realism is not specialist-validated.
 Latest interface and experiment refinement: 2026-11-10 — the dark React/Next.js
 Manuscript Fragment Demo now presents ten independently processed manuscript
 pages. Every page is clickable and has its own source image, saved Mergen layout
-overlay, selected writing-region mask, 17 selectable damage examples and stored
+overlay, selected writing-region mask, 23 selectable examples across 17 damage types and stored
 metadata. A visible ten-row digestion table now combines page side, repository,
 shelfmark, title, date/century, language, document type, material, script/hand/
 font availability, detected classes, region-row counts, database storage and

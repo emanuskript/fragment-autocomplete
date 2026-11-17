@@ -55,10 +55,12 @@ The six main steps are:
    nothing.
 
 All ten page cards are live. Changing the page replaces the source image, layout
-overlay, selected-region mask, 17 damage examples, measurements and provenance;
-no page is a decorative or unprocessed thumbnail. Below the main viewer, one S3
-example for every named type appears in a compact selectable list. Selecting an
-example opens its complete result in step five and scrolls the viewer into view.
+overlay, selected-region mask, 23 generated examples, measurements and provenance;
+no page is a decorative or unprocessed thumbnail. Below the main viewer, the
+complete set appears in a compact 17-row list: light, medium and heavy examples
+for the three calibrated material-loss types, and one medium review prototype
+for each of the other fourteen types. Selecting any example opens its complete
+result in step five and scrolls the viewer into view.
 
 The selected trial also has a visible classification panel derived from the
 supplied taxonomy: damage code and type, matrix severity, visual class,

@@ -293,30 +293,54 @@ button:focus-visible, summary:focus-visible {
 .section-heading h2 { margin: 5px 0 4px; font-size: 28px; letter-spacing: -.025em; }
 .section-heading p { margin: 0; color: var(--muted); }
 
-.damage-review-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.damage-review-item {
+.damage-review-list { display: grid; gap: 6px; }
+.damage-review-group {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(220px, .55fr) minmax(0, 1.45fr);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.damage-review-title {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 14px 16px;
+  border-right: 1px solid var(--line);
+}
+.damage-review-title strong { font-size: 14px; }
+.damage-review-title span { margin-top: 4px; color: var(--muted); font-size: 12px; }
+.damage-example-grid {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1px;
+  background: var(--line);
+}
+.damage-example {
   position: relative;
   min-width: 0;
-  min-height: 96px;
+  min-height: 92px;
   display: grid;
-  grid-template-columns: 76px 1fr;
+  grid-template-columns: 68px 1fr;
   align-items: center;
-  gap: 13px;
-  padding: 8px 42px 8px 8px;
-  border: 1px solid var(--line);
+  gap: 12px;
+  padding: 7px 38px 7px 7px;
+  border: 0;
   background: var(--surface);
   cursor: pointer;
   text-align: left;
 }
-.damage-review-item:hover { border-color: var(--line-strong); background: #1a1c1f; }
-.damage-review-item.selected { border-color: var(--accent); background: var(--accent-pale); }
-.damage-review-thumb { width: 76px; height: 88px; display: grid; place-items: center; overflow: hidden; background: var(--matte); }
+.damage-example:hover { background: #1a1c1f; }
+.damage-example.selected { padding-left: 4px; border-left: 3px solid var(--accent); background: var(--accent-pale); }
+.damage-review-thumb { width: 68px; height: 78px; display: grid; place-items: center; overflow: hidden; background: var(--matte); }
 .damage-review-thumb img { width: 100%; height: 100%; object-fit: contain; }
 .damage-review-copy, .damage-review-copy strong, .damage-review-copy small, .damage-review-copy i { display: block; min-width: 0; }
 .damage-review-copy strong { font-size: 14px; }
 .damage-review-copy small { margin-top: 3px; color: var(--muted); font-size: 12px; }
 .damage-review-copy i { margin-top: 2px; color: var(--quiet); font-size: 12px; font-style: normal; }
-.damage-review-item > svg { position: absolute; top: 12px; right: 12px; width: 21px; height: 21px; padding: 4px; border-radius: 50%; background: var(--accent); color: var(--page); }
+.damage-example > svg { position: absolute; top: 10px; right: 10px; width: 20px; height: 20px; padding: 4px; border-radius: 50%; background: var(--accent); color: var(--page); }
 
 .classification {
   display: grid;
@@ -446,7 +470,8 @@ button:focus-visible, summary:focus-visible {
   .step-button:nth-child(-n + 3) { border-bottom: 1px solid var(--line); }
   .step-explanation { grid-template-columns: 1fr 1fr; }
   .page-context { display: none; }
-  .damage-review-list { grid-template-columns: 1fr; }
+  .damage-review-group { grid-template-columns: 190px minmax(0, 1fr); }
+  .damage-example-grid { grid-template-columns: 1fr; }
   .classification { grid-template-columns: 1fr; }
   .classification-title { grid-row: auto; }
   .taxonomy-heading { align-items: flex-start; }
@@ -477,8 +502,10 @@ button:focus-visible, summary:focus-visible {
   .step-progress { display: none; }
   .primary-action, .secondary-action { width: 100%; }
   .damage-chooser { padding-top: 44px; }
-  .damage-review-item { min-height: 88px; grid-template-columns: 66px 1fr; }
-  .damage-review-thumb { width: 66px; height: 76px; }
+  .damage-review-group { grid-template-columns: 1fr; }
+  .damage-review-title { border-right: 0; border-bottom: 1px solid var(--line); }
+  .damage-example { min-height: 88px; grid-template-columns: 64px 1fr; }
+  .damage-review-thumb { width: 64px; height: 74px; }
   .classification { padding: 16px; }
   .taxonomy-section { padding-top: 44px; }
   .taxonomy-heading { display: block; }

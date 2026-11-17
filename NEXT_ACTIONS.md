@@ -24,15 +24,16 @@ Fragment Demo documented in `docs/PROJECT_STATUS_DASHBOARD.md`. Its six-step
 public flow explains the original page, detected visual regions, selected
 measurement area, controlled damage, complete fragment result, and side-by-side
 comparison in a neutral dark interface. Ten independently processed pages are
-clickable; each has all 17 damage types available for review, its own layout evidence and a row in
+clickable; each has all 23 generated examples across 17 damage types available
+for review, its own layout evidence and a row in
 the metadata/database digestion table. That table now includes repository,
 shelfmark, date/century, title, language, document type, material and explicit
 script/hand/font availability; the selected record exposes the remaining source
 fields. Exact identifiers remain available in an optional provenance disclosure.
 The demo also exposes the complete supplied damage taxonomy as a compact table.
 The source contains 17 named types, although its identifier sequence omits D2-05
-and D2-15. Every row opens a generated S3 example for the selected page. Three
-are calibrated material-loss experiments; fourteen are deterministic visual
+and D2-15. The full example list includes light, medium and heavy calibrated
+material-loss variants for D2-01, D2-02 and D2-03, plus fourteen deterministic visual
 review prototypes (v2, applied across the detected main-writing area and
 validated to be visible at display size). The compare step explains the
 classification used and the changes made. Recto/verso rules are workflow requirements and remain

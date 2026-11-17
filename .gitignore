@@ -26,6 +26,7 @@ tmp/
 temp/
 logs/
 *.log
+*.tsbuildinfo
 .idea/
 .vscode/
 .python-version

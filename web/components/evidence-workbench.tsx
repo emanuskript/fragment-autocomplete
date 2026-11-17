@@ -24,6 +24,7 @@ const steps: Array<{ id: DemoStep; label: string; title: string }> = [
 ];
 
 const severityLabels: Record<string, string> = { S2: "Light", S3: "Medium", S4: "Heavy" };
+const severityOrder: Record<string, number> = { S1: 1, S2: 2, S3: 3, S4: 4 };
 const percentage = (value: number, digits = 0) => `${(value * 100).toFixed(digits)}%`;
 const shortLicense = (value: string) => {
   if (value.includes("by-nc/4.0")) return "CC BY-NC 4.0";
@@ -178,7 +179,7 @@ function PageBrowser({ pages, selectedPageId, onSelect }: {
       <div className="compact-heading">
         <div>
           <h2 id="pages-heading">{pages.length} processed pages</h2>
-          <p>Every page has layout regions, a selected writing area, all 17 damage types, and stored metadata.</p>
+          <p>Every page has layout regions, a selected writing area, 23 generated examples across all 17 damage types, and stored metadata.</p>
         </div>
         <span>Choose a page</span>
       </div>
@@ -282,7 +283,7 @@ function DamageTaxonomy({
                 </td>
                 <td>
                   <button type="button" className="taxonomy-action" onClick={() => onChoose(item.damageId)}>
-                    View generated example
+                    Show medium example
                   </button>
                 </td>
               </tr>
@@ -518,34 +519,46 @@ export function EvidenceWorkbench({ evidence }: { evidence: EvidencePayload }) {
 
       <section className="damage-chooser" aria-labelledby="damage-heading">
         <div className="section-heading">
-          <h2 id="damage-heading">Review all damage types</h2>
-          <p>Select any type to show its generated example in the main viewer.</p>
+          <h2 id="damage-heading">All generated examples</h2>
+          <p>Select any of the {page.experiments.length} examples to show it in the main viewer.</p>
         </div>
         <div className="damage-review-list">
           {evidence.damageTaxonomy.items.map((item) => {
-            const experiment = page.experiments.find(
-              (candidate) => candidate.damageId === item.damageId && candidate.severity === "S3",
-            ) ?? page.experiments.find((candidate) => candidate.damageId === item.damageId);
-            if (!experiment) return null;
-            const selected = experiment.taskId === selectedExperiment.taskId;
+            const experiments = page.experiments
+              .filter((candidate) => candidate.damageId === item.damageId)
+              .sort((a, b) => (severityOrder[a.severity] ?? 99) - (severityOrder[b.severity] ?? 99));
+            if (!experiments.length) return null;
             return (
-              <button
-                type="button"
-                key={item.damageId}
-                className={selected ? "damage-review-item selected" : "damage-review-item"}
-                onClick={() => chooseExperiment(experiment)}
-                aria-pressed={selected}
-              >
-                <span className="damage-review-thumb">
-                  <Image unoptimized src={experiment.fragmentPath} alt="" width={160} height={198} loading="lazy" />
-                </span>
-                <span className="damage-review-copy">
+              <article className="damage-review-group" key={item.damageId}>
+                <header className="damage-review-title">
                   <strong>{item.damageId} · {item.name}</strong>
-                  <small>{experiment.reviewPrototype ? "S3 synthetic review prototype" : "S3 calibrated material loss"}</small>
-                  <i>{percentage(experiment.statistics.measuredEffectCoverage, 1)} of {experiment.measurementBasis} affected</i>
-                </span>
-                {selected && <Check aria-hidden="true" />}
-              </button>
+                  <span>{experiments.length} generated {experiments.length === 1 ? "example" : "examples"}</span>
+                </header>
+                <div className="damage-example-grid">
+                  {experiments.map((experiment) => {
+                    const selected = experiment.taskId === selectedExperiment.taskId;
+                    return (
+                      <button
+                        type="button"
+                        key={experiment.taskId}
+                        className={selected ? "damage-example selected" : "damage-example"}
+                        onClick={() => chooseExperiment(experiment)}
+                        aria-pressed={selected}
+                      >
+                        <span className="damage-review-thumb">
+                          <Image unoptimized src={experiment.fragmentPath} alt="" width={144} height={176} loading="lazy" />
+                        </span>
+                        <span className="damage-review-copy">
+                          <strong>{severityLabels[experiment.severity] ?? experiment.severity} · {experiment.severity}</strong>
+                          <small>{experiment.reviewPrototype ? "Review prototype" : "Calibrated material loss"}</small>
+                          <i>{percentage(experiment.statistics.measuredEffectCoverage, 1)} of {experiment.measurementBasis} affected</i>
+                        </span>
+                        {selected && <Check aria-hidden="true" />}
+                      </button>
+                    );
+                  })}
+                </div>
+              </article>
             );
           })}
         </div>
@@ -585,7 +598,7 @@ export function EvidenceWorkbench({ evidence }: { evidence: EvidencePayload }) {
       </details>
 
       <footer className="demo-footer">
-        <span>{evidence.corpus.processedPageCount} processed pages · {evidence.corpus.layoutRegionCount} stored layout regions · {evidence.damageTaxonomy.displayedTypeCount} damage types per page</span>
+        <span>{evidence.corpus.processedPageCount} processed pages · {evidence.corpus.layoutRegionCount} stored layout regions · {page.experiments.length} generated examples per page</span>
         <span>No generated replacement content</span>
       </footer>
     </main>
